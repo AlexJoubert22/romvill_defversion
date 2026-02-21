@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Romvill - Detalle: Infraestructura y Sanidad</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0d3c9e",
+                        "secondary": "#BFA15F",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                        "slate-dark": "#1e293b",
+                        "card-dark": "#1a2333",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .map-marker-pulse {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(59, 130, 246, 0.4);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .map-marker-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 1px solid white;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main dark:text-slate-200 font-display antialiased min-h-screen flex flex-col">
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <a href="PRINCIPAL.html" class="flex items-center gap-4 group">
+                        <div class="relative w-12 h-10 flex items-center justify-center">
+                            <img src="logo negro jpg.jpg" alt="ROMVILL"
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <span
+                            class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-10">
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="metodologia.html">
+                        Metodología
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-900 dark:text-white transition-colors"
+                        href="ANALISIS.html">
+                        Análisis
+                        <span
+                            class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary transition-all duration-300"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="SECTORES.html">
+                        Sectores
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="contacto.html">
+                        Contacto
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="contacto.html"
+                        class="bg-slate-900 hover:bg-primary text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
+                        Solicitar Estudio
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub-Navbar (Integrated) -->
+    <div
+        class="fixed top-20 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/80 dark:border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-12 h-14 overflow-x-auto no-scrollbar">
+                <a href="PERFIL_SEGURIDAD.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Seguridad</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="PERFIL_DEMOGRAFICO.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Demografía</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="PERFIL_SANIDAD.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-primary whitespace-nowrap">Sanidad</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300"></span>
+                </a>
+                <a href="PERFIL_MOVILIDAD.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Movilidad</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="PERFIL_PROYECCION.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Proyección
+                        de Mercado</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <main class="flex-grow">
+        <section class="bg-white dark:bg-card-dark border-b border-slate-200 dark:border-slate-800 pt-40 pb-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-primary font-semibold text-sm mb-3">
+                            <span class="material-symbols-outlined text-lg">arrow_back</span>
+                            <span>Volver a Dimensiones</span>
+                        </div>
+                        <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
+                            Infraestructura y Sanidad
+                        </h1>
+                        <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl">
+                            Análisis detallado de la capacidad de respuesta sanitaria, cobertura hospitalaria y
+                            servicios esenciales en el territorio objetivo.
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-700">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            <span>Datos actualizados: <strong>Oct 2023</strong></span>
+                        </div>
+                        <div class="h-4 w-px bg-slate-300 dark:bg-slate-600"></div>
+                        <div>Zona: <strong>Metropolitana Norte</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-7 space-y-8">
+                    <div
+                        class="bg-white dark:bg-card-dark rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <div
+                            class="p-6 border-b border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">add_location_alt</span>
+                                    Centro de Respuesta
+                                </h3>
+                                <p class="text-sm text-slate-500">Proximidad a hospitales y servicios de emergencia</p>
+                            </div>
+                            <button class="text-primary text-sm font-semibold hover:underline">Expandir Mapa</button>
+                        </div>
+                        <div class="relative h-[400px] bg-slate-50 dark:bg-slate-900/50 w-full overflow-hidden group">
+                            <!-- SVG Radar Animation -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg class="w-full h-full p-12" viewBox="0 0 400 400"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Radial Grid -->
+                                    <circle class="stroke-primary/5" cx="200" cy="200" fill="none" r="50"
+                                        stroke-width="1" />
+                                    <circle class="stroke-primary/5" cx="200" cy="200" fill="none" r="100"
+                                        stroke-width="1" />
+                                    <circle class="stroke-primary/5" cx="200" cy="200" fill="none" r="150"
+                                        stroke-width="1" />
+
+                                    <!-- Radar Pulses -->
+                                    <circle class="stroke-primary/20" cx="200" cy="200" fill="none" r="0"
+                                        stroke-width="2">
+                                        <animate attributeName="r" dur="4s" repeatCount="indefinite" values="0;200" />
+                                        <animate attributeName="opacity" dur="4s" repeatCount="indefinite"
+                                            values="1;0" />
+                                    </circle>
+                                    <circle class="stroke-primary/10" cx="200" cy="200" fill="none" r="0"
+                                        stroke-width="2">
+                                        <animate attributeName="r" begin="2s" dur="4s" repeatCount="indefinite"
+                                            values="0;200" />
+                                        <animate attributeName="opacity" dur="4s" repeatCount="indefinite"
+                                            values="1;0" />
+                                    </circle>
+
+                                    <!-- Connections -->
+                                    <g class="stroke-primary/20" fill="none" stroke-dasharray="4 2" stroke-width="1">
+                                        <line x1="200" x2="100" y1="200" y2="100">
+                                            <animate attributeName="stroke-dashoffset" dur="3s" repeatCount="indefinite"
+                                                values="0;20" />
+                                        </line>
+                                        <line x1="200" x2="300" y1="200" y2="120">
+                                            <animate attributeName="stroke-dashoffset" dur="3s" repeatCount="indefinite"
+                                                values="0;20" />
+                                        </line>
+                                        <line x1="200" x2="250" y1="200" y2="300">
+                                            <animate attributeName="stroke-dashoffset" dur="3s" repeatCount="indefinite"
+                                                values="0;20" />
+                                        </line>
+                                    </g>
+
+                                    <!-- Main Hospital Node -->
+                                    <g>
+                                        <circle cx="200" cy="200" fill="#135bec" r="8">
+                                            <animate attributeName="r" dur="2s" repeatCount="indefinite"
+                                                values="8;10;8" />
+                                        </circle>
+                                        <circle class="opacity-30" cx="200" cy="200" fill="#135bec" r="15">
+                                            <animate attributeName="r" dur="2s" repeatCount="indefinite"
+                                                values="15;25;15" />
+                                            <animate attributeName="opacity" dur="2s" repeatCount="indefinite"
+                                                values="0.3;0;0.3" />
+                                        </circle>
+                                    </g>
+
+                                    <!-- Secondary Nodes -->
+                                    <circle cx="100" cy="100" fill="#64748b" r="4" />
+                                    <circle cx="300" cy="120" fill="#64748b" r="4" />
+                                    <circle cx="250" cy="300" fill="#64748b" r="4" />
+                                </svg>
+                            </div>
+                            <!-- Map UI Elements -->
+                            <div class="absolute inset-0 p-6 pointer-events-none">
+                                <div class="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
+                                    <div
+                                        class="bg-white dark:bg-slate-800 shadow-lg px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-slate-200 dark:border-slate-700">
+                                        Hospital General (1.2km)
+                                    </div>
+                                </div>
+                                <div class="absolute top-[30%] right-[25%] transform translate-x-1/2 -translate-y-1/2">
+                                    <div
+                                        class="bg-white dark:bg-slate-800 shadow-lg px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-slate-200 dark:border-slate-700">
+                                        Clínica Especializada (2.5km)
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute bottom-4 left-4 right-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 text-[10px] flex justify-between items-center">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                        <span class="text-slate-600 dark:text-slate-400 font-medium">Atención
+                                            Activa</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                        <span class="text-slate-600 dark:text-slate-400 font-medium">Centros en
+                                            Red</span>
+                                    </div>
+                                </div>
+                                <div class="text-primary font-bold">RADAR DE PROXIMIDAD</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div
+                            class="bg-clinical-blue/30 dark:bg-slate-800/50 rounded-xl p-6 border border-blue-100 dark:border-slate-700">
+                            <div class="flex items-start gap-4 mb-4">
+                                <span class="p-2 bg-white dark:bg-slate-700 rounded-lg text-primary shadow-sm">
+                                    <span class="material-symbols-outlined">cardiology</span>
+                                </span>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Cobertura Sanitaria</h4>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider mt-1">Índice de
+                                        Accesibilidad</p>
+                                </div>
+                            </div>
+                            <div class="flex items-end gap-2 mb-4">
+                                <span class="text-4xl font-bold text-slate-900 dark:text-white">94%</span>
+                                <span class="text-sm text-green-600 font-medium mb-1 flex items-center">
+                                    <span class="material-symbols-outlined text-sm">trending_up</span> +2.4%
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                La densidad de centros de atención primaria supera el promedio regional. El tiempo medio
+                                de traslado a un centro de urgencias es inferior a 12 minutos en hora pico.
+                            </p>
+                        </div>
+                        <div
+                            class="bg-slate-50 dark:bg-slate-800/30 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                            <div class="flex items-start gap-4 mb-4">
+                                <span
+                                    class="p-2 bg-white dark:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-300 shadow-sm">
+                                    <span class="material-symbols-outlined">water_drop</span>
+                                </span>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Servicios Básicos</h4>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider mt-1">Saneamiento y Red
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 dark:text-slate-400">Red de Agua Potable</span>
+                                        <span class="font-semibold text-slate-900 dark:text-white">98.2%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-blue-500 w-[98%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 dark:text-slate-400">Alcantarillado</span>
+                                        <span class="font-semibold text-slate-900 dark:text-white">91.5%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-slate-500 w-[91%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 dark:text-slate-400">Gestión de Residuos</span>
+                                        <span class="font-semibold text-slate-900 dark:text-white">88.0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-slate-400 w-[88%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 space-y-6">
+                    <div
+                        class="bg-white dark:bg-card-dark rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest mb-3 block">Análisis
+                            Cualitativo</span>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Fortalezas del Ecosistema
+                            Sanitario</h3>
+                        <div class="prose prose-slate dark:prose-invert">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                El análisis territorial revela una robusta infraestructura hospitalaria concentrada en
+                                el eje norte-sur, facilitando el acceso rápido desde las principales vías arteriales. La
+                                integración de clínicas privadas con la red pública ha optimizado la gestión de camas en
+                                situaciones críticas.
+                            </p>
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Se observa una alta densidad de farmacias y centros de diagnóstico ambulatorio, lo que
+                                descentraliza la demanda sobre los hospitales de alta complejidad. Este modelo
+                                distribuido es clave para la resiliencia sanitaria del sector frente a picos
+                                estacionales de demanda.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-card-dark rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
+                        <span class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-3 block">Áreas de
+                            Oportunidad</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Puntos de Presión en
+                            Infraestructura</h3>
+                        <div class="flex gap-4 items-start mb-6">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                                <span class="material-symbols-outlined">warning</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-900 dark:text-white text-sm">Saturación en Urgencias
+                                    Pediátricas</h5>
+                                <p class="text-sm text-slate-500 mt-1">
+                                    Los centros especializados en pediatría muestran una ocupación superior al 85%
+                                    durante los meses de invierno, sugiriendo la necesidad de expansión.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                                <span class="material-symbols-outlined">power_off</span>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-900 dark:text-white text-sm">Respaldo Energético
+                                    Crítico</h5>
+                                <p class="text-sm text-slate-500 mt-1">
+                                    El 15% de los centros de atención primaria requiere actualización en sus sistemas de
+                                    generación eléctrica de emergencia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl shadow-lg p-8 text-white">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined">lightbulb</span>
+                            <h4 class="font-bold text-lg">Recomendación Estratégica</h4>
+                        </div>
+                        <p class="text-blue-50 leading-relaxed text-sm mb-6">
+                            Priorizar la inversión en la modernización de la red de saneamiento en el cuadrante este
+                            para acompañar la expansión hospitalaria proyectada para 2025.
+                        </p>
+                        <button
+                            class="w-full bg-white text-primary font-bold py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors text-sm">
+                            Ver Plan de Inversión
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">Fuentes de Datos
+                    Integradas</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div
+                        class="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+                        <span class="material-symbols-outlined text-3xl">database</span>
+                        <span class="text-sm font-medium">Ministerio de Salud</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+                        <span class="material-symbols-outlined text-3xl">apartment</span>
+                        <span class="text-sm font-medium">Catastro Urbano</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+                        <span class="material-symbols-outlined text-3xl">local_shipping</span>
+                        <span class="text-sm font-medium">Logística Regional</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+                        <span class="material-symbols-outlined text-3xl">satellite_alt</span>
+                        <span class="text-sm font-medium">Romvill Sat</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white dark:bg-background-dark py-12 border-t border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <a class="group flex items-center gap-4 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="PERFIL_DEMOGRAFICO.html">
+                    <span
+                        class="p-3 rounded-full border border-slate-200 dark:border-slate-700 group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined block rotate-180">arrow_forward</span>
+                    </span>
+                    <div class="text-right hidden sm:block">
+                        <span class="block text-xs uppercase tracking-wider">Anterior</span>
+                        <span class="font-bold">Demografía y Población</span>
+                    </div>
+                </a>
+                <a class="group flex items-center gap-4 text-right text-slate-900 dark:text-white"
+                    href="PERFIL_MOVILIDAD.html">
+                    <div class="text-right hidden sm:block">
+                        <span
+                            class="block text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Siguiente
+                            Dimensión</span>
+                        <span class="font-bold text-lg group-hover:text-primary transition-colors">Movilidad y
+                            Transporte</span>
+                    </div>
+                    <span
+                        class="p-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined block">arrow_forward</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-12">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400">token</span>
+                <span class="text-sm font-semibold text-slate-500 dark:text-slate-400">© 2023 Romvill
+                    Intelligence</span>
+            </div>
+            <div class="flex gap-6 text-sm">
+                <a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="#">Privacidad</a>
+                <a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="#">Ayuda</a>
+                <a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

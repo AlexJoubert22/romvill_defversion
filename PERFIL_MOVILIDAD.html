@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Romvill - Detalle: Movilidad y Conectividad</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0d3c9e",
+                        "secondary": "#BFA15F",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                        "slate-dark": "#1e293b",
+                        "card-dark": "#1a2333",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    backgroundImage: {
+                        'motion-lines': "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(100, 116, 139, 0.03) 10px, rgba(100, 116, 139, 0.03) 20px)",
+                        'grid-pattern': "radial-gradient(circle, rgba(100, 116, 139, 0.1) 1px, transparent 1px)"
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .map-overlay-gradient {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .dark .map-overlay-gradient {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 50%, rgba(15, 23, 42, 0) 100%);
+        }
+
+        .stat-card {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main dark:text-slate-100 font-display antialiased min-h-screen flex flex-col bg-motion-lines">
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <a href="PRINCIPAL.html" class="flex items-center gap-4 group">
+                        <div class="relative w-12 h-10 flex items-center justify-center">
+                            <img src="logo negro jpg.jpg" alt="ROMVILL"
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <span
+                            class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-10">
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="metodologia.html">
+                        Metodología
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-900 dark:text-white transition-colors"
+                        href="ANALISIS.html">
+                        Análisis
+                        <span
+                            class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary transition-all duration-300"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="SECTORES.html">
+                        Sectores
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="contacto.html">
+                        Contacto
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="contacto.html"
+                        class="bg-slate-900 hover:bg-primary text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
+                        Solicitar Estudio
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub-Navbar (Integrated) -->
+    <div
+        class="fixed top-20 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/80 dark:border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-12 h-14 overflow-x-auto no-scrollbar">
+                <a href="PERFIL_SEGURIDAD.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Seguridad</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="PERFIL_DEMOGRAFICO.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Demografía</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="PERFIL_SANIDAD.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Sanidad</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="PERFIL_MOVILIDAD.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-primary whitespace-nowrap">Movilidad</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300"></span>
+                </a>
+                <a href="PERFIL_PROYECCION.html" class="group relative py-4">
+                    <span
+                        class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap">Proyección
+                        de Mercado</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <main class="flex-grow">
+        <div class="bg-white dark:bg-card-dark border-b border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-4">
+                <nav class="flex text-sm text-slate-500 mb-2">
+                    <a class="hover:text-slate-900 dark:hover:text-white" href="#">Dimensiones</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-slate-900 dark:text-white font-medium">Movilidad</span>
+                </nav>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+                            Movilidad y Conectividad</h1>
+                        <p class="mt-2 text-slate-600 dark:text-slate-400 max-w-2xl">
+                            Análisis vectorial de flujos urbanos, tiempos de desplazamiento y eficiencia de redes de
+                            transporte público y privado.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-lg">download</span>
+                            Exportar PDF
+                        </button>
+                        <button
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white border border-transparent rounded-lg text-sm font-medium text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-lg">share</span>
+                            Compartir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8 flex flex-col gap-6">
+                    <div
+                        class="bg-white dark:bg-card-dark rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden relative group">
+                        <div
+                            class="absolute top-0 left-0 right-0 z-10 p-6 flex justify-between items-start pointer-events-none">
+                            <div
+                                class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm pointer-events-auto">
+                                <h3
+                                    class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    Flujo en Tiempo Real
+                                </h3>
+                                <p class="text-xs text-slate-500 mt-1">Actualizado hace 5 min</p>
+                            </div>
+                            <div class="flex flex-col gap-2 pointer-events-auto">
+                                <button
+                                    class="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">
+                                    <span class="material-symbols-outlined text-xl">layers</span>
+                                </button>
+                                <button
+                                    class="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">
+                                    <span class="material-symbols-outlined text-xl">add</span>
+                                </button>
+                                <button
+                                    class="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">
+                                    <span class="material-symbols-outlined text-xl">remove</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative h-[500px] w-full bg-slate-100 dark:bg-slate-900">
+                            <div
+                                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558230752-6715e478f773?q=80&amp;w=2669&amp;auto=format&amp;fit=crop')] bg-cover bg-center grayscale opacity-20 dark:opacity-10 mix-blend-multiply dark:mix-blend-lighten">
+                            </div>
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 500"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <!-- Paths -->
+                                <path id="path1" d="M100,400 Q250,350 400,300 T800,200" fill="none"
+                                    class="stroke-red-500/20" stroke-width="2" />
+                                <path id="path2" d="M150,100 Q300,250 450,350 T700,450" fill="none"
+                                    class="stroke-blue-500/20" stroke-width="2" />
+                                <path id="path3" d="M50,200 Q200,220 400,250 T900,300" fill="none"
+                                    class="stroke-amber-500/20" stroke-width="2" />
+
+                                <!-- Moving Particles Path 1 -->
+                                <circle r="3" fill="#ef4444">
+                                    <animateMotion dur="10s" repeatCount="indefinite">
+                                        <mpath href="#path1" />
+                                    </animateMotion>
+                                </circle>
+                                <circle r="3" fill="#ef4444">
+                                    <animateMotion dur="10s" begin="3s" repeatCount="indefinite">
+                                        <mpath href="#path1" />
+                                    </animateMotion>
+                                </circle>
+                                <circle r="3" fill="#ef4444">
+                                    <animateMotion dur="10s" begin="7s" repeatCount="indefinite">
+                                        <mpath href="#path1" />
+                                    </animateMotion>
+                                </circle>
+
+                                <!-- Moving Particles Path 2 -->
+                                <circle r="3" fill="#3b82f6">
+                                    <animateMotion dur="8s" repeatCount="indefinite">
+                                        <mpath href="#path2" />
+                                    </animateMotion>
+                                </circle>
+                                <circle r="3" fill="#3b82f6">
+                                    <animateMotion dur="8s" begin="4s" repeatCount="indefinite">
+                                        <mpath href="#path2" />
+                                    </animateMotion>
+                                </circle>
+
+                                <!-- Moving Particles Path 3 -->
+                                <circle r="2" fill="#f59e0b">
+                                    <animateMotion dur="12s" repeatCount="indefinite">
+                                        <mpath href="#path3" />
+                                    </animateMotion>
+                                </circle>
+                                <circle r="2" fill="#f59e0b">
+                                    <animateMotion dur="12s" begin="6s" repeatCount="indefinite">
+                                        <mpath href="#path3" />
+                                    </animateMotion>
+                                </circle>
+
+                                <!-- Intersections - Pulse -->
+                                <circle cx="400" cy="300" r="5" fill="#ef4444" class="opacity-50">
+                                    <animate attributeName="r" values="5;10;5" dur="3s" repeatCount="indefinite" />
+                                    <animate attributeName="opacity" values="0.5;0;0.5" dur="3s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 p-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-6 overflow-x-auto text-xs font-medium text-slate-600 dark:text-slate-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-1 bg-red-500 rounded-full"></span> Metro (L1, L2)
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-1 bg-blue-500 rounded-full"></span> Tren Suburbano
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-1 bg-amber-500 rounded-full"></span> Rutas Troncales
+                            </div>
+                            <div class="flex items-center gap-2 ml-auto">
+                                <span class="material-symbols-outlined text-base">speed</span> Velocidad Media: 24km/h
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div
+                            class="bg-white dark:bg-card-dark p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Conectividad Regional</h3>
+                                <span class="material-symbols-outlined text-slate-400">hub</span>
+                            </div>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 dark:text-slate-400">Índice de Interconexión</span>
+                                        <span class="font-bold text-slate-900 dark:text-white">8.4/10</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+                                        <div class="bg-slate-800 dark:bg-slate-200 h-2 rounded-full" style="width: 84%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                                        <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Nodos Activos
+                                        </p>
+                                        <p class="text-2xl font-bold text-slate-800 dark:text-white">127</p>
+                                        <p class="text-xs text-green-600 flex items-center mt-1">
+                                            <span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                                            +3%
+                                        </p>
+                                    </div>
+                                    <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                                        <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Tiempo Promedio
+                                        </p>
+                                        <p class="text-2xl font-bold text-slate-800 dark:text-white">42m</p>
+                                        <p class="text-xs text-emerald-600 flex items-center mt-1">
+                                            <span class="material-symbols-outlined text-sm mr-0.5">arrow_downward</span>
+                                            -2m
+                                        </p>
+                                    </div>
+                                </div>
+                                <p
+                                    class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4 mt-2">
+                                    La conectividad con la zona industrial norte muestra saturación en horas pico (07:00
+                                    - 09:00). Se recomienda optimizar rutas de transporte de personal.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-card-dark p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Accesibilidad Diaria</h3>
+                                <span class="material-symbols-outlined text-slate-400">directions_walk</span>
+                            </div>
+                            <div class="space-y-5">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+                                        <span class="material-symbols-outlined">directions_bus</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Transporte Público
+                                        </h4>
+                                        <p class="text-xs text-slate-500">Cobertura del 92% en radio de 400m</p>
+                                    </div>
+                                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Alta</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+                                        <span class="material-symbols-outlined">pedal_bike</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Ciclovías</h4>
+                                        <p class="text-xs text-slate-500">45km de red conectada</p>
+                                    </div>
+                                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Media</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full bg-slate-50 dark:bg-slate-700/30 flex items-center justify-center text-slate-600 dark:text-slate-400 shrink-0">
+                                        <span class="material-symbols-outlined">local_parking</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Estacionamiento
+                                        </h4>
+                                        <p class="text-xs text-slate-500">Disponibilidad crítica en zona centro</p>
+                                    </div>
+                                    <span class="text-sm font-bold text-red-600 dark:text-red-400">Baja</span>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+                                <a class="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary hover:underline flex items-center justify-end"
+                                    href="#">
+                                    Ver detalle de isócronas <span
+                                        class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 flex flex-col gap-6">
+                    <div class="bg-slate-900 text-white rounded-xl shadow-lg p-6 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10">
+                        </div>
+                        <div class="absolute top-0 right-0 p-4 opacity-20">
+                            <span class="material-symbols-outlined text-6xl">timeline</span>
+                        </div>
+                        <h3 class="text-sm uppercase tracking-widest text-slate-400 font-semibold mb-4 relative z-10">
+                            Eficiencia de Red</h3>
+                        <div class="space-y-6 relative z-10">
+                            <div>
+                                <p class="text-4xl font-display font-bold">85%</p>
+                                <p class="text-sm text-slate-400">Fluidez vial promedio</p>
+                            </div>
+                            <div class="h-px bg-slate-700 w-full"></div>
+                            <div>
+                                <p class="text-4xl font-display font-bold">1.2M</p>
+                                <p class="text-sm text-slate-400">Desplazamientos diarios</p>
+                            </div>
+                            <div class="h-px bg-slate-700 w-full"></div>
+                            <div>
+                                <p class="text-4xl font-display font-bold text-emerald-400">12min</p>
+                                <p class="text-sm text-slate-400">Espera max. transporte</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-card-dark rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span
+                                class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-sm">lightbulb</span>
+                            </span>
+                            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-900 dark:text-white">Romvill
+                                Insight</h3>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            "La expansión del sector oeste demanda una revisión urgente de las rutas alimentadoras.
+                            Nuestros datos sugieren que una línea BRT en el eje central reduciría los tiempos de
+                            traslado en un 35%."
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <img alt="Analista" class="w-8 h-8 rounded-full border border-slate-200"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuANycXojexXNVFHD7luowCk7qst0PtOuGPFDBCQtcZUVc90SBWkRGutG_u0sOmReRM1lBaKuNFDKYuhJ2fbGISyxueiNGGDTUsAMGux5QRVTBgTlXMhky5EuqIyE-I8DnXwAfZhRY9OWklJaaDUThqfyzNeV73U2yTH1_qXZVtnuHyin9r6KNn40FES-ol1JiMLBQj0xjrbbisjJEYf77S-txua3Jf6tPmYifwL-2ShHLdnDd1KpY-4sMCCl1_iOebl_T78zEbB7cs" />
+                            <div class="text-xs">
+                                <p class="font-bold text-slate-900 dark:text-white">Carlos M.</p>
+                                <p class="text-slate-500">Director de Urbanismo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-card-dark rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4">Documentación Relacionada</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
+                                    href="#">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 group-hover:text-red-500 transition-colors mt-0.5">picture_as_pdf</span>
+                                    <div>
+                                        <p
+                                            class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary">
+                                            Plan Maestro 2024</p>
+                                        <p class="text-xs text-slate-500">PDF • 12.4 MB</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
+                                    href="#">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 group-hover:text-green-500 transition-colors mt-0.5">dataset</span>
+                                    <div>
+                                        <p
+                                            class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary">
+                                            Raw Data: Aforos</p>
+                                        <p class="text-xs text-slate-500">CSV • 2.1 GB</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
+                                    href="#">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 group-hover:text-blue-500 transition-colors mt-0.5">map</span>
+                                    <div>
+                                        <p
+                                            class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary">
+                                            Capas GIS (Shapefiles)</p>
+                                        <p class="text-xs text-slate-500">ZIP • 450 MB</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="bg-white dark:bg-background-dark py-12 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a class="group flex items-center gap-4 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                href="PERFIL_SANIDAD.html">
+                <span
+                    class="p-3 rounded-full border border-slate-200 dark:border-slate-700 group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined block rotate-180">arrow_forward</span>
+                </span>
+                <div class="text-right hidden sm:block">
+                    <span class="block text-xs uppercase tracking-wider">Anterior</span>
+                    <span class="font-bold">Infraestructura Sanitaria</span>
+                </div>
+            </a>
+            <a class="group flex items-center gap-4 text-right text-slate-900 dark:text-white"
+                href="PERFIL_PROYECCION.html">
+                <div class="text-right hidden sm:block">
+                    <span class="block text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Siguiente
+                        Dimensión</span>
+                    <span class="font-bold text-lg group-hover:text-primary transition-colors">Proyección de
+                        Mercado</span>
+                </div>
+                <span
+                    class="p-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined block">arrow_forward</span>
+                </span>
+            </a>
+        </div>
+    </section>
+    <footer class="bg-white dark:bg-black border-t border-slate-200 dark:border-slate-800 py-12 mt-auto">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400">token</span>
+                <span class="text-sm font-semibold text-slate-500 dark:text-slate-400">© 2023 Romvill
+                    Intelligence</span>
+            </div>
+            <div class="flex gap-6 text-sm">
+                <a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="#">Soporte Técnico</a>
+                <a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="#">Metodología</a>
+                <a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    href="#">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

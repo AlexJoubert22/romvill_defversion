@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Romvill | Decisión y Entorno</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec", // Keeping the requested system primary
+                        "primary-dark": "#0d3c9e",
+                        "secondary": "#BFA15F", // Champagne Gold approximation for accents
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                        "slate-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased overflow-x-hidden selection:bg-secondary/30 selection:text-slate-900">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        <nav
+            class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <a href="PRINCIPAL.html" class="flex items-center gap-4 group">
+                        <div class="relative w-12 h-10 flex items-center justify-center">
+                            <img src="logo negro jpg.jpg" alt="ROMVILL"
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <span
+                            class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                    </a>
+                    <div class="hidden md:flex items-center gap-10">
+                        <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                            href="metodologia.html">
+                            Metodología
+                            <span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                            href="ANALISIS.html">
+                            Análisis
+                            <span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                            href="SECTORES.html">
+                            Sectores
+                            <span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                            href="contacto.html">
+                            Contacto
+                            <span
+                                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                    <div class="hidden md:block">
+                        <a href="contacto.html"
+                            class="px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:scale-105 transition-transform">Solicitar
+                            Estudio</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button class="text-slate-900 dark:text-white">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <main class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 transform scale-105"
+                data-alt="High quality aerial shot of a sophisticated urban area" data-location="Marbella"
+                style="background-image: url('fondo_hero.png');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80 z-10">
+            </div>
+
+            <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-16">
+                <span
+                    class="inline-block py-1 px-3 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold tracking-widest text-secondary uppercase animate-fade-in-up">
+                    Inteligencia Territorial
+                </span>
+                <h1 class="font-serif text-6xl md:text-8xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+                    Romvill. <br />
+                    <span class="text-white italic font-medium">Criterio antes de decidir.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-200 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Inteligencia territorial y desarrollo estratégico de alto nivel para inversiones seguras en los
+                    mercados más exigentes.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="contacto.html"
+                        class="min-w-[200px] h-14 px-8 bg-secondary hover:bg-[#a3884c] text-white text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
+                        Solicitar Estudio Personalizado
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                    <a href="SECTORES.html"
+                        class="min-w-[200px] h-14 px-8 bg-transparent hover:bg-white/10 text-white border border-white/30 text-base font-medium rounded backdrop-blur-sm transition-all duration-300 flex items-center justify-center">
+                        Explorar Servicios
+                    </a>
+                </div>
+            </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce text-white/50">
+        <span class="material-symbols-outlined text-4xl">keyboard_arrow_down</span>
+    </div>
+    </header>
+    <section class="relative z-30 -mt-20 px-6 max-w-7xl mx-auto w-full">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+                class="bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
+                <span class="text-4xl font-serif text-slate-900 dark:text-white mb-2">+120</span>
+                <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Proyectos
+                    Analizados</span>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Auditoría completa de
+                    viabilidad en zonas de alta demanda inmobiliaria.</p>
+            </div>
+            <div
+                class="bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
+                <span class="text-4xl font-serif text-slate-900 dark:text-white mb-2">25+</span>
+                <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Años de
+                    Excelencia</span>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Trayectoria consolidada
+                    asesorando grandes patrimonios e instituciones financieras.</p>
+            </div>
+            <div
+                class="bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
+                <span class="text-4xl font-serif text-slate-900 dark:text-white mb-2">98%</span>
+                <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Precisión
+                    Predictiva</span>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Modelos de datos propietarios
+                    para anticipar tendencias de mercado.</p>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark" id="methodology">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="h-px w-12 bg-secondary"></span>
+                        <span class="text-secondary font-bold uppercase tracking-widest text-xs">Nuestra
+                            Metodología</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-serif text-slate-900 dark:text-white leading-tight mb-6">
+                        Ciencia de Datos y <br /><span class="text-slate-400">Visión Humana</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">
+                        Combinamos análisis de big data con inteligencia de mercado tradicional para ofrecer una
+                        visión incomparable. No solo entregamos datos, entregamos claridad estratégica para la toma
+                        de decisiones críticas.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-start">
+                            <div
+                                class="w-12 h-12 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-secondary shrink-0">
+                                <span class="material-symbols-outlined">analytics</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Análisis
+                                    Predictivo</h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Modelos avanzados que procesan
+                                    variables demográficas, económicas y urbanísticas para prever tendencias.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div
+                                class="w-12 h-12 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-secondary shrink-0">
+                                <span class="material-symbols-outlined">map</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Inteligencia
+                                    Territorial</h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Mapeo detallado de
+                                    oportunidades y riesgos locales, desde la normativa hasta el flujo peatonal.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div
+                                class="w-12 h-12 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-secondary shrink-0">
+                                <span class="material-symbols-outlined">strategy</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Estrategia de
+                                    Inversión</h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Asesoramiento personalizado
+                                    para maximizar el retorno y minimizar la exposición al riesgo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl z-0">
+                    </div>
+                    <div class="relative z-10 rounded overflow-hidden shadow-2xl">
+                        <img alt="Modern architectural building facade with glass windows reflecting sky"
+                            class="w-full h-auto object-cover aspect-[4/5]"
+                            data-alt="Abstract modern architecture perspective looking up"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYNOPBGRpo-EtGoYRidlyHKrcF-pRiMMMghC3y4OH95lhDInSB1QVdt5-DVGDgblt0raz_33rsdbOimMEtD1HqS-faGT8OxeMJQNswtXuqGP-Ex2EWVv8q0ghEzmKQgNw2cm9VvIymGrTE4QbiQZ2ykbe-fm910V9tZe9LrtByHvYmoZGcSqUGJfM25Fs5juacmBwLr5iygV_ebpth1kNHQaY4hAfJSK_fWBRl9MUV_GFj3GqbQi6Wm8s5tIFY_eT2C9QCMZ5cDTg" />
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                            <p class="text-white font-serif italic text-lg">"La precisión es la nueva moneda de
+                                cambio en el mercado inmobiliario."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800" id="locations">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 max-w-2xl mx-auto">
+                <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-2 block">Alcance
+                    Territorial</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white mb-4">Donde Operamos</h2>
+                <p class="text-slate-500 dark:text-slate-400">Presencia estratégica en los mercados más dinámicos y
+                    exclusivos del panorama nacional.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative h-96 rounded-lg overflow-hidden cursor-pointer shadow-lg">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLSH0wG-LJgd2YbhbQO37hTJaFWv1j6ZDsuqc7I-NVno2Vpg8JoZGDjOl6Wcdn-976aOaxGYEeII9irbQex723mvbnfwICa3qZQ9w1y4oMKyP1Ifo-G24MMTK9_1GaEP7wthh87KwNHJHNd4xkJuJXFE4bAw8yybieOcSau04V4ZJl9mc1xdstOqdoXRDLW4d-Hrq5Q84T6XYrXV941Qo-z4z0QWRLIwOxmEvH2E6HlqTrwaM89VZGi8J73vyECj_sGpwMJk4KwqA');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-colors duration-300">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 text-center">
+                        <h3 class="text-white text-3xl font-serif mb-2 group-hover:text-secondary transition-colors">
+                            Madrid</h3>
+                        <p class="text-slate-300 text-sm font-light">Corazón financiero y oportunidades Prime.</p>
+                    </div>
+                </div>
+                <div class="group relative h-96 rounded-lg overflow-hidden cursor-pointer shadow-lg">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcaZpaIcwC6sQdNaza3UTlny8GTGiRjQZiYjF_xR8YkcQ8R49KvZ_izUIcPRapafNDS5KjIi_viraFA86PztKPzsfLygpf9Wzj8moiXrF22xi_W_bDqHeQzcZWJVKEW_8kXychj_fruO8KpQxvH215Z3wLDA4_YDu5ZEIABaWylUsH_rwufhboiDQsgkOYzVMgycaZgzrSPiBAa5nClht4WW2tIAsNPPIzhEvi59TPG0za5eq15nr5ASz5Hb6_9STrbndnE33HqWQ');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-colors duration-300">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 text-center">
+                        <h3 class="text-white text-3xl font-serif mb-2 group-hover:text-secondary transition-colors">
+                            Alicante</h3>
+                        <p class="text-slate-300 text-sm font-light">Desarrollo costero y expansión urbana.</p>
+                    </div>
+                </div>
+                <div class="group relative h-96 rounded-lg overflow-hidden cursor-pointer shadow-lg">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBS0Wpy6ECTZwWN4hQE7IIPzKvlAzBCPKlzJ7vAOXjt-g_Q8X1VxivmWgrroT9wBjdg7iaIaDx_0dSZXnQDwPtKEo04k_3PAgEO_Us2EM95yBeJtJbu4W44k2vt9V-U-LCUK1_D4YQDHrPYS-f8tPqPd2QY43uZpXMZsHISXTnJE9z7RrTeCKUEpRYt69ACcZc9Cvz75QVba-W0jqmeb6PtU5khWEo0XXSoDq9mmlRfruPzzkhb1Pi22zODjTwc2cPO2NeGLow3muU');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-colors duration-300">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 text-center">
+                        <h3 class="text-white text-3xl font-serif mb-2 group-hover:text-secondary transition-colors">
+                            Marbella</h3>
+                        <p class="text-slate-300 text-sm font-light">Lujo exclusivo y alta rentabilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        </div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">¿Listo para transformar datos en
+                decisiones?</h2>
+            <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Solicite hoy un estudio preliminar de su zona
+                de interés y descubra el potencial oculto de su inversión.</p>
+            <form class="max-w-md mx-auto flex flex-col gap-4">
+                <div class="relative">
+                    <input
+                        class="w-full bg-white/5 border border-white/20 text-white placeholder-slate-400 px-5 py-4 rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
+                        placeholder="Su correo electrónico profesional" type="email" />
+                </div>
+                <button
+                    class="w-full bg-secondary hover:bg-[#a3884c] text-white font-bold py-4 px-6 rounded transition-colors duration-300 uppercase tracking-wider text-sm"
+                    type="button">
+                    Solicitar contacto
+                </button>
+            </form>
+        </div>
+    </section>
+    <footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="text-primary dark:text-white">
+                            <span class="material-symbols-outlined text-2xl">token</span>
+                        </div>
+                        <span
+                            class="text-lg font-bold tracking-tight text-slate-900 dark:text-white font-display">ROMVILL</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                        Consultoría estratégica líder en inteligencia territorial. Redefiniendo el estándar de la
+                        inversión inmobiliaria con datos de precisión.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4">Servicios</h4>
+                    <ul class="space-y-2">
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Estudios de Mercado</a></li>
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Due Diligence</a></li>
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Consultoría Urbanística</a></li>
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Gestión de Activos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4">Compañía</h4>
+                    <ul class="space-y-2">
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Sobre Nosotros</a></li>
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Casos de Éxito</a></li>
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Noticias</a></li>
+                        <li><a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm transition-colors"
+                                href="#">Carreras</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 dark:text-white font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-secondary text-lg mt-0.5">location_on</span>
+                            <span>Paseo de la Castellana 120,<br />Madrid, España</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-secondary text-lg">mail</span>
+                            <a class="hover:text-primary transition-colors"
+                                href="mailto:info@romvill.com">info@romvill.com</a>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-secondary text-lg">call</span>
+                            <a class="hover:text-primary transition-colors" href="tel:+34910000000">+34 910 000
+                                000</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-400 text-xs">© 2024 Romvill Intelligence. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="text-slate-400 hover:text-primary text-xs transition-colors" href="#">Privacidad</a>
+                    <a class="text-slate-400 hover:text-primary text-xs transition-colors" href="#">Términos</a>
+                    <a class="text-slate-400 hover:text-primary text-xs transition-colors" href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <script>
+        // Simple script to handle navbar transparency on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+
+</html>

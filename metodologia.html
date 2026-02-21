@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Metodología: El Valor del Análisis - Romvill</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec", // Keeping the requested system primary
+                        "primary-dark": "#0d3c9e",
+                        "secondary": "#BFA15F", // Champagne Gold approximation for accents
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                        "slate-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @layer utilities {
+            .radar-grid {
+                background-image:
+                    radial-gradient(circle, rgba(112, 128, 144, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#0d121b] dark:text-slate-100 font-display min-h-screen flex flex-col antialiased">
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <a href="PRINCIPAL.html" class="flex items-center gap-4 group">
+                        <div class="relative w-12 h-10 flex items-center justify-center">
+                            <img src="logo negro jpg.jpg" alt="ROMVILL"
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <span
+                            class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-10">
+                    <a class="group relative text-sm font-medium text-slate-900 dark:text-white transition-colors"
+                        href="metodologia.html">
+                        Metodología
+                        <span
+                            class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary transition-all duration-300"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="ANALISIS.html">
+                        Análisis
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="SECTORES.html">
+                        Sectores
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="contacto.html">
+                        Contacto
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="contacto.html"
+                        class="bg-slate-900 hover:bg-primary text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
+                        Solicitar Estudio
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <button class="md:hidden text-[#0d121b] dark:text-white">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    </header>
+    <main class="flex-grow flex flex-col items-center">
+        <section class="w-full max-w-7xl px-4 md:px-10 py-16 md:py-24 text-center">
+            <div
+                class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                Strategic Process
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-[#0d121b] dark:text-white mb-4">
+                Metodología
+            </h1>
+            <p class="text-xl md:text-2xl text-[#4c669a] dark:text-slate-400 font-normal max-w-2xl mx-auto">
+                El Valor del Análisis Riguroso
+            </p>
+            <div class="mt-8 max-w-3xl mx-auto">
+                <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Nuestro enfoque sistemático garantiza la neutralidad y precisión en cada etapa del desarrollo
+                    estratégico. Transformamos datos en inteligencia territorial aplicable mediante una rigurosa
+                    triangulación de fuentes y contexto humano.
+                </p>
+            </div>
+        </section>
+        <section class="w-full max-w-7xl px-4 md:px-10 pb-12">
+            <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div
+                    class="hidden md:block absolute top-[2.5rem] left-[16%] right-[16%] h-[2px] bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent z-0">
+                </div>
+                <article
+                    class="group relative flex flex-col gap-6 p-6 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-800/50 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300 z-10 bg-background-light dark:bg-background-dark">
+                    <div class="flex flex-col gap-4 items-start">
+                        <div
+                            class="relative flex items-center justify-center w-14 h-14 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-primary text-2xl">travel_explore</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-primary uppercase tracking-wider">Nivel 01</span>
+                                <div class="h-px w-4 bg-primary/30"></div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#0d121b] dark:text-white">Recolección OSINT</h3>
+                        </div>
+                    </div>
+                    <div class="h-px w-full bg-slate-200 dark:bg-slate-700 group-hover:bg-primary/20 transition-colors">
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                        Recopilación exhaustiva de inteligencia de fuentes abiertas. Establecemos una base factual
+                        sólida y verificable mediante el filtrado algorítmico y manual de huellas digitales y registros
+                        públicos.
+                    </p>
+                    <ul class="mt-2 space-y-2">
+                        <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-primary text-sm">check</span>
+                            Minería de datos estructurados
+                        </li>
+                        <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-primary text-sm">check</span>
+                            Verificación de fuentes cruzadas
+                        </li>
+                    </ul>
+                </article>
+                <article
+                    class="group relative flex flex-col gap-6 p-6 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-800/50 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300 z-10 bg-background-light dark:bg-background-dark">
+                    <div class="flex flex-col gap-4 items-start">
+                        <div
+                            class="relative flex items-center justify-center w-14 h-14 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-primary text-2xl">psychology</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-primary uppercase tracking-wider">Nivel 02</span>
+                                <div class="h-px w-4 bg-primary/30"></div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#0d121b] dark:text-white">Contextualización</h3>
+                        </div>
+                    </div>
+                    <div class="h-px w-full bg-slate-200 dark:bg-slate-700 group-hover:bg-primary/20 transition-colors">
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                        Traducción de métricas abstractas a realidades cotidianas. Integramos el factor humano y
+                        cultural en el análisis para comprender no solo el <em>qué</em>, sino el <em>por qué</em> de los
+                        datos territoriales.
+                    </p>
+                    <ul class="mt-2 space-y-2">
+                        <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-primary text-sm">check</span>
+                            Análisis sociodemográfico
+                        </li>
+                        <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-primary text-sm">check</span>
+                            Evaluación de impacto cultural
+                        </li>
+                    </ul>
+                </article>
+                <article
+                    class="group relative flex flex-col gap-6 p-6 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-800/50 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300 z-10 bg-background-light dark:bg-background-dark">
+                    <div class="flex flex-col gap-4 items-start">
+                        <div
+                            class="relative flex items-center justify-center w-14 h-14 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-primary text-2xl">compare_arrows</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-primary uppercase tracking-wider">Nivel 03</span>
+                                <div class="h-px w-4 bg-primary/30"></div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#0d121b] dark:text-white">Presentación</h3>
+                        </div>
+                    </div>
+                    <div class="h-px w-full bg-slate-200 dark:bg-slate-700 group-hover:bg-primary/20 transition-colors">
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                        Síntesis estratégica final. Ofrecemos marcos comparativos neutrales diseñados específicamente
+                        para una toma de decisiones ejecutiva, informada y libre de sesgos cognitivos.
+                    </p>
+                    <ul class="mt-2 space-y-2">
+                        <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-primary text-sm">check</span>
+                            Dashboards ejecutivos
+                        </li>
+                        <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-primary text-sm">check</span>
+                            Escenarios prospectivos
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <section class="w-full max-w-7xl px-4 md:px-10 pb-24 flex flex-col items-center">
+            <div
+                class="w-full py-16 border-t border-slate-100 dark:border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+                <div class="flex flex-col gap-6 max-w-lg order-2 lg:order-1">
+                    <div class="flex items-center gap-3">
+                        <div class="h-[1px] w-12 bg-champagne"></div>
+                        <span class="text-sm font-semibold text-champagne uppercase tracking-[0.2em]">Claridad
+                            Estratégica</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#0d121b] dark:text-white leading-tight">
+                        Transformando Datos en <span class="text-slate-400 italic">Visión</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg font-light leading-relaxed">
+                        Nuestra matriz de decisión procesa la complejidad del entorno para revelar oportunidades claras.
+                        Un equilibrio perfecto entre datos cuantitativos y contexto cualitativo.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mt-4">
+                        <div class="flex flex-col gap-1 pl-4 border-l border-slate-200 dark:border-slate-700">
+                            <span class="text-2xl font-bold text-[#0d121b] dark:text-white">99.8%</span>
+                            <span class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">Precisión
+                                Analítica</span>
+                        </div>
+                        <div class="flex flex-col gap-1 pl-4 border-l border-slate-200 dark:border-slate-700">
+                            <span class="text-2xl font-bold text-[#0d121b] dark:text-white">24/7</span>
+                            <span class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">Monitoreo
+                                Activo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative w-full max-w-md aspect-square flex items-center justify-center order-1 lg:order-2">
+                    <div class="absolute inset-0 radar-grid rounded-full opacity-50"></div>
+                    <svg class="w-full h-full drop-shadow-2xl" viewBox="0 0 400 400">
+                        <circle cx="200" cy="200" fill="none" r="150" stroke="#708090" stroke-opacity="0.2"
+                            stroke-width="0.5"></circle>
+                        <circle cx="200" cy="200" fill="none" r="100" stroke="#708090" stroke-opacity="0.3"
+                            stroke-width="0.5"></circle>
+                        <circle cx="200" cy="200" fill="none" r="50" stroke="#708090" stroke-opacity="0.4"
+                            stroke-width="0.5"></circle>
+                        <line stroke="#708090" stroke-opacity="0.2" stroke-width="1" x1="200" x2="200" y1="50" y2="350">
+                        </line>
+                        <line stroke="#708090" stroke-opacity="0.2" stroke-width="1" x1="50" x2="350" y1="200" y2="200">
+                        </line>
+                        <line stroke="#708090" stroke-opacity="0.2" stroke-width="1" x1="93" x2="307" y1="93" y2="307">
+                        </line>
+                        <line stroke="#708090" stroke-opacity="0.2" stroke-width="1" x1="307" x2="93" y1="93" y2="307">
+                        </line>
+                        <polygon class="drop-shadow-lg" fill="rgba(212, 175, 55, 0.1)"
+                            points="200,60 310,140 290,290 180,330 90,250 110,120" stroke="#d4af37" stroke-width="1.5">
+                        </polygon>
+                        <circle cx="200" cy="60" fill="#d4af37" r="3"></circle>
+                        <circle cx="310" cy="140" fill="#d4af37" r="3"></circle>
+                        <circle cx="290" cy="290" fill="#d4af37" r="3"></circle>
+                        <circle cx="180" cy="330" fill="#d4af37" r="3"></circle>
+                        <circle cx="90" cy="250" fill="#d4af37" r="3"></circle>
+                        <circle cx="110" cy="120" fill="#d4af37" r="3"></circle>
+                        <circle cx="200" cy="200" fill="#101622" r="4" stroke="#d4af37" stroke-width="2"></circle>
+                    </svg>
+                    <div
+                        class="absolute top-[10%] left-1/2 -translate-x-1/2 -translate-y-full mb-2 bg-white dark:bg-[#101622] px-3 py-1 rounded-full shadow-lg border border-slate-100 dark:border-slate-800">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Validación</span>
+                    </div>
+                    <div
+                        class="absolute bottom-[10%] left-1/2 -translate-x-1/2 translate-y-full mt-2 bg-white dark:bg-[#101622] px-3 py-1 rounded-full shadow-lg border border-slate-100 dark:border-slate-800">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Impacto</span>
+                    </div>
+                    <div
+                        class="absolute left-[5%] top-1/2 -translate-y-1/2 -translate-x-full mr-2 bg-white dark:bg-[#101622] px-3 py-1 rounded-full shadow-lg border border-slate-100 dark:border-slate-800">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Riesgo</span>
+                    </div>
+                    <div
+                        class="absolute right-[5%] top-1/2 -translate-y-1/2 translate-x-full ml-2 bg-white dark:bg-[#101622] px-3 py-1 rounded-full shadow-lg border border-slate-100 dark:border-slate-800">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Oportunidad</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="w-full px-4 pb-20">
+            <div
+                class="relative overflow-hidden rounded-2xl bg-[#101622] text-white max-w-7xl mx-auto px-6 py-16 md:px-20 md:py-24">
+                <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl">
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+                    <div class="max-w-xl space-y-6">
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Profundice en nuestra estrategia</h2>
+                        <p class="text-slate-300 text-lg font-light leading-relaxed">
+                            Descubra cómo nuestra metodología de tres niveles puede transformar su visión territorial y
+                            potenciar sus decisiones de inversión.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-white text-[#101622] font-bold text-sm hover:bg-slate-100 transition-colors shadow-lg shadow-white/10">
+                            Contactar Especialista
+                        </button>
+                        <button
+                            class="inline-flex items-center justify-center h-12 px-8 rounded-lg border border-slate-600 hover:border-white text-white font-bold text-sm transition-colors hover:bg-white/5">
+                            Ver Casos de Estudio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d121b] py-12">
+        <div class="max-w-7xl mx-auto px-4 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2 text-[#0d121b] dark:text-white">
+                <div class="size-6 text-primary">
+                    <svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_footer)">
+                            <path
+                                d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"
+                                fill="currentColor"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_footer">
+                                <rect fill="white" height="48" width="48"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="text-lg font-bold">Romvill</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+                <a class="hover:text-primary transition-colors" href="#">Twitter</a>
+            </div>
+            <p class="text-sm text-slate-400 dark:text-slate-600">
+                © 2024 Romvill. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

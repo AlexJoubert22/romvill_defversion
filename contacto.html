@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Romvill - Solicitud de Estudio Personalizado</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec", // Keeping the requested system primary
+                        "primary-dark": "#0d3c9e",
+                        "secondary": "#BFA15F", // Champagne Gold approximation for accents
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                        "slate-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100 antialiased flex flex-col">
+    <!-- Top Navigation -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <a href="PRINCIPAL.html" class="flex items-center gap-4 group">
+                        <div class="relative w-12 h-10 flex items-center justify-center">
+                            <img src="logo negro jpg.jpg" alt="ROMVILL"
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <span
+                            class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-10">
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="metodologia.html">
+                        Metodología
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="ANALISIS.html">
+                        Análisis
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="SECTORES.html">
+                        Sectores
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a class="group relative text-sm font-medium text-slate-900 dark:text-white transition-colors"
+                        href="contacto.html">
+                        Contacto
+                        <span
+                            class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary transition-all duration-300"></span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="contacto.html"
+                        class="bg-slate-900 hover:bg-primary text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
+                        Solicitar Estudio
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-4 md:p-8 lg:p-12">
+        <div
+            class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft border border-border-light dark:border-border-dark overflow-hidden min-h-[600px]">
+            <!-- Left Column: Form -->
+            <div class="lg:col-span-7 p-6 md:p-10 lg:p-12 flex flex-col justify-center">
+                <div class="mb-8">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary text-xs font-bold uppercase tracking-wider mb-3">Inteligencia
+                        Territorial</span>
+                    <h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight mb-2">
+                        Solicitud de Estudio
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-lg">
+                        Configure los parámetros clave para su análisis estratégico.
+                    </p>
+                </div>
+                <form action="#" class="space-y-6">
+                    <!-- Zone Input -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="zona">
+                            Zona de Interés
+                        </label>
+                        <div class="relative">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <span class="material-symbols-outlined">location_on</span>
+                            </div>
+                            <input
+                                class="block w-full pl-10 pr-3 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
+                                id="zona" name="zona" placeholder="Ej: Madrid Centro, Barrio de Salamanca"
+                                type="text" />
+                        </div>
+                    </div>
+                    <!-- Objective Select -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="objetivo">
+                            Objetivo Principal
+                        </label>
+                        <div class="relative">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <span class="material-symbols-outlined">target</span>
+                            </div>
+                            <select
+                                class="block w-full pl-10 pr-10 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm appearance-none transition-all"
+                                id="objetivo" name="objetivo">
+                                <option disabled="" selected="" value="">Seleccione una opción...</option>
+                                <option value="inversion">Inversión Patrimonial</option>
+                                <option value="vivienda">Compra de Vivienda</option>
+                                <option value="traslado">Traslado Corporativo</option>
+                                <option value="desarrollo">Desarrollo Inmobiliario</option>
+                            </select>
+                            <div
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Profile Textarea -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="perfil">
+                            Perfil del Inversor / Requisitos
+                        </label>
+                        <textarea
+                            class="block w-full p-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm resize-none transition-all"
+                            id="perfil" name="perfil"
+                            placeholder="Describa brevemente el presupuesto, horizonte temporal y necesidades específicas..."
+                            rows="4"></textarea>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="pt-2">
+                        <button
+                            class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all items-center gap-2"
+                            type="button">
+                            <span>Solicitar Análisis Preliminar</span>
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </button>
+                    </div>
+                    <!-- Legal Links -->
+                    <div
+                        class="flex justify-center gap-6 pt-4 border-t border-border-light dark:border-border-dark mt-6">
+                        <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Términos y
+                            Condiciones</a>
+                        <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Política de
+                            Privacidad (RGPD)</a>
+                        <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Aviso Legal
+                            (LSSI)</a>
+                    </div>
+                </form>
+            </div>
+            <!-- Right Column: Value Proposition -->
+            <div
+                class="lg:col-span-5 bg-slate-50 dark:bg-slate-900/50 p-6 md:p-10 lg:p-12 border-l border-border-light dark:border-border-dark flex flex-col justify-between relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div
+                    class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">verified_user</span>
+                        Garantía Romvill
+                    </h2>
+                    <div class="space-y-6">
+                        <!-- Feature 1 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">description</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Informe Estructurado</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Recibirá un dossier completo con análisis demográfico, urbanístico y de mercado de
+                                    la zona seleccionada.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">balance</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Neutralidad Garantizada
+                                </h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Operamos sin conflictos de interés. No vendemos propiedades, vendemos inteligencia
+                                    para su decisión.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">dataset</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Datos Verificables</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Información cruzada de catastro, registros de la propiedad y fuentes de mercado en
+                                    tiempo real.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Abstract Visual / Quote -->
+                <div
+                    class="relative z-10 mt-12 p-6 bg-white dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-4xl opacity-20">format_quote</span>
+                        <div>
+                            <p class="text-sm font-medium text-slate-700 dark:text-slate-300 italic">
+                                "La información es el activo más valioso antes de cualquier inversión inmobiliaria.
+                                Romvill le da la ventaja."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Simple Footer -->
+    <footer
+        class="w-full py-6 border-t border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-xs text-slate-400 dark:text-slate-500">
+                © 2024 Romvill Intelligence Group. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+    <script>
+        // Simple script to handle navbar transparency on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+
+</html>
