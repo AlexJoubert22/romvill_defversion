@@ -70,9 +70,9 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-3">
                     <a href="index.html" class="flex items-center gap-4 group">
-                        <div class="relative w-12 h-10 flex items-center justify-center">
+                        <div class="relative w-12 h-10 flex items-center justify-center overflow-hidden">
                             <img src="logo negro jpg.jpg" alt="ROMVILL"
-                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105 invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen">
                         </div>
                         <span
                             class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
@@ -170,12 +170,24 @@
                                 <option value="vivienda">Compra de Vivienda</option>
                                 <option value="traslado">Traslado Corporativo</option>
                                 <option value="desarrollo">Desarrollo Inmobiliario</option>
+                                <option value="otro">Otro (explícanos tu objetivo)</option>
                             </select>
                             <div
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
                                 <span class="material-symbols-outlined">expand_more</span>
                             </div>
                         </div>
+                    </div>
+                    <!-- Otro Objetivo Input (Hidden by default) -->
+                    <div class="space-y-2 hidden" id="otro-objetivo-container">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200"
+                            for="otro_objetivo">
+                            Título de nuestro objetivo personal
+                        </label>
+                        <input
+                            class="block w-full px-3 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
+                            id="otro_objetivo" name="otro_objetivo" placeholder="Explícanos tu objetivo..."
+                            type="text" />
                     </div>
                     <!-- Profile Textarea -->
                     <div class="space-y-2">
@@ -303,6 +315,18 @@
                 nav.classList.add('shadow-md');
             } else {
                 nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Toggle "Otro" objective field
+        const objetivoSelect = document.getElementById('objetivo');
+        const otroContainer = document.getElementById('otro-objetivo-container');
+
+        objetivoSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'otro') {
+                otroContainer.classList.remove('hidden');
+            } else {
+                otroContainer.classList.add('hidden');
             }
         });
     </script>

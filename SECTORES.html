@@ -78,9 +78,9 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-3">
                     <a href="index.html" class="flex items-center gap-4 group">
-                        <div class="relative w-12 h-10 flex items-center justify-center">
+                        <div class="relative w-12 h-10 flex items-center justify-center overflow-hidden">
                             <img src="logo negro jpg.jpg" alt="ROMVILL"
-                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105 invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen">
                         </div>
                         <span
                             class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
@@ -176,7 +176,7 @@
                 <div class="absolute inset-0 z-0">
                     <img alt="Modern glass corporate office skyscraper looking up"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover/right:scale-110 filter brightness-[0.6] group-hover/right:brightness-[0.7]"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuADXBGisCZLBexAbuneQZb9dVy8gwlNchprJsS5EKU-JXcERoXBRv5O9rX8tloFdffflrm9G0YATytaIlyHFn-Aj5XB0uJvxPVuHY__J0E-EEFRLtNQ1I1CNFu1RUFoDU1bok9oX4U-BHt3tOGjuAM9V1tRxEaWlGeJYbFtWhhaptxJpfjFe3K-12fiUmSMXF9t2KSYoVygxb8KI-3tMzsoiBXFvbeclg6gtlfIXsv2ndQkUnxqP2EBygRYzVnI8KwWvzN0oE91FEw" />
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuADXBGisCZLBexAbuneQZb9dVy8gwlNchprJsS5EKU-JXcERoXBRv5O9rX8tloFdffflrm9G0YATytaIlyHFn-Aj5XB0uJvxPVuHY__J0E-EEFRLtNQ1I1CNFu1RUFoDU1bok9oX4U-BHt3tOGjuAM9V1tRxEaWlGeJYbFtWhJaptxJpfjFe3K-12fiUmSMXF9t2KSYoVygxb8KI-3tMzsoiBXFvbeclg6gtlfIXsv2ndQkUnxqP2EBygRYzVnI8KwWvzN0oE91FEw" />
                 </div>
                 <!-- Content -->
                 <div
@@ -193,47 +193,193 @@
                         Datos estratégicos y evaluación de riesgos para maximizar el retorno de inversión en desarrollos
                         comerciales.
                     </p>
-                    <div class="flex lg:justify-end">
-                        <button
-                            class="flex items-center justify-center gap-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors h-14 px-8 text-base font-bold shadow-lg border border-transparent hover:border-white/20 group-hover/right:shadow-xl hover:-translate-y-1 transform duration-200">
-                            <span>Consultoría Corporativa</span>
-                            <span class="material-symbols-outlined text-[20px]">trending_up</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- Central Floating Card (Absolute Centered) -->
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-[90%] max-w-[500px] pointer-events-none lg:pointer-events-auto">
-                <div
-                    class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-slate-700 shadow-2xl rounded-2xl p-8 text-center transform transition-all hover:scale-105 duration-300">
-                    <div
-                        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
-                        <span class="material-symbols-outlined text-3xl">psychology</span>
-                    </div>
-                    <h1 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-3 tracking-tight">
-                        Reduciendo la Incertidumbre
-                    </h1>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                        Inteligencia territorial aplicada para decisiones vitales y estratégicas, ya sea para construir
-                        un hogar o un imperio.
-                    </p>
-                    <!-- Decorative Element -->
-                    <div
-                        class="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                        <span class="material-symbols-outlined text-white text-sm">auto_awesome</span>
-                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Detailed Services Section -->
+        <section class="py-32 bg-white dark:bg-slate-900 overflow-hidden relative">
+            <div
+                class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent">
+            </div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-24">
+                    <span
+                        class="inline-block py-1 px-3 mb-4 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-[0.2em]">
+                        Servicios Especializados
+                    </span>
+                    <h2 class="text-4xl md:text-6xl font-serif text-slate-900 dark:text-white mb-8">Excelencia
+                        Estratégica</h2>
+                    <p class="max-w-2xl mx-auto text-slate-500 dark:text-slate-400 text-lg">Un enfoque dual diseñado
+                        para cubrir tanto la esfera personal como la profesional con el mismo rigor analítico.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <!-- Column 1: Particulares -->
+                    <div class="group space-y-12">
+                        <div class="flex items-center gap-6">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-secondary border border-slate-100 dark:border-slate-700 shadow-sm transition-transform group-hover:scale-110">
+                                <span class="material-symbols-outlined text-3xl">family_restroom</span>
+                            </div>
+                            <h3 class="text-3xl font-serif font-bold text-slate-900 dark:text-white">Particulares y
+                                Familias</h3>
+                        </div>
+
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-xl font-light">
+                            Salvaguardamos el bienestar de su familia mediante la identificación de entornos
+                            residenciales que combinan <span
+                                class="text-slate-900 dark:text-white font-semibold">seguridad máxima</span>, calidad de
+                            servicios y una proyección sólida del valor patrimonial.
+                        </p>
+
+                        <!-- Graphic: IQV -->
+                        <div
+                            class="bg-slate-50 dark:bg-slate-800/40 p-10 rounded-2xl border border-slate-100 dark:border-slate-800 relative">
+                            <h4
+                                class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-8 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">shield</span>
+                                Índice de Calidad y Seguridad
+                            </h4>
+                            <div class="space-y-8">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Seguridad
+                                            Residential</span>
+                                        <span class="text-sm font-bold text-secondary">98 / 100</span>
+                                    </div>
+                                    <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-secondary rounded-full transition-all duration-1000"
+                                            style="width: 98%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span
+                                            class="text-sm font-medium text-slate-700 dark:text-slate-200">Exclusividad
+                                            del Entorno</span>
+                                        <span class="text-sm font-bold text-primary">94 / 100</span>
+                                    </div>
+                                    <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full transition-all duration-1000"
+                                            style="width: 94%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="grid grid-cols-1 gap-4">
+                            <li
+                                class="flex items-start gap-4 p-4 rounded-xl border border-slate-50 dark:border-slate-800 bg-white/50 dark:bg-white/5 transition-colors hover:bg-white dark:hover:bg-white/10">
+                                <span class="material-symbols-outlined text-secondary">verified</span>
+                                <span class="text-slate-600 dark:text-slate-300 font-medium">Auditoría ambiental y de
+                                    seguridad del vecindario.</span>
+                            </li>
+                            <li
+                                class="flex items-start gap-4 p-4 rounded-xl border border-slate-50 dark:border-slate-800 bg-white/50 dark:bg-white/5 transition-colors hover:bg-white dark:hover:bg-white/10">
+                                <span class="material-symbols-outlined text-secondary">verified</span>
+                                <span class="text-slate-600 dark:text-slate-300 font-medium">Mapeo de servicios premium
+                                    (educación, salud, ocio).</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Inversores -->
+                    <div class="group space-y-12">
+                        <div class="flex items-center gap-6">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-primary shadow-lg transition-transform group-hover:scale-110">
+                                <span class="material-symbols-outlined text-3xl">trending_up</span>
+                            </div>
+                            <h3 class="text-3xl font-serif font-bold text-slate-900 dark:text-white">Inversores y
+                                Empresas</h3>
+                        </div>
+
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-xl font-light">
+                            Transformamos datos en rentabilidad. Nuestra <span
+                                class="text-slate-900 dark:text-white font-semibold">inteligencia territorial</span>
+                            detecta vectores de crecimiento y mitiga riesgos normativos antes de que se produzca la
+                            expansión del mercado.
+                        </p>
+
+                        <!-- Graphic: ROI -->
+                        <div
+                            class="bg-slate-900 p-10 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10">
+                                <span class="material-symbols-outlined text-6xl text-white">monitoring</span>
+                            </div>
+                            <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-8">Proyección de
+                                Rentabilidad Acumulada</h4>
+                            <div class="flex items-end justify-between h-40 gap-3">
+                                <div
+                                    class="w-full bg-slate-800 h-[20%] rounded-md hover:bg-slate-700 transition-all duration-300">
+                                </div>
+                                <div
+                                    class="w-full bg-slate-800 h-[35%] rounded-md hover:bg-slate-700 transition-all duration-300">
+                                </div>
+                                <div
+                                    class="w-full bg-slate-800 h-[55%] rounded-md hover:bg-slate-700 transition-all duration-300">
+                                </div>
+                                <div
+                                    class="w-full bg-secondary h-[75%] rounded-md shadow-[0_0_20px_rgba(191,161,95,0.3)] animate-pulse">
+                                </div>
+                                <div class="w-full bg-primary h-[90%] rounded-md shadow-[0_0_30px_rgba(19,91,236,0.3)]">
+                                </div>
+                            </div>
+                            <div
+                                class="mt-6 flex justify-between text-[10px] text-slate-500 font-bold tracking-widest uppercase">
+                                <span>Análisis</span><span>Mercado</span><span>Estrategia</span><span
+                                    class="text-secondary">Ejecución</span><span class="text-primary">ROI EST.
+                                    2025</span>
+                            </div>
+                        </div>
+
+                        <ul class="grid grid-cols-1 gap-4">
+                            <li
+                                class="flex items-start gap-4 p-4 rounded-xl border border-slate-800 bg-white/5 transition-colors hover:bg-white/10">
+                                <span class="material-symbols-outlined text-primary">data_usage</span>
+                                <span class="text-slate-300 font-medium">Análisis predictivo de revalorización
+                                    urbanística.</span>
+                            </li>
+                            <li
+                                class="flex items-start gap-4 p-4 rounded-xl border border-slate-800 bg-white/5 transition-colors hover:bg-white/10">
+                                <span class="material-symbols-outlined text-primary">data_usage</span>
+                                <span class="text-slate-300 font-medium">Due Diligence integral para adquisiciones
+                                    comerciales.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA section -->
+        <section
+            class="py-24 bg-slate-50 dark:bg-background-dark relative border-t border-slate-100 dark:border-slate-800">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="mb-12 flex justify-center">
+                    <div class="w-20 h-1 bg-secondary opacity-30"></div>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-serif mb-10 text-slate-900 dark:text-white leading-tight">
+                    La inteligencia es la mejor <br />herramienta de inversión.
+                </h2>
+                <a href="contacto.html"
+                    class="group relative inline-flex items-center justify-center gap-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-5 rounded-xl font-bold transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <span>Solicitar Consulta Estratégica</span>
+                    <span
+                        class="material-symbols-outlined transition-transform group-hover:translate-x-1">rocket_launch</span>
+                </a>
+            </div>
+        </section>
     </main>
+
     <!-- Mini Footer / Legal strip -->
     <div
-        class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-3 px-6 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-        <span>© 2024 Romvill Territorial Intelligence.</span>
-        <div class="flex gap-4 mt-2 md:mt-0">
-            <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
-            <a class="hover:text-primary transition-colors" href="#">Términos</a>
+        class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-6 px-6 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+        <span>© 2024 Romvill Territorial Intelligence. Todos los derechos reservados.</span>
+        <div class="flex gap-8 mt-4 md:mt-0">
+            <a class="hover:text-primary transition-colors uppercase tracking-widest font-bold" href="#">Privacidad</a>
+            <a class="hover:text-primary transition-colors uppercase tracking-widest font-bold" href="#">Términos</a>
         </div>
     </div>
     <script>
