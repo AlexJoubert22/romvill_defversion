@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Solicitar Estudio de Zona | Romvill · Alicante, Marbella y Málaga</title>
     <meta name="description"
-        content="Solicite su estudio territorial personalizado en Alicante, Marbella o Málaga. Romvill analiza seguridad, rentabilidad y proyección para que usted decida con información real." />
+        content="Solicite su estudio territorial personalizado en Alicante, Marbella o Málaga. Romvill analiza seguridad, entorno y calidad de vida para que usted decida con información real." />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -121,9 +121,9 @@
         </div>
     </nav>
     <!-- Main Content Area -->
-    <main class="flex-grow flex items-center justify-center p-4 md:p-8 lg:p-12">
+    <main class="flex-grow flex items-start justify-center p-4 pt-12 md:p-8 md:pt-16 lg:p-12 lg:pt-20">
         <div
-            class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft border border-border-light dark:border-border-dark overflow-hidden min-h-[600px]">
+            class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft border border-border-light dark:border-border-dark overflow-hidden">
             <!-- Left Column: Form -->
             <div class="lg:col-span-7 p-6 md:p-10 lg:p-12 flex flex-col justify-center">
                 <div class="mb-8">
@@ -131,10 +131,10 @@
                         class="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary text-xs font-bold uppercase tracking-wider mb-3">Inteligencia
                         Territorial</span>
                     <h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight mb-2">
-                        Solicitud de Estudio
+                        Solicite su Informe
                     </h1>
                     <p class="text-slate-500 dark:text-slate-400 text-lg">
-                        Configure los parámetros clave para su análisis estratégico.
+                        Cuéntenos qué zona le interesa y qué necesita saber. Le respondemos sin compromiso.
                     </p>
                 </div>
                 <form action="#" class="space-y-6">
@@ -144,15 +144,32 @@
                             Zona de Interés
                         </label>
                         <div class="relative">
-                            <div
-                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                                 <span class="material-symbols-outlined">location_on</span>
                             </div>
-                            <input
-                                class="block w-full pl-10 pr-3 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
-                                id="zona" name="zona" placeholder="Ej: Marbella Centro, Alicante Costa, Málaga Este"
-                                type="text" />
+                            <select
+                                class="block w-full pl-10 pr-10 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm appearance-none transition-all"
+                                id="zona" name="zona">
+                                <option disabled="" selected="" value="">Seleccione zona principal...</option>
+                                <option value="alicante">Alicante (Costa Blanca)</option>
+                                <option value="malaga">Málaga (Capital de la Costa)</option>
+                                <option value="marbella">Marbella (Costa del Sol)</option>
+                                <option value="internacional">Internacional / Otras Ciudades</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </div>
                         </div>
+                    </div>
+                    <!-- Otra Zona Input (Hidden by default) -->
+                    <div class="space-y-2 hidden" id="otra-zona-container">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="otra_zona">
+                            Especifique la zona o país
+                        </label>
+                        <input
+                            class="block w-full px-3 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
+                            id="otra_zona" name="otra_zona" placeholder="Ej: Miami, Londres, Madrid..."
+                            type="text" />
                     </div>
                     <!-- Objective Select -->
                     <div class="space-y-2">
@@ -168,11 +185,10 @@
                                 class="block w-full pl-10 pr-10 py-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm appearance-none transition-all"
                                 id="objetivo" name="objetivo">
                                 <option disabled="" selected="" value="">Seleccione una opción...</option>
-                                <option value="inversion">Inversión Patrimonial</option>
-                                <option value="vivienda">Compra de Vivienda</option>
-                                <option value="traslado">Traslado Corporativo</option>
-                                <option value="desarrollo">Desarrollo Inmobiliario</option>
-                                <option value="otro">Otro (explícanos tu objetivo)</option>
+                                <option value="vivienda">Compra de vivienda o traslado</option>
+                                <option value="inversion">Análisis para inversión</option>
+                                <option value="desarrollo">Evaluación de activos o suelo</option>
+                                <option value="otro">Otro (cuéntenos su caso)</option>
                             </select>
                             <div
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
@@ -194,12 +210,12 @@
                     <!-- Profile Textarea -->
                     <div class="space-y-2">
                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="perfil">
-                            Perfil del Inversor / Requisitos
+                            Su Perfil y Necesidades
                         </label>
                         <textarea
                             class="block w-full p-3 border border-border-light dark:border-border-dark rounded-lg leading-5 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm resize-none transition-all"
                             id="perfil" name="perfil"
-                            placeholder="Describa brevemente el presupuesto, horizonte temporal y necesidades específicas..."
+                            placeholder="Cuéntenos brevemente qué busca, en qué zona y qué le preocupa más..."
                             rows="4"></textarea>
                     </div>
                     <!-- Submit Button -->
@@ -223,6 +239,48 @@
                             (LSSI)</a>
                     </div>
                 </form>
+
+                <!-- NEW: Contact Info & Socials inside the left column below form -->
+                <div class="mt-12 pt-10 border-t border-border-light dark:border-border-dark">
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">Canales de Contacto Directo</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined text-xl">call</span>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Atención Telefónica</p>
+                                <a href="tel:+34900123456" class="text-slate-900 dark:text-white font-medium hover:text-primary transition-colors">+34 900 123 456</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined text-xl">mail</span>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Correo Electrónico</p>
+                                <a href="mailto:info@romvill.com" class="text-slate-900 dark:text-white font-medium hover:text-primary transition-colors">info@romvill.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-3">Nuestras Redes</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-10 h-10 rounded-full bg-slate-50 border border-border-light dark:bg-slate-800 dark:border-border-dark flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-colors shadow-sm">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-slate-50 border border-border-light dark:bg-slate-800 dark:border-border-dark flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-colors shadow-sm">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-slate-50 border border-border-light dark:bg-slate-800 dark:border-border-dark flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-colors shadow-sm">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Right Column: Value Proposition -->
             <div
@@ -237,7 +295,7 @@
                 <div class="relative z-10">
                     <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">verified_user</span>
-                        Garantía Romvill
+                        Por qué elegir Romvill
                     </h2>
                     <div class="space-y-6">
                         <!-- Feature 1 -->
@@ -247,10 +305,9 @@
                                 <span class="material-symbols-outlined">description</span>
                             </div>
                             <div>
-                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Informe Estructurado</h3>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Informe claro y completo</h3>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                                    Recibirá un dossier completo con análisis demográfico, urbanístico y de mercado de
-                                    la zona seleccionada.
+                                    Recibirá un informe ordenado y comprensible con todo lo que necesita saber sobre la zona que le interesa.
                                 </p>
                             </div>
                         </div>
@@ -261,11 +318,9 @@
                                 <span class="material-symbols-outlined">balance</span>
                             </div>
                             <div>
-                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Neutralidad Garantizada
-                                </h3>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Solo analizamos, sin intereses</h3>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                                    Operamos sin conflictos de interés. No vendemos propiedades, vendemos inteligencia
-                                    para su decisión.
+                                    No vendemos propiedades ni tenemos vínculos con promotores. Nuestra única función es informarle bien.
                                 </p>
                             </div>
                         </div>
@@ -276,10 +331,72 @@
                                 <span class="material-symbols-outlined">dataset</span>
                             </div>
                             <div>
-                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Datos Verificables</h3>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Datos verificados y fiables</h3>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                                    Información cruzada de catastro, registros de la propiedad y fuentes de mercado en
-                                    tiempo real.
+                                    Contrastamos varias fuentes para que cada dato que le damos sea real y comprobable.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 4 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">trending_up</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Ahorro de tiempo y capital</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Evite desplazamientos innecesarios y decisiones equivocadas. Nosotros hacemos el trabajo de campo por usted con un enfoque estrictamente comercial.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 5 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">security</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Confidencialidad absoluta</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Manejamos cada solicitud con la máxima discreción y profesionalidad, garantizando la privacidad de sus intereses en todo momento.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 6 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">diamond</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Estándar Premium</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Entregables de calidad ejecutiva diseñados para inversores exigentes y familias que buscan la excelencia.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 7 -->
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">public</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Alcance Internacional</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Capacidad operativa para analizar plazas en el extranjero bajo demanda, manteniendo el mismo rigor analítico y confidencialidad.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Feature 8 -->
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center text-primary shadow-sm">
+                                <span class="material-symbols-outlined">psychology</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Inteligencia Estratégica</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Convertimos los datos dispersos en decisiones claras. Minimizamos el riesgo de su inversión o traslado con una visión local y perspectiva global.
                                 </p>
                             </div>
                         </div>
@@ -292,8 +409,7 @@
                         <span class="material-symbols-outlined text-primary text-4xl opacity-20">format_quote</span>
                         <div>
                             <p class="text-sm font-medium text-slate-700 dark:text-slate-300 italic">
-                                "La información es el activo más valioso antes de cualquier inversión inmobiliaria.
-                                Romvill le da la ventaja."
+                                "Saber primero es siempre mejor. Romvill le da esa ventaja."
                             </p>
                         </div>
                     </div>
@@ -302,12 +418,30 @@
         </div>
     </main>
     <!-- Simple Footer -->
-    <footer
-        class="w-full py-6 border-t border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-xs text-slate-400 dark:text-slate-500">
-                © 2024 Romvill Intelligence Group. Todos los derechos reservados.
-            </p>
+    <footer class="bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="logo negro jpg.jpg" alt="ROMVILL" class="h-8 w-auto object-contain invert dark:invert-0">
+                    <span class="text-lg font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                </a>
+                <nav class="flex flex-wrap justify-center gap-8 text-sm text-slate-500 dark:text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="metodologia.html">Metodología</a>
+                    <a class="hover:text-primary transition-colors" href="ANALISIS.html">Análisis</a>
+                    <a class="hover:text-primary transition-colors" href="SECTORES.html">Sectores</a>
+                    <a class="hover:text-primary transition-colors" href="contacto.html">Contacto</a>
+                </nav>
+                <div class="text-sm text-slate-500 dark:text-slate-400">
+                    <a href="mailto:info@romvill.com" class="hover:text-primary transition-colors">info@romvill.com</a>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <p class="text-xs text-slate-400">© 2025 Romvill. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Privacidad</a>
+                    <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="#">Términos</a>
+                </div>
+            </div>
         </div>
     </footer>
     <script>
@@ -321,17 +455,33 @@
             }
         });
 
+        // Toggle "Otra zona" field
+        const zonaSelect = document.getElementById('zona');
+        const otraZonaContainer = document.getElementById('otra-zona-container');
+
+        if (zonaSelect && otraZonaContainer) {
+            zonaSelect.addEventListener('change', (e) => {
+                if (e.target.value === 'internacional') {
+                    otraZonaContainer.classList.remove('hidden');
+                } else {
+                    otraZonaContainer.classList.add('hidden');
+                }
+            });
+        }
+
         // Toggle "Otro" objective field
         const objetivoSelect = document.getElementById('objetivo');
         const otroContainer = document.getElementById('otro-objetivo-container');
 
-        objetivoSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'otro') {
-                otroContainer.classList.remove('hidden');
-            } else {
-                otroContainer.classList.add('hidden');
-            }
-        });
+        if (objetivoSelect && otroContainer) {
+            objetivoSelect.addEventListener('change', (e) => {
+                if (e.target.value === 'otro') {
+                    otroContainer.classList.remove('hidden');
+                } else {
+                    otroContainer.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 
