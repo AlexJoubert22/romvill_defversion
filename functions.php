@@ -215,3 +215,107 @@ function romvill_activate() {
     update_option( 'page_on_front', $home_id );
 }
 add_action( 'after_switch_theme', 'romvill_activate' );
+
+// ─── Temporary: Update CF7 Form #85 ─────────────────────────
+// Remove this block after first deploy + one page load
+add_action( 'rest_api_init', function() {
+    register_rest_route( 'romvill/v1', '/update-cf7', array(
+        'methods'             => 'GET',
+        'callback'            => 'romvill_update_cf7_form',
+        'permission_callback' => function() {
+            return current_user_can( 'manage_options' );
+        },
+    ) );
+} );
+
+function romvill_update_cf7_form() {
+    if ( ! function_exists( 'wpcf7_get_contact_form' ) ) {
+        return new WP_REST_Response( array( 'error' => 'CF7 not active' ), 500 );
+    }
+    $cf7 = wpcf7_get_contact_form( 85 );
+    if ( ! $cf7 ) {
+        return new WP_REST_Response( array( 'error' => 'Form 85 not found' ), 404 );
+    }
+
+    $form_content = '<div class="romvill-form">
+
+<div class="rf-row-2">
+<div class="rf-field">
+<span class="rf-label">Nombre <span class="rf-req">*</span></span>
+[text* nombre placeholder "Ej: Carlos"]
+</div>
+<div class="rf-field">
+<span class="rf-label">Apellido <span class="rf-req">*</span></span>
+[text* apellido placeholder "Ej: García"]
+</div>
+</div>
+
+<div class="rf-row-2">
+<div class="rf-field">
+<span class="rf-label">Correo electrónico <span class="rf-req">*</span></span>
+[email* email placeholder "correo@ejemplo.com"]
+</div>
+<div class="rf-field">
+<span class="rf-label">Teléfono</span>
+[tel telefono placeholder "+34 600 000 000"]
+</div>
+</div>
+
+<div class="rf-field">
+<span class="rf-label">Zona de interés <span class="rf-req">*</span></span>
+[select* zona "Seleccione una zona..." "Alicante" "Marbella" "Málaga" "Otra zona"]
+</div>
+
+<div class="rf-field">
+<span class="rf-label">Objetivo</span>
+[select objetivo "Compra de vivienda" "Inversión inmobiliaria" "Traslado residencial" "Otro"]
+</div>
+
+<div class="rf-field">
+<span class="rf-label">Mensaje</span>
+[textarea mensaje placeholder "Cuéntenos más sobre lo que necesita..."]
+</div>
+
+[submit "Solicitar Informe"]
+
+</div>';
+
+    $mail_body = 'Nueva solicitud de informe:
+
+Nombre: [nombre] [apellido]
+Email: [email]
+Teléfono: [telefono]
+Zona: [zona]
+Objetivo: [objetivo]
+
+Mensaje:
+[mensaje]
+
+---
+Enviado desde romvill.com';
+
+    $properties = array(
+        'title' => 'Solicitar Estudio — ROMVILL',
+        'form'  => array(
+            'body' => $form_content,
+        ),
+        'mail'  => array(
+            'subject'            => 'Nueva solicitud de informe — Romvill',
+            'sender'             => 'Romvill <wordpress@romvill.com>',
+            'body'               => $mail_body,
+            'recipient'          => '[_site_admin_email]',
+            'additional_headers' => 'Reply-To: [email]',
+            'use_html'           => false,
+            'exclude_blank'      => true,
+        ),
+    );
+
+    $cf7->set_properties( $properties );
+    $result = $cf7->save();
+
+    return new WP_REST_Response( array(
+        'success' => (bool) $result,
+        'title'   => $cf7->title(),
+        'form'    => substr( $cf7->prop( 'form' ), 0, 200 ),
+    ), 200 );
+}
