@@ -143,3 +143,75 @@ function romvill_meta_description( $desc ) {
         echo '<meta name="robots" content="index, follow" />' . "\n";
     }, 5 );
 }
+
+// ─── Auto-Setup on Theme Activation ─────────────────────────
+// Runs automatically the moment you activate this theme in WP Admin.
+// Creates all pages, assigns templates, and sets the static homepage.
+function romvill_activate() {
+    $pages = array(
+        array(
+            'title'    => 'Metodología',
+            'slug'     => 'metodologia',
+            'template' => 'page-metodologia.php',
+            'order'    => 1,
+        ),
+        array(
+            'title'    => 'Análisis',
+            'slug'     => 'analisis',
+            'template' => 'page-analisis.php',
+            'order'    => 2,
+        ),
+        array(
+            'title'    => 'Sectores',
+            'slug'     => 'sectores',
+            'template' => 'page-sectores.php',
+            'order'    => 3,
+        ),
+        array(
+            'title'    => 'Contacto',
+            'slug'     => 'contacto',
+            'template' => 'page-contacto.php',
+            'order'    => 4,
+        ),
+    );
+
+    foreach ( $pages as $p ) {
+        $existing = get_page_by_path( $p['slug'] );
+        if ( $existing ) {
+            wp_update_post( array(
+                'ID'             => $existing->ID,
+                'post_status'    => 'publish',
+                'page_template'  => $p['template'],
+                'menu_order'     => $p['order'],
+            ) );
+        } else {
+            wp_insert_post( array(
+                'post_title'     => $p['title'],
+                'post_name'      => $p['slug'],
+                'post_status'    => 'publish',
+                'post_type'      => 'page',
+                'page_template'  => $p['template'],
+                'menu_order'     => $p['order'],
+                'post_content'   => '',
+            ) );
+        }
+    }
+
+    // Homepage
+    $home = get_page_by_path( 'inicio' );
+    if ( ! $home ) {
+        $home_id = wp_insert_post( array(
+            'post_title'   => 'Inicio',
+            'post_name'    => 'inicio',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => '',
+        ) );
+    } else {
+        $home_id = $home->ID;
+    }
+
+    update_option( 'show_on_front', 'page' );
+    update_option( 'page_on_front', $home_id );
+}
+add_action( 'after_switch_theme', 'romvill_activate' );
