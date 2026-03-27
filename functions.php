@@ -229,10 +229,10 @@ add_action( 'rest_api_init', function() {
 } );
 
 function romvill_update_cf7_form() {
-    if ( ! function_exists( 'wpcf7_get_contact_form' ) ) {
-        return new WP_REST_Response( array( 'error' => 'CF7 not active' ), 500 );
+    if ( ! class_exists( 'WPCF7_ContactForm' ) ) {
+        return new WP_REST_Response( array( 'error' => 'CF7 not active', 'classes' => get_declared_classes() ), 500 );
     }
-    $cf7 = wpcf7_get_contact_form( 85 );
+    $cf7 = WPCF7_ContactForm::get_instance( 85 );
     if ( ! $cf7 ) {
         return new WP_REST_Response( array( 'error' => 'Form 85 not found' ), 404 );
     }
