@@ -23,7 +23,7 @@ $contacto_url = get_permalink();
 
             <?php
             // Contact Form 7 shortcode
-            echo do_shortcode( '[contact-form-7 title="Solicitud de Estudio"]' );
+            echo do_shortcode( '[contact-form-7 id="85" title="Solicitar Estudio — ROMVILL"]' );
             ?>
 
             <!-- Contact Info -->
