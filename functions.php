@@ -229,15 +229,10 @@ add_action( 'rest_api_init', function() {
 } );
 
 function romvill_update_cf7_form() {
-    if ( ! class_exists( 'WPCF7_ContactForm' ) ) {
-        return new WP_REST_Response( array( 'error' => 'CF7 not active', 'classes' => get_declared_classes() ), 500 );
-    }
-    $cf7 = WPCF7_ContactForm::get_instance( 85 );
-    if ( ! $cf7 ) {
-        return new WP_REST_Response( array( 'error' => 'Form 85 not found' ), 404 );
-    }
+    $form_id = 85;
 
-    $form_content = '<div class="romvill-form">
+    // Update title via wp_update_post (CF7 forms are CPT wpcf7_contact_form)
+    $form_body = '<div class="romvill-form">
 
 <div class="rf-row-2">
 <div class="rf-field">
@@ -294,28 +289,35 @@ Mensaje:
 ---
 Enviado desde romvill.com';
 
-    $properties = array(
-        'title' => 'Solicitar Estudio — ROMVILL',
-        'form'  => array(
-            'body' => $form_content,
-        ),
-        'mail'  => array(
-            'subject'            => 'Nueva solicitud de informe — Romvill',
-            'sender'             => 'Romvill <wordpress@romvill.com>',
-            'body'               => $mail_body,
-            'recipient'          => '[_site_admin_email]',
-            'additional_headers' => 'Reply-To: [email]',
-            'use_html'           => false,
-            'exclude_blank'      => true,
-        ),
-    );
+    // Update post content (CF7 stores form markup in post_content)
+    $result = wp_update_post( array(
+        'ID'           => $form_id,
+        'post_title'   => 'Solicitar Estudio - ROMVILL',
+        'post_content' => $form_body,
+    ) );
 
-    $cf7->set_properties( $properties );
-    $result = $cf7->save();
+    if ( is_wp_error( $result ) ) {
+        return new WP_REST_Response( array( 'error' => $result->get_error_message() ), 500 );
+    }
+
+    // Update mail meta (CF7 stores mail config in post meta _wpcf7_mail)
+    $mail_meta = array(
+        'subject'            => 'Nueva solicitud de informe - Romvill',
+        'sender'             => 'Romvill <wordpress@romvill.com>',
+        'body'               => $mail_body,
+        'recipient'          => get_option( 'admin_email' ),
+        'additional_headers' => 'Reply-To: [email]',
+        'attachments'        => '',
+        'use_html'           => false,
+        'exclude_blank'      => true,
+    );
+    update_post_meta( $form_id, '_wpcf7_mail', $mail_meta );
+
+    $saved_content = get_post_field( 'post_content', $form_id );
 
     return new WP_REST_Response( array(
-        'success' => (bool) $result,
-        'title'   => $cf7->title(),
-        'form'    => substr( $cf7->prop( 'form' ), 0, 200 ),
+        'success'  => true,
+        'post_id'  => $result,
+        'content'  => substr( $saved_content, 0, 200 ),
     ), 200 );
 }
