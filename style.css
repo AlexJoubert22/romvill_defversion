@@ -155,24 +155,25 @@ html {
 <!-- auto-deploy active Sat Mar 28 00:10:55     2026 -->
 
 /* ===== Contact Form 7 — Romvill Style ===== */
-.romvill-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.romvill-form { display: flex; flex-direction: column; gap: 1.75rem; }
 
 .rf-row-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 @media (max-width: 640px) { .rf-row-2 { grid-template-columns: 1fr; } }
 
-.rf-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.rf-field { display: flex; flex-direction: column; gap: 0.625rem; }
 
 .rf-label {
     font-size: 0.8125rem;
     font-weight: 600;
     color: #334155;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     font-family: 'Manrope', sans-serif;
+    margin-bottom: 0.125rem;
 }
 .rf-req { color: #135bec; }
 
