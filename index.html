@@ -127,26 +127,31 @@
         </nav>
         <!-- Hero Section -->
         <main class="relative pt-32 pb-24 md:pb-32 overflow-hidden min-h-screen flex items-center">
-            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 transform scale-105"
-                data-alt="Aerial luxury Mediterranean coastal panorama with turquoise sea and white villas"
-                data-location="Costa Mediterránea"
-                style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85&auto=format&fit=crop');">
+            <!-- Hero Slideshow -->
+            <div id="hero-slideshow" class="absolute inset-0 z-0 overflow-hidden">
+                <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('fondo_hero.png'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+                <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=85&auto=format&fit=crop'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+                <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=85&auto=format&fit=crop'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+                <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85&auto=format&fit=crop'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80 z-10">
             </div>
 
             <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-16">
-                <span
-                    class="inline-block py-1 px-3 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold tracking-widest text-secondary uppercase animate-fade-in-up">
-                    Inteligencia Territorial
-                </span>
-                <h1 class="font-serif text-6xl md:text-8xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-                    Romvill. <br />
-                    <span class="text-white italic font-medium">Criterio antes de decidir.</span>
+                <h1 class="font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em;">
+                    ROMVILL
                 </h1>
-                <p class="text-lg md:text-xl text-slate-200 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
-                    ¿Comprar, invertir o mudarse en Alicante, Marbella o Málaga?
-                    Antes de firmar, sepa exactamente qué le espera: seguridad real, calidad de vida y entorno de la zona.
+                <div class="flex items-center justify-center gap-4 mb-5">
+                    <span class="h-px w-10 bg-secondary/70"></span>
+                    <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em;">Inteligencia Territorial · Costa Mediterránea</span>
+                    <span class="h-px w-10 bg-secondary/70"></span>
+                </div>
+                <p class="font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8">
+                    Criterio antes de decidir.
+                </p>
+                <p class="text-base md:text-lg text-slate-300 font-light mb-10 max-w-xl mx-auto leading-relaxed">
+                    ¿Comprar, invertir o mudarse en Alicante, Marbella o Málaga?<br/>
+                    Antes de firmar, sepa exactamente qué le espera.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="contacto.html"
@@ -190,6 +195,87 @@
             </div>
         </div>
     </section>
+    <!-- ===== QUÉ HACEMOS — BLOQUE VISUAL ===== -->
+    <section class="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <!-- Encabezado -->
+            <div class="text-center mb-16 max-w-2xl mx-auto">
+                <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block">Nuestro Servicio</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-slate-900 dark:text-white mb-4 leading-tight">
+                    Todo lo que necesita saber<br class="hidden md:block"/> antes de decidir.
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
+                    ROMVILL es un servicio de inteligencia territorial: investigamos a fondo la zona donde usted quiere comprar, invertir o vivir, y le entregamos un informe con todo lo que necesita saber antes de decidir. No somos una inmobiliaria. No vendemos pisos. Solo analizamos — sin intereses, sin filtros.
+                </p>
+            </div>
+
+            <!-- 4 pilares -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
+                <div class="group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
+                        <span class="material-symbols-outlined text-secondary text-2xl">shield</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Seguridad</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Índices reales de criminalidad, incidencias y convivencia en la zona concreta.</p>
+                </div>
+                <div class="group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
+                        <span class="material-symbols-outlined text-secondary text-2xl">people</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Demografía</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Perfil del vecindario: quién vive allí, nivel socioeconómico y composición real de la comunidad.</p>
+                </div>
+                <div class="group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
+                        <span class="material-symbols-outlined text-secondary text-2xl">local_hospital</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Servicios</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Sanidad, educación, movilidad y comercio. Lo que de verdad define la calidad de vida en la zona.</p>
+                </div>
+                <div class="group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
+                        <span class="material-symbols-outlined text-secondary text-2xl">trending_up</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Proyección</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Evolución del barrio, inversión pública prevista y potencial de revalorización a medio plazo.</p>
+                </div>
+            </div>
+
+            <!-- Proceso — 3 pasos -->
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-16">
+                <p class="text-center text-xs font-bold uppercase tracking-[0.4em] text-secondary mb-12">Cómo funciona</p>
+                <div class="grid md:grid-cols-3 gap-8 relative">
+                    <!-- Línea conectora (solo desktop) -->
+                    <div class="hidden md:block absolute top-7 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-slate-200 dark:bg-slate-700 z-0"></div>
+                    <!-- Paso 1 -->
+                    <div class="relative z-10 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg">1</div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Díganos la zona</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto">Indíquenos el barrio, la calle o el inmueble que le interesa. Con eso es suficiente para empezar.</p>
+                    </div>
+                    <!-- Paso 2 -->
+                    <div class="relative z-10 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg">2</div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Analizamos en profundidad</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto">Nuestro equipo cruza datos verificados con presencia real sobre el terreno. Sin atajos.</p>
+                    </div>
+                    <!-- Paso 3 -->
+                    <div class="relative z-10 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-secondary text-white flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg shadow-secondary/30">3</div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Recibe su informe</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto">Un documento claro, ordenado y sin tecnicismos. Listo para que tome la mejor decisión.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-14">
+                    <a href="contacto.html" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-white font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20">
+                        Solicitar mi Estudio
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-24 bg-background-light dark:bg-background-dark" id="methodology">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
@@ -245,7 +331,7 @@
                     </div>
                     <div class="relative z-10 rounded overflow-hidden shadow-2xl">
                         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                        <lottie-player src="Business Meeting Animation.json" background="transparent" speed="1" style="width: 100%; height: auto; aspect-ratio: 4/5;" loop autoplay></lottie-player>
+                        <lottie-player src="Business Meeting Animation.json" background="transparent" speed="1" style="width: 100%; height: auto; aspect-ratio: 4/5; filter: saturate(0.3) brightness(0.85) sepia(0.15);" loop autoplay></lottie-player>
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                             <p class="text-white font-serif italic text-lg">"La mejor decisión es siempre la que se toma con información real."</p>
                         </div>
@@ -425,6 +511,19 @@
         }, { threshold: 0.2 });
 
         statCards.forEach(card => observer.observe(card));
+    </script>
+    <script>
+        // Hero Slideshow
+        (function () {
+            const slides = document.querySelectorAll('#hero-slideshow .hero-slide');
+            if (!slides.length) return;
+            let current = 0;
+            setInterval(() => {
+                slides[current].style.opacity = '0';
+                current = (current + 1) % slides.length;
+                slides[current].style.opacity = '1';
+            }, 5000);
+        })();
     </script>
 
     <!-- ===== CITY MODALS ===== -->

@@ -1,0 +1,154 @@
+/*
+Theme Name: Romvill
+Theme URI: https://romvill.com
+Author: Romvill
+Author URI: https://romvill.com
+Description: Tema WordPress para Romvill — Inteligencia Territorial. Análisis de zona en Alicante, Marbella y Málaga.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: romvill
+Tags: custom-menu, one-page, responsive-layout
+*/
+
+/* ===== Base Styles ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ===== Stat Card Animations ===== */
+@media (prefers-reduced-motion: no-preference) {
+    .stat-card {
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .stat-card.visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stat-card {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ===== Dimension Card Hover (Análisis page) ===== */
+.dimension-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dimension-card:hover .dimension-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dimension-card:hover .dimension-bg {
+    transform: scale(1.05);
+}
+
+.dimension-overlay {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Sectores Split Hover ===== */
+.split-hover:hover {
+    flex-grow: 1.5;
+}
+
+.split-section {
+    transition: all 0.5s ease-in-out;
+}
+
+/* ===== Metodología Radar Grid ===== */
+.radar-grid {
+    background-image: radial-gradient(circle, rgba(112, 128, 144, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ===== Mobile Menu ===== */
+.mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* ===== Contact Form 7 Custom Styles ===== */
+.wpcf7 select,
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background: #f8f9fc;
+    color: #0f172a;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.wpcf7 select:focus,
+.wpcf7 input:focus,
+.wpcf7 textarea:focus {
+    outline: none;
+    border-color: #135bec;
+    box-shadow: 0 0 0 2px rgba(19, 91, 236, 0.2);
+}
+
+.wpcf7 input[type="submit"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #135bec;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.wpcf7 input[type="submit"]:hover {
+    background: #0d3c9e;
+}
+
+.wpcf7-response-output {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* ===== No Scrollbar Utility ===== */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
