@@ -135,3 +135,11 @@ function romvill_asset( $path ) {
 function romvill_img( $file ) {
     return romvill_asset( 'images/' . $file );
 }
+
+// ─── Helper: Meta Description ───────────────────────────────
+function romvill_meta_description( $desc ) {
+    add_action( 'wp_head', function() use ( $desc ) {
+        echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
+        echo '<meta name="robots" content="index, follow" />' . "\n";
+    }, 5 );
+}
