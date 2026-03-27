@@ -153,3 +153,109 @@ html {
     scrollbar-width: none;
 }
 <!-- auto-deploy active Sat Mar 28 00:10:55     2026 -->
+
+/* ===== Contact Form 7 — Romvill Style ===== */
+.romvill-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.rf-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+@media (max-width: 640px) { .rf-row-2 { grid-template-columns: 1fr; } }
+
+.rf-field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.rf-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    font-family: 'Manrope', sans-serif;
+}
+.rf-req { color: #135bec; }
+
+/* Inputs, selects, textarea */
+.romvill-form .wpcf7-form-control:not([type=submit]) {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    font-family: 'Manrope', sans-serif;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.romvill-form .wpcf7-form-control:not([type=submit]):focus {
+    border-color: #135bec;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(19,91,236,0.10);
+}
+.romvill-form .wpcf7-form-control:not([type=submit])::placeholder {
+    color: #94a3b8;
+}
+
+/* Select arrow */
+.romvill-form select.wpcf7-form-control {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+/* Textarea */
+.romvill-form textarea.wpcf7-form-control {
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Submit button */
+.romvill-form .wpcf7-submit {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #1e293b;
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.15s;
+    margin-top: 0.5rem;
+}
+.romvill-form .wpcf7-submit:hover {
+    background: #135bec;
+    transform: translateY(-1px);
+}
+
+/* Validation errors */
+.romvill-form .wpcf7-not-valid-tip {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    font-family: 'Manrope', sans-serif;
+}
+.romvill-form .wpcf7-not-valid { border-color: #ef4444 !important; }
+.wpcf7-response-output {
+    margin-top: 1rem !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.5rem !important;
+    font-family: 'Manrope', sans-serif !important;
+    font-size: 0.875rem !important;
+    border: none !important;
+    background: #f0fdf4 !important;
+    color: #166534 !important;
+}
+.wpcf7-form.invalid .wpcf7-response-output {
+    background: #fef2f2 !important;
+    color: #991b1b !important;
+}
