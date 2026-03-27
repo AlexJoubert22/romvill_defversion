@@ -152,10 +152,8 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-<!-- auto-deploy active Sat Mar 28 00:10:55     2026 -->
-
-/* ===== Contact Form 7 — Romvill Style ===== */
-.romvill-form { display: flex; flex-direction: column; gap: 1.75rem; }
+/* ===== Contact Form — Romvill Style ===== */
+.romvill-form { display: flex; flex-direction: column; gap: 2.25rem; }
 
 .rf-row-2 {
     display: grid;
@@ -173,7 +171,7 @@ html {
     letter-spacing: 0.02em;
     text-transform: uppercase;
     font-family: 'Manrope', sans-serif;
-    margin-bottom: 0.125rem;
+    padding-top: 0.25rem;
 }
 .rf-req { color: #135bec; }
 
