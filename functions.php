@@ -216,108 +216,45 @@ function romvill_activate() {
 }
 add_action( 'after_switch_theme', 'romvill_activate' );
 
-// ─── Temporary: Update CF7 Form #85 ─────────────────────────
-// Remove this block after first deploy + one page load
-add_action( 'rest_api_init', function() {
-    register_rest_route( 'romvill/v1', '/update-cf7', array(
-        'methods'             => 'GET',
-        'callback'            => 'romvill_update_cf7_form',
-        'permission_callback' => function() {
-            return current_user_can( 'manage_options' );
-        },
-    ) );
-} );
+// ─── Contact Form AJAX Handler ───────────────────────────────
+add_action( 'wp_ajax_romvill_contact',        'romvill_handle_contact' );
+add_action( 'wp_ajax_nopriv_romvill_contact', 'romvill_handle_contact' );
 
-function romvill_update_cf7_form() {
-    $form_id = 85;
+function romvill_handle_contact() {
+    check_ajax_referer( 'romvill_contact_nonce', 'nonce' );
 
-    // Update title via wp_update_post (CF7 forms are CPT wpcf7_contact_form)
-    $form_body = '<div class="romvill-form">
+    $nombre   = sanitize_text_field( $_POST['nombre']   ?? '' );
+    $apellido = sanitize_text_field( $_POST['apellido'] ?? '' );
+    $email    = sanitize_email(      $_POST['email']    ?? '' );
+    $telefono = sanitize_text_field( $_POST['telefono'] ?? '' );
+    $zona     = sanitize_text_field( $_POST['zona']     ?? '' );
+    $objetivo = sanitize_text_field( $_POST['objetivo'] ?? '' );
+    $mensaje  = sanitize_textarea_field( $_POST['mensaje'] ?? '' );
 
-<div class="rf-row-2">
-<div class="rf-field">
-<span class="rf-label">Nombre <span class="rf-req">*</span></span>
-[text* nombre placeholder "Ej: Carlos"]
-</div>
-<div class="rf-field">
-<span class="rf-label">Apellido <span class="rf-req">*</span></span>
-[text* apellido placeholder "Ej: García"]
-</div>
-</div>
-
-<div class="rf-row-2">
-<div class="rf-field">
-<span class="rf-label">Correo electrónico <span class="rf-req">*</span></span>
-[email* email placeholder "correo@ejemplo.com"]
-</div>
-<div class="rf-field">
-<span class="rf-label">Teléfono</span>
-[tel telefono placeholder "+34 600 000 000"]
-</div>
-</div>
-
-<div class="rf-field">
-<span class="rf-label">Zona de interés <span class="rf-req">*</span></span>
-[select* zona "Seleccione una zona..." "Alicante" "Marbella" "Málaga" "Otra zona"]
-</div>
-
-<div class="rf-field">
-<span class="rf-label">Objetivo</span>
-[select objetivo "Compra de vivienda" "Inversión inmobiliaria" "Traslado residencial" "Otro"]
-</div>
-
-<div class="rf-field">
-<span class="rf-label">Mensaje</span>
-[textarea mensaje placeholder "Cuéntenos más sobre lo que necesita..."]
-</div>
-
-[submit "Solicitar Informe"]
-
-</div>';
-
-    $mail_body = 'Nueva solicitud de informe:
-
-Nombre: [nombre] [apellido]
-Email: [email]
-Teléfono: [telefono]
-Zona: [zona]
-Objetivo: [objetivo]
-
-Mensaje:
-[mensaje]
-
----
-Enviado desde romvill.com';
-
-    // Update post content (CF7 stores form markup in post_content)
-    $result = wp_update_post( array(
-        'ID'           => $form_id,
-        'post_title'   => 'Solicitar Estudio - ROMVILL',
-        'post_content' => $form_body,
-    ) );
-
-    if ( is_wp_error( $result ) ) {
-        return new WP_REST_Response( array( 'error' => $result->get_error_message() ), 500 );
+    if ( ! $nombre || ! $email || ! $zona || ! is_email( $email ) ) {
+        wp_send_json_error( array( 'message' => 'Por favor completa los campos obligatorios.' ) );
     }
 
-    // Update mail meta (CF7 stores mail config in post meta _wpcf7_mail)
-    $mail_meta = array(
-        'subject'            => 'Nueva solicitud de informe - Romvill',
-        'sender'             => 'Romvill <wordpress@romvill.com>',
-        'body'               => $mail_body,
-        'recipient'          => get_option( 'admin_email' ),
-        'additional_headers' => 'Reply-To: [email]',
-        'attachments'        => '',
-        'use_html'           => false,
-        'exclude_blank'      => true,
+    $to      = get_option( 'admin_email' );
+    $subject = "Nueva solicitud de informe — {$nombre} {$apellido}";
+    $body    = "Nueva solicitud de informe recibida desde romvill.com\n\n"
+             . "Nombre:    {$nombre} {$apellido}\n"
+             . "Email:     {$email}\n"
+             . "Teléfono:  {$telefono}\n"
+             . "Zona:      {$zona}\n"
+             . "Objetivo:  {$objetivo}\n\n"
+             . "Mensaje:\n{$mensaje}\n";
+
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        "Reply-To: {$nombre} {$apellido} <{$email}>",
     );
-    update_post_meta( $form_id, '_wpcf7_mail', $mail_meta );
 
-    $saved_content = get_post_field( 'post_content', $form_id );
-
-    return new WP_REST_Response( array(
-        'success'  => true,
-        'post_id'  => $result,
-        'content'  => substr( $saved_content, 0, 200 ),
-    ), 200 );
+    $sent = wp_mail( $to, $subject, $body, $headers );
+    if ( $sent ) {
+        wp_send_json_success( array( 'message' => 'Solicitud enviada correctamente. Le responderemos en breve.' ) );
+    } else {
+        wp_send_json_error( array( 'message' => 'Error al enviar. Por favor, contáctenos directamente.' ) );
+    }
 }
+

@@ -21,10 +21,106 @@ $contacto_url = get_permalink();
                 </p>
             </div>
 
-            <?php
-            // Contact Form 7 shortcode
-            echo do_shortcode( '[contact-form-7 id="85" title="Solicitar Estudio — ROMVILL"]' );
-            ?>
+            <form id="romvill-contact-form" class="romvill-form" novalidate>
+                <?php wp_nonce_field( 'romvill_contact_nonce', 'nonce' ); ?>
+
+                <div class="rf-row-2">
+                    <div class="rf-field">
+                        <label class="rf-label" for="nombre">Nombre <span class="rf-req">*</span></label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Carlos" required class="wpcf7-form-control">
+                    </div>
+                    <div class="rf-field">
+                        <label class="rf-label" for="apellido">Apellido <span class="rf-req">*</span></label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Ej: García" required class="wpcf7-form-control">
+                    </div>
+                </div>
+
+                <div class="rf-row-2">
+                    <div class="rf-field">
+                        <label class="rf-label" for="email">Correo electrónico <span class="rf-req">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required class="wpcf7-form-control">
+                    </div>
+                    <div class="rf-field">
+                        <label class="rf-label" for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" class="wpcf7-form-control">
+                    </div>
+                </div>
+
+                <div class="rf-field">
+                    <label class="rf-label" for="zona">Zona de interés <span class="rf-req">*</span></label>
+                    <select id="zona" name="zona" required class="wpcf7-form-control">
+                        <option value="">Seleccione una zona…</option>
+                        <option value="Alicante">Alicante</option>
+                        <option value="Marbella">Marbella</option>
+                        <option value="Málaga">Málaga</option>
+                        <option value="Otra zona">Otra zona</option>
+                    </select>
+                </div>
+
+                <div class="rf-field">
+                    <label class="rf-label" for="objetivo">Objetivo</label>
+                    <select id="objetivo" name="objetivo" class="wpcf7-form-control">
+                        <option value="Compra de vivienda">Compra de vivienda</option>
+                        <option value="Inversión inmobiliaria">Inversión inmobiliaria</option>
+                        <option value="Traslado residencial">Traslado residencial</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="rf-field">
+                    <label class="rf-label" for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Cuéntenos más sobre lo que necesita…" class="wpcf7-form-control"></textarea>
+                </div>
+
+                <button type="submit" class="wpcf7-submit">Solicitar Informe</button>
+
+                <div id="romvill-form-response" style="display:none;" class="wpcf7-response-output"></div>
+            </form>
+
+            <script>
+            (function() {
+                var form = document.getElementById('romvill-contact-form');
+                var response = document.getElementById('romvill-form-response');
+                if (!form) return;
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var btn = form.querySelector('button[type=submit]');
+                    btn.disabled = true;
+                    btn.textContent = 'Enviando…';
+                    response.style.display = 'none';
+                    var data = new FormData(form);
+                    data.append('action', 'romvill_contact');
+                    fetch('<?php echo esc_url( admin_url("admin-ajax.php") ); ?>', {
+                        method: 'POST',
+                        body: data
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        response.style.display = '';
+                        if (res.success) {
+                            response.textContent = res.data.message;
+                            response.style.background = '#f0fdf4';
+                            response.style.color = '#166534';
+                            form.reset();
+                        } else {
+                            response.textContent = res.data.message;
+                            response.style.background = '#fef2f2';
+                            response.style.color = '#991b1b';
+                        }
+                        btn.disabled = false;
+                        btn.textContent = 'Solicitar Informe';
+                    })
+                    .catch(function() {
+                        response.style.display = '';
+                        response.textContent = 'Error de conexión. Por favor, inténtelo de nuevo.';
+                        response.style.background = '#fef2f2';
+                        response.style.color = '#991b1b';
+                        btn.disabled = false;
+                        btn.textContent = 'Solicitar Informe';
+                    });
+                });
+            })();
+            </script>
 
             <!-- Contact Info -->
             <div class="mt-12 pt-10 border-t border-slate-100 dark:border-slate-800">
