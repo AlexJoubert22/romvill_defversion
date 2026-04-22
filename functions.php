@@ -6,6 +6,49 @@
  * @version 1.0.0
  */
 
+// ─── Multilingual Engine ──────────────────────────────────────
+require_once get_template_directory() . '/inc/translations.php';
+
+define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
+
+function romvill_current_lang() {
+    static $lang = null;
+    if ( $lang !== null ) return $lang;
+    // 1. URL query param  (?lang=en)
+    if ( isset( $_GET['lang'] ) && in_array( $_GET['lang'], ROMVILL_LANGS, true ) ) {
+        $lang = $_GET['lang'];
+        setcookie( 'romvill_lang', $lang, time() + 60 * 60 * 24 * 365, '/', '', is_ssl(), true );
+        return $lang;
+    }
+    // 2. Cookie
+    if ( isset( $_COOKIE['romvill_lang'] ) && in_array( $_COOKIE['romvill_lang'], ROMVILL_LANGS, true ) ) {
+        $lang = $_COOKIE['romvill_lang'];
+        return $lang;
+    }
+    $lang = 'es';
+    return $lang;
+}
+
+function romvill_t( $key ) {
+    static $table = null;
+    if ( $table === null ) $table = romvill_translations();
+    $lang = romvill_current_lang();
+    if ( isset( $table[ $key ][ $lang ] ) ) return $table[ $key ][ $lang ];
+    if ( isset( $table[ $key ]['es'] ) )   return $table[ $key ]['es'];
+    return $key;
+}
+
+function romvill_lang_html_attr() {
+    $map = [ 'es'=>'es', 'en'=>'en', 'fr'=>'fr', 'de'=>'de', 'ru'=>'ru' ];
+    return $map[ romvill_current_lang() ] ?? 'es';
+}
+
+// Inject lang cookie JS at top of page for instant switching
+add_action( 'wp_head', function() {
+    $lang = esc_js( romvill_current_lang() );
+    echo "<script>window.ROMVILL_LANG='{$lang}';</script>\n";
+}, 1 );
+
 // ─── Theme Setup ────────────────────────────────────────────
 function romvill_setup() {
     add_theme_support( 'title-tag' );
