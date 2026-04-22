@@ -1,0 +1,26 @@
+{
+  "name": "romvill-definitivo-perfeccionado",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build:css": "tailwindcss -i assets/css/input.css -o assets/css/build.css --minify",
+    "watch:css": "tailwindcss -i assets/css/input.css -o assets/css/build.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexJoubert22/romvill_defversion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AlexJoubert22/romvill_defversion/issues"
+  },
+  "homepage": "https://github.com/AlexJoubert22/romvill_defversion#readme",
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.19"
+  }
+}

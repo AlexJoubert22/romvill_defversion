@@ -5,6 +5,10 @@
  */
 get_header();
 $_lang = romvill_current_lang();
+romvill_seo( array(
+    'desc'  => romvill_t( 'meta.cont.desc' ),
+    'title' => 'ROMVILL — ' . romvill_t( 'contact.title' ),
+) );
 $contacto_url = get_permalink();
 ?>
 

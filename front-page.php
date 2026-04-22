@@ -7,6 +7,10 @@
 
 get_header();
 $_lang = romvill_current_lang();
+romvill_seo( array(
+    'desc'  => romvill_t( 'meta.home.desc' ),
+    'title' => 'ROMVILL — ' . romvill_t( 'hero.tagline' ),
+) );
 $contacto_page = get_page_by_path( 'contacto' );
 $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' );
 $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );

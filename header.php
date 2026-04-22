@@ -2,6 +2,7 @@
 <html lang="<?php echo esc_attr( romvill_lang_html_attr() ); ?>">
 
 <head>
+    <script>(function(){var t=localStorage.getItem('romvill_theme');if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}})();</script>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <?php wp_head(); ?>
@@ -86,6 +87,13 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
                             <?php endforeach; ?>
                         </div>
                     </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" aria-label="<?php echo esc_attr( romvill_t( 'dark.toggle' ) ); ?>"
+                        class="w-9 h-9 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
+                    </button>
                 </div>
                 <div class="hidden md:block">
                     <?php
@@ -114,6 +122,12 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
                             <?php endforeach; ?>
                         </div>
                     </div>
+                    <!-- Mobile Dark Mode Toggle -->
+                    <button id="dark-mode-toggle-mobile" aria-label="<?php echo esc_attr( romvill_t( 'dark.toggle' ) ); ?>"
+                        class="w-9 h-9 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                        <span class="material-symbols-outlined text-[18px] dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined text-[18px] hidden dark:block">light_mode</span>
+                    </button>
                     <button id="mobile-menu-toggle" class="text-slate-900 dark:text-white" aria-label="<?php echo esc_attr( romvill_t( 'nav.open_menu' ) ); ?>">
                         <span class="material-symbols-outlined">menu</span>
                     </button>

@@ -95,44 +95,13 @@ function romvill_enqueue_assets() {
         wp_get_theme()->get( 'Version' )
     );
 
-    // Tailwind CDN
-    wp_enqueue_script(
+    // Tailwind Compiled CSS
+    wp_enqueue_style(
         'romvill-tailwind',
-        'https://cdn.tailwindcss.com?plugins=forms,container-queries',
+        get_template_directory_uri() . '/assets/css/build.css',
         array(),
-        null,
-        false // Load in head
+        wp_get_theme()->get( 'Version' )
     );
-
-    // Tailwind Config (inline, after tailwind script)
-    $tailwind_config = "
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#135bec',
-                        'primary-dark': '#0d3c9e',
-                        'secondary': '#BFA15F',
-                        'background-light': '#f8f9fc',
-                        'background-dark': '#101622',
-                        'slate-dark': '#1e293b',
-                    },
-                    fontFamily: {
-                        'display': ['Manrope', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                    },
-                    borderRadius: {
-                        DEFAULT: '0.25rem',
-                        lg: '0.5rem',
-                        xl: '0.75rem',
-                        full: '9999px',
-                    },
-                },
-            },
-        };
-    ";
-    wp_add_inline_script( 'romvill-tailwind', $tailwind_config );
 
     // Lottie Player (only on front page)
     if ( is_front_page() ) {
@@ -179,11 +148,35 @@ function romvill_img( $file ) {
     return romvill_asset( 'images/' . $file );
 }
 
-// ─── Helper: Meta Description ───────────────────────────────
-function romvill_meta_description( $desc ) {
-    add_action( 'wp_head', function() use ( $desc ) {
-        echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
+// ─── SEO: Meta + Open Graph ──────────────────────────────────
+function romvill_seo( $args = array() ) {
+    $a = wp_parse_args( $args, array(
+        'desc'  => '',
+        'title' => '',
+        'image' => '',
+        'type'  => 'website',
+        'url'   => '',
+    ) );
+
+    $site_name = get_bloginfo( 'name' ) ?: 'ROMVILL';
+    $title     = $a['title'] ?: $site_name;
+    $desc      = $a['desc'];
+    $image     = $a['image'] ?: get_template_directory_uri() . '/assets/images/og-romvill.jpg';
+    $url       = $a['url']   ?: ( is_ssl() ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . strtok( $_SERVER['REQUEST_URI'], '?' );
+
+    add_action( 'wp_head', function() use ( $title, $desc, $image, $url, $site_name, $a ) {
+        if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
         echo '<meta name="robots" content="index, follow" />' . "\n";
+        echo '<meta property="og:type" content="' . esc_attr( $a['type'] ) . '" />' . "\n";
+        echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
+        echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
+        if ( $desc ) echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
+        echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
+        echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
+        echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+        echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
+        if ( $desc ) echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
+        echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
     }, 5 );
 }
 
@@ -215,6 +208,18 @@ function romvill_activate() {
             'slug'     => 'contacto',
             'template' => 'page-contacto.php',
             'order'    => 4,
+        ),
+        array(
+            'title'    => 'Privacidad',
+            'slug'     => 'privacidad',
+            'template' => 'page-privacidad.php',
+            'order'    => 5,
+        ),
+        array(
+            'title'    => 'Términos',
+            'slug'     => 'terminos',
+            'template' => 'page-terminos.php',
+            'order'    => 6,
         ),
     );
 
@@ -275,7 +280,7 @@ function romvill_handle_contact() {
     $mensaje  = sanitize_textarea_field( $_POST['mensaje'] ?? '' );
 
     if ( ! $nombre || ! $email || ! $zona || ! is_email( $email ) ) {
-        wp_send_json_error( array( 'message' => 'Por favor completa los campos obligatorios.' ) );
+        wp_send_json_error( array( 'message' => romvill_t( 'contact.f.required' ) ) );
     }
 
     $to      = get_option( 'admin_email' );
@@ -295,9 +300,9 @@ function romvill_handle_contact() {
 
     $sent = wp_mail( $to, $subject, $body, $headers );
     if ( $sent ) {
-        wp_send_json_success( array( 'message' => 'Solicitud enviada correctamente. Le responderemos en breve.' ) );
+        wp_send_json_success( array( 'message' => romvill_t( 'contact.f.success' ) ) );
     } else {
-        wp_send_json_error( array( 'message' => 'Error al enviar. Por favor, contáctenos directamente.' ) );
+        wp_send_json_error( array( 'message' => romvill_t( 'contact.f.error' ) ) );
     }
 }
 

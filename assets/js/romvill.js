@@ -119,6 +119,26 @@
         }
     });
 
+    // ─── Dark Mode Toggle ──────────────────────────────────
+    function setTheme(dark) {
+        if (dark) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('romvill_theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('romvill_theme', 'light');
+        }
+    }
+
+    function handleDarkToggle() {
+        setTheme(!document.documentElement.classList.contains('dark'));
+    }
+
+    var dmToggle = document.getElementById('dark-mode-toggle');
+    var dmToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+    if (dmToggle) dmToggle.addEventListener('click', handleDarkToggle);
+    if (dmToggleMobile) dmToggleMobile.addEventListener('click', handleDarkToggle);
+
     // ─── Contact Form Toggle Fields ────────────────────────
     var zonaSelect = document.getElementById('zona');
     var otraZonaContainer = document.getElementById('otra-zona-container');
