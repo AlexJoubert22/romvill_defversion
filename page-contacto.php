@@ -1,418 +1,769 @@
 <?php
 /**
- * Template: Contacto — Solicitar Presupuesto
+ * Template: Contacto
  * @package Romvill
  */
-
-add_action( 'wp_head', function () {
-    echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">' . "\n";
-    ?>
-<style>
-/* ── PAGE-SPECIFIC STYLES ──────────────────────────────────── */
-
-/* Hero */
-.rv-hero{background:#111111;padding:60px 40px 56px;text-align:center}
-.rv-hero__badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:4px;color:#4A6FA5;text-transform:uppercase;margin-bottom:22px;background:rgba(74,111,165,.12);padding:5px 16px;border-radius:20px}
-.rv-hero__title{font-family:Georgia,serif;font-size:34px;font-weight:700;color:#fff;margin:0 0 18px;line-height:1.2}
-.rv-hero__sub{font-size:15px;color:#9CA3AF;line-height:1.75;max-width:500px;margin:0 auto}
-
-/* Zone 1 */
-.rv-profiles{background:#FAFAFA;padding:56px 40px 60px;border-bottom:1px solid #E5E7EB}
-.rv-section-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:3px;color:#4A6FA5;text-transform:uppercase;margin-bottom:10px;background:rgba(74,111,165,.08);padding:4px 12px;border-radius:20px}
-.rv-section-title{font-family:Georgia,serif;font-size:26px;font-weight:700;color:#111827;margin:0 0 32px;line-height:1.3}
-.rv-profiles__grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.rv-profile{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:28px 24px 24px;cursor:pointer;transition:border-color .25s,box-shadow .25s,transform .2s;position:relative}
-.rv-profile:hover{border-color:#4A6FA5;box-shadow:0 8px 32px rgba(74,111,165,.12);transform:translateY(-2px)}
-.rv-profile.is-selected{border-color:#4A6FA5;box-shadow:0 8px 32px rgba(74,111,165,.16);background:linear-gradient(135deg,#F0F5FF 0%,#fff 100%)}
-.rv-profile__check{position:absolute;top:16px;right:16px;width:24px;height:24px;background:#4A6FA5;border-radius:50%;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(74,111,165,.3)}
-.rv-profile.is-selected .rv-profile__check{display:flex}
-.rv-profile__check svg{width:11px;height:11px;fill:#fff}
-.rv-profile__num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(74,111,165,.10);border-radius:8px;font-size:14px;font-weight:800;color:#4A6FA5;margin-bottom:16px;font-family:Georgia,serif;letter-spacing:0}
-.rv-profile__title{font-family:Georgia,serif;font-size:17px;font-weight:700;color:#111827;margin:0 0 8px;line-height:1.3}
-.rv-profile__sub{font-size:12.5px;font-weight:600;color:#4A6FA5;font-style:italic;line-height:1.6;margin:0 0 14px}
-.rv-profile__hr{border:none;border-top:1px solid #F1F1F1;margin:0 0 14px}
-.rv-profile__desc{font-size:13px;color:#6B7280;line-height:1.75;margin:0 0 20px}
-.rv-profile__btn{display:block;width:100%;background:#F8FAFF;border:1.5px solid #C5D5E8;color:#4A6FA5;border-radius:8px;padding:11px;font-size:12.5px;font-weight:700;text-align:center;text-decoration:none;transition:background .2s,color .2s,border-color .2s;box-sizing:border-box;letter-spacing:.3px}
-.rv-profile__btn:hover{background:#4A6FA5;color:#fff;border-color:#4A6FA5}
-
-/* Zone 2 */
-.rv-form-section{background:#EDF3FB;padding:56px 40px;border-bottom:1px solid #D0DFF0}
-.rv-form-wrap{max-width:640px;margin:0 auto;background:#fff;border-radius:16px;padding:40px 44px;box-shadow:0 4px 28px rgba(74,111,165,.10)}
-.rv-form-section .rv-section-title{margin-bottom:8px}
-.rv-form-sub{font-size:14px;color:#6B7280;line-height:1.7;max-width:520px;margin:0 0 28px}
-.rv-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
-.rv-row-1{margin-bottom:18px}
-.rv-label{display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:#374151;text-transform:uppercase;margin-bottom:6px}
-.rv-sublabel{display:block;font-size:11px;color:#9CA3AF;font-weight:400;text-transform:none;letter-spacing:0;margin-top:-2px;margin-bottom:6px}
-.rv-input,.rv-select,.rv-textarea{width:100%;border:1.5px solid #E5E7EB;border-radius:8px;padding:11px 14px;background:#FAFAFA;font-size:14px;color:#111827;box-sizing:border-box;font-family:inherit;transition:border-color .2s,box-shadow .2s,background .2s;appearance:none;-webkit-appearance:none}
-.rv-input:focus,.rv-select:focus,.rv-textarea:focus{outline:none;border-color:#4A6FA5;background:#fff;box-shadow:0 0 0 3px rgba(74,111,165,.12)}
-.rv-input.rv-valid{border-color:#16A34A;background:#F0FDF4}
-.rv-input.rv-invalid{border-color:#DC2626;background:#FFF1F1}
-.rv-textarea{resize:none;min-height:110px;overflow:hidden}
-.rv-char-wrap{position:relative}
-.rv-char-count{position:absolute;bottom:10px;right:12px;font-size:11px;color:#9CA3AF;pointer-events:none}
-.rv-required-note{font-size:11px;color:#9CA3AF;margin:8px 0 22px}
-.rv-submit{width:100%;background:#1D3557;color:#fff;border:none;padding:15px;border-radius:8px;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(29,53,87,.18)}
-.rv-submit:hover:not(:disabled){background:#4A6FA5;transform:translateY(-1px);box-shadow:0 6px 20px rgba(74,111,165,.28)}
-.rv-submit:disabled{background:#E5E7EB;color:#9CA3AF;cursor:not-allowed;box-shadow:none}
-.rv-micro{font-size:11.5px;color:#9CA3AF;text-align:center;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px}
-/* intl-tel-input — let iti manage its own internal padding/layout */
-.rv-iti-wrap{position:relative}
-.iti{display:block;width:100%}
-#rv-telefono{border:1.5px solid #E5E7EB;border-radius:8px;background:#FAFAFA;font-size:14px;color:#111827;font-family:inherit;transition:border-color .2s,box-shadow .2s,background .2s;width:100%;box-sizing:border-box}
-#rv-telefono:focus{outline:none;border-color:#4A6FA5;background:#fff;box-shadow:0 0 0 3px rgba(74,111,165,.12)}
-.iti__selected-flag{border-radius:6px 0 0 6px}
-/* Confirmation */
-.rv-confirm{display:none;background:#F0F5FF;border:1.5px solid #C5D5E8;border-left:4px solid #4A6FA5;border-radius:10px;padding:36px 28px;text-align:center}
-.rv-confirm__icon{font-size:48px;color:#4A6FA5;margin-bottom:14px}
-.rv-confirm__title{font-size:18px;font-weight:700;color:#111827;margin:0 0 10px;font-family:Georgia,serif}
-.rv-confirm__sub{font-size:13.5px;color:#6B7280;margin:0;line-height:1.65}
-
-/* Zone 3 */
-.rv-why{background:#F7F7F5;padding:56px 40px 64px}
-.rv-why__top3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px}
-.rv-why__card{background:#fff;border:1.5px solid #E5E7EB;border-radius:12px;padding:24px 20px;transition:box-shadow .2s}
-.rv-why__card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07)}
-.rv-why__card .rv-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:rgba(74,111,165,.10);border-radius:10px;font-size:22px;color:#4A6FA5;margin-bottom:14px}
-.rv-why__card h3{font-size:14px;font-weight:700;color:#111827;margin:0 0 8px}
-.rv-why__card p{font-size:13px;color:#6B7280;line-height:1.65;margin:0}
-/* 5 items in 6-col grid: 3 per row, last 2 centered */
-.rv-why__rest{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;border-top:1px solid #E5E7EB;padding-top:20px;margin-bottom:32px}
-.rv-why__item{grid-column:span 2;background:#fff;border:1.5px solid #E5E7EB;border-radius:10px;padding:20px 18px;transition:box-shadow .2s}
-.rv-why__item:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.rv-why__item:nth-child(4){grid-column:2 / span 2}
-.rv-why__item:nth-child(5){grid-column:4 / span 2}
-.rv-why__icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(74,111,165,.08);border-radius:8px;font-size:18px;color:#4A6FA5;margin-bottom:10px}
-.rv-why__item h3{font-size:13.5px;font-weight:700;color:#111827;margin:0 0 6px}
-.rv-why__item p{font-size:12.5px;color:#6B7280;line-height:1.6;margin:0}
-.rv-why__quote{background:#fff;border-left:4px solid #4A6FA5;border-radius:0 10px 10px 0;padding:20px 28px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.rv-why__quote p{font-size:15px;font-style:italic;color:#1D3557;margin:0;line-height:1.7;font-weight:500}
-
-/* Responsive */
-@media(max-width:768px){
-    .rv-hero,.rv-profiles,.rv-form-section,.rv-why{padding-left:20px;padding-right:20px}
-    .rv-profiles__grid,.rv-row-2,.rv-why__top3{grid-template-columns:1fr}
-    .rv-form-wrap{padding:28px 20px}
-    .rv-why__rest{grid-template-columns:1fr 1fr}
-    .rv-why__item{grid-column:span 1 !important}
-}
-@media(max-width:480px){
-    .rv-hero__title{font-size:26px}
-    .rv-why__rest{grid-template-columns:1fr}
-}
-</style>
-    <?php
-} );
-
 get_header();
-$_lang        = romvill_current_lang();
+$_lang = romvill_current_lang();
 romvill_seo( array(
     'desc'  => romvill_t( 'meta.cont.desc' ),
-    'title' => 'Solicitar Presupuesto — ROMVILL',
+    'title' => 'ROMVILL — ' . romvill_t( 'contact.title' ),
 ) );
-
-$bloque_urls = array();
-for ( $i = 1; $i <= 4; $i++ ) {
-    $bloque_page = get_page_by_path( 'presupuesto-bloque-' . $i );
-    $bloque_urls[ $i ] = $bloque_page
-        ? add_query_arg( 'lang', $_lang, get_permalink( $bloque_page ) )
-        : add_query_arg( 'lang', $_lang, home_url( '/presupuesto-bloque-' . $i . '/' ) );
-}
 ?>
 
-<!-- ═══════════════════════════════════════════════════════
-     CABECERA HERO
-════════════════════════════════════════════════════════ -->
-<div class="rv-hero">
-    <span class="rv-hero__badge"><?php echo esc_html( romvill_t( 'presup.hero.badge' ) ); ?></span>
-    <h1 class="rv-hero__title"><?php echo esc_html( romvill_t( 'presup.title' ) ); ?></h1>
-    <p class="rv-hero__sub"><?php echo esc_html( romvill_t( 'presup.subtitle' ) ); ?></p>
-</div>
+<style>
+/* ── Animations ────────────────────────────────────── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes slideDown {
+    from { opacity: 0; max-height: 0; transform: translateY(-8px); }
+    to   { opacity: 1; max-height: 120px; transform: translateY(0); }
+}
+.c-anim {
+    opacity: 0;
+    animation: fadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.c-anim-fade {
+    opacity: 0;
+    animation: fadeIn 0.9s ease forwards;
+}
+.rf-response-show {
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    overflow: hidden;
+}
 
-<!-- ═══════════════════════════════════════════════════════
-     ZONA 1 — SELECTOR DE PERFIL
-════════════════════════════════════════════════════════ -->
-<section class="rv-profiles">
-    <div style="max-width:860px;margin:0 auto">
-        <span class="rv-section-badge"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
-        <h2 class="rv-section-title"><?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?></h2>
+/* ── Hero ──────────────────────────────────────────── */
+.cont-hero {
+    background: #101622;
+    position: relative;
+    overflow: hidden;
+}
+.cont-hero-glow {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 50% -10%, rgba(19,91,236,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 110%, rgba(191,161,95,0.10) 0%, transparent 60%);
+    pointer-events: none;
+}
+.cont-hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
 
-        <div class="rv-profiles__grid">
-            <?php
-            $bloques = array(
-                array( 'num'=>'01','title'=>romvill_t('presup.b1.title'),'sub'=>romvill_t('presup.b1.sub'),'desc'=>romvill_t('presup.b1.desc'),'url'=>$bloque_urls[1] ),
-                array( 'num'=>'02','title'=>romvill_t('presup.b2.title'),'sub'=>romvill_t('presup.b2.sub'),'desc'=>romvill_t('presup.b2.desc'),'url'=>$bloque_urls[2] ),
-                array( 'num'=>'03','title'=>romvill_t('presup.b3.title'),'sub'=>romvill_t('presup.b3.sub'),'desc'=>romvill_t('presup.b3.desc'),'url'=>$bloque_urls[3] ),
-                array( 'num'=>'04','title'=>romvill_t('presup.b4.title'),'sub'=>romvill_t('presup.b4.sub'),'desc'=>romvill_t('presup.b4.desc'),'url'=>$bloque_urls[4] ),
-            );
-            foreach ( $bloques as $b ) :
-            ?>
-            <div class="rv-profile" onclick="rvSelectProfile(this,event)">
-                <div class="rv-profile__check" aria-hidden="true">
-                    <svg viewBox="0 0 12 10"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <span class="rv-profile__num"><?php echo esc_html( $b['num'] ); ?></span>
-                <h3 class="rv-profile__title"><?php echo esc_html( $b['title'] ); ?></h3>
-                <p class="rv-profile__sub"><?php echo esc_html( $b['sub'] ); ?></p>
-                <hr class="rv-profile__hr">
-                <p class="rv-profile__desc"><?php echo esc_html( $b['desc'] ); ?></p>
-                <a href="<?php echo esc_url( $b['url'] ); ?>" class="rv-profile__btn">
-                    <?php echo esc_html( romvill_t( 'presup.b.btn' ) ); ?> →
-                </a>
-            </div>
-            <?php endforeach; ?>
+/* ── Form Inputs ───────────────────────────────────── */
+.rf2-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.rf2-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    transition: color 0.25s;
+}
+.rf2-input,
+.rf2-select,
+.rf2-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #e2e8f0;
+    border-radius: 0;
+    padding: 0.5rem 0 0.625rem;
+    font-size: 0.9375rem;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.rf2-input::placeholder,
+.rf2-textarea::placeholder {
+    color: #cbd5e1;
+}
+.rf2-input:focus,
+.rf2-select:focus,
+.rf2-textarea:focus {
+    border-bottom-color: #135bec;
+}
+.dark .rf2-input,
+.dark .rf2-select,
+.dark .rf2-textarea {
+    border-bottom-color: #334155;
+    color: #f1f5f9;
+}
+.dark .rf2-input:focus,
+.dark .rf2-select:focus,
+.dark .rf2-textarea:focus {
+    border-bottom-color: #135bec;
+}
+.dark .rf2-label { color: #64748b; }
+.rf2-select-wrap { position: relative; }
+.rf2-select-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+.rf2-textarea {
+    resize: none;
+    min-height: 80px;
+}
+.rf2-req { color: #135bec; }
+
+/* ── Phone row ─────────────────────────────────────── */
+.phone-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    border-bottom: 1.5px solid #e2e8f0;
+    transition: border-color 0.3s ease;
+}
+.phone-row:focus-within { border-bottom-color: #135bec; }
+.dark .phone-row { border-bottom-color: #334155; }
+.dark .phone-row:focus-within { border-bottom-color: #135bec; }
+.phone-prefix-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.5rem 0.625rem 0;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+    flex-shrink: 0;
+    outline: none;
+    transition: color 0.2s;
+}
+.dark .phone-prefix-btn { color: #f1f5f9; }
+.phone-prefix-btn:hover { color: #135bec; }
+.phone-prefix-sep {
+    width: 1px;
+    height: 18px;
+    background: #e2e8f0;
+    margin: 0 0.5rem 0.5rem;
+    flex-shrink: 0;
+}
+.dark .phone-prefix-sep { background: #334155; }
+.phone-number-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0 0.625rem;
+    font-size: 0.9375rem;
+    color: #0f172a;
+    outline: none;
+}
+.phone-number-input::placeholder { color: #cbd5e1; }
+.dark .phone-number-input { color: #f1f5f9; }
+
+/* ── Prefix dropdown ───────────────────────────────── */
+.prefix-dropdown {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: calc(100% + 4px);
+    width: 280px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+    animation: fadeUp 0.22s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.dark .prefix-dropdown {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.prefix-search-wrap {
+    padding: 10px 12px 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+.dark .prefix-search-wrap { border-bottom-color: #334155; }
+.prefix-search {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.8125rem;
+    outline: none;
+    background: #f8fafc;
+    color: #0f172a;
+    transition: border-color 0.2s;
+}
+.prefix-search:focus { border-color: #135bec; }
+.dark .prefix-search { background: #0f172a; border-color: #334155; color: #f1f5f9; }
+.prefix-list {
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 4px 0;
+}
+.prefix-list::-webkit-scrollbar { width: 4px; }
+.prefix-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.dark .prefix-list::-webkit-scrollbar-thumb { background: #475569; }
+.prefix-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 0.84rem;
+    color: #334155;
+    transition: background 0.15s;
+}
+.prefix-item:hover { background: #f8fafc; }
+.dark .prefix-item { color: #cbd5e1; }
+.dark .prefix-item:hover { background: #0f172a; }
+.prefix-item.active { color: #135bec; font-weight: 600; }
+.prefix-flag { font-size: 1.1rem; line-height: 1; }
+.prefix-name { flex: 1; }
+.prefix-code { color: #94a3b8; font-size: 0.78rem; font-weight: 600; }
+
+/* ── Submit button ─────────────────────────────────── */
+.rf2-submit {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem 2rem;
+    background: #135bec;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(19,91,236,0.3);
+}
+.rf2-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    transition: left 0.55s ease;
+}
+.rf2-submit:hover::before { left: 150%; }
+.rf2-submit:hover {
+    background: #0f4dc4;
+    box-shadow: 0 6px 28px rgba(19,91,236,0.42);
+    transform: translateY(-1px);
+}
+.rf2-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ── Info card items ───────────────────────────────── */
+.why-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.why-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(19,91,236,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #135bec;
+    font-size: 1.1rem;
+}
+
+/* ── Channel cards ─────────────────────────────────── */
+.ch-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1rem 1.125rem;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.2s, border-color 0.2s;
+}
+.ch-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.12);
+}
+.ch-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(19,91,236,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6fa3f7;
+    flex-shrink: 0;
+}
+
+/* ── Social ────────────────────────────────────────── */
+.social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.social-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ── Form response ─────────────────────────────────── */
+.rf2-response {
+    display: none;
+    border-radius: 10px;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+</style>
+
+<main class="flex-grow bg-white dark:bg-[#101622]">
+
+    <!-- Hero -->
+    <div class="cont-hero pt-28 pb-20 px-4 text-center">
+        <div class="cont-hero-glow"></div>
+        <div class="cont-hero-grid"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <span class="c-anim inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#BFA15F] text-xs font-bold uppercase tracking-widest mb-6" style="animation-delay:0.05s">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#BFA15F] inline-block"></span>
+                <?php echo esc_html( romvill_t( 'contact.badge' ) ); ?>
+            </span>
+            <h1 class="c-anim text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-5" style="animation-delay:0.15s">
+                <?php echo esc_html( romvill_t( 'contact.title' ) ); ?>
+            </h1>
+            <p class="c-anim text-slate-400 text-lg md:text-xl leading-relaxed max-w-xl mx-auto" style="animation-delay:0.25s">
+                <?php echo esc_html( romvill_t( 'contact.subtitle' ) ); ?>
+            </p>
         </div>
     </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════
-     ZONA 2 — FORMULARIO DE CONTACTO DIRECTO
-════════════════════════════════════════════════════════ -->
-<section id="contacto" class="rv-form-section">
-    <div class="rv-form-wrap">
-        <span class="rv-section-badge"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
-        <h2 class="rv-section-title"><?php echo esc_html( romvill_t( 'cont.direct.title' ) ); ?></h2>
-        <p class="rv-form-sub"><?php echo esc_html( romvill_t( 'cont.direct.sub' ) ); ?></p>
+    <!-- Main grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
-        <!-- FORM -->
-        <form id="rv-contact-form" novalidate>
-            <?php wp_nonce_field( 'romvill_contact_nonce', 'nonce' ); ?>
+            <!-- Form card -->
+            <div class="c-anim lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-2xl shadow-slate-200/60 dark:shadow-slate-950/60 p-8 md:p-10 lg:p-12" style="animation-delay:0.35s">
 
-            <!-- Fila 1: Nombre + Apellido -->
-            <div class="rv-row-2">
-                <div>
-                    <label class="rv-label" for="rv-nombre"><?php echo esc_html( romvill_t( 'contact.f.nombre' ) ); ?></label>
-                    <input id="rv-nombre" name="nombre" type="text" class="rv-input"
-                           placeholder="<?php echo esc_attr( romvill_t( 'contact.f.nombre.ph' ) ); ?>">
-                </div>
-                <div>
-                    <label class="rv-label" for="rv-apellido"><?php echo esc_html( romvill_t( 'contact.f.apellido' ) ); ?></label>
-                    <input id="rv-apellido" name="apellido" type="text" class="rv-input"
-                           placeholder="<?php echo esc_attr( romvill_t( 'contact.f.apell.ph' ) ); ?>">
-                </div>
+                <form id="romvill-contact-form" novalidate>
+                    <?php wp_nonce_field( 'romvill_contact_nonce', 'nonce' ); ?>
+
+                    <!-- Row: Nombre + Apellido -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7 mb-7">
+                        <div class="rf2-field">
+                            <label class="rf2-label" for="nombre"><?php echo esc_html( romvill_t( 'contact.f.nombre' ) ); ?> <span class="rf2-req">*</span></label>
+                            <input type="text" id="nombre" name="nombre" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.nombre.ph' ) ); ?>" required class="rf2-input">
+                        </div>
+                        <div class="rf2-field">
+                            <label class="rf2-label" for="apellido"><?php echo esc_html( romvill_t( 'contact.f.apellido' ) ); ?></label>
+                            <input type="text" id="apellido" name="apellido" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.apell.ph' ) ); ?>" class="rf2-input">
+                        </div>
+                    </div>
+
+                    <!-- Row: Email + Telefono -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7 mb-7">
+                        <div class="rf2-field">
+                            <label class="rf2-label" for="email"><?php echo esc_html( romvill_t( 'contact.f.email' ) ); ?> <span class="rf2-req">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.email.ph' ) ); ?>" required class="rf2-input">
+                        </div>
+                        <!-- Phone with prefix -->
+                        <div class="rf2-field">
+                            <label class="rf2-label"><?php echo esc_html( romvill_t( 'contact.f.telefono' ) ); ?></label>
+                            <div class="phone-row relative" id="phone-row">
+                                <button type="button" class="phone-prefix-btn" id="prefix-btn" aria-haspopup="listbox" aria-expanded="false">
+                                    <span id="prefix-flag">🇪🇸</span>
+                                    <span id="prefix-code">+34</span>
+                                    <svg width="11" height="7" viewBox="0 0 11 7" fill="none" style="margin-left:2px;opacity:.5"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </button>
+                                <div class="phone-prefix-sep"></div>
+                                <input type="tel" id="phone-number" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.tel.ph' ) ); ?>" class="phone-number-input">
+                                <input type="hidden" id="telefono" name="telefono">
+                                <!-- Dropdown -->
+                                <div class="prefix-dropdown" id="prefix-dropdown" style="display:none;" role="listbox">
+                                    <div class="prefix-search-wrap">
+                                        <input type="text" class="prefix-search" id="prefix-search" placeholder="Buscar…" autocomplete="off">
+                                    </div>
+                                    <div class="prefix-list" id="prefix-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zona -->
+                    <div class="rf2-field mb-7">
+                        <label class="rf2-label" for="zona"><?php echo esc_html( romvill_t( 'contact.f.zona' ) ); ?> <span class="rf2-req">*</span></label>
+                        <div class="rf2-select-wrap">
+                            <select id="zona" name="zona" required class="rf2-select">
+                                <option value=""><?php echo esc_html( romvill_t( 'contact.f.zona.ph' ) ); ?></option>
+                                <option value="Alicante">Alicante</option>
+                                <option value="Marbella">Marbella</option>
+                                <option value="Málaga">Málaga</option>
+                                <option value="Otra zona"><?php echo esc_html( romvill_t( 'contact.f.otzona' ) ); ?></option>
+                            </select>
+                            <svg class="rf2-select-arrow" width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Objetivo -->
+                    <div class="rf2-field mb-7">
+                        <label class="rf2-label" for="objetivo"><?php echo esc_html( romvill_t( 'contact.f.objetivo' ) ); ?></label>
+                        <div class="rf2-select-wrap">
+                            <select id="objetivo" name="objetivo" class="rf2-select">
+                                <option value="Compra de vivienda"><?php echo esc_html( romvill_t( 'contact.f.obj.buy' ) ); ?></option>
+                                <option value="Inversión inmobiliaria"><?php echo esc_html( romvill_t( 'contact.f.obj.inv' ) ); ?></option>
+                                <option value="Traslado residencial"><?php echo esc_html( romvill_t( 'contact.f.obj.rel' ) ); ?></option>
+                                <option value="Otro"><?php echo esc_html( romvill_t( 'contact.f.obj.oth' ) ); ?></option>
+                            </select>
+                            <svg class="rf2-select-arrow" width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div class="rf2-field mb-8">
+                        <label class="rf2-label" for="mensaje"><?php echo esc_html( romvill_t( 'contact.f.mensaje' ) ); ?></label>
+                        <textarea id="mensaje" name="mensaje" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.msg.ph' ) ); ?>" class="rf2-textarea"></textarea>
+                    </div>
+
+                    <!-- Response -->
+                    <div id="romvill-form-response" class="rf2-response mb-5"></div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="rf2-submit" id="rf2-submit-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        <?php echo esc_html( romvill_t( 'contact.f.submit' ) ); ?>
+                    </button>
+                </form>
             </div>
 
-            <!-- Fila 2: Email + Zona -->
-            <div class="rv-row-2">
-                <div>
-                    <label class="rv-label" for="rv-email"><?php echo esc_html( romvill_t( 'contact.f.email' ) ); ?> *</label>
-                    <input id="rv-email" name="email" type="email" class="rv-input"
-                           placeholder="<?php echo esc_attr( romvill_t( 'contact.f.email.ph' ) ); ?>" required>
+            <!-- Right panel -->
+            <div class="lg:col-span-5 flex flex-col gap-5">
+
+                <!-- Why Romvill card -->
+                <div class="c-anim bg-[#101622] rounded-3xl border border-white/6 p-8 md:p-9" style="animation-delay:0.45s">
+                    <h2 class="text-base font-bold text-white mb-6 flex items-center gap-2.5">
+                        <span class="w-7 h-7 rounded-lg bg-blue-500/10 flex items-center justify-center text-[#6fa3f7]">
+                            <span class="material-symbols-outlined" style="font-size:16px">verified_user</span>
+                        </span>
+                        <?php echo esc_html( romvill_t( 'contact.why.title' ) ); ?>
+                    </h2>
+                    <div class="space-y-5">
+                        <?php
+                        $reasons = array(
+                            array( 'icon' => 'description',  'title' => romvill_t( 'contact.why.r1t' ), 'desc' => romvill_t( 'contact.why.r1d' ) ),
+                            array( 'icon' => 'balance',       'title' => romvill_t( 'contact.why.r2t' ), 'desc' => romvill_t( 'contact.why.r2d' ) ),
+                            array( 'icon' => 'dataset',       'title' => romvill_t( 'contact.why.r3t' ), 'desc' => romvill_t( 'contact.why.r3d' ) ),
+                            array( 'icon' => 'trending_up',   'title' => romvill_t( 'contact.why.r4t' ), 'desc' => romvill_t( 'contact.why.r4d' ) ),
+                            array( 'icon' => 'security',      'title' => romvill_t( 'contact.why.r5t' ), 'desc' => romvill_t( 'contact.why.r5d' ) ),
+                            array( 'icon' => 'diamond',       'title' => romvill_t( 'contact.why.r6t' ), 'desc' => romvill_t( 'contact.why.r6d' ) ),
+                            array( 'icon' => 'public',        'title' => romvill_t( 'contact.why.r7t' ), 'desc' => romvill_t( 'contact.why.r7d' ) ),
+                            array( 'icon' => 'psychology',    'title' => romvill_t( 'contact.why.r8t' ), 'desc' => romvill_t( 'contact.why.r8d' ) ),
+                        );
+                        foreach ( $reasons as $r ) :
+                        ?>
+                        <div class="why-item">
+                            <div class="why-icon">
+                                <span class="material-symbols-outlined" style="font-size:17px"><?php echo esc_html( $r['icon'] ); ?></span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-white leading-snug"><?php echo esc_html( $r['title'] ); ?></h3>
+                                <p class="text-xs text-slate-500 mt-0.5 leading-relaxed"><?php echo esc_html( $r['desc'] ); ?></p>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-                <div>
-                    <label class="rv-label" for="rv-zona"><?php echo esc_html( romvill_t( 'contact.f.zona' ) ); ?></label>
-                    <select id="rv-zona" name="zona" class="rv-select">
-                        <option value=""><?php echo esc_html( romvill_t( 'contact.f.zona.ph' ) ); ?></option>
-                        <option value="Alicante">Alicante</option>
-                        <option value="Marbella">Marbella</option>
-                        <option value="Málaga">Málaga</option>
-                        <option value="Otra zona"><?php echo esc_html( romvill_t( 'contact.f.otzona' ) ); ?></option>
-                    </select>
+
+                <!-- Channels card -->
+                <div class="c-anim bg-[#101622] rounded-3xl border border-white/6 p-8 md:p-9" style="animation-delay:0.55s">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4"><?php echo esc_html( romvill_t( 'contact.channels' ) ); ?></h3>
+                    <div class="flex flex-col gap-3 mb-6">
+                        <a href="tel:+34900123456" class="ch-card">
+                            <div class="ch-icon">
+                                <span class="material-symbols-outlined" style="font-size:18px">call</span>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-600 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.phone.label' ) ); ?></p>
+                                <span class="text-sm text-slate-200 font-medium hover:text-[#6fa3f7] transition-colors">+34 900 123 456</span>
+                            </div>
+                        </a>
+                        <a href="mailto:info@romvill.com" class="ch-card">
+                            <div class="ch-icon">
+                                <span class="material-symbols-outlined" style="font-size:18px">mail</span>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-600 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.email.label' ) ); ?></p>
+                                <span class="text-sm text-slate-200 font-medium hover:text-[#6fa3f7] transition-colors">info@romvill.com</span>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="text-[10px] text-slate-600 font-bold uppercase tracking-widest mb-3"><?php echo esc_html( romvill_t( 'contact.social' ) ); ?></p>
+                    <div class="flex gap-2">
+                        <a href="#" class="social-btn" aria-label="LinkedIn">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Twitter">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Instagram">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Fila 3: Teléfono con intl-tel-input -->
-            <div class="rv-row-1">
-                <label class="rv-label" for="rv-telefono"><?php echo esc_html( romvill_t( 'contact.f.telefono' ) ); ?></label>
-                <span class="rv-sublabel"><?php echo esc_html( romvill_t( 'contact.f.tel.ph' ) ); ?></span>
-                <div class="rv-iti-wrap">
-                    <input id="rv-telefono" name="telefono" type="tel">
+                <!-- Quote card -->
+                <div class="c-anim bg-gradient-to-br from-[#135bec]/8 to-[#BFA15F]/8 rounded-3xl border border-white/6 p-7 relative overflow-hidden" style="animation-delay:0.65s">
+                    <svg class="absolute top-3 right-5 opacity-[0.07] text-[#BFA15F]" width="72" height="72" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.123.474-.232.474-.232L9.75 4.5S9.5 4.5 9 4.75c-.496.26-.975.538-1.419.872-.454.329-.876.727-1.268 1.148-.381.429-.716.907-1.009 1.41-.302.51-.51 1.065-.677 1.637-.164.573-.3 1.15-.36 1.737-.087.59-.13 1.173-.13 1.749 0 .965.176 1.9.485 2.756.309.856.756 1.628 1.344 2.272.588.644 1.297 1.148 2.104 1.478.81.33 1.705.5 2.645.5.94 0 1.835-.17 2.645-.5.808-.33 1.516-.834 2.104-1.478.588-.644 1.035-1.416 1.344-2.272.309-.856.485-1.79.485-2.756s-.176-1.9-.485-2.756c-.309-.856-.756-1.628-1.344-2.272C15.849 8.334 15.14 7.83 14.333 7.5 13.523 7.17 12.628 7 11.688 7 9.572 7 7.668 7.92 6.5 10zm10 0c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.123.474-.232.474-.232L19.75 4.5S19.5 4.5 19 4.75c-.496.26-.975.538-1.419.872-.454.329-.876.727-1.268 1.148-.381.429-.716.907-1.009 1.41-.302.51-.51 1.065-.677 1.637-.164.573-.3 1.15-.36 1.737-.087.59-.13 1.173-.13 1.749 0 .965.176 1.9.485 2.756.309.856.756 1.628 1.344 2.272.588.644 1.297 1.148 2.104 1.478.81.33 1.705.5 2.645.5.94 0 1.835-.17 2.645-.5.808-.33 1.516-.834 2.104-1.478.588-.644 1.035-1.416 1.344-2.272.309-.856.485-1.79.485-2.756s-.176-1.9-.485-2.756c-.309-.856-.756-1.628-1.344-2.272C25.849 8.334 25.14 7.83 24.333 7.5 23.523 7.17 22.628 7 21.688 7 19.572 7 17.668 7.92 16.5 10z"/></svg>
+                    <p class="text-sm text-slate-300 italic leading-relaxed">
+                        <?php echo esc_html( romvill_t( 'contact.why.quote' ) ); ?>
+                    </p>
                 </div>
-            </div>
 
-            <!-- Fila 4: Mensaje con contador -->
-            <div class="rv-row-1">
-                <label class="rv-label" for="rv-mensaje"><?php echo esc_html( romvill_t( 'contact.f.mensaje' ) ); ?></label>
-                <div class="rv-char-wrap">
-                    <textarea id="rv-mensaje" name="mensaje" class="rv-textarea" maxlength="500"
-                        placeholder="<?php echo esc_attr( romvill_t( 'contact.f.msg.ph' ) ); ?>"></textarea>
-                    <span class="rv-char-count" id="rv-char-count">0 / 500</span>
-                </div>
-            </div>
-
-            <p class="rv-required-note">* <?php echo esc_html( romvill_t( 'contact.f.nombre' ) ); ?> obligatorio</p>
-
-            <button type="submit" id="rv-submit" class="rv-submit" disabled>
-                <?php echo esc_html( romvill_t( 'contact.f.submit' ) ); ?>
-            </button>
-            <div class="rv-micro">
-                <span class="material-symbols-outlined" style="font-size:15px">shield</span>
-                <?php echo esc_html( romvill_t( 'cont.micro' ) ); ?>
-            </div>
-        </form>
-
-        <!-- Confirmación post-envío -->
-        <div class="rv-confirm" id="rv-confirm">
-            <div class="rv-confirm__icon">
-                <span class="material-symbols-outlined" style="font-size:44px;color:#4A6FA5">check_circle</span>
-            </div>
-            <h3 class="rv-confirm__title"><?php echo esc_html( romvill_t( 'cont.confirm.title' ) ); ?></h3>
-            <p class="rv-confirm__sub"><?php echo esc_html( romvill_t( 'cont.confirm.sub' ) ); ?></p>
+            </div><!-- /right panel -->
         </div>
     </div>
-</section>
+</main>
 
-<!-- ═══════════════════════════════════════════════════════
-     ZONA 3 — POR QUÉ ELEGIR ROMVILL
-════════════════════════════════════════════════════════ -->
-<section class="rv-why">
-    <div style="max-width:860px;margin:0 auto">
-        <span class="rv-section-badge"><?php echo esc_html( romvill_t( 'cont.why.badge' ) ); ?></span>
-        <h2 class="rv-section-title"><?php echo esc_html( romvill_t( 'cont.why.new.title' ) ); ?></h2>
-
-        <!-- Top 3 -->
-        <div class="rv-why__top3">
-            <div class="rv-why__card">
-                <span class="material-symbols-outlined rv-icon">balance</span>
-                <h3><?php echo esc_html( romvill_t( 'contact.why.r2t' ) ); ?></h3>
-                <p><?php echo esc_html( romvill_t( 'contact.why.r2d' ) ); ?></p>
-            </div>
-            <div class="rv-why__card">
-                <span class="material-symbols-outlined rv-icon">description</span>
-                <h3><?php echo esc_html( romvill_t( 'contact.why.r1t' ) ); ?></h3>
-                <p><?php echo esc_html( romvill_t( 'contact.why.r1d' ) ); ?></p>
-            </div>
-            <div class="rv-why__card">
-                <span class="material-symbols-outlined rv-icon">security</span>
-                <h3><?php echo esc_html( romvill_t( 'contact.why.r5t' ) ); ?></h3>
-                <p><?php echo esc_html( romvill_t( 'contact.why.r5d' ) ); ?></p>
-            </div>
-        </div>
-
-        <!-- Resto -->
-        <div class="rv-why__rest">
-            <?php
-            $why_rest = array(
-                array( 'dataset',    'contact.why.r3t', 'contact.why.r3d' ),
-                array( 'trending_up','contact.why.r4t', 'contact.why.r4d' ),
-                array( 'diamond',    'contact.why.r6t', 'contact.why.r6d' ),
-                array( 'public',     'contact.why.r7t', 'contact.why.r7d' ),
-                array( 'psychology', 'contact.why.r8t', 'contact.why.r8d' ),
-            );
-            foreach ( $why_rest as $w ) :
-            ?>
-            <div class="rv-why__item">
-                <span class="material-symbols-outlined rv-why__icon"><?php echo esc_html( $w[0] ); ?></span>
-                <h3><?php echo esc_html( romvill_t( $w[1] ) ); ?></h3>
-                <p><?php echo esc_html( romvill_t( $w[2] ) ); ?></p>
-            </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Cita -->
-        <div class="rv-why__quote">
-            <p><?php echo esc_html( romvill_t( 'contact.why.quote' ) ); ?></p>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════════════════════ -->
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
-(function () {
-    'use strict';
+(function() {
 
-    /* ── intl-tel-input ── */
-    intlTelInput.defaults.imagePath = 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/';
-    var phoneEl = document.getElementById('rv-telefono');
-    var iti = intlTelInput(phoneEl, {
-        preferredCountries: ['es','de','gb','fr','nl','ru','se','pt'],
-        separateDialCode: true,
-        initialCountry: 'es',
-        utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js'
-    });
+    /* ── Phone prefix data ───────────────────────────── */
+    var COUNTRIES = [
+        {c:'+34',f:'🇪🇸',n:'España'},
+        {c:'+1',f:'🇺🇸',n:'USA'},
+        {c:'+44',f:'🇬🇧',n:'United Kingdom'},
+        {c:'+33',f:'🇫🇷',n:'France'},
+        {c:'+49',f:'🇩🇪',n:'Deutschland'},
+        {c:'+7',f:'🇷🇺',n:'Россия'},
+        {c:'+39',f:'🇮🇹',n:'Italia'},
+        {c:'+31',f:'🇳🇱',n:'Nederland'},
+        {c:'+32',f:'🇧🇪',n:'Belgique'},
+        {c:'+41',f:'🇨🇭',n:'Schweiz'},
+        {c:'+43',f:'🇦🇹',n:'Österreich'},
+        {c:'+46',f:'🇸🇪',n:'Sverige'},
+        {c:'+47',f:'🇳🇴',n:'Norge'},
+        {c:'+45',f:'🇩🇰',n:'Danmark'},
+        {c:'+358',f:'🇫🇮',n:'Suomi'},
+        {c:'+351',f:'🇵🇹',n:'Portugal'},
+        {c:'+52',f:'🇲🇽',n:'México'},
+        {c:'+54',f:'🇦🇷',n:'Argentina'},
+        {c:'+55',f:'🇧🇷',n:'Brasil'},
+        {c:'+56',f:'🇨🇱',n:'Chile'},
+        {c:'+57',f:'🇨🇴',n:'Colombia'},
+        {c:'+51',f:'🇵🇪',n:'Perú'},
+        {c:'+58',f:'🇻🇪',n:'Venezuela'},
+        {c:'+593',f:'🇪🇨',n:'Ecuador'},
+        {c:'+598',f:'🇺🇾',n:'Uruguay'},
+        {c:'+595',f:'🇵🇾',n:'Paraguay'},
+        {c:'+591',f:'🇧🇴',n:'Bolivia'},
+        {c:'+506',f:'🇨🇷',n:'Costa Rica'},
+        {c:'+507',f:'🇵🇦',n:'Panamá'},
+        {c:'+502',f:'🇬🇹',n:'Guatemala'},
+        {c:'+1',f:'🇨🇦',n:'Canada'},
+        {c:'+61',f:'🇦🇺',n:'Australia'},
+        {c:'+64',f:'🇳🇿',n:'New Zealand'},
+        {c:'+81',f:'🇯🇵',n:'Japan'},
+        {c:'+82',f:'🇰🇷',n:'Korea'},
+        {c:'+86',f:'🇨🇳',n:'China'},
+        {c:'+91',f:'🇮🇳',n:'India'},
+        {c:'+971',f:'🇦🇪',n:'UAE'},
+        {c:'+966',f:'🇸🇦',n:'Saudi Arabia'},
+        {c:'+972',f:'🇮🇱',n:'Israel'},
+        {c:'+90',f:'🇹🇷',n:'Türkiye'},
+        {c:'+30',f:'🇬🇷',n:'Ελλάδα'},
+        {c:'+48',f:'🇵🇱',n:'Polska'},
+        {c:'+420',f:'🇨🇿',n:'Česko'},
+        {c:'+36',f:'🇭🇺',n:'Magyarország'},
+        {c:'+40',f:'🇷🇴',n:'România'},
+        {c:'+380',f:'🇺🇦',n:'Україна'},
+        {c:'+27',f:'🇿🇦',n:'South Africa'},
+        {c:'+20',f:'🇪🇬',n:'Egypt'},
+        {c:'+212',f:'🇲🇦',n:'Maroc'},
+    ];
 
-    /* ── Profile block selection ── */
-    document.querySelectorAll('.rv-profile').forEach(function (block) {
-        block.addEventListener('click', function (e) {
-            if (e.target.classList.contains('rv-profile__btn') || e.target.closest('.rv-profile__btn')) return;
-            document.querySelectorAll('.rv-profile').forEach(function (b) { b.classList.remove('is-selected'); });
-            block.classList.add('is-selected');
+    var selectedPrefix = '+34';
+    var dropdownOpen   = false;
+
+    var prefixBtn    = document.getElementById('prefix-btn');
+    var prefixFlag   = document.getElementById('prefix-flag');
+    var prefixCode   = document.getElementById('prefix-code');
+    var dropdown     = document.getElementById('prefix-dropdown');
+    var prefixList   = document.getElementById('prefix-list');
+    var prefixSearch = document.getElementById('prefix-search');
+    var phoneNumber  = document.getElementById('phone-number');
+    var telefonoInput = document.getElementById('telefono');
+
+    function renderList(filter) {
+        filter = (filter || '').toLowerCase();
+        var html = '';
+        COUNTRIES.forEach(function(co, i) {
+            if (filter && co.n.toLowerCase().indexOf(filter) === -1 && co.c.indexOf(filter) === -1) return;
+            html += '<div class="prefix-item' + (co.c === selectedPrefix ? ' active' : '') + '" data-index="' + i + '">' +
+                '<span class="prefix-flag">' + co.f + '</span>' +
+                '<span class="prefix-name">' + co.n + '</span>' +
+                '<span class="prefix-code">' + co.c + '</span>' +
+                '</div>';
         });
-    });
-
-    /* ── Email validation ── */
-    var emailEl  = document.getElementById('rv-email');
-    var submitEl = document.getElementById('rv-submit');
-    var reEmail  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    function validateEmail() {
-        var v = emailEl.value.trim();
-        var ok = reEmail.test(v);
-        emailEl.classList.toggle('rv-valid',   ok && v.length > 0);
-        emailEl.classList.toggle('rv-invalid', !ok && v.length > 0);
-        submitEl.disabled = !(ok && v.length > 0);
+        prefixList.innerHTML = html || '<div style="padding:12px 14px;font-size:.82rem;color:#94a3b8">No results</div>';
+        prefixList.querySelectorAll('.prefix-item').forEach(function(el) {
+            el.addEventListener('click', function() {
+                var idx = parseInt(el.dataset.index);
+                selectCountry(COUNTRIES[idx]);
+            });
+        });
     }
-    emailEl.addEventListener('input', validateEmail);
 
-    /* ── Textarea auto-resize + char counter ── */
-    var msgEl    = document.getElementById('rv-mensaje');
-    var countEl  = document.getElementById('rv-char-count');
-    msgEl.addEventListener('input', function () {
-        this.style.height = 'auto';
-        this.style.height = this.scrollHeight + 'px';
-        countEl.textContent = this.value.length + ' / 500';
-        localStorage.setItem('rv_mensaje', this.value);
-    });
-
-    /* ── localStorage save ── */
-    var fields = ['rv-nombre','rv-apellido','rv-email','rv-zona','rv-mensaje'];
-    fields.forEach(function (id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        var saved = localStorage.getItem('rv_' + id);
-        if (saved) { el.value = saved; }
-        el.addEventListener('input', function () {
-            localStorage.setItem('rv_' + id, this.value);
-        });
-        el.addEventListener('change', function () {
-            localStorage.setItem('rv_' + id, this.value);
-        });
-    });
-
-    /* Restore derived states after localStorage load */
-    validateEmail();
-    if (msgEl.value) {
-        msgEl.style.height = 'auto';
-        msgEl.style.height = msgEl.scrollHeight + 'px';
-        countEl.textContent = msgEl.value.length + ' / 500';
+    function selectCountry(co) {
+        selectedPrefix = co.c;
+        prefixFlag.textContent = co.f;
+        prefixCode.textContent = co.c;
+        closeDropdown();
+        updateHiddenPhone();
+        phoneNumber.focus();
     }
 
-    /* ── Form submit ── */
-    var formEl   = document.getElementById('rv-contact-form');
-    var confirmEl = document.getElementById('rv-confirm');
+    function openDropdown() {
+        dropdown.style.display = '';
+        dropdownOpen = true;
+        prefixBtn.setAttribute('aria-expanded', 'true');
+        prefixSearch.value = '';
+        renderList('');
+        setTimeout(function(){ prefixSearch.focus(); }, 30);
+    }
 
-    formEl.addEventListener('submit', function (e) {
-        e.preventDefault();
-        submitEl.disabled = true;
-        submitEl.textContent = '<?php echo esc_js( romvill_t( 'contact.f.sending' ) ); ?>';
+    function closeDropdown() {
+        dropdown.style.display = 'none';
+        dropdownOpen = false;
+        prefixBtn.setAttribute('aria-expanded', 'false');
+    }
 
-        var data = new FormData(formEl);
-        data.set('telefono', iti.getNumber());
-        data.append('action', 'romvill_contact');
+    function updateHiddenPhone() {
+        var num = phoneNumber.value.trim();
+        telefonoInput.value = num ? selectedPrefix + ' ' + num : '';
+    }
 
-        var t0 = Date.now();
-
-        fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', {
-            method: 'POST',
-            body: data
-        })
-        .then(function (r) { return r.json(); })
-        .then(function () {
-            var delay = Math.max(0, 1200 - (Date.now() - t0));
-            setTimeout(function () {
-                formEl.style.display = 'none';
-                confirmEl.style.display = 'block';
-                fields.forEach(function (id) { localStorage.removeItem('rv_' + id); });
-            }, delay);
-        })
-        .catch(function () {
-            submitEl.disabled = false;
-            submitEl.textContent = '<?php echo esc_js( romvill_t( 'contact.f.submit' ) ); ?>';
-        });
+    prefixBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdownOpen ? closeDropdown() : openDropdown();
     });
+
+    prefixSearch.addEventListener('input', function() {
+        renderList(prefixSearch.value);
+    });
+
+    phoneNumber.addEventListener('input', updateHiddenPhone);
+
+    document.addEventListener('click', function(e) {
+        if (dropdownOpen && !dropdown.contains(e.target) && e.target !== prefixBtn) {
+            closeDropdown();
+        }
+    });
+
+    /* ── Contact form AJAX ───────────────────────────── */
+    var form      = document.getElementById('romvill-contact-form');
+    var response  = document.getElementById('romvill-form-response');
+    var submitBtn = document.getElementById('rf2-submit-btn');
+    var msgSending = <?php echo json_encode( romvill_t( 'contact.f.sending' ) ); ?>;
+    var msgSubmit  = <?php echo json_encode( romvill_t( 'contact.f.submit' ) ); ?>;
+    var msgConnErr = <?php echo json_encode( romvill_t( 'contact.f.connErr' ) ); ?>;
+
+    function showResponse(text, isSuccess) {
+        response.textContent = text;
+        response.style.display = '';
+        response.classList.add('rf-response-show');
+        if (isSuccess) {
+            response.style.background = '#f0fdf4';
+            response.style.color = '#166534';
+            response.style.border = '1px solid #bbf7d0';
+        } else {
+            response.style.background = '#fef2f2';
+            response.style.color = '#991b1b';
+            response.style.border = '1px solid #fecaca';
+        }
+    }
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateHiddenPhone();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> ' + msgSending;
+            response.style.display = 'none';
+
+            var data = new FormData(form);
+            data.append('action', 'romvill_contact');
+
+            fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', {
+                method: 'POST',
+                body: data
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(res) {
+                if (res.success) {
+                    showResponse(res.data.message, true);
+                    form.reset();
+                    prefixFlag.textContent = '🇪🇸';
+                    prefixCode.textContent = '+34';
+                    selectedPrefix = '+34';
+                } else {
+                    showResponse(res.data.message, false);
+                }
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> ' + msgSubmit;
+            })
+            .catch(function() {
+                showResponse(msgConnErr, false);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> ' + msgSubmit;
+            });
+        });
+    }
+
+    /* inline spinner keyframe */
+    var spinStyle = document.createElement('style');
+    spinStyle.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
+    document.head.appendChild(spinStyle);
 
 })();
 </script>
