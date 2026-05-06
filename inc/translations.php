@@ -9,7 +9,7 @@ function romvill_translations() {
         'nav.analisis'     => [ 'es'=>'Análisis',        'en'=>'Analysis',       'fr'=>'Analyse',        'de'=>'Analyse',        'ru'=>'Анализ'             ],
         'nav.sectores'     => [ 'es'=>'Sectores',        'en'=>'Sectors',        'fr'=>'Secteurs',       'de'=>'Sektoren',       'ru'=>'Секторы'            ],
         'nav.contacto'     => [ 'es'=>'Contacto',        'en'=>'Contact',        'fr'=>'Contact',        'de'=>'Kontakt',        'ru'=>'Контакт'            ],
-        'nav.cta'          => [ 'es'=>'Solicitar Estudio','en'=>'Request Study', 'fr'=>'Demander une Étude','de'=>'Studie Anfordern','ru'=>'Запросить Исследование' ],
+        'nav.cta'          => [ 'es'=>'Solicitar Presupuesto','en'=>'Request a Quote', 'fr'=>'Demander un Devis','de'=>'Angebot Anfordern','ru'=>'Запросить Предложение' ],
         'nav.open_menu'    => [ 'es'=>'Abrir menú',      'en'=>'Open menu',      'fr'=>'Ouvrir le menu', 'de'=>'Menü öffnen',    'ru'=>'Открыть меню'      ],
         'nav.close_menu'   => [ 'es'=>'Cerrar menú',     'en'=>'Close menu',     'fr'=>'Fermer le menu', 'de'=>'Menü schließen', 'ru'=>'Закрыть меню'      ],
         'nav.aria'         => [ 'es'=>'Navegación principal','en'=>'Main navigation','fr'=>'Navigation principale','de'=>'Hauptnavigation','ru'=>'Главное меню' ],
