@@ -9,6 +9,14 @@ romvill_seo( array(
     'desc'  => romvill_t( 'meta.cont.desc' ),
     'title' => 'ROMVILL — ' . romvill_t( 'contact.title' ),
 ) );
+
+$bloque_urls = array();
+for ( $i = 1; $i <= 4; $i++ ) {
+    $bloque_page  = get_page_by_path( 'presupuesto-bloque-' . $i );
+    $bloque_urls[ $i ] = $bloque_page
+        ? add_query_arg( 'lang', $_lang, get_permalink( $bloque_page ) )
+        : add_query_arg( 'lang', $_lang, home_url( '/presupuesto-bloque-' . $i . '/' ) );
+}
 ?>
 
 <style>
@@ -145,6 +153,80 @@ romvill_seo( array(
 .rf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(19,91,236,.45); }
 .rf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+/* ── Profile cards ────────────────────────────────── */
+.prof-card {
+    position: relative;
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px 24px 24px;
+    cursor: pointer;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.dark .prof-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+.prof-card:hover {
+    border-color: #135bec;
+    box-shadow: 0 8px 32px rgba(19,91,236,.12);
+    transform: translateY(-3px);
+}
+.dark .prof-card:hover { box-shadow: 0 8px 32px rgba(19,91,236,.2); }
+.prof-card.is-selected {
+    border-color: #135bec;
+    box-shadow: 0 8px 32px rgba(19,91,236,.16);
+    background: linear-gradient(135deg, #f0f5ff 0%, #fff 100%);
+}
+.dark .prof-card.is-selected {
+    background: linear-gradient(135deg, rgba(19,91,236,.12) 0%, #1e293b 100%);
+}
+.prof-card__check {
+    position: absolute; top: 14px; right: 14px;
+    width: 22px; height: 22px;
+    background: #135bec; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(19,91,236,.35);
+}
+.prof-card.is-selected .prof-card__check { display: flex; }
+.prof-card__num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    background: rgba(19,91,236,.08); border-radius: 10px;
+    font-size: 13px; font-weight: 800; color: #135bec;
+    margin-bottom: 14px; font-family: 'Playfair Display', serif;
+}
+.dark .prof-card__num { background: rgba(19,91,236,.15); }
+.prof-card__title {
+    font-size: 1rem; font-weight: 700; color: #0f172a;
+    margin: 0 0 6px; line-height: 1.3;
+}
+.dark .prof-card__title { color: #f1f5f9; }
+.prof-card__sub {
+    font-size: 0.78rem; font-weight: 600; color: #135bec;
+    font-style: italic; line-height: 1.5; margin: 0 0 14px;
+}
+.prof-card__hr { border: none; border-top: 1px solid #f1f5f9; margin: 0 0 14px; }
+.dark .prof-card__hr { border-top-color: #334155; }
+.prof-card__desc {
+    font-size: 0.8rem; color: #64748b; line-height: 1.7;
+    margin: 0 0 20px; flex: 1;
+}
+.dark .prof-card__desc { color: #94a3b8; }
+.prof-card__btn {
+    display: block; width: 100%;
+    background: rgba(19,91,236,.06); border: 1.5px solid rgba(19,91,236,.2);
+    color: #135bec; border-radius: 8px; padding: 10px;
+    font-size: 0.8rem; font-weight: 700; text-align: center;
+    text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s;
+    letter-spacing: .3px; box-sizing: border-box;
+}
+.prof-card__btn:hover { background: #135bec; color: #fff; border-color: #135bec; }
+.dark .prof-card__btn { background: rgba(19,91,236,.12); }
+.dark .prof-card__btn:hover { background: #135bec; }
+
 /* ── Why reasons enhanced ──────────────────────────── */
 .why-reason {
     display: flex; gap: 14px; align-items: flex-start;
@@ -176,6 +258,57 @@ romvill_seo( array(
             <p class="text-slate-500 dark:text-slate-400 text-lg max-w-lg mx-auto">
                 <?php echo esc_html( romvill_t( 'contact.subtitle' ) ); ?>
             </p>
+        </div>
+
+        <!-- ── Profile selector ──────────────────────── -->
+        <div class="rf-anim mb-10" style="animation-delay:.2s">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
+                <div>
+                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-primary bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
+                        <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>
+                    </h2>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <?php
+                $bloques = array(
+                    array( 'num'=>'01', 'title'=>romvill_t('presup.b1.title'), 'sub'=>romvill_t('presup.b1.sub'), 'desc'=>romvill_t('presup.b1.desc'), 'url'=>$bloque_urls[1] ),
+                    array( 'num'=>'02', 'title'=>romvill_t('presup.b2.title'), 'sub'=>romvill_t('presup.b2.sub'), 'desc'=>romvill_t('presup.b2.desc'), 'url'=>$bloque_urls[2] ),
+                    array( 'num'=>'03', 'title'=>romvill_t('presup.b3.title'), 'sub'=>romvill_t('presup.b3.sub'), 'desc'=>romvill_t('presup.b3.desc'), 'url'=>$bloque_urls[3] ),
+                    array( 'num'=>'04', 'title'=>romvill_t('presup.b4.title'), 'sub'=>romvill_t('presup.b4.sub'), 'desc'=>romvill_t('presup.b4.desc'), 'url'=>$bloque_urls[4] ),
+                );
+                foreach ( $bloques as $b ) :
+                ?>
+                <div class="prof-card" onclick="rvPickProfile(this,event)">
+                    <div class="prof-card__check" aria-hidden="true">
+                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span class="prof-card__num"><?php echo esc_html( $b['num'] ); ?></span>
+                    <h3 class="prof-card__title"><?php echo esc_html( $b['title'] ); ?></h3>
+                    <p class="prof-card__sub"><?php echo esc_html( $b['sub'] ); ?></p>
+                    <hr class="prof-card__hr">
+                    <p class="prof-card__desc"><?php echo esc_html( $b['desc'] ); ?></p>
+                    <a href="<?php echo esc_url( $b['url'] ); ?>" class="prof-card__btn">
+                        <?php echo esc_html( romvill_t( 'presup.b.btn' ) ); ?> →
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <script>
+        function rvPickProfile(card, e) {
+            if (e.target.closest('.prof-card__btn')) return;
+            document.querySelectorAll('.prof-card').forEach(function(c){ c.classList.remove('is-selected'); });
+            card.classList.add('is-selected');
+        }
+        </script>
+
+        <!-- ── Divider ──────────────────────────────── -->
+        <div class="rf-anim flex items-center gap-4 mb-10" style="animation-delay:.28s">
+            <div class="flex-1 border-t border-slate-100 dark:border-slate-800"></div>
+            <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-600 px-2"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
+            <div class="flex-1 border-t border-slate-100 dark:border-slate-800"></div>
         </div>
 
         <!-- Main grid -->
