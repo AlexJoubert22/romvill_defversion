@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="border-t border-slate-100 dark:border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <p class="text-xs text-slate-400">&copy; <?php echo esc_html( date( 'Y' ) ); ?> Romvill. <?php echo esc_html( romvill_t( 'footer.rights' ) ); ?></p>
+                <p class="text-xs text-slate-400">&copy; <?php echo esc_html( date( 'Y' ) ); ?> ROMVILL. <?php echo esc_html( romvill_t( 'footer.rights' ) ); ?></p>
                 <div class="flex gap-6">
                     <?php
                     $priv_page  = get_page_by_path( 'privacidad' );

@@ -61,6 +61,7 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
                     foreach ( $nav_items as $slug => $label ) :
                         $page = get_page_by_path( $slug );
                         $url  = $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
+                        if ( $slug === 'contacto' ) $url .= '#contacto';
                         $is_current = is_page( $slug );
                     ?>
                         <a class="group relative text-sm font-medium <?php echo $is_current ? 'text-slate-900 dark:text-white' : 'text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white'; ?> transition-colors"
@@ -145,6 +146,7 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
             <?php foreach ( $nav_items as $slug => $label ) :
                 $page = get_page_by_path( $slug );
                 $url  = $page ? add_query_arg( 'lang', $_lang, get_permalink( $page ) ) : home_url( '/' . $slug . '/' );
+                if ( $slug === 'contacto' ) $url .= '#contacto';
             ?>
                 <a class="text-2xl font-serif font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
                    href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>

@@ -234,15 +234,11 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
             <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight"><?php echo wp_kses( romvill_t( 'cta.title' ), [ 'br' => [] ] ); ?></h2>
             <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto"><?php echo esc_html( romvill_t( 'cta.desc' ) ); ?></p>
-            <form class="max-w-md mx-auto flex flex-col gap-4">
-                <div class="relative">
-                    <input class="w-full bg-white/5 border border-white/20 text-white placeholder-slate-400 px-5 py-4 rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
-                        placeholder="<?php echo esc_attr( romvill_t( 'cta.placeholder' ) ); ?>" type="email" />
-                </div>
-                <button class="w-full bg-secondary hover:bg-[#a3884c] text-white font-bold py-4 px-6 rounded transition-colors duration-300 uppercase tracking-wider text-sm" type="button">
-                    <?php echo esc_html( romvill_t( 'cta.btn' ) ); ?>
-                </button>
-            </form>
+            <a href="<?php echo esc_url( $contacto_url ); ?>"
+               class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-white font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
+                <?php echo esc_html( romvill_t( 'cta.btn' ) ); ?>
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
         </div>
     </section>
 
