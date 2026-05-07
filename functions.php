@@ -355,7 +355,7 @@ Análisis de Inteligencia Zonal
         "Reply-To: {$name} <{$email}>",
     );
 
-    $sent = wp_mail( get_option( 'admin_email' ), $subject, $email_body, $headers );
+    $sent = wp_mail( 'info@romvill.com', $subject, $email_body, $headers );
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
     } else {
@@ -410,7 +410,7 @@ function romvill_handle_b1_submit() {
     }
 
     $intl_flag = $intl ? '⭐ CLIENTE INTERNACIONAL' : '';
-    $to        = get_option( 'admin_email' );
+    $to        = 'info@romvill.com';
     $subject   = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTERNACIONAL' : '' ) . " — Nueva Solicitud Bloque 1";
     $body      = "
 ╔══════════════════════════════════════════════════════╗
@@ -495,7 +495,7 @@ function romvill_handle_contact() {
         wp_send_json_error( array( 'message' => romvill_t( 'contact.f.required' ) ) );
     }
 
-    $to      = get_option( 'admin_email' );
+    $to      = 'info@romvill.com';
     $subject = "Nueva solicitud de informe — {$nombre} {$apellido}";
     $body    = "Nueva solicitud de informe recibida desde romvill.com\n\n"
              . "Nombre:    {$nombre} {$apellido}\n"
