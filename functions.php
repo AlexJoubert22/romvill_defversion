@@ -9,6 +9,9 @@
 // ─── Multilingual Engine ──────────────────────────────────────
 require_once get_template_directory() . '/inc/translations.php';
 
+// ─── Site auto-configuration (admin_email, auto-updates, etc.) ─
+require_once get_template_directory() . '/inc/site-config.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
