@@ -227,6 +227,24 @@ function romvill_activate() {
             'template' => 'page-presupuesto-bloque-1.php',
             'order'    => 10,
         ),
+        array(
+            'title'    => 'Solicitar Presupuesto — Bloque 2',
+            'slug'     => 'presupuesto-bloque-2',
+            'template' => 'page-presupuesto-bloque-2.php',
+            'order'    => 11,
+        ),
+        array(
+            'title'    => 'Solicitar Presupuesto — Bloque 3',
+            'slug'     => 'presupuesto-bloque-3',
+            'template' => 'page-presupuesto-bloque-3.php',
+            'order'    => 12,
+        ),
+        array(
+            'title'    => 'Solicitar Presupuesto — Bloque 4',
+            'slug'     => 'presupuesto-bloque-4',
+            'template' => 'page-presupuesto-bloque-4.php',
+            'order'    => 13,
+        ),
     );
 
     foreach ( $pages as $p ) {
@@ -273,7 +291,7 @@ add_action( 'after_switch_theme', 'romvill_activate' );
 // ─── Auto-ensure pages on every load (cheap version-gated check) ───
 // Bump ROMVILL_PAGES_VERSION whenever romvill_activate() is modified
 // to trigger automatic page creation/update on next request.
-define( 'ROMVILL_PAGES_VERSION', '2026.05.07.1' );
+define( 'ROMVILL_PAGES_VERSION', '2026.05.07.2' );
 add_action( 'init', 'romvill_ensure_pages', 20 );
 function romvill_ensure_pages() {
     if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
@@ -281,6 +299,68 @@ function romvill_ensure_pages() {
     }
     romvill_activate();
     update_option( 'romvill_pages_version', ROMVILL_PAGES_VERSION );
+}
+
+// ─── Generic Questionnaire AJAX Handler (Bloques 2/3/4) ──────
+add_action( 'wp_ajax_romvill_q_submit',        'romvill_handle_q_submit' );
+add_action( 'wp_ajax_nopriv_romvill_q_submit', 'romvill_handle_q_submit' );
+
+function romvill_handle_q_submit() {
+    check_ajax_referer( 'romvill_q_nonce', 'nonce' );
+
+    $block        = absint( $_POST['block'] ?? 0 );
+    $profile_name = sanitize_text_field( $_POST['profile_name'] ?? '' );
+    $profile_ref  = sanitize_text_field( $_POST['profile_ref']  ?? '' );
+    $ref          = sanitize_text_field( $_POST['ref']          ?? '—' );
+    $lang         = sanitize_text_field( $_POST['lang']         ?? 'es' );
+    $email        = sanitize_email(      $_POST['email']        ?? '' );
+    $name         = sanitize_text_field( $_POST['name']         ?? '—' );
+    $intl         = ! empty( $_POST['intl'] ) && $_POST['intl'] === '1';
+    $body_in      = isset( $_POST['body'] ) ? sanitize_textarea_field( wp_unslash( $_POST['body'] ) ) : '';
+
+    if ( $block < 1 || $block > 4 ) {
+        wp_send_json_error( array( 'message' => 'Bloque inválido.' ) );
+    }
+    if ( ! $email || ! is_email( $email ) ) {
+        wp_send_json_error( array( 'message' => 'Email inválido.' ) );
+    }
+
+    $fecha     = date_i18n( 'l, j \d\e F \d\e Y' );
+    $intl_flag = $intl ? "\n⭐ CLIENTE INTERNACIONAL — GESTIÓN PRIORITARIA" : '';
+
+    $email_body = "
+╔══════════════════════════════════════════════════════╗
+║      ROMVILL — NUEVA SOLICITUD DE PRESUPUESTO        ║
+╚══════════════════════════════════════════════════════╝
+
+PERFIL: {$profile_ref} — {$profile_name}
+
+Referencia:    {$ref}
+Fecha:         {$fecha}
+Idioma:        " . strtoupper( $lang ) . "{$intl_flag}
+
+━━━ RESPUESTAS DEL CUESTIONARIO ━━━━━━━━━━━━━━━━━━━━━━
+
+{$body_in}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROMVILL · info@romvill.com · www.romvill.com
+Análisis de Inteligencia Zonal
+";
+
+    $subject = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTL' : '' ) . " — Solicitud {$profile_ref} — {$profile_name}";
+
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        "Reply-To: {$name} <{$email}>",
+    );
+
+    $sent = wp_mail( get_option( 'admin_email' ), $subject, $email_body, $headers );
+    if ( $sent ) {
+        wp_send_json_success( array( 'ref' => $ref ) );
+    } else {
+        wp_send_json_error( array( 'message' => 'Error al enviar. Inténtelo de nuevo.' ) );
+    }
 }
 
 // ─── Bloque 1 Questionnaire AJAX Handler ─────────────────────
