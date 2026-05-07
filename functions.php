@@ -270,6 +270,19 @@ function romvill_activate() {
 }
 add_action( 'after_switch_theme', 'romvill_activate' );
 
+// ─── Auto-ensure pages on every load (cheap version-gated check) ───
+// Bump ROMVILL_PAGES_VERSION whenever romvill_activate() is modified
+// to trigger automatic page creation/update on next request.
+define( 'ROMVILL_PAGES_VERSION', '2026.05.07.1' );
+add_action( 'init', 'romvill_ensure_pages', 20 );
+function romvill_ensure_pages() {
+    if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
+        return;
+    }
+    romvill_activate();
+    update_option( 'romvill_pages_version', ROMVILL_PAGES_VERSION );
+}
+
 // ─── Bloque 1 Questionnaire AJAX Handler ─────────────────────
 add_action( 'wp_ajax_romvill_b1_submit',        'romvill_handle_b1_submit' );
 add_action( 'wp_ajax_nopriv_romvill_b1_submit', 'romvill_handle_b1_submit' );
