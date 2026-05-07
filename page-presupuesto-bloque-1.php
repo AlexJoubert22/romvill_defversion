@@ -689,18 +689,57 @@ function b1SaveCurrentQ(){
 }
 
 function b1Validate(){
-  var q=T.questions[cQ];if(q.optional||!q.req) return true;
-  if(q.type==='text'){var km={0:'nt',1:'ciudad',2:'email'};var k=km[cQ]||'q'+cQ;return!!A[k];}
-  if(q.type==='cmp') return q.fields.filter(function(f){return f.req;}).every(function(f){return A[f.id]&&A[f.id]!==f.opts&&A[f.id]!==f.opts[0];});
-  if(q.type==='single') return!!A['q'+cQ];
-  if(q.type==='zona') return!!A['zona'];
-  if(q.type==='swf') return!!A['q'+cQ+'_c'];
+  var q=T.questions[cQ];
+  if(q.optional||!q.req) return true;
+  if(q.type==='text'){
+    var km={0:'nt',1:'ciudad',2:'email'};
+    var k=km[cQ]||'q'+cQ;
+    var v=(A[k]||'').toString().trim();
+    if(!v) return false;
+    // Email format check for Q3
+    if(cQ===2 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return false;
+    return true;
+  }
+  if(q.type==='cmp'){
+    var reqFields=q.fields.filter(function(f){return f.req;});
+    for(var i=0;i<reqFields.length;i++){
+      var f=reqFields[i];
+      var fv=(A[f.id]||'').toString().trim();
+      if(!fv) return false;
+      // For select fields, reject the placeholder (first option)
+      if(Array.isArray(f.opts) && f.opts.length && fv===f.opts[0]) return false;
+    }
+    return true;
+  }
+  if(q.type==='single')   return !!A['q'+cQ];
+  if(q.type==='multi')    return Array.isArray(A['q'+cQ]) && A['q'+cQ].length>0;
+  if(q.type==='zona')     return !!A['zona'];
+  if(q.type==='swf')      return !!A['q'+cQ+'_c'];
+  if(q.type==='tel')      return true;
+  if(q.type==='textarea') return !!(A['q'+cQ]||'').toString().trim();
   return true;
 }
 
 function b1ShowErr(m){var el=document.getElementById('rv-b1-err');if(el){el.innerHTML='<span class="material-symbols-outlined" style="font-size:14px">error_outline</span>'+m;setTimeout(function(){el.innerHTML='';},3500);}}
-function b1GoN(){b1SaveCurrentQ();if(!b1Validate()){b1ShowErr(T.errMsg);return;}cQ++;b1RenderQ();b1ResetIdle();}
-function b1GoB(){b1SaveCurrentQ();if(cQ>0){cQ--;b1RenderQ();}}
+function b1GoN(){
+  try{
+    b1SaveCurrentQ();
+    if(!b1Validate()){b1ShowErr(T.errMsg);return;}
+    cQ++; b1RenderQ(); b1ResetIdle();
+  }catch(e){
+    console.error('b1GoN error:',e);
+    b1ShowErr(T.errMsg||'Error');
+  }
+}
+function b1GoB(){
+  try{
+    b1SaveCurrentQ();
+    if(cQ>0){cQ--; b1RenderQ();}
+  }catch(e){
+    console.error('b1GoB error:',e);
+    if(cQ>0){cQ--; b1RenderQ();}
+  }
+}
 
 // ── Profile ──
 function b1GenRef(){
