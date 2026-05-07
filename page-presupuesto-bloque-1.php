@@ -392,9 +392,6 @@ romvill_seo( array(
 </div>
 
 <script>
-(function(){
-'use strict';
-
 // ── WP config ──
 var B1_AJAX = '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>';
 var B1_NONCE = '<?php echo esc_js( wp_create_nonce( 'romvill_b1_nonce' ) ); ?>';
@@ -880,8 +877,6 @@ if(lang!=='es'){
   });
   document.getElementById('rv-b1-timing').textContent=T.time;
 }
-
-})();
 </script>
 
 <?php get_footer(); ?>
