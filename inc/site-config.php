@@ -134,15 +134,7 @@ remove_action( 'admin_print_styles',  'print_emoji_styles' );
 // ─── 12. Disable WordPress automatic feed generation ─────────
 remove_action( 'wp_head', 'feed_links', 2 );
 
-// ─── 13. Force site URL & home URL to canonical https ────────
-// Only run if we detect HTTPS is actually working — avoids loops
-add_action( 'init', function () {
-    if ( ! is_ssl() ) return; // Only enforce when SSL is active
-    $canonical = 'https://www.romvill.com';
-    if ( get_option( 'siteurl' ) !== $canonical ) {
-        update_option( 'siteurl', $canonical );
-    }
-    if ( get_option( 'home' ) !== $canonical ) {
-        update_option( 'home', $canonical );
-    }
-}, 5 );
+// ─── 13. (REMOVED) Force site URL — caused redirect loops on http
+// Do NOT auto-update siteurl/home from theme code. WordPress's own
+// admin handles this safely, and forcing https here can lock the
+// site out if SSL provisioning fails or DNS is misconfigured.
