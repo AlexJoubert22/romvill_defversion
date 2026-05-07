@@ -221,6 +221,12 @@ function romvill_activate() {
             'template' => 'page-terminos.php',
             'order'    => 6,
         ),
+        array(
+            'title'    => 'Solicitar Presupuesto — Bloque 1',
+            'slug'     => 'presupuesto-bloque-1',
+            'template' => 'page-presupuesto-bloque-1.php',
+            'order'    => 10,
+        ),
     );
 
     foreach ( $pages as $p ) {
@@ -263,6 +269,119 @@ function romvill_activate() {
     update_option( 'page_on_front', $home_id );
 }
 add_action( 'after_switch_theme', 'romvill_activate' );
+
+// ─── Bloque 1 Questionnaire AJAX Handler ─────────────────────
+add_action( 'wp_ajax_romvill_b1_submit',        'romvill_handle_b1_submit' );
+add_action( 'wp_ajax_nopriv_romvill_b1_submit', 'romvill_handle_b1_submit' );
+
+function romvill_handle_b1_submit() {
+    check_ajax_referer( 'romvill_b1_nonce', 'nonce' );
+
+    $raw  = isset( $_POST['data'] ) ? stripslashes( $_POST['data'] ) : '';
+    $d    = json_decode( $raw, true );
+
+    if ( ! is_array( $d ) ) {
+        wp_send_json_error( array( 'message' => 'Datos inválidos.' ) );
+    }
+
+    $ref   = sanitize_text_field( $d['ref']       ?? '—' );
+    $lang  = sanitize_text_field( $d['lang']       ?? 'es' );
+    $nom   = sanitize_text_field( $d['nt']         ?? '—' );
+    $nac   = sanitize_text_field( $d['nac']        ?? '—' );
+    $ciu   = sanitize_text_field( $d['ciudad']     ?? '—' );
+    $ema   = sanitize_email(      $d['email']      ?? '' );
+    $tel   = trim( sanitize_text_field( ( $d['tel_dial'] ?? '' ) . ' ' . ( $d['tel_num'] ?? '' ) ) );
+    $telp  = sanitize_text_field( $d['tel_pais']   ?? '' );
+    $agent = ! empty( $d['tel_agent'] ) ? 'SÍ — solicita asistencia de analista' : 'No';
+    $idio  = sanitize_text_field( $d['q4']         ?? '—' );
+    $zona  = ! empty( $d['zona_intl'] )
+        ? sanitize_text_field( ( $d['zona_pais'] ?? '—' ) . ', ' . ( $d['zona_ciudad'] ?? '—' ) )
+        : sanitize_text_field( $d['zona'] ?? '—' );
+    $intl  = ! empty( $d['zona_intl'] );
+    $dir   = sanitize_text_field( ! empty( $d['q6_d'] ) ? $d['q6_d'] : ( $d['q6_c'] ?? '—' ) );
+    $obj   = sanitize_textarea_field( $d['q7']  ?? '—' );
+    $prop  = sanitize_text_field(     $d['q8']  ?? '—' );
+    $ni_r  = $d['q9'] ?? [];
+    $ni    = is_array( $ni_r ) ? implode( ', ', array_map( 'sanitize_text_field', $ni_r ) ) : sanitize_text_field( $ni_r );
+    $ma    = sanitize_text_field( $d['q10']    ?? '—' );
+    $ac    = sanitize_text_field( $d['q11_c']  ?? 'No' );
+    $acd   = sanitize_text_field( $d['q11_d']  ?? '' );
+    $urg   = sanitize_text_field( $d['q12']    ?? '—' );
+    $pref  = sanitize_text_field( $d['q13']    ?? '—' );
+    $como  = sanitize_text_field( $d['q14']    ?? '—' );
+    $com   = sanitize_textarea_field( $d['q15'] ?? '—' );
+    $fecha = date_i18n( 'l, j \d\e F \d\e Y' );
+
+    if ( ! $ema || ! is_email( $ema ) ) {
+        wp_send_json_error( array( 'message' => 'Email inválido o no indicado.' ) );
+    }
+
+    $intl_flag = $intl ? '⭐ CLIENTE INTERNACIONAL' : '';
+    $to        = get_option( 'admin_email' );
+    $subject   = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTERNACIONAL' : '' ) . " — Nueva Solicitud Bloque 1";
+    $body      = "
+╔══════════════════════════════════════════════════════╗
+║      ROMVILL — NUEVA SOLICITUD DE PRESUPUESTO        ║
+╚══════════════════════════════════════════════════════╝
+
+Referencia:    {$ref}
+Fecha:         {$fecha}
+Idioma:        " . strtoupper( $lang ) . "
+{$intl_flag}
+
+━━━ DATOS DEL CLIENTE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nombre:              {$nom}
+Nacionalidad:        {$nac}
+Ciudad de residencia:{$ciu}
+Email:               {$ema}
+Teléfono:            {$tel} ({$telp})
+Solicita agente:     {$agent}
+Idioma del informe:  {$idio}
+
+━━━ ZONA Y PROPIEDAD ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Zona de análisis:    {$zona}
+Dirección / Ref.:    {$dir}
+Tipo de propiedad:   {$prop}
+
+━━━ OBJETIVO DE LA CONSULTA ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+{$obj}
+
+━━━ DATOS PARA PERSONALIZAR EL INFORME ━━━━━━━━━━━━━━━
+
+Menores de edad:     {$ni}
+Animales:            {$ma}
+Accesibilidad:       {$ac}" . ( $acd ? " — {$acd}" : '' ) . "
+
+━━━ PLAZOS Y PREFERENCIAS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Urgencia:            {$urg}
+Recibir presupuesto: {$pref}
+
+━━━ ORIGEN Y COMENTARIOS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cómo nos conoció:    {$como}
+Comentarios:         {$com}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROMVILL · info@romvill.com · www.romvill.com
+Análisis de Inteligencia Zonal
+";
+
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        "Reply-To: {$nom} <{$ema}>",
+    );
+
+    $sent = wp_mail( $to, $subject, $body, $headers );
+    if ( $sent ) {
+        wp_send_json_success( array( 'ref' => $ref ) );
+    } else {
+        wp_send_json_error( array( 'message' => 'Error al enviar. Inténtelo de nuevo.' ) );
+    }
+}
 
 // ─── Contact Form AJAX Handler ───────────────────────────────
 add_action( 'wp_ajax_romvill_contact',        'romvill_handle_contact' );
