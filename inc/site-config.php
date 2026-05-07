@@ -134,7 +134,20 @@ remove_action( 'admin_print_styles',  'print_emoji_styles' );
 // ─── 12. Disable WordPress automatic feed generation ─────────
 remove_action( 'wp_head', 'feed_links', 2 );
 
-// ─── 13. (REMOVED) Force site URL — caused redirect loops on http
-// Do NOT auto-update siteurl/home from theme code. WordPress's own
-// admin handles this safely, and forcing https here can lock the
-// site out if SSL provisioning fails or DNS is misconfigured.
+// ─── 13. Defensive siteurl/home auto-correction ──────────────
+// If the DB has https://… stored but the current request is plain
+// HTTP (SSL not yet provisioned), downgrade dynamically to HTTP for
+// THIS request only. Prevents redirect loops without touching DB.
+// As soon as SSL works, requests come in over https and the stored
+// https value is used unchanged.
+add_filter( 'option_siteurl', 'romvill_dynamic_url_scheme' );
+add_filter( 'option_home',    'romvill_dynamic_url_scheme' );
+function romvill_dynamic_url_scheme( $value ) {
+    if ( ! is_string( $value ) ) return $value;
+    if ( strpos( $value, 'https://' ) === 0 && ! is_ssl() ) {
+        // Avoid downgrading from wp-admin (admin always wants https when set)
+        if ( defined( 'WP_ADMIN' ) && WP_ADMIN ) return $value;
+        return 'http://' . substr( $value, 8 );
+    }
+    return $value;
+}
