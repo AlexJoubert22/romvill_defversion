@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//dev/**)",
+      "Read(//d/ClaudeData/projects/**)",
+      "Bash(curl -s \"https://romvill.com/wp-json/wp/v2/pages?per_page=100&_fields=id,slug,title,status,template\" -o /tmp/wp_pages.json)",
+      "Bash(curl -s --max-time 15 \"https://romvill.com/wp-json/wp/v2/pages?per_page=20&_fields=id,slug,title,status\")",
+      "Bash(curl -v --max-time 10 \"https://romvill.com/wp-json/wp/v2/pages?per_page=5&_fields=id,slug\")",
+      "WebFetch(domain:romvill.com)",
+      "Bash(curl --max-time 15 -s -w \"\\\\nHTTP:%{http_code}\" -u \"romvill:f4tX uZ5D olYi nDaq vaM0 aFg8\" \"https://romvill.com/wp-json/wp/v2/users/me?_fields=id,name,roles\")",
+      "Bash(curl --max-time 15 -s \"https://romvill.com\")",
+      "Bash(gh api:*)"
+    ]
+  }
+}
