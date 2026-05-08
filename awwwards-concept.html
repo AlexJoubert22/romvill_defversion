@@ -3,661 +3,689 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ROMVILL — Inteligencia territorial</title>
+<title>Romvill — Intelligence Brief / 2026</title>
 <meta name="description" content="Análisis territorial independiente para decisiones que cambian la vida. Marbella · Málaga · Alicante." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..600&display=swap" rel="stylesheet" />
 
 <style>
 :root {
-    --bg:        #0a0908;
-    --bg-deep:   #050403;
-    --ink:       #faf6ed;
-    --ink-muted: #6f6e6a;
-    --ink-faint: #2a2825;
-    --rule:      #1d1b18;
-    --gold:      #c5a572;
-    --sea:       #4a6fa5;
+    --bg:        #0a0a09;
+    --bg-deep:   #050504;
+    --ink:       #f4f0e6;
+    --ink-muted: #8b8579;
+    --ink-faint: #25221e;
+    --rule:      #1a1814;
+    --gold:      #c9a65e;
+    --sea:       #3a5170;
 
-    --font-serif: 'Fraunces', Georgia, serif;
-    --font-sans:  'DM Sans', system-ui, sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
 
     --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
     --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+    --maxw: 1480px;
+    --pad-x: 80px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 *::selection { background: var(--gold); color: var(--bg); }
 
-html { scroll-behavior: auto; }
 html, body {
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-sans);
+    font-family: var(--sans);
     font-weight: 300;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    cursor: none;
 }
+body { cursor: none; }
 
-/* ── Film grain overlay ─────────────────────────── */
-body::before {
-    content: '';
+img, svg { display: block; max-width: 100%; }
+
+/* ── Editorial grid overlay (very subtle) ──────────── */
+.grid-overlay {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 9990;
-    opacity: 0.045;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+    z-index: 1;
+    opacity: 0.04;
+    background-image: linear-gradient(to right, var(--ink) 1px, transparent 1px);
+    background-size: calc(100% / 8) 100%;
+    mix-blend-mode: lighten;
 }
 
-/* ── Custom cursor ──────────────────────────────── */
-.cursor-dot {
+/* ── Custom cursor ─────────────────────────────────── */
+.cursor {
     position: fixed;
-    width: 6px; height: 6px;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
     background: var(--ink);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
+    mix-blend-mode: difference;
     transform: translate(-50%, -50%);
-    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s;
+    transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out);
 }
-.cursor-ring {
-    position: fixed;
-    width: 38px; height: 38px;
-    border: 1px solid var(--ink);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.4s var(--ease-out), height 0.4s var(--ease-out), border-color 0.3s, opacity 0.3s;
-    opacity: 0.4;
+body.is-hovering .cursor { width: 56px; height: 56px; }
+
+/* ── Layout helpers ────────────────────────────────── */
+.container {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
 }
-body.is-hovering .cursor-dot { width: 0; height: 0; }
-body.is-hovering .cursor-ring {
-    width: 64px; height: 64px;
-    border-color: var(--gold);
-    opacity: 1;
+.eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-feature-settings: "tnum";
+}
+.eyebrow .ref {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 0;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-right: 12px;
 }
 
-/* ── Navigation ─────────────────────────────────── */
+/* ── Navigation ────────────────────────────────────── */
 .nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 28px 48px;
+    padding: 24px 0;
+    background: linear-gradient(to bottom, rgba(10, 10, 9, 0.92) 0%, rgba(10, 10, 9, 0.5) 70%, rgba(10, 10, 9, 0) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.nav__inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 60px;
-    mix-blend-mode: difference;
 }
-.nav-mark {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: 16px;
-    font-variation-settings: "opsz" 24, "SOFT" 30;
-    letter-spacing: 0.16em;
-    color: var(--ink);
-    text-transform: uppercase;
-}
-.nav-mark sup {
-    font-size: 9px;
-    font-family: var(--font-sans);
+.nav__mark {
+    font-family: var(--serif);
     font-weight: 500;
-    letter-spacing: 0.2em;
+    font-variation-settings: "opsz" 24, "SOFT" 30;
+    font-size: 15px;
+    letter-spacing: 0.18em;
     color: var(--ink);
-    margin-left: 6px;
-    vertical-align: top;
-    opacity: 0.5;
-}
-.nav-coords {
-    justify-self: center;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--ink);
-    opacity: 0.5;
     text-transform: uppercase;
-    font-feature-settings: "tnum";
-}
-.nav-links {
-    display: flex;
-    gap: 42px;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-}
-.nav-links a {
-    color: var(--ink);
     text-decoration: none;
-    position: relative;
-    padding: 4px 0;
-    transition: opacity 0.25s;
-    opacity: 0.7;
-}
-.nav-links a:hover { opacity: 1; }
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--ink);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s var(--ease-out);
-}
-.nav-links a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-/* ── Side rail ──────────────────────────────────── */
-.side-rail {
-    position: fixed;
-    left: 26px; top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    transform-origin: left center;
-    z-index: 50;
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    white-space: nowrap;
     display: flex;
     align-items: center;
     gap: 14px;
 }
-.side-rail::after {
-    content: '';
-    width: 80px; height: 1px;
-    background: var(--ink-muted);
-    opacity: 0.5;
+.nav__mark::after {
+    content: 'Studio · Intelligence';
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    color: var(--ink-muted);
+    padding-left: 14px;
+    border-left: 1px solid var(--ink-faint);
 }
-
-.side-time {
-    position: fixed;
-    right: 26px; bottom: 32px;
-    z-index: 50;
+.nav__center {
+    justify-self: center;
     font-size: 10px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.32em;
     color: var(--ink-muted);
     text-transform: uppercase;
     font-feature-settings: "tnum";
-    text-align: right;
-    line-height: 1.7;
 }
-.side-time strong {
+.nav__center span {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    margin: 0 8px;
+}
+.nav__links {
+    display: flex;
+    gap: 36px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+.nav__links a {
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.7;
+    position: relative;
+    padding: 4px 0;
+    transition: opacity 0.3s;
+}
+.nav__links a:hover { opacity: 1; }
+.nav__links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out);
+}
+.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ── Document marker (top-right) ───────────────────── */
+.doc-marker {
+    position: fixed;
+    top: 90px;
+    right: var(--pad-x);
+    z-index: 50;
+    text-align: right;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    font-feature-settings: "tnum";
+    line-height: 1.8;
+}
+.doc-marker strong {
     color: var(--ink);
     font-weight: 500;
 }
+.doc-marker hr {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    border: none;
+    margin: 8px 0 8px auto;
+}
 
-/* ── Hero ──────────────────────────────────────── */
+/* ── Hero ──────────────────────────────────────────── */
 .hero {
     min-height: 100vh;
-    padding: 140px 96px 80px;
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: 60px;
-    align-items: end;
+    padding: 200px 0 100px;
     position: relative;
-}
-.hero-tag {
-    position: absolute;
-    top: 140px;
-    left: 96px;
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: stretch;
 }
-.hero-tag::before {
-    content: '';
-    width: 24px; height: 1px;
-    background: var(--gold);
+.hero__inner {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    gap: 80px;
+    align-items: end;
 }
-
-.hero-headline {
-    font-family: var(--font-serif);
+.hero__title {
+    font-family: var(--serif);
     font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
-    font-size: clamp(72px, 13vw, 220px);
-    line-height: 0.92;
-    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+    font-size: clamp(60px, 11.5vw, 192px);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
     color: var(--ink);
-    overflow: visible;
 }
-.hero-headline .word {
-    display: inline-block;
+.hero__title .line {
+    display: block;
     overflow: hidden;
-    vertical-align: top;
+    padding-bottom: 0.05em;
+    margin-bottom: -0.05em;
 }
-.hero-headline .word > span {
-    display: inline-block;
+.hero__title .line > span {
+    display: block;
     transform: translateY(110%);
+    will-change: transform;
 }
-.hero-headline em {
+.hero__title em {
     font-style: italic;
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     color: var(--gold);
-    padding-left: 0.05em;
-    font-weight: 400;
+    margin-right: 0.04em;
+}
+.hero__title .punct {
+    color: var(--gold);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
 }
 
-.hero-aside {
-    padding-bottom: 12px;
+.hero__aside {
+    padding-bottom: 8px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 36px;
     position: relative;
 }
-.hero-line {
+.hero__seal {
+    align-self: flex-end;
+}
+.hero__seal svg {
+    width: 140px;
+    height: 140px;
+}
+.hero__seal-ring {
+    transform-origin: center;
+    animation: sealRotate 90s linear infinite;
+}
+@keyframes sealRotate { to { transform: rotate(360deg); } }
+
+.hero__line {
     width: 100%;
     height: 1px;
     background: var(--ink-faint);
     position: relative;
     overflow: hidden;
 }
-.hero-line::after {
+.hero__line::after {
     content: '';
     position: absolute;
     inset: 0;
     background: var(--gold);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 1.6s var(--ease-out) 1s;
+    transition: transform 1.4s var(--ease-out) 1.1s;
 }
-.hero.in-view .hero-line::after { transform: scaleX(1); }
+.hero.in-view .hero__line::after { transform: scaleX(1); }
 
-.hero-sub {
-    font-family: var(--font-serif);
+.hero__sub {
+    font-family: var(--serif);
     font-weight: 300;
     font-variation-settings: "opsz" 36, "SOFT" 50;
-    font-size: clamp(20px, 1.6vw, 26px);
-    line-height: 1.35;
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
     color: var(--ink);
-    letter-spacing: -0.01em;
     max-width: 30ch;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s var(--ease-out) 1.4s, transform 1s var(--ease-out) 1.4s;
 }
-.hero-sub em {
+.hero.in-view .hero__sub { opacity: 1; transform: translateY(0); }
+.hero__sub em {
     font-style: italic;
     color: var(--ink-muted);
 }
 
-.hero-meta {
+.hero__meta {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    margin-top: 12px;
-    padding-top: 28px;
+    padding-top: 24px;
     border-top: 1px solid var(--ink-faint);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s var(--ease-out) 1.6s, transform 1s var(--ease-out) 1.6s;
 }
-.hero-meta-block {
+.hero.in-view .hero__meta { opacity: 1; transform: translateY(0); }
+.hero__meta-block {
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-muted);
 }
-.hero-meta-block strong {
+.hero__meta-block strong {
     display: block;
-    font-family: var(--font-serif);
+    font-family: var(--serif);
     font-weight: 400;
-    font-variation-settings: "opsz" 24;
-    font-size: 22px;
+    font-variation-settings: "opsz" 36, "SOFT" 50;
+    font-size: 18px;
     letter-spacing: -0.01em;
     color: var(--ink);
     text-transform: none;
-    margin-top: 6px;
-    font-feature-settings: "tnum";
+    margin-top: 8px;
 }
 
-.scroll-cue {
-    position: absolute;
-    bottom: 40px;
-    left: 96px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-}
-.scroll-cue-bar {
-    width: 1px; height: 40px;
-    background: var(--ink-muted);
+/* ── Section base ──────────────────────────────────── */
+.section {
+    padding: 180px 0;
     position: relative;
-    overflow: hidden;
 }
-.scroll-cue-bar::after {
-    content: '';
-    position: absolute;
-    top: -100%; left: 0;
-    width: 100%; height: 100%;
-    background: var(--gold);
-    animation: scrollPulse 2.6s var(--ease-smooth) infinite;
-}
-@keyframes scrollPulse {
-    0%   { top: -100%; }
-    50%  { top: 0; }
-    100% { top: 100%; }
-}
+.section--deep { background: var(--bg-deep); }
+.section + .section { border-top: 1px solid var(--rule); }
 
-/* ── Manifesto section ──────────────────────────── */
-.manifesto {
-    padding: 200px 96px 200px;
+.section-head {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
-    position: relative;
+    gap: 80px;
+    margin-bottom: 100px;
+    align-items: end;
 }
-.manifesto-label {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.manifesto-label::before {
-    content: '01';
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 14px;
-    letter-spacing: 0;
-    text-transform: none;
-    color: var(--gold);
-    font-variation-settings: "opsz" 24, "SOFT" 100;
-}
-
-.manifesto-text {
-    font-family: var(--font-serif);
+.section-head h2 {
+    font-family: var(--serif);
     font-weight: 300;
-    font-variation-settings: "opsz" 36;
-    font-size: clamp(28px, 3vw, 46px);
-    line-height: 1.18;
-    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(40px, 5.5vw, 88px);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
     color: var(--ink);
+    max-width: 14ch;
 }
-.manifesto-text em {
+.section-head h2 em {
     font-style: italic;
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     color: var(--gold);
 }
-.manifesto-text strong {
+.section-head .meta {
+    text-align: right;
+    color: var(--ink-muted);
+    font-size: 12px;
+    line-height: 1.8;
+    max-width: 36ch;
+    margin-left: auto;
+}
+.section-head .meta strong {
+    color: var(--ink);
     font-weight: 400;
 }
 
-.manifesto-aside {
-    align-self: end;
-    padding-bottom: 8px;
-    border-left: 1px solid var(--ink-faint);
-    padding-left: 32px;
+/* ── Manifesto ─────────────────────────────────────── */
+.manifesto {
+    padding: 200px 0;
 }
-.manifesto-aside p {
-    font-size: 14px;
-    color: var(--ink-muted);
-    max-width: 32ch;
-    margin-bottom: 18px;
+.manifesto__lead {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(28px, 3.4vw, 56px);
+    line-height: 1.16;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 22ch;
+    margin-bottom: 80px;
 }
-.manifesto-aside p:last-of-type { margin-bottom: 0; color: var(--ink); }
-
-/* ── Pillars / Principles ───────────────────────── */
-.pillars {
-    padding: 160px 96px;
-    border-top: 1px solid var(--rule);
-    position: relative;
-}
-.pillars-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 110px;
-}
-.pillars-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-}
-.pillars-count {
-    font-family: var(--font-serif);
+.manifesto__lead em {
     font-style: italic;
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-    font-size: 80px;
+    color: var(--gold);
+}
+.manifesto__body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+.manifesto__body p {
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    max-width: 38ch;
+}
+.manifesto__body p strong {
+    color: var(--ink);
+    font-weight: 400;
+}
+.manifesto__sig {
+    align-self: end;
+    text-align: right;
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+}
+.manifesto__sig::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+    margin: 0 0 14px auto;
+}
+
+/* ── Method (process) ──────────────────────────────── */
+.method__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+}
+.step {
+    padding: 50px 32px 50px 0;
+    border-right: 1px solid var(--rule);
+    position: relative;
+    transition: background 0.5s;
+}
+.step:last-child { border-right: none; padding-right: 0; }
+.step:hover { background: rgba(201, 166, 94, 0.03); }
+
+.step__num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    font-size: 56px;
     line-height: 1;
     color: var(--ink-faint);
     letter-spacing: -0.04em;
+    margin-bottom: 32px;
 }
+.step:hover .step__num { color: var(--gold); transition: color 0.4s; }
 
-.pillar-grid {
-    display: grid;
-    grid-template-columns: 5fr 4fr 5fr;
-    gap: 80px;
-}
-.pillar {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    transition: transform 0.6s var(--ease-out);
-}
-.pillar:nth-child(1) { padding-top: 0; }
-.pillar:nth-child(2) { padding-top: 80px; } /* asymmetric break */
-.pillar:nth-child(3) { padding-top: 40px; }
-.pillar:hover { transform: translateY(-6px); }
-
-.pillar-num {
-    font-family: var(--font-serif);
-    font-weight: 200;
-    font-variation-settings: "opsz" 144;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 0.4em;
-}
-.pillar-title {
-    font-family: var(--font-serif);
-    font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
-    font-size: clamp(38px, 4.5vw, 72px);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    color: var(--ink);
-}
-.pillar-title em {
-    font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-}
-.pillar-text {
-    font-size: 14px;
-    color: var(--ink-muted);
-    max-width: 32ch;
-    line-height: 1.65;
-}
-.pillar-rule {
-    width: 32px; height: 1px;
-    background: var(--gold);
-    margin-top: 4px;
-}
-
-/* ── Territory ─────────────────────────────────── */
-.territory {
-    padding: 220px 96px 180px;
-    border-top: 1px solid var(--rule);
-    background: var(--bg-deep);
-}
-.territory-head {
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-}
-.territory-title {
-    font-family: var(--font-serif);
-    font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
-    font-size: clamp(48px, 6.5vw, 110px);
-    line-height: 0.92;
-    letter-spacing: -0.04em;
-    max-width: 14ch;
-}
-.territory-title em {
-    font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-    color: var(--gold);
-}
-.territory-meta {
-    text-align: right;
+.step__lead {
     font-size: 10px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.32em;
     color: var(--ink-muted);
     text-transform: uppercase;
-    line-height: 1.9;
+    margin-bottom: 14px;
 }
-.territory-meta strong {
+.step__title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 36, "SOFT" 30;
+    font-size: 22px;
+    letter-spacing: -0.01em;
     color: var(--ink);
-    font-family: var(--font-serif);
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+.step__text {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 28ch;
+}
+.step__time {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--rule);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+/* ── Profiles ──────────────────────────────────────── */
+.profiles {
+    background: var(--bg-deep);
+}
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    border-top: 1px solid var(--rule);
+}
+.profile {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    transition: padding 0.4s var(--ease-out);
+}
+.profile:hover { padding-left: 24px; }
+.profile:last-child { border-bottom: none; }
+.profile__num {
+    font-family: var(--serif);
     font-style: italic;
-    font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
-    font-size: 16px;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    font-size: 32px;
+    color: var(--ink-muted);
+    letter-spacing: -0.02em;
+    transition: color 0.4s;
+}
+.profile:hover .profile__num { color: var(--gold); }
+.profile__main h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(28px, 3.5vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 10px;
+}
+.profile__main p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    max-width: 56ch;
+    line-height: 1.65;
+}
+.profile__cta {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.3s, gap 0.3s;
+}
+.profile:hover .profile__cta { color: var(--gold); gap: 18px; }
+.profile__cta::after {
+    content: '→';
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
     letter-spacing: 0;
     text-transform: none;
 }
 
+/* ── Territory ─────────────────────────────────────── */
 .cities {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border-top: 1px solid var(--rule);
 }
 .city {
-    padding: 60px 0 60px 40px;
+    padding: 70px 32px 70px 0;
     border-right: 1px solid var(--rule);
     position: relative;
     overflow: hidden;
+    transition: padding 0.5s var(--ease-out);
 }
-.city:last-child { border-right: none; }
-.city::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--ink);
-    transform-origin: bottom;
-    transform: scaleY(0);
-    transition: transform 0.7s var(--ease-out);
-    z-index: 0;
-}
-.city:hover::before { transform: scaleY(1); transform-origin: top; }
-.city > * { position: relative; z-index: 1; transition: color 0.4s; }
-.city:hover .city-num,
-.city:hover .city-name,
-.city:hover .city-coord,
-.city:hover .city-tag { color: var(--bg); }
-.city:hover .city-rule { background: var(--bg); }
+.city:last-child { border-right: none; padding-right: 0; }
+.city:hover { padding-left: 24px; }
 
-.city-num {
-    font-family: var(--font-serif);
+.city__num {
+    font-family: var(--serif);
     font-style: italic;
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-    color: var(--ink-muted);
-    font-size: 14px;
-    margin-bottom: 14px;
+    color: var(--ink-faint);
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+    transition: color 0.4s;
 }
-.city-name {
-    font-family: var(--font-serif);
+.city:hover .city__num { color: var(--gold); }
+
+.city__name {
+    font-family: var(--serif);
     font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-    font-size: clamp(40px, 5vw, 76px);
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(36px, 4.4vw, 72px);
     line-height: 1;
     letter-spacing: -0.03em;
     margin-bottom: 18px;
     color: var(--ink);
 }
-.city-rule {
+.city__rule {
     width: 24px; height: 1px;
     background: var(--gold);
-    margin-bottom: 14px;
-    transition: background 0.4s, width 0.4s var(--ease-out);
+    margin-bottom: 16px;
+    transition: width 0.5s var(--ease-out);
 }
-.city:hover .city-rule { width: 48px; }
-.city-coord {
+.city:hover .city__rule { width: 56px; }
+.city__coord {
     font-size: 11px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     color: var(--ink-muted);
     font-feature-settings: "tnum";
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    line-height: 1.6;
 }
-.city-tag {
-    font-size: 12px;
-    color: var(--ink-muted);
+.city__tag {
+    font-family: var(--serif);
     font-style: italic;
-    font-family: var(--font-serif);
     font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+    font-size: 13px;
+    color: var(--ink-muted);
 }
 
-/* ── CTA ──────────────────────────────────────── */
+/* ── CTA ───────────────────────────────────────────── */
 .cta {
-    padding: 240px 96px 200px;
-    border-top: 1px solid var(--rule);
+    padding: 220px 0;
     text-align: center;
-    position: relative;
 }
-.cta-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    margin-bottom: 50px;
+.cta__eyebrow {
+    margin-bottom: 60px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 14px;
 }
-.cta-eyebrow::before, .cta-eyebrow::after {
+.cta__eyebrow::before, .cta__eyebrow::after {
     content: '';
-    width: 28px; height: 1px;
+    width: 32px; height: 1px;
     background: var(--ink-muted);
 }
-.cta-headline {
-    font-family: var(--font-serif);
+.cta__head {
+    font-family: var(--serif);
     font-weight: 300;
     font-variation-settings: "opsz" 144, "SOFT" 30;
-    font-size: clamp(60px, 11vw, 200px);
+    font-size: clamp(56px, 10vw, 184px);
     line-height: 0.92;
     letter-spacing: -0.05em;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
+    color: var(--ink);
 }
-.cta-headline em {
+.cta__head em {
     font-style: italic;
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     color: var(--gold);
 }
-
-.cta-button {
+.cta__btn {
     display: inline-flex;
     align-items: center;
-    gap: 26px;
-    padding: 24px 36px;
+    gap: 28px;
+    padding: 24px 40px;
     border: 1px solid var(--ink);
     color: var(--ink);
     text-decoration: none;
     font-size: 11px;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    transition: all 0.4s var(--ease-out);
     background: transparent;
     position: relative;
     overflow: hidden;
+    transition: color 0.4s var(--ease-out);
 }
-.cta-button::before {
+.cta__btn::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -667,293 +695,436 @@ body.is-hovering .cursor-ring {
     transition: transform 0.5s var(--ease-out);
     z-index: 0;
 }
-.cta-button:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-.cta-button > * { position: relative; z-index: 1; transition: color 0.35s; }
-.cta-button:hover > * { color: var(--bg); }
-.cta-button-arrow {
-    font-family: var(--font-serif);
+.cta__btn:hover { color: var(--bg); }
+.cta__btn:hover::before { transform: scaleX(1); transform-origin: left; }
+.cta__btn > * { position: relative; z-index: 1; }
+.cta__btn-arrow {
+    font-family: var(--serif);
     font-style: italic;
+    font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
     font-size: 18px;
     letter-spacing: 0;
     text-transform: none;
-    transition: transform 0.5s var(--ease-out), color 0.35s;
+    transition: transform 0.5s var(--ease-out);
 }
-.cta-button:hover .cta-button-arrow {
-    transform: translateX(8px);
-}
+.cta__btn:hover .cta__btn-arrow { transform: translateX(8px); }
 
-/* ── Footer ───────────────────────────────────── */
+/* ── Footer ────────────────────────────────────────── */
 .footer {
-    padding: 80px 96px 40px;
     border-top: 1px solid var(--rule);
+    padding: 80px 0 40px;
+}
+.footer__top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 60px;
     align-items: start;
+    margin-bottom: 80px;
 }
-.footer-mark {
-    font-family: var(--font-serif);
+.footer__mark {
+    font-family: var(--serif);
     font-weight: 400;
     font-variation-settings: "opsz" 144, "SOFT" 30;
-    font-size: 32px;
+    font-size: 28px;
     letter-spacing: 0.06em;
     line-height: 1;
 }
-.footer-mark span {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
+.footer__mark span {
     display: block;
-    margin-top: 12px;
-}
-.footer-col h4 {
+    font-family: var(--sans);
     font-size: 10px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 14px;
+}
+.footer__col h4 {
+    font-size: 10px;
+    letter-spacing: 0.32em;
     color: var(--ink-muted);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     font-weight: 500;
 }
-.footer-col p, .footer-col a {
+.footer__col a, .footer__col p {
     font-size: 13px;
     color: var(--ink);
     text-decoration: none;
-    line-height: 1.8;
+    line-height: 1.85;
     display: block;
-    transition: color 0.25s;
+    transition: color 0.3s;
 }
-.footer-col a:hover { color: var(--gold); }
-.footer-bottom {
-    grid-column: 1 / -1;
-    margin-top: 80px;
+.footer__col a:hover { color: var(--gold); }
+
+.footer__bottom {
     padding-top: 28px;
     border-top: 1px solid var(--rule);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 10px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.28em;
     color: var(--ink-muted);
     text-transform: uppercase;
 }
+.footer__bottom .ref-no {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+}
 
-/* ── Reveal animation states ──────────────────── */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
-.reveal.in { opacity: 1; transform: translateY(0); }
+/* ── Reveal states ─────────────────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+.reveal.is-in { opacity: 1; transform: translateY(0); }
 
-/* ── Responsive ──────────────────────────────── */
-@media (max-width: 900px) {
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 980px) {
+    :root { --pad-x: 32px; }
     body { cursor: auto; }
-    .cursor-dot, .cursor-ring, .side-rail, .side-time { display: none; }
-    .nav { padding: 22px 24px; grid-template-columns: 1fr auto; gap: 20px; }
-    .nav-coords { display: none; }
-    .nav-links { gap: 22px; font-size: 10px; }
-    .hero { padding: 120px 24px 60px; grid-template-columns: 1fr; gap: 40px; }
-    .hero-tag { left: 24px; top: 100px; }
-    .scroll-cue { left: 24px; }
-    .hero-meta { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .manifesto { padding: 100px 24px; grid-template-columns: 1fr; gap: 50px; }
-    .pillars { padding: 100px 24px; }
-    .pillars-head { flex-direction: column; align-items: flex-start; gap: 30px; margin-bottom: 60px; }
-    .pillar-grid { grid-template-columns: 1fr; gap: 60px; }
-    .pillar:nth-child(2), .pillar:nth-child(3) { padding-top: 0; }
-    .territory { padding: 100px 24px; }
-    .territory-head { flex-direction: column; align-items: flex-start; gap: 30px; }
+    .cursor, .grid-overlay { display: none; }
+    .nav { padding: 18px 0; }
+    .nav__inner { grid-template-columns: 1fr auto; gap: 20px; }
+    .nav__center { display: none; }
+    .nav__mark::after { display: none; }
+    .nav__links { gap: 22px; font-size: 10px; }
+    .doc-marker { display: none; }
+    .hero { padding: 130px 0 60px; }
+    .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero__seal { align-self: flex-start; margin-top: 20px; }
+    .section { padding: 100px 0; }
+    .section-head { grid-template-columns: 1fr; gap: 30px; margin-bottom: 60px; }
+    .section-head .meta { text-align: left; margin-left: 0; }
+    .manifesto { padding: 100px 0; }
+    .manifesto__body { grid-template-columns: 1fr; gap: 30px; }
+    .manifesto__sig { text-align: left; }
+    .manifesto__sig::before { margin-left: 0; margin-right: auto; }
+    .method__steps { grid-template-columns: 1fr; }
+    .step { padding: 40px 0; border-right: none; border-bottom: 1px solid var(--rule); }
+    .step:last-child { border-bottom: none; }
+    .profile { grid-template-columns: 60px 1fr; gap: 30px; padding: 40px 0; }
+    .profile:hover { padding-left: 0; }
+    .profile__cta { grid-column: 2; margin-top: 12px; }
     .cities { grid-template-columns: 1fr; }
-    .city { border-right: none; border-bottom: 1px solid var(--rule); padding: 40px 0 40px 20px; }
+    .city { border-right: none; border-bottom: 1px solid var(--rule); padding: 50px 0; }
+    .city:hover { padding-left: 0; }
     .city:last-child { border-bottom: none; }
-    .cta { padding: 120px 24px; }
-    .footer { padding: 60px 24px 30px; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .footer-mark { grid-column: 1 / -1; }
-    .footer-bottom { flex-direction: column; gap: 12px; }
+    .cta { padding: 120px 0; }
+    .footer__top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer__mark { grid-column: 1 / -1; margin-bottom: 20px; }
+    .footer__bottom { flex-direction: column; gap: 14px; align-items: flex-start; }
+}
+@media (max-width: 540px) {
+    .hero__meta { grid-template-columns: 1fr; }
+    .footer__top { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
+<div class="grid-overlay"></div>
+<div class="cursor"></div>
 
 <nav class="nav">
-    <a href="#" class="nav-mark">Romvill<sup>est. 2024</sup></a>
-    <div class="nav-coords" id="navCoords">36° 30′ N · 4° 53′ W</div>
-    <div class="nav-links">
-        <a href="#manifesto" data-hover>Inteligencia</a>
-        <a href="#pillars" data-hover>Método</a>
-        <a href="#territory" data-hover>Territorio</a>
-        <a href="#cta" data-hover>Contacto</a>
+    <div class="nav__inner container">
+        <a href="#top" class="nav__mark">Romvill</a>
+        <div class="nav__center">
+            36° 30′ N <span>·</span> 4° 53′ W
+        </div>
+        <div class="nav__links">
+            <a href="#manifesto" data-hover>Posición</a>
+            <a href="#method" data-hover>Método</a>
+            <a href="#profiles" data-hover>Perfiles</a>
+            <a href="#territory" data-hover>Territorio</a>
+            <a href="#cta" data-hover>Solicitar</a>
+        </div>
     </div>
 </nav>
 
-<aside class="side-rail">scroll · análisis territorial</aside>
-
-<aside class="side-time">
-    Costa del Sol<br>
-    <strong id="liveClock">— : —</strong>
+<aside class="doc-marker">
+    Brief / 2026<hr>
+    <strong>RV · 26 · 04</strong>
 </aside>
 
 <!-- ─── HERO ───────────────────────────────────────── -->
-<section class="hero" id="hero">
-    <span class="hero-tag">Inteligencia · No transacción</span>
+<section class="hero" id="top">
+    <div class="hero__inner container">
+        <h1 class="hero__title" id="heroTitle">
+            <span class="line"><span>Antes de</span></span>
+            <span class="line"><span>decidir, <em>observe</em><span class="punct">.</span></span></span>
+        </h1>
 
-    <h1 class="hero-headline" id="heroHeadline">
-        <span class="word"><span>Antes</span></span>
-        <span class="word"><span>de</span></span>
-        <span class="word"><span>decidir,</span></span><br>
-        <span class="word"><span><em>observe</em></span></span><span class="word"><span>.</span></span>
-    </h1>
-
-    <aside class="hero-aside">
-        <div class="hero-line"></div>
-        <p class="hero-sub reveal">
-            <strong>Inteligencia territorial</strong> para decisiones que <em>cambian la vida</em>: residencia, inversión, instalación.
-        </p>
-        <div class="hero-meta reveal">
-            <div class="hero-meta-block">
-                Cobertura
-                <strong>Costa del Sol &nbsp; Costa Blanca</strong>
+        <aside class="hero__aside">
+            <div class="hero__seal">
+                <svg viewBox="0 0 140 140" aria-hidden="true">
+                    <g class="hero__seal-ring" stroke="#8b8579" stroke-width="0.6" fill="none">
+                        <circle cx="70" cy="70" r="58"/>
+                        <circle cx="70" cy="70" r="48" stroke-dasharray="2 4" opacity="0.5"/>
+                    </g>
+                    <g stroke="#c9a65e" stroke-width="0.8" fill="none">
+                        <line x1="70" y1="20" x2="70" y2="34"/>
+                        <line x1="70" y1="106" x2="70" y2="120"/>
+                        <line x1="20" y1="70" x2="34" y2="70"/>
+                        <line x1="106" y1="70" x2="120" y2="70"/>
+                    </g>
+                    <circle cx="70" cy="70" r="2.5" fill="#c9a65e"/>
+                    <text x="70" y="73" text-anchor="middle" font-family="Fraunces, serif" font-size="6.5" fill="#8b8579" letter-spacing="2" font-style="italic">RV·xxvi</text>
+                    <path id="sealText" d="M 70,15 m -55,0 a 55,55 0 1,1 110,0 a 55,55 0 1,1 -110,0" fill="none"/>
+                    <text font-family="DM Sans, sans-serif" font-size="6.6" fill="#8b8579" letter-spacing="3.4">
+                        <textPath href="#sealText" startOffset="2%">
+                            ROMVILL · INTELLIGENCE STUDIO · MMXXIV · ANTES DE DECIDIR · OBSERVE ·
+                        </textPath>
+                    </text>
+                </svg>
             </div>
-            <div class="hero-meta-block">
-                Volumen analizado
-                <strong>+184 km²</strong>
-            </div>
-        </div>
-    </aside>
 
-    <div class="scroll-cue">
-        <span class="scroll-cue-bar"></span>
-        Desplazar
+            <div class="hero__line"></div>
+
+            <p class="hero__sub">
+                Inteligencia <em>territorial</em> para decisiones que cambian la vida — residencia, inversión, instalación.
+            </p>
+
+            <div class="hero__meta">
+                <div class="hero__meta-block">
+                    Cobertura
+                    <strong>Costa del Sol · Costa Blanca</strong>
+                </div>
+                <div class="hero__meta-block">
+                    Activo desde
+                    <strong>MMXXIV · 2024</strong>
+                </div>
+            </div>
+        </aside>
     </div>
 </section>
 
 <!-- ─── MANIFESTO ──────────────────────────────────── -->
-<section class="manifesto" id="manifesto">
-    <div>
-        <div class="manifesto-label">Posición</div>
-        <h2 class="manifesto-text reveal">
-            <strong>No vendemos inmuebles.</strong> No cobramos comisiones. No representamos a ningún operador.<br><br>
-            Nosotros <em>analizamos</em>.<br>Usted <em>decide</em>.
+<section class="section manifesto" id="manifesto">
+    <div class="container">
+        <div class="eyebrow reveal" style="margin-bottom: 60px;"><span class="ref">i</span>POSICIÓN · REF · 001</div>
+
+        <h2 class="manifesto__lead reveal">
+            No vendemos inmuebles.<br>
+            Nosotros <em>analizamos</em>.<br>
+            Usted decide.
         </h2>
-    </div>
-    <div class="manifesto-aside reveal">
-        <p>Cada análisis es una pieza independiente. Sin sesgo comercial. Sin presión. Sin interés en su decisión.</p>
-        <p>El criterio antes de decidir, en las mejores manos.</p>
+
+        <div class="manifesto__body reveal">
+            <p>Romvill es un estudio independiente de análisis territorial. <strong>Sin comisiones inmobiliarias. Sin acuerdos cruzados. Sin intereses cruzados con su decisión.</strong></p>
+            <p>Cada informe es una pieza autónoma. Veinte dimensiones por zona — seguridad real, sanidad, sociodemografía, conectividad, proyección — capas que el listing no muestra y que el agente no calcula.</p>
+            <div class="manifesto__sig">
+                Estudio cerrado.<br>
+                Bajo NDA si se solicita.
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- ─── PILLARS ────────────────────────────────────── -->
-<section class="pillars" id="pillars">
-    <div class="pillars-head">
-        <div class="pillars-eyebrow">02 · Principios fundacionales</div>
-        <div class="pillars-count">.III</div>
+<!-- ─── METHOD ─────────────────────────────────────── -->
+<section class="section method" id="method">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="reveal">Cuatro pasos. Un <em>criterio</em>.</h2>
+            <div class="meta reveal">
+                <strong>Método operativo</strong><br>
+                Cada análisis sigue una secuencia rigurosa. De la primera lectura del territorio hasta el dossier final que entregamos en sus manos.
+                <br><br>
+                <span class="eyebrow"><span class="ref">ii</span>MÉTODO · REF · 002</span>
+            </div>
+        </div>
+
+        <div class="method__steps">
+            <article class="step reveal" data-hover>
+                <div class="step__num">.i</div>
+                <div class="step__lead">Brief</div>
+                <h3 class="step__title">Encuadre del caso</h3>
+                <p class="step__text">Conversación inicial sin compromiso. Definimos zona, objetivo, plazos, perfil. Cero presión comercial.</p>
+                <div class="step__time">24-48 h</div>
+            </article>
+            <article class="step reveal" data-hover>
+                <div class="step__num">.ii</div>
+                <div class="step__lead">Análisis</div>
+                <h3 class="step__title">Trabajo de campo</h3>
+                <p class="step__text">Veinte dimensiones por zona — datos primarios, observación directa, fuentes municipales y privadas verificadas.</p>
+                <div class="step__time">7-14 días</div>
+            </article>
+            <article class="step reveal" data-hover>
+                <div class="step__num">.iii</div>
+                <div class="step__lead">Síntesis</div>
+                <h3 class="step__title">Dossier ejecutivo</h3>
+                <p class="step__text">Informe en su idioma (ES · EN · FR · DE · RU). Redactado para decidir, no para impresionar. Sin relleno.</p>
+                <div class="step__time">3-5 días</div>
+            </article>
+            <article class="step reveal" data-hover>
+                <div class="step__num">.iv</div>
+                <div class="step__lead">Entrega</div>
+                <h3 class="step__title">Sesión de lectura</h3>
+                <p class="step__text">Reunión 1:1 con el analista asignado. Resolvemos dudas, anotamos en márgenes, ajustamos lo necesario.</p>
+                <div class="step__time">90 min</div>
+            </article>
+        </div>
     </div>
+</section>
 
-    <div class="pillar-grid">
-        <article class="pillar reveal" data-hover>
-            <div class="pillar-num">I — Posición</div>
-            <h3 class="pillar-title"><em>Independencia</em></h3>
-            <p class="pillar-text">Sin comisiones inmobiliarias, sin acuerdos cruzados, sin afiliaciones ocultas. La objetividad como precondición del análisis.</p>
-            <div class="pillar-rule"></div>
-        </article>
+<!-- ─── PROFILES ───────────────────────────────────── -->
+<section class="section section--deep profiles" id="profiles">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="reveal">Cuatro perfiles. Cuatro <em>lecturas</em>.</h2>
+            <div class="meta reveal">
+                <strong>Casos de uso</strong><br>
+                Cada cliente trae una pregunta distinta al territorio. Calibramos el alcance del análisis al perfil — no al revés.
+                <br><br>
+                <span class="eyebrow"><span class="ref">iii</span>PERFILES · REF · 003</span>
+            </div>
+        </div>
 
-        <article class="pillar reveal" data-hover>
-            <div class="pillar-num">II — Método</div>
-            <h3 class="pillar-title">Profundidad</h3>
-            <p class="pillar-text">Veinte dimensiones por zona: seguridad real, sanidad, sociodemografía, conectividad, proyección. Capas que el listing no muestra.</p>
-            <div class="pillar-rule"></div>
-        </article>
-
-        <article class="pillar reveal" data-hover>
-            <div class="pillar-num">III — Cliente</div>
-            <h3 class="pillar-title"><em>Discreción</em></h3>
-            <p class="pillar-text">Datos confidenciales. Entregables bajo NDA si se solicita. Una sola voz: el analista asignado a su caso.</p>
-            <div class="pillar-rule"></div>
-        </article>
+        <div class="profile-grid">
+            <div>
+                <article class="profile reveal" data-hover>
+                    <div class="profile__num">.i</div>
+                    <div class="profile__main">
+                        <h3>Residencial</h3>
+                        <p>Familias e individuos que buscan instalarse. Pregunta clave: ¿es esta zona compatible con mi vida diaria, mi salud, mi gente?</p>
+                    </div>
+                    <a href="#" class="profile__cta">Bloque · 01</a>
+                </article>
+                <article class="profile reveal" data-hover>
+                    <div class="profile__num">.ii</div>
+                    <div class="profile__main">
+                        <h3>Inversor particular</h3>
+                        <p>Compradores que adquieren para alquilar, revalorizar o flipear. Pregunta: ¿qué dice la zona sobre el rendimiento real?</p>
+                    </div>
+                    <a href="#" class="profile__cta">Bloque · 02</a>
+                </article>
+                <article class="profile reveal" data-hover>
+                    <div class="profile__num">.iii</div>
+                    <div class="profile__main">
+                        <h3>Promotor</h3>
+                        <p>Operadores con proyectos de mayor escala. Pregunta: ¿qué viabilidad urbanística, demanda y permisos sostienen el plan?</p>
+                    </div>
+                    <a href="#" class="profile__cta">Bloque · 03</a>
+                </article>
+                <article class="profile reveal" data-hover>
+                    <div class="profile__num">.iv</div>
+                    <div class="profile__main">
+                        <h3>Corporativo</h3>
+                        <p>Empresas que estudian apertura, expansión o reubicación. Pregunta: ¿qué entorno comercial, talento y regulación encontrará aquí mi negocio?</p>
+                    </div>
+                    <a href="#" class="profile__cta">Bloque · 04</a>
+                </article>
+            </div>
+            <aside class="reveal" style="padding: 56px 0; border-bottom: none;">
+                <div class="eyebrow" style="margin-bottom: 24px;">Independencia</div>
+                <p style="font-family: var(--serif); font-weight: 300; font-variation-settings: 'opsz' 36, 'SOFT' 50; font-size: 22px; line-height: 1.4; letter-spacing: -0.01em; color: var(--ink); max-width: 30ch; margin-bottom: 32px;">
+                    Cualquier perfil. La misma <em style="font-style: italic; font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1; color: var(--gold);">objetividad</em> de origen.
+                </p>
+                <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.7; max-width: 36ch;">
+                    No tenemos cartera de inmuebles. No representamos a ningún operador. Nuestra única lealtad es al cliente que firma el brief.
+                </p>
+            </aside>
+        </div>
     </div>
 </section>
 
 <!-- ─── TERRITORY ──────────────────────────────────── -->
-<section class="territory" id="territory">
-    <div class="territory-head">
-        <h2 class="territory-title reveal">Tres costas. Un<br><em>criterio</em>.</h2>
-        <div class="territory-meta reveal">
-            Mediterráneo Ibérico<br>
-            <strong>desde Málaga hasta Alicante</strong><br>
-            Operativo
+<section class="section territory" id="territory">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="reveal">Tres costas. Un <em>criterio</em>.</h2>
+            <div class="meta reveal">
+                <strong>Cobertura operativa</strong><br>
+                Mediterráneo Ibérico, sector occidental y oriental. Otras zonas bajo solicitud específica.
+                <br><br>
+                <span class="eyebrow"><span class="ref">iv</span>TERRITORIO · REF · 004</span>
+            </div>
         </div>
-    </div>
 
-    <div class="cities">
-        <div class="city" data-hover>
-            <div class="city-num">.i</div>
-            <div class="city-name">Marbella</div>
-            <div class="city-rule"></div>
-            <div class="city-coord">36° 30′ N &nbsp;·&nbsp; 4° 53′ W</div>
-            <div class="city-tag">Costa del Sol Occidental</div>
-        </div>
-        <div class="city" data-hover>
-            <div class="city-num">.ii</div>
-            <div class="city-name">Málaga</div>
-            <div class="city-rule"></div>
-            <div class="city-coord">36° 43′ N &nbsp;·&nbsp; 4° 25′ W</div>
-            <div class="city-tag">Capital · hub aéreo</div>
-        </div>
-        <div class="city" data-hover>
-            <div class="city-num">.iii</div>
-            <div class="city-name">Alicante</div>
-            <div class="city-rule"></div>
-            <div class="city-coord">38° 20′ N &nbsp;·&nbsp; 0° 29′ W</div>
-            <div class="city-tag">Costa Blanca</div>
+        <div class="cities">
+            <article class="city reveal" data-hover>
+                <div class="city__num">.i</div>
+                <div class="city__name">Marbella</div>
+                <div class="city__rule"></div>
+                <div class="city__coord">36° 30′ N &nbsp;·&nbsp; 4° 53′ W</div>
+                <div class="city__tag">Costa del Sol Occidental</div>
+            </article>
+            <article class="city reveal" data-hover>
+                <div class="city__num">.ii</div>
+                <div class="city__name">Málaga</div>
+                <div class="city__rule"></div>
+                <div class="city__coord">36° 43′ N &nbsp;·&nbsp; 4° 25′ W</div>
+                <div class="city__tag">Capital · Hub aéreo</div>
+            </article>
+            <article class="city reveal" data-hover>
+                <div class="city__num">.iii</div>
+                <div class="city__name">Alicante</div>
+                <div class="city__rule"></div>
+                <div class="city__coord">38° 20′ N &nbsp;·&nbsp; 0° 29′ W</div>
+                <div class="city__tag">Costa Blanca</div>
+            </article>
         </div>
     </div>
 </section>
 
 <!-- ─── CTA ────────────────────────────────────────── -->
-<section class="cta" id="cta">
-    <div class="cta-eyebrow">Solicitar presupuesto</div>
-    <h2 class="cta-headline reveal">Su criterio<br>antes de <em>decidir</em>.</h2>
-    <a href="#" class="cta-button" data-hover>
-        <span>Comenzar análisis</span>
-        <span class="cta-button-arrow">→</span>
-    </a>
+<section class="section cta" id="cta">
+    <div class="container">
+        <div class="cta__eyebrow eyebrow"><span class="ref">v</span>SOLICITUD · REF · 005</div>
+        <h2 class="cta__head reveal">Su criterio<br>antes de <em>decidir</em>.</h2>
+        <a href="#" class="cta__btn reveal" data-hover>
+            <span>Solicitar presupuesto</span>
+            <span class="cta__btn-arrow">→</span>
+        </a>
+    </div>
 </section>
 
 <!-- ─── FOOTER ─────────────────────────────────────── -->
 <footer class="footer">
-    <div class="footer-mark">
-        Romvill
-        <span>Inteligencia territorial</span>
-    </div>
-    <div class="footer-col">
-        <h4>Estudio</h4>
-        <a href="#" data-hover>Metodología</a>
-        <a href="#" data-hover>Análisis</a>
-        <a href="#" data-hover>Sectores</a>
-    </div>
-    <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="mailto:info@romvill.com" data-hover>info@romvill.com</a>
-        <a href="#" data-hover>Solicitar presupuesto</a>
-    </div>
-    <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#" data-hover>Privacidad</a>
-        <a href="#" data-hover>Términos</a>
-    </div>
-    <div class="footer-bottom">
-        <span>© 2026 Romvill · Todos los derechos reservados</span>
-        <span>Costa del Sol · Costa Blanca</span>
+    <div class="container">
+        <div class="footer__top">
+            <div class="footer__mark">
+                Romvill
+                <span>Intelligence studio · 2026</span>
+            </div>
+            <div class="footer__col">
+                <h4>Estudio</h4>
+                <a href="#" data-hover>Metodología</a>
+                <a href="#" data-hover>Análisis</a>
+                <a href="#" data-hover>Sectores</a>
+            </div>
+            <div class="footer__col">
+                <h4>Solicitudes</h4>
+                <a href="#" data-hover>Bloque · 01 Residencial</a>
+                <a href="#" data-hover>Bloque · 02 Inversor</a>
+                <a href="#" data-hover>Bloque · 03 Promotor</a>
+                <a href="#" data-hover>Bloque · 04 Corporativo</a>
+            </div>
+            <div class="footer__col">
+                <h4>Contacto</h4>
+                <a href="mailto:info@romvill.com" data-hover>info@romvill.com</a>
+                <a href="#" data-hover>Privacidad</a>
+                <a href="#" data-hover>Términos</a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>© MMXXVI · Romvill · Todos los derechos reservados</span>
+            <span class="ref-no">RV·26·04 — Brief 2026</span>
+        </div>
     </div>
 </footer>
 
 <!-- ─── Libraries ──────────────────────────────────── -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
 <script>
 /* ── Lenis smooth scroll ─────────────────────────── */
@@ -961,41 +1132,31 @@ const lenis = new Lenis({
     duration: 1.15,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    wheelMultiplier: 0.9
+    wheelMultiplier: 0.95
 });
-
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
+function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
 
 gsap.registerPlugin(ScrollTrigger);
 lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.add((t) => lenis.raf(t * 1000));
 gsap.ticker.lagSmoothing(0);
 
 /* ── Custom cursor ───────────────────────────────── */
-const dot = document.querySelector('.cursor-dot');
-const ring = document.querySelector('.cursor-ring');
-
-let mouse = { x: 0, y: 0 };
-let ringPos = { x: 0, y: 0 };
+const cursor = document.querySelector('.cursor');
+let mouse = { x: -100, y: -100 };
+let pos = { x: -100, y: -100 };
 
 window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX; mouse.y = e.clientY;
-    dot.style.left = mouse.x + 'px';
-    dot.style.top = mouse.y + 'px';
 });
-
-function animateRing() {
-    ringPos.x += (mouse.x - ringPos.x) * 0.18;
-    ringPos.y += (mouse.y - ringPos.y) * 0.18;
-    ring.style.left = ringPos.x + 'px';
-    ring.style.top = ringPos.y + 'px';
-    requestAnimationFrame(animateRing);
+function tick() {
+    pos.x += (mouse.x - pos.x) * 0.22;
+    pos.y += (mouse.y - pos.y) * 0.22;
+    cursor.style.transform = `translate(${pos.x - 4}px, ${pos.y - 4}px)`;
+    requestAnimationFrame(tick);
 }
-animateRing();
+tick();
 
 document.querySelectorAll('[data-hover], a, button').forEach((el) => {
     el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
@@ -1004,83 +1165,47 @@ document.querySelectorAll('[data-hover], a, button').forEach((el) => {
 
 /* ── Hero entrance ───────────────────────────────── */
 window.addEventListener('load', () => {
-    gsap.to('#heroHeadline .word > span', {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.to('.hero__title .line > span', {
         y: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        stagger: 0.07,
-        delay: 0.25
+        duration: 1.25,
+        stagger: 0.12,
+        delay: 0.3
     });
 
     setTimeout(() => {
-        document.getElementById('hero').classList.add('in-view');
-    }, 600);
+        document.querySelector('.hero').classList.add('in-view');
+    }, 700);
 
-    gsap.from('.hero-tag', {
-        opacity: 0, y: 20, duration: 1, delay: 1.4, ease: 'power2.out'
-    });
-    gsap.from('.scroll-cue', {
-        opacity: 0, y: 20, duration: 1, delay: 1.8, ease: 'power2.out'
-    });
-    gsap.from('.nav > *', {
-        opacity: 0, y: -20, duration: 0.9, delay: 1.0, stagger: 0.1, ease: 'power2.out'
-    });
-    gsap.from('.side-rail', { opacity: 0, x: -20, duration: 1, delay: 1.6 });
-    gsap.from('.side-time', { opacity: 0, x: 20, duration: 1, delay: 1.6 });
+    gsap.from('.nav', { y: -30, opacity: 0, duration: 1, delay: 1.2, ease: 'power2.out' });
+    gsap.from('.doc-marker', { y: -20, opacity: 0, duration: 1, delay: 1.4, ease: 'power2.out' });
+    gsap.from('.hero__seal', { opacity: 0, scale: 0.85, duration: 1.2, delay: 1.5, ease: 'power2.out' });
 });
 
-/* ── Reveal observer ─────────────────────────────── */
-const reveals = document.querySelectorAll('.reveal');
-reveals.forEach((el) => {
+/* ── Reveal observers ─────────────────────────────── */
+document.querySelectorAll('.reveal').forEach((el) => {
     ScrollTrigger.create({
         trigger: el,
-        start: 'top 85%',
-        onEnter: () => el.classList.add('in'),
+        start: 'top 88%',
+        onEnter: () => el.classList.add('is-in'),
         once: true
     });
 });
 
-/* ── Hero parallax (subtle) ──────────────────────── */
-gsap.to('.hero-headline', {
-    yPercent: -8,
+/* ── Subtle hero parallax ─────────────────────────── */
+gsap.to('.hero__title', {
+    yPercent: -10,
     ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 }
 });
-gsap.to('.hero-aside', {
-    yPercent: -3,
+gsap.to('.hero__aside', {
+    yPercent: -4,
     ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 }
 });
 
-/* ── Live clock (Spain time) ─────────────────────── */
-function updateClock() {
-    const now = new Date();
-    const opts = { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-    const t = new Intl.DateTimeFormat('es-ES', opts).format(now);
-    document.getElementById('liveClock').textContent = t;
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-/* ── Coordinates rotation in nav ─────────────────── */
-const coords = [
-    '36° 30′ N · 4° 53′ W',  // Marbella
-    '36° 43′ N · 4° 25′ W',  // Málaga
-    '38° 20′ N · 0° 29′ W'   // Alicante
-];
-let coordIdx = 0;
-const navCoords = document.getElementById('navCoords');
-setInterval(() => {
-    coordIdx = (coordIdx + 1) % coords.length;
-    navCoords.style.opacity = '0';
-    setTimeout(() => {
-        navCoords.textContent = coords[coordIdx];
-        navCoords.style.opacity = '0.5';
-    }, 300);
-}, 4500);
-navCoords.style.transition = 'opacity 0.3s';
-
-/* ── Smooth anchor links via Lenis ───────────────── */
+/* ── Smooth anchor links ─────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -1088,7 +1213,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
             const target = document.querySelector(id);
             if (target) {
                 e.preventDefault();
-                lenis.scrollTo(target, { duration: 1.6 });
+                lenis.scrollTo(target, { duration: 1.6, offset: -40 });
             }
         }
     });
