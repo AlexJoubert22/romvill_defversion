@@ -1,0 +1,40 @@
+name: Deploy to Romvill
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build theme ZIP
+        run: |
+          git archive HEAD --format=zip --prefix=romvill-theme/ -o /tmp/romvill-theme.zip
+          echo "ZIP size: $(du -sh /tmp/romvill-theme.zip | cut -f1)"
+
+      - name: Deploy to WordPress
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            -u "romvill:${{ secrets.WP_APP_PASS }}" \
+            -F "themezip=@/tmp/romvill-theme.zip;type=application/zip" \
+            "https://romvill.com/wp-json/romvill/v1/deploy")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -n -1)
+          echo "HTTP $HTTP_CODE: $BODY"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Deploy failed!"
+            exit 1
+          fi
+
+      - name: Verify site
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://romvill.com)
+          echo "Site HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Site not responding correctly!"
+            exit 1
+          fi
+          echo "Deploy complete - romvill.com is live"
