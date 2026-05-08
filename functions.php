@@ -604,3 +604,56 @@ add_action( 'init', function () {
     }
 }, 5 );
 
+// ─── Theme Deploy REST Endpoint ───────────────────────────────
+// POST /wp-json/romvill/v1/deploy  (requires manage_options cap + Application Password)
+// Accepts a multipart ZIP upload and extracts it into the romvill-theme folder.
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'romvill/v1', '/deploy', [
+        'methods'             => 'POST',
+        'callback'            => 'romvill_rest_deploy',
+        'permission_callback' => function () {
+            return current_user_can( 'manage_options' );
+        },
+    ] );
+} );
+
+function romvill_rest_deploy( WP_REST_Request $request ) {
+    $files = $request->get_file_params();
+    if ( empty( $files['themezip']['tmp_name'] ) ) {
+        return new WP_Error( 'no_file', 'Missing themezip field', [ 'status' => 400 ] );
+    }
+
+    $zip_path   = $files['themezip']['tmp_name'];
+    $theme_dir  = trailingslashit( get_theme_root() ) . 'romvill-theme/';
+
+    $zip = new ZipArchive();
+    if ( $zip->open( $zip_path ) !== true ) {
+        return new WP_Error( 'zip_error', 'Cannot open ZIP', [ 'status' => 400 ] );
+    }
+
+    $extracted = 0;
+    for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+        $name = $zip->getNameIndex( $i );
+        // Strip leading folder prefix (e.g. "romvill-theme/")
+        $rel = preg_replace( '#^[^/]+/#', '', $name );
+        if ( $rel === '' || substr( $rel, -1 ) === '/' ) {
+            continue; // skip directories
+        }
+        $dest = $theme_dir . $rel;
+        wp_mkdir_p( dirname( $dest ) );
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+        file_put_contents( $dest, $zip->getFromIndex( $i ) );
+        $extracted++;
+    }
+    $zip->close();
+
+    // Flush rewrite rules so any template changes take effect
+    flush_rewrite_rules( false );
+
+    return rest_ensure_response( [
+        'success'   => true,
+        'files'     => $extracted,
+        'theme_dir' => $theme_dir,
+    ] );
+}
+
