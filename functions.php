@@ -573,3 +573,24 @@ function romvill_handle_contact() {
     }
 }
 
+// ─── Ensure site is publicly visible (disable Coming Soon) ──
+// WordPress.com / Jetpack store site visibility in several options.
+// Force them all to "public" on every init so the site never stays
+// stuck in Coming Soon / Próximamente mode.
+add_action( 'init', function () {
+    if ( (int) get_option( 'blog_public' ) !== 1 ) {
+        update_option( 'blog_public', 1 );
+    }
+    $coming_soon_opts = [
+        'wpcom_launch_status',
+        'wpcom_site_status',
+        'wpcom_public_coming_soon',
+        'wpcom_coming_soon',
+    ];
+    foreach ( $coming_soon_opts as $opt ) {
+        if ( get_option( $opt ) ) {
+            update_option( $opt, 0 );
+        }
+    }
+}, 5 );
+
