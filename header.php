@@ -35,9 +35,15 @@
 <?php wp_body_open(); ?>
 <?php
 $_lang = romvill_current_lang();
-$_current_url = ( is_ssl() ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . strtok( $_SERVER['REQUEST_URI'], '?' );
+// Use home_url for canonical host (avoids host-header injection via $_SERVER['HTTP_HOST'])
+$_request_path = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
+$_current_url  = home_url( $_request_path );
 $_lang_flags = [ 'es'=>'🇪🇸', 'en'=>'🇬🇧', 'fr'=>'🇫🇷', 'de'=>'🇩🇪', 'ru'=>'🇷🇺' ];
 $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'Deutsch', 'ru'=>'Русский' ];
+// Define contacto_url once for both desktop and mobile menus
+$contacto_page = get_page_by_path( 'contacto' );
+$contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' );
+$contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
 ?>
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-slate-200 dark:bg-slate-900/95 dark:border-slate-800" role="navigation" aria-label="<?php echo esc_attr( romvill_t( 'nav.aria' ) ); ?>">
@@ -74,16 +80,16 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
                     <!-- Language Switcher -->
                     <div class="lang-switcher">
                         <button class="lang-btn flex items-center gap-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors px-1 py-1">
-                            <span class="lang-flag"><?php echo $_lang_flags[ $_lang ]; ?></span>
-                            <span class="uppercase font-bold text-xs"><?php echo strtoupper( $_lang ); ?></span>
+                            <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $_lang ] ); ?></span>
+                            <span class="uppercase font-bold text-xs"><?php echo esc_html( strtoupper( $_lang ) ); ?></span>
                             <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
                         <div class="lang-dropdown">
                             <?php foreach ( ROMVILL_LANGS as $lc ) : ?>
                             <a href="<?php echo esc_url( add_query_arg( 'lang', $lc, $_current_url ) ); ?>"
                                class="<?php echo $lc === $_lang ? 'active' : ''; ?>">
-                                <span class="lang-flag"><?php echo $_lang_flags[ $lc ]; ?></span>
-                                <?php echo $_lang_labels[ $lc ]; ?>
+                                <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $lc ] ); ?></span>
+                                <?php echo esc_html( $_lang_labels[ $lc ] ); ?>
                             </a>
                             <?php endforeach; ?>
                         </div>
@@ -97,11 +103,6 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
                     </button>
                 </div>
                 <div class="hidden md:block">
-                    <?php
-                    $contacto_page = get_page_by_path( 'contacto' );
-                    $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' );
-                    $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
-                    ?>
                     <a href="<?php echo esc_url( $contacto_url ); ?>"
                         class="px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:scale-105 transition-transform">
                         <?php echo esc_html( romvill_t( 'nav.cta' ) ); ?></a>
@@ -110,15 +111,15 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
                     <!-- Mobile lang -->
                     <div class="lang-switcher">
                         <button class="lang-btn flex items-center gap-1 text-sm font-bold text-slate-700 dark:text-slate-300 px-2 py-1 border border-slate-200 dark:border-slate-700 rounded">
-                            <span class="lang-flag"><?php echo $_lang_flags[ $_lang ]; ?></span>
-                            <span class="uppercase text-xs"><?php echo strtoupper( $_lang ); ?></span>
+                            <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $_lang ] ); ?></span>
+                            <span class="uppercase text-xs"><?php echo esc_html( strtoupper( $_lang ) ); ?></span>
                         </button>
                         <div class="lang-dropdown">
                             <?php foreach ( ROMVILL_LANGS as $lc ) : ?>
                             <a href="<?php echo esc_url( add_query_arg( 'lang', $lc, $_current_url ) ); ?>"
                                class="<?php echo $lc === $_lang ? 'active' : ''; ?>">
-                                <span class="lang-flag"><?php echo $_lang_flags[ $lc ]; ?></span>
-                                <?php echo $_lang_labels[ $lc ]; ?>
+                                <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $lc ] ); ?></span>
+                                <?php echo esc_html( $_lang_labels[ $lc ] ); ?>
                             </a>
                             <?php endforeach; ?>
                         </div>

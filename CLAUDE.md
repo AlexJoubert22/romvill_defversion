@@ -37,20 +37,27 @@ Every push to `main` deploys live. Always commit and push when done. Do NOT push
 /
 ├── functions.php          # Theme engine: multilingual, enqueue, AJAX, SEO, activation
 ├── inc/
-│   └── translations.php   # ALL translated strings — 5 languages, ~340 keys
+│   ├── translations.php   # ALL translated strings — 5 languages, ~340 keys
+│   ├── questionnaire-engine.php  # Shared engine (CSS+HTML+JS) for blocks 2/3/4
+│   └── site-config.php    # Auto-updates, perf, hardening filters
 ├── header.php             # Navbar, lang switcher, dark mode toggle, mobile menu
-├── footer.php             # Footer nav, legal links, WhatsApp floating button
+├── footer.php             # Footer nav, legal links
 ├── front-page.php         # Homepage (hero, stats, pillars, how-it-works, cities, CTA)
 ├── page-metodologia.php   # Methodology page
 ├── page-analisis.php      # Analysis dimensions page
 ├── page-sectores.php      # Sectors (B2C + B2B) page
-├── page-contacto.php      # Contact form page (with AJAX handler)
+├── page-contacto.php      # Contact page (4 profile cards + form with AJAX)
 ├── page-privacidad.php    # Privacy policy page (GDPR)
 ├── page-terminos.php      # Terms & conditions page
+├── page-presupuesto-bloque-1.php  # Bloque 1 questionnaire (custom design)
+├── page-presupuesto-bloque-2.php  # Bloque 2 questionnaire (uses shared engine)
+├── page-presupuesto-bloque-3.php  # Bloque 3 questionnaire (uses shared engine)
+├── page-presupuesto-bloque-4.php  # Bloque 4 questionnaire (uses shared engine)
 ├── page-perfil-seguridad.php   # Sub-page: security profile
 ├── page-perfil-demografico.php # Sub-page: demographic profile
 ├── page-perfil-sanidad.php     # Sub-page: health profile
 ├── page-perfil-movilidad.php   # Sub-page: mobility profile
+├── page-perfil-proyeccion.php  # Sub-page: projection profile
 ├── style.css              # WordPress theme header + base styles
 ├── assets/
 │   ├── css/
@@ -197,14 +204,6 @@ This outputs `<meta name="description">`, `og:*`, and `twitter:card` tags into `
 - The `node_modules/` folder is in `.gitignore` — do NOT commit it.
 
 ---
-
-## WhatsApp button
-
-The floating WhatsApp button is in `footer.php`. The phone number is hardcoded as `34600000000` — **update this to the real Romvill WhatsApp number** before going live:
-
-```php
-href="https://wa.me/34600000000"   <!-- change this number -->
-```
 
 ---
 

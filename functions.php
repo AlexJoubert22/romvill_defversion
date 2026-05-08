@@ -20,7 +20,19 @@ function romvill_current_lang() {
     // 1. URL query param  (?lang=en)
     if ( isset( $_GET['lang'] ) && in_array( $_GET['lang'], ROMVILL_LANGS, true ) ) {
         $lang = $_GET['lang'];
-        setcookie( 'romvill_lang', $lang, time() + 60 * 60 * 24 * 365, '/', '', is_ssl(), true );
+        // PHP 7.3+ array form to support SameSite (mitigates CSRF on cookie)
+        if ( PHP_VERSION_ID >= 70300 ) {
+            setcookie( 'romvill_lang', $lang, array(
+                'expires'  => time() + 60 * 60 * 24 * 365,
+                'path'     => '/',
+                'domain'   => '',
+                'secure'   => is_ssl(),
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ) );
+        } else {
+            setcookie( 'romvill_lang', $lang, time() + 60 * 60 * 24 * 365, '/', '', is_ssl(), true );
+        }
         return $lang;
     }
     // 2. Cookie
@@ -165,7 +177,9 @@ function romvill_seo( $args = array() ) {
     $title     = $a['title'] ?: $site_name;
     $desc      = $a['desc'];
     $image     = $a['image'] ?: get_template_directory_uri() . '/assets/images/og-romvill.jpg';
-    $url       = $a['url']   ?: ( is_ssl() ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . strtok( $_SERVER['REQUEST_URI'], '?' );
+    // Build canonical URL via home_url() to avoid host-header injection
+    $req_path  = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
+    $url       = $a['url'] ?: home_url( $req_path );
 
     add_action( 'wp_head', function() use ( $title, $desc, $image, $url, $site_name, $a ) {
         if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
@@ -223,6 +237,36 @@ function romvill_activate() {
             'slug'     => 'terminos',
             'template' => 'page-terminos.php',
             'order'    => 6,
+        ),
+        array(
+            'title'    => 'Perfil — Seguridad',
+            'slug'     => 'perfil-seguridad',
+            'template' => 'page-perfil-seguridad.php',
+            'order'    => 20,
+        ),
+        array(
+            'title'    => 'Perfil — Demográfico',
+            'slug'     => 'perfil-demografico',
+            'template' => 'page-perfil-demografico.php',
+            'order'    => 21,
+        ),
+        array(
+            'title'    => 'Perfil — Sanidad',
+            'slug'     => 'perfil-sanidad',
+            'template' => 'page-perfil-sanidad.php',
+            'order'    => 22,
+        ),
+        array(
+            'title'    => 'Perfil — Movilidad',
+            'slug'     => 'perfil-movilidad',
+            'template' => 'page-perfil-movilidad.php',
+            'order'    => 23,
+        ),
+        array(
+            'title'    => 'Perfil — Proyección',
+            'slug'     => 'perfil-proyeccion',
+            'template' => 'page-perfil-proyeccion.php',
+            'order'    => 24,
         ),
         array(
             'title'    => 'Solicitar Presupuesto — Bloque 1',
@@ -291,17 +335,28 @@ function romvill_activate() {
 }
 add_action( 'after_switch_theme', 'romvill_activate' );
 
-// ─── Auto-ensure pages on every load (cheap version-gated check) ───
+// ─── Auto-ensure pages (version-gated, lock-protected) ──────
 // Bump ROMVILL_PAGES_VERSION whenever romvill_activate() is modified
-// to trigger automatic page creation/update on next request.
-define( 'ROMVILL_PAGES_VERSION', '2026.05.07.2' );
-add_action( 'init', 'romvill_ensure_pages', 20 );
+// to trigger automatic page creation/update on next admin request.
+// Only runs for logged-in users with manage_options capability to
+// avoid race conditions with anonymous traffic + transient lock to
+// prevent simultaneous executions.
+define( 'ROMVILL_PAGES_VERSION', '2026.05.08.1' );
+add_action( 'admin_init', 'romvill_ensure_pages' );
 function romvill_ensure_pages() {
     if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
         return;
     }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+    if ( get_transient( 'romvill_pages_lock' ) ) {
+        return;
+    }
+    set_transient( 'romvill_pages_lock', 1, 60 );
     romvill_activate();
     update_option( 'romvill_pages_version', ROMVILL_PAGES_VERSION );
+    delete_transient( 'romvill_pages_lock' );
 }
 
 // ─── Generic Questionnaire AJAX Handler (Bloques 2/3/4) ──────

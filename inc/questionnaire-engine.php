@@ -15,14 +15,16 @@ function romvill_q_render( $config ) {
 
     add_action( 'wp_head', 'romvill_q_print_css' );
 
-    get_header();
-
+    // SEO must register meta tags BEFORE get_header() fires wp_head — otherwise
+    // the meta description/og: tags don't get printed.
     if ( function_exists( 'romvill_seo' ) ) {
         romvill_seo( array(
             'title' => $config['page_title']    ?? 'ROMVILL — Solicitar Presupuesto',
             'desc'  => $config['page_desc']     ?? 'Cuestionario de solicitud de presupuesto.',
         ) );
     }
+
+    get_header();
 
     romvill_q_print_html( $config );
     romvill_q_print_js( $config );
@@ -428,8 +430,9 @@ function bqBuildT(){
   /* merge UI + block-specific (cover, mid, blocks, motivators, questions) */
   var b=BQ_CONFIG.lang[BQ_LANG]||BQ_CONFIG.lang.es;
   var merged={};
-  for(var k in ui)merged[k]=ui[k];
-  for(var k in b)merged[k]=b[k];
+  var ku, kb;
+  for(ku in ui) merged[ku]=ui[ku];
+  for(kb in b)  merged[kb]=b[kb];
   return merged;
 }
 
@@ -493,7 +496,16 @@ function bqStartForm(){
   bqShow('rv-bq-sc-q'); bqRenderQ(); bqResetIdle();
 }
 
-function bqEsc(s){return(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+// Escape a string so it can be safely embedded in an HTML attribute (e.g. onclick="bqPS(0,'…',this)")
+// Order matters: encode & first to avoid double-encoding
+function bqEsc(s){
+  return (s||'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,"\\'");
+}
 
 function bqRenderQ(){
   var qs=BQ_T.questions||[];
