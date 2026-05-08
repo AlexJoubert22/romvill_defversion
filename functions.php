@@ -6,6 +6,16 @@
  * @version 1.0.0
  */
 
+// ─── Force site public — override Jetpack/WPCOM Coming Soon ──
+// Use option filters so the value is intercepted every time it's
+// read, regardless of which hook Jetpack uses to check it.
+foreach ( [ 'wpcom_public_coming_soon', 'wpcom_coming_soon', 'wpcom_launch_status', 'wpcom_site_status' ] as $_cs_opt ) {
+    add_filter( 'option_' . $_cs_opt,         '__return_zero' );
+    add_filter( 'default_option_' . $_cs_opt, '__return_zero' );
+}
+add_filter( 'option_blog_public',         '__return_true' );
+add_filter( 'default_option_blog_public', '__return_true' );
+
 // ─── Multilingual Engine ──────────────────────────────────────
 require_once get_template_directory() . '/inc/translations.php';
 
