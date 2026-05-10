@@ -513,7 +513,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                 <!-- Contact channels -->
                 <div class="rf-anim mt-6" style="animation-delay:.3s">
                     <h3 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4 px-1"><?php echo esc_html( romvill_t( 'contact.channels' ) ); ?></h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="grid grid-cols-1 gap-4 mb-6">
                         <a href="mailto:info@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/30 hover:shadow-md transition-all group">
                             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined text-xl">mail</span>
