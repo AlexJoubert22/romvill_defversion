@@ -534,10 +534,10 @@ function bqRenderQ(){
 
   if(q.type==='tel'){
     var sp=A.tel_pais||'España',dc=A.tel_dial||'+34',nv=A.tel_num||'';
-    var ag=A.tel_agent===true;
     var opts=BQ_COUNTRIES.map(function(c){return'<option value="'+c.n+'" data-dial="'+c.c+'"'+(sp===c.n?' selected':'')+'>'+c.n+' ('+c.c+')</option>';}).join('');
     h+='<div class="rv-bq-ph-wrap"><select class="rv-bq-ph-country" id="rv-bq-ph-country" onchange="bqUpdateDial(this)">'+opts+'</select><div class="rv-bq-ph-dial" id="rv-bq-ph-dial">'+dc+'</div><input class="rv-bq-ph-num" id="rv-bq-ph-num" type="tel" placeholder="Número de teléfono" value="'+nv+'" oninput="A.tel_num=this.value;bqSave()"></div>';
-    h+='<div class="rv-bq-agent-opt'+(ag?' sel':'')+'" onclick="bqToggleAgent(this)"><div class="rv-bq-opt-box"><svg class="rv-bq-tick" viewBox="0 0 12 12" fill="none" stroke="#FFF" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div><div><div class="rv-bq-agent-title">'+BQ_T.agentTitle+'</div><div class="rv-bq-agent-sub">'+BQ_T.agentSub+'</div></div></div>';
+    /* Agent option disabled — never rendered (force tel_agent to false) */
+    A.tel_agent=false;
   }else if(q.type==='zona'){
     var io=A.zona_intl===true;
     h+='<div class="rv-bq-opts">';

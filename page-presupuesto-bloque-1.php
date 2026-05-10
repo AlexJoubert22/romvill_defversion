@@ -562,17 +562,14 @@ function b1RenderQ(){
   // Tel
   if(q.type==='tel'){
     var selPais=A['tel_pais']||'España'; var dialCode=A['tel_dial']||'+34'; var numVal=A['tel_num']||'';
-    var agSel=A['tel_agent']===true;
     var opts=COUNTRIES.map(function(c){return'<option value="'+c.n+'" data-dial="'+c.c+'"'+(selPais===c.n?' selected':'')+'>'+c.n+' ('+c.c+')</option>';}).join('');
     h+='<div class="rv-b1-ph-wrap" id="rv-b1-ph-wrap">'
       +'<select class="rv-b1-ph-country" id="rv-b1-ph-country" onchange="b1UpdateDial(this)">'+opts+'</select>'
       +'<div class="rv-b1-ph-dial" id="rv-b1-ph-dial">'+dialCode+'</div>'
       +'<input class="rv-b1-ph-num" id="rv-b1-ph-num" type="tel" placeholder="Número de teléfono" value="'+numVal+'" oninput="A[\'tel_num\']=this.value;b1Save()">'
       +'</div>';
-    h+='<div class="rv-b1-agent-opt'+(agSel?' sel':'')+'" onclick="b1ToggleAgent(this)">'
-      +'<div class="rv-b1-opt-box"><svg class="rv-b1-tick" viewBox="0 0 12 12" fill="none" stroke="#FFF" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>'
-      +'<div><div class="rv-b1-agent-title">'+T.agentTitle+'</div><div class="rv-b1-agent-sub">'+T.agentSub+'</div></div>'
-      +'</div>';
+    /* Agent option disabled — never rendered, no longer offered to client */
+    A['tel_agent']=false;
 
   // Zona
   }else if(q.type==='zona'){
