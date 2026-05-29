@@ -31,9 +31,9 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80 z-10"></div>
 
         <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-16">
-            <h1 class="font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em;">
+            <div class="font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em;">
                 ROMVILL
-            </h1>
+            </div>
             <div class="flex items-center justify-center gap-4 mb-5">
                 <span class="h-px w-10 bg-secondary/70"></span>
                 <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em;"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
@@ -42,9 +42,9 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <p class="font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8">
                 <?php echo esc_html( romvill_t( 'hero.slogan' ) ); ?>
             </p>
-            <p class="text-base md:text-lg text-slate-300 font-light mb-10 max-w-xl mx-auto leading-relaxed">
+            <h1 class="text-base md:text-lg text-slate-300 font-light mb-10 max-w-xl mx-auto leading-relaxed">
                 <?php echo wp_kses( romvill_t( 'hero.desc' ), [ 'br' => [] ] ); ?>
-            </p>
+            </h1>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="<?php echo esc_url( $contacto_url ); ?>"
                     class="min-w-[200px] h-14 px-8 bg-secondary hover:bg-[#a3884c] text-white text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
