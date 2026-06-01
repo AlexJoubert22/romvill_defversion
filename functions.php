@@ -158,7 +158,31 @@ function romvill_img( $file ) {
     return romvill_asset( 'images/' . $file );
 }
 
-// ─── SEO: Meta + Open Graph ──────────────────────────────────
+// ─── Helper: per-language canonical URL for a given path ─────
+// es  → no query param (https://romvill.com/path/)
+// xx  → ?lang=xx       (https://romvill.com/path/?lang=xx)
+// Uses home_url() so the host is canonical (no host-header injection).
+function romvill_lang_url( $path, $lang ) {
+    $base = home_url( $path );
+    if ( $lang === 'es' ) {
+        return $base;
+    }
+    return add_query_arg( 'lang', $lang, $base );
+}
+
+// ─── Helper: og:locale code for a language ───────────────────
+function romvill_og_locale( $lang ) {
+    $map = array(
+        'es' => 'es_ES',
+        'en' => 'en_GB',
+        'fr' => 'fr_FR',
+        'de' => 'de_DE',
+        'ru' => 'ru_RU',
+    );
+    return $map[ $lang ] ?? 'es_ES';
+}
+
+// ─── SEO: Meta + Open Graph + hreflang ───────────────────────
 function romvill_seo( $args = array() ) {
     $a = wp_parse_args( $args, array(
         'desc'  => '',
@@ -172,19 +196,45 @@ function romvill_seo( $args = array() ) {
     $title     = $a['title'] ?: $site_name;
     $desc      = $a['desc'];
     $image     = $a['image'] ?: get_template_directory_uri() . '/assets/images/og-romvill.jpg';
-    // Build canonical URL via home_url() to avoid host-header injection
-    $req_path  = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
-    $url       = $a['url'] ?: home_url( $req_path );
 
-    add_action( 'wp_head', function() use ( $title, $desc, $image, $url, $site_name, $a ) {
+    // Current request path (no query string) — the base for every
+    // language variant of this page.
+    $req_path  = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
+    $cur_lang  = romvill_current_lang();
+
+    // Canonical & og:url for THIS page in THIS language.
+    $canonical = $a['url'] ?: romvill_lang_url( $req_path, $cur_lang );
+
+    add_action( 'wp_head', function() use ( $title, $desc, $image, $canonical, $site_name, $a, $req_path, $cur_lang ) {
         if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
         echo '<meta name="robots" content="index, follow" />' . "\n";
+
+        // Canonical (per language)
+        echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
+
+        // hreflang alternates — identical block on all 5 language
+        // versions of this page. x-default points to the ES version.
+        foreach ( ROMVILL_LANGS as $lc ) {
+            echo '<link rel="alternate" hreflang="' . esc_attr( $lc ) . '" href="' . esc_url( romvill_lang_url( $req_path, $lc ) ) . '" />' . "\n";
+        }
+        echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( romvill_lang_url( $req_path, 'es' ) ) . '" />' . "\n";
+
+        // Open Graph
         echo '<meta property="og:type" content="' . esc_attr( $a['type'] ) . '" />' . "\n";
         echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
         echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
         if ( $desc ) echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
-        echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
+        echo '<meta property="og:url" content="' . esc_url( $canonical ) . '" />' . "\n";
         echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
+
+        // og:locale (current) + alternates (the other 4)
+        echo '<meta property="og:locale" content="' . esc_attr( romvill_og_locale( $cur_lang ) ) . '" />' . "\n";
+        foreach ( ROMVILL_LANGS as $lc ) {
+            if ( $lc === $cur_lang ) continue;
+            echo '<meta property="og:locale:alternate" content="' . esc_attr( romvill_og_locale( $lc ) ) . '" />' . "\n";
+        }
+
+        // Twitter
         echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
         echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
         if ( $desc ) echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
