@@ -29,9 +29,9 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
             <?php
             $cards = array(
                 array('icon'=>'directions_car','title'=>'Accesos por carretera','desc'=>'Autopistas, autovías y carreteras principales conectadas con la zona. Tiempos de acceso al aeropuerto y a las ciudades cercanas.'),
-                array('icon'=>'directions_transit','title'=>'Transporte público','desc'=>'Paradas de autobús, estaciones de tren/metro/tranvía cercanas, frecuencias reales y calidad del servicio.'),
-                array('icon'=>'local_parking','title'=>'Aparcamiento','desc'=>'Disponibilidad de aparcamiento público y privado, coste medio y dificultad real para aparcar en distintas franjas horarias.'),
-                array('icon'=>'schedule','title'=>'Tiempos reales','desc'=>'Medimos los tiempos de desplazamiento reales a puntos clave (trabajo, colegios, hospitales, playa) en hora punta y fuera de ella.'),
+                array('icon'=>'directions_transit','title'=>'Transporte público','desc'=>romvill_t('perfil.mov.c2.desc')),
+                array('icon'=>'local_parking','title'=>'Aparcamiento','desc'=>romvill_t('perfil.mov.c3.desc')),
+                array('icon'=>'schedule','title'=>romvill_t('perfil.mov.c4.title'),'desc'=>romvill_t('perfil.mov.c4.desc')),
             );
             foreach ($cards as $c) :
             ?>
