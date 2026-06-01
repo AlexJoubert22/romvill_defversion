@@ -19,7 +19,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
             <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3">Dimensión 03</span>
             <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6">Perfil de Sanidad</h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                Mapeamos la infraestructura sanitaria accesible desde la zona: hospitales, centros de salud, farmacias y tiempos de respuesta reales.
+                <?php echo esc_html( romvill_t( 'perfil.san.intro' ) ); ?>
             </p>
         </div>
     </section>
