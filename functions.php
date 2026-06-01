@@ -24,29 +24,17 @@ define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 function romvill_current_lang() {
     static $lang = null;
     if ( $lang !== null ) return $lang;
-    // 1. URL query param  (?lang=en)
+    // Language is determined ONLY by the ?lang URL parameter.
+    // No cookie is read or written: a language cookie made Batcache
+    // (WordPress.com page cache) serve cross-language versions of the
+    // same URL to cold visitors. Relying solely on ?lang keeps each
+    // language on its own cacheable URL. Internal links already carry
+    // ?lang via add_query_arg(), so navigation preserves the language.
     if ( isset( $_GET['lang'] ) && in_array( $_GET['lang'], ROMVILL_LANGS, true ) ) {
         $lang = $_GET['lang'];
-        // PHP 7.3+ array form to support SameSite (mitigates CSRF on cookie)
-        if ( PHP_VERSION_ID >= 70300 ) {
-            setcookie( 'romvill_lang', $lang, array(
-                'expires'  => time() + 60 * 60 * 24 * 365,
-                'path'     => '/',
-                'domain'   => '',
-                'secure'   => is_ssl(),
-                'httponly' => true,
-                'samesite' => 'Lax',
-            ) );
-        } else {
-            setcookie( 'romvill_lang', $lang, time() + 60 * 60 * 24 * 365, '/', '', is_ssl(), true );
-        }
         return $lang;
     }
-    // 2. Cookie
-    if ( isset( $_COOKIE['romvill_lang'] ) && in_array( $_COOKIE['romvill_lang'], ROMVILL_LANGS, true ) ) {
-        $lang = $_COOKIE['romvill_lang'];
-        return $lang;
-    }
+    // Default: Spanish
     $lang = 'es';
     return $lang;
 }
