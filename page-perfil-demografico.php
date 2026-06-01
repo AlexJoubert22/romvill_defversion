@@ -19,7 +19,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
             <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3">Dimensión 02</span>
             <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6">Perfil Demográfico</h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                Le contamos quién vive en la zona: familias, profesionales, jubilados, población flotante. El perfil real de su futuro vecindario.
+                <?php echo esc_html( romvill_t( 'perfil.dem.intro' ) ); ?>
             </p>
         </div>
     </section>
@@ -28,10 +28,10 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
         <div class="grid md:grid-cols-2 gap-8">
             <?php
             $cards = array(
-                array('icon'=>'people','title'=>'Composición poblacional','desc'=>'Edad media, distribución por franjas de edad, ratio de familias vs. individuos, porcentaje de residentes permanentes vs. temporales.'),
-                array('icon'=>'diversity_3','title'=>'Nivel socioeconómico','desc'=>'Renta media declarada, tipo de empleo predominante, nivel educativo del área y poder adquisitivo real del vecindario.'),
-                array('icon'=>'trending_up','title'=>'Evolución y tendencias','desc'=>'Cómo ha cambiado la zona en los últimos años: crecimiento, gentrificación, envejecimiento o rejuvenecimiento del barrio.'),
-                array('icon'=>'language','title'=>'Perfil internacional','desc'=>'Proporción de residentes extranjeros, nacionalidades predominantes, comunidades establecidas y nivel de integración.'),
+                array('icon'=>'people','title'=>romvill_t('perfil.dem.c1.title'),'desc'=>romvill_t('perfil.dem.c1.desc')),
+                array('icon'=>'diversity_3','title'=>romvill_t('perfil.dem.c2.title'),'desc'=>romvill_t('perfil.dem.c2.desc')),
+                array('icon'=>'trending_up','title'=>romvill_t('perfil.dem.c3.title'),'desc'=>romvill_t('perfil.dem.c3.desc')),
+                array('icon'=>'language','title'=>romvill_t('perfil.dem.c4.title'),'desc'=>romvill_t('perfil.dem.c4.desc')),
             );
             foreach ($cards as $c) :
             ?>
