@@ -409,7 +409,7 @@ Idioma:        " . strtoupper( $lang ) . "{$intl_flag}
 {$body_in}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ROMVILL · info@romvill.com · www.romvill.com
+ROMVILL · contacto@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
@@ -524,7 +524,7 @@ Cómo nos conoció:    {$como}
 Comentarios:         {$com}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ROMVILL · info@romvill.com · www.romvill.com
+ROMVILL · contacto@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
