@@ -182,7 +182,64 @@ function romvill_og_locale( $lang ) {
     return $map[ $lang ] ?? 'es_ES';
 }
 
-// ─── SEO: Meta + Open Graph + hreflang ───────────────────────
+// ─── Disable environment duplicate SEO tags ──────────────────
+// WordPress core adds its own <link rel="canonical"> (Spanish, no
+// ?lang) and Jetpack injects its own Open Graph/locale tags. Both
+// would duplicate / conflict with our per-language tags, so we
+// remove them and let ONLY our emitters output canonical/og/hreflang.
+remove_action( 'wp_head', 'rel_canonical' );
+add_filter( 'jetpack_enable_open_graph', '__return_false' );
+
+// ─── Central language SEO emitter (Tanda 1) ──────────────────
+// Hooked directly on wp_head at priority 1, registered at theme
+// load — so it ALWAYS runs, regardless of whether a template calls
+// romvill_seo() before or after get_header(). It computes everything
+// from the current request path + current language (no template args
+// needed), so it works on every page without editing templates.
+//
+// Emits: canonical, og:url, og:locale (+ alternates), full hreflang
+// block (5 langs + x-default → ES). Identical block on all 5 language
+// versions of a page. A static guard prevents double output.
+add_action( 'wp_head', 'romvill_emit_lang_seo', 1 );
+function romvill_emit_lang_seo() {
+    static $done = false;
+    if ( $done || is_admin() ) return;
+    $done = true;
+
+    $req_path  = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
+    $cur_lang  = romvill_current_lang();
+    $canonical = romvill_lang_url( $req_path, $cur_lang );
+
+    echo "\n";
+    // Canonical (per language) — single, replaces core's rel_canonical
+    echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
+
+    // hreflang alternates — identical on all 5 language versions of
+    // this page. x-default → ES (no param).
+    foreach ( ROMVILL_LANGS as $lc ) {
+        echo '<link rel="alternate" hreflang="' . esc_attr( $lc ) . '" href="' . esc_url( romvill_lang_url( $req_path, $lc ) ) . '" />' . "\n";
+    }
+    echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( romvill_lang_url( $req_path, 'es' ) ) . '" />' . "\n";
+
+    // og:url = canonical
+    echo '<meta property="og:url" content="' . esc_url( $canonical ) . '" />' . "\n";
+
+    // og:locale (current) + alternates (other 4)
+    echo '<meta property="og:locale" content="' . esc_attr( romvill_og_locale( $cur_lang ) ) . '" />' . "\n";
+    foreach ( ROMVILL_LANGS as $lc ) {
+        if ( $lc === $cur_lang ) continue;
+        echo '<meta property="og:locale:alternate" content="' . esc_attr( romvill_og_locale( $lc ) ) . '" />' . "\n";
+    }
+}
+
+// ─── SEO: content meta (title/description/image) — Tanda 2 scope ──
+// Emits only CONTENT tags (description, og:title/description/image,
+// twitter). Language tags (canonical/og:url/og:locale/hreflang) are
+// handled centrally by romvill_emit_lang_seo() above to avoid
+// duplicates. NOTE: on templates that call romvill_seo() AFTER
+// get_header(), these content tags don't print (a known ordering
+// issue to be addressed in Tanda 2). The Tanda-1 language tags are
+// unaffected because they run from the central emitter.
 function romvill_seo( $args = array() ) {
     $a = wp_parse_args( $args, array(
         'desc'  => '',
@@ -197,44 +254,14 @@ function romvill_seo( $args = array() ) {
     $desc      = $a['desc'];
     $image     = $a['image'] ?: get_template_directory_uri() . '/assets/images/og-romvill.jpg';
 
-    // Current request path (no query string) — the base for every
-    // language variant of this page.
-    $req_path  = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
-    $cur_lang  = romvill_current_lang();
-
-    // Canonical & og:url for THIS page in THIS language.
-    $canonical = $a['url'] ?: romvill_lang_url( $req_path, $cur_lang );
-
-    add_action( 'wp_head', function() use ( $title, $desc, $image, $canonical, $site_name, $a, $req_path, $cur_lang ) {
+    add_action( 'wp_head', function() use ( $title, $desc, $image, $site_name, $a ) {
         if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
         echo '<meta name="robots" content="index, follow" />' . "\n";
-
-        // Canonical (per language)
-        echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
-
-        // hreflang alternates — identical block on all 5 language
-        // versions of this page. x-default points to the ES version.
-        foreach ( ROMVILL_LANGS as $lc ) {
-            echo '<link rel="alternate" hreflang="' . esc_attr( $lc ) . '" href="' . esc_url( romvill_lang_url( $req_path, $lc ) ) . '" />' . "\n";
-        }
-        echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( romvill_lang_url( $req_path, 'es' ) ) . '" />' . "\n";
-
-        // Open Graph
         echo '<meta property="og:type" content="' . esc_attr( $a['type'] ) . '" />' . "\n";
         echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
         echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
         if ( $desc ) echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
-        echo '<meta property="og:url" content="' . esc_url( $canonical ) . '" />' . "\n";
         echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
-
-        // og:locale (current) + alternates (the other 4)
-        echo '<meta property="og:locale" content="' . esc_attr( romvill_og_locale( $cur_lang ) ) . '" />' . "\n";
-        foreach ( ROMVILL_LANGS as $lc ) {
-            if ( $lc === $cur_lang ) continue;
-            echo '<meta property="og:locale:alternate" content="' . esc_attr( romvill_og_locale( $lc ) ) . '" />' . "\n";
-        }
-
-        // Twitter
         echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
         echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
         if ( $desc ) echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
