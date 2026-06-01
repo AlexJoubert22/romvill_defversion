@@ -19,7 +19,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
             <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3">Dimensión 01</span>
             <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6">Perfil de Seguridad</h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                No nos fiamos de titulares ni de apariencias. Investigamos la seguridad real de la zona: datos oficiales, fuentes locales y observación directa.
+                <?php echo esc_html( romvill_t( 'perfil.seg.intro' ) ); ?>
             </p>
         </div>
     </section>
@@ -28,10 +28,10 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
         <div class="grid md:grid-cols-2 gap-8">
             <?php
             $cards = array(
-                array('icon'=>'shield','title'=>'Criminalidad por zona','desc'=>'Analizamos los datos oficiales de delitos, incidentes y denuncias recientes para cada barrio o urbanización.'),
-                array('icon'=>'gpp_good','title'=>'Percepción vecinal','desc'=>'Recogemos la percepción real de quienes viven en la zona: cómo se sienten al caminar de noche, conflictos habituales, nivel de confianza.'),
-                array('icon'=>'visibility','title'=>'Vigilancia y prevención','desc'=>'Evaluamos la presencia policial, cámaras, seguridad privada y el nivel de iluminación de las calles.'),
-                array('icon'=>'crisis_alert','title'=>'Factores de riesgo','desc'=>'Identificamos zonas problemáticas cercanas, botellones, conflictos vecinales recurrentes y puntos ciegos de seguridad.'),
+                array('icon'=>'shield','title'=>romvill_t('perfil.seg.c1.title'),'desc'=>romvill_t('perfil.seg.c1.desc')),
+                array('icon'=>'gpp_good','title'=>romvill_t('perfil.seg.c2.title'),'desc'=>romvill_t('perfil.seg.c2.desc')),
+                array('icon'=>'visibility','title'=>romvill_t('perfil.seg.c3.title'),'desc'=>romvill_t('perfil.seg.c3.desc')),
+                array('icon'=>'crisis_alert','title'=>romvill_t('perfil.seg.c4.title'),'desc'=>romvill_t('perfil.seg.c4.desc')),
             );
             foreach ($cards as $c) :
             ?>
