@@ -25,9 +25,6 @@ require_once get_template_directory() . '/inc/solicitudes-cpt.php';
 // ─── Lector/parser de solicitudes (interno) ───────────────────
 require_once get_template_directory() . '/inc/solicitud-parser.php';
 
-// ─── TEMPORAL: visor de depuración del parser (BORRAR tras verificar) ─
-require_once get_template_directory() . '/inc/_debug-parser.php';
-
 // ─── Internal auto price estimate (email only) ────────────────
 require_once get_template_directory() . '/inc/estimacion.php';
 
