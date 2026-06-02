@@ -23,12 +23,28 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 const ROMVILL_SOL_CPT = 'romvill_solicitud';
 
 /* ── Estados disponibles ─────────────────────────────────────── */
+// Order matters (shown in this order). Existing requests keep their
+// stored key unchanged: nueva / presupuesto_enviado / aceptada /
+// descartada are preserved verbatim, so no request is ever orphaned.
+// 'entregada' is the new state (informe entregado y cobrado).
 function romvill_sol_estados() {
     return array(
         'nueva'               => 'Nueva',
         'presupuesto_enviado' => 'Presupuesto enviado',
         'aceptada'            => 'Aceptada',
+        'entregada'           => 'Entregada',
         'descartada'          => 'Descartada',
+    );
+}
+
+/* ── Colores de píldora por estado ───────────────────────────── */
+function romvill_sol_colores() {
+    return array(
+        'nueva'               => '#3c434a', // gris oscuro
+        'presupuesto_enviado' => '#b8860b', // dorado
+        'aceptada'            => '#2271b1', // azul
+        'entregada'           => '#1a7f37', // verde
+        'descartada'          => '#888888', // gris
     );
 }
 
@@ -173,11 +189,75 @@ function romvill_sol_column_content( $col, $post_id ) {
         case 'rv_estado':
             $est = get_post_meta( $post_id, '_rv_estado', true ) ?: 'nueva';
             $labels = romvill_sol_estados();
-            $colors = array( 'nueva' => '#2271b1', 'presupuesto_enviado' => '#b8860b', 'aceptada' => '#1a7f37', 'descartada' => '#888' );
-            $c = $colors[ $est ] ?? '#2271b1';
+            $colors = romvill_sol_colores();
+            $c = $colors[ $est ] ?? '#3c434a';
             echo '<span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600;color:#fff;background:' . esc_attr( $c ) . '">' . esc_html( $labels[ $est ] ?? $est ) . '</span>';
             break;
     }
+}
+
+/* ── One-time cleanup: delete the verification test request ──── */
+// Removes the test entry RV-2026-TEST-PRUEBA-002 created during the
+// previous task's verification. Runs once (guarded by an option),
+// only in admin, so it never repeats and never touches real data.
+add_action( 'admin_init', 'romvill_sol_cleanup_test' );
+function romvill_sol_cleanup_test() {
+    if ( get_option( 'romvill_sol_test_cleaned' ) === '1' ) return;
+    if ( ! current_user_can( 'manage_options' ) ) return;
+    $q = get_posts( array(
+        'post_type'      => ROMVILL_SOL_CPT,
+        'post_status'    => 'any',
+        'meta_key'       => '_rv_ref',
+        'meta_value'     => 'RV-2026-TEST-PRUEBA-002',
+        'fields'         => 'ids',
+        'posts_per_page' => -1,
+        'no_found_rows'  => true,
+    ) );
+    foreach ( $q as $id ) {
+        wp_delete_post( $id, true ); // force delete (skip trash)
+    }
+    update_option( 'romvill_sol_test_cleaned', '1' );
+}
+
+/* ── Contador por estado (arriba del listado) ────────────────── */
+add_action( 'admin_notices', 'romvill_sol_counters' );
+function romvill_sol_counters() {
+    $screen = get_current_screen();
+    if ( ! $screen || $screen->id !== 'edit-' . ROMVILL_SOL_CPT ) return;
+
+    $labels  = romvill_sol_estados();
+    $colors  = romvill_sol_colores();
+    $current = isset( $_GET['rv_estado'] ) ? sanitize_text_field( $_GET['rv_estado'] ) : '';
+    $base    = admin_url( 'edit.php?post_type=' . ROMVILL_SOL_CPT );
+
+    // Total de cada estado (incluye los que no tienen meta → 'nueva')
+    $counts = array_fill_keys( array_keys( $labels ), 0 );
+    $all = get_posts( array(
+        'post_type'      => ROMVILL_SOL_CPT,
+        'post_status'    => 'any',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'no_found_rows'  => true,
+    ) );
+    foreach ( $all as $id ) {
+        $e = get_post_meta( $id, '_rv_estado', true ) ?: 'nueva';
+        if ( ! isset( $counts[ $e ] ) ) $counts[ $e ] = 0;
+        $counts[ $e ]++;
+    }
+
+    echo '<div style="margin:12px 0 4px;padding:12px 16px;background:#fff;border:1px solid #dcdcde;border-left:4px solid #135bec;border-radius:6px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">';
+    echo '<strong style="margin-right:6px">Solicitudes:</strong>';
+    // "Todas" link
+    $all_active = $current === '' ? 'font-weight:700;text-decoration:underline;' : '';
+    echo '<a href="' . esc_url( $base ) . '" style="text-decoration:none;color:#1d2327;' . $all_active . '">Todas (' . count( $all ) . ')</a>';
+    foreach ( $labels as $k => $label ) {
+        $c    = $colors[ $k ] ?? '#3c434a';
+        $n    = $counts[ $k ] ?? 0;
+        $url  = esc_url( add_query_arg( 'rv_estado', $k, $base ) );
+        $act  = $current === $k ? 'box-shadow:0 0 0 2px ' . $c . ';' : '';
+        echo '<a href="' . $url . '" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;color:#fff;background:' . esc_attr( $c ) . ';' . $act . '">' . esc_html( $label ) . ' <span style="background:rgba(255,255,255,.25);border-radius:8px;padding:0 7px">' . (int) $n . '</span></a>';
+    }
+    echo '</div>';
 }
 
 /* ── Filtro por estado en el listado ─────────────────────────── */
