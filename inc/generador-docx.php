@@ -235,6 +235,62 @@ function romvill_docx_eval_campo( $campo, $ctx ) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+ *  ÉNFASIS (PRIORITARIO): según los campos semánticos del parser
+ *  (estrategia/tipologia/sector/tipo_proyecto/...), ciertos campos del
+ *  informe se marcan [PRIORITARIO] y suben al inicio de su dimensión.
+ *  NO cambia on/off (respeta el nivel): solo reordena y marca los ya ON.
+ *  Devuelve patrones: id exacto ('D12.1') o prefijo de dimensión ('D9.').
+ * ═══════════════════════════════════════════════════════════════ */
+function romvill_docx_enfasis( $d, $profile ) {
+    $p = array();
+    $intl = ! empty( $d['intl'] );
+
+    if ( $profile === 'I' ) {
+        $estr = $d['estrategia'] ?? '';
+        $tipo = (array) ( $d['tipologia'] ?? array() );
+        if ( $estr === 'flip' )              { $p[] = 'D12.1'; $p[] = 'D9.'; }
+        if ( $estr === 'alquiler_larga' )    { $p[] = 'D12.1'; $p[] = 'D2.'; }
+        if ( $estr === 'alquiler_turistico' ){ $p[] = 'D12.2'; }
+        if ( $estr === 'comprar_mantener' )  { $p[] = 'D1.';   $p[] = 'D3.'; }
+        if ( in_array( 'hotel', $tipo, true ) )   { $p[] = 'D12.2'; $p[] = 'D9.'; }
+        if ( in_array( 'terreno', $tipo, true ) ) { $p[] = 'D9.'; }
+        if ( ! empty( $d['pregunta_fiscal'] ) && $intl ) { $p[] = 'D12.4'; }
+    } elseif ( $profile === 'PR' ) {
+        $tp  = $d['tipo_proyecto'] ?? '';
+        $asp = (array) ( $d['aspectos_criticos'] ?? array() );
+        if ( $tp === 'hotelero' )   { $p[] = 'D13.1'; }
+        if ( $tp === 'industrial' ) { $p[] = 'D10.'; $p[] = 'D13.1'; }
+        if ( $tp === 'btr' )        { $p[] = 'D2.';  $p[] = 'D13.1'; }
+        if ( in_array( $tp, array( 'suelo', 'adquisicion' ), true ) ) { $p[] = 'D13.4'; $p[] = 'D13.1'; }
+        if ( in_array( 'urbanismo', $asp, true ) )    $p[] = 'D13.1';
+        if ( in_array( 'permisos', $asp, true ) )     $p[] = 'D13.2';
+        if ( in_array( 'demanda', $asp, true ) )      $p[] = 'D2.';
+        if ( in_array( 'ambiental', $asp, true ) )    $p[] = 'D1.';
+        if ( in_array( 'conectividad', $asp, true ) ) $p[] = 'D10.';
+        if ( in_array( 'fiscal', $asp, true ) )       $p[] = 'D11.';
+    } elseif ( $profile === 'E' ) {
+        $sec = $d['sector'] ?? '';
+        $an  = $d['tipo_analisis'] ?? '';
+        $pub = (array) ( $d['publico'] ?? array() );
+        if ( $sec === 'hosteleria' ) { $p[] = 'D14.3'; $p[] = 'D14.1'; }
+        if ( $sec === 'salud' )      { $p[] = 'D14.1'; $p[] = 'D2.'; }
+        if ( $sec === 'tecnologia' ) { $p[] = 'D14.4'; $p[] = 'D10.'; }
+        if ( $sec === 'retail' )     { $p[] = 'D14.3'; $p[] = 'D14.2'; }
+        if ( $an === 'reubicacion' ) { $p[] = 'D6.';   $p[] = 'D14.4'; }
+        if ( in_array( 'b2b', $pub, true ) )     $p[] = 'D14.2';
+        if ( in_array( 'premium', $pub, true ) ) $p[] = 'D14.1';
+    }
+    return array_values( array_unique( $p ) );
+}
+function romvill_docx_es_prioritario( $fid, $patterns ) {
+    foreach ( $patterns as $p ) {
+        if ( $p === $fid ) return true;                                  // id exacto
+        if ( substr( $p, -1 ) === '.' && strpos( $fid, $p ) === 0 ) return true; // prefijo 'D9.' → D9.x
+    }
+    return false;
+}
+
+/* ═══════════════════════════════════════════════════════════════
  *  HELPERS XML / DOCX
  * ═══════════════════════════════════════════════════════════════ */
 function romvill_docx_x( $s ) {
@@ -287,15 +343,26 @@ function romvill_docx_construir( $post_id ) {
     $arbol = romvill_docx_arbol();
     $orden = romvill_docx_orden( $profile );
 
-    // Encender campos por dimensión (con marca: '' | 'super' | 'sug')
+    // Patrones de énfasis [PRIORITARIO] según los campos semánticos del perfil.
+    $enfasis = romvill_docx_enfasis( $d, $profile );
+
+    // Encender campos por dimensión (con marca: '' | 'super' | 'sug') + prioritario.
     $on_by_dim = array();
     foreach ( $arbol as $num => $dim ) {
         $ons = array();
         foreach ( $dim['campos'] as $campo ) {
             list( $on, $mark, $rev ) = romvill_docx_eval_campo( $campo, $ctx );
-            if ( $on ) $ons[] = array( 'c' => $campo, 'mark' => $mark, 'rev' => $rev );
+            if ( $on ) {
+                $prio = romvill_docx_es_prioritario( $campo['id'], $enfasis );
+                $ons[] = array( 'c' => $campo, 'mark' => $mark, 'rev' => $rev, 'prio' => $prio );
+            }
         }
-        if ( $ons ) $on_by_dim[ $num ] = $ons;
+        if ( $ons ) {
+            // Prioritarios al inicio de la dimensión (orden estable dentro de cada grupo).
+            $pri = array(); $rest = array();
+            foreach ( $ons as $r ) { if ( ! empty( $r['prio'] ) ) $pri[] = $r; else $rest[] = $r; }
+            $on_by_dim[ $num ] = array_merge( $pri, $rest );
+        }
     }
 
     // Paleta ROMVILL
@@ -378,6 +445,7 @@ function romvill_docx_construir( $post_id ) {
             $campo = $row['c'];
             // Marcas de campo (ámbar, cursiva)
             $marks = '';
+            if ( ! empty( $row['prio'] ) ) $marks .= '[PRIORITARIO] ';
             if ( $row['rev'] ) $marks .= '[REVISAR] ';
             if ( $row['mark'] === 'super' )     $marks .= '[NIVEL SUPERIOR] ';
             elseif ( $row['mark'] === 'sug' )   $marks .= '[SUGERIDO] ';

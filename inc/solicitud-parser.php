@@ -204,7 +204,7 @@ function romvill_leer_solicitud( $post_id ) {
         'propiedades disponibles', 'tienen casas',
     ) );
 
-    return array(
+    $out = array(
         // Metas directas
         'ref'                 => $ref,
         'bloque'              => $bloque,
@@ -232,4 +232,68 @@ function romvill_leer_solicitud( $post_id ) {
         'objetivo_inversion'  => $objetivo_inversion,
         'pregunta_venta'      => $pregunta_venta,
     );
+
+    // ── Rama 2/3/4: campos semánticos AÑADIDOS (no afecta al Bloque 1) ──
+    // Traduce las claves posicionales (bN_qX_idx) a valores semánticos.
+    if ( $bloque >= 2 ) {
+        $out = array_merge( $out, romvill_sol__semantica( $bloque, $claves ) );
+    }
+    return $out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ *  Helpers de claves posicionales (bN_qX_idx) → semántica (bloques 2/3/4)
+ * ═══════════════════════════════════════════════════════════════ */
+function romvill_sol__clave_idx( $clave ) {
+    if ( ! is_string( $clave ) || $clave === '' ) return null;
+    $p = explode( '_', $clave ); $l = end( $p );
+    return is_numeric( $l ) ? (int) $l : null;
+}
+function romvill_sol__clave_idxs( $arr ) {
+    $out = array();
+    foreach ( (array) $arr as $c ) { $i = romvill_sol__clave_idx( $c ); if ( $i !== null ) $out[] = $i; }
+    return $out;
+}
+function romvill_sol__map( $table, $i )  { return ( $i !== null && isset( $table[ $i ] ) ) ? $table[ $i ] : ''; }
+function romvill_sol__mapm( $table, $arr ) { $o = array(); foreach ( (array) $arr as $i ) { if ( isset( $table[ $i ] ) ) $o[] = $table[ $i ]; } return $o; }
+
+/**
+ * Traduce las claves posicionales de un bloque 2/3/4 a campos semánticos.
+ * @return array  campos adicionales (vacíos si la clave no está)
+ */
+function romvill_sol__semantica( $bloque, $claves ) {
+    $c = is_array( $claves ) ? $claves : array();
+
+    if ( $bloque === 2 ) {
+        $T_estr = array( 'comprar_mantener', 'alquiler_larga', 'flip', 'alquiler_turistico', 'reforma_venta', 'otro' );
+        $T_tipo = array( 'vivienda', 'edificio', 'chalet', 'local', 'oficina', 'hotel', 'terreno', 'otro' );
+        $T_exp  = array( 'primera', 'poca', 'media', 'alta' );
+        return array(
+            'estrategia'      => romvill_sol__map( $T_estr, romvill_sol__clave_idx( $c['q8'] ?? null ) ),
+            'tipologia'       => romvill_sol__mapm( $T_tipo, romvill_sol__clave_idxs( $c['q9'] ?? array() ) ),
+            'experiencia'     => romvill_sol__map( $T_exp, romvill_sol__clave_idx( $c['q5'] ?? null ) ),
+            'pregunta_fiscal' => ! empty( $c['q13'] ),
+        );
+    }
+    if ( $bloque === 3 ) {
+        $T_tp  = array( 'residencial', 'mixto', 'hotelero', 'comercial', 'industrial', 'reconversion', 'suelo', 'adquisicion', 'btr', 'otro' );
+        $T_fas = array( 'preliminar', 'identificada', 'contacto', 'negociacion', 'adquirido', 'desarrollo' );
+        $T_asp = array( 'urbanismo', 'permisos', 'demanda', 'viabilidad', 'competencia', 'ambiental', 'sociodemografico', 'conectividad', 'fiscal', 'riesgos', 'financiacion', 'otros' );
+        return array(
+            'tipo_proyecto'     => romvill_sol__map( $T_tp, romvill_sol__clave_idx( $c['q6'] ?? null ) ),
+            'fase'              => romvill_sol__map( $T_fas, romvill_sol__clave_idx( $c['q8'] ?? null ) ),
+            'aspectos_criticos' => romvill_sol__mapm( $T_asp, romvill_sol__clave_idxs( $c['q11'] ?? array() ) ),
+        );
+    }
+    if ( $bloque === 4 ) {
+        $T_sec = array( 'retail', 'hosteleria', 'servicios', 'salud', 'educacion', 'tecnologia', 'inmobiliario', 'industrial', 'cultura', 'financiero', 'otro' );
+        $T_an  = array( 'viabilidad', 'comparativo', 'mercado', 'reubicacion', 'expansion', 'evento', 'diagnostico', 'otro' );
+        $T_pub = array( 'nacional', 'internacional', 'expatriado', 'b2b', 'publico', 'premium', 'generalista', 'otro' );
+        return array(
+            'sector'        => romvill_sol__map( $T_sec, romvill_sol__clave_idx( $c['q2'] ?? null ) ),
+            'tipo_analisis' => romvill_sol__map( $T_an, romvill_sol__clave_idx( $c['q7'] ?? null ) ),
+            'publico'       => romvill_sol__mapm( $T_pub, romvill_sol__clave_idxs( $c['q12'] ?? array() ) ),
+        );
+    }
+    return array();
 }
