@@ -22,6 +22,9 @@ require_once get_template_directory() . '/inc/translations.php';
 // ─── Solicitudes panel (private CRM) ──────────────────────────
 require_once get_template_directory() . '/inc/solicitudes-cpt.php';
 
+// ─── Internal auto price estimate (email only) ────────────────
+require_once get_template_directory() . '/inc/estimacion.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
@@ -556,7 +559,30 @@ ROMVILL · contacto@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
-    $subject = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTL' : '' ) . " — Solicitud {$profile_ref} — {$profile_name}";
+    $_zona = sanitize_text_field( $_POST['zona'] ?? '—' );
+    $_tel  = sanitize_text_field( $_POST['tel'] ?? '—' );
+
+    // ── Estimación orientativa SOLO INTERNA (no llega al cliente) ──
+    $est = function_exists( 'romvill_estimar' ) ? romvill_estimar( array(
+        'block'   => $block,
+        'profile' => $profile_name,
+        'zona'    => $_zona,
+        'tel'     => $_tel,
+        'intl'    => $intl,
+        'lang'    => $lang,
+        'body'    => $body_in,
+    ) ) : null;
+
+    if ( $est ) {
+        // Insert the internal estimate block at the top of the body.
+        $email_body = "\n" . $est['bloque_email'] . "\n\n" . $email_body;
+    }
+
+    // Enriched subject (level + price + 🔥) — internal only.
+    $zona_short = trim( explode( '·', $_zona )[0] );
+    $subject = ( $est ? $est['asunto_prefix'] . ' ' : '' )
+             . trim( $profile_name ) . ' · ' . ( $zona_short ?: '—' ) . ' · ' . $ref
+             . ( $intl ? ' ⭐' : '' );
 
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
@@ -568,16 +594,17 @@ Análisis de Inteligencia Zonal
     // fails; retries dedupe by reference (same $ref → updates).
     if ( function_exists( 'romvill_save_solicitud' ) ) {
         romvill_save_solicitud( array(
-            'ref'    => $ref,
-            'perfil' => $profile_name,
-            'bloque' => (string) $block,
-            'lang'   => $lang,
-            'zona'   => sanitize_text_field( $_POST['zona'] ?? '—' ),
-            'nombre' => $name,
-            'email'  => $email,
-            'tel'    => sanitize_text_field( $_POST['tel'] ?? '—' ),
-            'intl'   => $intl,
-            'body'   => $body_in,
+            'ref'      => $ref,
+            'perfil'   => $profile_name,
+            'bloque'   => (string) $block,
+            'lang'     => $lang,
+            'zona'     => $_zona,
+            'nombre'   => $name,
+            'email'    => $email,
+            'tel'      => $_tel,
+            'intl'     => $intl,
+            'body'     => $body_in,
+            'estimacion' => $est ? $est['bloque_email'] : '',
         ) );
     }
 
@@ -689,6 +716,24 @@ ROMVILL · contacto@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
+    // ── Estimación orientativa SOLO INTERNA (no llega al cliente) ──
+    $est = function_exists( 'romvill_estimar' ) ? romvill_estimar( array(
+        'block'   => 1,
+        'profile' => 'Particular / Residencial',
+        'zona'    => $zona,
+        'tel'     => $tel,
+        'intl'    => $intl,
+        'lang'    => $lang,
+        'body'    => $body,
+    ) ) : null;
+
+    $body_orig = $body; // answers only (for the panel)
+    if ( $est ) {
+        $body = "\n" . $est['bloque_email'] . "\n\n" . $body;
+        $zona_short = trim( explode( '·', (string) $zona )[0] );
+        $subject = $est['asunto_prefix'] . ' Particular · ' . ( $zona_short ?: '—' ) . ' · ' . $ref . ( $intl ? ' ⭐' : '' );
+    }
+
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
         "Reply-To: {$nom} <{$ema}>",
@@ -697,16 +742,17 @@ Análisis de Inteligencia Zonal
     // Persist into the private Solicitudes panel (besides the email).
     if ( function_exists( 'romvill_save_solicitud' ) ) {
         romvill_save_solicitud( array(
-            'ref'    => $ref,
-            'perfil' => 'Particular / Residencial',
-            'bloque' => '1',
-            'lang'   => $lang,
-            'zona'   => $zona,
-            'nombre' => $nom,
-            'email'  => $ema,
-            'tel'    => $tel ?: '—',
-            'intl'   => $intl,
-            'body'   => $body,
+            'ref'        => $ref,
+            'perfil'     => 'Particular / Residencial',
+            'bloque'     => '1',
+            'lang'       => $lang,
+            'zona'       => $zona,
+            'nombre'     => $nom,
+            'email'      => $ema,
+            'tel'        => $tel ?: '—',
+            'intl'       => $intl,
+            'body'       => $body_orig,
+            'estimacion' => $est ? $est['bloque_email'] : '',
         ) );
     }
 

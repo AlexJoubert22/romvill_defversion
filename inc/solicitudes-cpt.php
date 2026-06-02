@@ -135,6 +135,9 @@ function romvill_save_solicitud( $a ) {
     update_post_meta( $post_id, '_rv_tel',    sanitize_text_field( $a['tel']    ?? '—' ) );
     update_post_meta( $post_id, '_rv_intl',   ! empty( $a['intl'] ) ? '1' : '0' );
     update_post_meta( $post_id, '_rv_body',   sanitize_textarea_field( $a['body'] ?? '' ) );
+    if ( isset( $a['estimacion'] ) && $a['estimacion'] !== '' ) {
+        update_post_meta( $post_id, '_rv_estimacion', sanitize_textarea_field( $a['estimacion'] ) );
+    }
 
     // Estado: solo se fija en la primera creación (no pisar uno ya
     // gestionado en un reintento).
@@ -286,7 +289,14 @@ add_action( 'add_meta_boxes', 'romvill_sol_metaboxes' );
 function romvill_sol_metaboxes() {
     add_meta_box( 'rv_sol_estado', 'Estado de la solicitud', 'romvill_sol_box_estado', ROMVILL_SOL_CPT, 'side', 'high' );
     add_meta_box( 'rv_sol_contacto', 'Datos de contacto', 'romvill_sol_box_contacto', ROMVILL_SOL_CPT, 'side', 'default' );
-    add_meta_box( 'rv_sol_detalle', 'Respuestas del cuestionario', 'romvill_sol_box_detalle', ROMVILL_SOL_CPT, 'normal', 'high' );
+    add_meta_box( 'rv_sol_estimacion', 'Estimación orientativa (solo interna)', 'romvill_sol_box_estimacion', ROMVILL_SOL_CPT, 'normal', 'high' );
+    add_meta_box( 'rv_sol_detalle', 'Respuestas del cuestionario', 'romvill_sol_box_detalle', ROMVILL_SOL_CPT, 'normal', 'default' );
+}
+
+function romvill_sol_box_estimacion( $post ) {
+    $est = get_post_meta( $post->ID, '_rv_estimacion', true );
+    if ( ! $est ) { echo '<p style="color:#888">Sin estimación.</p>'; return; }
+    echo '<pre style="white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;background:#fffbe6;border:1px solid #f0d98a;border-left:4px solid #b8860b;border-radius:6px;padding:16px;margin:0">' . esc_html( $est ) . '</pre>';
 }
 
 function romvill_sol_box_estado( $post ) {
