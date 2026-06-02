@@ -138,6 +138,11 @@ function romvill_save_solicitud( $a ) {
     if ( isset( $a['estimacion'] ) && $a['estimacion'] !== '' ) {
         update_post_meta( $post_id, '_rv_estimacion', sanitize_textarea_field( $a['estimacion'] ) );
     }
+    // Claves canónicas (independientes del idioma) para la lógica interna.
+    // Dato ADICIONAL; no sustituye al texto legible del body/email.
+    if ( isset( $a['claves'] ) && is_array( $a['claves'] ) && ! empty( $a['claves'] ) ) {
+        update_post_meta( $post_id, '_rv_claves', wp_json_encode( $a['claves'] ) );
+    }
 
     // Estado: solo se fija en la primera creación (no pisar uno ya
     // gestionado en un reintento).

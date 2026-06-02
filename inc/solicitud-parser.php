@@ -149,33 +149,56 @@ function romvill_leer_solicitud( $post_id ) {
     $nombre = (string) get_post_meta( $post_id, '_rv_nombre', true );
     $body   = (string) get_post_meta( $post_id, '_rv_body',   true );
 
+    // ── Claves canónicas (si la solicitud las tiene; antiguas no) ──
+    $claves = json_decode( (string) get_post_meta( $post_id, '_rv_claves', true ), true );
+    $has_claves = is_array( $claves ) && ! empty( $claves );
+
     // ── Parseo del cuerpo ──
     $nacionalidad   = romvill_sol__line_value( $body, 'Nacionalidad:' );
     $objetivo       = romvill_sol__objetivo( $body );
     $tipo_propiedad = romvill_sol__line_value( $body, 'Tipo de propiedad:' );
 
+    // Estado (sí/no) por CLAVE cuando exista; si no, fallback al texto.
+    // El DETALLE siempre se toma del texto legible.
     $men_raw = romvill_sol__line_value( $body, 'Menores de edad:' );
     $menores = romvill_sol__yesno( $men_raw );
+    if ( $has_claves && ! empty( $claves['menores'] ) && is_array( $claves['menores'] ) ) {
+        $menores = array_intersect( $claves['menores'], array( 'menores_0_3', 'menores_3_12', 'menores_12_18' ) ) ? 'si' : 'no';
+    }
     $men_det = romvill_sol__detalle( $men_raw, $menores );
 
     $mas_raw = romvill_sol__line_value( $body, 'Animales:' );
     $mascota = romvill_sol__yesno( $mas_raw );
+    if ( $has_claves && ! empty( $claves['mascota'] ) ) {
+        if ( in_array( $claves['mascota'], array( 'mascota_perro', 'mascota_gato', 'mascota_otro' ), true ) )      $mascota = 'si';
+        elseif ( in_array( $claves['mascota'], array( 'mascota_no', 'mascota_futuro' ), true ) )                  $mascota = 'no';
+    }
     $mas_det = romvill_sol__detalle( $mas_raw, $mascota );
 
     $acc_raw = romvill_sol__line_value( $body, 'Accesibilidad:' );
     $accesibilidad = romvill_sol__yesno( $acc_raw );
+    if ( $has_claves && ! empty( $claves['accesibilidad'] ) ) {
+        if ( $claves['accesibilidad'] === 'acces_si' )      $accesibilidad = 'si';
+        elseif ( $claves['accesibilidad'] === 'acces_no' )  $accesibilidad = 'no';
+    }
     $acc_det = romvill_sol__detalle( $acc_raw, $accesibilidad );
 
     $urgencia   = romvill_sol__line_value( $body, 'Urgencia:' );
+    $plazo_clave = ( $has_claves && ! empty( $claves['plazo'] ) ) ? $claves['plazo'] : '';
     $comentario = romvill_sol__comentario( $body );
 
     // ── Nivel: SIEMPRE derivado del bloque (no de _rv_estimacion) ──
     $nivel = ( $bloque >= 3 ) ? 'premium' : ( $bloque === 2 ? 'completo' : 'esencial' );
 
     // ── Señales booleanas ──
-    $objetivo_inversion = romvill_sol__has( $objetivo, array(
-        'inversión', 'inversion', 'adquisición', 'adquisicion', 'comprar', 'invertir', 'rentabilidad',
-    ) );
+    // objetivo_inversion: por clave cuando exista; si no, fallback al texto.
+    if ( $has_claves && ! empty( $claves['objetivo'] ) ) {
+        $objetivo_inversion = ( $claves['objetivo'] === 'obj_inversion' );
+    } else {
+        $objetivo_inversion = romvill_sol__has( $objetivo, array(
+            'inversión', 'inversion', 'adquisición', 'adquisicion', 'comprar', 'invertir', 'rentabilidad',
+        ) );
+    }
     $pregunta_venta = romvill_sol__has( $body, array(
         'venta', 'a la venta', 'comprar', 'vender', 'casas en venta',
         'propiedades disponibles', 'tienen casas',
@@ -201,6 +224,7 @@ function romvill_leer_solicitud( $post_id ) {
         'accesibilidad'       => $accesibilidad,
         'accesibilidad_detalle' => $acc_det,
         'urgencia'            => $urgencia,
+        'plazo_clave'         => $plazo_clave,
         'comentario'          => $comentario,
         // Derivado
         'nivel'               => $nivel,

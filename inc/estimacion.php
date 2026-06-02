@@ -156,11 +156,16 @@ function romvill_estimar( $args ) {
     $rango_extra  = 0;       // margen superior por "según extras a confirmar"
 
     // 3a. Urgencia
-    // URGENCIA: se activa ÚNICAMENTE con la opción 1 del plazo (Bloque 1: "Prioritario").
-    // Detección robusta por la frase única de esa opción ("nos volcamos en su análisis"),
-    // que NO aparece en ninguna otra opción ni en las etiquetas del panel de secciones.
-    // Las opciones 2 (Recomendado), 3 (Con calma) y 4 (Aún explorando) NO activan recargo.
-    $urgente = romvill_txt_has( $body, array( 'nos volcamos en su análisis' ) );
+    // URGENCIA: se activa ÚNICAMENTE con la opción 1 del plazo ("Prioritario").
+    // Preferimos la CLAVE canónica 'plazo_prioritario' (independiente del idioma);
+    // si no llega (solicitudes antiguas), fallback a la frase única en español
+    // ("nos volcamos en su análisis"). Opciones 2/3/4 NO activan recargo.
+    $plazo_key = (string) ( $args['plazo_key'] ?? '' );
+    if ( $plazo_key !== '' ) {
+        $urgente = ( $plazo_key === 'plazo_prioritario' );
+    } else {
+        $urgente = romvill_txt_has( $body, array( 'nos volcamos en su análisis' ) );
+    }
     if ( $urgente ) {
         if ( $nivel === 'esencial' ) {
             $extra_eur += ROMVILL_URGENCIA_ESENCIAL_EUR;

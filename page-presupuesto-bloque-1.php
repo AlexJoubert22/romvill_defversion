@@ -893,13 +893,43 @@ function b1SendFail(ref){
   box.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
+// Claves canónicas (independientes del idioma) para la lógica interna.
+// Se derivan por ÍNDICE de opción (no por texto), así sobreviven a la
+// traducción. Es un dato ADICIONAL: el texto legible se sigue enviando igual.
+var B1KEYS={
+  7:['obj_conocer','obj_mudanza','obj_personal','obj_inversion','obj_empresa','obj_proyecto','obj_otro'],
+  9:['menores_no','menores_futuro','menores_0_3','menores_3_12','menores_12_18'],
+  10:['mascota_no','mascota_futuro','mascota_perro','mascota_gato','mascota_otro'],
+  11:['acces_no','acces_si'],
+  12:['plazo_prioritario','plazo_recomendado','plazo_concalma','plazo_explorando']
+};
+function b1OptLabels(qi){
+  var q=T.questions[qi]; if(!q||!q.opts)return [];
+  return q.opts.map(function(o){return (typeof o==='string')?o:o.lbl;});
+}
+function b1KeyOf(qi,label){
+  if(!label)return '';
+  var idx=b1OptLabels(qi).indexOf(label);
+  return (idx>-1 && B1KEYS[qi] && B1KEYS[qi][idx])?B1KEYS[qi][idx]:'';
+}
+function b1Claves(){
+  var men=Array.isArray(A['q9'])?A['q9']:(A['q9']?[A['q9']]:[]);
+  return {
+    objetivo:      b1KeyOf(7,  A['q7']),
+    menores:       men.map(function(l){return b1KeyOf(9,l);}).filter(Boolean),
+    mascota:       b1KeyOf(10, A['q10']),
+    accesibilidad: b1KeyOf(11, A['q11_c']),
+    plazo:         b1KeyOf(12, A['q12'])
+  };
+}
+
 function b1SendProfile(ref){
   var btn=document.getElementById('rv-b1-bs');
   btn.disabled=true;
   btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+T.sending;
   var old=document.getElementById('rv-b1-send-err'); if(old&&old.parentNode)old.parentNode.removeChild(old);
 
-  var payload=Object.assign({},A,{ref:ref,lang:lang});
+  var payload=Object.assign({},A,{ref:ref,lang:lang,claves:b1Claves()});
   var fd=new FormData();
   fd.append('action','romvill_b1_submit');
   fd.append('nonce',B1_NONCE);

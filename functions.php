@@ -725,15 +725,29 @@ ROMVILL · contacto@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
+    // ── Claves canónicas (independientes del idioma) — blindaje interno ──
+    // Son un dato ADICIONAL para la lógica; el texto legible no cambia.
+    $claves_in = isset( $d['claves'] ) && is_array( $d['claves'] ) ? $d['claves'] : array();
+    $claves = array();
+    foreach ( array( 'objetivo', 'mascota', 'accesibilidad', 'plazo' ) as $ck ) {
+        if ( ! empty( $claves_in[ $ck ] ) ) $claves[ $ck ] = sanitize_key( $claves_in[ $ck ] );
+    }
+    if ( isset( $claves_in['menores'] ) && is_array( $claves_in['menores'] ) ) {
+        $m = array_values( array_filter( array_map( 'sanitize_key', $claves_in['menores'] ) ) );
+        if ( $m ) $claves['menores'] = $m;
+    }
+    $plazo_key = $claves['plazo'] ?? '';
+
     // ── Estimación orientativa SOLO INTERNA (no llega al cliente) ──
     $est = function_exists( 'romvill_estimar' ) ? romvill_estimar( array(
-        'block'   => 1,
-        'profile' => 'Particular / Residencial',
-        'zona'    => $zona,
-        'tel'     => $tel,
-        'intl'    => $intl,
-        'lang'    => $lang,
-        'body'    => $body,
+        'block'     => 1,
+        'profile'   => 'Particular / Residencial',
+        'zona'      => $zona,
+        'tel'       => $tel,
+        'intl'      => $intl,
+        'lang'      => $lang,
+        'body'      => $body,
+        'plazo_key' => $plazo_key,
     ) ) : null;
 
     $body_orig = $body; // answers only (for the panel)
@@ -762,6 +776,7 @@ Análisis de Inteligencia Zonal
             'intl'       => $intl,
             'body'       => $body_orig,
             'estimacion' => $est ? $est['bloque_email'] : '',
+            'claves'     => $claves,
         ) );
     }
 
