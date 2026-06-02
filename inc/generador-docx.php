@@ -166,25 +166,53 @@ function romvill_docx_special_cond( $a, $ctx ) {
     }
     return array( $cond, $rev && ! $solid );
 }
+/**
+ * Evalúa un campo. Regla de encendido:
+ *   ON si (perfil cliente Y nivel<=contratado)  O  (lo activa un activador especial).
+ * Marca (prioridad): '' (entra por nivel normal) > 'super' (solo por activador y
+ *   supera nivel) > 'sug' (campo de inversión y el bloque no es inversor).
+ * @return array( bool on, string mark['' | 'super' | 'sug'], bool revisar )
+ */
 function romvill_docx_eval_campo( $campo, $ctx ) {
     $perf = $campo['perfiles'];
     $base = in_array( $ctx['profile'], $perf, true );
     $sug  = ( ! $base ) && in_array( 'I', $perf, true ) && $ctx['obj_inv'] && $ctx['profile'] !== 'I';
-    if ( ! $base && ! $sug ) return array( false, false, false );
+    if ( ! $base && ! $sug ) return array( false, '', false );
 
     $a = romvill_sol__norm( $campo['activador'] );
     $nivel_ok = romvill_docx_rank( $campo['nivel'] ) <= $ctx['nivel_rank'];
-    $on = false; $rev = false;
 
-    if ( $a === 'siempre' ) {
-        $on = $nivel_ok;
-    } elseif ( strpos( $a, 'objetivo' ) !== false ) {
-        $on = romvill_docx_obj_cond( $a, $ctx ) && $nivel_ok;
-    } else {
-        list( $cond, $r ) = romvill_docx_special_cond( $a, $ctx );
-        $on = $cond; $rev = $r;
+    if ( $a === 'siempre' )                 $type = 'siempre';
+    elseif ( strpos( $a, 'objetivo' ) !== false ) $type = 'objetivo';
+    else                                    $type = 'special';
+
+    $special_met = false; $special_rev = false;
+    if ( $type === 'special' ) list( $special_met, $special_rev ) = romvill_docx_special_cond( $a, $ctx );
+    $obj = ( $type === 'objetivo' ) ? romvill_docx_obj_cond( $a, $ctx ) : false;
+
+    $on = false; $mark = ''; $rev = false;
+
+    // Path por perfil del cliente (entrada "normal")
+    if ( $base ) {
+        if ( $type === 'siempre' ) {
+            if ( $nivel_ok ) { $on = true; $mark = ''; }
+        } elseif ( $type === 'objetivo' ) {
+            if ( $obj && $nivel_ok ) { $on = true; $mark = ''; }
+        } else { // special → enciende aunque supere nivel, pero se marca
+            if ( $special_met ) { $on = true; $mark = $nivel_ok ? '' : 'super'; $rev = $special_rev; }
+        }
     }
-    return array( $on, ( $sug && $on ), ( $rev && $on ) );
+    // Path sugerido (campo de inversión, cliente no inversor) — solo si no encendió por perfil
+    if ( ! $on && $sug ) {
+        if ( $type === 'siempre' ) {
+            if ( $nivel_ok ) { $on = true; $mark = 'sug'; }
+        } elseif ( $type === 'objetivo' ) {
+            if ( $obj && $nivel_ok ) { $on = true; $mark = 'sug'; }
+        } else {
+            if ( $special_met ) { $on = true; $mark = $nivel_ok ? 'sug' : 'super'; $rev = $special_rev; }
+        }
+    }
+    return array( $on, $mark, $rev );
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -240,44 +268,66 @@ function romvill_docx_construir( $post_id ) {
     $arbol = romvill_docx_arbol();
     $orden = romvill_docx_orden( $profile );
 
-    // Encender campos por dimensión
+    // Encender campos por dimensión (con marca: '' | 'super' | 'sug')
     $on_by_dim = array();
     foreach ( $arbol as $num => $dim ) {
         $ons = array();
         foreach ( $dim['campos'] as $campo ) {
-            list( $on, $sug, $rev ) = romvill_docx_eval_campo( $campo, $ctx );
-            if ( $on ) $ons[] = array( 'c' => $campo, 'sug' => $sug, 'rev' => $rev );
+            list( $on, $mark, $rev ) = romvill_docx_eval_campo( $campo, $ctx );
+            if ( $on ) $ons[] = array( 'c' => $campo, 'mark' => $mark, 'rev' => $rev );
         }
         if ( $ons ) $on_by_dim[ $num ] = $ons;
     }
 
-    // ── Construir document.xml ──
+    // Paleta ROMVILL
+    $GOLD = 'B8960C'; $DARK = '0F0F0F'; $GRAY = '777777';
     $perfil_lbl = array( 'P' => 'Particular', 'I' => 'Inversor', 'PR' => 'Promotor', 'E' => 'Empresa' );
     $fecha   = date_i18n( 'j \d\e F \d\e Y' );
     $idioma_inf = romvill_sol__line_value( $body_raw, 'Idioma del informe:' );
     if ( $idioma_inf === '' ) $idioma_inf = strtoupper( $d['lang'] );
+    $pbreak = '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
 
-    $b  = '';
-    // PORTADA
-    $b .= romvill_docx_p( romvill_docx_run( 'ROMVILL', array( 'b' => true, 'sz' => 56 ) ), '<w:jc w:val="center"/><w:spacing w:after="40"/>' );
-    $b .= romvill_docx_p( romvill_docx_run( 'Borrador de informe — Documento de trabajo interno', array( 'i' => true, 'sz' => 24, 'color' => '8a6d1a' ) ), '<w:jc w:val="center"/><w:spacing w:after="160"/>' );
+    $b = '';
+
+    /* ── PÁGINA 1: PORTADA (limpia, sin datos de trabajo) ── */
+    $b .= romvill_docx_p( romvill_docx_run( 'ROMVILL', array( 'b' => true, 'sz' => 76, 'color' => $DARK ) ), '<w:jc w:val="center"/><w:spacing w:before="2400" w:after="60"/>' );
+    // línea dorada centrada bajo el título
+    $b .= '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="18" w:space="1" w:color="' . $GOLD . '"/></w:pBdr><w:ind w:left="2400" w:right="2400"/><w:spacing w:after="200"/></w:pPr></w:p>';
+    $b .= romvill_docx_p( romvill_docx_run( 'Análisis de Inteligencia Territorial', array( 'i' => true, 'sz' => 30, 'color' => '333333' ) ), '<w:jc w:val="center"/><w:spacing w:after="480"/>' );
     $b .= romvill_docx_p(
-        romvill_docx_run( ( $d['ref'] ?: '—' ) . '    ·    ' . ( $d['zona'] ?: '—' ) . '    ·    ' . $fecha, array( 'sz' => 22 ) ),
-        '<w:jc w:val="center"/><w:spacing w:after="240"/>'
+        romvill_docx_run( ( $d['ref'] ?: '—' ) . '      ·      ' . ( $d['zona'] ?: '—' ) . '      ·      ' . $fecha, array( 'sz' => 22, 'color' => $GRAY ) ),
+        '<w:jc w:val="center"/>'
+    );
+    $b .= $pbreak;
+
+    /* ── PÁGINA 2: NOTAS DE TRABAJO (para borrar antes de entregar) ── */
+    $b .= romvill_docx_p(
+        romvill_docx_run( 'NOTAS DE TRABAJO — borrar antes de entregar', array( 'b' => true, 'sz' => 28, 'color' => $GOLD ) ),
+        '<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="3" w:color="' . $GOLD . '"/></w:pBdr><w:spacing w:after="220"/>'
     );
 
-    // AVISO compra/venta (al inicio) si procede
+    // Aviso compra/venta (si procede)
     if ( ! empty( $d['pregunta_venta'] ) ) {
         $aviso_txt = 'Gracias por su interés. Le aclaramos que ROMVILL no comercializa inmuebles ni colabora con agencias o promotores. Somos un servicio de análisis independiente, y precisamente esa independencia es lo que garantiza que la información que reciba sea objetiva y sin intereses comerciales de por medio. Nuestro papel es darle el criterio para que, cuando decida con quién comprar, lo haga con plena seguridad sobre la zona.';
-        $box = '<w:pBdr><w:top w:val="single" w:sz="12" w:space="6" w:color="C9A84C"/><w:left w:val="single" w:sz="12" w:space="6" w:color="C9A84C"/><w:bottom w:val="single" w:sz="12" w:space="6" w:color="C9A84C"/><w:right w:val="single" w:sz="12" w:space="6" w:color="C9A84C"/></w:pBdr><w:shd w:val="clear" w:color="auto" w:fill="FBF6E4"/><w:spacing w:after="240"/>';
+        $box = '<w:pBdr><w:top w:val="single" w:sz="12" w:space="6" w:color="' . $GOLD . '"/><w:left w:val="single" w:sz="12" w:space="6" w:color="' . $GOLD . '"/><w:bottom w:val="single" w:sz="12" w:space="6" w:color="' . $GOLD . '"/><w:right w:val="single" w:sz="12" w:space="6" w:color="' . $GOLD . '"/></w:pBdr><w:shd w:val="clear" w:color="auto" w:fill="FBF6E4"/><w:spacing w:after="220"/>';
         $b .= romvill_docx_p(
-            romvill_docx_run( "AVISO: el cliente preguntó por compra/venta\n", array( 'b' => true, 'color' => '8a6d1a' ) ) . romvill_docx_run( $aviso_txt ),
+            romvill_docx_run( "AVISO: el cliente preguntó por compra/venta\n", array( 'b' => true, 'color' => $GOLD ) ) . romvill_docx_run( $aviso_txt, array( 'color' => $DARK ) ),
             $box
         );
     }
 
-    // DATOS DEL CLIENTE
-    $b .= romvill_docx_p( romvill_docx_run( 'Datos del cliente', array( 'b' => true, 'sz' => 26, 'color' => 'C9A84C' ) ), '<w:spacing w:before="120" w:after="80"/>' );
+    // Recordatorio de normas
+    $normas = "1. Si un campo no tiene datos fiables: \"Sin datos concluyentes para esta zona\" o se omite. Nunca inventar.\n"
+            . "2. Cada dimensión abre con una síntesis de 1-2 frases (la rellena el analista al final).\n"
+            . "3. Todo descriptivo y orientativo. Sin juicios de valor, sin clasificar zonas por peligrosidad, sin proyecciones de revalorización, sin asesoramiento fiscal. Validación final siempre humana.";
+    $boxn = '<w:pBdr><w:top w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/><w:left w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/><w:bottom w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/><w:right w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/></w:pBdr><w:shd w:val="clear" w:color="auto" w:fill="F6F6F6"/><w:spacing w:after="220"/>';
+    $b .= romvill_docx_p(
+        romvill_docx_run( "Recordatorio para el analista\n", array( 'b' => true, 'sz' => 20, 'color' => $DARK ) ) . romvill_docx_run( $normas, array( 'i' => true, 'sz' => 18, 'color' => $GRAY ) ),
+        $boxn
+    );
+
+    // Datos del cliente
+    $b .= romvill_docx_p( romvill_docx_run( 'Datos del cliente', array( 'b' => true, 'sz' => 24, 'color' => $DARK ) ), '<w:spacing w:before="80" w:after="80"/>' );
     $cliente = array(
         'Nombre'             => $d['nombre'] ?: '—',
         'Nacionalidad'       => $d['nacionalidad'] ?: '—',
@@ -287,62 +337,76 @@ function romvill_docx_construir( $post_id ) {
         'Objetivo'           => $d['objetivo'] ?: '—',
     );
     foreach ( $cliente as $k => $v ) {
-        $b .= romvill_docx_p( romvill_docx_run( $k . ': ', array( 'b' => true ) ) . romvill_docx_run( $v ), '<w:spacing w:after="40"/>' );
+        $b .= romvill_docx_p( romvill_docx_run( $k . ': ', array( 'b' => true, 'color' => $DARK ) ) . romvill_docx_run( $v, array( 'color' => $DARK ) ), '<w:spacing w:after="40"/>' );
     }
+    $b .= $pbreak;
 
-    // RECORDATORIO DE NORMAS
-    $normas = "1. Si un campo no tiene datos fiables: \"Sin datos concluyentes para esta zona\" o se omite. Nunca inventar.\n"
-            . "2. Cada dimensión abre con una síntesis de 1-2 frases (la rellena el analista al final).\n"
-            . "3. Todo descriptivo y orientativo. Sin juicios de valor, sin clasificar zonas por peligrosidad, sin proyecciones de revalorización, sin asesoramiento fiscal. Validación final siempre humana.";
-    $boxn = '<w:pBdr><w:top w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/><w:left w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/><w:bottom w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/><w:right w:val="single" w:sz="6" w:space="6" w:color="DDDDDD"/></w:pBdr><w:shd w:val="clear" w:color="auto" w:fill="F6F6F6"/><w:spacing w:before="160" w:after="160"/>';
-    $b .= romvill_docx_p(
-        romvill_docx_run( "Recordatorio para el analista\n", array( 'b' => true, 'sz' => 20 ) ) . romvill_docx_run( $normas, array( 'i' => true, 'sz' => 18, 'color' => '666666' ) ),
-        $boxn
-    );
-
-    // Salto de página → dimensiones
-    $b .= '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
-
-    // DIMENSIONES en orden de perfil
+    /* ── DIMENSIONES (orden por perfil) ── */
     foreach ( $orden as $num ) {
         if ( empty( $on_by_dim[ $num ] ) ) continue;
         $dim = $arbol[ $num ];
+        // Título de dimensión con línea dorada fina
         $b .= romvill_docx_p(
-            romvill_docx_run( $num . '. ' . $dim['nombre'] . ' — ' . $dim['sub'], array( 'b' => true, 'sz' => 28, 'color' => 'C9A84C' ) ),
-            '<w:spacing w:before="240" w:after="60"/>'
+            romvill_docx_run( $num . '. ' . $dim['nombre'] . ' — ' . $dim['sub'], array( 'b' => true, 'sz' => 30, 'color' => $DARK ) ),
+            '<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="3" w:color="' . $GOLD . '"/></w:pBdr><w:spacing w:before="360" w:after="100"/>'
         );
+        // Síntesis como entradilla destacada (sombreado suave)
         $b .= romvill_docx_p(
-            romvill_docx_run( '[SÍNTESIS: 1-2 frases que resumen esta dimensión. Rellenar al final.]', array( 'i' => true, 'sz' => 20, 'color' => '808080' ) ),
-            '<w:spacing w:after="120"/>'
+            romvill_docx_run( '[SÍNTESIS: 1-2 frases que resumen esta dimensión. Rellenar al final.]', array( 'i' => true, 'sz' => 22, 'color' => $GOLD ) ),
+            '<w:shd w:val="clear" w:color="auto" w:fill="F7F1DD"/><w:spacing w:after="180"/><w:ind w:left="80" w:right="80"/>'
         );
         foreach ( $on_by_dim[ $num ] as $row ) {
             $campo = $row['c'];
-            $pre = '';
-            if ( $row['sug'] ) $pre .= '[SUGERIDO] ';
-            if ( $row['rev'] ) $pre .= '[REVISAR] ';
-            $b .= romvill_docx_p(
-                romvill_docx_run( $pre . $campo['id'] . ' · ' . $campo['nombre'], array( 'b' => true, 'sz' => 22 ) ),
-                '<w:spacing w:before="80" w:after="20"/>'
-            );
-            $b .= romvill_docx_p(
-                romvill_docx_run( '[RELLENAR: ' . $campo['guia'] . ']', array( 'i' => true, 'sz' => 20, 'color' => '666666' ) ),
-                '<w:spacing w:after="60"/>'
-            );
+            // Marcas de campo (ámbar, cursiva)
+            $marks = '';
+            if ( $row['rev'] ) $marks .= '[REVISAR] ';
+            if ( $row['mark'] === 'super' )     $marks .= '[NIVEL SUPERIOR] ';
+            elseif ( $row['mark'] === 'sug' )   $marks .= '[SUGERIDO] ';
+            $title = '';
+            if ( $marks !== '' ) $title .= romvill_docx_run( $marks, array( 'i' => true, 'b' => true, 'color' => $GOLD ) );
+            $title .= romvill_docx_run( $campo['id'] . ' · ' . $campo['nombre'], array( 'b' => true, 'color' => $DARK ) );
+            $b .= romvill_docx_p( $title, '<w:spacing w:before="160" w:after="20"/>' );
+            // Guía: tag ámbar + texto gris cursiva
+            $guide = romvill_docx_run( '[RELLENAR: ', array( 'i' => true, 'color' => $GOLD ) )
+                   . romvill_docx_run( $campo['guia'], array( 'i' => true, 'color' => $GRAY ) )
+                   . romvill_docx_run( ']', array( 'i' => true, 'color' => $GOLD ) );
+            $b .= romvill_docx_p( $guide, '<w:spacing w:after="80"/>' );
         }
     }
 
-    // COMENTARIO ORIGINAL DEL CLIENTE (al final)
-    $b .= '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
-    $b .= romvill_docx_p( romvill_docx_run( 'Comentario original del cliente', array( 'b' => true, 'sz' => 26, 'color' => 'C9A84C' ) ), '<w:spacing w:before="120" w:after="80"/>' );
+    /* ── COMENTARIO ORIGINAL DEL CLIENTE (al final) ── */
+    $b .= $pbreak;
+    $b .= romvill_docx_p(
+        romvill_docx_run( 'Comentario original del cliente', array( 'b' => true, 'sz' => 28, 'color' => $DARK ) ),
+        '<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="3" w:color="' . $GOLD . '"/></w:pBdr><w:spacing w:before="80" w:after="120"/>'
+    );
     if ( $d['comentario'] !== '' ) {
-        $b .= romvill_docx_p( romvill_docx_run( $d['comentario'] ) );
+        $b .= romvill_docx_p( romvill_docx_run( $d['comentario'], array( 'color' => $DARK ) ) );
     } else {
         $b .= romvill_docx_p( romvill_docx_run( '(sin comentario)', array( 'i' => true, 'color' => '999999' ) ) );
     }
 
-    $sectPr = '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1418" w:right="1418" w:bottom="1418" w:left="1418" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>';
+    // ── Encabezado y pie (discretos: referencia + nº de página) ──
+    $ref_disp = romvill_docx_x( $d['ref'] ?: 'ROMVILL' );
+    $hdr_xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        . '<w:hdr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        . '<w:p><w:pPr><w:jc w:val="right"/></w:pPr><w:r><w:rPr><w:sz w:val="16"/><w:color w:val="999999"/></w:rPr><w:t xml:space="preserve">' . $ref_disp . '</w:t></w:r></w:p></w:hdr>';
+    $ftr_xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        . '<w:ftr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        . '<w:p><w:pPr><w:jc w:val="center"/></w:pPr>'
+        . '<w:r><w:rPr><w:sz w:val="16"/><w:color w:val="999999"/></w:rPr><w:t xml:space="preserve">ROMVILL · ' . $ref_disp . ' · Página </w:t></w:r>'
+        . '<w:fldSimple w:instr=" PAGE "><w:r><w:rPr><w:sz w:val="16"/><w:color w:val="999999"/></w:rPr><w:t>1</w:t></w:r></w:fldSimple>'
+        . '</w:p></w:ftr>';
+
+    $sectPr = '<w:sectPr>'
+        . '<w:headerReference w:type="default" r:id="rId1"/>'
+        . '<w:footerReference w:type="default" r:id="rId2"/>'
+        . '<w:pgSz w:w="11906" w:h="16838"/>'
+        . '<w:pgMar w:top="1701" w:right="1701" w:bottom="1701" w:left="1701" w:header="850" w:footer="850" w:gutter="0"/>'
+        . '</w:sectPr>';
+
     $document = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        . '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'
+        . '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body>'
         . $b . $sectPr . '</w:body></w:document>';
 
     // ── Paquete OOXML ──
@@ -352,14 +416,21 @@ function romvill_docx_construir( $post_id ) {
             . '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
             . '<Default Extension="xml" ContentType="application/xml"/>'
             . '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
+            . '<Override PartName="/word/header1.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml"/>'
+            . '<Override PartName="/word/footer1.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml"/>'
             . '</Types>',
         '_rels/.rels' => '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
             . '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
             . '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>'
             . '</Relationships>',
         'word/_rels/document.xml.rels' => '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-            . '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>',
+            . '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            . '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/header" Target="header1.xml"/>'
+            . '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer" Target="footer1.xml"/>'
+            . '</Relationships>',
         'word/document.xml' => $document,
+        'word/header1.xml'  => $hdr_xml,
+        'word/footer1.xml'  => $ftr_xml,
     );
 
     $ref_file = preg_replace( '/[^A-Za-z0-9_\-]/', '', (string) $d['ref'] );
