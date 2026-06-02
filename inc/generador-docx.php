@@ -109,6 +109,25 @@ function romvill_docx_arbol() {
             array( 'id'=>'D11.4','nombre'=>'Servicios y suministros','guia'=>'Referencia de agua, luz, comunidad, internet. Fuente: observación, datos públicos','perfiles'=>array('P','I'),'nivel'=>'premium','activador'=>'siempre' ),
             array( 'id'=>'D11.5','nombre'=>'Marco fiscal para no residentes','guia'=>'Información descriptiva general sobre tributación de no residentes, CON recomendación expresa de consultar a un asesor fiscal. Fuente: Agencia Tributaria (información pública)','perfiles'=>array('I','E'),'nivel'=>'premium','activador'=>'internacional con objetivo inversión/empresa' ),
         ) ),
+        12 => array( 'nombre' => 'Mercado y Contexto Inversor', 'sub' => 'Contexto de mercado y normativa', 'campos' => array(
+            array( 'id'=>'D12.1','nombre'=>'Precios de referencia de la zona','guia'=>'Precio medio actual de compra y de alquiler por m² en la zona (larga estancia y vacacional), con fuente y fecha. Sin proyecciones ni expectativas de revalorización. Fuente: portales inmobiliarios, registros oficiales','perfiles'=>array('I'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D12.2','nombre'=>'Regulación de alquiler turístico','guia'=>'Licencias de vivienda turística (VFT), restricciones o moratorias municipales vigentes. Descriptivo, normativa pública. Fuente: ayuntamiento, comunidad autónoma','perfiles'=>array('I'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D12.3','nombre'=>'Oferta de servicios al propietario','guia'=>'Presencia de gestorías, administradores de fincas y abogados inmobiliarios en la zona. Descriptivo. Fuente: directorios, observación','perfiles'=>array('I'),'nivel'=>'premium','activador'=>'siempre' ),
+            array( 'id'=>'D12.4','nombre'=>'Marco fiscal del no residente (ampliado)','guia'=>'Información descriptiva general sobre tributación de no residentes aplicable a la inversión, con recomendación expresa de consultar a un asesor fiscal. Sin asesoramiento. Fuente: Agencia Tributaria (información pública)','perfiles'=>array('I'),'nivel'=>'premium','activador'=>'internacional' ),
+        ) ),
+        13 => array( 'nombre' => 'Planeamiento y Viabilidad Normativa', 'sub' => 'Marco urbanístico y administrativo', 'campos' => array(
+            array( 'id'=>'D13.1','nombre'=>'Planeamiento urbanístico vigente','guia'=>'Clasificación del suelo, usos permitidos y edificabilidad según el PGOU vigente en la zona del proyecto. Dato normativo público. Fuente: PGOU, ayuntamiento','perfiles'=>array('PR'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D13.2','nombre'=>'Trámites y plazos administrativos','guia'=>'Licencias exigidas por el municipio para el tipo de proyecto y plazos orientativos publicados. Descriptivo. Fuente: ayuntamiento, normativa urbanística','perfiles'=>array('PR'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D13.3','nombre'=>'Desarrollos previstos en el entorno','guia'=>'Proyectos, infraestructuras o desarrollos ya anunciados oficialmente en el entorno del proyecto. Dato público. Fuente: planeamiento oficial, prensa local','perfiles'=>array('PR'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D13.4','nombre'=>'Situación del suelo en la zona','guia'=>'Descripción de la disponibilidad y situación del suelo (consolidado, en desarrollo, pendiente de urbanizar). Descriptivo. Fuente: PGOU, catastro','perfiles'=>array('PR'),'nivel'=>'premium','activador'=>'siempre' ),
+        ) ),
+        14 => array( 'nombre' => 'Contexto Empresarial de la Zona', 'sub' => 'Encaje de la zona con la actividad', 'campos' => array(
+            array( 'id'=>'D14.1','nombre'=>'Perfil de consumo de la zona','guia'=>'Poder adquisitivo medio de la zona y tipo de comercio existente. Descriptivo, siempre sobre la zona, nunca sobre personas. Fuente: INE, observación','perfiles'=>array('E'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D14.2','nombre'=>'Competencia presente en la zona','guia'=>'Negocios del mismo tipo o afines presentes en la zona. Dato observable, descriptivo. Fuente: directorios, observación','perfiles'=>array('E'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D14.3','nombre'=>'Flujos y afluencia','guia'=>'Tránsito peatonal y vehicular típico de la zona, franjas de mayor actividad. Descriptivo. Fuente: observación, datos de movilidad','perfiles'=>array('E'),'nivel'=>'completo','activador'=>'siempre' ),
+            array( 'id'=>'D14.4','nombre'=>'Talento y tejido laboral','guia'=>'Formación disponible y servicios profesionales presentes en la zona, relevantes para la actividad. Descriptivo. Fuente: observación, directorios','perfiles'=>array('E'),'nivel'=>'premium','activador'=>'siempre' ),
+            array( 'id'=>'D14.5','nombre'=>'Disponibilidad de local comercial','guia'=>'Oferta de locales comerciales disponibles en la zona, tipo y rango. Descriptivo. Fuente: portales, observación','perfiles'=>array('E'),'nivel'=>'premium','activador'=>'siempre' ),
+        ) ),
     );
 }
 
@@ -116,9 +135,9 @@ function romvill_docx_arbol() {
 function romvill_docx_orden( $profile ) {
     $o = array(
         'P'  => array( 3, 5, 4, 7, 6, 1, 2, 8, 10, 11, 9 ),
-        'I'  => array( 9, 11, 2, 3, 1, 6, 7, 4, 10, 8, 5 ),
-        'PR' => array( 9, 1, 6, 2, 11, 7, 3, 4, 8, 10, 5 ),
-        'E'  => array( 1, 6, 2, 11, 10, 7, 3, 9, 4, 8, 5 ),
+        'I'  => array( 9, 11, 12, 2, 3, 1, 6, 7, 4, 10, 8, 5 ),
+        'PR' => array( 13, 9, 1, 6, 2, 11, 7, 3, 4, 8, 10, 5 ),
+        'E'  => array( 14, 1, 6, 2, 11, 10, 7, 3, 9, 4, 8, 5 ),
     );
     return $o[ $profile ] ?? $o['P'];
 }
