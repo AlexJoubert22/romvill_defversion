@@ -388,6 +388,8 @@ var BQ_UI={
       send:'SOLICITAR PRESUPUESTO',sending:'ENVIANDO...',editBtn:'Editar',
       errMsg:'Por favor, responda esta pregunta antes de continuar.',
       errSend:'Error al enviar. Por favor inténtelo de nuevo.',
+      sendFail:'No hemos podido enviar su solicitud en este momento. Sus respuestas se han guardado. Por favor, inténtelo de nuevo.',
+      retry:'Reintentar envío',
       profile:'Ver mi perfil',idleTtl:'¿Sigue ahí?',idleTxt:'Sus respuestas están guardadas.',
       sendTitle:'¿Todo correcto?',sendSub:'Revise su perfil y envíe su solicitud.',
       legal:'Al enviar acepta nuestra <a href="/privacidad" target="_blank">Política de Privacidad</a>.',
@@ -401,6 +403,7 @@ var BQ_UI={
   en:{step:'Question',of:'of',pct:'completed',next:'Next',prev:'Back',optional:'Optional',
       send:'REQUEST QUOTE',sending:'SENDING...',editBtn:'Edit',
       errMsg:'Please answer this question before continuing.',errSend:'Error. Please try again.',
+      sendFail:'We could not send your request right now. Your answers have been saved. Please try again.',retry:'Retry submission',
       profile:'View my profile',idleTtl:'Still there?',idleTxt:'Your answers are saved.',
       sendTitle:'Everything correct?',sendSub:'Review your profile and submit.',
       legal:'By submitting you accept our <a href="/privacidad" target="_blank">Privacy Policy</a>.',
@@ -410,10 +413,10 @@ var BQ_UI={
       secLabels:{hi:'PRIORITY',md:'RELEVANT',lo:'STANDARD'},
       psTtl:'Priority report sections',psSub:'Calculated automatically from your profile and data',
       intl:'INTERNATIONAL CLIENT'},
-  de:{step:'Frage',of:'von',pct:'erledigt',next:'Weiter',prev:'Zurück',optional:'Optional',send:'ANGEBOT ANFORDERN',sending:'SENDEN...',editBtn:'Bearbeiten',errMsg:'Bitte beantworten Sie diese Frage.',errSend:'Fehler. Bitte erneut versuchen.',profile:'Mein Profil anzeigen',idleTtl:'Noch da?',idleTxt:'Ihre Antworten sind gespeichert.',sendTitle:'Alles korrekt?',sendSub:'Überprüfen Sie Ihr Profil und senden Sie es.',legal:'Mit dem Absenden akzeptieren Sie unsere <a href="/privacidad" target="_blank">Datenschutzerklärung</a>.',confirm:'Anfrage empfangen',confirmTxt:'Wir haben Ihre Anfrage erhalten. Innerhalb von 24 Stunden erhalten Sie Ihr persönliches Angebot.',steps:['<strong>Innerhalb von 24 Stunden</strong> prüfen wir Ihre Anfrage.','<strong>Wir senden Ihr persönliches Angebot</strong> per E-Mail.','Bei Annahme <strong>senden wir den Vertrag</strong> und beginnen die Analyse.'],tag:'Ihr Urteil vor der Entscheidung, in den besten Händen.',back:'Zur Startseite',secLabels:{hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'},psTtl:'Prioritäre Berichtsabschnitte',psSub:'Automatisch berechnet anhand Ihres Profils',intl:'INTERNATIONALER KUNDE'},
-  fr:{step:'Question',of:'sur',pct:'complété',next:'Suivant',prev:'Précédent',optional:'Facultatif',send:'DEMANDER UN DEVIS',sending:'ENVOI...',editBtn:'Modifier',errMsg:'Veuillez répondre à cette question.',errSend:'Erreur. Veuillez réessayer.',profile:'Voir mon profil',idleTtl:'Toujours là?',idleTxt:'Vos réponses sont sauvegardées.',sendTitle:'Tout est correct?',sendSub:'Vérifiez votre profil et envoyez.',legal:'En envoyant vous acceptez notre <a href="/privacidad" target="_blank">Politique de Confidentialité</a>.',confirm:'Demande reçue',confirmTxt:'Nous avons reçu votre demande. Sous 24h nous vous enverrons votre devis personnalisé.',steps:['<strong>Sous 24 heures</strong> nous étudions votre demande.','<strong>Nous envoyons votre devis</strong> par email.','Si vous acceptez, <strong>nous envoyons le contrat</strong> et commençons l\'analyse.'],tag:'Votre jugement avant de décider, entre les meilleures mains.',back:'Retour à l\'accueil',secLabels:{hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'},psTtl:'Sections prioritaires du rapport',psSub:'Calculées automatiquement selon votre profil',intl:'CLIENT INTERNATIONAL'},
-  pt:{step:'Pergunta',of:'de',pct:'concluído',next:'Seguinte',prev:'Anterior',optional:'Opcional',send:'SOLICITAR ORÇAMENTO',sending:'A ENVIAR...',editBtn:'Editar',errMsg:'Por favor, responda a esta pergunta.',errSend:'Erro. Por favor, tente novamente.',profile:'Ver o meu perfil',idleTtl:'Ainda aí?',idleTxt:'As suas respostas estão guardadas.',sendTitle:'Está tudo correcto?',sendSub:'Reveja o seu perfil e envie.',legal:'Ao enviar aceita a nossa <a href="/privacidad" target="_blank">Política de Privacidade</a>.',confirm:'Solicitação recebida',confirmTxt:'Recebemos a sua solicitação. Em menos de 24 horas enviaremos o seu orçamento personalizado.',steps:['<strong>Em menos de 24 horas</strong> revisamos a sua solicitação.','<strong>Enviamos o seu orçamento</strong> personalizado por email.','Se aceitar, <strong>enviamos o contrato</strong> e iniciamos a análise.'],tag:'O seu critério antes de decidir, nas melhores mãos.',back:'Voltar ao início',secLabels:{hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'},psTtl:'Secções prioritárias do relatório',psSub:'Calculadas automaticamente conforme o seu perfil',intl:'CLIENTE INTERNACIONAL'},
-  ru:{step:'Вопрос',of:'из',pct:'выполнено',next:'Далее',prev:'Назад',optional:'Необязательно',send:'ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ',sending:'ОТПРАВКА...',editBtn:'Изменить',errMsg:'Пожалуйста, ответьте на этот вопрос.',errSend:'Ошибка. Попробуйте ещё раз.',profile:'Мой профиль',idleTtl:'Вы здесь?',idleTxt:'Ваши ответы сохранены.',sendTitle:'Всё верно?',sendSub:'Проверьте профиль и отправьте.',legal:'Отправляя, вы принимаете нашу <a href="/privacidad" target="_blank">Политику конфиденциальности</a>.',confirm:'Заявка получена',confirmTxt:'Мы получили вашу заявку. В течение 24 часов мы отправим персональное предложение.',steps:['<strong>В течение 24 часов</strong> мы рассмотрим вашу заявку.','<strong>Отправим персональное предложение</strong> на email.','При согласии <strong>отправим договор</strong> и начнём анализ.'],tag:'Ваше суждение перед решением — в лучших руках.',back:'На главную',secLabels:{hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'},psTtl:'Приоритетные разделы отчёта',psSub:'Рассчитано автоматически по вашему профилю',intl:'МЕЖДУНАРОДНЫЙ КЛИЕНТ'}
+  de:{step:'Frage',of:'von',pct:'erledigt',next:'Weiter',prev:'Zurück',optional:'Optional',send:'ANGEBOT ANFORDERN',sending:'SENDEN...',editBtn:'Bearbeiten',errMsg:'Bitte beantworten Sie diese Frage.',errSend:'Fehler. Bitte erneut versuchen.',sendFail:'Wir konnten Ihre Anfrage gerade nicht senden. Ihre Antworten wurden gespeichert. Bitte versuchen Sie es erneut.',retry:'Erneut senden',profile:'Mein Profil anzeigen',idleTtl:'Noch da?',idleTxt:'Ihre Antworten sind gespeichert.',sendTitle:'Alles korrekt?',sendSub:'Überprüfen Sie Ihr Profil und senden Sie es.',legal:'Mit dem Absenden akzeptieren Sie unsere <a href="/privacidad" target="_blank">Datenschutzerklärung</a>.',confirm:'Anfrage empfangen',confirmTxt:'Wir haben Ihre Anfrage erhalten. Innerhalb von 24 Stunden erhalten Sie Ihr persönliches Angebot.',steps:['<strong>Innerhalb von 24 Stunden</strong> prüfen wir Ihre Anfrage.','<strong>Wir senden Ihr persönliches Angebot</strong> per E-Mail.','Bei Annahme <strong>senden wir den Vertrag</strong> und beginnen die Analyse.'],tag:'Ihr Urteil vor der Entscheidung, in den besten Händen.',back:'Zur Startseite',secLabels:{hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'},psTtl:'Prioritäre Berichtsabschnitte',psSub:'Automatisch berechnet anhand Ihres Profils',intl:'INTERNATIONALER KUNDE'},
+  fr:{step:'Question',of:'sur',pct:'complété',next:'Suivant',prev:'Précédent',optional:'Facultatif',send:'DEMANDER UN DEVIS',sending:'ENVOI...',editBtn:'Modifier',errMsg:'Veuillez répondre à cette question.',errSend:'Erreur. Veuillez réessayer.',sendFail:'Nous n\'avons pas pu envoyer votre demande pour le moment. Vos réponses ont été sauvegardées. Veuillez réessayer.',retry:'Réessayer l\'envoi',profile:'Voir mon profil',idleTtl:'Toujours là?',idleTxt:'Vos réponses sont sauvegardées.',sendTitle:'Tout est correct?',sendSub:'Vérifiez votre profil et envoyez.',legal:'En envoyant vous acceptez notre <a href="/privacidad" target="_blank">Politique de Confidentialité</a>.',confirm:'Demande reçue',confirmTxt:'Nous avons reçu votre demande. Sous 24h nous vous enverrons votre devis personnalisé.',steps:['<strong>Sous 24 heures</strong> nous étudions votre demande.','<strong>Nous envoyons votre devis</strong> par email.','Si vous acceptez, <strong>nous envoyons le contrat</strong> et commençons l\'analyse.'],tag:'Votre jugement avant de décider, entre les meilleures mains.',back:'Retour à l\'accueil',secLabels:{hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'},psTtl:'Sections prioritaires du rapport',psSub:'Calculées automatiquement selon votre profil',intl:'CLIENT INTERNATIONAL'},
+  pt:{step:'Pergunta',of:'de',pct:'concluído',next:'Seguinte',prev:'Anterior',optional:'Opcional',send:'SOLICITAR ORÇAMENTO',sending:'A ENVIAR...',editBtn:'Editar',errMsg:'Por favor, responda a esta pergunta.',errSend:'Erro. Por favor, tente novamente.',sendFail:'Não foi possível enviar a sua solicitação neste momento. As suas respostas foram guardadas. Por favor, tente novamente.',retry:'Tentar novamente',profile:'Ver o meu perfil',idleTtl:'Ainda aí?',idleTxt:'As suas respostas estão guardadas.',sendTitle:'Está tudo correcto?',sendSub:'Reveja o seu perfil e envie.',legal:'Ao enviar aceita a nossa <a href="/privacidad" target="_blank">Política de Privacidade</a>.',confirm:'Solicitação recebida',confirmTxt:'Recebemos a sua solicitação. Em menos de 24 horas enviaremos o seu orçamento personalizado.',steps:['<strong>Em menos de 24 horas</strong> revisamos a sua solicitação.','<strong>Enviamos o seu orçamento</strong> personalizado por email.','Se aceitar, <strong>enviamos o contrato</strong> e iniciamos a análise.'],tag:'O seu critério antes de decidir, nas melhores mãos.',back:'Voltar ao início',secLabels:{hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'},psTtl:'Secções prioritárias do relatório',psSub:'Calculadas automaticamente conforme o seu perfil',intl:'CLIENTE INTERNACIONAL'},
+  ru:{step:'Вопрос',of:'из',pct:'выполнено',next:'Далее',prev:'Назад',optional:'Необязательно',send:'ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ',sending:'ОТПРАВКА...',editBtn:'Изменить',errMsg:'Пожалуйста, ответьте на этот вопрос.',errSend:'Ошибка. Попробуйте ещё раз.',sendFail:'Не удалось отправить вашу заявку сейчас. Ваши ответы сохранены. Пожалуйста, попробуйте ещё раз.',retry:'Повторить отправку',profile:'Мой профиль',idleTtl:'Вы здесь?',idleTxt:'Ваши ответы сохранены.',sendTitle:'Всё верно?',sendSub:'Проверьте профиль и отправьте.',legal:'Отправляя, вы принимаете нашу <a href="/privacidad" target="_blank">Политику конфиденциальности</a>.',confirm:'Заявка получена',confirmTxt:'Мы получили вашу заявку. В течение 24 часов мы отправим персональное предложение.',steps:['<strong>В течение 24 часов</strong> мы рассмотрим вашу заявку.','<strong>Отправим персональное предложение</strong> на email.','При согласии <strong>отправим договор</strong> и начнём анализ.'],tag:'Ваше суждение перед решением — в лучших руках.',back:'На главную',secLabels:{hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'},psTtl:'Приоритетные разделы отчёта',psSub:'Рассчитано автоматически по вашему профилю',intl:'МЕЖДУНАРОДНЫЙ КЛИЕНТ'}
 };
 
 /* ── State ── */
@@ -713,10 +716,35 @@ function bqRenderProfile(){
 
 function bqEditQ(i){cQ=i;bqShow('rv-bq-sc-q');bqRenderQ();}
 
+function bqSendFail(ref){
+  // Re-enable the button and show a friendly inline error + Retry.
+  // localStorage is NOT cleared, so answers stay intact for retry.
+  var btn=document.getElementById('rv-bq-bs');
+  if(btn){btn.disabled=false;btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send;}
+  var box=document.getElementById('rv-bq-send-err');
+  if(!box){
+    box=document.createElement('div');
+    box.id='rv-bq-send-err';
+    box.style.cssText='margin-top:16px;padding:14px 16px;border:1px solid var(--bq-err);border-left:3px solid var(--bq-err);border-radius:8px;background:rgba(255,59,48,.06);color:var(--bq-err);font-size:13px;line-height:1.6;text-align:left';
+    if(btn&&btn.parentNode){ btn.parentNode.insertBefore(box, btn.nextSibling); }
+  }
+  box.innerHTML='';
+  var msg=document.createElement('div'); msg.textContent=BQ_T.sendFail||BQ_T.errSend; msg.style.marginBottom='12px';
+  var rbtn=document.createElement('button');
+  rbtn.type='button';
+  rbtn.className='rv-bq-btn-send';
+  rbtn.style.cssText='display:inline-flex;align-items:center;gap:8px;padding:11px 24px;font-size:12px';
+  rbtn.innerHTML='<span class="material-symbols-outlined" style="font-size:16px">refresh</span>'+(BQ_T.retry||'Retry');
+  rbtn.onclick=function(){ if(box.parentNode)box.parentNode.removeChild(box); bqSendProfile(ref); };
+  box.appendChild(msg); box.appendChild(rbtn);
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
 function bqSendProfile(ref){
   var btn=document.getElementById('rv-bq-bs');
   btn.disabled=true;
   btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+BQ_T.sending;
+  var old=document.getElementById('rv-bq-send-err'); if(old&&old.parentNode)old.parentNode.removeChild(old);
 
   var fd=new FormData();
   fd.append('action','romvill_q_submit');
@@ -734,10 +762,11 @@ function bqSendProfile(ref){
   fetch(BQ_AJAX,{method:'POST',body:fd})
     .then(function(r){return r.json();})
     .then(function(res){
-      if(res.success){bqShowConf(res.data&&res.data.ref?res.data.ref:ref);}
-      else{btn.disabled=false;btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send;alert((res.data&&res.data.message)||BQ_T.errSend);}
+      // Only treat as success if the server confirms (wp_mail true).
+      if(res&&res.success){ bqShowConf(res.data&&res.data.ref?res.data.ref:ref); }
+      else{ bqSendFail(ref); }
     })
-    .catch(function(){btn.disabled=false;btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send;alert(BQ_T.errSend);});
+    .catch(function(){ bqSendFail(ref); });
 }
 
 function bqShowConf(ref){

@@ -447,6 +447,8 @@ var TR={
     agentTitle:'Deseo asistencia personalizada de un analista',
     agentSub:'Si selecciona esta opción, un analista le contactará a la mayor brevedad para ayudarle con el proceso.',
     errSend:'Error al enviar. Por favor inténtelo de nuevo.',
+    sendFail:'No hemos podido enviar su solicitud en este momento. Sus respuestas se han guardado. Por favor, inténtelo de nuevo.',
+    retry:'Reintentar envío',
     questions:[
       {text:'¿Cuál es su nombre completo y nacionalidad?',note:'Queremos dirigirnos a usted de forma personalizada y adaptar mejor el contenido de su análisis a su perfil.',type:'cmp',fields:[{id:'nt',lbl:'Nombre completo',type:'text',ph:'Nombre y apellidos',req:true},{id:'nac',lbl:'Nacionalidad',type:'sel',opts:['Seleccione su nacionalidad','Española','Británica','Alemana','Francesa','Neerlandesa','Rusa','Otra'],req:true}],req:true},
       {text:'¿En qué ciudad reside actualmente?',type:'text',ph:'Ciudad de residencia actual',req:true},
@@ -470,11 +472,11 @@ var TR={
 
 // Copy ES to other langs (minimal overrides)
 ['en','de','fr','pt','ru'].forEach(function(l){TR[l]=Object.assign({},TR.es);});
-TR.en.btn='LET\'S START';TR.en.next='Next';TR.en.prev='Back';TR.en.send='REQUEST QUOTE';TR.en.sending='SENDING...';TR.en.confirm='Request received';TR.en.profile='View my profile';TR.en.optional='Optional';TR.en.editBtn='Edit';TR.en.errMsg='Please answer this question before continuing.';TR.en.errSend='Sending error. Please try again.';TR.en.intlBadge='INTERNATIONAL CLIENT';TR.en.midTitle='Thank you for completing the questionnaire.';TR.en.midP1='With the information provided, we will proceed to prepare your personalised quote.';TR.en.midP2='Once received and accepted, we will begin your Area Intelligence Analysis.';TR.en.midBtn='View my profile';TR.en.sendTitle='Everything correct?';TR.en.sendSub='Review your profile and if everything is correct press the button to send us your request.';TR.en.legal='By submitting you accept our <a href="/privacidad" target="_blank">Privacy Policy</a>.';TR.en.time='Approximately 4 minutes';TR.en.confirmTxt='We have received your request. Within 24 hours one of our analysts will review your case.';TR.en.tag='Your criteria before deciding, in the best hands.';TR.en.steps=['<strong>Within 24 hours</strong> we review your request and prepare your quote.','<strong>We send your personalised quote</strong> by email.','If you accept, <strong>we send the contract</strong> and begin your analysis.'];TR.en.secLabels={hi:'PRIORITY',md:'RELEVANT',lo:'STANDARD'};TR.en.motivators={6:{txt:'AREA OF INTEREST REGISTERED',sub:'We already have what we need'},10:{txt:'FINAL STRETCH',sub:'Just a few more questions'},13:{txt:'ALMOST DONE',sub:'We are preparing your profile'}};TR.en.agentTitle='I would like personalised assistance from an analyst';TR.en.agentSub='If you select this option, an analyst will contact you as soon as possible.';TR.en.blocks={1:'About you',6:'Your area of interest',8:'Your enquiry',10:'To personalise your report',13:'Your timeline'};
-TR.de.btn='LOSLEGEN';TR.de.next='Weiter';TR.de.prev='Zurück';TR.de.send='ANGEBOT ANFORDERN';TR.de.sending='WIRD GESENDET...';TR.de.intlBadge='INTERNATIONALER KUNDE';TR.de.time='Ungefähr 4 Minuten';TR.de.midTitle='Vielen Dank für das Ausfüllen des Fragebogens.';TR.de.midP1='Mit den bereitgestellten Daten werden wir Ihr persönliches Angebot erstellen.';TR.de.midP2='Nach Erhalt und Akzeptanz werden wir Ihre Zonenanalyse beginnen.';TR.de.secLabels={hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'};TR.de.motivators={6:{txt:'INTERESSENSGEBIET REGISTRIERT',sub:'Wir haben was wir brauchen'},10:{txt:'ENDSPURT',sub:'Noch ein paar Fragen'},13:{txt:'FAST FERTIG',sub:'Wir bereiten Ihr Profil vor'}};TR.de.agentTitle='Ich möchte persönliche Unterstützung';TR.de.agentSub='Ein Analyst wird Sie so bald wie möglich kontaktieren.';TR.de.errMsg='Bitte beantworten Sie diese Frage.';TR.de.errSend='Fehler beim Senden. Bitte versuchen Sie es erneut.';TR.de.blocks={1:'Über Sie',6:'Ihr Interessensgebiet',8:'Ihre Anfrage',10:'Zur Personalisierung',13:'Ihre Fristen'};
-TR.fr.btn='COMMENÇONS';TR.fr.next='Suivant';TR.fr.prev='Précédent';TR.fr.send='DEMANDER UN DEVIS';TR.fr.sending='ENVOI EN COURS...';TR.fr.intlBadge='CLIENT INTERNATIONAL';TR.fr.time='Environ 4 minutes';TR.fr.midTitle='Merci d\'avoir complété le questionnaire.';TR.fr.midP1='Avec les données fournies, nous procéderons à votre devis personnalisé.';TR.fr.midP2='Une fois reçu et accepté, nous commencerons votre Analyse de Renseignement Zonal.';TR.fr.secLabels={hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'};TR.fr.motivators={6:{txt:'ZONE D\'INTÉRÊT ENREGISTRÉE',sub:'Nous avons ce qu\'il nous faut'},10:{txt:'LIGNE DROITE FINALE',sub:'Encore quelques questions'},13:{txt:'PRESQUE TERMINÉ',sub:'Nous préparons votre profil'}};TR.fr.agentTitle='Je souhaite l\'assistance personnalisée d\'un analyste';TR.fr.agentSub='Un analyste vous contactera dès que possible.';TR.fr.errMsg='Veuillez répondre à cette question.';TR.fr.errSend='Erreur d\'envoi. Veuillez réessayer.';TR.fr.blocks={1:'À votre sujet',6:'Votre zone d\'intérêt',8:'Votre demande',10:'Personnalisation',13:'Vos délais'};
-TR.pt.btn='VAMOS COMEÇAR';TR.pt.next='Seguinte';TR.pt.prev='Anterior';TR.pt.send='SOLICITAR ORÇAMENTO';TR.pt.sending='A ENVIAR...';TR.pt.intlBadge='CLIENTE INTERNACIONAL';TR.pt.time='Aproximadamente 4 minutos';TR.pt.midTitle='Obrigado por preencher o questionário.';TR.pt.midP1='Com os dados fornecidos, procederemos ao seu orçamento personalizado.';TR.pt.midP2='Uma vez recebido e aceite, iniciaremos a sua Análise de Inteligência Zonal.';TR.pt.secLabels={hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'};TR.pt.motivators={6:{txt:'ZONA DE INTERESSE REGISTADA',sub:'Já temos o que precisamos'},10:{txt:'LINHA DE CHEGADA',sub:'Só mais algumas perguntas'},13:{txt:'QUASE PRONTO',sub:'Estamos a preparar o seu perfil'}};TR.pt.agentTitle='Desejo assistência personalizada de um analista';TR.pt.agentSub='Um analista entrará em contacto consigo brevemente.';TR.pt.errMsg='Por favor, responda a esta pergunta.';TR.pt.errSend='Erro ao enviar. Por favor tente novamente.';TR.pt.blocks={1:'Sobre si',6:'A sua zona de interesse',8:'A sua consulta',10:'Personalização',13:'Os seus prazos'};
-TR.ru.btn='НАЧНЁМ';TR.ru.next='Далее';TR.ru.prev='Назад';TR.ru.send='ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ';TR.ru.sending='ОТПРАВКА...';TR.ru.intlBadge='МЕЖДУНАРОДНЫЙ КЛИЕНТ';TR.ru.time='Приблизительно 4 минуты';TR.ru.midTitle='Спасибо за заполнение анкеты.';TR.ru.midP1='На основе предоставленных данных мы подготовим ваше персональное предложение.';TR.ru.midP2='После получения и принятия мы начнём ваш Зональный Анализ.';TR.ru.secLabels={hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'};TR.ru.motivators={6:{txt:'ЗОНА ИНТЕРЕСА ЗАРЕГИСТРИРОВАНА',sub:'У нас есть всё необходимое'},10:{txt:'ФИНИШНАЯ ПРЯМАЯ',sub:'Ещё несколько вопросов'},13:{txt:'ПОЧТИ ГОТОВО',sub:'Мы готовим ваш профиль'}};TR.ru.agentTitle='Я хочу персональную помощь аналитика';TR.ru.agentSub='Аналитик свяжется с вами в ближайшее время.';TR.ru.errMsg='Пожалуйста, ответьте на этот вопрос.';TR.ru.errSend='Ошибка отправки. Попробуйте ещё раз.';TR.ru.blocks={1:'О вас',6:'Зона интереса',8:'Ваш запрос',10:'Персонализация',13:'Ваши сроки'};
+TR.en.btn='LET\'S START';TR.en.next='Next';TR.en.prev='Back';TR.en.send='REQUEST QUOTE';TR.en.sending='SENDING...';TR.en.confirm='Request received';TR.en.profile='View my profile';TR.en.optional='Optional';TR.en.editBtn='Edit';TR.en.errMsg='Please answer this question before continuing.';TR.en.errSend='Sending error. Please try again.';TR.en.sendFail='We could not send your request right now. Your answers have been saved. Please try again.';TR.en.retry='Retry submission';TR.en.intlBadge='INTERNATIONAL CLIENT';TR.en.midTitle='Thank you for completing the questionnaire.';TR.en.midP1='With the information provided, we will proceed to prepare your personalised quote.';TR.en.midP2='Once received and accepted, we will begin your Area Intelligence Analysis.';TR.en.midBtn='View my profile';TR.en.sendTitle='Everything correct?';TR.en.sendSub='Review your profile and if everything is correct press the button to send us your request.';TR.en.legal='By submitting you accept our <a href="/privacidad" target="_blank">Privacy Policy</a>.';TR.en.time='Approximately 4 minutes';TR.en.confirmTxt='We have received your request. Within 24 hours one of our analysts will review your case.';TR.en.tag='Your criteria before deciding, in the best hands.';TR.en.steps=['<strong>Within 24 hours</strong> we review your request and prepare your quote.','<strong>We send your personalised quote</strong> by email.','If you accept, <strong>we send the contract</strong> and begin your analysis.'];TR.en.secLabels={hi:'PRIORITY',md:'RELEVANT',lo:'STANDARD'};TR.en.motivators={6:{txt:'AREA OF INTEREST REGISTERED',sub:'We already have what we need'},10:{txt:'FINAL STRETCH',sub:'Just a few more questions'},13:{txt:'ALMOST DONE',sub:'We are preparing your profile'}};TR.en.agentTitle='I would like personalised assistance from an analyst';TR.en.agentSub='If you select this option, an analyst will contact you as soon as possible.';TR.en.blocks={1:'About you',6:'Your area of interest',8:'Your enquiry',10:'To personalise your report',13:'Your timeline'};
+TR.de.btn='LOSLEGEN';TR.de.next='Weiter';TR.de.prev='Zurück';TR.de.send='ANGEBOT ANFORDERN';TR.de.sending='WIRD GESENDET...';TR.de.intlBadge='INTERNATIONALER KUNDE';TR.de.time='Ungefähr 4 Minuten';TR.de.midTitle='Vielen Dank für das Ausfüllen des Fragebogens.';TR.de.midP1='Mit den bereitgestellten Daten werden wir Ihr persönliches Angebot erstellen.';TR.de.midP2='Nach Erhalt und Akzeptanz werden wir Ihre Zonenanalyse beginnen.';TR.de.secLabels={hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'};TR.de.motivators={6:{txt:'INTERESSENSGEBIET REGISTRIERT',sub:'Wir haben was wir brauchen'},10:{txt:'ENDSPURT',sub:'Noch ein paar Fragen'},13:{txt:'FAST FERTIG',sub:'Wir bereiten Ihr Profil vor'}};TR.de.agentTitle='Ich möchte persönliche Unterstützung';TR.de.agentSub='Ein Analyst wird Sie so bald wie möglich kontaktieren.';TR.de.errMsg='Bitte beantworten Sie diese Frage.';TR.de.errSend='Fehler beim Senden. Bitte versuchen Sie es erneut.';TR.de.sendFail='Wir konnten Ihre Anfrage gerade nicht senden. Ihre Antworten wurden gespeichert. Bitte versuchen Sie es erneut.';TR.de.retry='Erneut senden';TR.de.blocks={1:'Über Sie',6:'Ihr Interessensgebiet',8:'Ihre Anfrage',10:'Zur Personalisierung',13:'Ihre Fristen'};
+TR.fr.btn='COMMENÇONS';TR.fr.next='Suivant';TR.fr.prev='Précédent';TR.fr.send='DEMANDER UN DEVIS';TR.fr.sending='ENVOI EN COURS...';TR.fr.intlBadge='CLIENT INTERNATIONAL';TR.fr.time='Environ 4 minutes';TR.fr.midTitle='Merci d\'avoir complété le questionnaire.';TR.fr.midP1='Avec les données fournies, nous procéderons à votre devis personnalisé.';TR.fr.midP2='Une fois reçu et accepté, nous commencerons votre Analyse de Renseignement Zonal.';TR.fr.secLabels={hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'};TR.fr.motivators={6:{txt:'ZONE D\'INTÉRÊT ENREGISTRÉE',sub:'Nous avons ce qu\'il nous faut'},10:{txt:'LIGNE DROITE FINALE',sub:'Encore quelques questions'},13:{txt:'PRESQUE TERMINÉ',sub:'Nous préparons votre profil'}};TR.fr.agentTitle='Je souhaite l\'assistance personnalisée d\'un analyste';TR.fr.agentSub='Un analyste vous contactera dès que possible.';TR.fr.errMsg='Veuillez répondre à cette question.';TR.fr.errSend='Erreur d\'envoi. Veuillez réessayer.';TR.fr.sendFail='Nous n\'avons pas pu envoyer votre demande pour le moment. Vos réponses ont été sauvegardées. Veuillez réessayer.';TR.fr.retry='Réessayer l\'envoi';TR.fr.blocks={1:'À votre sujet',6:'Votre zone d\'intérêt',8:'Votre demande',10:'Personnalisation',13:'Vos délais'};
+TR.pt.btn='VAMOS COMEÇAR';TR.pt.next='Seguinte';TR.pt.prev='Anterior';TR.pt.send='SOLICITAR ORÇAMENTO';TR.pt.sending='A ENVIAR...';TR.pt.intlBadge='CLIENTE INTERNACIONAL';TR.pt.time='Aproximadamente 4 minutos';TR.pt.midTitle='Obrigado por preencher o questionário.';TR.pt.midP1='Com os dados fornecidos, procederemos ao seu orçamento personalizado.';TR.pt.midP2='Uma vez recebido e aceite, iniciaremos a sua Análise de Inteligência Zonal.';TR.pt.secLabels={hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'};TR.pt.motivators={6:{txt:'ZONA DE INTERESSE REGISTADA',sub:'Já temos o que precisamos'},10:{txt:'LINHA DE CHEGADA',sub:'Só mais algumas perguntas'},13:{txt:'QUASE PRONTO',sub:'Estamos a preparar o seu perfil'}};TR.pt.agentTitle='Desejo assistência personalizada de um analista';TR.pt.agentSub='Um analista entrará em contacto consigo brevemente.';TR.pt.errMsg='Por favor, responda a esta pergunta.';TR.pt.errSend='Erro ao enviar. Por favor tente novamente.';TR.pt.sendFail='Não foi possível enviar a sua solicitação neste momento. As suas respostas foram guardadas. Por favor, tente novamente.';TR.pt.retry='Tentar novamente';TR.pt.blocks={1:'Sobre si',6:'A sua zona de interesse',8:'A sua consulta',10:'Personalização',13:'Os seus prazos'};
+TR.ru.btn='НАЧНЁМ';TR.ru.next='Далее';TR.ru.prev='Назад';TR.ru.send='ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ';TR.ru.sending='ОТПРАВКА...';TR.ru.intlBadge='МЕЖДУНАРОДНЫЙ КЛИЕНТ';TR.ru.time='Приблизительно 4 минуты';TR.ru.midTitle='Спасибо за заполнение анкеты.';TR.ru.midP1='На основе предоставленных данных мы подготовим ваше персональное предложение.';TR.ru.midP2='После получения и принятия мы начнём ваш Зональный Анализ.';TR.ru.secLabels={hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'};TR.ru.motivators={6:{txt:'ЗОНА ИНТЕРЕСА ЗАРЕГИСТРИРОВАНА',sub:'У нас есть всё необходимое'},10:{txt:'ФИНИШНАЯ ПРЯМАЯ',sub:'Ещё несколько вопросов'},13:{txt:'ПОЧТИ ГОТОВО',sub:'Мы готовим ваш профиль'}};TR.ru.agentTitle='Я хочу персональную помощь аналитика';TR.ru.agentSub='Аналитик свяжется с вами в ближайшее время.';TR.ru.errMsg='Пожалуйста, ответьте на этот вопрос.';TR.ru.errSend='Ошибка отправки. Попробуйте ещё раз.';TR.ru.sendFail='Не удалось отправить вашу заявку сейчас. Ваши ответы сохранены. Пожалуйста, попробуйте ещё раз.';TR.ru.retry='Повторить отправку';TR.ru.blocks={1:'О вас',6:'Зона интереса',8:'Ваш запрос',10:'Персонализация',13:'Ваши сроки'};
 
 // ── State ──
 var lang='es', T=TR.es, A={}, cQ=0;
@@ -856,10 +858,35 @@ function b1RenderProfile(){
 }
 
 // ── Submit via WP AJAX ──
+function b1SendFail(ref){
+  // Re-enable the button and show a friendly inline error + Retry.
+  // localStorage is NOT cleared, so answers stay intact for retry.
+  var btn=document.getElementById('rv-b1-bs');
+  if(btn){btn.disabled=false;btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send;}
+  var box=document.getElementById('rv-b1-send-err');
+  if(!box){
+    box=document.createElement('div');
+    box.id='rv-b1-send-err';
+    box.style.cssText='margin-top:16px;padding:14px 16px;border:1px solid var(--err);border-left:3px solid var(--err);border-radius:8px;background:rgba(139,0,0,.06);color:var(--err);font-size:13px;line-height:1.6;text-align:left';
+    if(btn&&btn.parentNode){ btn.parentNode.insertBefore(box, btn.nextSibling); }
+  }
+  box.innerHTML='';
+  var msg=document.createElement('div'); msg.textContent=T.sendFail||T.errSend; msg.style.marginBottom='12px';
+  var rbtn=document.createElement('button');
+  rbtn.type='button';
+  rbtn.className='rv-b1-btn-send';
+  rbtn.style.cssText='display:inline-flex;align-items:center;gap:8px;padding:11px 24px;font-size:12px';
+  rbtn.innerHTML='<span class="material-symbols-outlined" style="font-size:16px">refresh</span>'+(T.retry||'Reintentar');
+  rbtn.onclick=function(){ if(box.parentNode)box.parentNode.removeChild(box); b1SendProfile(ref); };
+  box.appendChild(msg); box.appendChild(rbtn);
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
 function b1SendProfile(ref){
   var btn=document.getElementById('rv-b1-bs');
   btn.disabled=true;
   btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+T.sending;
+  var old=document.getElementById('rv-b1-send-err'); if(old&&old.parentNode)old.parentNode.removeChild(old);
 
   var payload=Object.assign({},A,{ref:ref,lang:lang});
   var fd=new FormData();
@@ -870,19 +897,11 @@ function b1SendProfile(ref){
   fetch(B1_AJAX,{method:'POST',body:fd})
     .then(function(r){return r.json();})
     .then(function(res){
-      if(res.success){
-        b1ShowConf(res.data&&res.data.ref?res.data.ref:ref);
-      }else{
-        btn.disabled=false;
-        btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send;
-        alert(res.data&&res.data.message?res.data.message:T.errSend);
-      }
+      // Only treat as success if the server confirms (wp_mail true).
+      if(res&&res.success){ b1ShowConf(res.data&&res.data.ref?res.data.ref:ref); }
+      else{ b1SendFail(ref); }
     })
-    .catch(function(){
-      btn.disabled=false;
-      btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send;
-      alert(T.errSend);
-    });
+    .catch(function(){ b1SendFail(ref); });
 }
 
 function b1ShowConf(ref){
