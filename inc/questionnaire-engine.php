@@ -430,8 +430,14 @@ var BQ_LK=BQ_CONFIG.storage.lang;
 
 function bqBuildT(){
   var ui=BQ_UI[BQ_LANG]||BQ_UI.es;
+  /* Fallback por clave: español de BASE, y el idioma seleccionado sobrescribe
+     SOLO las claves que defina. Permite traducciones PARCIALES sin romper la
+     portada/UI (lo no traducido cae a español). Como hoy solo existe 'es'
+     (o copias de 'es'), el resultado es idéntico al anterior. */
+  var bes=BQ_CONFIG.lang.es||{}, bsel=BQ_CONFIG.lang[BQ_LANG]||{}, b={}, kes, ksel;
+  for(kes in bes)  b[kes]=bes[kes];
+  for(ksel in bsel) b[ksel]=bsel[ksel];
   /* merge UI + block-specific (cover, mid, blocks, motivators, questions) */
-  var b=BQ_CONFIG.lang[BQ_LANG]||BQ_CONFIG.lang.es;
   var merged={};
   var ku, kb;
   for(ku in ui) merged[ku]=ui[ku];
