@@ -190,16 +190,56 @@ function romvill_og_locale( $lang ) {
 remove_action( 'wp_head', 'rel_canonical' );
 add_filter( 'jetpack_enable_open_graph', '__return_false' );
 
-// ─── Central language SEO emitter (Tanda 1) ──────────────────
-// Hooked directly on wp_head at priority 1, registered at theme
-// load — so it ALWAYS runs, regardless of whether a template calls
-// romvill_seo() before or after get_header(). It computes everything
-// from the current request path + current language (no template args
-// needed), so it works on every page without editing templates.
-//
-// Emits: canonical, og:url, og:locale (+ alternates), full hreflang
-// block (5 langs + x-default → ES). Identical block on all 5 language
-// versions of a page. A static guard prevents double output.
+// ─── Helper: current page key (slug-like) ────────────────────
+// Returns 'home' for the front page, or the page slug for any page
+// (e.g. 'metodologia', 'contacto', 'perfil-seguridad',
+// 'presupuesto-bloque-1'). Empty string otherwise. Used to pick the
+// right per-page SEO title/description translation keys.
+function romvill_current_page_key() {
+    if ( is_front_page() || is_home() ) {
+        return 'home';
+    }
+    if ( is_page() ) {
+        $slug = get_post_field( 'post_name', get_queried_object_id() );
+        if ( $slug ) return $slug;
+    }
+    return '';
+}
+
+// ─── Helper: resolve SEO title & description for current page ─
+// Falls back to home keys / site name when a specific key is missing.
+function romvill_seo_title() {
+    $key  = romvill_current_page_key();
+    $tkey = 'seo.title.' . $key;
+    $val  = romvill_t( $tkey );
+    if ( $val !== $tkey ) return $val;            // translated title found
+    $home = romvill_t( 'seo.title.home' );
+    return $home !== 'seo.title.home' ? $home : ( get_bloginfo( 'name' ) ?: 'ROMVILL' );
+}
+function romvill_seo_desc() {
+    $key  = romvill_current_page_key();
+    $dkey = 'seo.desc.' . $key;
+    $val  = romvill_t( $dkey );
+    if ( $val !== $dkey ) return $val;            // translated desc found
+    $home = romvill_t( 'seo.desc.home' );
+    return $home !== 'seo.desc.home' ? $home : '';
+}
+
+// ─── Force the document <title> per page & language ──────────
+// The theme supports title-tag, so WP renders one <title>. We filter
+// its final value so there is exactly ONE <title>, translated.
+add_filter( 'pre_get_document_title', 'romvill_filter_title', 99 );
+function romvill_filter_title( $title ) {
+    if ( is_admin() ) return $title;
+    return romvill_seo_title();
+}
+
+// ─── Central SEO emitter (Tanda 1 lang tags + Tanda 2 content) ─
+// Hooked on wp_head priority 1, registered at theme load — ALWAYS
+// runs regardless of template order. Computes everything from the
+// current request path + current language + current page key, so it
+// works on every page without editing templates. Static guard
+// prevents double output. Every tag appears exactly once.
 add_action( 'wp_head', 'romvill_emit_lang_seo', 1 );
 function romvill_emit_lang_seo() {
     static $done = false;
@@ -210,19 +250,32 @@ function romvill_emit_lang_seo() {
     $cur_lang  = romvill_current_lang();
     $canonical = romvill_lang_url( $req_path, $cur_lang );
 
-    echo "\n";
-    // Canonical (per language) — single, replaces core's rel_canonical
-    echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
+    $site_name = get_bloginfo( 'name' ) ?: 'ROMVILL';
+    $title     = romvill_seo_title();
+    $desc      = romvill_seo_desc();
+    $image     = get_template_directory_uri() . '/assets/images/og-romvill.jpg';
+    $img_alt   = romvill_t( 'seo.img.alt' );
 
-    // hreflang alternates — identical on all 5 language versions of
-    // this page. x-default → ES (no param).
+    echo "\n";
+
+    // ── Tanda 1: language / canonical tags ──
+    echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
     foreach ( ROMVILL_LANGS as $lc ) {
         echo '<link rel="alternate" hreflang="' . esc_attr( $lc ) . '" href="' . esc_url( romvill_lang_url( $req_path, $lc ) ) . '" />' . "\n";
     }
     echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( romvill_lang_url( $req_path, 'es' ) ) . '" />' . "\n";
 
-    // og:url = canonical
+    // ── Tanda 2: content meta (per page & language) ──
+    if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
+    echo '<meta name="robots" content="index, follow" />' . "\n";
+
+    echo '<meta property="og:type" content="website" />' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
+    echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
+    if ( $desc ) echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
     echo '<meta property="og:url" content="' . esc_url( $canonical ) . '" />' . "\n";
+    echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
+    echo '<meta property="og:image:alt" content="' . esc_attr( $img_alt ) . '" />' . "\n";
 
     // og:locale (current) + alternates (other 4)
     echo '<meta property="og:locale" content="' . esc_attr( romvill_og_locale( $cur_lang ) ) . '" />' . "\n";
@@ -230,43 +283,23 @@ function romvill_emit_lang_seo() {
         if ( $lc === $cur_lang ) continue;
         echo '<meta property="og:locale:alternate" content="' . esc_attr( romvill_og_locale( $lc ) ) . '" />' . "\n";
     }
+
+    // Twitter
+    echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+    echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
+    if ( $desc ) echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
+    echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
+    echo '<meta name="twitter:image:alt" content="' . esc_attr( $img_alt ) . '" />' . "\n";
 }
 
-// ─── SEO: content meta (title/description/image) — Tanda 2 scope ──
-// Emits only CONTENT tags (description, og:title/description/image,
-// twitter). Language tags (canonical/og:url/og:locale/hreflang) are
-// handled centrally by romvill_emit_lang_seo() above to avoid
-// duplicates. NOTE: on templates that call romvill_seo() AFTER
-// get_header(), these content tags don't print (a known ordering
-// issue to be addressed in Tanda 2). The Tanda-1 language tags are
-// unaffected because they run from the central emitter.
+// ─── romvill_seo(): now a no-op (kept for template compatibility) ─
+// All SEO tags are emitted centrally by romvill_emit_lang_seo() and
+// the title filter, computed per page from the current query — so
+// templates no longer need to pass title/desc. This stub prevents
+// fatals from the existing romvill_seo() calls and avoids ANY
+// duplicate tags.
 function romvill_seo( $args = array() ) {
-    $a = wp_parse_args( $args, array(
-        'desc'  => '',
-        'title' => '',
-        'image' => '',
-        'type'  => 'website',
-        'url'   => '',
-    ) );
-
-    $site_name = get_bloginfo( 'name' ) ?: 'ROMVILL';
-    $title     = $a['title'] ?: $site_name;
-    $desc      = $a['desc'];
-    $image     = $a['image'] ?: get_template_directory_uri() . '/assets/images/og-romvill.jpg';
-
-    add_action( 'wp_head', function() use ( $title, $desc, $image, $site_name, $a ) {
-        if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
-        echo '<meta name="robots" content="index, follow" />' . "\n";
-        echo '<meta property="og:type" content="' . esc_attr( $a['type'] ) . '" />' . "\n";
-        echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
-        echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
-        if ( $desc ) echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
-        echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
-        echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
-        echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
-        if ( $desc ) echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
-        echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
-    }, 5 );
+    // Intentionally empty — SEO handled centrally.
 }
 
 // ─── Auto-Setup on Theme Activation ─────────────────────────
