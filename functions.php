@@ -34,8 +34,8 @@ require_once get_template_directory() . '/inc/estimacion.php';
 // ─── Calculadora de Presupuestos (admin-only, privada) ────────
 require_once get_template_directory() . '/inc/calculadora.php';
 
-// ─── Generador de Informes (admin-only, privado) ──────────────
-require_once get_template_directory() . '/inc/informes.php';
+// ─── Generador de borrador de informe en .docx (admin-only) ───
+require_once get_template_directory() . '/inc/generador-docx.php';
 
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
