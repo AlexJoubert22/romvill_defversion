@@ -757,6 +757,8 @@ function bqSendProfile(ref){
   fd.append('email',A.email||'');
   fd.append('name',A.nt||'—');
   fd.append('intl',A.zona_intl?'1':'0');
+  fd.append('tel',((A.tel_dial||'')+' '+(A.tel_num||'')).trim()||'—');
+  fd.append('zona',A.zona_intl?((A.zona_pais||'—')+', '+(A.zona_ciudad||'—')):(A.zona||'—'));
   fd.append('body',bqBuildBody());
 
   fetch(BQ_AJAX,{method:'POST',body:fd})

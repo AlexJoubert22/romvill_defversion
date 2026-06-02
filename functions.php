@@ -19,6 +19,9 @@ add_filter( 'default_option_blog_public', '__return_true' );
 // ─── Multilingual Engine ──────────────────────────────────────
 require_once get_template_directory() . '/inc/translations.php';
 
+// ─── Solicitudes panel (private CRM) ──────────────────────────
+require_once get_template_directory() . '/inc/solicitudes-cpt.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
@@ -560,6 +563,24 @@ Análisis de Inteligencia Zonal
         "Reply-To: {$name} <{$email}>",
     );
 
+    // Persist into the private Solicitudes panel (besides the email).
+    // Saved on every VALID submission so it survives even if the email
+    // fails; retries dedupe by reference (same $ref → updates).
+    if ( function_exists( 'romvill_save_solicitud' ) ) {
+        romvill_save_solicitud( array(
+            'ref'    => $ref,
+            'perfil' => $profile_name,
+            'bloque' => (string) $block,
+            'lang'   => $lang,
+            'zona'   => sanitize_text_field( $_POST['zona'] ?? '—' ),
+            'nombre' => $name,
+            'email'  => $email,
+            'tel'    => sanitize_text_field( $_POST['tel'] ?? '—' ),
+            'intl'   => $intl,
+            'body'   => $body_in,
+        ) );
+    }
+
     $sent = wp_mail( get_option( 'admin_email' ), $subject, $email_body, $headers );
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
@@ -673,6 +694,22 @@ Análisis de Inteligencia Zonal
         "Reply-To: {$nom} <{$ema}>",
     );
 
+    // Persist into the private Solicitudes panel (besides the email).
+    if ( function_exists( 'romvill_save_solicitud' ) ) {
+        romvill_save_solicitud( array(
+            'ref'    => $ref,
+            'perfil' => 'Particular / Residencial',
+            'bloque' => '1',
+            'lang'   => $lang,
+            'zona'   => $zona,
+            'nombre' => $nom,
+            'email'  => $ema,
+            'tel'    => $tel ?: '—',
+            'intl'   => $intl,
+            'body'   => $body,
+        ) );
+    }
+
     $sent = wp_mail( $to, $subject, $body, $headers );
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
@@ -714,6 +751,24 @@ function romvill_handle_contact() {
         'Content-Type: text/plain; charset=UTF-8',
         "Reply-To: {$nombre} {$apellido} <{$email}>",
     );
+
+    // Persist into the private Solicitudes panel (besides the email).
+    if ( function_exists( 'romvill_save_solicitud' ) ) {
+        $ini = strtoupper( substr( $nombre, 0, 1 ) . substr( $apellido, 0, 1 ) ) ?: 'XX';
+        $ref = 'RV-' . date( 'Y' ) . '-' . $ini . '-CONT-' . substr( md5( $email . microtime() ), 0, 4 );
+        romvill_save_solicitud( array(
+            'ref'    => $ref,
+            'perfil' => 'Contacto directo',
+            'bloque' => '',
+            'lang'   => romvill_current_lang(),
+            'zona'   => $zona,
+            'nombre' => trim( $nombre . ' ' . $apellido ),
+            'email'  => $email,
+            'tel'    => $telefono ?: '—',
+            'intl'   => false,
+            'body'   => $body,
+        ) );
+    }
 
     $sent = wp_mail( $to, $subject, $body, $headers );
     if ( $sent ) {
