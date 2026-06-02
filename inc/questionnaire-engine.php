@@ -757,6 +757,29 @@ function bqSendFail(ref){
   box.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
+// Claves canónicas por ÍNDICE de opción (independientes del idioma), para la
+// lógica interna (parser/estimación). Dato ADICIONAL: el texto legible no cambia.
+// Patrón: b{bloque}_{idPregunta}_{indiceOpcion}; base = q.key || ('q'+indicePregunta).
+// Se derivan por POSICIÓN, así que funcionan en cualquier idioma.
+function bqClaves(){
+  var qs=BQ_T.questions||[], N=BQ_CONFIG.block, out={};
+  function base(q,i){ return q.key || ('q'+i); }
+  function labels(q){ return (q.opts||[]).map(function(o){return (typeof o==='string')?o:o.lbl;}); }
+  function ck(b,idx){ return 'b'+N+'_'+b+'_'+idx; }
+  for(var i=0;i<qs.length;i++){
+    var q=qs[i], b=base(q,i), L=labels(q), idx;
+    if(q.type==='single'){ idx=L.indexOf(A['q'+i]); if(idx>-1) out[b]=ck(b,idx); }
+    else if(q.type==='swf'){ idx=L.indexOf(A['q'+i+'_c']); if(idx>-1) out[b]=ck(b,idx); }
+    else if(q.type==='zona'){ idx=L.indexOf(A.zona); if(idx>-1) out[b]=ck(b,idx); }
+    else if(q.type==='multi'){
+      var arr=Array.isArray(A['q'+i])?A['q'+i]:[], ks=[];
+      arr.forEach(function(v){var j=L.indexOf(v);if(j>-1)ks.push(ck(b,j));});
+      if(ks.length) out[b]=ks;
+    }
+  }
+  return out;
+}
+
 function bqSendProfile(ref){
   var btn=document.getElementById('rv-bq-bs');
   btn.disabled=true;
@@ -777,6 +800,7 @@ function bqSendProfile(ref){
   fd.append('tel',((A.tel_dial||'')+' '+(A.tel_num||'')).trim()||'—');
   fd.append('zona',A.zona_intl?((A.zona_pais||'—')+', '+(A.zona_ciudad||'—')):(A.zona||'—'));
   fd.append('body',bqBuildBody());
+  fd.append('claves',JSON.stringify(bqClaves()));
 
   fetch(BQ_AJAX,{method:'POST',body:fd})
     .then(function(r){return r.json();})

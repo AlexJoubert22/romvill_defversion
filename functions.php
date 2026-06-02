@@ -598,6 +598,26 @@ Análisis de Inteligencia Zonal
         "Reply-To: {$name} <{$email}>",
     );
 
+    // Claves canónicas (independientes del idioma) — dato interno ADICIONAL.
+    // Bloques 2/3/4: { idPregunta => 'bN_id_idx' (single/swf/zona) | ['bN_id_idx',...] (multi) }.
+    // El texto legible (body/email/wp-admin) NO cambia. Parser/estimación se
+    // adaptarán en otra tarea; por ahora solo se GUARDAN.
+    $claves_in = isset( $_POST['claves'] ) ? json_decode( wp_unslash( $_POST['claves'] ), true ) : null;
+    $claves = array();
+    if ( is_array( $claves_in ) ) {
+        foreach ( $claves_in as $ck => $cv ) {
+            $ck = sanitize_key( $ck );
+            if ( $ck === '' ) continue;
+            if ( is_array( $cv ) ) {
+                $vv = array_values( array_filter( array_map( 'sanitize_key', $cv ) ) );
+                if ( $vv ) $claves[ $ck ] = $vv;
+            } else {
+                $sv = sanitize_key( (string) $cv );
+                if ( $sv !== '' ) $claves[ $ck ] = $sv;
+            }
+        }
+    }
+
     // Persist into the private Solicitudes panel (besides the email).
     // Saved on every VALID submission so it survives even if the email
     // fails; retries dedupe by reference (same $ref → updates).
@@ -614,6 +634,7 @@ Análisis de Inteligencia Zonal
             'intl'     => $intl,
             'body'     => $body_in,
             'estimacion' => $est ? $est['bloque_email'] : '',
+            'claves'   => $claves,
         ) );
     }
 
