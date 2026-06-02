@@ -205,21 +205,21 @@ function romvill_sol_column_content( $col, $post_id ) {
 // only in admin, so it never repeats and never touches real data.
 add_action( 'admin_init', 'romvill_sol_cleanup_test' );
 function romvill_sol_cleanup_test() {
-    if ( get_option( 'romvill_sol_test_cleaned' ) === '1' ) return;
+    // Versioned guard: bump 'v' to re-run after new test entries.
+    if ( get_option( 'romvill_sol_test_cleaned' ) === 'v2' ) return;
     if ( ! current_user_can( 'manage_options' ) ) return;
-    $q = get_posts( array(
-        'post_type'      => ROMVILL_SOL_CPT,
-        'post_status'    => 'any',
-        'meta_key'       => '_rv_ref',
-        'meta_value'     => 'RV-2026-TEST-PRUEBA-002',
-        'fields'         => 'ids',
-        'posts_per_page' => -1,
-        'no_found_rows'  => true,
+    // Delete ALL verification entries (any ref starting with RV-2026-TEST-).
+    global $wpdb;
+    $ids = $wpdb->get_col( $wpdb->prepare(
+        "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_rv_ref' AND meta_value LIKE %s",
+        'RV-2026-TEST-%'
     ) );
-    foreach ( $q as $id ) {
-        wp_delete_post( $id, true ); // force delete (skip trash)
+    foreach ( (array) $ids as $id ) {
+        if ( get_post_type( $id ) === ROMVILL_SOL_CPT ) {
+            wp_delete_post( (int) $id, true ); // force delete (skip trash)
+        }
     }
-    update_option( 'romvill_sol_test_cleaned', '1' );
+    update_option( 'romvill_sol_test_cleaned', 'v2' );
 }
 
 /* ── Contador por estado (arriba del listado) ────────────────── */
