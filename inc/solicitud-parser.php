@@ -71,15 +71,23 @@ function romvill_sol__yesno( $val ) {
     return 'revisar';
 }
 
-/* ── Extrae el detalle (lo que sigue al Sí/No inicial) ───────────── */
+/* ── Extrae el detalle limpio (admite varios valores) ────────────
+ * Quita TODOS los marcadores "Sí/Si/No" (como token, no dentro de
+ * palabras: "silla" no se rompe) y une los textos con "; ".
+ * Ej: "Sí — entre 3 y 12 años, Sí — entre 12 y 18 años"
+ *      → "entre 3 y 12 años; entre 12 y 18 años". */
 function romvill_sol__detalle( $val, $estado ) {
     $val = trim( (string) $val );
     if ( $val === '' ) return '';
     if ( $estado === 'no' ) return '';
     if ( $estado === 'revisar' ) return $val; // mostrar tal cual para revisión
-    // 'si': quitar el "Sí/Si/No" inicial y el separador siguiente
-    $d = preg_replace( '/^\s*(sí|si|no)\s*[—,\-:·]?\s*/iu', '', $val );
-    return trim( $d );
+    // 'si': trocear por cada marcador Sí/Si/No (precedido de inicio o coma,
+    // seguido de su separador —/,/-/:/·) y quedarnos solo con los textos.
+    $parts = preg_split( '/(?:^|,)\s*(?:sí|si|no)\s*(?:—|-|:|·|,)?\s*/iu', $val );
+    $parts = array_values( array_filter( array_map( 'trim', (array) $parts ), function ( $p ) {
+        return $p !== '';
+    } ) );
+    return implode( '; ', $parts );
 }
 
 /* ── Objetivo: primera línea no vacía bajo "OBJETIVO DE LA CONSULTA" ─ */
