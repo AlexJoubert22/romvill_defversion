@@ -23,7 +23,7 @@ const ROMVILL_PRECIO_ESENCIAL = 250;   // Bloque 1 Particular
 const ROMVILL_PRECIO_COMPLETO = 690;   // Bloque 2 Inversor
 const ROMVILL_PRECIO_PREMIUM  = 1900;  // Bloque 3 Promotor / Bloque 4 Empresa
 
-// Recargo por urgencia ("lo antes posible")
+// Recargo por urgencia (solo opción 1 del plazo: "Prioritario")
 const ROMVILL_URGENCIA_ESENCIAL_EUR = 50;    // +50 € fijo
 const ROMVILL_URGENCIA_COMPLETO_PCT = 0.40;  // +40 %
 // Premium: urgencia manual (no se suma automáticamente)
@@ -156,7 +156,11 @@ function romvill_estimar( $args ) {
     $rango_extra  = 0;       // margen superior por "según extras a confirmar"
 
     // 3a. Urgencia
-    $urgente = romvill_txt_has( $body, array( 'lo antes posible', 'lo necesito lo antes', 'inminente', 'urgente', 'as soon as possible', 'próximas 2-4 semanas', 'próximos 1-3 meses' ) );
+    // URGENCIA: se activa ÚNICAMENTE con la opción 1 del plazo (Bloque 1: "Prioritario").
+    // Detección robusta por la frase única de esa opción ("nos volcamos en su análisis"),
+    // que NO aparece en ninguna otra opción ni en las etiquetas del panel de secciones.
+    // Las opciones 2 (Recomendado), 3 (Con calma) y 4 (Aún explorando) NO activan recargo.
+    $urgente = romvill_txt_has( $body, array( 'nos volcamos en su análisis' ) );
     if ( $urgente ) {
         if ( $nivel === 'esencial' ) {
             $extra_eur += ROMVILL_URGENCIA_ESENCIAL_EUR;
