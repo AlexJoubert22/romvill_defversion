@@ -184,11 +184,53 @@ function romvill_og_locale( $lang ) {
 
 // ─── Disable environment duplicate SEO tags ──────────────────
 // WordPress core adds its own <link rel="canonical"> (Spanish, no
-// ?lang) and Jetpack injects its own Open Graph/locale tags. Both
-// would duplicate / conflict with our per-language tags, so we
-// remove them and let ONLY our emitters output canonical/og/hreflang.
+// ?lang); Jetpack injects its own Open Graph/locale tags AND a plain
+// <meta name="description"> built from the site tagline. All of these
+// would duplicate / conflict with our per-language tags, so we remove
+// them and let ONLY our central emitter output canonical/og/desc/etc.
 remove_action( 'wp_head', 'rel_canonical' );
 add_filter( 'jetpack_enable_open_graph', '__return_false' );
+
+// Disable Jetpack SEO Tools front-end meta description (tagline-based)
+add_filter( 'jetpack_seo_meta_description', '__return_empty_string' );
+add_filter( 'jetpack_seo_front_page_description', '__return_empty_string' );
+// Belt-and-suspenders: strip any other <meta name="description"> that
+// is NOT ours, by deduping in a late output-buffer on wp_head. Our
+// description is emitted at priority 1; this runs at priority 99 and
+// removes any duplicate name="description" / canonical that slipped in
+// from the platform after ours.
+add_action( 'wp_head', 'romvill_dedupe_head_start', 0 );
+add_action( 'wp_head', 'romvill_dedupe_head_end', 99 );
+function romvill_dedupe_head_start() {
+    if ( is_admin() ) return;
+    ob_start();
+}
+function romvill_dedupe_head_end() {
+    if ( is_admin() ) return;
+    $html = ob_get_clean();
+    if ( $html === false ) return;
+    // Keep only the FIRST <meta name="description"> and FIRST canonical.
+    $seen_desc = false; $seen_canon = false;
+    $html = preg_replace_callback(
+        '#<meta\s+name=("|\')description\1[^>]*>#i',
+        function( $m ) use ( &$seen_desc ) {
+            if ( $seen_desc ) return '';
+            $seen_desc = true;
+            return $m[0];
+        },
+        $html
+    );
+    $html = preg_replace_callback(
+        '#<link\s+rel=("|\')canonical\1[^>]*>#i',
+        function( $m ) use ( &$seen_canon ) {
+            if ( $seen_canon ) return '';
+            $seen_canon = true;
+            return $m[0];
+        },
+        $html
+    );
+    echo $html;
+}
 
 // ─── Helper: current page key (slug-like) ────────────────────
 // Returns 'home' for the front page, or the page slug for any page
