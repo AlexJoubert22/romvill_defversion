@@ -741,11 +741,22 @@ function b1GoB(){
 }
 
 // ── Profile ──
+// Código de zona: siglas claras de ciudad/zona (no códigos de aeropuerto).
+// Preset Marbella→MRB, Málaga→MLG, Alicante→ALC. Zona libre/internacional →
+// 3 primeras letras de la ciudad (o país), en mayúsculas, sin tildes ni símbolos.
+function rvZoneCode(z,intl,ciudad,pais){
+  function norm(s){return(s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z]/g,'');}
+  if(intl){var n=norm(ciudad)||norm(pais);return n?n.substring(0,3):'EXT';}
+  var nz=norm(z);
+  if(nz.indexOf('MARBELLA')>-1)return'MRB';
+  if(nz.indexOf('MALAGA')>-1)return'MLG';
+  if(nz.indexOf('ALICANTE')>-1)return'ALC';
+  return nz?nz.substring(0,3):'EXT';
+}
 function b1GenRef(){
   var n=A['nt']||'X'; var y=new Date().getFullYear();
   var ini=n.split(' ').map(function(x){return x[0]||'';}).join('').toUpperCase().substring(0,4)||'XXXX';
-  var z=A['zona']||'';
-  var zc=z.indexOf('Marbella')>-1||z.indexOf('Málaga')>-1?'AGP':z.indexOf('Alicante')>-1?'ALC':'ESP';
+  var zc=rvZoneCode(A['zona']||'',A['zona_intl']===true,A['zona_ciudad']||'',A['zona_pais']||'');
   return'RV-'+y+'-'+ini+'-'+zc+'-001';
 }
 

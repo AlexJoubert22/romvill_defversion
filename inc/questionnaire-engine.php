@@ -624,11 +624,22 @@ function bqShowErr(m){var el=document.getElementById('rv-bq-err');if(el){el.inne
 function bqGoN(){try{bqSaveCurrentQ();if(!bqValidate()){bqShowErr(BQ_T.errMsg);return;}cQ++;bqRenderQ();bqResetIdle();}catch(e){console.error('bqGoN',e);bqShowErr(BQ_T.errMsg||'Error');}}
 function bqGoB(){try{bqSaveCurrentQ();if(cQ>0){cQ--;bqRenderQ();}}catch(e){console.error('bqGoB',e);if(cQ>0){cQ--;bqRenderQ();}}}
 
+// Código de zona: siglas claras de ciudad/zona (no códigos de aeropuerto).
+// Preset Marbella→MRB, Málaga→MLG, Alicante→ALC. Zona libre/internacional →
+// 3 primeras letras de la ciudad (o país), en mayúsculas, sin tildes ni símbolos.
+function bqZoneCode(z,intl,ciudad,pais){
+  function norm(s){return(s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z]/g,'');}
+  if(intl){var n=norm(ciudad)||norm(pais);return n?n.substring(0,3):'EXT';}
+  var nz=norm(z);
+  if(nz.indexOf('MARBELLA')>-1)return'MRB';
+  if(nz.indexOf('MALAGA')>-1)return'MLG';
+  if(nz.indexOf('ALICANTE')>-1)return'ALC';
+  return nz?nz.substring(0,3):'EXT';
+}
 function bqGenRef(){
   var n=A.nt||'X';var y=new Date().getFullYear();
   var ini=n.split(' ').map(function(x){return x[0]||'';}).join('').toUpperCase().substring(0,4)||'XXXX';
-  var z=A.zona||'';
-  var zc=/Marbella|Málaga/i.test(z)?'AGP':/Alicante/i.test(z)?'ALC':'ESP';
+  var zc=bqZoneCode(A.zona||'',A.zona_intl===true,A.zona_ciudad||'',A.zona_pais||'');
   return'RV-'+y+'-'+ini+'-'+zc+'-'+String(BQ_CONFIG.block).padStart(3,'0');
 }
 
