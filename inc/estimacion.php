@@ -296,3 +296,226 @@ function romvill_estimar( $args ) {
         'asunto_prefix' => $asunto_prefix,
     );
 }
+
+/* ═══════════════════════════════════════════════════════════════
+ *  CÁLCULO EXPLÍCITO (para la Calculadora admin)
+ *  Reutiliza EXACTAMENTE las mismas constantes que romvill_estimar(),
+ *  por lo que nunca hay descuadre entre email y calculadora.
+ *
+ *  $in: nivel('esencial'|'completo'|'premium'), urgencia(bool),
+ *       desplaz('local'|'provincia'|'lejana'|'internacional'),
+ *       idiomas_extra(int), comparativa(bool), presentacion(bool),
+ *       descuento_pct(float 0-100), ajuste_eur(int, +/-)
+ *  @return array desglose[], base, subtotal, total, senal, senal_pct,
+ *                internacional(bool), nivel_label, plazo
+ * ═══════════════════════════════════════════════════════════════ */
+function romvill_calcular_precio( $in ) {
+    $niveles = romvill_niveles();
+    $nivel   = isset( $niveles[ $in['nivel'] ?? '' ] ) ? $in['nivel'] : 'esencial';
+    $base    = $niveles[ $nivel ]['precio'];
+
+    $desglose      = array();
+    $pct_mult      = 1.0;
+    $extra_eur     = 0;
+    $internacional = ( ( $in['desplaz'] ?? 'local' ) === 'internacional' );
+
+    $desglose[] = array( 'concepto' => 'Base — ' . $niveles[ $nivel ]['label'], 'importe' => $base );
+
+    // Urgencia (misma regla que el motor)
+    if ( ! empty( $in['urgencia'] ) ) {
+        if ( $nivel === 'esencial' ) {
+            $extra_eur += ROMVILL_URGENCIA_ESENCIAL_EUR;
+            $desglose[] = array( 'concepto' => 'Urgencia', 'importe' => ROMVILL_URGENCIA_ESENCIAL_EUR );
+        } elseif ( $nivel === 'completo' ) {
+            $inc = (int) round( $base * ROMVILL_URGENCIA_COMPLETO_PCT );
+            $pct_mult += ROMVILL_URGENCIA_COMPLETO_PCT;
+            $desglose[] = array( 'concepto' => 'Urgencia (+' . round( ROMVILL_URGENCIA_COMPLETO_PCT * 100 ) . '%)', 'importe' => $inc );
+        } else {
+            $desglose[] = array( 'concepto' => 'Urgencia (Premium — valorar)', 'importe' => 0 );
+        }
+    }
+
+    // Comparativa
+    if ( ! empty( $in['comparativa'] ) ) {
+        $inc = (int) round( $base * ROMVILL_COMPARATIVA_PCT );
+        $pct_mult += ROMVILL_COMPARATIVA_PCT;
+        $desglose[] = array( 'concepto' => 'Comparativa entre zonas (+' . round( ROMVILL_COMPARATIVA_PCT * 100 ) . '%)', 'importe' => $inc );
+    }
+
+    // Desplazamiento
+    $despl_eur = 0;
+    switch ( $in['desplaz'] ?? 'local' ) {
+        case 'provincia': $despl_eur = ROMVILL_DESPL_PROVINCIA; break;
+        case 'lejana':    $despl_eur = ROMVILL_DESPL_LEJANA;    break;
+        case 'internacional': $despl_eur = 0; break; // a presupuestar
+    }
+    if ( $despl_eur > 0 ) {
+        $extra_eur += $despl_eur;
+        $desglose[] = array( 'concepto' => 'Desplazamiento', 'importe' => $despl_eur );
+    } elseif ( $internacional ) {
+        $desglose[] = array( 'concepto' => 'Desplazamiento internacional (a presupuestar)', 'importe' => 0 );
+    }
+
+    // Idiomas adicionales
+    $idiomas = max( 0, (int) ( $in['idiomas_extra'] ?? 0 ) );
+    if ( $idiomas > 0 ) {
+        $inc = $idiomas * ROMVILL_IDIOMA_EUR;
+        $extra_eur += $inc;
+        $desglose[] = array( 'concepto' => $idiomas . ' idioma(s) adicional(es)', 'importe' => $inc );
+    }
+
+    // Presentación / reunión
+    if ( ! empty( $in['presentacion'] ) ) {
+        $extra_eur += ROMVILL_PRESENTACION_EUR;
+        $desglose[] = array( 'concepto' => 'Presentación / reunión', 'importe' => ROMVILL_PRESENTACION_EUR );
+    }
+
+    // Subtotal antes de descuento/ajuste
+    $subtotal = (int) round( $base * $pct_mult ) + $extra_eur;
+
+    // Descuento %
+    $desc_pct = max( 0, min( 100, (float) ( $in['descuento_pct'] ?? 0 ) ) );
+    $desc_eur = 0;
+    if ( $desc_pct > 0 ) {
+        $desc_eur = (int) round( $subtotal * ( $desc_pct / 100 ) );
+        $desglose[] = array( 'concepto' => 'Descuento (-' . rtrim( rtrim( number_format( $desc_pct, 1 ), '0' ), '.' ) . '%)', 'importe' => -$desc_eur );
+    }
+
+    // Ajuste manual +/-
+    $ajuste = (int) ( $in['ajuste_eur'] ?? 0 );
+    if ( $ajuste !== 0 ) {
+        $desglose[] = array( 'concepto' => 'Ajuste manual', 'importe' => $ajuste );
+    }
+
+    $total = $subtotal - $desc_eur + $ajuste;
+    if ( $total < 0 ) $total = 0;
+
+    // Señal
+    $senal_pct = ( $nivel === 'premium' ) ? ROMVILL_SENAL_PCT_PREMIUM : ROMVILL_SENAL_PCT_BASE;
+    $senal     = (int) round( $total * $senal_pct );
+
+    $plazos = array( 'esencial' => '3-4 días laborables', 'completo' => '5-7 días laborables', 'premium' => '7-14 días laborables' );
+
+    return array(
+        'desglose'      => $desglose,
+        'base'          => $base,
+        'subtotal'      => $subtotal,
+        'total'         => $total,
+        'senal'         => $senal,
+        'senal_pct'     => $senal_pct,
+        'internacional' => $internacional,
+        'nivel'         => $nivel,
+        'nivel_label'   => $niveles[ $nivel ]['label'],
+        'plazo'         => $plazos[ $nivel ] ?? '5 días laborables',
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ *  TEXTO DEL PRESUPUESTO PARA EL CLIENTE (multi-idioma)
+ *  $d: nombre, ref, zona, nivel_label, total, senal, senal_pct,
+ *      plazo, internacional(bool), desglose[]
+ * ═══════════════════════════════════════════════════════════════ */
+function romvill_presupuesto_texto( $d, $lang = 'es' ) {
+    $eur = function ( $n ) { return number_format( (int) $n, 0, ',', '.' ) . ' €'; };
+    $nombre = $d['nombre'] ?: '';
+    $ref    = $d['ref'] ?: '';
+    $zona   = $d['zona'] ?: '';
+    $nivel  = $d['nivel_label'] ?: '';
+    $total  = $eur( $d['total'] );
+    $senal  = $eur( $d['senal'] );
+    $resto  = $eur( max( 0, (int) $d['total'] - (int) $d['senal'] ) );
+    $spct   = round( ( $d['senal_pct'] ?? 0.5 ) * 100 );
+    $plazo  = $d['plazo'] ?: '';
+    $intl   = ! empty( $d['internacional'] );
+
+    // Plantillas por idioma
+    $T = array(
+        'es' => array(
+            'saludo'   => $nombre ? "Estimado/a $nombre," : 'Estimado/a cliente,',
+            'intro'    => 'Gracias por su interés en ROMVILL. Tras revisar su solicitud, le presentamos el presupuesto para su Análisis de Inteligencia Zonal' . ( $zona ? " en $zona" : '' ) . ':',
+            'ref'      => 'Referencia',
+            'servicio' => 'Servicio',
+            'total'    => 'Total del análisis',
+            'intl'     => $intl ? 'Nota: para zonas internacionales, el desplazamiento se presupuesta aparte.' : '',
+            'senal'    => "Para iniciar el trabajo se abona una señal del $spct% ($senal); el resto ($resto) a la entrega del informe.",
+            'plazo'    => "Plazo estimado de entrega: $plazo.",
+            'cierre'   => 'Quedamos a su disposición para cualquier aclaración. Para confirmar, basta con responder a este correo.',
+            'firma'    => "Un cordial saludo,\nEquipo ROMVILL\ncontacto@romvill.com · www.romvill.com",
+        ),
+        'en' => array(
+            'saludo'   => $nombre ? "Dear $nombre," : 'Dear client,',
+            'intro'    => 'Thank you for your interest in ROMVILL. Having reviewed your request, here is the quote for your Area Intelligence Analysis' . ( $zona ? " in $zona" : '' ) . ':',
+            'ref'      => 'Reference',
+            'servicio' => 'Service',
+            'total'    => 'Total analysis',
+            'intl'     => $intl ? 'Note: for international areas, travel is quoted separately.' : '',
+            'senal'    => "To begin, a $spct% deposit is paid ($senal); the remainder ($resto) on delivery of the report.",
+            'plazo'    => "Estimated delivery time: $plazo.",
+            'cierre'   => 'We remain at your disposal for any clarification. To confirm, simply reply to this email.',
+            'firma'    => "Kind regards,\nThe ROMVILL Team\ncontacto@romvill.com · www.romvill.com",
+        ),
+        'fr' => array(
+            'saludo'   => $nombre ? "Cher/Chère $nombre," : 'Cher client,',
+            'intro'    => 'Merci de votre intérêt pour ROMVILL. Après examen de votre demande, voici le devis de votre Analyse de Renseignement Zonal' . ( $zona ? " à $zona" : '' ) . ' :',
+            'ref'      => 'Référence',
+            'servicio' => 'Service',
+            'total'    => 'Total de l\'analyse',
+            'intl'     => $intl ? 'Remarque : pour les zones internationales, le déplacement est facturé séparément.' : '',
+            'senal'    => "Pour commencer, un acompte de $spct% est versé ($senal) ; le solde ($resto) à la remise du rapport.",
+            'plazo'    => "Délai estimé de livraison : $plazo.",
+            'cierre'   => 'Nous restons à votre disposition pour toute précision. Pour confirmer, il suffit de répondre à cet e-mail.',
+            'firma'    => "Cordialement,\nL'équipe ROMVILL\ncontacto@romvill.com · www.romvill.com",
+        ),
+        'de' => array(
+            'saludo'   => $nombre ? "Sehr geehrte(r) $nombre," : 'Sehr geehrte(r) Kunde/Kundin,',
+            'intro'    => 'Vielen Dank für Ihr Interesse an ROMVILL. Nach Prüfung Ihrer Anfrage erhalten Sie hier das Angebot für Ihre Zonenanalyse' . ( $zona ? " in $zona" : '' ) . ':',
+            'ref'      => 'Referenz',
+            'servicio' => 'Leistung',
+            'total'    => 'Gesamtbetrag der Analyse',
+            'intl'     => $intl ? 'Hinweis: Für internationale Zonen wird die Anreise separat berechnet.' : '',
+            'senal'    => "Zum Start wird eine Anzahlung von $spct% geleistet ($senal); der Rest ($resto) bei Lieferung des Berichts.",
+            'plazo'    => "Voraussichtliche Lieferzeit: $plazo.",
+            'cierre'   => 'Für Rückfragen stehen wir Ihnen gerne zur Verfügung. Zur Bestätigung genügt eine Antwort auf diese E-Mail.',
+            'firma'    => "Mit freundlichen Grüßen,\nIhr ROMVILL-Team\ncontacto@romvill.com · www.romvill.com",
+        ),
+        'ru' => array(
+            'saludo'   => $nombre ? "Уважаемый(ая) $nombre," : 'Уважаемый клиент,',
+            'intro'    => 'Благодарим за интерес к ROMVILL. После рассмотрения вашей заявки представляем смету на Зональный Анализ' . ( $zona ? " в $zona" : '' ) . ':',
+            'ref'      => 'Референс',
+            'servicio' => 'Услуга',
+            'total'    => 'Итого за анализ',
+            'intl'     => $intl ? 'Примечание: для международных зон выезд рассчитывается отдельно.' : '',
+            'senal'    => "Для начала работы вносится задаток $spct% ($senal); остаток ($resto) при сдаче отчёта.",
+            'plazo'    => "Ориентировочный срок: $plazo.",
+            'cierre'   => 'Мы остаёмся на связи для любых уточнений. Для подтверждения просто ответьте на это письмо.',
+            'firma'    => "С уважением,\nКоманда ROMVILL\ncontacto@romvill.com · www.romvill.com",
+        ),
+    );
+    $t = $T[ $lang ] ?? $T['es'];
+
+    $lines   = array();
+    $lines[] = $t['saludo'];
+    $lines[] = '';
+    $lines[] = $t['intro'];
+    $lines[] = '';
+    if ( $ref )  $lines[] = $t['ref'] . ': ' . $ref;
+    $lines[] = $t['servicio'] . ': ' . $nivel;
+    $lines[] = '────────────────────────────';
+    foreach ( (array) ( $d['desglose'] ?? array() ) as $row ) {
+        $imp = $row['importe'];
+        $sign = $imp < 0 ? '−' : '';
+        $lines[] = '· ' . $row['concepto'] . ': ' . $sign . $eur( abs( $imp ) );
+    }
+    $lines[] = '────────────────────────────';
+    $lines[] = $t['total'] . ': ' . $total;
+    if ( $t['intl'] ) $lines[] = $t['intl'];
+    $lines[] = '';
+    $lines[] = $t['senal'];
+    $lines[] = $t['plazo'];
+    $lines[] = '';
+    $lines[] = $t['cierre'];
+    $lines[] = '';
+    $lines[] = $t['firma'];
+
+    return implode( "\n", $lines );
+}
