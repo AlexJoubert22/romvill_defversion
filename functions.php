@@ -34,6 +34,9 @@ require_once get_template_directory() . '/inc/calculadora.php';
 // ─── Generador de borrador de informe en .docx (admin-only) ───
 require_once get_template_directory() . '/inc/generador-docx.php';
 
+// ─── TEMPORAL: diagnóstico de servidor (admin-only, BORRAR tras usar) ─
+require_once get_template_directory() . '/inc/_diagnostico.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
