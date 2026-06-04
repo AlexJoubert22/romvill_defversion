@@ -473,6 +473,49 @@ function romvill_docx_construir( $post_id ) {
         $b .= romvill_docx_p( romvill_docx_run( '(sin comentario)', array( 'i' => true, 'color' => '999999' ) ) );
     }
 
+    /* ── [Spec 3.1] SECCIÓN "SIGUIENTE PASO" (crédito hacia el nivel superior) ── */
+    // Variantes: Exprés (esencial, 79€) y Análisis (completo, 199€). Premium ya es
+    // el nivel máximo → no lleva sección. Se añade al FINAL del documento.
+    $sp = null;
+    if ( $nivel === 'esencial' ) {
+        $sp = array(
+            'intro'   => 'Este informe ofrece una visión de conjunto fiable de la zona. Si desea profundizar — verificación exhaustiva, fiscalidad, planificación, conectividad, propiedad concreta — ROMVILL ofrece niveles superiores de análisis.',
+            'credito' => 'Los 79€ de este informe se aplican íntegramente. Solo paga la diferencia.',
+            'ofertas' => array(
+                'Informe Análisis (desde 199€)   ·   Su crédito aplicado -79€   ·   Solo pagaría desde 120€',
+                'Informe Premium (desde 690€)   ·   Su crédito aplicado -79€   ·   Solo pagaría desde 611€',
+            ),
+            'extra'   => 'Validez: 60 días desde la entrega.',
+        );
+    } elseif ( $nivel === 'completo' ) {
+        $sp = array(
+            'intro'   => 'Si su decisión requiere análisis de una propiedad concreta, investigación profunda multifuente o atención dedicada con su analista, el Informe Premium es el nivel máximo.',
+            'credito' => 'Los 199€ se aplican íntegramente hacia el Premium.',
+            'ofertas' => array(
+                'Informe Premium (desde 690€)   ·   Su crédito aplicado -199€   ·   Solo pagaría desde 491€',
+            ),
+            'extra'   => 'Incluye: 14 dimensiones, propiedad concreta, 2 idiomas, llamada con analista, WhatsApp directo. Validez: 60 días.',
+        );
+    }
+    if ( $sp ) {
+        $b .= $pbreak;
+        $b .= romvill_docx_p(
+            romvill_docx_run( 'SIGUIENTE PASO', array( 'b' => true, 'sz' => 28, 'color' => $GOLD ) ),
+            '<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="3" w:color="' . $GOLD . '"/></w:pBdr><w:spacing w:before="80" w:after="160"/>'
+        );
+        $b .= romvill_docx_p( romvill_docx_run( $sp['intro'], array( 'color' => $DARK ) ), '<w:spacing w:after="180"/>' );
+        $b .= romvill_docx_p( romvill_docx_run( 'SU INVERSIÓN CUENTA COMO CRÉDITO', array( 'b' => true, 'color' => $GOLD ) ), '<w:spacing w:after="60"/>' );
+        $b .= romvill_docx_p( romvill_docx_run( $sp['credito'], array( 'color' => $DARK ) ), '<w:spacing w:after="140"/>' );
+        foreach ( $sp['ofertas'] as $of ) {
+            $b .= romvill_docx_p(
+                romvill_docx_run( $of, array( 'b' => true, 'color' => $DARK ) ),
+                '<w:pBdr><w:left w:val="single" w:sz="18" w:space="6" w:color="' . $GOLD . '"/></w:pBdr><w:shd w:val="clear" w:color="auto" w:fill="FBF6E4"/><w:spacing w:after="80"/><w:ind w:left="120"/>'
+            );
+        }
+        $b .= romvill_docx_p( romvill_docx_run( $sp['extra'], array( 'i' => true, 'color' => $GRAY ) ), '<w:spacing w:before="100" w:after="40"/>' );
+        $b .= romvill_docx_p( romvill_docx_run( 'Contacto: contacto@romvill.com' . ( $d['ref'] ? '   ·   Ref: ' . $d['ref'] : '' ), array( 'color' => $GRAY ) ) );
+    }
+
     // ── Encabezado y pie (discretos: referencia + nº de página) ──
     $ref_disp = romvill_docx_x( $d['ref'] ?: 'ROMVILL' );
     $hdr_xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
