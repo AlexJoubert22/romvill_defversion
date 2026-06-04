@@ -85,7 +85,7 @@ function romvill_informe_default_data( $post_id ) {
             array( 'dim' => 'Sanidad',      'nivel' => 'medio', 'lectura' => '[RELLENAR]' ),
             array( 'dim' => 'Movilidad',    'nivel' => 'medio', 'lectura' => '[RELLENAR]' ),
             array( 'dim' => 'Servicios',    'nivel' => 'medio', 'lectura' => '[RELLENAR]' ),
-            array( 'dim' => 'Mercado',      'nivel' => 'atencion', 'lectura' => '[RELLENAR]' ),
+            array( 'dim' => 'Mercado',      'nivel' => 'limitado', 'lectura' => '[RELLENAR]' ),
         ),
         'radar' => array(
             'dims' => array( 'Seguridad', 'Educación', 'Sanidad', 'Movilidad', 'Servicios', 'Mercado' ),
@@ -147,7 +147,7 @@ table.dash td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:14
 table.dash tr:last-child td{border-bottom:none}
 table.dash tr:nth-child(even) td{background:#FCFAF5}
 .dot{font-size:15px;margin-right:6px}
-.lvl-alto{color:var(--green);font-weight:bold} .lvl-medio{color:var(--amber);font-weight:bold} .lvl-at{color:var(--red);font-weight:bold}
+.lvl-alto{color:var(--green);font-weight:bold} .lvl-medio{color:var(--amber);font-weight:bold} .lvl-lim{color:var(--red);font-weight:bold}
 table.cmp{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
 table.cmp th{background:var(--ink);color:#fff;padding:10px 14px;text-align:left}
 table.cmp td{padding:10px 14px;border-bottom:1px solid var(--line)}
@@ -204,7 +204,7 @@ function romvill_informe_render( $d ) {
     $lvlmap = array(
         'alto'     => array( 'var(--green)', 'lvl-alto', 'Alto' ),
         'medio'    => array( 'var(--amber)', 'lvl-medio', 'Medio' ),
-        'atencion' => array( 'var(--red)', 'lvl-at', 'Atención' ),
+        'limitado' => array( 'var(--red)', 'lvl-lim', 'Limitado' ),
     );
     $dash_rows = '';
     foreach ( $dashboard as $r ) {
@@ -259,7 +259,7 @@ function romvill_informe_render( $d ) {
     $h .= '<section class="sec active" id="dash"><div class="kicker">Cuadro de mando</div><h1 class="title serif">Resumen ejecutivo</h1><div class="goldrule"></div>';
     if ( ! empty( $d['intro'] ) ) $h .= '<p class="t">' . romvill_informe_e( $d['intro'] ) . '</p>';
     if ( $kpis_html ) $h .= '<div class="kpis">' . $kpis_html . '</div>';
-    if ( $dash_rows ) $h .= '<table class="dash"><tr><th>Dimensi&oacute;n</th><th>Nivel</th><th>Lectura clave</th></tr>' . $dash_rows . '</table><p class="note">Escala descriptiva (Alto / Medio / Atenci&oacute;n) = nivel de cobertura o disponibilidad observado. No constituye juicio de valor ni recomendaci&oacute;n.</p>';
+    if ( $dash_rows ) $h .= '<table class="dash"><tr><th>Dimensi&oacute;n</th><th>Nivel</th><th>Lectura clave</th></tr>' . $dash_rows . '</table><p class="note">Escala descriptiva (Alto / Medio / Limitado) = nivel de cobertura o disponibilidad observado. No constituye juicio de valor ni recomendaci&oacute;n.</p>';
     $h .= '<div class="radar-wrap" id="radarHolder"></div></section>';
     $h .= $secs_html . $pat_html . '</div>';
     $h .= '<div class="foot">ROMVILL &middot; An&aacute;lisis de Inteligencia Territorial &middot; contacto@romvill.com<br>Versi&oacute;n de trabajo interna &middot; validaci&oacute;n final humana</div>';
