@@ -644,9 +644,14 @@ function bqZoneCode(z,intl,ciudad,pais){
 }
 function bqGenRef(){
   var n=A.nt||'X';var y=new Date().getFullYear();
-  var ini=n.split(' ').map(function(x){return x[0]||'';}).join('').toUpperCase().substring(0,4)||'XXXX';
+  var parts=n.trim().split(/\s+/);
+  var apellido=(parts.length>1?parts[parts.length-1]:parts[0])||'XXXX';
+  var nombre=parts[0]||'X';
+  var ini=(apellido.substring(0,3)+nombre.substring(0,1)).toUpperCase().replace(/[^A-Z]/g,'');
+  if(ini.length<4) ini=(ini+'XXXX').substring(0,4);
   var zc=bqZoneCode(A.zona||'',A.zona_intl===true,A.zona_ciudad||'',A.zona_pais||'');
-  return'RV-'+y+'-'+ini+'-'+zc+'-'+String(BQ_CONFIG.block).padStart(3,'0');
+  var seq=String(Math.floor(Math.random()*9000)+1000);
+  return'RV-'+y+'-'+ini+'-'+zc+'-'+seq;
 }
 
 function bqGetAnswerHuman(i,q){

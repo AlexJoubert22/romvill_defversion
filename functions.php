@@ -845,8 +845,14 @@ function romvill_handle_contact() {
 
     // Persist into the private Solicitudes panel (besides the email).
     if ( function_exists( 'romvill_save_solicitud' ) ) {
-        $ini = strtoupper( substr( $nombre, 0, 1 ) . substr( $apellido, 0, 1 ) ) ?: 'XX';
-        $ref = 'RV-' . date( 'Y' ) . '-' . $ini . '-CONT-' . substr( md5( $email . microtime() ), 0, 4 );
+        $parts = preg_split( '/\s+/', trim( $nombre . ' ' . $apellido ) );
+        $apellido_ref = count( $parts ) > 1 ? end( $parts ) : $parts[0];
+        $nombre_ref   = $parts[0];
+        $ini = strtoupper( mb_substr( $apellido_ref, 0, 3 ) . mb_substr( $nombre_ref, 0, 1 ) ) ?: 'XXXX';
+        $ini = preg_replace( '/[^A-Z]/', '', $ini );
+        $ini = str_pad( substr( $ini, 0, 4 ), 4, 'X' );
+        $seq = str_pad( rand( 1000, 9999 ), 4, '0', STR_PAD_LEFT );
+        $ref = 'RV-' . date( 'Y' ) . '-' . $ini . '-CONT-' . $seq;
         romvill_save_solicitud( array(
             'ref'    => $ref,
             'perfil' => 'Contacto directo',
