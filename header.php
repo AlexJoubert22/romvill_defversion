@@ -98,8 +98,8 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     <!-- Dark Mode Toggle -->
                     <button id="dark-mode-toggle" aria-label="<?php echo esc_attr( romvill_t( 'dark.toggle' ) ); ?>"
                         class="w-9 h-9 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                        <span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
-                        <span class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
                     </button>
                 </div>
                 <div class="hidden md:block">
@@ -127,11 +127,11 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     <!-- Mobile Dark Mode Toggle -->
                     <button id="dark-mode-toggle-mobile" aria-label="<?php echo esc_attr( romvill_t( 'dark.toggle' ) ); ?>"
                         class="w-9 h-9 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
-                        <span class="material-symbols-outlined text-[18px] dark:hidden">dark_mode</span>
-                        <span class="material-symbols-outlined text-[18px] hidden dark:block">light_mode</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-[18px] dark:hidden">dark_mode</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-[18px] hidden dark:block">light_mode</span>
                     </button>
                     <button id="mobile-menu-toggle" class="text-slate-900 dark:text-white" aria-label="<?php echo esc_attr( romvill_t( 'nav.open_menu' ) ); ?>">
-                        <span class="material-symbols-outlined">menu</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
             </div>
@@ -141,7 +141,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[100] bg-white dark:bg-slate-900 flex flex-col p-8 pt-24" aria-hidden="true">
         <button id="mobile-menu-close" class="absolute top-6 right-6 text-slate-900 dark:text-white" aria-label="<?php echo esc_attr( romvill_t( 'nav.close_menu' ) ); ?>">
-            <span class="material-symbols-outlined text-3xl">close</span>
+            <span aria-hidden="true" class="material-symbols-outlined text-3xl">close</span>
         </button>
         <nav class="flex flex-col gap-6">
             <?php foreach ( $nav_items as $slug => $label ) :
