@@ -516,7 +516,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                     <div class="grid grid-cols-1 gap-4 mb-6">
                         <a href="mailto:contacto@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/30 hover:shadow-md transition-all group">
                             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-xl">mail</span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-xl">mail</span>
                             </div>
                             <div>
                                 <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.email.label' ) ); ?></p>
@@ -545,7 +545,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                     <div class="relative">
                         <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                             <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center text-primary flex-shrink-0">
-                                <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-[18px]">verified_user</span>
                             </span>
                             <?php echo esc_html( romvill_t( 'contact.why.title' ) ); ?>
                         </h2>
@@ -566,7 +566,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                             ?>
                             <div class="why-reason">
                                 <div class="why-reason-icon">
-                                    <span class="material-symbols-outlined text-[17px]"><?php echo esc_html( $r['icon'] ); ?></span>
+                                    <span aria-hidden="true" class="material-symbols-outlined text-[17px]"><?php echo esc_html( $r['icon'] ); ?></span>
                                 </div>
                                 <div>
                                     <h3 class="text-sm font-bold text-slate-900 dark:text-white"><?php echo esc_html( $r['title'] ); ?></h3>
@@ -579,7 +579,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                         <!-- Quote -->
                         <div class="mt-8 pt-7 border-t border-slate-100 dark:border-slate-800">
                             <div class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-primary text-4xl opacity-20 flex-shrink-0 -mt-1">format_quote</span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-4xl opacity-20 flex-shrink-0 -mt-1">format_quote</span>
                                 <p class="text-sm font-medium text-slate-600 dark:text-slate-400 italic leading-relaxed">
                                     <?php echo esc_html( romvill_t( 'contact.why.quote' ) ); ?>
                                 </p>

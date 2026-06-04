@@ -287,12 +287,12 @@ function romvill_q_print_html( $config ) { ?>
             <div class="rv-bq-lang-opt" onclick="bqSetLang('ru',this)"><div class="rv-bq-lang-name">Русский</div><div class="rv-bq-lang-native">Ruso</div><div class="rv-bq-lang-dot"></div></div>
         </div>
         <div class="rv-bq-timing-pill">
-            <span class="material-symbols-outlined" style="font-size:15px;color:#AEAEB2">schedule</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:15px;color:#AEAEB2">schedule</span>
             <span id="rv-bq-timing"></span>
         </div>
         <button class="rv-bq-btn dimmed" id="rv-bq-btn-lang" onclick="bqGoToCover()">
             <span id="rv-bq-lang-btn-txt">CONTINUAR</span>
-            <span class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
         </button>
     </div>
 </div>
@@ -313,7 +313,7 @@ function romvill_q_print_html( $config ) { ?>
             </div>
         </div>
         <button class="rv-bq-btn" onclick="bqStartForm()">
-            <span class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
             <span id="rv-bq-cv-btn">EMPEZAMOS</span>
         </button>
     </div>
@@ -333,7 +333,7 @@ function romvill_q_print_html( $config ) { ?>
         </div>
         <button class="rv-bq-btn" onclick="bqRenderProfile()">
             <span id="rv-bq-mid-btn"></span>
-            <span class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
         </button>
     </div>
 </div>
@@ -344,7 +344,7 @@ function romvill_q_print_html( $config ) { ?>
 
 <div class="rv-bq-screen" id="rv-bq-sc-conf">
     <div class="rv-bq-conf-wrap">
-        <div class="rv-bq-conf-ic"><span class="material-symbols-outlined" style="font-size:26px;color:#fff">check</span></div>
+        <div class="rv-bq-conf-ic"><span aria-hidden="true" class="material-symbols-outlined" style="font-size:26px;color:#fff">check</span></div>
         <div class="rv-bq-conf-ttl" id="rv-bq-conf-ttl"></div>
         <div class="rv-bq-conf-txt" id="rv-bq-conf-txt"></div>
         <div class="rv-bq-conf-ref" id="rv-bq-conf-ref"></div>
@@ -356,7 +356,7 @@ function romvill_q_print_html( $config ) { ?>
         </div>
         <div class="rv-bq-conf-tag" id="rv-bq-conf-tag"></div>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="rv-bq-btn-ghost" style="margin-top:20px">
-            <span class="material-symbols-outlined" style="font-size:15px">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:15px">home</span>
             <span id="rv-bq-conf-back">Volver al inicio</span>
         </a>
     </div>
@@ -558,7 +558,7 @@ function bqRenderQ(){
     h+='</div><div class="rv-bq-zona-fields'+(io?' on':'')+'" id="rv-bq-zona-fields"><div class="rv-bq-zona-row"><div class="rv-bq-zona-col"><span class="rv-bq-zona-lbl">País</span><input class="rv-bq-zona-in" id="rv-bq-zona-pais" placeholder="País de interés" value="'+(A.zona_pais||'')+'"></div><div class="rv-bq-zona-col"><span class="rv-bq-zona-lbl">Zona / Ciudad</span><input class="rv-bq-zona-in" id="rv-bq-zona-ciudad" placeholder="Zona o ciudad concreta" value="'+(A.zona_ciudad||'')+'"></div></div></div>';
   }else if(q.type==='text'){
     var k=q.key||'q'+cQ; var v=A[k]||'';
-    h+='<div class="rv-bq-fg"><input class="rv-bq-fi'+(v?' valid':'')+'" id="rv-bq-fi-main" type="'+(q.input==='email'?'email':'text')+'" value="'+v+'" placeholder="'+(q.ph||'')+'" oninput="bqOnFI(this,\''+k+'\')"><span class="material-symbols-outlined rv-bq-fi-ic'+(v?' ok':' mt')+'" id="rv-bq-fic-main">'+(v?'check_circle':'radio_button_unchecked')+'</span></div>';
+    h+='<div class="rv-bq-fg"><input class="rv-bq-fi'+(v?' valid':'')+'" id="rv-bq-fi-main" type="'+(q.input==='email'?'email':'text')+'" value="'+v+'" placeholder="'+(q.ph||'')+'" oninput="bqOnFI(this,\''+k+'\')"><span aria-hidden="true" class="material-symbols-outlined rv-bq-fi-ic'+(v?' ok':' mt')+'" id="rv-bq-fic-main">'+(v?'check_circle':'radio_button_unchecked')+'</span></div>';
   }else if(q.type==='textarea'){
     var k=q.key||'q'+cQ; var v=A[k]||'';
     h+='<div class="rv-bq-fg"><textarea class="rv-bq-fi'+(v?' valid':'')+'" id="rv-bq-fi-main" placeholder="'+(q.ph||'')+'" rows="5" oninput="bqOnFI(this,\''+k+'\')">'+v+'</textarea></div>';
@@ -566,8 +566,8 @@ function bqRenderQ(){
     q.fields.forEach(function(f){
       var v=A[f.id]||'';
       h+='<div class="rv-bq-fg"><label class="rv-bq-fl">'+f.lbl+'</label>';
-      if(f.type==='text'){h+='<input class="rv-bq-fi'+(v?' valid':'')+'" id="rv-bq-fi-'+f.id+'" type="text" value="'+v+'" placeholder="'+(f.ph||'')+'" oninput="bqOnFI(this,\''+f.id+'\')"><span class="material-symbols-outlined rv-bq-fi-ic'+(v?' ok':' mt')+'" id="rv-bq-fic-'+f.id+'">'+(v?'check_circle':'radio_button_unchecked')+'</span>';}
-      else if(f.type==='sel'){h+='<div class="rv-bq-sw"><select class="rv-bq-cs" id="rv-bq-fi-'+f.id+'" onchange="A[\''+f.id+'\']=this.value;bqSave()">'+f.opts.map(function(o){return'<option value="'+o+'"'+(A[f.id]===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select><span class="material-symbols-outlined rv-bq-sa">expand_more</span></div>';}
+      if(f.type==='text'){h+='<input class="rv-bq-fi'+(v?' valid':'')+'" id="rv-bq-fi-'+f.id+'" type="text" value="'+v+'" placeholder="'+(f.ph||'')+'" oninput="bqOnFI(this,\''+f.id+'\')"><span aria-hidden="true" class="material-symbols-outlined rv-bq-fi-ic'+(v?' ok':' mt')+'" id="rv-bq-fic-'+f.id+'">'+(v?'check_circle':'radio_button_unchecked')+'</span>';}
+      else if(f.type==='sel'){h+='<div class="rv-bq-sw"><select class="rv-bq-cs" id="rv-bq-fi-'+f.id+'" onchange="A[\''+f.id+'\']=this.value;bqSave()">'+f.opts.map(function(o){return'<option value="'+o+'"'+(A[f.id]===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select><span aria-hidden="true" class="material-symbols-outlined rv-bq-sa">expand_more</span></div>';}
       h+='</div>';
     });
   }else if(q.type==='single'){
@@ -589,7 +589,7 @@ function bqRenderQ(){
   }
 
   var isL=cQ===qs.length-1;
-  h+='<div class="rv-bq-nav">'+(cQ>0?'<button class="rv-bq-btn-back" onclick="bqGoB()"><span class="material-symbols-outlined" style="font-size:16px">arrow_back</span>'+BQ_T.prev+'</button>':'')+'<button class="rv-bq-btn" onclick="bqGoN()">'+(isL?(BQ_T.midBtn||BQ_T.profile):BQ_T.next)+'<span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></button>'+(q.optional?'<span class="rv-bq-opt-hint">'+BQ_T.optional+'</span>':'')+'</div><div class="rv-bq-err" id="rv-bq-err"></div>';
+  h+='<div class="rv-bq-nav">'+(cQ>0?'<button class="rv-bq-btn-back" onclick="bqGoB()"><span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_back</span>'+BQ_T.prev+'</button>':'')+'<button class="rv-bq-btn" onclick="bqGoN()">'+(isL?(BQ_T.midBtn||BQ_T.profile):BQ_T.next)+'<span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></button>'+(q.optional?'<span class="rv-bq-opt-hint">'+BQ_T.optional+'</span>':'')+'</div><div class="rv-bq-err" id="rv-bq-err"></div>';
 
   document.getElementById('rv-bq-qc').innerHTML=h;
   window.scrollTo({top:0,behavior:'smooth'});
@@ -626,7 +626,7 @@ function bqValidate(){
   return true;
 }
 
-function bqShowErr(m){var el=document.getElementById('rv-bq-err');if(el){el.innerHTML='<span class="material-symbols-outlined" style="font-size:14px">error_outline</span>'+m;setTimeout(function(){el.innerHTML='';},3500);}}
+function bqShowErr(m){var el=document.getElementById('rv-bq-err');if(el){el.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:14px">error_outline</span>'+m;setTimeout(function(){el.innerHTML='';},3500);}}
 function bqGoN(){try{bqSaveCurrentQ();if(!bqValidate()){bqShowErr(BQ_T.errMsg);return;}cQ++;bqRenderQ();bqResetIdle();}catch(e){console.error('bqGoN',e);bqShowErr(BQ_T.errMsg||'Error');}}
 function bqGoB(){try{bqSaveCurrentQ();if(cQ>0){cQ--;bqRenderQ();}}catch(e){console.error('bqGoB',e);if(cQ>0){cQ--;bqRenderQ();}}}
 
@@ -696,7 +696,7 @@ function bqRenderProfile(){
       if(v&&v!=='—'){
         cards+='<div class="rv-bq-pc'+(q.profileFull?' full':'')+'">'
           +'<div class="rv-bq-pc-hdr"><div class="rv-bq-pc-lbl">'+q.profileLabel+'</div>'
-          +'<button class="rv-bq-btn-ed" onclick="bqEditQ('+i+')"><span class="material-symbols-outlined" style="font-size:11px">edit</span>'+BQ_T.editBtn+'</button></div>'
+          +'<button class="rv-bq-btn-ed" onclick="bqEditQ('+i+')"><span aria-hidden="true" class="material-symbols-outlined" style="font-size:11px">edit</span>'+BQ_T.editBtn+'</button></div>'
           +'<div class="rv-bq-pc-val'+(q.profileLg?' lg':'')+'">'+v+'</div></div>';
       }
     }
@@ -729,7 +729,7 @@ function bqRenderProfile(){
     +'<div class="rv-bq-send-box">'
       +'<div class="rv-bq-send-ttl">'+BQ_T.sendTitle+'</div>'
       +'<div class="rv-bq-send-sub">'+BQ_T.sendSub+'</div>'
-      +'<button class="rv-bq-btn-send" id="rv-bq-bs" onclick="bqSendProfile(\''+REF+'\')"><span class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send+'</button>'
+      +'<button class="rv-bq-btn-send" id="rv-bq-bs" onclick="bqSendProfile(\''+REF+'\')"><span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send+'</button>'
       +'<div class="rv-bq-send-legal">'+BQ_T.legal+'</div>'
     +'</div>';
 
@@ -742,7 +742,7 @@ function bqSendFail(ref){
   // Re-enable the button and show a friendly inline error + Retry.
   // localStorage is NOT cleared, so answers stay intact for retry.
   var btn=document.getElementById('rv-bq-bs');
-  if(btn){btn.disabled=false;btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send;}
+  if(btn){btn.disabled=false;btn.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">send</span>'+BQ_T.send;}
   var box=document.getElementById('rv-bq-send-err');
   if(!box){
     box=document.createElement('div');
@@ -756,7 +756,7 @@ function bqSendFail(ref){
   rbtn.type='button';
   rbtn.className='rv-bq-btn-send';
   rbtn.style.cssText='display:inline-flex;align-items:center;gap:8px;padding:11px 24px;font-size:12px';
-  rbtn.innerHTML='<span class="material-symbols-outlined" style="font-size:16px">refresh</span>'+(BQ_T.retry||'Retry');
+  rbtn.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">refresh</span>'+(BQ_T.retry||'Retry');
   rbtn.onclick=function(){ if(box.parentNode)box.parentNode.removeChild(box); bqSendProfile(ref); };
   box.appendChild(msg); box.appendChild(rbtn);
   box.scrollIntoView({behavior:'smooth',block:'center'});
@@ -788,7 +788,7 @@ function bqClaves(){
 function bqSendProfile(ref){
   var btn=document.getElementById('rv-bq-bs');
   btn.disabled=true;
-  btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+BQ_T.sending;
+  btn.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+BQ_T.sending;
   var old=document.getElementById('rv-bq-send-err'); if(old&&old.parentNode)old.parentNode.removeChild(old);
 
   var fd=new FormData();

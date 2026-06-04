@@ -301,12 +301,12 @@ romvill_seo( array(
             </div>
         </div>
         <div class="rv-b1-timing-pill">
-            <span class="material-symbols-outlined" style="font-size:15px;color:#AEAEB2">schedule</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:15px;color:#AEAEB2">schedule</span>
             <span id="rv-b1-timing">Aproximadamente 4 minutos</span>
         </div>
         <button class="rv-b1-btn dimmed" id="rv-b1-btn-lang" onclick="b1GoToCover()">
             <span id="rv-b1-lang-btn-txt">CONTINUAR</span>
-            <span class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
         </button>
     </div>
 </div>
@@ -327,7 +327,7 @@ romvill_seo( array(
             </div>
         </div>
         <button class="rv-b1-btn" onclick="b1StartForm()">
-            <span class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
             <span id="rv-b1-cv-btn">EMPEZAMOS</span>
         </button>
     </div>
@@ -349,7 +349,7 @@ romvill_seo( array(
         </div>
         <button class="rv-b1-btn" onclick="b1RenderProfile()">
             <span id="rv-b1-mid-btn">Ver mi perfil</span>
-            <span class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
         </button>
     </div>
 </div>
@@ -363,7 +363,7 @@ romvill_seo( array(
 <div class="rv-b1-screen" id="rv-b1-sc-conf">
     <div class="rv-b1-conf-wrap">
         <div class="rv-b1-conf-ic">
-            <span class="material-symbols-outlined" style="font-size:26px;color:#fff">check</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:26px;color:#fff">check</span>
         </div>
         <div class="rv-b1-conf-ttl" id="rv-b1-conf-ttl">Solicitud recibida</div>
         <div class="rv-b1-conf-txt" id="rv-b1-conf-txt">Hemos recibido su solicitud. En 24-48 horas laborables uno de nuestros analistas revisará su caso y le enviará su presupuesto personalizado.</div>
@@ -385,7 +385,7 @@ romvill_seo( array(
         </div>
         <div class="rv-b1-conf-tag" id="rv-b1-conf-tag">Su criterio antes de decidir, en las mejores manos.</div>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="rv-b1-btn-ghost" style="margin-top:20px">
-            <span class="material-symbols-outlined" style="font-size:15px">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:15px">home</span>
             Volver al inicio
         </a>
     </div>
@@ -608,7 +608,7 @@ function b1RenderQ(){
     var km={0:'nt',1:'ciudad',2:'email'};
     var key=km[cQ]||'q'+cQ; var v=A[key]||'';
     h+='<div class="rv-b1-fg">'
-      +'<input class="rv-b1-fi'+(v?' valid':'')+'" id="rv-b1-fi-main" type="'+(cQ===2?'email':'text')+'" value="'+v+'" placeholder="'+(q.ph||'')+'" oninput="b1OnFI(this,\''+key+'\')"><span class="material-symbols-outlined rv-b1-fi-ic'+(v?' ok':' mt')+'" id="rv-b1-fic-main">'+(v?'check_circle':'radio_button_unchecked')+'</span>'
+      +'<input class="rv-b1-fi'+(v?' valid':'')+'" id="rv-b1-fi-main" type="'+(cQ===2?'email':'text')+'" value="'+v+'" placeholder="'+(q.ph||'')+'" oninput="b1OnFI(this,\''+key+'\')"><span aria-hidden="true" class="material-symbols-outlined rv-b1-fi-ic'+(v?' ok':' mt')+'" id="rv-b1-fic-main">'+(v?'check_circle':'radio_button_unchecked')+'</span>'
       +'</div>';
 
   // Textarea
@@ -623,9 +623,9 @@ function b1RenderQ(){
       h+='<div class="rv-b1-fg"><label class="rv-b1-fl">'+f.lbl+'</label>';
       if(f.type==='text'){
         h+='<input class="rv-b1-fi'+(v?' valid':'')+'" id="rv-b1-fi-'+f.id+'" type="text" value="'+v+'" placeholder="'+(f.ph||'')+'" oninput="b1OnFI(this,\''+f.id+'\')">'
-          +'<span class="material-symbols-outlined rv-b1-fi-ic'+(v?' ok':' mt')+'" id="rv-b1-fic-'+f.id+'">'+(v?'check_circle':'radio_button_unchecked')+'</span>';
+          +'<span aria-hidden="true" class="material-symbols-outlined rv-b1-fi-ic'+(v?' ok':' mt')+'" id="rv-b1-fic-'+f.id+'">'+(v?'check_circle':'radio_button_unchecked')+'</span>';
       }else if(f.type==='sel'){
-        h+='<div class="rv-b1-sw"><select class="rv-b1-cs" id="rv-b1-fi-'+f.id+'" onchange="A[\''+f.id+'\']=this.value;b1Save()">'+f.opts.map(function(o){return'<option value="'+o+'"'+(A[f.id]===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select><span class="material-symbols-outlined rv-b1-sa">expand_more</span></div>';
+        h+='<div class="rv-b1-sw"><select class="rv-b1-cs" id="rv-b1-fi-'+f.id+'" onchange="A[\''+f.id+'\']=this.value;b1Save()">'+f.opts.map(function(o){return'<option value="'+o+'"'+(A[f.id]===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select><span aria-hidden="true" class="material-symbols-outlined rv-b1-sa">expand_more</span></div>';
       }
       h+='</div>';
     });
@@ -671,8 +671,8 @@ function b1RenderQ(){
 
   var isL=cQ===T.questions.length-1;
   h+='<div class="rv-b1-nav">'
-    +(cQ>0?'<button class="rv-b1-btn-back" onclick="b1GoB()"><span class="material-symbols-outlined" style="font-size:16px">arrow_back</span>'+T.prev+'</button>':'')
-    +'<button class="rv-b1-btn" onclick="b1GoN()">'+(isL?T.midBtn:T.next)+'<span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></button>'
+    +(cQ>0?'<button class="rv-b1-btn-back" onclick="b1GoB()"><span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_back</span>'+T.prev+'</button>':'')
+    +'<button class="rv-b1-btn" onclick="b1GoN()">'+(isL?T.midBtn:T.next)+'<span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></button>'
     +(q.optional?'<span class="rv-b1-opt-hint">'+T.optional+'</span>':'')
     +'</div><div class="rv-b1-err" id="rv-b1-err"></div>';
 
@@ -731,7 +731,7 @@ function b1Validate(){
   return true;
 }
 
-function b1ShowErr(m){var el=document.getElementById('rv-b1-err');if(el){el.innerHTML='<span class="material-symbols-outlined" style="font-size:14px">error_outline</span>'+m;setTimeout(function(){el.innerHTML='';},3500);}}
+function b1ShowErr(m){var el=document.getElementById('rv-b1-err');if(el){el.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:14px">error_outline</span>'+m;setTimeout(function(){el.innerHTML='';},3500);}}
 function b1GoN(){
   try{
     b1SaveCurrentQ();
@@ -806,7 +806,7 @@ function b1CD(lbl,val,full,qn,lg){
   return'<div class="rv-b1-pc'+(full?' full':'')+'">'
     +'<div class="rv-b1-pc-hdr"><div class="rv-b1-pc-lbl">'+lbl+'</div>'
     +'<button class="rv-b1-btn-ed" onclick="b1EditQ('+qn+')">'
-    +'<span class="material-symbols-outlined" style="font-size:11px">edit</span>'+T.editBtn+'</button></div>'
+    +'<span aria-hidden="true" class="material-symbols-outlined" style="font-size:11px">edit</span>'+T.editBtn+'</button></div>'
     +'<div class="rv-b1-pc-val'+(lg?' lg':'')+'">'+val+'</div></div>';
 }
 function b1EditQ(n){cQ=n-1;b1Show('rv-b1-sc-q');b1RenderQ();}
@@ -877,7 +877,7 @@ function b1RenderProfile(){
       +'<div class="rv-b1-send-ttl">'+T.sendTitle+'</div>'
       +'<div class="rv-b1-send-sub">'+T.sendSub+'</div>'
       +'<button class="rv-b1-btn-send" id="rv-b1-bs" onclick="b1SendProfile(\''+REF+'\')">'
-        +'<span class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send
+        +'<span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send
       +'</button>'
       +'<div class="rv-b1-send-legal">'+T.legal+'</div>'
     +'</div>';
@@ -890,7 +890,7 @@ function b1SendFail(ref){
   // Re-enable the button and show a friendly inline error + Retry.
   // localStorage is NOT cleared, so answers stay intact for retry.
   var btn=document.getElementById('rv-b1-bs');
-  if(btn){btn.disabled=false;btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send;}
+  if(btn){btn.disabled=false;btn.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send;}
   var box=document.getElementById('rv-b1-send-err');
   if(!box){
     box=document.createElement('div');
@@ -904,7 +904,7 @@ function b1SendFail(ref){
   rbtn.type='button';
   rbtn.className='rv-b1-btn-send';
   rbtn.style.cssText='display:inline-flex;align-items:center;gap:8px;padding:11px 24px;font-size:12px';
-  rbtn.innerHTML='<span class="material-symbols-outlined" style="font-size:16px">refresh</span>'+(T.retry||'Reintentar');
+  rbtn.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">refresh</span>'+(T.retry||'Reintentar');
   rbtn.onclick=function(){ if(box.parentNode)box.parentNode.removeChild(box); b1SendProfile(ref); };
   box.appendChild(msg); box.appendChild(rbtn);
   box.scrollIntoView({behavior:'smooth',block:'center'});
@@ -943,7 +943,7 @@ function b1Claves(){
 function b1SendProfile(ref){
   var btn=document.getElementById('rv-b1-bs');
   btn.disabled=true;
-  btn.innerHTML='<span class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+T.sending;
+  btn.innerHTML='<span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">hourglass_empty</span>'+T.sending;
   var old=document.getElementById('rv-b1-send-err'); if(old&&old.parentNode)old.parentNode.removeChild(old);
 
   var payload=Object.assign({},A,{ref:ref,lang:lang,claves:b1Claves()});
