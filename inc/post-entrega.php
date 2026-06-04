@@ -33,9 +33,12 @@ function romvill_pe_precio( $post_id ) {
     return $map[ $b ] ?? 0;
 }
 
-/* URL de reseñas de Google (configurable; placeholder por defecto). */
+/* URL de reseñas de Google (configurable vía el filtro 'romvill_google_review_url').
+ * Para obtener el Place ID real: buscar ROMVILL en Google Maps → botón "Compartir"
+ * → copiar el Place ID, y sustituir TU_PLACE_ID_AQUI por ese valor (o fijar la URL
+ * completa con el filtro). NO se debe inventar un Place ID. */
 function romvill_pe_review_url() {
-    return apply_filters( 'romvill_google_review_url', 'https://search.google.com/local/writereview?placeid=ROMVILL' );
+    return apply_filters( 'romvill_google_review_url', 'https://search.google.com/local/writereview?placeid=TU_PLACE_ID_AQUI' );
 }
 
 /**

@@ -356,6 +356,73 @@ function romvill_emit_lang_seo() {
     if ( $desc ) echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
     echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
     echo '<meta name="twitter:image:alt" content="' . esc_attr( $img_alt ) . '" />' . "\n";
+
+    // ── Tanda 3: JSON-LD (schema.org) — Organization + WebSite siempre;
+    //    Service en la home; WebPage en metodología. Idioma activo. ──
+    $home     = home_url( '/' );
+    $logo     = get_template_directory_uri() . '/assets/images/logo-negro.jpg';
+    $lang_bcp = str_replace( '_', '-', romvill_og_locale( $cur_lang ) );
+    $org_desc = romvill_t( 'seo.desc.home' );
+    $page_key = romvill_current_page_key();
+
+    $graph = array(
+        array(
+            '@type'       => 'Organization',
+            '@id'         => $home . '#organization',
+            'name'        => 'ROMVILL',
+            'url'         => $home,
+            'email'       => 'contacto@romvill.com',
+            'logo'        => $logo,
+            'image'       => $image,
+            'description' => $org_desc,
+            'areaServed'  => array( 'Alicante', 'Málaga', 'Marbella' ),
+        ),
+        array(
+            '@type'      => 'WebSite',
+            '@id'        => $home . '#website',
+            'url'        => $home,
+            'name'       => $site_name,
+            'inLanguage' => $lang_bcp,
+            'publisher'  => array( '@id' => $home . '#organization' ),
+        ),
+    );
+
+    if ( $page_key === 'home' ) {
+        $svc_name = array(
+            'es' => 'Análisis de Inteligencia Territorial',
+            'en' => 'Territorial Intelligence Analysis',
+            'fr' => 'Analyse de Renseignement Territorial',
+            'de' => 'Territoriale Standortanalyse',
+            'ru' => 'Анализ территориальной аналитики',
+        );
+        $graph[] = array(
+            '@type'       => 'Service',
+            'name'        => $svc_name[ $cur_lang ] ?? $svc_name['es'],
+            'serviceType' => $svc_name['en'],
+            'provider'    => array( '@id' => $home . '#organization' ),
+            'areaServed'  => array(
+                array( '@type' => 'City', 'name' => 'Alicante' ),
+                array( '@type' => 'City', 'name' => 'Málaga' ),
+                array( '@type' => 'City', 'name' => 'Marbella' ),
+            ),
+            'description' => $org_desc,
+        );
+    } elseif ( $page_key === 'metodologia' ) {
+        $graph[] = array(
+            '@type'       => 'WebPage',
+            '@id'         => $canonical . '#webpage',
+            'url'         => $canonical,
+            'name'        => $title,
+            'description' => $desc,
+            'inLanguage'  => $lang_bcp,
+            'isPartOf'    => array( '@id' => $home . '#website' ),
+        );
+    }
+
+    $jsonld = array( '@context' => 'https://schema.org', '@graph' => $graph );
+    echo '<script type="application/ld+json">'
+        . wp_json_encode( $jsonld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG )
+        . '</script>' . "\n";
 }
 
 // ─── romvill_seo(): now a no-op (kept for template compatibility) ─

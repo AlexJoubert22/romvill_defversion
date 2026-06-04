@@ -24,9 +24,9 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         <!-- Hero Slideshow -->
         <div id="hero-slideshow" class="absolute inset-0 z-0 overflow-hidden">
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.png' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=85&auto=format&fit=crop'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=85&auto=format&fit=crop'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85&auto=format&fit=crop'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-2.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-3.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-4.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80 z-10"></div>
 
@@ -63,17 +63,17 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
     <section class="relative z-30 mt-0 md:-mt-20 px-6 max-w-7xl mx-auto w-full">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div id="stat-1" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
-                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="120" data-prefix="+">+0</span>
+                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="120" data-prefix="+">+120</span>
                 <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3"><?php echo esc_html( romvill_t( 'stats.reports_label' ) ); ?></span>
                 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'stats.reports_desc' ) ); ?></p>
             </div>
             <div id="stat-2" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
-                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="12" data-suffix="+">0+</span>
+                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="12" data-suffix="+">12+</span>
                 <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3"><?php echo esc_html( romvill_t( 'stats.years_label' ) ); ?></span>
                 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'stats.years_desc' ) ); ?></p>
             </div>
             <div id="stat-3" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
-                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="100" data-suffix="%">0%</span>
+                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="100" data-suffix="%">100%</span>
                 <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3"><?php echo esc_html( romvill_t( 'stats.indep_label' ) ); ?></span>
                 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'stats.indep_desc' ) ); ?></p>
             </div>
