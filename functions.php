@@ -25,6 +25,9 @@ require_once get_template_directory() . '/inc/solicitudes-cpt.php';
 // ─── Recordatorios automáticos de presupuesto (48h/7d, wp-cron) ─
 require_once get_template_directory() . '/inc/recordatorios.php';
 
+// ─── Secuencia post-entrega de 6 emails en 90 días (wp-cron) ────
+require_once get_template_directory() . '/inc/post-entrega.php';
+
 // ─── Lector/parser de solicitudes (interno) ───────────────────
 require_once get_template_directory() . '/inc/solicitud-parser.php';
 
@@ -36,6 +39,9 @@ require_once get_template_directory() . '/inc/calculadora.php';
 
 // ─── Generador de borrador de informe en .docx (admin-only) ───
 require_once get_template_directory() . '/inc/generador-docx.php';
+
+// ─── Informe interactivo HTML (token público, datos editables por el analista) ─
+require_once get_template_directory() . '/inc/informe-html.php';
 
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 

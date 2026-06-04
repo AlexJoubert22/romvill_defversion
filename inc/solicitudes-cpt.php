@@ -314,6 +314,11 @@ function romvill_sol_box_estado( $post ) {
     echo '</select>';
     echo '<p style="margin:8px 0 0;color:#666;font-size:12px">Guarde con "Actualizar".</p>';
 
+    // [Spec 3.3] Casilla de upgrade (afecta a la secuencia post-entrega).
+    $up = get_post_meta( $post->ID, '_rv_upgrade', true ) === '1';
+    echo '<p style="margin:10px 0 0"><label><input type="checkbox" name="rv_upgrade" value="1"' . checked( $up, true, false ) . '> Contrató nivel superior (upgrade)</label></p>';
+    echo '<p style="margin:2px 0 0;color:#888;font-size:11px">Si está marcado, la secuencia post-entrega NO envía los emails de crédito (días 5, 15 y 60).</p>';
+
     // [Spec 2.4] Estado de los recordatorios automáticos de presupuesto.
     $q   = (int) get_post_meta( $post->ID, '_rv_quoted_at', true );
     $ac  = (int) get_post_meta( $post->ID, '_rv_accepted_at', true );
@@ -374,8 +379,14 @@ function romvill_sol_save_estado( $post_id ) {
             if ( in_array( $val, array( 'aceptada', 'entregada' ), true ) && ! get_post_meta( $post_id, '_rv_accepted_at', true ) ) {
                 update_post_meta( $post_id, '_rv_accepted_at', time() );
             }
+            // [Spec 3.3] "Entregada" arranca la secuencia post-entrega (90 días).
+            if ( $val === 'entregada' && ! get_post_meta( $post_id, '_rv_delivered_at', true ) ) {
+                update_post_meta( $post_id, '_rv_delivered_at', time() );
+            }
         }
     }
+    // [Spec 3.3] Casilla "contrató upgrade" (mismo metabox/nonce de estado).
+    update_post_meta( $post_id, '_rv_upgrade', isset( $_POST['rv_upgrade'] ) ? '1' : '0' );
 }
 
 /* ── Exportar a CSV ──────────────────────────────────────────── */
