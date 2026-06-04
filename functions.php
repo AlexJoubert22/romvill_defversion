@@ -638,6 +638,22 @@ Análisis de Inteligencia Zonal
         ) );
     }
 
+    // ── [Spec 2.1] Email de confirmación al cliente (contacto@romvill.com) ──
+    $client_subject = 'Hemos recibido su solicitud — ' . $ref;
+    $client_body = "Estimado/a {$name},\n\n"
+        . "Hemos recibido su solicitud de análisis territorial"
+        . ( $_zona && $_zona !== '—' ? " para {$_zona}" : '' ) . ".\n\n"
+        . "Referencia: {$ref}\n"
+        . "Siguiente paso: Recibirá su presupuesto personalizado en las próximas horas.\n\n"
+        . "Para cualquier consulta: contacto@romvill.com\n\n"
+        . "ROMVILL · Criterio antes de decidir\n"
+        . "www.romvill.com";
+    $client_headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ROMVILL <contacto@romvill.com>',
+    );
+    wp_mail( $email, $client_subject, $client_body, $client_headers );
+
     $sent = wp_mail( get_option( 'admin_email' ), $subject, $email_body, $headers );
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
@@ -801,7 +817,50 @@ Análisis de Inteligencia Zonal
         ) );
     }
 
+    // ── [Spec 2.1] Email de confirmación al cliente (contacto@romvill.com) ──
+    $client_subject = 'Hemos recibido su solicitud — ' . $ref;
+    $client_body = "Estimado/a {$nom},\n\n"
+        . "Hemos recibido su solicitud de análisis territorial"
+        . ( $zona && $zona !== '—' ? " para {$zona}" : '' ) . ".\n\n"
+        . "Referencia: {$ref}\n"
+        . "Siguiente paso: Recibirá su presupuesto personalizado en las próximas horas.\n\n"
+        . "Para cualquier consulta: contacto@romvill.com\n\n"
+        . "ROMVILL · Criterio antes de decidir\n"
+        . "www.romvill.com";
+    $client_headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ROMVILL <contacto@romvill.com>',
+    );
+    wp_mail( $ema, $client_subject, $client_body, $client_headers );
+
     $sent = wp_mail( $to, $subject, $body, $headers );
+
+    // ── [Spec 2.3] Auto-cotización Exprés (solo Bloque 1: esencial + ALTA + local) ──
+    // Email ADICIONAL al cliente; NO sustituye el email interno. Giovanny sigue
+    // recibiendo la estimación completa y puede ajustar si algo no cuadra.
+    if ( $est
+         && $est['nivel'] === 'esencial'
+         && $est['confianza'] === 'ALTA'
+         && $est['precio_min'] <= 100 // sanity check: no auto-cotizar si extras lo subieron mucho
+    ) {
+        $quote_subject = 'Su presupuesto — Informe Exprés de zona';
+        $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
+        $quote_body = "Estimado/a {$nom},\n\n"
+            . "Su Informe Exprés para {$zona_display}:\n\n"
+            . "Incluye: dashboard de zona, 6-7 dimensiones esenciales, datos oficiales, mapas, patrones detectados, versión web interactiva\n"
+            . "Precio: desde 79€\n"
+            . "Entrega: el mismo día tras confirmación\n"
+            . "Referencia: {$ref}\n\n"
+            . "Para aceptar, responda \"Acepto\" o escríbanos a contacto@romvill.com.\n\n"
+            . "ROMVILL · Criterio antes de decidir\n"
+            . "www.romvill.com";
+        $quote_headers = array(
+            'Content-Type: text/plain; charset=UTF-8',
+            'From: ROMVILL <contacto@romvill.com>',
+        );
+        wp_mail( $ema, $quote_subject, $quote_body, $quote_headers );
+    }
+
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
     } else {
