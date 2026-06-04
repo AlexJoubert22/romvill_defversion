@@ -313,6 +313,22 @@ function romvill_sol_box_estado( $post ) {
     }
     echo '</select>';
     echo '<p style="margin:8px 0 0;color:#666;font-size:12px">Guarde con "Actualizar".</p>';
+
+    // [Spec 2.4] Estado de los recordatorios automáticos de presupuesto.
+    $q   = (int) get_post_meta( $post->ID, '_rv_quoted_at', true );
+    $ac  = (int) get_post_meta( $post->ID, '_rv_accepted_at', true );
+    $r48 = (int) get_post_meta( $post->ID, '_rv_rem48_at', true );
+    $r7  = (int) get_post_meta( $post->ID, '_rv_rem7_at', true );
+    $fmt = function ( $t ) { return $t ? date_i18n( 'j M Y, H:i', $t ) : '—'; };
+    echo '<hr style="margin:12px 0;border:0;border-top:1px solid #e2e8f0">';
+    echo '<p style="margin:0 0 6px;font-size:12px;color:#666"><strong>Recordatorios automáticos</strong></p>';
+    echo '<table style="width:100%;font-size:11px;color:#555">';
+    echo '<tr><td>Presupuesto enviado</td><td style="text-align:right">' . esc_html( $fmt( $q ) ) . '</td></tr>';
+    echo '<tr><td>Aceptada/entregada</td><td style="text-align:right">' . esc_html( $fmt( $ac ) ) . '</td></tr>';
+    echo '<tr><td>Recordatorio 48 h</td><td style="text-align:right">' . esc_html( $fmt( $r48 ) ) . '</td></tr>';
+    echo '<tr><td>Recordatorio 7 d</td><td style="text-align:right">' . esc_html( $fmt( $r7 ) ) . '</td></tr>';
+    echo '</table>';
+    echo '<p style="margin:8px 0 0;color:#888;font-size:11px">Al marcar <strong>Presupuesto enviado</strong> arranca el reloj de recordatorios (48 h y 7 d). Al marcar <strong>Aceptada/Entregada</strong> se detienen.</p>';
 }
 
 function romvill_sol_box_contacto( $post ) {
@@ -351,6 +367,13 @@ function romvill_sol_save_estado( $post_id ) {
         $val = sanitize_text_field( $_POST['rv_estado_val'] );
         if ( array_key_exists( $val, romvill_sol_estados() ) ) {
             update_post_meta( $post_id, '_rv_estado', $val );
+            // [Spec 2.4] Sellar marcas de tiempo para los recordatorios automáticos.
+            if ( $val === 'presupuesto_enviado' && ! get_post_meta( $post_id, '_rv_quoted_at', true ) ) {
+                update_post_meta( $post_id, '_rv_quoted_at', time() );
+            }
+            if ( in_array( $val, array( 'aceptada', 'entregada' ), true ) && ! get_post_meta( $post_id, '_rv_accepted_at', true ) ) {
+                update_post_meta( $post_id, '_rv_accepted_at', time() );
+            }
         }
     }
 }

@@ -22,6 +22,9 @@ require_once get_template_directory() . '/inc/translations.php';
 // ─── Solicitudes panel (private CRM) ──────────────────────────
 require_once get_template_directory() . '/inc/solicitudes-cpt.php';
 
+// ─── Recordatorios automáticos de presupuesto (48h/7d, wp-cron) ─
+require_once get_template_directory() . '/inc/recordatorios.php';
+
 // ─── Lector/parser de solicitudes (interno) ───────────────────
 require_once get_template_directory() . '/inc/solicitud-parser.php';
 
