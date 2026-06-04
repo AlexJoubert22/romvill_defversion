@@ -80,7 +80,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             <article class="group relative flex flex-col gap-6 p-6 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-800/50 hover:shadow-xl transition-all duration-300 z-10 bg-background-light dark:bg-background-dark">
                 <div class="flex flex-col gap-4 items-start">
                     <div class="relative flex items-center justify-center w-14 h-14 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm group-hover:scale-105 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-primary text-2xl"><?php echo esc_html( $l['icon'] ); ?></span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-primary text-2xl"><?php echo esc_html( $l['icon'] ); ?></span>
                     </div>
                     <div class="space-y-2">
                         <div class="flex items-center gap-2">
@@ -95,7 +95,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                 <ul class="mt-2 space-y-2">
                     <?php foreach ( $l['items'] as $item ) : ?>
                     <li class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-primary text-sm">check</span>
                         <?php echo esc_html( $item ); ?>
                     </li>
                     <?php endforeach; ?>
@@ -131,7 +131,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     ?>
                     <div class="flex gap-4">
                         <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 dark:bg-slate-800 dark:border dark:border-slate-700">
-                            <span class="material-symbols-outlined text-sm"><?php echo esc_html( $b['icon'] ); ?></span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-sm"><?php echo esc_html( $b['icon'] ); ?></span>
                         </div>
                         <div>
                             <h4 class="text-base font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $b['title'] ); ?></h4>
@@ -143,13 +143,13 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             </div>
             <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 md:gap-6">
                 <div class="col-span-2 sm:col-span-1 bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-xl relative overflow-hidden group">
-                    <span class="material-symbols-outlined text-primary text-3xl mb-5 relative z-10">fact_check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-primary text-3xl mb-5 relative z-10">fact_check</span>
                     <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 relative z-10"><?php echo esc_html( romvill_t( 'met.card1.title' ) ); ?></h3>
                     <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed relative z-10"><?php echo esc_html( romvill_t( 'met.card1.desc' ) ); ?></p>
                 </div>
                 <div class="col-span-2 sm:col-span-1 bg-slate-900 p-8 rounded-2xl shadow-xl relative overflow-hidden group">
                     <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent"></div>
-                    <span class="material-symbols-outlined text-secondary text-3xl mb-5 relative z-10">crisis_alert</span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-secondary text-3xl mb-5 relative z-10">crisis_alert</span>
                     <h3 class="text-xl font-bold text-white mb-3 relative z-10"><?php echo esc_html( romvill_t( 'met.card2.title' ) ); ?></h3>
                     <p class="text-sm text-slate-300 leading-relaxed relative z-10"><?php echo esc_html( romvill_t( 'met.card2.desc' ) ); ?></p>
                 </div>
@@ -157,7 +157,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 relative z-10">
                         <div class="max-w-[75%]">
-                            <span class="material-symbols-outlined text-white/80 text-3xl mb-4">insights</span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-white/80 text-3xl mb-4">insights</span>
                             <h3 class="text-2xl font-bold text-white mb-3"><?php echo esc_html( romvill_t( 'met.card3.title' ) ); ?></h3>
                             <p class="text-sm text-blue-100 leading-relaxed"><?php echo esc_html( romvill_t( 'met.card3.desc' ) ); ?></p>
                         </div>

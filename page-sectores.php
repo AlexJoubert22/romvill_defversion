@@ -25,7 +25,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             </div>
             <div class="relative z-10 max-w-lg transition-transform duration-500 group-hover/left:translate-x-2">
                 <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20">
-                    <span class="material-symbols-outlined">family_restroom</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">family_restroom</span>
                 </div>
                 <h2 class="text-3xl lg:text-5xl font-extrabold text-white leading-tight mb-4 drop-shadow-md"><?php echo wp_kses( romvill_t( 'sec.b2c.title' ), [ 'br' => [] ] ); ?></h2>
                 <p class="text-lg text-slate-100 mb-8 max-w-md font-medium drop-shadow-sm leading-relaxed opacity-90">
@@ -33,7 +33,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                 </p>
                 <a href="<?php echo esc_url( $contacto_url ); ?>" class="flex items-center justify-center gap-2 rounded-lg bg-white text-primary hover:bg-slate-100 transition-colors h-14 px-8 text-base font-bold shadow-lg hover:-translate-y-1 transform duration-200 w-fit">
                     <span><?php echo esc_html( romvill_t( 'sec.b2c.btn' ) ); ?></span>
-                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </a>
             </div>
         </div>
@@ -45,7 +45,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             </div>
             <div class="relative z-10 max-w-lg ml-auto text-left lg:text-right transition-transform duration-500 group-hover/right:-translate-x-2">
                 <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 lg:ml-auto">
-                    <span class="material-symbols-outlined">domain</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">domain</span>
                 </div>
                 <h2 class="text-3xl lg:text-5xl font-extrabold text-white leading-tight mb-4 drop-shadow-md"><?php echo wp_kses( romvill_t( 'sec.b2b.title' ), [ 'br' => [] ] ); ?></h2>
                 <p class="text-lg text-slate-100 mb-8 max-w-md font-medium drop-shadow-sm leading-relaxed opacity-90 lg:ml-auto">
@@ -84,7 +84,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             </div>
             <div class="max-w-3xl mx-auto bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 text-center shadow-lg">
                 <div class="flex items-center justify-center gap-3 mb-4">
-                    <span class="material-symbols-outlined text-secondary text-2xl">public</span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-secondary text-2xl">public</span>
                     <h4 class="text-xl font-bold text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'sec.intl.title' ) ); ?></h4>
                 </div>
                 <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
@@ -92,7 +92,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                 </p>
                 <div class="mt-6">
                     <a href="<?php echo esc_url( $contacto_url ); ?>" class="text-sm font-bold text-primary hover:text-primary-dark transition-colors inline-flex items-center gap-1">
-                        <?php echo esc_html( romvill_t( 'sec.intl.link' ) ); ?> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        <?php echo esc_html( romvill_t( 'sec.intl.link' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
             </div>
@@ -112,11 +112,11 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                 <div class="relative p-10 lg:p-14 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
                     <div>
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
-                            <span class="material-symbols-outlined" style="font-size:13px">verified_user</span> <?php echo esc_html( romvill_t( 'sec.res.badge' ) ); ?>
+                            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:13px">verified_user</span> <?php echo esc_html( romvill_t( 'sec.res.badge' ) ); ?>
                         </span>
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary flex-shrink-0">
-                                <span class="material-symbols-outlined text-xl">family_restroom</span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-xl">family_restroom</span>
                             </div>
                             <h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'sec.res.title' ) ); ?></h3>
                         </div>
@@ -135,7 +135,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         foreach ( $b2c as $s ) :
                         ?>
                         <li class="flex gap-4 items-start p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
-                            <span class="material-symbols-outlined text-secondary flex-shrink-0 mt-0.5" style="font-size:20px"><?php echo esc_html( $s['icon'] ); ?></span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-secondary flex-shrink-0 mt-0.5" style="font-size:20px"><?php echo esc_html( $s['icon'] ); ?></span>
                             <div>
                                 <p class="text-sm font-bold text-slate-800 dark:text-slate-100"><?php echo esc_html( $s['title'] ); ?></p>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5"><?php echo esc_html( $s['desc'] ); ?></p>
@@ -144,18 +144,18 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         <?php endforeach; ?>
                     </ul>
                     <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#a3884c] transition-colors mt-auto">
-                        <?php echo esc_html( romvill_t( 'sec.res.link' ) ); ?> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        <?php echo esc_html( romvill_t( 'sec.res.link' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
                 <!-- Inversores -->
                 <div class="relative p-10 lg:p-14 flex flex-col gap-8 bg-slate-900 dark:bg-slate-950">
                     <div>
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 text-blue-300 text-[10px] font-bold uppercase tracking-widest mb-5">
-                            <span class="material-symbols-outlined" style="font-size:13px">military_tech</span> <?php echo esc_html( romvill_t( 'sec.inv.badge' ) ); ?>
+                            <span aria-hidden="true" class="material-symbols-outlined" style="font-size:13px">military_tech</span> <?php echo esc_html( romvill_t( 'sec.inv.badge' ) ); ?>
                         </span>
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
-                                <span class="material-symbols-outlined text-xl">domain</span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-xl">domain</span>
                             </div>
                             <h3 class="text-2xl font-serif font-bold text-white"><?php echo esc_html( romvill_t( 'sec.inv.title' ) ); ?></h3>
                         </div>
@@ -174,7 +174,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         foreach ( $b2b as $s ) :
                         ?>
                         <li class="flex gap-4 items-start p-4 rounded-xl hover:bg-white/5 transition-colors">
-                            <span class="material-symbols-outlined text-primary flex-shrink-0 mt-0.5" style="font-size:20px"><?php echo esc_html( $s['icon'] ); ?></span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-primary flex-shrink-0 mt-0.5" style="font-size:20px"><?php echo esc_html( $s['icon'] ); ?></span>
                             <div>
                                 <p class="text-sm font-bold text-white"><?php echo esc_html( $s['title'] ); ?></p>
                                 <p class="text-xs text-slate-400 mt-0.5"><?php echo esc_html( $s['desc'] ); ?></p>
@@ -183,7 +183,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         <?php endforeach; ?>
                     </ul>
                     <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-blue-400 transition-colors mt-auto">
-                        <?php echo esc_html( romvill_t( 'sec.inv.link' ) ); ?> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        <?php echo esc_html( romvill_t( 'sec.inv.link' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
             </div>
@@ -199,7 +199,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             </h2>
             <a href="<?php echo esc_url( $contacto_url ); ?>" class="group relative inline-flex items-center justify-center gap-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-5 rounded-xl font-bold transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                 <span><?php echo esc_html( romvill_t( 'sec.final.btn' ) ); ?></span>
-                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">rocket_launch</span>
+                <span aria-hidden="true" class="material-symbols-outlined transition-transform group-hover:translate-x-1">rocket_launch</span>
             </a>
         </div>
     </section>

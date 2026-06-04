@@ -114,7 +114,7 @@ $perfil_pages = array(
             <div class="md:w-1/2 flex justify-center <?php echo esc_attr( $d['order'] ); ?>">
                 <div class="relative w-64 h-64 flex items-center justify-center">
                     <div class="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center shadow-xl border border-primary/20 z-10 transition-transform duration-500 group-hover:scale-110">
-                        <span class="material-symbols-outlined text-primary" style="font-size: 64px;"><?php echo esc_html( $d['icon'] ); ?></span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-primary" style="font-size: 64px;"><?php echo esc_html( $d['icon'] ); ?></span>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@ $perfil_pages = array(
                     <?php endforeach; ?>
                 </ul>
                 <a href="<?php echo esc_url( $u ); ?>" class="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark transition-colors">
-                    <?php echo esc_html( $d['linktext'] ); ?> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    <?php echo esc_html( $d['linktext'] ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
             </div>
         </div>
@@ -140,7 +140,7 @@ $perfil_pages = array(
     <!-- CTA -->
     <section class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-32">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="material-symbols-outlined text-4xl text-primary mb-4">diamond</span>
+            <span aria-hidden="true" class="material-symbols-outlined text-4xl text-primary mb-4">diamond</span>
             <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4"><?php echo esc_html( romvill_t( 'ana.cta.title' ) ); ?></h2>
             <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                 <?php echo esc_html( romvill_t( 'ana.cta.desc' ) ); ?>

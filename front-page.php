@@ -49,7 +49,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <a href="<?php echo esc_url( $contacto_url ); ?>"
                     class="min-w-[200px] h-14 px-8 bg-secondary hover:bg-[#a3884c] text-white text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
                     <?php echo esc_html( romvill_t( 'hero.btn_primary' ) ); ?>
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
                 <a href="<?php echo esc_url( $sectores_url ); ?>"
                     class="min-w-[200px] h-14 px-8 bg-transparent hover:bg-white/10 text-white border border-white/30 text-base font-medium rounded backdrop-blur-sm transition-all duration-300 flex items-center justify-center">
@@ -106,7 +106,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 ?>
                 <div class="group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
-                        <span class="material-symbols-outlined text-secondary text-2xl"><?php echo esc_html( $p['icon'] ); ?></span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-secondary text-2xl"><?php echo esc_html( $p['icon'] ); ?></span>
                     </div>
                     <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2"><?php echo esc_html( $p['title'] ); ?></h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( $p['desc'] ); ?></p>
@@ -138,7 +138,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <div class="text-center mt-14">
                     <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-white font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20">
                         <?php echo esc_html( romvill_t( 'how.cta' ) ); ?>
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-base">arrow_forward</span>
                     </a>
                 </div>
             </div>
@@ -171,7 +171,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         ?>
                         <div class="flex gap-4 items-start">
                             <div class="w-12 h-12 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-secondary shrink-0">
-                                <span class="material-symbols-outlined"><?php echo esc_html( $f['icon'] ); ?></span>
+                                <span aria-hidden="true" class="material-symbols-outlined"><?php echo esc_html( $f['icon'] ); ?></span>
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $f['title'] ); ?></h3>
@@ -237,7 +237,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <a href="<?php echo esc_url( $contacto_url ); ?>"
                class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-white font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
                 <?php echo esc_html( romvill_t( 'cta.btn' ) ); ?>
-                <span class="material-symbols-outlined text-base">arrow_forward</span>
+                <span aria-hidden="true" class="material-symbols-outlined text-base">arrow_forward</span>
             </a>
         </div>
     </section>
@@ -259,7 +259,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'alicante.png' ) ); ?>')">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10"></div>
                     <button onclick="closeCityModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white transition-colors" aria-label="<?php echo esc_attr( romvill_t( 'modal.close' ) ); ?>">
-                        <span class="material-symbols-outlined text-base">close</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
                         <span class="text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.alicante.badge' ) ); ?></span>
@@ -277,7 +277,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                <span class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
                                 <div>
                                     <p class="text-sm font-semibold text-slate-800 dark:text-slate-200"><?php echo esc_html( $d['title'] ); ?></p>
                                     <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( $d['desc'] ); ?></p>
@@ -298,7 +298,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'malaga.png' ) ); ?>')">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10"></div>
                     <button onclick="closeCityModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white transition-colors" aria-label="<?php echo esc_attr( romvill_t( 'modal.close' ) ); ?>">
-                        <span class="material-symbols-outlined text-base">close</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
                         <span class="text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.malaga.badge' ) ); ?></span>
@@ -316,7 +316,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                <span class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
                                 <div>
                                     <p class="text-sm font-semibold text-slate-800 dark:text-slate-200"><?php echo esc_html( $d['title'] ); ?></p>
                                     <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( $d['desc'] ); ?></p>
@@ -337,7 +337,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'marbella.png' ) ); ?>')">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10"></div>
                     <button onclick="closeCityModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white transition-colors" aria-label="<?php echo esc_attr( romvill_t( 'modal.close' ) ); ?>">
-                        <span class="material-symbols-outlined text-base">close</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
                         <span class="text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.marbella.badge' ) ); ?></span>
@@ -355,7 +355,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                <span class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
+                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
                                 <div>
                                     <p class="text-sm font-semibold text-slate-800 dark:text-slate-200"><?php echo esc_html( $d['title'] ); ?></p>
                                     <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( $d['desc'] ); ?></p>
