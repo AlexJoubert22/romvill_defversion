@@ -21,41 +21,42 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 
     <!-- Hero Section -->
     <main class="relative pt-32 pb-24 md:pb-32 overflow-hidden min-h-screen flex items-center">
-        <!-- Hero Slideshow -->
+        <!-- Hero background (estático, optimizado) -->
         <div id="hero-slideshow" class="absolute inset-0 z-0 overflow-hidden">
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.jpg' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-2.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-3.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-4.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.jpg' ) ); ?>'); opacity:1; transform: scale(1.05);"></div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/55 to-slate-900/85 z-10"></div>
 
-        <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-16">
-            <div class="font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em;">
-                ROMVILL
-            </div>
-            <div class="flex items-center justify-center gap-4 mb-5">
+        <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-12">
+            <div class="flex items-center justify-center gap-4 mb-6">
                 <span class="h-px w-10 bg-secondary/70"></span>
-                <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em;"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
+                <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.62rem; letter-spacing: 0.42em;">ROMVILL · <?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
                 <span class="h-px w-10 bg-secondary/70"></span>
             </div>
-            <p class="font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8">
-                <?php echo esc_html( romvill_t( 'hero.slogan' ) ); ?>
-            </p>
-            <h1 class="text-base md:text-lg text-slate-300 font-light mb-10 max-w-xl mx-auto leading-relaxed">
-                <?php echo wp_kses( romvill_t( 'hero.desc' ), [ 'br' => [] ] ); ?>
+            <h1 class="font-serif font-bold text-white leading-tight mb-5" style="font-size: clamp(2rem, 5vw, 3.6rem);">
+                <?php echo esc_html( romvill_t( 'hero.headline' ) ); ?>
             </h1>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <p class="text-lg md:text-xl text-slate-200 font-light mb-9 max-w-2xl mx-auto leading-relaxed">
+                <?php echo esc_html( romvill_t( 'hero.subheadline' ) ); ?>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
                 <a href="<?php echo esc_url( $contacto_url ); ?>"
-                    class="min-w-[200px] h-14 px-8 bg-secondary hover:bg-[#a3884c] text-white text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
-                    <?php echo esc_html( romvill_t( 'hero.btn_primary' ) ); ?>
+                    class="h-14 px-8 bg-secondary hover:bg-[#a3884c] text-white text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
+                    <?php echo esc_html( romvill_t( 'hero.cta_primary' ) ); ?>
                     <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
                 <a href="<?php echo esc_url( $sectores_url ); ?>"
-                    class="min-w-[200px] h-14 px-8 bg-transparent hover:bg-white/10 text-white border border-white/30 text-base font-medium rounded backdrop-blur-sm transition-all duration-300 flex items-center justify-center">
-                    <?php echo esc_html( romvill_t( 'hero.btn_sec' ) ); ?>
+                    class="h-14 px-6 text-white/90 hover:text-white text-base font-medium rounded transition-colors duration-300 flex items-center justify-center gap-1">
+                    <?php echo esc_html( romvill_t( 'hero.cta_secondary' ) ); ?>
+                    <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
             </div>
+            <div class="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-white/85 text-sm mb-4">
+                <span class="flex items-center gap-2"><span aria-hidden="true" class="material-symbols-outlined text-secondary text-lg">verified_user</span><?php echo esc_html( romvill_t( 'hero.badge_independent' ) ); ?></span>
+                <span class="flex items-center gap-2"><span aria-hidden="true" class="material-symbols-outlined text-secondary text-lg">fact_check</span><?php echo esc_html( romvill_t( 'hero.badge_verifiable' ) ); ?></span>
+                <span class="flex items-center gap-2"><span aria-hidden="true" class="material-symbols-outlined text-secondary text-lg">workspace_premium</span><?php echo esc_html( romvill_t( 'hero.badge_guarantee' ) ); ?></span>
+            </div>
+            <p class="text-secondary text-sm font-semibold tracking-wide"><?php echo esc_html( romvill_t( 'hero.social_proof' ) ); ?></p>
         </div>
     </main>
 
