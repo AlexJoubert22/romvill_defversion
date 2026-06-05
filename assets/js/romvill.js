@@ -34,13 +34,21 @@
         });
     }
 
-    // ─── Hero Slideshow ────────────────────────────────────
+    // ─── Hero Slideshow (lazy: slide 1 eager; 2-4 vía data-bg) ───
     var slides = document.querySelectorAll('#hero-slideshow .hero-slide');
+    function ensureBg(el) {
+        if (el && el.dataset.bg && !el.style.backgroundImage) {
+            el.style.backgroundImage = el.dataset.bg;
+        }
+    }
     if (slides.length > 1) {
+        ensureBg(slides[1]); // precarga el slide 2 una vez visible el 1
         var current = 0;
         setInterval(function () {
             slides[current].style.opacity = '0';
             current = (current + 1) % slides.length;
+            ensureBg(slides[current]);
+            ensureBg(slides[(current + 1) % slides.length]); // precarga el siguiente
             slides[current].style.opacity = '1';
         }, 5000);
     }
