@@ -41,7 +41,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         <div class="group/right split-section relative flex-1 flex flex-col justify-end p-8 lg:p-16 overflow-hidden split-hover cursor-default">
             <div class="absolute inset-0 z-0">
                 <img alt="Edificio corporativo" class="w-full h-full object-cover transition-transform duration-700 group-hover/right:scale-110 filter brightness-[0.6] group-hover/right:brightness-[0.7]"
-                    src="<?php echo esc_url( romvill_img( 'inversores.png' ) ); ?>" />
+                    src="<?php echo esc_url( romvill_img( 'inversores.jpg' ) ); ?>" />
             </div>
             <div class="relative z-10 max-w-lg ml-auto text-left lg:text-right transition-transform duration-500 group-hover/right:-translate-x-2">
                 <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 lg:ml-auto">
@@ -66,15 +66,15 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center mb-16">
                 <?php
                 $areas = array(
-                    array( 'name' => 'Alicante', 'img' => 'alicante.png', 'sub' => romvill_t( 'sec.alicante.sub' ) ),
-                    array( 'name' => 'Marbella', 'img' => 'marbella.png', 'sub' => romvill_t( 'sec.marbella.sub' ) ),
-                    array( 'name' => 'Málaga',   'img' => 'malaga.png',   'sub' => romvill_t( 'sec.malaga.sub' ) ),
+                    array( 'name' => 'Alicante', 'img' => 'alicante.jpg', 'sub' => romvill_t( 'sec.alicante.sub' ) ),
+                    array( 'name' => 'Marbella', 'img' => 'marbella.jpg', 'sub' => romvill_t( 'sec.marbella.sub' ) ),
+                    array( 'name' => 'Málaga',   'img' => 'malaga.jpg',   'sub' => romvill_t( 'sec.malaga.sub' ) ),
                 );
                 foreach ( $areas as $a ) :
                 ?>
                 <div class="flex flex-col items-center">
                     <div class="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-white dark:border-slate-800 shadow-xl relative group">
-                        <img src="<?php echo esc_url( romvill_img( $a['img'] ) ); ?>" alt="<?php echo esc_attr( $a['name'] ); ?>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="<?php echo esc_url( romvill_img( $a['img'] ) ); ?>" alt="<?php echo esc_attr( $a['name'] ); ?>" loading="lazy" decoding="async" width="192" height="192" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition-colors duration-500"></div>
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-white"><?php echo esc_html( $a['name'] ); ?></h3>

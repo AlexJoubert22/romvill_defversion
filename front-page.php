@@ -23,7 +23,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
     <main class="relative pt-32 pb-24 md:pb-32 overflow-hidden min-h-screen flex items-center">
         <!-- Hero Slideshow -->
         <div id="hero-slideshow" class="absolute inset-0 z-0 overflow-hidden">
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.png' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.jpg' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-2.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-3.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-4.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
@@ -205,9 +205,9 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <?php
                 $cities = array(
-                    array( 'id' => 'alicante', 'name' => 'Alicante', 'img' => 'alicante.png', 'desc' => romvill_t( 'cities.alicante.desc' ) ),
-                    array( 'id' => 'malaga',   'name' => 'Málaga',   'img' => 'malaga.png',   'desc' => romvill_t( 'cities.malaga.desc' ) ),
-                    array( 'id' => 'marbella', 'name' => 'Marbella', 'img' => 'marbella.png', 'desc' => romvill_t( 'cities.marbella.desc' ) ),
+                    array( 'id' => 'alicante', 'name' => 'Alicante', 'img' => 'alicante.jpg', 'desc' => romvill_t( 'cities.alicante.desc' ) ),
+                    array( 'id' => 'malaga',   'name' => 'Málaga',   'img' => 'malaga.jpg',   'desc' => romvill_t( 'cities.malaga.desc' ) ),
+                    array( 'id' => 'marbella', 'name' => 'Marbella', 'img' => 'marbella.jpg', 'desc' => romvill_t( 'cities.marbella.desc' ) ),
                 );
                 foreach ( $cities as $city ) :
                 ?>
@@ -256,7 +256,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 
             <!-- ALICANTE MODAL -->
             <div id="modal-alicante" class="city-modal hidden max-w-4xl w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'alicante.png' ) ); ?>')">
+                <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'alicante.jpg' ) ); ?>')">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10"></div>
                     <button onclick="closeCityModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white transition-colors" aria-label="<?php echo esc_attr( romvill_t( 'modal.close' ) ); ?>">
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
@@ -295,7 +295,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 
             <!-- MÁLAGA MODAL -->
             <div id="modal-malaga" class="city-modal hidden max-w-4xl w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'malaga.png' ) ); ?>')">
+                <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'malaga.jpg' ) ); ?>')">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10"></div>
                     <button onclick="closeCityModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white transition-colors" aria-label="<?php echo esc_attr( romvill_t( 'modal.close' ) ); ?>">
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
@@ -334,7 +334,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 
             <!-- MARBELLA MODAL -->
             <div id="modal-marbella" class="city-modal hidden max-w-4xl w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'marbella.png' ) ); ?>')">
+                <div class="relative h-72 bg-cover bg-center" style="background-image: url('<?php echo esc_url( romvill_img( 'marbella.jpg' ) ); ?>')">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10"></div>
                     <button onclick="closeCityModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/30 hover:bg-black/50 rounded-full flex items-center justify-center text-white transition-colors" aria-label="<?php echo esc_attr( romvill_t( 'modal.close' ) ); ?>">
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
