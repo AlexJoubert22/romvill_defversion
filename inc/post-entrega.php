@@ -18,7 +18,7 @@
  *   Día 90 — Fin de seguimiento .......... no se envía email (solo se marca)
  *
  * "Upgrade" = meta _rv_upgrade ('1'), casilla en el metabox de estado.
- * Precio pagado por bloque: 1→79€ (Exprés), 2→199€ (Análisis), 3/4→690€ (Premium).
+ * Precio pagado por bloque: 1→149€ (Exprés), 2→349€ (Análisis), 3/4→890€ (Premium).
  * Remitente: contacto@romvill.com.
  *
  * @package Romvill
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /* Precio pagado según el bloque de la solicitud (0 si no aplica). */
 function romvill_pe_precio( $post_id ) {
     $b = (int) get_post_meta( $post_id, '_rv_bloque', true );
-    $map = array( 1 => 79, 2 => 199, 3 => 690, 4 => 690 );
+    $map = array( 1 => 149, 2 => 349, 3 => 890, 4 => 890 );
     return $map[ $b ] ?? 0;
 }
 
@@ -46,17 +46,17 @@ function romvill_pe_review_url() {
  * @return array|null  array(lineas[], oferta_corta) o null si es premium/sin nivel.
  */
 function romvill_pe_credito( $precio ) {
-    if ( $precio === 79 ) {
+    if ( $precio === 149 ) {
         return array(
-            'lineas'  => array( 'Informe Análisis (desde 199€)   ·   Su crédito -79€   ·   Solo pagaría desde 120€',
-                                'Informe Premium (desde 690€)   ·   Su crédito -79€   ·   Solo pagaría desde 611€' ),
-            'destino' => 'un Informe Análisis (desde 120€ adicionales) o Premium (desde 611€ adicionales)',
+            'lineas'  => array( 'Informe Análisis (desde 349€)   ·   Su crédito -149€   ·   Solo pagaría desde 200€',
+                                'Informe Premium (desde 890€)   ·   Su crédito -149€   ·   Solo pagaría desde 741€' ),
+            'destino' => 'un Informe Análisis (desde 200€ adicionales) o Premium (desde 741€ adicionales)',
         );
     }
-    if ( $precio === 199 ) {
+    if ( $precio === 349 ) {
         return array(
-            'lineas'  => array( 'Informe Premium (desde 690€)   ·   Su crédito -199€   ·   Solo pagaría desde 491€' ),
-            'destino' => 'un Informe Premium (desde 491€ adicionales)',
+            'lineas'  => array( 'Informe Premium (desde 890€)   ·   Su crédito -349€   ·   Solo pagaría desde 541€' ),
+            'destino' => 'un Informe Premium (desde 541€ adicionales)',
         );
     }
     return null; // premium o sin nivel: no hay upsell de crédito

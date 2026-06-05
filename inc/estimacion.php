@@ -19,24 +19,24 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /* ═══════════════════════════════════════════════════════════════
  *  PRECIOS Y PARÁMETROS — EDITABLES
  * ═══════════════════════════════════════════════════════════════ */
-const ROMVILL_PRECIO_ESENCIAL = 79;    // Bloque 1 Particular (Exprés)
-const ROMVILL_PRECIO_COMPLETO = 199;   // Bloque 2 Inversor (Análisis)
-const ROMVILL_PRECIO_PREMIUM  = 690;   // Bloque 3 Promotor / Bloque 4 Empresa (Premium)
+const ROMVILL_PRECIO_ESENCIAL = 149;   // Bloque 1 Particular (Exprés)
+const ROMVILL_PRECIO_COMPLETO = 349;   // Bloque 2 Inversor (Análisis)
+const ROMVILL_PRECIO_PREMIUM  = 890;   // Bloque 3 Promotor / Bloque 4 Empresa (Premium)
 
 // Recargo por urgencia (solo opción 1 del plazo: "Prioritario")
-const ROMVILL_URGENCIA_ESENCIAL_EUR = 15;    // +15 € fijo (~19% de 79€)
-const ROMVILL_URGENCIA_COMPLETO_PCT = 0.30;  // +30 % (~60€ sobre 199€)
+const ROMVILL_URGENCIA_ESENCIAL_EUR = 15;    // +15 € fijo (~10% de 149€)
+const ROMVILL_URGENCIA_COMPLETO_PCT = 0.30;  // +30 % (~105€ sobre 349€)
 // Premium: urgencia manual (no se suma automáticamente)
 
 // Desplazamiento según lejanía de la zona
 const ROMVILL_DESPL_LOCAL    = 0;    // misma localidad / cobertura base
-const ROMVILL_DESPL_PROVINCIA = 60;  // misma provincia (~30% de 199€)
-const ROMVILL_DESPL_LEJANA   = 120;  // otra provincia (~60% de 199€)
+const ROMVILL_DESPL_PROVINCIA = 60;  // misma provincia (~17% de 349€)
+const ROMVILL_DESPL_LEJANA   = 120;  // otra provincia (~34% de 349€)
 // Internacional → "a presupuestar" (no se suma número)
 
 const ROMVILL_COMPARATIVA_PCT = 0.50; // comparativa entre zonas: +50 % del base
-const ROMVILL_IDIOMA_EUR      = 40;   // por idioma adicional (~20-51% según nivel)
-const ROMVILL_PRESENTACION_EUR = 120; // presentación / reunión al comité (~17% de 690€)
+const ROMVILL_IDIOMA_EUR      = 40;   // por idioma adicional (~11-27% según nivel)
+const ROMVILL_PRESENTACION_EUR = 120; // presentación / reunión al comité (~13% de 890€)
 
 const ROMVILL_SENAL_PCT_BASE    = 0.50; // señal Esencial / Completo
 const ROMVILL_SENAL_PCT_PREMIUM = 0.40; // señal Premium

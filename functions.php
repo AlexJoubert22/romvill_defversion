@@ -917,14 +917,14 @@ Análisis de Inteligencia Zonal
     if ( $est
          && $est['nivel'] === 'esencial'
          && $est['confianza'] === 'ALTA'
-         && $est['precio_min'] <= 100 // sanity check: no auto-cotizar si extras lo subieron mucho
+         && $est['precio_min'] <= 200 // sanity check: no auto-cotizar si extras lo subieron mucho (base Exprés 149€)
     ) {
         $quote_subject = 'Su presupuesto — Informe Exprés de zona';
         $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
         $quote_body = "Estimado/a {$nom},\n\n"
             . "Su Informe Exprés para {$zona_display}:\n\n"
             . "Incluye: dashboard de zona, 6-7 dimensiones esenciales, datos oficiales, mapas, patrones detectados, versión web interactiva\n"
-            . "Precio: desde 79€\n"
+            . "Precio: desde 149€\n"
             . "Entrega: el mismo día tras confirmación\n"
             . "Referencia: {$ref}\n\n"
             . "Para aceptar, responda \"Acepto\" o escríbanos a contacto@romvill.com.\n\n"
