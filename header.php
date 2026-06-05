@@ -62,6 +62,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         'metodologia' => romvill_t( 'nav.metodologia' ),
                         'analisis'    => romvill_t( 'nav.analisis' ),
                         'sectores'    => romvill_t( 'nav.sectores' ),
+                        'precios'     => romvill_t( 'nav.precios' ),
                         'contacto'    => romvill_t( 'nav.contacto' ),
                     );
                     foreach ( $nav_items as $slug => $label ) :

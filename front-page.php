@@ -17,6 +17,9 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
 $sectores_page = get_page_by_path( 'sectores' );
 $sectores_url  = $sectores_page ? get_permalink( $sectores_page ) : home_url( '/sectores/' );
 $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
+$precios_page  = get_page_by_path( 'precios' );
+$precios_url   = $precios_page ? get_permalink( $precios_page ) : home_url( '/precios/' );
+$precios_url   = add_query_arg( 'lang', $_lang, $precios_url );
 ?>
 
     <!-- Hero Section -->
@@ -71,7 +74,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                     <?php echo esc_html( romvill_t( 'hero.cta_primary' ) ); ?>
                     <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
-                <a href="<?php echo esc_url( $sectores_url ); ?>"
+                <a href="<?php echo esc_url( $precios_url ); ?>"
                     class="text-white/85 hover:text-white text-sm font-medium underline-offset-4 hover:underline decoration-secondary transition-colors duration-300 flex items-center gap-1">
                     <?php echo esc_html( romvill_t( 'hero.cta_secondary' ) ); ?>
                     <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>

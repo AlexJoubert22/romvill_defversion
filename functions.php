@@ -419,7 +419,7 @@ function romvill_emit_lang_seo() {
             ),
             'description' => $org_desc,
         );
-    } elseif ( $page_key === 'metodologia' ) {
+    } elseif ( in_array( $page_key, array( 'metodologia', 'precios' ), true ) ) {
         $graph[] = array(
             '@type'       => 'WebPage',
             '@id'         => $canonical . '#webpage',
@@ -469,6 +469,12 @@ function romvill_activate() {
             'slug'     => 'sectores',
             'template' => 'page-sectores.php',
             'order'    => 3,
+        ),
+        array(
+            'title'    => 'Precios',
+            'slug'     => 'precios',
+            'template' => 'page-precios.php',
+            'order'    => 7,
         ),
         array(
             'title'    => 'Contacto',
@@ -591,7 +597,7 @@ add_action( 'after_switch_theme', 'romvill_activate' );
 // Only runs for logged-in users with manage_options capability to
 // avoid race conditions with anonymous traffic + transient lock to
 // prevent simultaneous executions.
-define( 'ROMVILL_PAGES_VERSION', '2026.05.08.1' );
+define( 'ROMVILL_PAGES_VERSION', '2026.06.04.1' );
 add_action( 'admin_init', 'romvill_ensure_pages' );
 function romvill_ensure_pages() {
     if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
