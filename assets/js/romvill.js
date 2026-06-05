@@ -42,7 +42,10 @@
         }
     }
     if (slides.length > 1) {
-        ensureBg(slides[1]); // precarga el slide 2 una vez visible el 1
+        // Precarga el slide 2 DESPUÉS de la carga, para no competir con el LCP (fondo).
+        window.addEventListener('load', function () {
+            setTimeout(function () { ensureBg(slides[1]); }, 1200);
+        });
         var current = 0;
         setInterval(function () {
             slides[current].style.opacity = '0';
