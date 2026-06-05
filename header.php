@@ -62,9 +62,12 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         'metodologia' => romvill_t( 'nav.metodologia' ),
                         'analisis'    => romvill_t( 'nav.analisis' ),
                         'sectores'    => romvill_t( 'nav.sectores' ),
-                        'precios'     => romvill_t( 'nav.precios' ),
-                        'contacto'    => romvill_t( 'nav.contacto' ),
                     );
+                    // 'Precios' solo si la Page ya existe (evita enlace roto antes de su creación automática).
+                    if ( get_page_by_path( 'precios' ) ) {
+                        $nav_items['precios'] = romvill_t( 'nav.precios' );
+                    }
+                    $nav_items['contacto'] = romvill_t( 'nav.contacto' );
                     foreach ( $nav_items as $slug => $label ) :
                         $page = get_page_by_path( $slug );
                         $url  = $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );

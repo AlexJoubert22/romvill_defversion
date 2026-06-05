@@ -18,8 +18,8 @@ $sectores_page = get_page_by_path( 'sectores' );
 $sectores_url  = $sectores_page ? get_permalink( $sectores_page ) : home_url( '/sectores/' );
 $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 $precios_page  = get_page_by_path( 'precios' );
-$precios_url   = $precios_page ? get_permalink( $precios_page ) : home_url( '/precios/' );
-$precios_url   = add_query_arg( 'lang', $_lang, $precios_url );
+// Si la Page 'precios' aún no existe (se crea en el próximo admin), el CTA cae a Sectores → sin enlaces rotos.
+$precios_url   = $precios_page ? add_query_arg( 'lang', $_lang, get_permalink( $precios_page ) ) : $sectores_url;
 ?>
 
     <!-- Hero Section -->
