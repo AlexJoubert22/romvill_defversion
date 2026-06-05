@@ -28,21 +28,21 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-3.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-4.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80 z-10"></div>
+        <div class="absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(15,23,42,0.75), rgba(15,23,42,0.55), rgba(15,23,42,0.88));"></div>
 
         <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl pt-16">
-            <div class="font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em;">
+            <div class="font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">
                 ROMVILL
             </div>
             <div class="flex items-center justify-center gap-4 mb-5">
-                <span class="h-px w-10 bg-secondary/70"></span>
-                <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em;"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
-                <span class="h-px w-10 bg-secondary/70"></span>
+                <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
+                <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em; text-shadow: 0 1px 6px rgba(0,0,0,0.6);"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
+                <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
             </div>
-            <p class="font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8">
+            <p class="font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8" style="text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
                 <?php echo esc_html( romvill_t( 'hero.slogan' ) ); ?>
             </p>
-            <h1 class="text-base md:text-lg text-slate-300 font-light mb-10 max-w-xl mx-auto leading-relaxed">
+            <h1 class="text-base md:text-lg text-slate-300 font-light mb-10 max-w-xl mx-auto leading-relaxed" style="text-shadow: 0 1px 4px rgba(0,0,0,0.4);">
                 <?php echo wp_kses( romvill_t( 'hero.desc' ), [ 'br' => [] ] ); ?>
             </h1>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
