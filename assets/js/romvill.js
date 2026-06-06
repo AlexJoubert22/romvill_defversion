@@ -34,12 +34,25 @@
         });
     }
 
-    // ─── Hero Slideshow (lazy: slide 1 eager; 2-4 vía data-bg) ───
+    // ─── Hero Slideshow + Ken Burns + Parallax ───
     var slides = document.querySelectorAll('#hero-slideshow .hero-slide');
     function ensureBg(el) {
         if (el && el.dataset.bg && !el.style.backgroundImage) {
             el.style.backgroundImage = el.dataset.bg;
         }
+    }
+    // Ken Burns: zoom lento 1.0 → 1.08; duración distinta por slide para no sincronizar.
+    var kbDur = [22, 20, 24, 21];
+    function kenBurns(el, i) {
+        if (!el) return;
+        el.style.animation = 'none';
+        void el.offsetWidth; // reflow para reiniciar la animación desde scale(1.0)
+        el.style.animation = 'kenburns ' + kbDur[i % kbDur.length] + 's ease-in-out forwards';
+    }
+    function kenBurnsStop(el) {
+        if (!el) return;
+        el.style.animation = 'none';
+        el.style.transform = 'scale(1.0)';
     }
     if (slides.length > 1) {
         // Precarga el slide 2 DESPUÉS de la carga, para no competir con el LCP (fondo).
@@ -47,13 +60,33 @@
             setTimeout(function () { ensureBg(slides[1]); }, 1200);
         });
         var current = 0;
+        kenBurns(slides[0], 0); // arranca el zoom del primer slide
         setInterval(function () {
             slides[current].style.opacity = '0';
+            kenBurnsStop(slides[current]);
             current = (current + 1) % slides.length;
             ensureBg(slides[current]);
             ensureBg(slides[(current + 1) % slides.length]); // precarga el siguiente
             slides[current].style.opacity = '1';
+            kenBurns(slides[current], current); // reinicia el zoom desde 1.0
         }, 5000);
+    }
+
+    // ─── Parallax sutil del fondo del hero al hacer scroll ───
+    var heroSS = document.getElementById('hero-slideshow');
+    var heroEl = heroSS ? heroSS.closest('main') : null;
+    if (heroSS && heroEl && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+        var pTicking = false;
+        function parallax() {
+            var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (y < heroEl.offsetHeight) {
+                heroSS.style.transform = 'translateY(' + (y * 0.3) + 'px)';
+            }
+            pTicking = false;
+        }
+        window.addEventListener('scroll', function () {
+            if (!pTicking) { window.requestAnimationFrame(parallax); pTicking = true; }
+        }, { passive: true });
     }
 
     // ─── Stat Card Entrance + Count-Up ─────────────────────
