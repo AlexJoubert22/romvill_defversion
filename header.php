@@ -50,10 +50,17 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo group">
+                    <?php
+                    // Cache-busting por filemtime: fuerza al navegador a descargar la versión
+                    // actual del logo en cada cambio/deploy (evita ver un PNG viejo cacheado).
+                    $rv_imgdir  = get_template_directory() . '/assets/images/';
+                    $rv_v_dark  = @filemtime( $rv_imgdir . 'rv-logo-dark.png' );
+                    $rv_v_white = @filemtime( $rv_imgdir . 'rv-logo-white.png' );
+                    ?>
                     <div class="relative flex items-center justify-center">
-                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-dark.png' ) ); ?>" alt="RV"
+                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-dark.png' ) . '?v=' . $rv_v_dark ); ?>" alt="RV"
                             class="rv-monogram block dark:hidden transition-transform duration-300 group-hover:scale-105">
-                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>" alt="RV"
+                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) . '?v=' . $rv_v_white ); ?>" alt="RV"
                             class="rv-monogram hidden dark:block transition-transform duration-300 group-hover:scale-105">
                     </div>
                     <span class="font-serif text-slate-900 dark:text-white">ROMVILL</span>
