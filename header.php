@@ -46,7 +46,7 @@ $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/
 $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
 ?>
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-slate-200 dark:bg-slate-900/95 dark:border-slate-800" role="navigation" aria-label="<?php echo esc_attr( romvill_t( 'nav.aria' ) ); ?>">
+    <nav class="rv-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-slate-200 dark:bg-slate-900/95 dark:border-slate-800" role="navigation" aria-label="<?php echo esc_attr( romvill_t( 'nav.aria' ) ); ?>">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-4 group">
@@ -77,7 +77,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         <a class="group relative text-sm font-medium <?php echo $is_current ? 'text-slate-900 dark:text-white' : 'text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white'; ?> transition-colors"
                            href="<?php echo esc_url( $url ); ?>">
                             <?php echo esc_html( $label ); ?>
-                            <span class="absolute -bottom-1 left-0 <?php echo $is_current ? 'w-full' : 'w-0 group-hover:w-full'; ?> h-0.5 bg-primary transition-all duration-300"></span>
+                            <span class="absolute -bottom-1 left-0 <?php echo $is_current ? 'w-full' : 'w-0 group-hover:w-full'; ?> h-px bg-secondary transition-all duration-300"></span>
                         </a>
                     <?php endforeach; ?>
 

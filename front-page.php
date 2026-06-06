@@ -61,6 +61,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 
     <!-- Stats Section -->
     <section class="relative z-30 mt-0 md:-mt-20 px-6 max-w-7xl mx-auto w-full">
+        <div class="hero-stats-sep" aria-hidden="true"></div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div id="stat-1" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
                 <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="120" data-prefix="+">+120</span>
@@ -81,7 +82,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
     </section>
 
     <!-- Qué Hacemos -->
-    <section class="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+    <section class="rv-service-sep py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16 max-w-2xl mx-auto">
                 <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'service.badge' ) ); ?></span>
@@ -104,7 +105,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 );
                 foreach ( $pillars as $p ) :
                 ?>
-                <div class="group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="rv-pillar group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
                         <span aria-hidden="true" class="material-symbols-outlined text-secondary text-2xl"><?php echo esc_html( $p['icon'] ); ?></span>
                     </div>

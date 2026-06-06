@@ -41,13 +41,13 @@
             el.style.backgroundImage = el.dataset.bg;
         }
     }
-    // Ken Burns: zoom lento 1.0 → 1.08; duración distinta por slide para no sincronizar.
-    var kbDur = [22, 20, 24, 21];
-    function kenBurns(el, i) {
+    // Ken Burns: zoom lento 1.0 → 1.08; duración aleatoria 18–24s por activación para no sincronizar.
+    function kenBurns(el) {
         if (!el) return;
         el.style.animation = 'none';
         void el.offsetWidth; // reflow para reiniciar la animación desde scale(1.0)
-        el.style.animation = 'kenburns ' + kbDur[i % kbDur.length] + 's ease-in-out forwards';
+        var dur = 18 + Math.random() * 6; // 18–24s
+        el.style.animation = 'kenburns ' + dur.toFixed(1) + 's ease-in-out forwards';
     }
     function kenBurnsStop(el) {
         if (!el) return;
@@ -60,7 +60,7 @@
             setTimeout(function () { ensureBg(slides[1]); }, 1200);
         });
         var current = 0;
-        kenBurns(slides[0], 0); // arranca el zoom del primer slide
+        kenBurns(slides[0]); // arranca el zoom del primer slide
         setInterval(function () {
             slides[current].style.opacity = '0';
             kenBurnsStop(slides[current]);
@@ -68,7 +68,7 @@
             ensureBg(slides[current]);
             ensureBg(slides[(current + 1) % slides.length]); // precarga el siguiente
             slides[current].style.opacity = '1';
-            kenBurns(slides[current], current); // reinicia el zoom desde 1.0
+            kenBurns(slides[current]); // reinicia el zoom desde 1.0
         }, 5000);
     }
 
@@ -128,6 +128,25 @@
         statCards.forEach(function (card) {
             observer.observe(card);
         });
+    }
+
+    // ─── Reveal escalonado de pilares (MEJORA 7) ───────────
+    var pillars = document.querySelectorAll('.rv-pillar');
+    if (pillars.length) {
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            pillars.forEach(function (p) { p.classList.add('is-visible'); });
+        } else {
+            var pillarObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible'); // el escalonado va por nth-child en CSS
+                        pillarObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            pillars.forEach(function (p) { pillarObserver.observe(p); });
+        }
     }
 
     // ─── City Modals ───────────────────────────────────────
