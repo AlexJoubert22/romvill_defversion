@@ -354,12 +354,18 @@ html {
 
 /* ===== Monograma RV del nav (sustituye la antigua caja "R") ===== */
 .rv-monogram {
-    height: 50px;
+    height: 58px;
     width: auto;
     display: block;
 }
-/* Texto ROMVILL proporcionado al monograma de 50px */
+.site-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+/* Texto ROMVILL proporcionado al monograma de 58px */
 .site-logo span {
-    font-size: 17px;
-    letter-spacing: 3.5px;
+    font-size: 20px;
+    letter-spacing: 4px;
+    font-weight: 500;
 }
