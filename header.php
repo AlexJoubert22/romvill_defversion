@@ -2,7 +2,7 @@
 <html lang="<?php echo esc_attr( romvill_lang_html_attr() ); ?>">
 
 <head>
-    <script>(function(){var t=localStorage.getItem('romvill_theme');if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}})();</script>
+    <script>(function(){var t=sessionStorage.getItem('romvill_theme');if(t==='dark'||(t!=='light'&&(function(){var h=new Date().getHours();return h>=20||h<7;})())){document.documentElement.classList.add('dark');}})();</script>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <?php wp_head(); ?>
@@ -46,7 +46,7 @@ $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/
 $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
 ?>
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
-    <nav class="rv-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-slate-200 dark:bg-slate-900/95 dark:border-slate-800" role="navigation" aria-label="<?php echo esc_attr( romvill_t( 'nav.aria' ) ); ?>">
+    <nav class="rv-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300<?php echo is_front_page() ? '' : ' scrolled'; ?>" role="navigation" aria-label="<?php echo esc_attr( romvill_t( 'nav.aria' ) ); ?>">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo group">

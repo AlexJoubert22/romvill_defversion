@@ -369,3 +369,169 @@ html {
     letter-spacing: 3.5px;
     font-weight: 500;
 }
+
+/* ─── Nav Transparente sobre Hero ─────────────────────── */
+
+/* Estado por defecto: transparente con gradiente sutil */
+.rv-nav {
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Texto blanco con sombra sobre el hero */
+.rv-nav:not(.scrolled) .site-logo span {
+  color: #fff !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.rv-nav:not(.scrolled) a {
+  color: rgba(255,255,255,0.9) !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.rv-nav:not(.scrolled) a:hover {
+  color: #BFA15F !important;
+}
+
+.rv-nav:not(.scrolled) button {
+  color: rgba(255,255,255,0.85) !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.rv-nav:not(.scrolled) button:hover {
+  color: #BFA15F !important;
+}
+
+/* Logo: siempre blanco sobre el hero */
+.rv-nav:not(.scrolled) .rv-monogram.block {
+  display: none !important;
+}
+
+.rv-nav:not(.scrolled) .rv-monogram.hidden {
+  display: block !important;
+}
+
+/* CTA sobre hero: contorno blanco */
+.rv-nav:not(.scrolled) a[href*="contacto"].rounded-full {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  color: #fff !important;
+}
+
+.rv-nav:not(.scrolled) a[href*="contacto"].rounded-full:hover {
+  background: #BFA15F !important;
+  border-color: #BFA15F !important;
+  color: #0f172a !important;
+  text-shadow: none;
+}
+
+/* ─── Estado SCROLLED: modo día ─────────────────────── */
+
+.rv-nav.scrolled {
+  background: rgba(255,255,255,0.97) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+}
+
+.rv-nav.scrolled .site-logo span {
+  color: #111827 !important;
+  text-shadow: none;
+}
+
+.rv-nav.scrolled a {
+  color: rgba(17,24,39,0.65) !important;
+  text-shadow: none;
+}
+
+.rv-nav.scrolled a:hover {
+  color: #BFA15F !important;
+}
+
+.rv-nav.scrolled button {
+  color: #374151 !important;
+  text-shadow: none;
+}
+
+.rv-nav.scrolled button:hover {
+  color: #BFA15F !important;
+}
+
+/* Logo scrolled día: dark visible, white oculto */
+.rv-nav.scrolled .rv-monogram.block {
+  display: block !important;
+}
+
+.rv-nav.scrolled .rv-monogram.hidden {
+  display: none !important;
+}
+
+/* CTA scrolled día: borde dorado */
+.rv-nav.scrolled a[href*="contacto"].rounded-full {
+  background: transparent !important;
+  color: #BFA15F !important;
+  border: 1px solid #BFA15F !important;
+}
+
+.rv-nav.scrolled a[href*="contacto"].rounded-full:hover {
+  background: #BFA15F !important;
+  color: #fff !important;
+}
+
+/* ─── Estado SCROLLED: modo noche ─────────────────────── */
+
+.dark .rv-nav.scrolled {
+  background: rgba(15,23,42,0.97) !important;
+  border-bottom: 1px solid rgba(191,161,95,0.15) !important;
+}
+
+.dark .rv-nav.scrolled .site-logo span {
+  color: #fff !important;
+}
+
+.dark .rv-nav.scrolled a {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+.dark .rv-nav.scrolled a:hover {
+  color: #BFA15F !important;
+}
+
+.dark .rv-nav.scrolled button {
+  color: rgba(255,255,255,0.65) !important;
+}
+
+/* Logo scrolled noche: white visible, dark oculto */
+.dark .rv-nav.scrolled .rv-monogram.block {
+  display: none !important;
+}
+
+.dark .rv-nav.scrolled .rv-monogram.hidden {
+  display: block !important;
+}
+
+/* CTA scrolled noche: sólido blanco */
+.dark .rv-nav.scrolled a[href*="contacto"].rounded-full {
+  background: #fff !important;
+  color: #0f172a !important;
+  border: none !important;
+}
+
+.dark .rv-nav.scrolled a[href*="contacto"].rounded-full:hover {
+  background: #BFA15F !important;
+  color: #fff !important;
+}
+
+/* ─── Hover backgrounds transparentes sobre hero ────── */
+.rv-nav:not(.scrolled) button:hover {
+  background: rgba(255,255,255,0.1) !important;
+}
+
+.rv-nav.scrolled button:hover {
+  background: rgba(0,0,0,0.05) !important;
+}
+
+.dark .rv-nav.scrolled button:hover {
+  background: rgba(255,255,255,0.1) !important;
+}

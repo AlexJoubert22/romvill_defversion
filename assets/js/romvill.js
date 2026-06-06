@@ -9,8 +9,15 @@
     // ─── Navbar shadow on scroll ───────────────────────────
     const nav = document.querySelector('nav');
     if (nav) {
+        // El nav transparente solo aplica en la home (donde existe el hero).
+        // Fuera de la home el nav arranca con .scrolled (sólido) y no se alterna.
+        var isHomeNav = !!document.getElementById('hero-slideshow');
         window.addEventListener('scroll', function () {
-            nav.classList.toggle('shadow-md', window.scrollY > 50);
+            var scrolled = window.scrollY > 80;
+            nav.classList.toggle('shadow-md', scrolled);
+            if (isHomeNav) {
+                nav.classList.toggle('scrolled', scrolled);
+            }
         });
     }
 
@@ -61,7 +68,7 @@
         });
         var current = 0;
         kenBurns(slides[0]); // arranca el zoom del primer slide
-        setInterval(function () {
+        var ssTimer = setInterval(function () {
             slides[current].style.opacity = '0';
             kenBurnsStop(slides[current]);
             current = (current + 1) % slides.length;
@@ -70,6 +77,23 @@
             slides[current].style.opacity = '1';
             kenBurns(slides[current]); // reinicia el zoom desde 1.0
         }, 5000);
+
+        // Pausar slideshow en pestaña oculta
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                clearInterval(ssTimer);
+            } else {
+                ssTimer = setInterval(function () {
+                    kenBurnsStop(slides[current]);
+                    slides[current].style.opacity = '0';
+                    current = (current + 1) % slides.length;
+                    ensureBg(slides[current]);
+                    ensureBg(slides[(current + 1) % slides.length]);
+                    slides[current].style.opacity = '1';
+                    kenBurns(slides[current]);
+                }, 5000);
+            }
+        });
     }
 
     // ─── Parallax sutil del fondo del hero al hacer scroll ───
@@ -186,10 +210,10 @@
     function setTheme(dark) {
         if (dark) {
             document.documentElement.classList.add('dark');
-            localStorage.setItem('romvill_theme', 'dark');
+            sessionStorage.setItem('romvill_theme', 'dark');
         } else {
             document.documentElement.classList.remove('dark');
-            localStorage.setItem('romvill_theme', 'light');
+            sessionStorage.setItem('romvill_theme', 'light');
         }
     }
 
