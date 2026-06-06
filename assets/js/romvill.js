@@ -9,15 +9,15 @@
     // ─── Navbar shadow on scroll ───────────────────────────
     const nav = document.querySelector('nav');
     if (nav) {
-        // El nav transparente solo aplica en la home (donde existe el hero).
-        // Fuera de la home el nav arranca con .scrolled (sólido) y no se alterna.
-        var isHomeNav = !!document.getElementById('hero-slideshow');
+        // Páginas sin hero: nav sólido desde el inicio
+        if (!document.querySelectorAll('.hero-slide').length) {
+            nav.classList.add('scrolled');
+        }
         window.addEventListener('scroll', function () {
-            var scrolled = window.scrollY > 80;
+            var hasHero = document.querySelectorAll('.hero-slide').length > 0;
+            var scrolled = hasHero ? window.scrollY > 80 : true;
             nav.classList.toggle('shadow-md', scrolled);
-            if (isHomeNav) {
-                nav.classList.toggle('scrolled', scrolled);
-            }
+            nav.classList.toggle('scrolled', scrolled);
         });
     }
 
