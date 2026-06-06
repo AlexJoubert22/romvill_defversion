@@ -50,9 +50,11 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-4 group">
-                    <div class="relative w-12 h-10 flex items-center justify-center">
-                        <img src="<?php echo esc_url( romvill_img( 'logo-negro.jpg' ) ); ?>" alt="ROMVILL"
-                            class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105 invert dark:invert-0">
+                    <div class="relative flex items-center justify-center">
+                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-dark.png' ) ); ?>" alt="RV"
+                            class="rv-monogram block dark:hidden transition-transform duration-300 group-hover:scale-105">
+                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>" alt="RV"
+                            class="rv-monogram hidden dark:block transition-transform duration-300 group-hover:scale-105">
                     </div>
                     <span class="text-xl font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
                 </a>

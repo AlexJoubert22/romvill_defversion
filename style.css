@@ -351,3 +351,10 @@ html {
 
 /* MEJORA 9 — Separador dorado superior en la sección "Nuestro Servicio" */
 .rv-service-sep { border-top-color: rgba(191, 161, 95, 0.10) !important; }
+
+/* ===== Monograma RV del nav (sustituye la antigua caja "R") ===== */
+.rv-monogram {
+    height: 40px;
+    width: auto;
+    display: block;
+}
