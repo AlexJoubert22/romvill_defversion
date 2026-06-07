@@ -59,25 +59,57 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         </div>
     </main>
 
-    <!-- Stats Section -->
-    <section class="relative z-30 mt-0 md:-mt-20 px-6 max-w-7xl mx-auto w-full">
-        <div class="hero-stats-sep" aria-hidden="true"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div id="stat-1" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
-                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="120" data-prefix="+">+120</span>
-                <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3"><?php echo esc_html( romvill_t( 'stats.reports_label' ) ); ?></span>
-                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'stats.reports_desc' ) ); ?></p>
+    <!-- Trust Bar -->
+    <section class="trust-bar" aria-label="<?php echo esc_attr( romvill_t( 'trust.indicators_label' ) ); ?>">
+        <div class="trust-bar__inner">
+
+            <!-- Stat 1: Indicadores -->
+            <div id="trust-1" class="trust-stat opacity-0 translate-y-4">
+                <div class="trust-stat__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <span class="trust-stat__number stat-number" data-target="50" data-prefix="+">+50</span>
+                <div class="trust-stat__accent" aria-hidden="true"></div>
+                <h3 class="trust-stat__label"><?php echo esc_html( romvill_t( 'trust.indicators_label' ) ); ?></h3>
+                <p class="trust-stat__desc"><?php echo esc_html( romvill_t( 'trust.indicators_desc' ) ); ?></p>
             </div>
-            <div id="stat-2" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
-                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="12" data-suffix="+">12+</span>
-                <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3"><?php echo esc_html( romvill_t( 'stats.years_label' ) ); ?></span>
-                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'stats.years_desc' ) ); ?></p>
+
+            <!-- Divider 1 -->
+            <div class="trust-bar__divider" aria-hidden="true"></div>
+
+            <!-- Stat 2: Fuentes -->
+            <div id="trust-2" class="trust-stat opacity-0 translate-y-4">
+                <div class="trust-stat__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <span class="trust-stat__number stat-number" data-target="40" data-prefix="+">+40</span>
+                <div class="trust-stat__accent" aria-hidden="true"></div>
+                <h3 class="trust-stat__label"><?php echo esc_html( romvill_t( 'trust.sources_label' ) ); ?></h3>
+                <p class="trust-stat__desc"><?php echo esc_html( romvill_t( 'trust.sources_desc' ) ); ?></p>
             </div>
-            <div id="stat-3" class="stat-card opacity-0 translate-y-8 bg-white dark:bg-slate-800 p-8 rounded shadow-xl border-t-4 border-secondary flex flex-col items-center text-center group hover:transform hover:-translate-y-1 transition-all duration-300">
-                <span class="stat-number text-4xl font-serif text-slate-900 dark:text-white mb-2" data-target="100" data-suffix="%">100%</span>
-                <span class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3"><?php echo esc_html( romvill_t( 'stats.indep_label' ) ); ?></span>
-                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'stats.indep_desc' ) ); ?></p>
+
+            <!-- Divider 2 -->
+            <div class="trust-bar__divider" aria-hidden="true"></div>
+
+            <!-- Stat 3: Independiente -->
+            <div id="trust-3" class="trust-stat opacity-0 translate-y-4">
+                <div class="trust-stat__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
+                <span class="trust-stat__number stat-number" data-target="100" data-suffix="%">100%</span>
+                <div class="trust-stat__accent" aria-hidden="true"></div>
+                <h3 class="trust-stat__label"><?php echo esc_html( romvill_t( 'trust.independent_label' ) ); ?></h3>
+                <p class="trust-stat__desc"><?php echo esc_html( romvill_t( 'trust.independent_desc' ) ); ?></p>
             </div>
+
         </div>
     </section>
 

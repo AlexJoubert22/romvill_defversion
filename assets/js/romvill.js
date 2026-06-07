@@ -114,7 +114,7 @@
     }
 
     // ─── Stat Card Entrance + Count-Up ─────────────────────
-    var statCards = document.querySelectorAll('.stat-card');
+    var statCards = document.querySelectorAll('.trust-stat');
 
     function animateCount(el) {
         var target = parseInt(el.dataset.target, 10);
@@ -138,7 +138,7 @@
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     var card = entry.target;
-                    var idx = parseInt(card.id.replace('stat-', ''), 10) - 1;
+                    var idx = parseInt(card.id.replace('trust-', ''), 10) - 1;
                     setTimeout(function () {
                         card.classList.add('visible');
                         var numEl = card.querySelector('.stat-number');
