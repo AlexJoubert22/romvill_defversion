@@ -43,13 +43,13 @@ $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'D
 // Define contacto_url once for both desktop and mobile menus
 $contacto_page = get_page_by_path( 'contacto' );
 $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' );
-$contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
+$contacto_url  = romvill_link( $contacto_url );
 ?>
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
     <nav class="rv-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300<?php echo is_front_page() ? '' : ' scrolled'; ?>" role="navigation" aria-label="<?php echo esc_attr( romvill_t( 'nav.aria' ) ); ?>">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo group">
+                <a href="<?php echo esc_url( romvill_link( home_url( '/' ) ) ); ?>" class="site-logo group">
                     <?php
                     // Cache-busting por filemtime: fuerza al navegador a descargar la versión
                     // actual del logo en cada cambio/deploy (evita ver un PNG viejo cacheado).
@@ -79,7 +79,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     $nav_items['contacto'] = romvill_t( 'nav.contacto' );
                     foreach ( $nav_items as $slug => $label ) :
                         $page = get_page_by_path( $slug );
-                        $url  = $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
+                        $url  = romvill_link( $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' ) );
                         if ( $slug === 'contacto' ) $url .= '#contacto';
                         $is_current = is_page( $slug );
                     ?>
@@ -99,7 +99,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         </button>
                         <div class="lang-dropdown">
                             <?php foreach ( ROMVILL_LANGS as $lc ) : ?>
-                            <a href="<?php echo esc_url( add_query_arg( 'lang', $lc, $_current_url ) ); ?>"
+                            <a href="<?php echo esc_url( romvill_lang_url( $_request_path, $lc ) ); ?>"
                                class="<?php echo $lc === $_lang ? 'active' : ''; ?>">
                                 <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $lc ] ); ?></span>
                                 <?php echo esc_html( $_lang_labels[ $lc ] ); ?>
@@ -129,7 +129,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         </button>
                         <div class="lang-dropdown">
                             <?php foreach ( ROMVILL_LANGS as $lc ) : ?>
-                            <a href="<?php echo esc_url( add_query_arg( 'lang', $lc, $_current_url ) ); ?>"
+                            <a href="<?php echo esc_url( romvill_lang_url( $_request_path, $lc ) ); ?>"
                                class="<?php echo $lc === $_lang ? 'active' : ''; ?>">
                                 <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $lc ] ); ?></span>
                                 <?php echo esc_html( $_lang_labels[ $lc ] ); ?>
@@ -159,7 +159,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         <nav class="flex flex-col gap-6">
             <?php foreach ( $nav_items as $slug => $label ) :
                 $page = get_page_by_path( $slug );
-                $url  = $page ? add_query_arg( 'lang', $_lang, get_permalink( $page ) ) : home_url( '/' . $slug . '/' );
+                $url  = romvill_link( $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' ) );
                 if ( $slug === 'contacto' ) $url .= '#contacto';
             ?>
                 <a class="text-2xl font-serif font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"

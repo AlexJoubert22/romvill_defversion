@@ -24,9 +24,12 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         <!-- Hero Slideshow -->
         <div id="hero-slideshow" class="absolute inset-0 z-0 overflow-hidden">
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.jpg' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-2.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-3.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'hero-slide-4.jpg' ) ); ?>'); opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <?php /* Slides 2-4: carga diferida vía data-bg → ensureBg() en romvill.js.
+                     El navegador solo descarga el slide 1 (LCP); los demás se cargan
+                     tras el evento load, sin competir con el primer render. */ ?>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" data-bg="url('<?php echo esc_url( romvill_img( 'hero-slide-2.jpg' ) ); ?>')" style="opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" data-bg="url('<?php echo esc_url( romvill_img( 'hero-slide-3.jpg' ) ); ?>')" style="opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" data-bg="url('<?php echo esc_url( romvill_img( 'hero-slide-4.jpg' ) ); ?>')" style="opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
         </div>
         <div class="absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(15,23,42,0.82), rgba(15,23,42,0.55), rgba(15,23,42,0.88));"></div>
 
@@ -61,6 +64,8 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
 
     <!-- Trust Bar -->
     <section class="trust-bar" aria-label="<?php echo esc_attr( romvill_t( 'trust.indicators_label' ) ); ?>">
+        <?php /* h2 estructural oculto: corrige el salto de jerarquía h1→h3 (Lighthouse heading-order) */ ?>
+        <h2 class="sr-only"><?php echo esc_html( romvill_t( 'trust.indicators_label' ) ); ?></h2>
         <div class="trust-bar__inner">
 
             <!-- Stat 1: Indicadores -->

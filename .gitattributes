@@ -1,0 +1,35 @@
+# ROMVILL — Exclusiones del paquete de deploy (git archive respeta export-ignore)
+# Estos archivos permanecen en el repo pero NUNCA se incluyen en el ZIP de producción.
+
+# Documentación y archivos internos
+CLAUDE.md export-ignore
+*.md export-ignore
+*.pdf export-ignore
+*.py export-ignore
+_ESTADO* export-ignore
+
+# Mockups y HTML de desarrollo (el tema solo usa .php)
+*.html export-ignore
+
+# Backups locales
+*.backup.* export-ignore
+
+# Originales pesados sin optimizar (las versiones de producción viven en assets/images/)
+/alicante.png export-ignore
+/malaga.png export-ignore
+/marbella.png export-ignore
+/fondo_hero.png export-ignore
+/inversores.png export-ignore
+"logo negro jpg.jpg" export-ignore
+"Business Meeting Animation.json" export-ignore
+
+# Tooling y metadatos (no necesarios en producción)
+.claude export-ignore
+.agents export-ignore
+.github export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+package.json export-ignore
+package-lock.json export-ignore
+tailwind.config.js export-ignore
+.DS_Store export-ignore

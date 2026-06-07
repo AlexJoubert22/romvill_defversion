@@ -115,6 +115,13 @@ function romvill_preload_hero_lcp() {
     }
 }
 
+// ─── Preconnect a Google Fonts (acelera el primer render de fuentes) ──
+add_action( 'wp_head', 'romvill_preconnect_fonts', 1 );
+function romvill_preconnect_fonts() {
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com" />' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
+}
+
 // ─── Enqueue Styles & Scripts ───────────────────────────────
 function romvill_enqueue_assets() {
     // Google Fonts
@@ -125,10 +132,12 @@ function romvill_enqueue_assets() {
         null
     );
 
-    // Material Symbols
+    // Material Symbols — subset: solo los iconos usados por el tema (~10 KB vs ~1.1 MB
+    // de la fuente variable completa). Si se añade un icono nuevo en plantillas o en
+    // questionnaire-engine.php, AÑADIRLO a icon_names (orden alfabético obligatorio).
     wp_enqueue_style(
         'romvill-material-symbols',
-        'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap',
+        'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_back,arrow_forward,check,check_circle,close,crisis_alert,dark_mode,diamond,domain,edit,error_outline,expand_more,fact_check,family_restroom,format_quote,home,hourglass_empty,insights,light_mode,mail,menu,military_tech,public,radio_button_unchecked,refresh,rocket_launch,schedule,send,verified_user&display=block',
         array(),
         null
     );
@@ -153,7 +162,7 @@ function romvill_enqueue_assets() {
     if ( is_front_page() ) {
         wp_enqueue_script(
             'romvill-lottie',
-            'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
+            'https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js',
             array(),
             null,
             true
@@ -192,6 +201,18 @@ function romvill_asset( $path ) {
 // ─── Helper: Get Image URL ──────────────────────────────────
 function romvill_img( $file ) {
     return romvill_asset( 'images/' . $file );
+}
+
+// ─── Helper: enlace interno respetando el idioma actual ─────
+// es  → URL limpia (canónica, sin ?lang=es duplicado)
+// xx  → URL con ?lang=xx (mantiene al visitante en su idioma)
+// Usar SIEMPRE para enlaces internos en plantillas (nav, footer, CTAs).
+function romvill_link( $url ) {
+    $lang = romvill_current_lang();
+    if ( $lang === 'es' ) {
+        return remove_query_arg( 'lang', $url );
+    }
+    return add_query_arg( 'lang', $lang, $url );
 }
 
 // ─── Helper: per-language canonical URL for a given path ─────
@@ -319,10 +340,32 @@ function romvill_filter_title( $title ) {
 // works on every page without editing templates. Static guard
 // prevents double output. Every tag appears exactly once.
 add_action( 'wp_head', 'romvill_emit_lang_seo', 1 );
+// Slugs que nunca deben indexarse (pasos del embudo de presupuesto = thin content).
+const ROMVILL_NOINDEX_SLUGS = array(
+    'presupuesto-bloque-1',
+    'presupuesto-bloque-2',
+    'presupuesto-bloque-3',
+    'presupuesto-bloque-4',
+);
+
+// Excluir las páginas noindex del sitemap de Jetpack (coherencia robots ↔ sitemap).
+add_filter( 'jetpack_sitemap_skip_post', function ( $skip, $post ) {
+    if ( isset( $post->post_name ) && in_array( $post->post_name, ROMVILL_NOINDEX_SLUGS, true ) ) {
+        return true;
+    }
+    return $skip;
+}, 10, 2 );
+
 function romvill_emit_lang_seo() {
     static $done = false;
     if ( $done || is_admin() ) return;
     $done = true;
+
+    // 404 y búsquedas: noindex y sin canonical/hreflang (no son URLs reales).
+    if ( is_404() || is_search() ) {
+        echo "\n" . '<meta name="robots" content="noindex, nofollow" />' . "\n";
+        return;
+    }
 
     $req_path  = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
     $cur_lang  = romvill_current_lang();
@@ -345,7 +388,8 @@ function romvill_emit_lang_seo() {
 
     // ── Tanda 2: content meta (per page & language) ──
     if ( $desc ) echo '<meta name="description" content="' . esc_attr( $desc ) . '" />' . "\n";
-    echo '<meta name="robots" content="index, follow" />' . "\n";
+    $robots = is_page( ROMVILL_NOINDEX_SLUGS ) ? 'noindex, follow' : 'index, follow';
+    echo '<meta name="robots" content="' . esc_attr( $robots ) . '" />' . "\n";
 
     echo '<meta property="og:type" content="website" />' . "\n";
     echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";

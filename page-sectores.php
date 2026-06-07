@@ -11,10 +11,12 @@ romvill_seo( array(
 ) );
 $contacto_page = get_page_by_path( 'contacto' );
 $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' );
-$contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
+$contacto_url  = romvill_link( $contacto_url );
 ?>
 
 <main class="flex-grow flex flex-col relative overflow-hidden">
+    <?php /* H1 oculto: la pagina no tenia H1 (los titulares visibles son h2 del split-screen) */ ?>
+    <h1 class="sr-only"><?php echo esc_html( romvill_t( 'sec.cover.title' ) ); ?></h1>
     <!-- Split Screen -->
     <div class="flex flex-col lg:flex-row h-[calc(100vh-73px)] w-full relative">
         <!-- Left: B2C -->
