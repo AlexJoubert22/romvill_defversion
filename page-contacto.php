@@ -264,7 +264,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
             </p>
 
             <!-- Proceso en 3 pasos -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0 max-w-lg mx-auto mb-8">
+            <div class="flex flex-col sm:flex-row items-stretch justify-center gap-6 sm:gap-0 max-w-lg mx-auto mb-8">
                 <?php
                 $steps = array(
                     array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
