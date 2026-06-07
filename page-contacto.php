@@ -274,7 +274,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                 foreach ( $steps as $i => $step ) :
                 ?>
                 <div class="flex-1 text-center<?php echo $i < 2 ? ' sm:border-r sm:border-slate-100 sm:dark:border-slate-800' : ''; ?> px-4">
-                    <div class="w-8 h-8 rounded-full border border-secondary/30 flex items-center justify-center text-secondary text-xs font-semibold mx-auto mb-2"><?php echo esc_html( $step['n'] ); ?></div>
+                    <div class="rounded-full border border-secondary/30 flex items-center justify-center text-secondary text-xs font-semibold mx-auto mb-2" style="width:2rem; height:2rem; flex:0 0 auto;"><?php echo esc_html( $step['n'] ); ?></div>
                     <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
                     <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( $step['d'] ); ?></p>
                 </div>
