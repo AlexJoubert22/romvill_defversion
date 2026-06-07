@@ -1294,10 +1294,47 @@ function romvill_rest_deploy( WP_REST_Request $request ) {
     // Flush rewrite rules so any template changes take effect
     flush_rewrite_rules( false );
 
+    // Borra archivos de desarrollo huérfanos (el ZIP no los trae —export-ignore—
+    // pero el deploy no elimina lo que ya existe en el servidor).
+    $purged = romvill_purge_dev_files();
+
     return rest_ensure_response( [
         'success'   => true,
         'files'     => $extracted,
+        'purged'    => $purged,
         'theme_dir' => $theme_dir,
     ] );
 }
+
+// ─── Purga de archivos de desarrollo nunca-públicos en producción ──
+// Lista blanca fija de ficheros que NO deben servirse (docs internas,
+// mockups, scripts, originales pesados). Solo borra dentro del tema.
+function romvill_purge_dev_files() {
+    $dir = trailingslashit( get_theme_root() ) . 'romvill-theme/';
+    $orphans = array(
+        'CLAUDE.md', 'ROMVILL_NUEVADOCUEMNTACION.pdf', 'update_nav.py',
+        'ANALISIS.html', 'contacto.html', 'metodologia.html', 'index.html', 'SECTORES.html', 'awwwards-concept.html',
+        'PERFIL_DEMOGRAFICO.html', 'PERFIL_MOVILIDAD.html', 'PERFIL_PROYECCION.html', 'PERFIL_SANIDAD.html', 'PERFIL_SEGURIDAD.html',
+        'alicante.png', 'malaga.png', 'marbella.png', 'fondo_hero.png', 'inversores.png',
+        'logo negro jpg.jpg', 'Business Meeting Animation.json',
+        '_ESTADO_CUESTIONARIO_Y_CONTACTO.txt', '.DS_Store',
+    );
+    $removed = array();
+    foreach ( $orphans as $f ) {
+        $p = $dir . $f;
+        if ( is_file( $p ) && @unlink( $p ) ) {
+            $removed[] = $f;
+        }
+    }
+    return $removed;
+}
+
+// Ejecuta la purga UNA sola vez tras desplegar esta versión (sin intervención).
+add_action( 'init', function () {
+    if ( get_option( 'romvill_devpurge' ) === 'v1' ) return;
+    if ( function_exists( 'romvill_purge_dev_files' ) ) {
+        romvill_purge_dev_files();
+        update_option( 'romvill_devpurge', 'v1' );
+    }
+} );
 
