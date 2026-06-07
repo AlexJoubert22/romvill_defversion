@@ -3,7 +3,15 @@
             <?php $_lang = romvill_current_lang(); ?>
             <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
                 <a href="<?php echo esc_url( romvill_link( home_url( '/' ) ) ); ?>" class="flex items-center gap-3">
-                    <img src="<?php echo esc_url( romvill_img( 'logo-negro.jpg' ) ); ?>" alt="ROMVILL" class="h-8 w-auto object-contain invert dark:invert-0">
+                    <?php
+                    // Monograma transparente (mismo patrón que el header) — el JPG anterior
+                    // mostraba un recuadro de fondo en modo oscuro al no tener transparencia.
+                    $rv_f_imgdir = get_template_directory() . '/assets/images/';
+                    $rv_f_dark   = @filemtime( $rv_f_imgdir . 'rv-logo-dark.png' );
+                    $rv_f_white  = @filemtime( $rv_f_imgdir . 'rv-logo-white.png' );
+                    ?>
+                    <img src="<?php echo esc_url( romvill_img( 'rv-logo-dark.png' ) . '?v=' . $rv_f_dark ); ?>" alt="RV" class="h-8 w-auto object-contain block dark:hidden">
+                    <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) . '?v=' . $rv_f_white ); ?>" alt="RV" class="h-8 w-auto object-contain hidden dark:block">
                     <span class="text-lg font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
                 </a>
                 <nav class="flex flex-wrap justify-center gap-8 text-sm text-slate-500 dark:text-slate-400" aria-label="<?php echo esc_attr( romvill_t( 'footer.aria' ) ); ?>">
