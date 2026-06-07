@@ -370,6 +370,52 @@ html {
     font-weight: 500;
 }
 
+/* ===== Banner de cookies (RGPD/LSSI · opt-in) ===== */
+.cookie-banner {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+.cookie-banner.is-visible { transform: translateY(0); }
+.dark .cookie-banner { background: #0f172a; border-top-color: rgba(191,161,95,0.18); box-shadow: 0 -4px 24px rgba(0,0,0,0.4); }
+.cookie-banner__bar { max-width: 1280px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cookie-banner__text { flex: 1 1 320px; font-size: 13px; line-height: 1.5; color: #334155; }
+.dark .cookie-banner__text { color: #cbd5e1; }
+.cookie-banner__text strong { display: block; font-size: 14px; color: #0f172a; margin-bottom: 2px; }
+.dark .cookie-banner__text strong { color: #fff; }
+.cookie-banner__text a { color: #135bec; text-decoration: underline; }
+.cookie-banner__actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ck-btn { font-family: inherit; font-size: 13px; font-weight: 600; border-radius: 8px; padding: 10px 18px; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+.ck-primary { background: #135bec; color: #fff; }
+.ck-primary:hover { background: #0d3c9e; }
+.ck-ghost { background: #f1f5f9; color: #334155; }
+.ck-ghost:hover { background: #e2e8f0; }
+.dark .ck-ghost { background: #1e293b; color: #cbd5e1; }
+.dark .ck-ghost:hover { background: #334155; }
+.ck-link { background: transparent; color: #64748b; text-decoration: underline; padding: 10px 8px; }
+.ck-link:hover { color: #135bec; }
+.dark .ck-link { color: #94a3b8; }
+.cookie-panel { max-width: 1280px; margin: 0 auto; padding: 0 24px 18px; border-top: 1px solid rgba(0,0,0,0.06); }
+.dark .cookie-panel { border-top-color: rgba(255,255,255,0.08); }
+.ck-cat { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.dark .ck-cat { border-bottom-color: rgba(255,255,255,0.06); }
+.ck-cat__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; }
+.ck-cat__name { font-size: 13px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.dark .ck-cat__name { color: #fff; }
+.ck-cat__name input { width: 16px; height: 16px; accent-color: #135bec; }
+.ck-cat__always { font-size: 11px; font-weight: 600; color: #16a34a; text-transform: uppercase; letter-spacing: 0.04em; }
+.ck-cat__desc { font-size: 12px; color: #64748b; margin: 4px 0 0; }
+.dark .ck-cat__desc { color: #94a3b8; }
+.cookie-panel__actions { padding-top: 14px; text-align: right; }
+@media (max-width: 640px) {
+    .cookie-banner__bar { flex-direction: column; align-items: stretch; }
+    .cookie-banner__actions { justify-content: stretch; }
+    .ck-btn.ck-primary, .ck-btn.ck-ghost { flex: 1; text-align: center; }
+}
+
 /* ─── Nav Transparente sobre Hero ─────────────────────── */
 
 /* Estado por defecto: transparente con gradiente sutil */
