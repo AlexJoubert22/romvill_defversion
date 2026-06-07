@@ -86,6 +86,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
     font-family: inherit;
 }
 .phone-number-input::placeholder { color: #94a3b8; }
+.rf-opt { font-size: .68rem; font-weight: 400; color: #94a3b8; text-transform: none; letter-spacing: 0; }
 .dark .phone-number-input { color: #f1f5f9; }
 
 .prefix-dropdown {
@@ -260,8 +261,23 @@ for ( $i = 1; $i <= 4; $i++ ) {
             </p>
         </div>
 
+        <!-- ── P3: Selector de camino (CRO 07-06-2026) ── -->
+        <div class="rf-anim mb-10" style="animation-delay:.12s">
+            <p class="text-center text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4"><?php echo esc_html( romvill_t( 'contact.path.title' ) ); ?></p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <a href="#perfiles" class="group block rounded-xl border border-secondary/40 bg-white dark:bg-slate-900 p-5 text-center shadow-sm hover:border-secondary hover:shadow-md hover:-translate-y-0.5 transition-all">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( romvill_t( 'contact.path.quote.t' ) ); ?></p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( romvill_t( 'contact.path.quote.d' ) ); ?> <span class="text-secondary">↓</span></p>
+                </a>
+                <a href="#contacto" class="group block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 text-center shadow-sm hover:border-primary hover:shadow-md hover:-translate-y-0.5 transition-all">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( romvill_t( 'contact.path.quick.t' ) ); ?></p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( romvill_t( 'contact.path.quick.d' ) ); ?> <span class="text-primary">↓</span></p>
+                </a>
+            </div>
+        </div>
+
         <!-- ── Profile selector ──────────────────────── -->
-        <div class="rf-anim mb-10" style="animation-delay:.2s">
+        <div id="perfiles" class="rf-anim mb-10" style="animation-delay:.2s">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                 <div>
                     <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-primary bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
@@ -305,7 +321,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
         </script>
 
         <!-- ── Divider ──────────────────────────────── -->
-        <div class="rf-anim flex items-center gap-4 mb-10" style="animation-delay:.28s">
+        <div id="contacto" class="rf-anim flex items-center gap-4 mb-10" style="animation-delay:.28s; scroll-margin-top: 6rem;">
             <div class="flex-1 border-t border-slate-100 dark:border-slate-800"></div>
             <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-600 px-2"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
             <div class="flex-1 border-t border-slate-100 dark:border-slate-800"></div>
@@ -327,7 +343,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                                 <input type="text" id="nombre" name="nombre" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.nombre.ph' ) ); ?>" required class="wpcf7-form-control">
                             </div>
                             <div class="rf-field">
-                                <label class="rf-label" for="apellido"><?php echo esc_html( romvill_t( 'contact.f.apellido' ) ); ?></label>
+                                <label class="rf-label" for="apellido"><?php echo esc_html( romvill_t( 'contact.f.apellido' ) ); ?> <span class="rf-opt"><?php echo esc_html( romvill_t( 'contact.f.opcional' ) ); ?></span></label>
                                 <input type="text" id="apellido" name="apellido" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.apell.ph' ) ); ?>" class="wpcf7-form-control">
                             </div>
                         </div>
@@ -339,7 +355,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                             </div>
                             <!-- Phone with prefix dropdown -->
                             <div class="rf-field">
-                                <label class="rf-label"><?php echo esc_html( romvill_t( 'contact.f.telefono' ) ); ?></label>
+                                <label class="rf-label"><?php echo esc_html( romvill_t( 'contact.f.telefono' ) ); ?> <span class="rf-opt"><?php echo esc_html( romvill_t( 'contact.f.opcional' ) ); ?></span></label>
                                 <div class="phone-row" id="phone-row">
                                     <button type="button" id="prefix-btn" class="phone-prefix-btn" aria-haspopup="listbox" aria-expanded="false">
                                         <span id="prefix-flag">🇪🇸</span>
@@ -401,6 +417,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                             <?php echo esc_html( romvill_t( 'contact.f.submit' ) ); ?>
                         </button>
+                        <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-3"><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></p>
 
                         <div id="romvill-form-response" style="display:none;" class="wpcf7-response-output mt-4"></div>
                     </form>
@@ -548,13 +565,13 @@ for ( $i = 1; $i <= 4; $i++ ) {
                             </div>
                         </a>
                     </div>
-                    <div>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-3 px-1"><?php echo esc_html( romvill_t( 'contact.social' ) ); ?></p>
-                        <div class="flex gap-3">
-                            <a href="https://www.instagram.com/romvillspain" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-primary hover:text-white hover:border-primary shadow-sm transition-all hover:scale-110 hover:shadow-md" aria-label="Instagram">
+                    <div class="flex items-center gap-2 px-1 text-xs text-slate-500 dark:text-slate-400">
+                        <a href="https://www.instagram.com/romvillspain" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-primary transition-colors" aria-label="Instagram">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg>
+                                <span>@romvillspain</span>
                             </a>
-                        </div>
+                        <span class="text-slate-300 dark:text-slate-600">·</span>
+                        <span><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></span>
                     </div>
                 </div>
             </div>
