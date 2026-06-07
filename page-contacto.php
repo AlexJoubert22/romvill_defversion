@@ -247,32 +247,69 @@ for ( $i = 1; $i <= 4; $i++ ) {
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
     <div class="w-full max-w-6xl">
 
-        <!-- Page header -->
-        <div class="rf-anim text-center mb-10" style="animation-delay:.05s">
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-                <span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
-                <?php echo esc_html( romvill_t( 'contact.badge' ) ); ?>
-            </span>
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
-                <?php echo esc_html( romvill_t( 'contact.title' ) ); ?>
+        <!-- ── Hero: Solicite su presupuesto ── -->
+        <div class="rf-anim text-center mb-12" style="animation-delay:.05s">
+            <p class="text-xs font-medium tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-5">
+                <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
+            </p>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-3" style="font-family:'Playfair Display',serif; font-weight:600;">
+                <?php echo esc_html( romvill_t( 'contact.hero.h1a' ) ); ?><br>
+                <em class="text-secondary" style="font-style:italic;"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
             </h1>
-            <p class="text-slate-500 dark:text-slate-400 text-lg max-w-lg mx-auto">
-                <?php echo esc_html( romvill_t( 'contact.subtitle' ) ); ?>
+            <p class="text-sm italic text-slate-400 dark:text-slate-500 mb-4" style="font-family:'Playfair Display',serif;">
+                <?php echo esc_html( romvill_t( 'contact.hero.slogan' ) ); ?>
+            </p>
+            <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto leading-relaxed mb-8">
+                <?php echo esc_html( romvill_t( 'contact.hero.desc' ) ); ?>
+            </p>
+
+            <!-- Proceso en 3 pasos -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0 max-w-lg mx-auto mb-8">
+                <?php
+                $steps = array(
+                    array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
+                    array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
+                    array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
+                );
+                foreach ( $steps as $i => $step ) :
+                ?>
+                <div class="flex-1 text-center<?php echo $i < 2 ? ' sm:border-r sm:border-slate-100 sm:dark:border-slate-800' : ''; ?> px-4">
+                    <div class="w-8 h-8 rounded-full border border-secondary/30 flex items-center justify-center text-secondary text-xs font-semibold mx-auto mb-2"><?php echo esc_html( $step['n'] ); ?></div>
+                    <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
+                    <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( $step['d'] ); ?></p>
+                </div>
+                <?php endforeach; ?>
+            </div>
+
+            <a href="#perfiles" class="inline-block px-8 py-3 bg-secondary text-slate-900 text-xs font-bold uppercase tracking-widest hover:bg-secondary/90 transition-all hover:-translate-y-0.5">
+                <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
+            </a>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">
+                <?php echo esc_html( romvill_t( 'contact.hero.ctasub' ) ); ?>
             </p>
         </div>
 
-        <!-- ── P3: Selector de camino (CRO 07-06-2026) ── -->
-        <div class="rf-anim mb-10" style="animation-delay:.12s">
-            <p class="text-center text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4"><?php echo esc_html( romvill_t( 'contact.path.title' ) ); ?></p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                <a href="#perfiles" class="group block rounded-xl border border-secondary/40 bg-white dark:bg-slate-900 p-5 text-center shadow-sm hover:border-secondary hover:shadow-md hover:-translate-y-0.5 transition-all">
-                    <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( romvill_t( 'contact.path.quote.t' ) ); ?></p>
-                    <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( romvill_t( 'contact.path.quote.d' ) ); ?> <span class="text-secondary">↓</span></p>
-                </a>
-                <a href="#contacto" class="group block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 text-center shadow-sm hover:border-primary hover:shadow-md hover:-translate-y-0.5 transition-all">
-                    <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( romvill_t( 'contact.path.quick.t' ) ); ?></p>
-                    <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( romvill_t( 'contact.path.quick.d' ) ); ?> <span class="text-primary">↓</span></p>
-                </a>
+        <!-- ── Cobertura ── -->
+        <div class="rf-anim flex flex-wrap items-center justify-center gap-3 mb-8" style="animation-delay:.1s">
+            <span class="text-[10px] font-medium tracking-widest uppercase text-slate-400 dark:text-slate-500 mr-2"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
+            <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Alicante · Costa Blanca</span>
+            <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Málaga</span>
+            <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Marbella · Costa del Sol</span>
+        </div>
+
+        <!-- ── Pilares de valor ── -->
+        <div class="rf-anim grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-10" style="animation-delay:.12s">
+            <div class="text-center p-4">
+                <p class="text-sm font-bold text-secondary mb-1"><?php echo esc_html( romvill_t( 'contact.val1.t' ) ); ?></p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed"><?php echo esc_html( romvill_t( 'contact.val1.d' ) ); ?></p>
+            </div>
+            <div class="text-center p-4 sm:border-x sm:border-slate-100 sm:dark:border-slate-800">
+                <p class="text-sm font-bold text-secondary mb-1"><?php echo esc_html( romvill_t( 'contact.val2.t' ) ); ?></p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed"><?php echo esc_html( romvill_t( 'contact.val2.d' ) ); ?></p>
+            </div>
+            <div class="text-center p-4">
+                <p class="text-sm font-bold text-secondary mb-1"><?php echo esc_html( romvill_t( 'contact.val3.t' ) ); ?></p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed"><?php echo esc_html( romvill_t( 'contact.val3.d' ) ); ?></p>
             </div>
         </div>
 
@@ -421,6 +458,14 @@ for ( $i = 1; $i <= 4; $i++ ) {
 
                         <div id="romvill-form-response" style="display:none;" class="wpcf7-response-output mt-4"></div>
                     </form>
+
+                    <!-- Recomendación cuestionario -->
+                    <div class="mt-6 p-4 bg-secondary/5 border border-secondary/10 rounded-xl text-center">
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <?php echo esc_html( romvill_t( 'contact.form.recommend' ) ); ?>
+                            <a href="#perfiles" class="text-secondary font-semibold hover:underline"><?php echo esc_html( romvill_t( 'contact.form.recommend.link' ) ); ?></a>
+                        </p>
+                    </div>
 
                     <script>
                     (function() {
@@ -633,5 +678,10 @@ for ( $i = 1; $i <= 4; $i++ ) {
         </div>
     </div>
 </main>
+
+<!-- ── No somos inmobiliaria ── -->
+<div class="text-center py-6 text-sm text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800 max-w-6xl mx-auto px-4">
+    <?php echo esc_html( romvill_t( 'contact.noinmo' ) ); ?>
+</div>
 
 <?php get_footer(); ?>
