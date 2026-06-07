@@ -137,7 +137,7 @@ function romvill_enqueue_assets() {
     // questionnaire-engine.php, AÑADIRLO a icon_names (orden alfabético obligatorio).
     wp_enqueue_style(
         'romvill-material-symbols',
-        'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_back,arrow_forward,check,check_circle,close,crisis_alert,dark_mode,diamond,domain,edit,error_outline,expand_more,fact_check,family_restroom,format_quote,home,hourglass_empty,insights,light_mode,mail,menu,military_tech,public,radio_button_unchecked,refresh,rocket_launch,schedule,send,verified_user&display=block',
+        'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=account_balance,analytics,arrow_back,arrow_forward,balance,check,check_circle,close,compare_arrows,construction,crisis_alert,dark_mode,dataset,description,diamond,directions_car,directions_transit,diversity_3,domain,done_all,edit,elderly,error_outline,expand_more,fact_check,family_restroom,format_quote,gavel,gpp_good,groups,health_and_safety,home,hourglass_empty,insights,landscape,language,light_mode,local_hospital,local_parking,mail,map,medical_services,medication,menu,military_tech,people,pie_chart,psychology,public,radio_button_unchecked,refresh,rocket_launch,schedule,security,send,shield,shield_locked,shield_person,sunny,travel_explore,trending_up,verified_user,visibility&display=block',
         array(),
         null
     );
