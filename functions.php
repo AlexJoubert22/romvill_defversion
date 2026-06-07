@@ -369,26 +369,42 @@ function romvill_emit_lang_seo() {
     echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
     echo '<meta name="twitter:image:alt" content="' . esc_attr( $img_alt ) . '" />' . "\n";
 
-    // ── Tanda 3: JSON-LD (schema.org) — Organization + WebSite siempre;
-    //    Service en la home; WebPage en metodología. Idioma activo. ──
+    // ── Tanda 3: JSON-LD (schema.org) ──────────────────────────────
+    // Organization + WebSite siempre. BreadcrumbList en todas.
+    // FAQPage + Service con Offers en /precios/.
+    // WebPage en las demás.
     $home     = home_url( '/' );
     $logo     = get_template_directory_uri() . '/assets/images/logo-negro.jpg';
     $lang_bcp = str_replace( '_', '-', romvill_og_locale( $cur_lang ) );
     $org_desc = romvill_t( 'seo.desc.home' );
     $page_key = romvill_current_page_key();
 
+    // ── 3a: Organization (siempre) ──
     $graph = array(
         array(
-            '@type'       => 'Organization',
+            '@type'       => 'ProfessionalService',
             '@id'         => $home . '#organization',
             'name'        => 'ROMVILL',
             'url'         => $home,
             'email'       => 'contacto@romvill.com',
-            'logo'        => $logo,
+            'logo'        => array(
+                '@type' => 'ImageObject',
+                'url'   => $logo,
+            ),
             'image'       => $image,
             'description' => $org_desc,
-            'areaServed'  => array( 'Alicante', 'Málaga', 'Marbella' ),
+            'priceRange'  => '€€',
+            'areaServed'  => array(
+                array( '@type' => 'City', 'name' => 'Alicante' ),
+                array( '@type' => 'City', 'name' => 'Málaga' ),
+                array( '@type' => 'City', 'name' => 'Marbella' ),
+            ),
+            'sameAs'      => array(
+                'https://www.instagram.com/romvillspain/',
+            ),
+            'knowsLanguage' => array( 'es', 'en', 'fr', 'de', 'ru' ),
         ),
+        // ── 3b: WebSite (siempre) ──
         array(
             '@type'      => 'WebSite',
             '@id'        => $home . '#website',
@@ -399,7 +415,43 @@ function romvill_emit_lang_seo() {
         ),
     );
 
+    // ── 3c: BreadcrumbList (todas las páginas excepto home) ──
+    if ( $page_key !== 'home' && $page_key !== '' ) {
+        $breadcrumb_names = array(
+            'metodologia' => array( 'es' => 'Metodología', 'en' => 'Methodology', 'fr' => 'Méthodologie', 'de' => 'Methodik', 'ru' => 'Методология' ),
+            'analisis'    => array( 'es' => 'Análisis', 'en' => 'Analysis', 'fr' => 'Analyse', 'de' => 'Analyse', 'ru' => 'Анализ' ),
+            'sectores'    => array( 'es' => 'Sectores', 'en' => 'Sectors', 'fr' => 'Secteurs', 'de' => 'Sektoren', 'ru' => 'Секторы' ),
+            'precios'     => array( 'es' => 'Precios', 'en' => 'Pricing', 'fr' => 'Tarifs', 'de' => 'Preise', 'ru' => 'Цены' ),
+            'contacto'    => array( 'es' => 'Contacto', 'en' => 'Contact', 'fr' => 'Contact', 'de' => 'Kontakt', 'ru' => 'Контакт' ),
+            'privacidad'  => array( 'es' => 'Privacidad', 'en' => 'Privacy', 'fr' => 'Confidentialité', 'de' => 'Datenschutz', 'ru' => 'Конфиденциальность' ),
+            'terminos'    => array( 'es' => 'Términos', 'en' => 'Terms', 'fr' => 'Conditions', 'de' => 'Bedingungen', 'ru' => 'Условия' ),
+        );
+        $bc_name = isset( $breadcrumb_names[ $page_key ][ $cur_lang ] )
+            ? $breadcrumb_names[ $page_key ][ $cur_lang ]
+            : ucfirst( $page_key );
+
+        $graph[] = array(
+            '@type'           => 'BreadcrumbList',
+            'itemListElement' => array(
+                array(
+                    '@type'    => 'ListItem',
+                    'position' => 1,
+                    'name'     => 'ROMVILL',
+                    'item'     => $home,
+                ),
+                array(
+                    '@type'    => 'ListItem',
+                    'position' => 2,
+                    'name'     => $bc_name,
+                    'item'     => $canonical,
+                ),
+            ),
+        );
+    }
+
+    // ── 3d: Schemas específicos por página ──
     if ( $page_key === 'home' ) {
+        // Service genérico en home
         $svc_name = array(
             'es' => 'Análisis de Inteligencia Territorial',
             'en' => 'Territorial Intelligence Analysis',
@@ -419,7 +471,9 @@ function romvill_emit_lang_seo() {
             ),
             'description' => $org_desc,
         );
-    } elseif ( in_array( $page_key, array( 'metodologia', 'precios' ), true ) ) {
+
+    } elseif ( $page_key === 'precios' ) {
+        // WebPage
         $graph[] = array(
             '@type'       => 'WebPage',
             '@id'         => $canonical . '#webpage',
@@ -429,6 +483,94 @@ function romvill_emit_lang_seo() {
             'inLanguage'  => $lang_bcp,
             'isPartOf'    => array( '@id' => $home . '#website' ),
         );
+
+        // Service con 3 Offers (precios visibles en Google)
+        $graph[] = array(
+            '@type'       => 'Service',
+            'name'        => romvill_t( 'schema.service.analysis.name' ),
+            'serviceType' => 'Territorial Intelligence Analysis',
+            'provider'    => array( '@id' => $home . '#organization' ),
+            'areaServed'  => array(
+                array( '@type' => 'City', 'name' => 'Alicante' ),
+                array( '@type' => 'City', 'name' => 'Málaga' ),
+                array( '@type' => 'City', 'name' => 'Marbella' ),
+            ),
+            'offers'      => array(
+                array(
+                    '@type'         => 'Offer',
+                    'name'          => romvill_t( 'schema.service.express.name' ),
+                    'description'   => romvill_t( 'schema.service.express.desc' ),
+                    'price'         => '149',
+                    'priceCurrency' => 'EUR',
+                    'availability'  => 'https://schema.org/OnlineOnly',
+                    'url'           => romvill_lang_url( '/precios/', $cur_lang ),
+                ),
+                array(
+                    '@type'         => 'Offer',
+                    'name'          => romvill_t( 'schema.service.analysis.name' ),
+                    'description'   => romvill_t( 'schema.service.analysis.desc' ),
+                    'price'         => '349',
+                    'priceCurrency' => 'EUR',
+                    'availability'  => 'https://schema.org/OnlineOnly',
+                    'url'           => romvill_lang_url( '/precios/', $cur_lang ),
+                ),
+                array(
+                    '@type'         => 'Offer',
+                    'name'          => romvill_t( 'schema.service.premium.name' ),
+                    'description'   => romvill_t( 'schema.service.premium.desc' ),
+                    'price'         => '890',
+                    'priceCurrency' => 'EUR',
+                    'availability'  => 'https://schema.org/OnlineOnly',
+                    'url'           => romvill_lang_url( '/precios/', $cur_lang ),
+                ),
+            ),
+        );
+
+        // FAQPage (3 preguntas de la sección FAQ existente)
+        $graph[] = array(
+            '@type'      => 'FAQPage',
+            'mainEntity' => array(
+                array(
+                    '@type' => 'Question',
+                    'name'  => romvill_t( 'schema.faq1.q' ),
+                    'acceptedAnswer' => array(
+                        '@type' => 'Answer',
+                        'text'  => romvill_t( 'schema.faq1.a' ),
+                    ),
+                ),
+                array(
+                    '@type' => 'Question',
+                    'name'  => romvill_t( 'schema.faq2.q' ),
+                    'acceptedAnswer' => array(
+                        '@type' => 'Answer',
+                        'text'  => romvill_t( 'schema.faq2.a' ),
+                    ),
+                ),
+                array(
+                    '@type' => 'Question',
+                    'name'  => romvill_t( 'schema.faq3.q' ),
+                    'acceptedAnswer' => array(
+                        '@type' => 'Answer',
+                        'text'  => romvill_t( 'schema.faq3.a' ),
+                    ),
+                ),
+            ),
+        );
+
+    } else {
+        // WebPage genérica para todas las demás páginas
+        // (metodologia, analisis, sectores, contacto, privacidad, terminos)
+        if ( $page_key !== '' ) {
+            $graph[] = array(
+                '@type'       => 'WebPage',
+                '@id'         => $canonical . '#webpage',
+                'url'         => $canonical,
+                'name'        => $title,
+                'description' => $desc,
+                'inLanguage'  => $lang_bcp,
+                'isPartOf'    => array( '@id' => $home . '#website' ),
+            );
+        }
     }
 
     $jsonld = array( '@context' => 'https://schema.org', '@graph' => $graph );
