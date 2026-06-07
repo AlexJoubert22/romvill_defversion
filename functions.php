@@ -981,6 +981,13 @@ function romvill_handle_contact() {
         wp_send_json_error( array( 'message' => romvill_t( 'contact.f.required' ) ) );
     }
 
+    // Consentimiento RGPD obligatorio.
+    if ( empty( $_POST['rgpd_consent'] ) || $_POST['rgpd_consent'] !== '1' ) {
+        wp_send_json_error( array( 'message' => romvill_t( 'contact.rgpd_error' ) ) );
+    }
+    $rgpd_ip   = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+    $rgpd_when = current_time( 'Y-m-d H:i:s' );
+
     $to      = get_option( 'admin_email' );
     $subject = "Nueva solicitud de informe — {$nombre} {$apellido}";
     $body    = "Nueva solicitud de informe recibida desde romvill.com\n\n"
@@ -989,7 +996,8 @@ function romvill_handle_contact() {
              . "Teléfono:  {$telefono}\n"
              . "Zona:      {$zona}\n"
              . "Objetivo:  {$objetivo}\n\n"
-             . "Mensaje:\n{$mensaje}\n";
+             . "Mensaje:\n{$mensaje}\n"
+             . "\nConsentimiento RGPD: SÍ | Fecha: {$rgpd_when} | IP: {$rgpd_ip}\n";
 
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
@@ -1006,7 +1014,7 @@ function romvill_handle_contact() {
         $ini = str_pad( substr( $ini, 0, 4 ), 4, 'X' );
         $seq = str_pad( rand( 1000, 9999 ), 4, '0', STR_PAD_LEFT );
         $ref = 'RV-' . date( 'Y' ) . '-' . $ini . '-CONT-' . $seq;
-        romvill_save_solicitud( array(
+        $sol_id = romvill_save_solicitud( array(
             'ref'    => $ref,
             'perfil' => 'Contacto directo',
             'bloque' => '',
@@ -1018,6 +1026,11 @@ function romvill_handle_contact() {
             'intl'   => false,
             'body'   => $body,
         ) );
+        if ( $sol_id ) {
+            update_post_meta( $sol_id, '_rgpd_consent', '1' );
+            update_post_meta( $sol_id, '_rgpd_timestamp', $rgpd_when );
+            update_post_meta( $sol_id, '_rgpd_ip', $rgpd_ip );
+        }
     }
 
     $sent = wp_mail( $to, $subject, $body, $headers );

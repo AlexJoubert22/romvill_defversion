@@ -384,6 +384,19 @@ for ( $i = 1; $i <= 4; $i++ ) {
                             <textarea id="mensaje" name="mensaje" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.msg.ph' ) ); ?>" class="wpcf7-form-control"></textarea>
                         </div>
 
+                        <div class="rgpd-consent mt-4 mb-3">
+                            <label class="flex items-start gap-2 text-sm cursor-pointer p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                                <input type="checkbox" name="rgpd_consent" id="rgpd_consent" required
+                                       class="mt-1 flex-shrink-0 w-4 h-4" style="accent-color:#135bec;">
+                                <span class="text-slate-600 dark:text-slate-300">
+                                    <?php echo esc_html( romvill_t( 'contact.rgpd_checkbox' ) ); ?>
+                                    <a href="<?php echo esc_url( add_query_arg( 'lang', romvill_current_lang(), home_url( '/privacidad/' ) ) ); ?>"
+                                       target="_blank" rel="noopener" class="text-primary underline">
+                                        <?php echo esc_html( romvill_t( 'contact.rgpd_link' ) ); ?></a><?php if ( romvill_current_lang() === 'de' ) : ?> gelesen und akzeptiere sie<?php endif; ?>
+                                </span>
+                            </label>
+                        </div>
+
                         <button type="submit" class="rf-submit" id="rf-submit-btn">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                             <?php echo esc_html( romvill_t( 'contact.f.submit' ) ); ?>
@@ -467,14 +480,25 @@ for ( $i = 1; $i <= 4; $i++ ) {
                         var msgSending = <?php echo json_encode( romvill_t( 'contact.f.sending' ) ); ?>;
                         var msgSubmit  = <?php echo json_encode( romvill_t( 'contact.f.submit' ) ); ?>;
                         var msgConnErr = <?php echo json_encode( romvill_t( 'contact.f.connErr' ) ); ?>;
+                        var msgRgpdErr = <?php echo json_encode( romvill_t( 'contact.rgpd_error' ) ); ?>;
                         var iconSend   = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
 
                         if(form) form.addEventListener('submit',function(e){
                             e.preventDefault(); syncHidden();
+                            var rgpdCheckbox = document.getElementById('rgpd_consent');
+                            if(!rgpdCheckbox || !rgpdCheckbox.checked){
+                                response.style.display='';
+                                response.textContent=msgRgpdErr;
+                                response.style.background='#fef2f2';
+                                response.style.color='#991b1b';
+                                response.style.borderLeft='4px solid #dc2626';
+                                return;
+                            }
                             submitBtn.disabled=true;
                             submitBtn.innerHTML='<svg style="animation:rfSpin 1s linear infinite" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> '+msgSending;
                             response.style.display='none';
                             var data=new FormData(form); data.append('action','romvill_contact');
+                            data.append('rgpd_consent', rgpdCheckbox.checked ? '1' : '0');
                             fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',{method:'POST',body:data})
                             .then(function(r){return r.json();})
                             .then(function(res){
