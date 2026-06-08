@@ -1374,6 +1374,8 @@ function romvill_coherencia_gold() {
     echo <<<'CSS'
 <style id="rv-coherencia-gold">
 main .text-primary{color:#BFA15F!important}
+html:not(.dark) main .text-primary{color:#9A7529!important}
+html:not(.dark) main .bg-slate-900 .text-primary,html:not(.dark) main .bg-slate-950 .text-primary,html:not(.dark) main .bg-slate-800 .text-primary{color:#BFA15F!important}
 main .text-primary-dark{color:#a98e4e!important}
 main .bg-primary{background-color:#BFA15F!important}
 main .bg-primary\/10{background-color:rgba(191,161,95,.10)!important}
@@ -1414,4 +1416,27 @@ html:not(.dark) [class*="from-slate-9"] .text-slate-400{color:#94a3b8 !important
 CSS;
 }
 add_action( 'wp_head', 'romvill_contrast_fix', 99 );
+
+/**
+ * Accesibilidad (dorado): el dorado de marca (#BFA15F) sobre fondo blanco falla
+ * contraste (2.48). En MODO CLARO lo oscurece a un dorado rico legible
+ * (#9A7529, 4.24:1) en los textos sobre fondo claro. Se EXCLUYEN los fondos
+ * oscuros (héroe, tarjetas), donde el dorado debe seguir brillante. No toca el
+ * modo oscuro. 100% reversible.
+ */
+function romvill_gold_contrast() {
+    if ( is_admin() ) return;
+    echo <<<'CSS'
+<style id="rv-gold-contrast">
+html:not(.dark) .text-secondary{color:#9A7529 !important}
+html:not(.dark) .bg-slate-900 .text-secondary,
+html:not(.dark) .bg-slate-950 .text-secondary,
+html:not(.dark) .bg-slate-800 .text-secondary,
+html:not(.dark) .bg-black .text-secondary,
+html:not(.dark) .bg-background-dark .text-secondary,
+html:not(.dark) [class*="from-slate-9"] .text-secondary{color:#BFA15F !important}
+</style>
+CSS;
+}
+add_action( 'wp_head', 'romvill_gold_contrast', 99 );
 
