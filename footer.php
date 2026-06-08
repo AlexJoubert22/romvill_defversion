@@ -85,9 +85,9 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-title::before{
     content:"";
     display:inline-block;
-    width:30px !important;
-    height:23px !important;
-    margin:0 9px 0 0 !important;
+    width:14px !important;
+    height:11px !important;
+    margin:0 8px 0 0 !important;
     flex:0 0 auto !important;
     background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') center center/contain no-repeat;
 }
