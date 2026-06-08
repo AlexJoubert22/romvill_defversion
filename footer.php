@@ -73,8 +73,8 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     border:1px solid rgba(191,161,95,.35) !important;
     border-radius:14px !important;
     box-shadow:0 18px 50px rgba(0,0,0,.45) !important;
-    padding:16px 18px 14px !important;
-    grid-gap:2px !important;
+    padding:14px 18px 12px !important;
+    grid-gap:0 !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title{
     color:#ffffff !important;
@@ -82,16 +82,7 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     font-weight:700 !important;
     margin:0 !important;
 }
-.cmplz-cookiebanner.banner-1 .cmplz-title::before{
-    content:"";
-    display:inline-block;
-    width:14px !important;
-    height:11px !important;
-    margin:0 8px 0 0 !important;
-    flex:0 0 auto !important;
-    background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') center center/contain no-repeat;
-}
-.cmplz-cookiebanner.banner-1 .cmplz-title{ display:flex !important; align-items:center !important; justify-content:center !important; line-height:1 !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-title{ display:flex !important; align-items:center !important; justify-content:center !important; line-height:1.2 !important; }
 /* El header trae un .cmplz-logo vacio + 2 columnas de 100px que estrujan el
    titulo. Oculto el logo vacio (el mio va de fondo en el titulo) y dejo el
    titulo a la izquierda con la X a la derecha. */
@@ -116,9 +107,9 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-message{
     color:#9aa7b8 !important;
     font-size:12.5px !important;
-    line-height:1.45 !important;
+    line-height:1.4 !important;
     min-width:0 !important;
-    margin:4px 0 0 !important;
+    margin:6px 0 0 !important;
     text-align:center !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
