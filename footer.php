@@ -61,6 +61,56 @@
    El enlace "Cookies" del pie (clase cmplz-manage-consent, sin sufijo) sigue
    abriendo las preferencias en móvil, tablet y ordenador. */
 button.cmplz-manage-consent.manage-consent-1{display:none !important;}
+
+/* === Banner de cookies Complianz — estilo ROMVILL (compacto, azul noche) === */
+#cmplz-cookiebanner-container .cmplz-cookiebanner.banner-1{
+    max-width:360px !important;
+    background:#101622 !important;
+    color:#cbd5e1 !important;
+    border:1px solid rgba(191,161,95,.35) !important;
+    border-radius:14px !important;
+    box-shadow:0 18px 50px rgba(0,0,0,.45) !important;
+    padding:20px 20px 18px !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-title{
+    color:#ffffff !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+    margin-bottom:6px !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-body,
+.cmplz-cookiebanner.banner-1 .cmplz-message{
+    color:#94a3b8 !important;
+    font-size:12.5px !important;
+    line-height:1.5 !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-buttons{ gap:8px !important; margin-top:12px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-btn{
+    font-size:12.5px !important;
+    padding:9px 14px !important;
+    border-radius:8px !important;
+    font-weight:600 !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-accept{
+    background:#BFA15F !important;
+    color:#101622 !important;
+    border:none !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-accept:hover{ background:#cbb06e !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-deny{
+    background:transparent !important;
+    color:#e2e8f0 !important;
+    border:1px solid rgba(255,255,255,.25) !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-deny:hover{ background:rgba(255,255,255,.08) !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-view-preferences,
+.cmplz-cookiebanner.banner-1 .cmplz-save-preferences{
+    background:transparent !important;
+    color:#94a3b8 !important;
+    border:none !important;
+    text-decoration:underline !important;
+}
 </style>
 <?php wp_footer(); ?>
 </body>
