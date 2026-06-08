@@ -53,7 +53,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             </h1>
             <div class="fade-item fade-5 flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="<?php echo esc_url( $contacto_url ); ?>"
-                    class="min-w-[200px] h-14 px-8 bg-secondary hover:bg-[#a3884c] text-white text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
+                    class="min-w-[200px] h-14 px-8 bg-secondary hover:bg-[#a3884c] text-slate-900 text-base font-bold rounded transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-black/20">
                     <?php echo esc_html( romvill_t( 'hero.btn_primary' ) ); ?>
                     <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
@@ -171,13 +171,13 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto"><?php echo esc_html( romvill_t( 'how.step2.desc' ) ); ?></p>
                     </div>
                     <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-full bg-secondary text-white flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg shadow-secondary/30">3</div>
+                        <div class="w-14 h-14 rounded-full bg-secondary text-slate-900 flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg shadow-secondary/30">3</div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2"><?php echo esc_html( romvill_t( 'how.step3.title' ) ); ?></h3>
                         <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto"><?php echo esc_html( romvill_t( 'how.step3.desc' ) ); ?></p>
                     </div>
                 </div>
                 <div class="text-center mt-14">
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-white font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20">
                         <?php echo esc_html( romvill_t( 'how.cta' ) ); ?>
                         <span aria-hidden="true" class="material-symbols-outlined text-base">arrow_forward</span>
                     </a>
@@ -276,7 +276,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight"><?php echo wp_kses( romvill_t( 'cta.title' ), [ 'br' => [] ] ); ?></h2>
             <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto"><?php echo esc_html( romvill_t( 'cta.desc' ) ); ?></p>
             <a href="<?php echo esc_url( $contacto_url ); ?>"
-               class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-white font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
+               class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
                 <?php echo esc_html( romvill_t( 'cta.btn' ) ); ?>
                 <span aria-hidden="true" class="material-symbols-outlined text-base">arrow_forward</span>
             </a>
