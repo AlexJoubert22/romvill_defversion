@@ -280,6 +280,9 @@ for ( $i = 1; $i <= 4; $i++ ) {
 /* CTA hero en contorno (un solo botón sólido por pantalla) */
 .rv-cta-outline{border:1.5px solid var(--rv-gold);color:var(--rv-gold);background:transparent;transition:all .25s ease;}
 .rv-cta-outline:hover{background:var(--rv-gold);color:var(--rv-on-gold);}
+/* #4 — "Por qué Romvill" más compacto (lateral estrecho) */
+.why-reason{padding:7px 9px;gap:11px;}
+.why-reason-icon{width:32px;height:32px;}
 </style>
 
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
@@ -356,6 +359,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                 <div>
                     <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-primary bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
+                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2 ml-1" style="background:var(--rv-gold);color:var(--rv-on-gold)"><?php echo esc_html( romvill_t( 'presup.sel.recommended' ) ); ?></span>
                     <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                         <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>
                     </h2>
@@ -492,7 +496,11 @@ for ( $i = 1; $i <= 4; $i++ ) {
                             <?php echo esc_html( romvill_t( 'contact.f.submit' ) ); ?>
                             <span class="material-symbols-outlined rf-arrow" aria-hidden="true" style="font-size:18px">arrow_forward</span>
                         </button>
-                        <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-3"><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></p>
+                        <p class="flex items-center justify-center gap-1.5 text-center text-xs mt-3" style="color:var(--rv-text-faint)">
+                            <span class="material-symbols-outlined" aria-hidden="true" style="font-size:14px">lock</span>
+                            <?php echo esc_html( romvill_t( 'contact.f.confidential' ) ); ?>
+                        </p>
+                        <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-2"><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></p>
 
                         <div id="romvill-form-response" style="display:none;" class="wpcf7-response-output mt-4"></div>
                     </form>

@@ -130,6 +130,7 @@ function romvill_translations() {
         // ── SELECTOR DE PERFIL (página /contacto) ─────────────────
         'presup.hero.badge'   => [ 'es'=>'INTELIGENCIA TERRITORIAL · COSTA MEDITERRÁNEA','en'=>'TERRITORIAL INTELLIGENCE · MEDITERRANEAN COAST','fr'=>'INTELLIGENCE TERRITORIALE · CÔTE MÉDITERRANÉENNE','de'=>'TERRITORIALE INTELLIGENZ · MITTELMEERKÜSTE','ru'=>'ТЕРРИТОРИАЛЬНАЯ АНАЛИТИКА · СРЕДИЗЕМНОМОРСКОЕ ПОБЕРЕЖЬЕ' ],
         'presup.sel.badge'    => [ 'es'=>'SELECCIONE SU PERFIL','en'=>'SELECT YOUR PROFILE','fr'=>'SÉLECTIONNEZ VOTRE PROFIL','de'=>'WÄHLEN SIE IHR PROFIL','ru'=>'ВЫБЕРИТЕ ВАШ ПРОФИЛЬ' ],
+        'presup.sel.recommended' => [ 'es'=>'Recomendado','en'=>'Recommended','fr'=>'Recommandé','de'=>'Empfohlen','ru'=>'Рекомендуется' ],
         'presup.sel.title'    => [ 'es'=>'¿Cuál describe mejor su situación?','en'=>'Which best describes your situation?','fr'=>'Laquelle décrit le mieux votre situation ?','de'=>'Welche beschreibt Ihre Situation am besten?','ru'=>'Что лучше всего описывает вашу ситуацию?' ],
         'presup.b.btn'        => [ 'es'=>'Quiero este análisis','en'=>'I want this analysis','fr'=>'Je veux cette analyse','de'=>'Ich möchte diese Analyse','ru'=>'Хочу этот анализ' ],
         'cont.direct.badge'   => [ 'es'=>'CONTACTO DIRECTO','en'=>'DIRECT CONTACT','fr'=>'CONTACT DIRECT','de'=>'DIREKTKONTAKT','ru'=>'ПРЯМОЙ КОНТАКТ' ],
@@ -188,6 +189,7 @@ function romvill_translations() {
         'contact.f.submit'    => [ 'es'=>'Solicitar mi informe','en'=>'Request my report','fr'=>'Demander mon rapport','de'=>'Meinen Bericht anfordern','ru'=>'Запросить мой отчёт' ],
         'contact.f.opcional'  => [ 'es'=>'(opcional)','en'=>'(optional)','fr'=>'(facultatif)','de'=>'(optional)','ru'=>'(необязательно)' ],
         'contact.f.reassure'  => [ 'es'=>'Respuesta en 24-48h laborables · Sin compromiso','en'=>'Reply within 24-48 business hours · No obligation','fr'=>'Réponse sous 24-48 h ouvrées · Sans engagement','de'=>'Antwort innerhalb von 24–48 Std. (werktags) · Unverbindlich','ru'=>'Ответ в течение 24–48 рабочих часов · Без обязательств' ],
+        'contact.f.confidential' => [ 'es'=>'Tus datos son confidenciales. No los compartimos con terceros.','en'=>'Your data is confidential. We never share it with third parties.','fr'=>'Vos données sont confidentielles. Nous ne les partageons jamais avec des tiers.','de'=>'Ihre Daten sind vertraulich. Wir geben sie niemals an Dritte weiter.','ru'=>'Ваши данные конфиденциальны. Мы никогда не передаём их третьим лицам.' ],
         'contact.path.title'  => [ 'es'=>'¿Cómo prefiere empezar?','en'=>'How would you like to start?','fr'=>'Comment préférez-vous commencer ?','de'=>'Wie möchten Sie beginnen?','ru'=>'С чего хотите начать?' ],
         'contact.path.quote.t'=> [ 'es'=>'Presupuesto a medida','en'=>'Tailored quote','fr'=>'Devis sur mesure','de'=>'Maßgeschneidertes Angebot','ru'=>'Индивидуальная смета' ],
         'contact.path.quote.d'=> [ 'es'=>'Cuestionario guiado · 4 min','en'=>'Guided questionnaire · 4 min','fr'=>'Questionnaire guidé · 4 min','de'=>'Geführter Fragebogen · 4 Min.','ru'=>'Пошаговая анкета · 4 мин' ],

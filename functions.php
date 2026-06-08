@@ -115,6 +115,34 @@ function romvill_preload_hero_lcp() {
     }
 }
 
+// Carga diferida del reproductor Lottie: solo cuando su sección se acerca al viewport.
+function romvill_lottie_lazy() {
+    ?>
+    <script>
+    (function(){
+        var el = document.querySelector('lottie-player');
+        if (!el) return;
+        var done = false;
+        function load(){
+            if (done) return; done = true;
+            var s = document.createElement('script');
+            s.src = 'https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js';
+            s.async = true;
+            document.body.appendChild(s);
+        }
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){ if (e.isIntersecting) { load(); io.disconnect(); } });
+            }, { rootMargin: '400px' });
+            io.observe(el);
+        } else {
+            window.addEventListener('load', function(){ setTimeout(load, 1500); });
+        }
+    })();
+    </script>
+    <?php
+}
+
 // ─── Preconnect a Google Fonts (acelera el primer render de fuentes) ──
 add_action( 'wp_head', 'romvill_preconnect_fonts', 1 );
 function romvill_preconnect_fonts() {
@@ -158,15 +186,10 @@ function romvill_enqueue_assets() {
         wp_get_theme()->get( 'Version' )
     );
 
-    // Lottie Player (only on front page)
+    // Lottie Player (solo en la home): carga DIFERIDA vía IntersectionObserver
+    // → se descarga al acercarse su sección, no consume CPU en el arranque. Versión fijada.
     if ( is_front_page() ) {
-        wp_enqueue_script(
-            'romvill-lottie',
-            'https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js',
-            array(),
-            null,
-            true
-        );
+        add_action( 'wp_footer', 'romvill_lottie_lazy', 99 );
     }
 
     // Main Theme JS
