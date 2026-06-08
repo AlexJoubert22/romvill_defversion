@@ -170,12 +170,21 @@ function romvill_enqueue_assets() {
         null
     );
 
+    // Versionado por fecha de archivo (filemtime): cada vez que cambia el CSS,
+    // la URL cambia y el navegador/CDN están OBLIGADOS a descargar la versión
+    // nueva. Antes se usaba una versión fija ("1.0.0") y los navegadores servían
+    // CSS cacheado/obsoleto (páginas en blanco hasta forzar refresco). Resuelto.
+    $style_path = get_stylesheet_directory() . '/style.css';
+    $build_path = get_template_directory() . '/assets/css/build.css';
+    $style_ver  = file_exists( $style_path ) ? filemtime( $style_path ) : wp_get_theme()->get( 'Version' );
+    $build_ver  = file_exists( $build_path ) ? filemtime( $build_path ) : wp_get_theme()->get( 'Version' );
+
     // Theme Stylesheet
     wp_enqueue_style(
         'romvill-style',
         get_stylesheet_uri(),
         array( 'romvill-google-fonts', 'romvill-material-symbols' ),
-        wp_get_theme()->get( 'Version' )
+        $style_ver
     );
 
     // Tailwind Compiled CSS
@@ -183,7 +192,7 @@ function romvill_enqueue_assets() {
         'romvill-tailwind',
         get_template_directory_uri() . '/assets/css/build.css',
         array(),
-        wp_get_theme()->get( 'Version' )
+        $build_ver
     );
 
     // Lottie Player (solo en la home): carga DIFERIDA vía IntersectionObserver
