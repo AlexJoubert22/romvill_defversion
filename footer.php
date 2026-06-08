@@ -127,12 +127,20 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-links a,
 .cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#BFA15F !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-categories .cmplz-category{ background-color:rgba(255,255,255,.06) !important; }
-.cmplz-cookiebanner.banner-1 .cmplz-manage-options{ display:none !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-manage-options,
+.cmplz-cookiebanner.banner-1 .cmplz-manage-third-parties,
+.cmplz-cookiebanner.banner-1 .cmplz-manage-vendors{ display:none !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-buttons{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; gap:7px !important; margin-top:8px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-accept,
+.cmplz-cookiebanner.banner-1 .cmplz-deny{ flex:1 1 0 !important; min-width:0 !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-view-preferences{ flex:1 1 100% !important; padding:5px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-links{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; text-align:center !important; margin-top:2px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-btn{
     font-size:12.5px !important;
-    padding:8px 12px !important;
+    padding:9px 12px !important;
+    height:auto !important;
+    width:auto !important;
+    line-height:1.25 !important;
     border-radius:8px !important;
     font-weight:600 !important;
 }
