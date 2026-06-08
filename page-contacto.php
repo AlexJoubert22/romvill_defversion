@@ -242,6 +242,44 @@ for ( $i = 1; $i <= 4; $i++ ) {
     background: linear-gradient(135deg, rgba(19,91,236,.12) 0%, rgba(19,91,236,.06) 100%);
     display: flex; align-items: center; justify-content: center; color: #135bec;
 }
+
+/* ============================================================
+   REDISEÑO v5 — sistema de tokens (claro/oscuro) + componentes.
+   Estas reglas van al final → sobrescriben las anteriores.
+   ============================================================ */
+:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0f172a;--rv-text-soft:#475569;--rv-text-faint:#64748b;--rv-border:#e2e8f0;--rv-border-soft:#eef2f7;--rv-accent:#135bec;--rv-gold:#BFA15F;--rv-gold-hover:#a3884c;--rv-on-gold:#0f172a;--rv-ring:rgba(19,91,236,.16);--rv-radius-in:8px;}
+.dark{--rv-surface:#0f172a;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#cbd5e1;--rv-text-faint:#94a3b8;--rv-border:#334155;--rv-border-soft:#1e293b;--rv-accent:#6fa3f7;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0f172a;--rv-ring:rgba(111,163,247,.28);}
+/* Campos: padding generoso, radio sutil, foco con anillo (sin reflujo), translúcido en oscuro */
+.romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]){padding:12px 16px;color:var(--rv-text);background:var(--rv-field);border:1.5px solid var(--rv-border);border-radius:var(--rv-radius-in);transition:border-color .2s,box-shadow .2s,background .2s;}
+.romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]):focus{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
+.romvill-form .wpcf7-form-control:disabled{opacity:.6;cursor:not-allowed;}
+/* Teléfono tokenizado */
+.phone-row{border:1.5px solid var(--rv-border);background:var(--rv-field);}
+.phone-row:focus-within{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
+.phone-prefix-btn{border-right:1.5px solid var(--rv-border);color:var(--rv-text-soft);}
+.phone-number-input{color:var(--rv-text);}
+/* CTA principal — oro de marca + flecha + micro-interacción */
+.rf-submit{background:var(--rv-gold)!important;color:var(--rv-on-gold)!important;border-radius:var(--rv-radius-in);box-shadow:0 6px 22px -8px rgba(191,161,95,.55);transition:all .3s ease;padding:14px 24px;}
+.rf-submit::after{display:none;}
+.rf-submit:hover{background:var(--rv-gold-hover)!important;transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(191,161,95,.6);}
+.rf-submit .rf-arrow{transition:transform .3s ease;}
+.rf-submit:hover .rf-arrow{transform:translateX(4px);}
+.rf-submit:focus-visible{outline:3px solid var(--rv-ring);outline-offset:2px;}
+/* Tarjetas de perfil tokenizadas */
+.prof-card{background:var(--rv-surface);border:1.5px solid var(--rv-border);}
+.prof-card:hover{border-color:var(--rv-accent);box-shadow:0 10px 34px -14px rgba(19,91,236,.3);}
+.prof-card__title{color:var(--rv-text);} .prof-card__desc{color:var(--rv-text-faint);}
+/* Tira horizontal de pilares */
+.rv-vbar{border:1px solid var(--rv-border);background:var(--rv-surface);border-radius:16px;overflow:hidden;}
+.rv-vcell{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;}
+.rv-vcell + .rv-vcell{border-top:1px solid var(--rv-border-soft);}
+@media(min-width:640px){.rv-vbar{display:grid;grid-template-columns:1fr 1fr 1fr;}.rv-vcell + .rv-vcell{border-top:none;border-left:1px solid var(--rv-border-soft);}}
+.rv-vic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--rv-gold);background:linear-gradient(135deg,rgba(191,161,95,.18),rgba(191,161,95,.06));}
+.rv-vt{font-size:.875rem;font-weight:700;color:var(--rv-text);margin:0 0 2px;}
+.rv-vd{font-size:.75rem;line-height:1.4;color:var(--rv-text-faint);margin:0;}
+/* CTA hero en contorno (un solo botón sólido por pantalla) */
+.rv-cta-outline{border:1.5px solid var(--rv-gold);color:var(--rv-gold);background:transparent;transition:all .25s ease;}
+.rv-cta-outline:hover{background:var(--rv-gold);color:var(--rv-on-gold);}
 </style>
 
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
@@ -281,7 +319,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                 <?php endforeach; ?>
             </div>
 
-            <a href="#perfiles" class="inline-block px-8 py-3 bg-secondary text-slate-900 text-xs font-bold uppercase tracking-widest hover:bg-secondary/90 transition-all hover:-translate-y-0.5">
+            <a href="#perfiles" class="rv-cta-outline inline-block px-8 py-3 text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5">
                 <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
             </a>
             <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">
@@ -297,19 +335,19 @@ for ( $i = 1; $i <= 4; $i++ ) {
             <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Marbella · Costa del Sol</span>
         </div>
 
-        <!-- ── Pilares de valor ── -->
-        <div class="rf-anim grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-10" style="animation-delay:.12s">
-            <div class="text-center p-4">
-                <p class="text-sm font-bold text-secondary mb-1"><?php echo esc_html( romvill_t( 'contact.val1.t' ) ); ?></p>
-                <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed"><?php echo esc_html( romvill_t( 'contact.val1.d' ) ); ?></p>
+        <!-- ── Pilares de valor (tira horizontal compacta) ── -->
+        <div class="rf-anim rv-vbar max-w-4xl mx-auto mb-10" style="animation-delay:.12s">
+            <div class="rv-vcell">
+                <span class="rv-vic" aria-hidden="true"><span class="material-symbols-outlined" style="font-size:18px">balance</span></span>
+                <span><p class="rv-vt"><?php echo esc_html( romvill_t( 'contact.val1.t' ) ); ?></p><p class="rv-vd"><?php echo esc_html( romvill_t( 'contact.val1.d' ) ); ?></p></span>
             </div>
-            <div class="text-center p-4 sm:border-x sm:border-slate-100 sm:dark:border-slate-800">
-                <p class="text-sm font-bold text-secondary mb-1"><?php echo esc_html( romvill_t( 'contact.val2.t' ) ); ?></p>
-                <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed"><?php echo esc_html( romvill_t( 'contact.val2.d' ) ); ?></p>
+            <div class="rv-vcell">
+                <span class="rv-vic" aria-hidden="true"><span class="material-symbols-outlined" style="font-size:18px">tune</span></span>
+                <span><p class="rv-vt"><?php echo esc_html( romvill_t( 'contact.val2.t' ) ); ?></p><p class="rv-vd"><?php echo esc_html( romvill_t( 'contact.val2.d' ) ); ?></p></span>
             </div>
-            <div class="text-center p-4">
-                <p class="text-sm font-bold text-secondary mb-1"><?php echo esc_html( romvill_t( 'contact.val3.t' ) ); ?></p>
-                <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed"><?php echo esc_html( romvill_t( 'contact.val3.d' ) ); ?></p>
+            <div class="rv-vcell">
+                <span class="rv-vic" aria-hidden="true"><span class="material-symbols-outlined" style="font-size:18px">verified</span></span>
+                <span><p class="rv-vt"><?php echo esc_html( romvill_t( 'contact.val3.t' ) ); ?></p><p class="rv-vd"><?php echo esc_html( romvill_t( 'contact.val3.d' ) ); ?></p></span>
             </div>
         </div>
 
@@ -451,8 +489,8 @@ for ( $i = 1; $i <= 4; $i++ ) {
                         </div>
 
                         <button type="submit" class="rf-submit" id="rf-submit-btn">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                             <?php echo esc_html( romvill_t( 'contact.f.submit' ) ); ?>
+                            <span class="material-symbols-outlined rf-arrow" aria-hidden="true" style="font-size:18px">arrow_forward</span>
                         </button>
                         <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-3"><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></p>
 
@@ -543,7 +581,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                         var msgSubmit  = <?php echo json_encode( romvill_t( 'contact.f.submit' ) ); ?>;
                         var msgConnErr = <?php echo json_encode( romvill_t( 'contact.f.connErr' ) ); ?>;
                         var msgRgpdErr = <?php echo json_encode( romvill_t( 'contact.rgpd_error' ) ); ?>;
-                        var iconSend   = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+                        var iconSend   = '<span class="material-symbols-outlined rf-arrow" aria-hidden="true" style="font-size:18px">arrow_forward</span>';
 
                         if(form) form.addEventListener('submit',function(e){
                             e.preventDefault(); syncHidden();
@@ -577,7 +615,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                                     response.style.color='#991b1b';
                                     response.style.borderLeft='4px solid #dc2626';
                                 }
-                                submitBtn.disabled=false; submitBtn.innerHTML=iconSend+' '+msgSubmit;
+                                submitBtn.disabled=false; submitBtn.innerHTML=msgSubmit+' '+iconSend;
                             })
                             .catch(function(){
                                 response.style.display='';
@@ -585,7 +623,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                                 response.style.background='#fef2f2';
                                 response.style.color='#991b1b';
                                 response.style.borderLeft='4px solid #dc2626';
-                                submitBtn.disabled=false; submitBtn.innerHTML=iconSend+' '+msgSubmit;
+                                submitBtn.disabled=false; submitBtn.innerHTML=msgSubmit+' '+iconSend;
                             });
                         });
                         var s=document.createElement('style');
