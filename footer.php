@@ -85,13 +85,14 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title::before{
     content:"";
-    display:block;
-    width:100% !important;
-    flex:none !important;
-    height:26px !important;
-    margin:0 0 10px !important;
-    background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/auto 26px no-repeat;
+    display:inline-block;
+    width:30px !important;
+    height:24px !important;
+    margin:0 9px 0 0 !important;
+    vertical-align:middle !important;
+    background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/contain no-repeat;
 }
+.cmplz-cookiebanner.banner-1 .cmplz-title{ display:flex !important; align-items:center !important; }
 /* El header trae un .cmplz-logo vacio + 2 columnas de 100px que estrujan el
    titulo. Oculto el logo vacio (el mio va de fondo en el titulo) y dejo el
    titulo a la izquierda con la X a la derecha. */
