@@ -372,8 +372,16 @@ const ROMVILL_NOINDEX_SLUGS = array(
 );
 
 // Excluir las páginas noindex del sitemap de Jetpack (coherencia robots ↔ sitemap).
+// Jetpack NO siempre incluye post_name en el objeto del sitemap (sí el ID), por
+// lo que resolvemos el slug desde el ID para que la exclusión funcione de verdad.
 add_filter( 'jetpack_sitemap_skip_post', function ( $skip, $post ) {
-    if ( isset( $post->post_name ) && in_array( $post->post_name, ROMVILL_NOINDEX_SLUGS, true ) ) {
+    $id = ( is_object( $post ) && ! empty( $post->ID ) ) ? (int) $post->ID : 0;
+    if ( $id ) {
+        $slug = get_post_field( 'post_name', $id );
+        if ( in_array( $slug, ROMVILL_NOINDEX_SLUGS, true ) ) {
+            return true;
+        }
+    } elseif ( isset( $post->post_name ) && in_array( $post->post_name, ROMVILL_NOINDEX_SLUGS, true ) ) {
         return true;
     }
     return $skip;
