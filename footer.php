@@ -86,28 +86,31 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-title::before{
     content:"";
     display:inline-block;
-    width:30px !important;
-    height:24px !important;
-    margin:0 9px 0 0 !important;
+    width:18px !important;
+    height:17px !important;
+    margin:0 7px 0 0 !important;
     vertical-align:middle !important;
     background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/contain no-repeat;
 }
-.cmplz-cookiebanner.banner-1 .cmplz-title{ display:flex !important; align-items:center !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-title{ display:flex !important; align-items:center !important; justify-content:center !important; }
 /* El header trae un .cmplz-logo vacio + 2 columnas de 100px que estrujan el
    titulo. Oculto el logo vacio (el mio va de fondo en el titulo) y dejo el
    titulo a la izquierda con la X a la derecha. */
 .cmplz-cookiebanner.banner-1 .cmplz-logo{ display:none !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-header{
-    grid-template-columns:1fr auto !important;
-    align-items:start !important;
+    position:relative !important;
+    grid-template-columns:1fr !important;
+    align-items:center !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title{
-    grid-column-start:1 !important;
-    justify-self:start !important;
-    text-align:left !important;
+    grid-column:1 / -1 !important;
+    justify-self:center !important;
+    text-align:center !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-close{
-    grid-column-start:2 !important;
+    position:absolute !important;
+    top:0 !important;
+    right:0 !important;
     color:#64748b !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-body,
@@ -117,6 +120,7 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     line-height:1.6 !important;
     min-width:0 !important;
     margin-bottom:4px !important;
+    text-align:center !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-message a,
@@ -124,7 +128,8 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-links a,
 .cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#BFA15F !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-categories .cmplz-category{ background-color:rgba(255,255,255,.06) !important; }
-.cmplz-cookiebanner.banner-1 .cmplz-buttons{ gap:8px !important; margin-top:12px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-buttons{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; gap:8px !important; margin-top:12px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-links{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; text-align:center !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-btn{
     font-size:12.5px !important;
     padding:9px 14px !important;
