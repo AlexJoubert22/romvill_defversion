@@ -330,12 +330,15 @@ for ( $i = 1; $i <= 4; $i++ ) {
             </p>
         </div>
 
-        <!-- ── Cobertura ── -->
-        <div class="rf-anim flex flex-wrap items-center justify-center gap-3 mb-8" style="animation-delay:.1s">
-            <span class="text-[10px] font-medium tracking-widest uppercase text-slate-400 dark:text-slate-500 mr-2"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
-            <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Alicante · Costa Blanca</span>
-            <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Málaga</span>
-            <span class="text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1">Marbella · Costa del Sol</span>
+        <!-- ── Cobertura (línea limpia con icono de ubicación) ── -->
+        <div class="rf-anim flex items-center justify-center flex-wrap gap-2 mb-8" style="animation-delay:.1s">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#BFA15F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--rv-text-soft)"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
+            <span class="text-sm ml-1" style="color:var(--rv-text-faint)">Alicante · Costa Blanca</span>
+            <span aria-hidden="true" style="color:var(--rv-gold)">•</span>
+            <span class="text-sm" style="color:var(--rv-text-faint)">Málaga</span>
+            <span aria-hidden="true" style="color:var(--rv-gold)">•</span>
+            <span class="text-sm" style="color:var(--rv-text-faint)">Marbella · Costa del Sol</span>
         </div>
 
         <!-- ── Pilares de valor (tira horizontal compacta) ── -->
