@@ -37,10 +37,13 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div class="fade-item fade-1 font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">
                 ROMVILL
             </div>
-            <div class="fade-item fade-2 flex items-center justify-center gap-4 mb-5">
+            <div class="fade-item fade-2 flex items-center justify-center gap-4 mb-2">
                 <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
                 <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em; text-shadow: 0 1px 6px rgba(0,0,0,0.85);"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
                 <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
+            </div>
+            <div class="fade-item fade-2 flex justify-center mb-6">
+                <span class="font-display font-semibold uppercase" style="color: rgba(191,161,95,0.62); font-size: 0.5rem; letter-spacing: 0.42em; text-shadow: 0 1px 5px rgba(0,0,0,0.85);"><?php echo esc_html( romvill_t( 'hero.cities' ) ); ?></span>
             </div>
             <p class="fade-item fade-3 font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8" style="text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
                 <?php echo esc_html( romvill_t( 'hero.slogan' ) ); ?>
