@@ -69,7 +69,7 @@ $packs = array(
             <?php endforeach; ?>
         </div>
 
-        <!-- Crédito entre niveles -->
+        <!-- No pagas dos veces: descuento al subir de nivel -->
         <div class="mt-12 bg-secondary/10 border border-secondary/30 rounded-xl p-6 text-center max-w-3xl mx-auto">
             <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( romvill_t( 'precios.credit.title' ) ); ?></h3>
             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'precios.credit.desc' ) ); ?></p>
