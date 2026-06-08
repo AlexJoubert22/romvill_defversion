@@ -109,8 +109,8 @@ add_action( 'after_setup_theme', 'romvill_setup' );
 add_action( 'wp_head', 'romvill_preload_hero_lcp', 2 );
 function romvill_preload_hero_lcp() {
     if ( is_front_page() && ! is_admin() ) {
-        echo '<link rel="preload" as="image" fetchpriority="high" href="'
-            . esc_url( get_template_directory_uri() . '/assets/images/fondo_hero.jpg' )
+        echo '<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="'
+            . esc_url( get_template_directory_uri() . '/assets/images/fondo_hero.webp' )
             . '" />' . "\n";
     }
 }
