@@ -64,7 +64,9 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 
 /* === Banner de cookies Complianz — estilo ROMVILL (compacto, azul noche) === */
 #cmplz-cookiebanner-container .cmplz-cookiebanner.banner-1{
-    max-width:360px !important;
+    --cmplz_banner_width:340px !important;
+    width:340px !important;
+    max-width:calc(100vw - 32px) !important;
     background:#101622 !important;
     color:#cbd5e1 !important;
     border:1px solid rgba(191,161,95,.35) !important;
@@ -83,6 +85,7 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     color:#94a3b8 !important;
     font-size:12.5px !important;
     line-height:1.5 !important;
+    min-width:0 !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-buttons{ gap:8px !important; margin-top:12px !important; }
