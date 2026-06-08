@@ -100,7 +100,11 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     grid-template-columns:1fr auto !important;
     align-items:start !important;
 }
-.cmplz-cookiebanner.banner-1 .cmplz-title{ text-align:left !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-title{
+    grid-column-start:1 !important;
+    justify-self:start !important;
+    text-align:left !important;
+}
 .cmplz-cookiebanner.banner-1 .cmplz-close{
     grid-column-start:2 !important;
     color:#64748b !important;
