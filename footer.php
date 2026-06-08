@@ -73,22 +73,21 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     border:1px solid rgba(191,161,95,.35) !important;
     border-radius:14px !important;
     box-shadow:0 18px 50px rgba(0,0,0,.45) !important;
-    padding:24px 24px 20px !important;
-    grid-gap:6px !important;
+    padding:16px 18px 14px !important;
+    grid-gap:2px !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title{
     color:#ffffff !important;
     font-size:15px !important;
     font-weight:700 !important;
-    letter-spacing:.2px !important;
-    margin-bottom:2px !important;
+    margin:0 !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title::before{
     content:"";
     display:inline-block;
-    width:18px !important;
-    height:17px !important;
-    margin:0 7px 0 0 !important;
+    width:30px !important;
+    height:28px !important;
+    margin:0 8px 0 0 !important;
     vertical-align:middle !important;
     background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/contain no-repeat;
 }
@@ -116,10 +115,10 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-body,
 .cmplz-cookiebanner.banner-1 .cmplz-message{
     color:#9aa7b8 !important;
-    font-size:13px !important;
-    line-height:1.6 !important;
+    font-size:12.5px !important;
+    line-height:1.45 !important;
     min-width:0 !important;
-    margin-bottom:4px !important;
+    margin:4px 0 0 !important;
     text-align:center !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
@@ -128,11 +127,12 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-links a,
 .cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#BFA15F !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-categories .cmplz-category{ background-color:rgba(255,255,255,.06) !important; }
-.cmplz-cookiebanner.banner-1 .cmplz-buttons{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; gap:8px !important; margin-top:12px !important; }
-.cmplz-cookiebanner.banner-1 .cmplz-links{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; text-align:center !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-manage-options{ display:none !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-buttons{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; gap:7px !important; margin-top:8px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-links{ display:flex !important; flex-wrap:wrap !important; justify-content:center !important; text-align:center !important; margin-top:2px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-btn{
     font-size:12.5px !important;
-    padding:9px 14px !important;
+    padding:8px 12px !important;
     border-radius:8px !important;
     font-weight:600 !important;
 }
