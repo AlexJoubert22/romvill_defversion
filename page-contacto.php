@@ -377,18 +377,18 @@ for ( $i = 1; $i <= 4; $i++ ) {
                         <div class="rf-row-2">
                             <div class="rf-field">
                                 <label class="rf-label" for="nombre"><?php echo esc_html( romvill_t( 'contact.f.nombre' ) ); ?> <span class="rf-req">*</span></label>
-                                <input type="text" id="nombre" name="nombre" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.nombre.ph' ) ); ?>" required class="wpcf7-form-control">
+                                <input type="text" id="nombre" name="nombre" autocomplete="given-name" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.nombre.ph' ) ); ?>" required class="wpcf7-form-control">
                             </div>
                             <div class="rf-field">
                                 <label class="rf-label" for="apellido"><?php echo esc_html( romvill_t( 'contact.f.apellido' ) ); ?> <span class="rf-opt"><?php echo esc_html( romvill_t( 'contact.f.opcional' ) ); ?></span></label>
-                                <input type="text" id="apellido" name="apellido" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.apell.ph' ) ); ?>" class="wpcf7-form-control">
+                                <input type="text" id="apellido" name="apellido" autocomplete="family-name" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.apell.ph' ) ); ?>" class="wpcf7-form-control">
                             </div>
                         </div>
 
                         <div class="rf-row-2">
                             <div class="rf-field">
                                 <label class="rf-label" for="email"><?php echo esc_html( romvill_t( 'contact.f.email' ) ); ?> <span class="rf-req">*</span></label>
-                                <input type="email" id="email" name="email" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.email.ph' ) ); ?>" required class="wpcf7-form-control">
+                                <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.email.ph' ) ); ?>" required class="wpcf7-form-control">
                             </div>
                             <!-- Phone with prefix dropdown -->
                             <div class="rf-field">
@@ -399,7 +399,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                                         <span id="prefix-code">+34</span>
                                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="opacity:.45;margin-left:1px"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                     </button>
-                                    <input type="tel" id="phone-number" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.tel.ph' ) ); ?>" class="phone-number-input">
+                                    <input type="tel" id="phone-number" inputmode="tel" autocomplete="tel-national" placeholder="<?php echo esc_attr( romvill_t( 'contact.f.tel.ph' ) ); ?>" class="phone-number-input">
                                     <input type="hidden" id="telefono" name="telefono">
                                     <div class="prefix-dropdown" id="prefix-dropdown" style="display:none;" role="listbox">
                                         <div class="prefix-search-wrap">
