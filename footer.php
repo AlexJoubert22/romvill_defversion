@@ -92,7 +92,10 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     margin:0 0 10px !important;
     background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/auto 26px no-repeat;
 }
-/* El header trae 2 columnas vacias de 100px que estrujan el titulo: lo arreglo */
+/* El header trae un .cmplz-logo vacio + 2 columnas de 100px que estrujan el
+   titulo. Oculto el logo vacio (el mio va de fondo en el titulo) y dejo el
+   titulo a la izquierda con la X a la derecha. */
+.cmplz-cookiebanner.banner-1 .cmplz-logo{ display:none !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-header{
     grid-template-columns:1fr auto !important;
     align-items:start !important;
