@@ -39,7 +39,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             </div>
             <div class="fade-item fade-2 flex items-center justify-center gap-4 mb-2">
                 <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
-                <span class="font-display font-semibold uppercase text-secondary" style="font-size: 0.6rem; letter-spacing: 0.5em; text-shadow: 0 1px 6px rgba(0,0,0,0.85);"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
+                <span class="font-display font-semibold uppercase" style="color: #D4B86A; font-size: 0.6rem; letter-spacing: 0.5em; text-shadow: 0 1px 6px rgba(0,0,0,0.9);"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
                 <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
             </div>
             <div class="fade-item fade-2 flex justify-center mb-6">
