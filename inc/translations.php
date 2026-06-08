@@ -18,6 +18,7 @@ function romvill_translations() {
         'footer.rights'    => [ 'es'=>'Todos los derechos reservados.','en'=>'All rights reserved.','fr'=>'Tous droits réservés.','de'=>'Alle Rechte vorbehalten.','ru'=>'Все права защищены.' ],
         'footer.privacy'   => [ 'es'=>'Privacidad',     'en'=>'Privacy',        'fr'=>'Confidentialité','de'=>'Datenschutz',    'ru'=>'Конфиденциальность' ],
         'footer.terms'     => [ 'es'=>'Términos',       'en'=>'Terms',          'fr'=>'Conditions',     'de'=>'Nutzungsbedingungen','ru'=>'Условия'        ],
+        'footer.cookies'   => [ 'es'=>'Cookies',        'en'=>'Cookies',        'fr'=>'Cookies',        'de'=>'Cookies',        'ru'=>'Cookies'        ],
         'footer.aria'      => [ 'es'=>'Navegación del pie de página','en'=>'Footer navigation','fr'=>'Navigation pied de page','de'=>'Fußzeilennavigation','ru'=>'Навигация в подвале' ],
 
         // ── HERO ──────────────────────────────────────────────────

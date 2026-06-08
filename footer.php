@@ -48,6 +48,7 @@
                     ?>
                     <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="<?php echo esc_url( $priv_url ); ?>"><?php echo esc_html( romvill_t( 'footer.privacy' ) ); ?></a>
                     <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="<?php echo esc_url( $terms_url ); ?>"><?php echo esc_html( romvill_t( 'footer.terms' ) ); ?></a>
+                    <button type="button" class="cmplz-manage-consent text-xs text-slate-400 hover:text-primary transition-colors bg-transparent border-0 p-0 cursor-pointer"><?php echo esc_html( romvill_t( 'footer.cookies' ) ); ?></button>
                 </div>
             </div>
         </div>
@@ -55,6 +56,12 @@
 
 </div><!-- .group/design-root -->
 
+<style>
+/* Oculta la pestaña fija/persistente de Complianz (revocar consentimiento).
+   El enlace "Cookies" del pie (clase cmplz-manage-consent, sin sufijo) sigue
+   abriendo las preferencias en móvil, tablet y ordenador. */
+button.cmplz-manage-consent.manage-consent-1{display:none !important;}
+</style>
 <?php wp_footer(); ?>
 </body>
 
