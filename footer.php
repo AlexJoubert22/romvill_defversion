@@ -88,6 +88,9 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     min-width:0 !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-links a,
+.cmplz-cookiebanner.banner-1 a.cmplz-link,
+.cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#BFA15F !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-buttons{ gap:8px !important; margin-top:12px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-btn{
     font-size:12.5px !important;
