@@ -88,14 +88,6 @@ $packs = array(
             </div>
         </div>
 
-        <!-- CTA final -->
-        <div class="mt-16 text-center">
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center h-14 px-9 rounded-lg bg-secondary hover:bg-[#cbb06e] text-slate-900 font-bold transition-colors duration-300 gap-2">
-                <?php echo esc_html( romvill_t( 'precios.cta' ) ); ?>
-                <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-        </div>
-
     </div>
 </main>
 <?php get_footer(); ?>
