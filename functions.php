@@ -170,30 +170,10 @@ function romvill_enqueue_assets() {
         null
     );
 
-    // Versionado por fecha de archivo (filemtime): cada vez que cambia el CSS,
-    // la URL cambia y el navegador/CDN están OBLIGADOS a descargar la versión
-    // nueva. Antes se usaba una versión fija ("1.0.0") y los navegadores servían
-    // CSS cacheado/obsoleto (páginas en blanco hasta forzar refresco). Resuelto.
-    $style_path = get_stylesheet_directory() . '/style.css';
-    $build_path = get_template_directory() . '/assets/css/build.css';
-    $style_ver  = file_exists( $style_path ) ? filemtime( $style_path ) : wp_get_theme()->get( 'Version' );
-    $build_ver  = file_exists( $build_path ) ? filemtime( $build_path ) : wp_get_theme()->get( 'Version' );
-
-    // Theme Stylesheet
-    wp_enqueue_style(
-        'romvill-style',
-        get_stylesheet_uri(),
-        array( 'romvill-google-fonts', 'romvill-material-symbols' ),
-        $style_ver
-    );
-
-    // Tailwind Compiled CSS
-    wp_enqueue_style(
-        'romvill-tailwind',
-        get_template_directory_uri() . '/assets/css/build.css',
-        array(),
-        $build_ver
-    );
+    // NOTA: style.css y build.css NO se encolan aquí. Se imprimen con un <link>
+    // directo en romvill_print_theme_css() (hook wp_head) para EVITAR la
+    // concatenación "_static/??" de WordPress.com, que algunos bloqueadores de
+    // contenido cortan (dejando la web sin estilo). Versionado por filemtime.
 
     // Lottie Player (solo en la home): carga DIFERIDA vía IntersectionObserver
     // → se descarga al acercarse su sección, no consume CPU en el arranque. Versión fijada.
@@ -211,6 +191,27 @@ function romvill_enqueue_assets() {
     );
 }
 add_action( 'wp_enqueue_scripts', 'romvill_enqueue_assets' );
+
+/**
+ * Imprime el CSS del tema (style.css + build.css) con un <link> DIRECTO, fuera
+ * del sistema de cola de WordPress, para que NO entre en la concatenación
+ * "_static/??" de WordPress.com. Así, los bloqueadores de contenido que filtran
+ * ese patrón no pueden dejar la web sin estilo. Versionado por filemtime
+ * (cache-busting automático). Se imprime antes que wp_print_styles (prioridad 6).
+ */
+function romvill_print_theme_css() {
+    if ( is_admin() ) return;
+    $base = get_template_directory_uri();
+    $dir  = get_template_directory();
+    $files = array( '/style.css', '/assets/css/build.css' );
+    foreach ( $files as $rel ) {
+        $path = $dir . $rel;
+        $ver  = file_exists( $path ) ? filemtime( $path ) : '1';
+        echo '<link rel="stylesheet" id="romvill-theme-css" href="'
+            . esc_url( $base . $rel . '?ver=' . $ver ) . '" media="all" />' . "\n";
+    }
+}
+add_action( 'wp_head', 'romvill_print_theme_css', 6 );
 
 // ─── Page Slug Templates ────────────────────────────────────
 function romvill_page_template( $template ) {
