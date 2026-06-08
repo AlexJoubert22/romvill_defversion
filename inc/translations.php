@@ -19,6 +19,8 @@ function romvill_translations() {
         'footer.privacy'   => [ 'es'=>'Privacidad',     'en'=>'Privacy',        'fr'=>'Confidentialité','de'=>'Datenschutz',    'ru'=>'Конфиденциальность' ],
         'footer.terms'     => [ 'es'=>'Términos',       'en'=>'Terms',          'fr'=>'Conditions',     'de'=>'Nutzungsbedingungen','ru'=>'Условия'        ],
         'footer.cookies'   => [ 'es'=>'Cookies',        'en'=>'Cookies',        'fr'=>'Cookies',        'de'=>'Cookies',        'ru'=>'Cookies'        ],
+        'cookies.title'    => [ 'es'=>'Usamos cookies', 'en'=>'We use cookies', 'fr'=>'Nous utilisons des cookies', 'de'=>'Wir verwenden Cookies', 'ru'=>'Мы используем cookies' ],
+        'cookies.short'    => [ 'es'=>'Cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia.', 'en'=>'Our own and third-party cookies to analyse traffic and improve your experience.', 'fr'=>'Cookies internes et tiers pour analyser le trafic et améliorer votre expérience.', 'de'=>'Eigene und Drittanbieter-Cookies zur Analyse des Traffics und zur Verbesserung Ihres Erlebnisses.', 'ru'=>'Собственные и сторонние файлы cookie для анализа трафика и улучшения вашего опыта.' ],
         'footer.aria'      => [ 'es'=>'Navegación del pie de página','en'=>'Footer navigation','fr'=>'Navigation pied de page','de'=>'Fußzeilennavigation','ru'=>'Навигация в подвале' ],
 
         // ── HERO ──────────────────────────────────────────────────

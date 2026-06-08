@@ -73,13 +73,15 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     border:1px solid rgba(191,161,95,.35) !important;
     border-radius:14px !important;
     box-shadow:0 18px 50px rgba(0,0,0,.45) !important;
-    padding:20px 20px 18px !important;
+    padding:24px 24px 20px !important;
+    grid-gap:6px !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title{
     color:#ffffff !important;
-    font-size:16px !important;
+    font-size:15px !important;
     font-weight:700 !important;
-    margin-bottom:6px !important;
+    letter-spacing:.2px !important;
+    margin-bottom:2px !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-title::before{
     content:"";
@@ -92,10 +94,11 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 }
 .cmplz-cookiebanner.banner-1 .cmplz-body,
 .cmplz-cookiebanner.banner-1 .cmplz-message{
-    color:#94a3b8 !important;
-    font-size:12.5px !important;
-    line-height:1.5 !important;
+    color:#9aa7b8 !important;
+    font-size:13px !important;
+    line-height:1.6 !important;
     min-width:0 !important;
+    margin-bottom:4px !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-message a,
@@ -130,6 +133,27 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     text-decoration:underline !important;
 }
 </style>
+<script>
+/* Banner de cookies minimalista: sustituye el muro de texto por defecto de
+   Complianz por un titulo corto y una sola frase (en el idioma de la pagina).
+   El detalle completo sigue en la Politica de cookies, enlazada en el banner. */
+(function(){
+    var T=<?php echo wp_json_encode( romvill_t( 'cookies.title' ) ); ?>;
+    var M=<?php echo wp_json_encode( romvill_t( 'cookies.short' ) ); ?>;
+    function rvTrim(){
+        var c=document.getElementById('cmplz-cookiebanner-container');
+        if(!c) return false;
+        var t=c.querySelector('.cmplz-title');
+        var m=c.querySelector('.cmplz-message');
+        if(t && t.getAttribute('data-rv')!=='1'){ t.textContent=T; t.setAttribute('data-rv','1'); }
+        if(m && m.getAttribute('data-rv')!=='1'){ m.textContent=M; m.setAttribute('data-rv','1'); }
+        return !!(t && m);
+    }
+    if(document.readyState!=='loading'){ rvTrim(); }
+    document.addEventListener('DOMContentLoaded', rvTrim);
+    var n=0, iv=setInterval(function(){ n++; if(rvTrim() || n>25){ clearInterval(iv); } }, 200);
+})();
+</script>
 <?php wp_footer(); ?>
 </body>
 
