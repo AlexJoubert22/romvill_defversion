@@ -1361,3 +1361,34 @@ add_action( 'init', function () {
     }
 } );
 
+/**
+ * Coherencia visual: en metodología, análisis, sectores y precios sustituye el
+ * acento AZUL (primary) por el DORADO de marca (secondary #BFA15F), igualando el
+ * estilo premium de /contacto/. Solo color de acento, acotado a <main> para no
+ * tocar header/footer. 100% reversible (basta borrar esta función).
+ */
+function romvill_coherencia_gold() {
+    if ( ! is_page( array( 'metodologia', 'analisis', 'sectores', 'precios' ) ) ) {
+        return;
+    }
+    echo <<<'CSS'
+<style id="rv-coherencia-gold">
+main .text-primary{color:#BFA15F!important}
+main .text-primary-dark{color:#a98e4e!important}
+main .bg-primary{background-color:#BFA15F!important}
+main .bg-primary\/10{background-color:rgba(191,161,95,.10)!important}
+main .bg-primary\/20{background-color:rgba(191,161,95,.20)!important}
+main .bg-primary\/30{background-color:rgba(191,161,95,.30)!important}
+main .border-primary{border-color:#BFA15F!important}
+main .border-primary\/20{border-color:rgba(191,161,95,.22)!important}
+main .hover\:bg-primary:hover{background-color:#BFA15F!important}
+main .hover\:text-primary:hover{color:#BFA15F!important}
+main .hover\:text-primary-dark:hover{color:#a98e4e!important}
+main .text-blue-100,main .text-blue-200,main .text-blue-300{color:#d8c489!important}
+main .from-primary{--tw-gradient-from:#BFA15F var(--tw-gradient-from-position)!important;--tw-gradient-to:rgba(191,161,95,0) var(--tw-gradient-to-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+main .to-blue-400{--tw-gradient-to:#d8c489 var(--tw-gradient-to-position)!important}
+</style>
+CSS;
+}
+add_action( 'wp_head', 'romvill_coherencia_gold', 99 );
+
