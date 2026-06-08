@@ -143,32 +143,16 @@ function romvill_lottie_lazy() {
     <?php
 }
 
-// ─── Preconnect a Google Fonts (acelera el primer render de fuentes) ──
-add_action( 'wp_head', 'romvill_preconnect_fonts', 1 );
-function romvill_preconnect_fonts() {
-    echo '<link rel="preconnect" href="https://fonts.googleapis.com" />' . "\n";
-    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
-}
+// ─── Fuentes alojadas localmente: ya no hace falta preconnect a Google ──
+//     (las fuentes viven en assets/fonts/, mismo dominio).
 
 // ─── Enqueue Styles & Scripts ───────────────────────────────
 function romvill_enqueue_assets() {
-    // Google Fonts
-    wp_enqueue_style(
-        'romvill-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap',
-        array(),
-        null
-    );
-
-    // Material Symbols — subset: solo los iconos usados por el tema (~10 KB vs ~1.1 MB
-    // de la fuente variable completa). Si se añade un icono nuevo en plantillas o en
-    // questionnaire-engine.php, AÑADIRLO a icon_names (orden alfabético obligatorio).
-    wp_enqueue_style(
-        'romvill-material-symbols',
-        'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=account_balance,analytics,arrow_back,arrow_forward,balance,check,check_circle,close,compare_arrows,construction,crisis_alert,dark_mode,dataset,description,diamond,directions_car,directions_transit,diversity_3,domain,done_all,edit,elderly,error_outline,expand_more,fact_check,family_restroom,format_quote,gavel,gpp_good,groups,health_and_safety,home,hourglass_empty,insights,landscape,language,light_mode,local_hospital,local_parking,lock,mail,map,medical_services,medication,menu,military_tech,people,pie_chart,psychology,public,radio_button_unchecked,refresh,rocket_launch,schedule,security,send,shield,shield_locked,shield_person,sunny,travel_explore,trending_up,tune,verified,verified_user,visibility&display=block',
-        array(),
-        null
-    );
+    // Las fuentes (Manrope, Playfair Display, Material Symbols) ahora se ALOJAN
+    // EN EL PROPIO DOMINIO (assets/fonts/fonts.css + .woff2), no se cargan de
+    // Google. Ventajas: ningún bloqueador anti-Google-Fonts rompe iconos/tipografía,
+    // más rápido y conforme al RGPD (no se envía la IP del visitante a Google).
+    // fonts.css se imprime con <link> directo en romvill_print_theme_css().
 
     // NOTA: style.css y build.css NO se encolan aquí. Se imprimen con un <link>
     // directo en romvill_print_theme_css() (hook wp_head) para EVITAR la
@@ -203,7 +187,7 @@ function romvill_print_theme_css() {
     if ( is_admin() ) return;
     $base = get_template_directory_uri();
     $dir  = get_template_directory();
-    $files = array( '/style.css', '/assets/css/build.css' );
+    $files = array( '/assets/fonts/fonts.css', '/style.css', '/assets/css/build.css' );
     foreach ( $files as $rel ) {
         $path = $dir . $rel;
         $ver  = file_exists( $path ) ? filemtime( $path ) : '1';
