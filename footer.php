@@ -88,9 +88,19 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     display:block;
     width:100% !important;
     flex:none !important;
-    height:32px !important;
-    margin:0 auto 12px !important;
-    background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/auto 32px no-repeat;
+    height:26px !important;
+    margin:0 0 10px !important;
+    background:url('<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) ); ?>') left center/auto 26px no-repeat;
+}
+/* El header trae 2 columnas vacias de 100px que estrujan el titulo: lo arreglo */
+.cmplz-cookiebanner.banner-1 .cmplz-header{
+    grid-template-columns:1fr auto !important;
+    align-items:start !important;
+}
+.cmplz-cookiebanner.banner-1 .cmplz-title{ text-align:left !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-close{
+    grid-column-start:2 !important;
+    color:#64748b !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-body,
 .cmplz-cookiebanner.banner-1 .cmplz-message{
