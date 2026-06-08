@@ -49,6 +49,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
             </a>
         </div>
     </section>
+    <?php romvill_related_dimensions( 'perfil-demografico' ); ?>
 </main>
 
 <?php get_footer(); ?>

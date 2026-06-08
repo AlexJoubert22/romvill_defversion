@@ -1448,3 +1448,49 @@ CSS;
 }
 add_action( 'wp_head', 'romvill_gold_contrast', 99 );
 
+/**
+ * Bloque "Otras dimensiones del análisis": enlaza cada página de perfil con las
+ * OTRAS 4 dimensiones (cohesión del cluster temático + enlazado interno SEO).
+ * Se llama al final de cada plantilla page-perfil-*.php con su propio slug.
+ *
+ * @param string $current_slug  Slug de la dimensión actual (para excluirla).
+ */
+function romvill_related_dimensions( $current_slug ) {
+    $lang = function_exists( 'romvill_current_lang' ) ? romvill_current_lang() : 'es';
+    $dims = array(
+        'perfil-seguridad'   => array( 'icon' => 'shield',            'name' => romvill_t( 'modal.dim.security' ), 'desc' => romvill_t( 'modal.dim.sec.desc' ) ),
+        'perfil-demografico' => array( 'icon' => 'groups',            'name' => romvill_t( 'modal.dim.demog' ),    'desc' => romvill_t( 'modal.dim.dem.desc' ) ),
+        'perfil-sanidad'     => array( 'icon' => 'health_and_safety', 'name' => romvill_t( 'modal.dim.health' ),   'desc' => romvill_t( 'modal.dim.hea.desc' ) ),
+        'perfil-movilidad'   => array( 'icon' => 'directions_car',    'name' => romvill_t( 'modal.dim.mobility' ), 'desc' => romvill_t( 'modal.dim.mob.desc' ) ),
+        'perfil-proyeccion'  => array( 'icon' => 'trending_up',       'name' => romvill_t( 'dim.proyeccion' ),     'desc' => romvill_t( 'dim.proyeccion.desc' ) ),
+    );
+    unset( $dims[ $current_slug ] );
+    ?>
+    <section class="py-24 bg-background-light dark:bg-background-dark border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'related.kicker' ) ); ?></span>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'related.title' ) ); ?></h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <?php foreach ( $dims as $slug => $d ) :
+                    $page = get_page_by_path( $slug );
+                    $url  = add_query_arg( 'lang', $lang, $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' ) );
+                ?>
+                <a href="<?php echo esc_url( $url ); ?>" class="group flex flex-col bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-8 shadow-sm hover:border-secondary hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-secondary shrink-0" style="background:rgba(191,161,95,0.14)">
+                            <span aria-hidden="true" class="material-symbols-outlined"><?php echo esc_html( $d['icon'] ); ?></span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg"><?php echo esc_html( $d['name'] ); ?></h3>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed flex-grow"><?php echo esc_html( $d['desc'] ); ?></p>
+                    <span class="mt-4 text-xs font-bold text-secondary uppercase tracking-wider inline-flex items-center gap-1"><?php echo esc_html( romvill_t( 'related.cta' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></span>
+                </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+
