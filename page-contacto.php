@@ -470,6 +470,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
                         <div class="rf-field">
                             <label class="rf-label" for="objetivo"><?php echo esc_html( romvill_t( 'contact.f.objetivo' ) ); ?></label>
                             <select id="objetivo" name="objetivo" class="wpcf7-form-control">
+                                <option value=""><?php echo esc_html( romvill_t( 'contact.f.obj.ph' ) ); ?></option>
                                 <option value="Compra de vivienda"><?php echo esc_html( romvill_t( 'contact.f.obj.buy' ) ); ?></option>
                                 <option value="Inversión inmobiliaria"><?php echo esc_html( romvill_t( 'contact.f.obj.inv' ) ); ?></option>
                                 <option value="Traslado residencial"><?php echo esc_html( romvill_t( 'contact.f.obj.rel' ) ); ?></option>

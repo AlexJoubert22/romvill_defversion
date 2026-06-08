@@ -181,6 +181,7 @@ function romvill_translations() {
         'contact.f.tel.ph'    => [ 'es'=>'+34 600 000 000','en'=>'+44 7000 000000','fr'=>'+33 6 00 00 00 00','de'=>'+49 170 0000000','ru'=>'+7 900 000 00 00' ],
         'contact.f.zona'      => [ 'es'=>'Zona de interés','en'=>'Area of interest','fr'=>'Zone d\'intérêt','de'=>'Interessengebiet','ru'=>'Зона интереса' ],
         'contact.f.zona.ph'   => [ 'es'=>'Seleccione una zona…','en'=>'Select an area…','fr'=>'Sélectionnez une zone…','de'=>'Wählen Sie eine Zone…','ru'=>'Выберите зону…' ],
+        'contact.f.obj.ph'    => [ 'es'=>'Seleccione un objetivo…','en'=>'Select an objective…','fr'=>'Sélectionnez un objectif…','de'=>'Wählen Sie ein Ziel…','ru'=>'Выберите цель…' ],
         'contact.f.otzona'    => [ 'es'=>'Otra zona','en'=>'Other area','fr'=>'Autre zone','de'=>'Andere Zone','ru'=>'Другая зона' ],
         'contact.f.objetivo'  => [ 'es'=>'Objetivo','en'=>'Objective','fr'=>'Objectif','de'=>'Ziel','ru'=>'Цель' ],
         'contact.f.obj.buy'   => [ 'es'=>'Compra de vivienda','en'=>'Property purchase','fr'=>'Achat immobilier','de'=>'Immobilienkauf','ru'=>'Покупка жилья' ],
