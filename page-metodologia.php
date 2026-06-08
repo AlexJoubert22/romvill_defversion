@@ -153,18 +153,18 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     <h3 class="text-xl font-bold text-white mb-3 relative z-10"><?php echo esc_html( romvill_t( 'met.card2.title' ) ); ?></h3>
                     <p class="text-sm text-slate-300 leading-relaxed relative z-10"><?php echo esc_html( romvill_t( 'met.card2.desc' ) ); ?></p>
                 </div>
-                <div class="col-span-2 bg-gradient-to-br from-primary to-blue-700 p-8 md:p-10 rounded-2xl shadow-2xl shadow-primary/30 relative overflow-hidden group">
+                <div class="col-span-2 bg-slate-900 p-8 md:p-10 rounded-2xl shadow-2xl shadow-black/30 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 relative z-10">
                         <div class="max-w-[75%]">
-                            <span aria-hidden="true" class="material-symbols-outlined text-white/80 text-3xl mb-4">insights</span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-secondary text-3xl mb-4">insights</span>
                             <h3 class="text-2xl font-bold text-white mb-3"><?php echo esc_html( romvill_t( 'met.card3.title' ) ); ?></h3>
-                            <p class="text-sm text-blue-100 leading-relaxed"><?php echo esc_html( romvill_t( 'met.card3.desc' ) ); ?></p>
+                            <p class="text-sm text-slate-300 leading-relaxed"><?php echo esc_html( romvill_t( 'met.card3.desc' ) ); ?></p>
                         </div>
                         <div class="shrink-0 flex items-center justify-center p-4 rounded-2xl border border-white/20 bg-black/10 backdrop-blur-md">
                             <div class="text-center">
                                 <span class="block text-3xl font-black text-white leading-none mb-1">100%</span>
-                                <span class="block text-[9px] font-bold text-blue-200 uppercase tracking-widest"><?php echo esc_html( romvill_t( 'met.obj_badge' ) ); ?></span>
+                                <span class="block text-[9px] font-bold text-secondary uppercase tracking-widest"><?php echo esc_html( romvill_t( 'met.obj_badge' ) ); ?></span>
                             </div>
                         </div>
                     </div>
