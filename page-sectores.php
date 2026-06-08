@@ -33,7 +33,7 @@ $contacto_url  = romvill_link( $contacto_url );
                 <p class="text-lg text-slate-100 mb-8 max-w-md font-medium drop-shadow-sm leading-relaxed opacity-90">
                     <?php echo esc_html( romvill_t( 'sec.b2c.desc' ) ); ?>
                 </p>
-                <a href="<?php echo esc_url( $contacto_url ); ?>" class="flex items-center justify-center gap-2 rounded-lg bg-white text-primary hover:bg-slate-100 transition-colors h-14 px-8 text-base font-bold shadow-lg hover:-translate-y-1 transform duration-200 w-fit">
+                <a href="<?php echo esc_url( $contacto_url ); ?>" class="flex items-center justify-center gap-2 rounded-lg bg-white text-slate-900 hover:bg-slate-100 transition-colors h-14 px-8 text-base font-bold shadow-lg hover:-translate-y-1 transform duration-200 w-fit">
                     <span><?php echo esc_html( romvill_t( 'sec.b2c.btn' ) ); ?></span>
                     <span aria-hidden="true" class="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </a>

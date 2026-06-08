@@ -516,8 +516,8 @@ html {
 /* CTA scrolled día: borde dorado */
 .rv-nav.scrolled a[href*="contacto"].rounded-full {
   background: transparent !important;
-  color: #BFA15F !important;
-  border: 1px solid #BFA15F !important;
+  color: #9A7529 !important;
+  border: 1px solid #9A7529 !important;
 }
 
 .rv-nav.scrolled a[href*="contacto"].rounded-full:hover {

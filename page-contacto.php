@@ -87,6 +87,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
 }
 .phone-number-input::placeholder { color: #94a3b8; }
 .rf-opt { font-size: .68rem; font-weight: 400; color: #94a3b8; text-transform: none; letter-spacing: 0; }
+html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro */
 .dark .phone-number-input { color: #f1f5f9; }
 
 .prefix-dropdown {
@@ -280,6 +281,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
 /* CTA hero en contorno (un solo botón sólido por pantalla) */
 .rv-cta-outline{border:1.5px solid var(--rv-gold);color:var(--rv-gold);background:transparent;transition:all .25s ease;}
 .rv-cta-outline:hover{background:var(--rv-gold);color:var(--rv-on-gold);}
+html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contraste WCAG sobre fondo claro */
 /* #4 — "Por qué Romvill" más compacto (lateral estrecho) */
 .why-reason{padding:7px 9px;gap:11px;}
 .why-reason-icon{width:32px;height:32px;}
