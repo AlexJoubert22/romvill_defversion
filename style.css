@@ -765,3 +765,128 @@ html {
     .hiw-icon polyline { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; transition: none !important; }
     .hiw-cta .material-symbols-outlined { transition: none !important; }
 }
+
+/* ===== Página Análisis — placas de dimensión =====
+   Placa navy con marco dorado: retícula de puntos, numeral fantasma
+   en serif, esquinas a filete e icono SVG que se autodibuja en dorado.
+   Cada bloque entra al viewport con .is-visible (observer en romvill.js). */
+.ana-block {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ana-block.is-visible { opacity: 1; transform: translateY(0); }
+
+.ana-card {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    background: linear-gradient(155deg, #0f172a 0%, #1c2a44 100%);
+    border: 1px solid rgba(191, 161, 95, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.5);
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.ana-block:hover .ana-card {
+    transform: translateY(-4px);
+    border-color: rgba(191, 161, 95, 0.55);
+    box-shadow: 0 30px 60px -24px rgba(191, 161, 95, 0.3);
+}
+
+.ana-card__grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(191, 161, 95, 0.16) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(circle at center, #000 25%, transparent 72%);
+    mask-image: radial-gradient(circle at center, #000 25%, transparent 72%);
+}
+
+.ana-card__num {
+    position: absolute;
+    bottom: -26px;
+    right: 10px;
+    font-size: 8.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(191, 161, 95, 0.10);
+    user-select: none;
+}
+
+.ana-card__corner { position: absolute; width: 22px; height: 22px; }
+.ana-card__corner--tl { top: 14px; left: 14px; border-top: 1px solid rgba(191, 161, 95, 0.55); border-left: 1px solid rgba(191, 161, 95, 0.55); }
+.ana-card__corner--br { bottom: 14px; right: 14px; border-bottom: 1px solid rgba(191, 161, 95, 0.55); border-right: 1px solid rgba(191, 161, 95, 0.55); }
+
+.ana-card__icon {
+    position: relative;
+    z-index: 2;
+    width: 96px;
+    height: 96px;
+    border-radius: 9999px;
+    border: 1px solid rgba(191, 161, 95, 0.5);
+    background: rgba(191, 161, 95, 0.06);
+    color: #BFA15F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 12px rgba(191, 161, 95, 0.04);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.ana-block:hover .ana-card__icon {
+    background: rgba(191, 161, 95, 0.12);
+    box-shadow: 0 0 0 16px rgba(191, 161, 95, 0.07);
+}
+
+.ana-icon { width: 42px; height: 42px; }
+.ana-icon path,
+.ana-icon circle,
+.ana-icon line,
+.ana-icon polyline,
+.ana-icon polygon,
+.ana-icon rect {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+.ana-block.is-visible .ana-icon path,
+.ana-block.is-visible .ana-icon circle,
+.ana-block.is-visible .ana-icon line,
+.ana-block.is-visible .ana-icon polyline,
+.ana-block.is-visible .ana-icon polygon,
+.ana-block.is-visible .ana-icon rect {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+}
+.ana-block.is-visible .ana-icon :nth-child(2) { transition-delay: 0.55s; }
+.ana-block.is-visible .ana-icon :nth-child(3) { transition-delay: 0.70s; }
+.ana-block.is-visible .ana-icon :nth-child(4) { transition-delay: 0.85s; }
+
+/* Viñetas: check dorado dentro de anillo fino */
+.ana-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(191, 161, 95, 0.55);
+    color: #BFA15F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.ana-check svg { width: 11px; height: 11px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .ana-block { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .ana-card,
+    .ana-card__icon { transition: none !important; }
+    .ana-icon path,
+    .ana-icon circle,
+    .ana-icon line,
+    .ana-icon polyline,
+    .ana-icon polygon,
+    .ana-icon rect { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; transition: none !important; }
+}

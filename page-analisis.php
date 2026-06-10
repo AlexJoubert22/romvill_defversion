@@ -24,11 +24,12 @@ $perfil_pages = array(
 <main class="flex-grow">
     <!-- Hero -->
     <section class="relative pt-16 pb-12 lg:pt-24 lg:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wide mb-6">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-            <?php echo esc_html( romvill_t( 'ana.badge' ) ); ?>
+        <div class="flex items-center justify-center gap-4 mb-6">
+            <span class="hiw-badge-line" aria-hidden="true"></span>
+            <span class="text-secondary font-bold uppercase tracking-[0.4em] text-xs"><?php echo esc_html( romvill_t( 'ana.badge' ) ); ?></span>
+            <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
         </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15] text-slate-900 dark:text-white mb-6">
             <?php echo wp_kses( romvill_t( 'ana.title' ), [ 'br' => [ 'class' => [] ], 'span' => [ 'class' => [] ] ] ); ?>
         </h1>
         <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -45,8 +46,8 @@ $perfil_pages = array(
                     $u = $p ? add_query_arg( 'lang', $_lang, get_permalink( $p ) ) : home_url( '/' . $slug . '/' );
                 ?>
                 <a href="<?php echo esc_url( $u ); ?>" class="group relative py-4">
-                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-colors whitespace-nowrap"><?php echo esc_html( $label ); ?></span>
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-secondary transition-colors whitespace-nowrap"><?php echo esc_html( $label ); ?></span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
                 </a>
                 <?php endforeach; ?>
             </div>
@@ -63,7 +64,6 @@ $perfil_pages = array(
                 'title'     => romvill_t( 'ana.d1.title' ),
                 'desc'      => romvill_t( 'ana.d1.desc' ),
                 'items'     => array( romvill_t( 'ana.d1.i1' ), romvill_t( 'ana.d1.i2' ) ),
-                'icon'      => 'shield_locked',
                 'link'      => 'perfil-seguridad',
                 'linktext'  => romvill_t( 'ana.d1.link' ),
                 'order'     => 'order-2 md:order-1',
@@ -75,7 +75,6 @@ $perfil_pages = array(
                 'title'     => romvill_t( 'ana.d2.title' ),
                 'desc'      => romvill_t( 'ana.d2.desc' ),
                 'items'     => array( romvill_t( 'ana.d2.i1' ), romvill_t( 'ana.d2.i2' ) ),
-                'icon'      => 'pie_chart',
                 'link'      => 'perfil-demografico',
                 'linktext'  => romvill_t( 'ana.d2.link' ),
                 'order'     => '',
@@ -87,7 +86,6 @@ $perfil_pages = array(
                 'title'     => romvill_t( 'ana.d3.title' ),
                 'desc'      => romvill_t( 'ana.d3.desc' ),
                 'items'     => array( romvill_t( 'ana.d3.i1' ), romvill_t( 'ana.d3.i2' ) ),
-                'icon'      => 'health_and_safety',
                 'link'      => 'perfil-sanidad',
                 'linktext'  => romvill_t( 'ana.d3.link' ),
                 'order'     => 'order-2 md:order-1',
@@ -99,7 +97,6 @@ $perfil_pages = array(
                 'title'     => romvill_t( 'ana.d4.title' ),
                 'desc'      => romvill_t( 'ana.d4.desc' ),
                 'items'     => array( romvill_t( 'ana.d4.i1' ), romvill_t( 'ana.d4.i2' ) ),
-                'icon'      => 'directions_car',
                 'link'      => 'perfil-movilidad',
                 'linktext'  => romvill_t( 'ana.d4.link' ),
                 'order'     => '',
@@ -110,26 +107,55 @@ $perfil_pages = array(
             $p = get_page_by_path( $d['link'] );
             $u = $p ? add_query_arg( 'lang', $_lang, get_permalink( $p ) ) : home_url( '/' . $d['link'] . '/' );
         ?>
-        <div class="py-20 flex flex-col md:flex-row items-center gap-12 group" id="<?php echo esc_attr( $d['id'] ); ?>">
-            <div class="md:w-1/2 flex justify-center <?php echo esc_attr( $d['order'] ); ?>">
-                <div class="relative w-64 h-64 flex items-center justify-center">
-                    <div class="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center shadow-xl border border-primary/20 z-10 transition-transform duration-500 group-hover:scale-110">
-                        <span aria-hidden="true" class="material-symbols-outlined text-primary" style="font-size: 64px;"><?php echo esc_html( $d['icon'] ); ?></span>
+        <div class="ana-block py-20 flex flex-col md:flex-row items-center gap-12 group" id="<?php echo esc_attr( $d['id'] ); ?>">
+            <div class="w-full md:w-1/2 flex justify-center <?php echo esc_attr( $d['order'] ); ?>">
+                <div class="ana-card">
+                    <div class="ana-card__grid" aria-hidden="true"></div>
+                    <span class="ana-card__num font-serif" aria-hidden="true"><?php echo esc_html( $d['num'] ); ?></span>
+                    <span class="ana-card__corner ana-card__corner--tl" aria-hidden="true"></span>
+                    <span class="ana-card__corner ana-card__corner--br" aria-hidden="true"></span>
+                    <div class="ana-card__icon">
+                        <?php if ( 'seguridad' === $d['id'] ) : ?>
+                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path pathLength="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline pathLength="1" points="9 11.5 11 13.5 15 9.5"/>
+                        </svg>
+                        <?php elseif ( 'demografia' === $d['id'] ) : ?>
+                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path pathLength="1" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle pathLength="1" cx="9" cy="7" r="4"/>
+                            <path pathLength="1" d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path pathLength="1" d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <?php elseif ( 'sanidad' === $d['id'] ) : ?>
+                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect pathLength="1" x="3" y="3" width="18" height="18" rx="3"/>
+                            <line pathLength="1" x1="12" y1="8" x2="12" y2="16"/>
+                            <line pathLength="1" x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                        <?php else : ?>
+                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polygon pathLength="1" points="3 11 22 2 13 21 11 13 3 11"/>
+                        </svg>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2 <?php echo esc_attr( $d['textorder'] ); ?>">
-                <span class="text-primary font-bold tracking-widest text-sm uppercase mb-2 block"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> <?php echo esc_html( $d['num'] ); ?></span>
+            <div class="w-full md:w-1/2 <?php echo esc_attr( $d['textorder'] ); ?>">
+                <span class="text-secondary font-bold tracking-[0.25em] text-xs uppercase mb-3 block"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> <?php echo esc_html( $d['num'] ); ?></span>
                 <h2 class="text-4xl font-serif font-bold text-slate-900 dark:text-white mb-6"><?php echo esc_html( $d['title'] ); ?></h2>
                 <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6"><?php echo esc_html( $d['desc'] ); ?></p>
                 <ul class="space-y-3">
                     <?php foreach ( $d['items'] as $item ) : ?>
                     <li class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
-                        <span class="w-2 h-2 rounded-full bg-secondary"></span> <?php echo esc_html( $item ); ?>
+                        <span class="ana-check" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 19 7"/></svg>
+                        </span>
+                        <?php echo esc_html( $item ); ?>
                     </li>
                     <?php endforeach; ?>
                 </ul>
-                <a href="<?php echo esc_url( $u ); ?>" class="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark transition-colors">
+                <a href="<?php echo esc_url( $u ); ?>" class="hiw-cta mt-8 inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#9A7529] transition-colors">
                     <?php echo esc_html( $d['linktext'] ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
             </div>
@@ -138,14 +164,18 @@ $perfil_pages = array(
     </section>
 
     <!-- CTA -->
-    <section class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-32">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <span aria-hidden="true" class="material-symbols-outlined text-4xl text-primary mb-4">diamond</span>
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4"><?php echo esc_html( romvill_t( 'ana.cta.title' ) ); ?></h2>
-            <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+    <section class="relative overflow-hidden bg-slate-900 py-24 md:py-32">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <div class="flex items-center justify-center mb-6">
+                <span class="hiw-badge-line" aria-hidden="true"></span>
+                <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight"><?php echo esc_html( romvill_t( 'ana.cta.title' ) ); ?></h2>
+            <p class="text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
                 <?php echo esc_html( romvill_t( 'ana.cta.desc' ) ); ?>
             </p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-block bg-transparent border-2 border-slate-900 dark:border-white text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 text-sm font-bold py-3 px-8 rounded-lg transition-all uppercase tracking-wider">
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
                 <?php echo esc_html( romvill_t( 'ana.cta.btn' ) ); ?>
             </a>
         </div>

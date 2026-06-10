@@ -192,6 +192,25 @@
         }
     }
 
+    // ─── Página Análisis — reveal de bloques de dimensión ───
+    var anaBlocks = document.querySelectorAll('.ana-block');
+    if (anaBlocks.length) {
+        var anaReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (anaReduce || !('IntersectionObserver' in window)) {
+            anaBlocks.forEach(function (b) { b.classList.add('is-visible'); });
+        } else {
+            var anaObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        anaObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.18 });
+            anaBlocks.forEach(function (b) { anaObserver.observe(b); });
+        }
+    }
+
     // ─── City Modals ───────────────────────────────────────
     window.openCityModal = function (city) {
         document.querySelectorAll('.city-modal').forEach(function (m) {
