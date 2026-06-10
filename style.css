@@ -766,6 +766,70 @@ html {
     .hiw-cta .material-symbols-outlined { transition: none !important; }
 }
 
+/* ===== Tarjetas de perfil (selector de cuestionario — página Precios) =====
+   Componente autónomo con colores literales: la página Precios no define
+   los tokens --rv-* de la página de contacto. */
+.prof-card {
+    position: relative;
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px 24px 24px;
+    cursor: pointer;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.dark .prof-card { background: #1e293b; border-color: #334155; }
+.prof-card:hover {
+    border-color: rgba(191, 161, 95, 0.65);
+    box-shadow: 0 8px 32px rgba(191, 161, 95, 0.18);
+    transform: translateY(-3px);
+}
+.dark .prof-card:hover { box-shadow: 0 8px 32px rgba(191, 161, 95, 0.22); }
+.prof-card.is-selected {
+    border-color: #BFA15F;
+    box-shadow: 0 8px 32px rgba(191, 161, 95, 0.25);
+    background: linear-gradient(135deg, #faf6ec 0%, #fff 100%);
+}
+.dark .prof-card.is-selected {
+    border-color: #BFA15F;
+    background: linear-gradient(135deg, rgba(191, 161, 95, 0.12) 0%, #1e293b 100%);
+}
+.prof-card__check {
+    position: absolute; top: 14px; right: 14px;
+    width: 22px; height: 22px;
+    background: #BFA15F; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(191, 161, 95, 0.45);
+}
+.prof-card.is-selected .prof-card__check { display: flex; }
+.prof-card__num {
+    display: block;
+    font-size: 1.7rem; font-weight: 700; line-height: 1; color: #BFA15F;
+    margin-bottom: 12px; font-family: 'Playfair Display', serif;
+}
+.dark .prof-card__num { color: #cdb277; }
+.prof-card__title { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 6px; line-height: 1.3; }
+.dark .prof-card__title { color: #f1f5f9; }
+.prof-card__sub { font-size: 0.78rem; font-weight: 600; color: #9A7529; font-style: italic; line-height: 1.5; margin: 0 0 14px; }
+.dark .prof-card__sub { color: #cdb277; }
+.prof-card__hr { border: none; border-top: 1px solid #f1f5f9; margin: 0 0 14px; }
+.dark .prof-card__hr { border-top-color: #334155; }
+.prof-card__desc { font-size: 0.8rem; color: #64748b; line-height: 1.7; margin: 0 0 20px; flex: 1; }
+.dark .prof-card__desc { color: #94a3b8; }
+.prof-card__btn {
+    display: block; width: 100%;
+    background: transparent; border: 1.5px solid rgba(154, 117, 41, 0.45);
+    color: #9A7529; border-radius: 8px; padding: 10px;
+    font-size: 0.8rem; font-weight: 700; text-align: center;
+    text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s;
+    letter-spacing: .3px; box-sizing: border-box;
+}
+.prof-card__btn:hover { background: #BFA15F; color: #0f172a; border-color: #BFA15F; }
+.dark .prof-card__btn { background: rgba(191, 161, 95, 0.08); border-color: rgba(205, 178, 119, 0.4); color: #cdb277; }
+.dark .prof-card__btn:hover { background: #BFA15F; color: #0f172a; }
+
 /* ===== Página Análisis — placas de dimensión =====
    Placa navy con marco dorado: retícula de puntos, numeral fantasma
    en serif, esquinas a filete e icono SVG que se autodibuja en dorado.
@@ -777,72 +841,65 @@ html {
 }
 .ana-block.is-visible { opacity: 1; transform: translateY(0); }
 
-.ana-card {
+/* Recuadro de dimensión: tarjeta clara con esquinas doradas, numeral
+   fantasma en serif e icono dorado autodibujado. */
+.ana-tile {
     position: relative;
-    width: 100%;
-    max-width: 340px;
-    aspect-ratio: 1 / 1;
-    border-radius: 16px;
-    background: linear-gradient(155deg, #0f172a 0%, #1c2a44 100%);
-    border: 1px solid rgba(191, 161, 95, 0.28);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 2.25rem 2rem 2rem;
     overflow: hidden;
-    box-shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.5);
-    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.25);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    scroll-margin-top: 9rem; /* compensa navbar + sub-navbar sticky al navegar por anclas */
 }
-.ana-block:hover .ana-card {
+.dark .ana-tile { background: #1e293b; border-color: #334155; }
+.ana-tile:hover {
     transform: translateY(-4px);
-    border-color: rgba(191, 161, 95, 0.55);
-    box-shadow: 0 30px 60px -24px rgba(191, 161, 95, 0.3);
+    border-color: rgba(191, 161, 95, 0.6);
+    box-shadow: 0 22px 44px -20px rgba(191, 161, 95, 0.35);
 }
 
-.ana-card__grid {
+.ana-tile__ghost {
     position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(191, 161, 95, 0.16) 1px, transparent 1px);
-    background-size: 22px 22px;
-    -webkit-mask-image: radial-gradient(circle at center, #000 25%, transparent 72%);
-    mask-image: radial-gradient(circle at center, #000 25%, transparent 72%);
-}
-
-.ana-card__num {
-    position: absolute;
-    bottom: -26px;
-    right: 10px;
-    font-size: 8.5rem;
+    top: -14px;
+    right: 14px;
+    font-size: 6.5rem;
     font-weight: 700;
     line-height: 1;
-    color: rgba(191, 161, 95, 0.10);
+    color: rgba(191, 161, 95, 0.12);
     user-select: none;
+    pointer-events: none;
 }
+.dark .ana-tile__ghost { color: rgba(191, 161, 95, 0.15); }
 
-.ana-card__corner { position: absolute; width: 22px; height: 22px; }
-.ana-card__corner--tl { top: 14px; left: 14px; border-top: 1px solid rgba(191, 161, 95, 0.55); border-left: 1px solid rgba(191, 161, 95, 0.55); }
-.ana-card__corner--br { bottom: 14px; right: 14px; border-bottom: 1px solid rgba(191, 161, 95, 0.55); border-right: 1px solid rgba(191, 161, 95, 0.55); }
+.ana-tile__corner { position: absolute; width: 20px; height: 20px; }
+.ana-tile__corner--tl { top: 12px; left: 12px; border-top: 1px solid rgba(191, 161, 95, 0.5); border-left: 1px solid rgba(191, 161, 95, 0.5); }
+.ana-tile__corner--br { bottom: 12px; right: 12px; border-bottom: 1px solid rgba(191, 161, 95, 0.5); border-right: 1px solid rgba(191, 161, 95, 0.5); }
 
-.ana-card__icon {
-    position: relative;
-    z-index: 2;
-    width: 96px;
-    height: 96px;
+.ana-tile__icon {
+    width: 72px;
+    height: 72px;
     border-radius: 9999px;
     border: 1px solid rgba(191, 161, 95, 0.5);
-    background: rgba(191, 161, 95, 0.06);
+    background: rgba(191, 161, 95, 0.07);
     color: #BFA15F;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 12px rgba(191, 161, 95, 0.04);
-    transition: background 0.4s ease, box-shadow 0.4s ease;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 0 10px rgba(191, 161, 95, 0.04);
+    transition: background 0.35s ease, box-shadow 0.35s ease;
 }
-.ana-block:hover .ana-card__icon {
-    background: rgba(191, 161, 95, 0.12);
-    box-shadow: 0 0 0 16px rgba(191, 161, 95, 0.07);
+.ana-tile:hover .ana-tile__icon {
+    background: rgba(191, 161, 95, 0.13);
+    box-shadow: 0 0 0 14px rgba(191, 161, 95, 0.07);
 }
 
-.ana-icon { width: 42px; height: 42px; }
+.ana-icon { width: 32px; height: 32px; }
 .ana-icon path,
 .ana-icon circle,
 .ana-icon line,
@@ -881,8 +938,8 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
     .ana-block { opacity: 1 !important; transform: none !important; transition: none !important; }
-    .ana-card,
-    .ana-card__icon { transition: none !important; }
+    .ana-tile,
+    .ana-tile__icon { transition: none !important; }
     .ana-icon path,
     .ana-icon circle,
     .ana-icon line,

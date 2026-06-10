@@ -37,6 +37,58 @@
                     <a href="mailto:contacto@romvill.com" class="hover:text-primary transition-colors">contacto@romvill.com</a>
                 </div>
             </div>
+            <!-- ── Newsletter ─────────────────────────────────── -->
+            <div class="border-t border-slate-100 dark:border-slate-800 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                <div class="text-center md:text-left">
+                    <p class="text-xs font-bold tracking-[0.3em] uppercase text-secondary mb-1"><?php echo esc_html( romvill_t( 'news.title' ) ); ?></p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400"><?php echo esc_html( romvill_t( 'news.desc' ) ); ?></p>
+                </div>
+                <div class="w-full md:w-auto">
+                    <form id="rv-news-form" class="flex w-full md:w-[400px] gap-2" novalidate>
+                        <label for="rv-news-email" class="sr-only"><?php echo esc_html( romvill_t( 'news.ph' ) ); ?></label>
+                        <input type="email" id="rv-news-email" required placeholder="<?php echo esc_attr( romvill_t( 'news.ph' ) ); ?>"
+                               class="flex-1 min-w-0 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-secondary transition-colors">
+                        <button type="submit" class="shrink-0 bg-secondary hover:bg-[#a3884c] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                            <?php echo esc_html( romvill_t( 'news.btn' ) ); ?>
+                        </button>
+                    </form>
+                    <p id="rv-news-msg" class="hidden text-xs mt-2 text-center md:text-left" role="status"></p>
+                    <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-2 text-center md:text-left"><?php echo esc_html( romvill_t( 'news.gdpr' ) ); ?></p>
+                </div>
+            </div>
+            <script>
+            (function(){
+                var f = document.getElementById('rv-news-form');
+                if (!f) return;
+                var e = document.getElementById('rv-news-email');
+                var m = document.getElementById('rv-news-msg');
+                f.addEventListener('submit', function(ev){
+                    ev.preventDefault();
+                    var btn = f.querySelector('button');
+                    var d = new FormData();
+                    d.append('action', 'romvill_newsletter');
+                    d.append('nonce', '<?php echo esc_js( wp_create_nonce( 'romvill_newsletter_nonce' ) ); ?>');
+                    d.append('email', e.value.trim());
+                    btn.disabled = true;
+                    fetch('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', { method: 'POST', body: d })
+                    .then(function(r){ return r.json(); })
+                    .then(function(res){
+                        m.classList.remove('hidden');
+                        m.textContent = res.data.message;
+                        m.style.color = res.success ? '#16a34a' : '#dc2626';
+                        if (res.success) { f.reset(); }
+                        btn.disabled = false;
+                    })
+                    .catch(function(){
+                        m.classList.remove('hidden');
+                        m.textContent = '—';
+                        m.style.color = '#dc2626';
+                        btn.disabled = false;
+                    });
+                });
+            })();
+            </script>
+
             <div class="border-t border-slate-100 dark:border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <p class="text-xs text-slate-400">&copy; <?php echo esc_html( date( 'Y' ) ); ?> ROMVILL. <?php echo esc_html( romvill_t( 'footer.rights' ) ); ?></p>
                 <div class="flex gap-6">

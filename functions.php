@@ -1275,6 +1275,52 @@ add_action( 'init', function () {
     }
 }, 5 );
 
+// ─── Newsletter (footer) AJAX Handler ────────────────────────
+// Guarda los suscriptores en la opción 'romvill_newsletter_subscribers'
+// (array de {email, lang, date, ip}) y notifica al admin por email.
+add_action( 'wp_ajax_romvill_newsletter',        'romvill_handle_newsletter' );
+add_action( 'wp_ajax_nopriv_romvill_newsletter', 'romvill_handle_newsletter' );
+
+function romvill_handle_newsletter() {
+    check_ajax_referer( 'romvill_newsletter_nonce', 'nonce' );
+
+    $email = sanitize_email( $_POST['email'] ?? '' );
+    if ( ! $email || ! is_email( $email ) ) {
+        wp_send_json_error( array( 'message' => romvill_t( 'news.err' ) ) );
+    }
+
+    $subs = get_option( 'romvill_newsletter_subscribers', array() );
+    if ( ! is_array( $subs ) ) {
+        $subs = array();
+    }
+    foreach ( $subs as $s ) {
+        if ( isset( $s['email'] ) && strtolower( $s['email'] ) === strtolower( $email ) ) {
+            wp_send_json_error( array( 'message' => romvill_t( 'news.dup' ) ) );
+        }
+    }
+
+    $subs[] = array(
+        'email' => $email,
+        'lang'  => romvill_current_lang(),
+        'date'  => current_time( 'Y-m-d H:i:s' ),
+        'ip'    => isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '',
+    );
+    update_option( 'romvill_newsletter_subscribers', $subs, false );
+
+    wp_mail(
+        get_option( 'admin_email' ),
+        'ROMVILL — Nueva suscripción al boletín',
+        "Nuevo suscriptor del boletín de novedades:\n\n"
+        . "Email:  {$email}\n"
+        . 'Idioma: ' . strtoupper( romvill_current_lang() ) . "\n"
+        . 'Fecha:  ' . current_time( 'Y-m-d H:i:s' ) . "\n"
+        . 'Total suscriptores: ' . count( $subs ) . "\n",
+        array( 'Content-Type: text/plain; charset=UTF-8' )
+    );
+
+    wp_send_json_success( array( 'message' => romvill_t( 'news.ok' ) ) );
+}
+
 // ─── Theme Deploy REST Endpoint ───────────────────────────────
 // POST /wp-json/romvill/v1/deploy  (requires manage_options cap + Application Password)
 // Accepts a multipart ZIP upload and extracts it into the romvill-theme folder.

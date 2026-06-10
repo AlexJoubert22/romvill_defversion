@@ -10,13 +10,11 @@ romvill_seo( array(
     'title' => 'ROMVILL — ' . romvill_t( 'contact.title' ),
 ) );
 
-$bloque_urls = array();
-for ( $i = 1; $i <= 4; $i++ ) {
-    $bloque_page  = get_page_by_path( 'presupuesto-bloque-' . $i );
-    $bloque_urls[ $i ] = $bloque_page
-        ? add_query_arg( 'lang', $_lang, get_permalink( $bloque_page ) )
-        : add_query_arg( 'lang', $_lang, home_url( '/presupuesto-bloque-' . $i . '/' ) );
-}
+// Las tarjetas de perfil viven ahora en /precios/ — el CTA del hero y la
+// recomendación bajo el formulario apuntan allí.
+$precios_page    = get_page_by_path( 'precios' );
+$precios_url     = $precios_page ? get_permalink( $precios_page ) : home_url( '/precios/' );
+$perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
 ?>
 
 <style>
@@ -156,79 +154,8 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .rf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(19,91,236,.45); }
 .rf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-/* ── Profile cards ────────────────────────────────── */
-.prof-card {
-    position: relative;
-    background: #fff;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 28px 24px 24px;
-    cursor: pointer;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
-    display: flex;
-    flex-direction: column;
-}
-.dark .prof-card {
-    background: #1e293b;
-    border-color: #334155;
-}
-.prof-card:hover {
-    border-color: rgba(191,161,95,.65);
-    box-shadow: 0 8px 32px rgba(191,161,95,.18);
-    transform: translateY(-3px);
-}
-.dark .prof-card:hover { box-shadow: 0 8px 32px rgba(191,161,95,.22); }
-.prof-card.is-selected {
-    border-color: #BFA15F;
-    box-shadow: 0 8px 32px rgba(191,161,95,.25);
-    background: linear-gradient(135deg, #faf6ec 0%, #fff 100%);
-}
-.dark .prof-card.is-selected {
-    border-color: #BFA15F;
-    background: linear-gradient(135deg, rgba(191,161,95,.12) 0%, #1e293b 100%);
-}
-.prof-card__check {
-    position: absolute; top: 14px; right: 14px;
-    width: 22px; height: 22px;
-    background: #BFA15F; border-radius: 50%;
-    display: none; align-items: center; justify-content: center;
-    box-shadow: 0 2px 8px rgba(191,161,95,.45);
-}
-.prof-card.is-selected .prof-card__check { display: flex; }
-.prof-card__num {
-    display: block;
-    font-size: 1.7rem; font-weight: 700; line-height: 1; color: #BFA15F;
-    margin-bottom: 12px; font-family: 'Playfair Display', serif;
-}
-.dark .prof-card__num { color: #cdb277; }
-.prof-card__title {
-    font-size: 1rem; font-weight: 700; color: #0f172a;
-    margin: 0 0 6px; line-height: 1.3;
-}
-.dark .prof-card__title { color: #f1f5f9; }
-.prof-card__sub {
-    font-size: 0.78rem; font-weight: 600; color: #9A7529;
-    font-style: italic; line-height: 1.5; margin: 0 0 14px;
-}
-.dark .prof-card__sub { color: #cdb277; }
-.prof-card__hr { border: none; border-top: 1px solid #f1f5f9; margin: 0 0 14px; }
-.dark .prof-card__hr { border-top-color: #334155; }
-.prof-card__desc {
-    font-size: 0.8rem; color: #64748b; line-height: 1.7;
-    margin: 0 0 20px; flex: 1;
-}
-.dark .prof-card__desc { color: #94a3b8; }
-.prof-card__btn {
-    display: block; width: 100%;
-    background: transparent; border: 1.5px solid rgba(154,117,41,.45);
-    color: #9A7529; border-radius: 8px; padding: 10px;
-    font-size: 0.8rem; font-weight: 700; text-align: center;
-    text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s;
-    letter-spacing: .3px; box-sizing: border-box;
-}
-.prof-card__btn:hover { background: #BFA15F; color: #0f172a; border-color: #BFA15F; }
-.dark .prof-card__btn { background: rgba(191,161,95,.08); border-color: rgba(205,178,119,.4); color: #cdb277; }
-.dark .prof-card__btn:hover { background: #BFA15F; color: #0f172a; }
+/* Las tarjetas de perfil (.prof-card) viven ahora en style.css global
+   y se renderizan en la página Precios. */
 
 /* ── Why reasons enhanced ──────────────────────────── */
 .why-reason {
@@ -268,10 +195,6 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .rf-submit .rf-arrow{transition:transform .3s ease;}
 .rf-submit:hover .rf-arrow{transform:translateX(4px);}
 .rf-submit:focus-visible{outline:3px solid var(--rv-ring);outline-offset:2px;}
-/* Tarjetas de perfil tokenizadas */
-.prof-card{background:var(--rv-surface);border:1.5px solid var(--rv-border);}
-.prof-card:hover{border-color:rgba(191,161,95,.65);box-shadow:0 10px 34px -14px rgba(191,161,95,.35);}
-.prof-card__title{color:var(--rv-text);} .prof-card__desc{color:var(--rv-text-faint);}
 /* Tira horizontal de pilares */
 .rv-vbar{border:1px solid var(--rv-border);background:var(--rv-surface);border-radius:16px;overflow:hidden;}
 .rv-vcell{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;}
@@ -293,6 +216,13 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
    "Por qué Romvill" pasa a placa navy con detalles dorados.
    ============================================================ */
 .why-panel{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(191,161,95,.28);}
+/* Hero: placa navy con los 3 pasos en línea de tiempo vertical */
+.hero-steps-plate{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(191,161,95,.28);box-shadow:0 24px 48px -24px rgba(15,23,42,.5);}
+.hstep{padding-bottom:1.75rem;}
+.hstep:last-child{padding-bottom:0;}
+.hstep-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(191,161,95,.6);color:#BFA15F;background:rgba(191,161,95,.08);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;}
+.hstep::before{content:'';position:absolute;left:17.5px;top:40px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(191,161,95,.5),rgba(191,161,95,.06));}
+.hstep:last-child::before{display:none;}
 .rgpd-consent a{color:var(--rv-gold);}
 html:not(.dark) .rgpd-consent a{color:#9A7529;}
 /* El plugin @tailwindcss/forms pinta el checkbox con currentColor → forzamos oro */
@@ -307,50 +237,56 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
     <div class="w-full max-w-6xl">
 
-        <!-- ── Hero: Solicite su presupuesto ── -->
-        <div class="rf-anim text-center mb-12" style="animation-delay:.05s">
-            <div class="flex items-center justify-center gap-4 mb-5">
-                <span class="hiw-badge-line" aria-hidden="true"></span>
-                <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary">
-                    <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
-                </p>
-                <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
-            </div>
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-slate-900 dark:text-white tracking-tight mb-3">
-                <?php echo esc_html( romvill_t( 'contact.hero.h1a' ) ); ?><br>
-                <em class="text-secondary italic"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
-            </h1>
-            <p class="font-serif text-sm italic text-slate-400 dark:text-slate-500 mb-4">
-                <?php echo esc_html( romvill_t( 'contact.hero.slogan' ) ); ?>
-            </p>
-            <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto leading-relaxed mb-8">
-                <?php echo esc_html( romvill_t( 'contact.hero.desc' ) ); ?>
-            </p>
-
-            <!-- Proceso en 3 pasos -->
-            <div class="flex flex-col sm:flex-row items-stretch justify-center gap-6 sm:gap-0 max-w-lg mx-auto mb-8">
-                <?php
-                $steps = array(
-                    array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
-                    array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
-                    array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
-                );
-                foreach ( $steps as $i => $step ) :
-                ?>
-                <div class="flex-1 text-center<?php echo $i < 2 ? ' sm:border-r sm:border-slate-100 sm:dark:border-slate-800' : ''; ?> px-4">
-                    <div class="w-9 h-9 rounded-full border border-secondary/50 flex items-center justify-center text-secondary text-xs font-serif font-bold mx-auto mb-2"><?php echo esc_html( $step['n'] ); ?></div>
-                    <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
-                    <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( $step['d'] ); ?></p>
+        <!-- ── Hero: texto a la izquierda + placa navy con los 3 pasos ── -->
+        <div class="rf-anim grid lg:grid-cols-5 gap-10 lg:gap-14 items-center mb-14" style="animation-delay:.05s">
+            <div class="lg:col-span-3 text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-4 mb-5">
+                    <span class="hiw-badge-line" aria-hidden="true"></span>
+                    <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary">
+                        <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
+                    </p>
+                    <span class="hiw-badge-line hiw-badge-line--r hidden lg:block" aria-hidden="true"></span>
                 </div>
-                <?php endforeach; ?>
+                <h1 class="text-4xl md:text-5xl font-serif font-semibold text-slate-900 dark:text-white tracking-tight leading-[1.12] mb-4">
+                    <?php echo esc_html( romvill_t( 'contact.hero.h1a' ) ); ?><br>
+                    <em class="text-secondary italic"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
+                </h1>
+                <p class="font-serif text-base italic text-slate-400 dark:text-slate-500 mb-5">
+                    <?php echo esc_html( romvill_t( 'contact.hero.slogan' ) ); ?>
+                </p>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto lg:mx-0 leading-relaxed mb-8">
+                    <?php echo esc_html( romvill_t( 'contact.hero.desc' ) ); ?>
+                </p>
+                <a href="<?php echo esc_url( $perfiles_anchor ); ?>" class="rv-cta-outline inline-block px-8 py-3 text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5">
+                    <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
+                </a>
+                <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">
+                    <?php echo esc_html( romvill_t( 'contact.hero.ctasub' ) ); ?>
+                </p>
             </div>
 
-            <a href="#perfiles" class="rv-cta-outline inline-block px-8 py-3 text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5">
-                <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
-            </a>
-            <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">
-                <?php echo esc_html( romvill_t( 'contact.hero.ctasub' ) ); ?>
-            </p>
+            <!-- Placa navy: proceso en 3 pasos como línea de tiempo vertical -->
+            <div class="lg:col-span-2 hero-steps-plate rounded-2xl p-7 md:p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" aria-hidden="true"></div>
+                <div class="relative">
+                    <?php
+                    $steps = array(
+                        array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
+                        array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
+                        array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
+                    );
+                    foreach ( $steps as $step ) :
+                    ?>
+                    <div class="hstep relative flex gap-4 items-start">
+                        <div class="hstep-num" aria-hidden="true"><?php echo esc_html( $step['n'] ); ?></div>
+                        <div class="pt-1.5">
+                            <p class="text-sm font-bold text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
+                            <p class="text-xs text-slate-300 leading-relaxed"><?php echo esc_html( $step['d'] ); ?></p>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
 
         <!-- ── Cobertura (línea limpia con icono de ubicación) ── -->
@@ -379,51 +315,6 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                 <span><p class="rv-vt"><?php echo esc_html( romvill_t( 'contact.val3.t' ) ); ?></p><p class="rv-vd"><?php echo esc_html( romvill_t( 'contact.val3.d' ) ); ?></p></span>
             </div>
         </div>
-
-        <!-- ── Profile selector ──────────────────────── -->
-        <div id="perfiles" class="rf-anim mb-10" style="animation-delay:.2s">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
-                <div>
-                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#9A7529] dark:text-[#cdb277] border border-secondary/40 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
-                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2 ml-1" style="background:var(--rv-gold);color:var(--rv-on-gold)"><?php echo esc_html( romvill_t( 'presup.sel.recommended' ) ); ?></span>
-                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
-                        <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>
-                    </h2>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <?php
-                $bloques = array(
-                    array( 'num'=>'01', 'title'=>romvill_t('presup.b1.title'), 'sub'=>romvill_t('presup.b1.sub'), 'desc'=>romvill_t('presup.b1.desc'), 'url'=>$bloque_urls[1] ),
-                    array( 'num'=>'02', 'title'=>romvill_t('presup.b2.title'), 'sub'=>romvill_t('presup.b2.sub'), 'desc'=>romvill_t('presup.b2.desc'), 'url'=>$bloque_urls[2] ),
-                    array( 'num'=>'03', 'title'=>romvill_t('presup.b3.title'), 'sub'=>romvill_t('presup.b3.sub'), 'desc'=>romvill_t('presup.b3.desc'), 'url'=>$bloque_urls[3] ),
-                    array( 'num'=>'04', 'title'=>romvill_t('presup.b4.title'), 'sub'=>romvill_t('presup.b4.sub'), 'desc'=>romvill_t('presup.b4.desc'), 'url'=>$bloque_urls[4] ),
-                );
-                foreach ( $bloques as $b ) :
-                ?>
-                <div class="prof-card" onclick="rvPickProfile(this,event)">
-                    <div class="prof-card__check" aria-hidden="true">
-                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <span class="prof-card__num"><?php echo esc_html( $b['num'] ); ?></span>
-                    <h3 class="prof-card__title"><?php echo esc_html( $b['title'] ); ?></h3>
-                    <p class="prof-card__sub"><?php echo esc_html( $b['sub'] ); ?></p>
-                    <hr class="prof-card__hr">
-                    <p class="prof-card__desc"><?php echo esc_html( $b['desc'] ); ?></p>
-                    <a href="<?php echo esc_url( $b['url'] ); ?>" class="prof-card__btn">
-                        <?php echo esc_html( romvill_t( 'presup.b.btn' ) ); ?> →
-                    </a>
-                </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <script>
-        function rvPickProfile(card, e) {
-            if (e.target.closest('.prof-card__btn')) return;
-            document.querySelectorAll('.prof-card').forEach(function(c){ c.classList.remove('is-selected'); });
-            card.classList.add('is-selected');
-        }
-        </script>
 
         <!-- ── Divider ──────────────────────────────── -->
         <div id="contacto" class="rf-anim flex items-center gap-4 mb-10" style="animation-delay:.28s; scroll-margin-top: 6rem;">
@@ -536,7 +427,7 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                     <div class="mt-6 p-4 bg-secondary/5 border border-secondary/10 rounded-xl text-center">
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                             <?php echo esc_html( romvill_t( 'contact.form.recommend' ) ); ?>
-                            <a href="#perfiles" class="text-secondary font-semibold hover:underline"><?php echo esc_html( romvill_t( 'contact.form.recommend.link' ) ); ?></a>
+                            <a href="<?php echo esc_url( $perfiles_anchor ); ?>" class="text-secondary font-semibold hover:underline"><?php echo esc_html( romvill_t( 'contact.form.recommend.link' ) ); ?></a>
                         </p>
                     </div>
 

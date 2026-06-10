@@ -54,8 +54,8 @@ $perfil_pages = array(
         </div>
     </div>
 
-    <!-- Dimensions -->
-    <section class="max-w-7xl mx-auto px-6 lg:px-8 py-20 divide-y divide-slate-100 dark:divide-slate-800">
+    <!-- Dimensions: retícula de recuadros 2×2 -->
+    <section class="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-20">
         <?php
         $dims = array(
             array(
@@ -103,49 +103,46 @@ $perfil_pages = array(
                 'textorder' => '',
             ),
         );
+        ?>
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <?php
         foreach ( $dims as $d ) :
             $p = get_page_by_path( $d['link'] );
             $u = $p ? add_query_arg( 'lang', $_lang, get_permalink( $p ) ) : home_url( '/' . $d['link'] . '/' );
         ?>
-        <div class="ana-block py-20 flex flex-col md:flex-row items-center gap-12 group" id="<?php echo esc_attr( $d['id'] ); ?>">
-            <div class="w-full md:w-1/2 flex justify-center <?php echo esc_attr( $d['order'] ); ?>">
-                <div class="ana-card">
-                    <div class="ana-card__grid" aria-hidden="true"></div>
-                    <span class="ana-card__num font-serif" aria-hidden="true"><?php echo esc_html( $d['num'] ); ?></span>
-                    <span class="ana-card__corner ana-card__corner--tl" aria-hidden="true"></span>
-                    <span class="ana-card__corner ana-card__corner--br" aria-hidden="true"></span>
-                    <div class="ana-card__icon">
-                        <?php if ( 'seguridad' === $d['id'] ) : ?>
-                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path pathLength="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            <polyline pathLength="1" points="9 11.5 11 13.5 15 9.5"/>
-                        </svg>
-                        <?php elseif ( 'demografia' === $d['id'] ) : ?>
-                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path pathLength="1" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle pathLength="1" cx="9" cy="7" r="4"/>
-                            <path pathLength="1" d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path pathLength="1" d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                        <?php elseif ( 'sanidad' === $d['id'] ) : ?>
-                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect pathLength="1" x="3" y="3" width="18" height="18" rx="3"/>
-                            <line pathLength="1" x1="12" y1="8" x2="12" y2="16"/>
-                            <line pathLength="1" x1="8" y1="12" x2="16" y2="12"/>
-                        </svg>
-                        <?php else : ?>
-                        <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <polygon pathLength="1" points="3 11 22 2 13 21 11 13 3 11"/>
-                        </svg>
-                        <?php endif; ?>
-                    </div>
+            <div class="ana-block ana-tile" id="<?php echo esc_attr( $d['id'] ); ?>">
+                <span class="ana-tile__ghost font-serif" aria-hidden="true"><?php echo esc_html( $d['num'] ); ?></span>
+                <span class="ana-tile__corner ana-tile__corner--tl" aria-hidden="true"></span>
+                <span class="ana-tile__corner ana-tile__corner--br" aria-hidden="true"></span>
+                <div class="ana-tile__icon">
+                    <?php if ( 'seguridad' === $d['id'] ) : ?>
+                    <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path pathLength="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <polyline pathLength="1" points="9 11.5 11 13.5 15 9.5"/>
+                    </svg>
+                    <?php elseif ( 'demografia' === $d['id'] ) : ?>
+                    <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path pathLength="1" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle pathLength="1" cx="9" cy="7" r="4"/>
+                        <path pathLength="1" d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path pathLength="1" d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <?php elseif ( 'sanidad' === $d['id'] ) : ?>
+                    <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect pathLength="1" x="3" y="3" width="18" height="18" rx="3"/>
+                        <line pathLength="1" x1="12" y1="8" x2="12" y2="16"/>
+                        <line pathLength="1" x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                    <?php else : ?>
+                    <svg class="ana-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polygon pathLength="1" points="3 11 22 2 13 21 11 13 3 11"/>
+                    </svg>
+                    <?php endif; ?>
                 </div>
-            </div>
-            <div class="w-full md:w-1/2 <?php echo esc_attr( $d['textorder'] ); ?>">
-                <span class="text-secondary font-bold tracking-[0.25em] text-xs uppercase mb-3 block"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> <?php echo esc_html( $d['num'] ); ?></span>
-                <h2 class="text-4xl font-serif font-bold text-slate-900 dark:text-white mb-6"><?php echo esc_html( $d['title'] ); ?></h2>
-                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6"><?php echo esc_html( $d['desc'] ); ?></p>
-                <ul class="space-y-3">
+                <span class="text-secondary font-bold tracking-[0.25em] text-xs uppercase mb-2 block"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> <?php echo esc_html( $d['num'] ); ?></span>
+                <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-900 dark:text-white mb-4"><?php echo esc_html( $d['title'] ); ?></h2>
+                <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6"><?php echo esc_html( $d['desc'] ); ?></p>
+                <ul class="space-y-3 mb-8">
                     <?php foreach ( $d['items'] as $item ) : ?>
                     <li class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                         <span class="ana-check" aria-hidden="true">
@@ -155,12 +152,14 @@ $perfil_pages = array(
                     </li>
                     <?php endforeach; ?>
                 </ul>
-                <a href="<?php echo esc_url( $u ); ?>" class="hiw-cta mt-8 inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#9A7529] transition-colors">
-                    <?php echo esc_html( $d['linktext'] ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
-                </a>
+                <div class="mt-auto pt-5 border-t border-slate-100 dark:border-slate-700">
+                    <a href="<?php echo esc_url( $u ); ?>" class="hiw-cta inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#9A7529] transition-colors">
+                        <?php echo esc_html( $d['linktext'] ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
             </div>
-        </div>
         <?php endforeach; ?>
+        </div>
     </section>
 
     <!-- CTA -->

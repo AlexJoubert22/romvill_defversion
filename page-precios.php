@@ -18,6 +18,15 @@ $p1 = defined( 'ROMVILL_PRECIO_ESENCIAL' ) ? ROMVILL_PRECIO_ESENCIAL : 149;
 $p2 = defined( 'ROMVILL_PRECIO_COMPLETO' ) ? ROMVILL_PRECIO_COMPLETO : 349;
 $p3 = defined( 'ROMVILL_PRECIO_PREMIUM' )  ? ROMVILL_PRECIO_PREMIUM  : 890;
 
+// URLs de los 4 cuestionarios para el selector de perfil (traído de Contacto).
+$bloque_urls = array();
+for ( $i = 1; $i <= 4; $i++ ) {
+    $bloque_page       = get_page_by_path( 'presupuesto-bloque-' . $i );
+    $bloque_urls[ $i ] = $bloque_page
+        ? add_query_arg( 'lang', $_lang, get_permalink( $bloque_page ) )
+        : add_query_arg( 'lang', $_lang, home_url( '/presupuesto-bloque-' . $i . '/' ) );
+}
+
 $packs = array(
     array( 'key' => 'expres',   'price' => $p1, 'featured' => false ),
     array( 'key' => 'analisis', 'price' => $p2, 'featured' => true ),
@@ -68,6 +77,51 @@ $packs = array(
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <!-- Selector de perfil: ¿cuál describe mejor su situación? (traído de Contacto) -->
+        <div id="perfiles" class="mt-20" style="scroll-margin-top: 7rem;">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
+                <div>
+                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#9A7529] dark:text-[#cdb277] border border-secondary/40 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
+                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2 ml-1 bg-secondary text-slate-900"><?php echo esc_html( romvill_t( 'presup.sel.recommended' ) ); ?></span>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
+                        <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>
+                    </h2>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <?php
+                $bloques = array(
+                    array( 'num'=>'01', 'title'=>romvill_t('presup.b1.title'), 'sub'=>romvill_t('presup.b1.sub'), 'desc'=>romvill_t('presup.b1.desc'), 'url'=>$bloque_urls[1] ),
+                    array( 'num'=>'02', 'title'=>romvill_t('presup.b2.title'), 'sub'=>romvill_t('presup.b2.sub'), 'desc'=>romvill_t('presup.b2.desc'), 'url'=>$bloque_urls[2] ),
+                    array( 'num'=>'03', 'title'=>romvill_t('presup.b3.title'), 'sub'=>romvill_t('presup.b3.sub'), 'desc'=>romvill_t('presup.b3.desc'), 'url'=>$bloque_urls[3] ),
+                    array( 'num'=>'04', 'title'=>romvill_t('presup.b4.title'), 'sub'=>romvill_t('presup.b4.sub'), 'desc'=>romvill_t('presup.b4.desc'), 'url'=>$bloque_urls[4] ),
+                );
+                foreach ( $bloques as $b ) :
+                ?>
+                <div class="prof-card" onclick="rvPickProfile(this,event)">
+                    <div class="prof-card__check" aria-hidden="true">
+                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span class="prof-card__num"><?php echo esc_html( $b['num'] ); ?></span>
+                    <h3 class="prof-card__title"><?php echo esc_html( $b['title'] ); ?></h3>
+                    <p class="prof-card__sub"><?php echo esc_html( $b['sub'] ); ?></p>
+                    <hr class="prof-card__hr">
+                    <p class="prof-card__desc"><?php echo esc_html( $b['desc'] ); ?></p>
+                    <a href="<?php echo esc_url( $b['url'] ); ?>" class="prof-card__btn">
+                        <?php echo esc_html( romvill_t( 'presup.b.btn' ) ); ?> →
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <script>
+        function rvPickProfile(card, e) {
+            if (e.target.closest('.prof-card__btn')) return;
+            document.querySelectorAll('.prof-card').forEach(function(c){ c.classList.remove('is-selected'); });
+            card.classList.add('is-selected');
+        }
+        </script>
 
         <!-- No pagas dos veces: descuento al subir de nivel -->
         <div class="mt-12 bg-secondary/10 border border-secondary/30 rounded-xl p-6 text-center max-w-3xl mx-auto">
