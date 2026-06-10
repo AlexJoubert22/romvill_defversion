@@ -216,8 +216,17 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
    "Por qué Romvill" pasa a placa navy con detalles dorados.
    ============================================================ */
 .why-panel{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(191,161,95,.28);}
+/* Hero oscuro a sangre completa (estilo Tesla): banda navy con retícula
+   de puntos, orbe dorado y placa de pasos en cristal esmerilado. */
+.rv-dark-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(165deg,#0b1120 0%,#16213a 100%);position:relative;overflow:hidden;}
+.rv-dark-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(191,161,95,.13) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);pointer-events:none;}
+.rv-dark-hero::after{content:'';position:absolute;top:-22%;right:-12%;width:520px;height:520px;background:radial-gradient(circle,rgba(191,161,95,.15),transparent 65%);pointer-events:none;}
+.rv-dark-hero .rv-cta-outline{color:#BFA15F;border-color:rgba(191,161,95,.75);}
+.rv-dark-hero .rv-cta-outline:hover{background:#BFA15F;color:#0f172a;border-color:#BFA15F;}
+
 /* Hero: placa navy con los 3 pasos en línea de tiempo vertical */
 .hero-steps-plate{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(191,161,95,.28);box-shadow:0 24px 48px -24px rgba(15,23,42,.5);}
+.hero-steps-plate--glass{background:rgba(255,255,255,.045);border-color:rgba(191,161,95,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -20px rgba(0,0,0,.5);}
 .hstep{padding-bottom:1.75rem;}
 .hstep:last-child{padding-bottom:0;}
 .hstep-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(191,161,95,.6);color:#BFA15F;background:rgba(191,161,95,.08);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;}
@@ -237,57 +246,59 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
     <div class="w-full max-w-6xl">
 
-        <!-- ── Hero: texto a la izquierda + placa navy con los 3 pasos ── -->
-        <div class="rf-anim grid lg:grid-cols-5 gap-10 lg:gap-14 items-center mb-14" style="animation-delay:.05s">
-            <div class="lg:col-span-3 text-center lg:text-left">
-                <div class="flex items-center justify-center lg:justify-start gap-4 mb-5">
-                    <span class="hiw-badge-line" aria-hidden="true"></span>
-                    <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary">
-                        <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
-                    </p>
-                    <span class="hiw-badge-line hiw-badge-line--r hidden lg:block" aria-hidden="true"></span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-serif font-semibold text-slate-900 dark:text-white tracking-tight leading-[1.12] mb-4">
-                    <?php echo esc_html( romvill_t( 'contact.hero.h1a' ) ); ?><br>
-                    <em class="text-secondary italic"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
-                </h1>
-                <p class="font-serif text-base italic text-slate-400 dark:text-slate-500 mb-5">
-                    <?php echo esc_html( romvill_t( 'contact.hero.slogan' ) ); ?>
-                </p>
-                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto lg:mx-0 leading-relaxed mb-8">
-                    <?php echo esc_html( romvill_t( 'contact.hero.desc' ) ); ?>
-                </p>
-                <a href="<?php echo esc_url( $perfiles_anchor ); ?>" class="rv-cta-outline inline-block px-8 py-3 text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5">
-                    <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
-                </a>
-                <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">
-                    <?php echo esc_html( romvill_t( 'contact.hero.ctasub' ) ); ?>
-                </p>
-            </div>
-
-            <!-- Placa navy: proceso en 3 pasos como línea de tiempo vertical -->
-            <div class="lg:col-span-2 hero-steps-plate rounded-2xl p-7 md:p-8 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" aria-hidden="true"></div>
-                <div class="relative">
-                    <?php
-                    $steps = array(
-                        array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
-                        array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
-                        array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
-                    );
-                    foreach ( $steps as $step ) :
-                    ?>
-                    <div class="hstep relative flex gap-4 items-start">
-                        <div class="hstep-num" aria-hidden="true"><?php echo esc_html( $step['n'] ); ?></div>
-                        <div class="pt-1.5">
-                            <p class="text-sm font-bold text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
-                            <p class="text-xs text-slate-300 leading-relaxed"><?php echo esc_html( $step['d'] ); ?></p>
-                        </div>
+        <!-- ── Hero oscuro a sangre completa: texto + placa de cristal con los 3 pasos ── -->
+        <section class="rv-dark-hero -mt-12 md:-mt-16 lg:-mt-20 mb-12">
+            <div class="rf-anim max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 grid lg:grid-cols-5 gap-10 lg:gap-14 items-center relative z-10" style="animation-delay:.05s">
+                <div class="lg:col-span-3 text-center lg:text-left">
+                    <div class="flex items-center justify-center lg:justify-start gap-4 mb-6">
+                        <span class="hiw-badge-line" aria-hidden="true"></span>
+                        <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary">
+                            <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
+                        </p>
+                        <span class="hiw-badge-line hiw-badge-line--r hidden lg:block" aria-hidden="true"></span>
                     </div>
-                    <?php endforeach; ?>
+                    <h1 class="text-4xl md:text-6xl font-serif font-semibold text-white tracking-tight leading-[1.1] mb-5">
+                        <?php echo esc_html( romvill_t( 'contact.hero.h1a' ) ); ?><br>
+                        <em class="text-secondary italic"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
+                    </h1>
+                    <p class="font-serif text-lg italic text-slate-400 mb-6">
+                        <?php echo esc_html( romvill_t( 'contact.hero.slogan' ) ); ?>
+                    </p>
+                    <p class="text-slate-300 text-sm md:text-base max-w-md mx-auto lg:mx-0 leading-relaxed mb-9">
+                        <?php echo esc_html( romvill_t( 'contact.hero.desc' ) ); ?>
+                    </p>
+                    <a href="<?php echo esc_url( $perfiles_anchor ); ?>" class="rv-cta-outline inline-block px-9 py-3.5 text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5 rounded">
+                        <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
+                    </a>
+                    <p class="text-xs text-slate-500 mt-4">
+                        <?php echo esc_html( romvill_t( 'contact.hero.ctasub' ) ); ?>
+                    </p>
+                </div>
+
+                <!-- Placa de cristal: proceso en 3 pasos como línea de tiempo vertical -->
+                <div class="lg:col-span-2 hero-steps-plate hero-steps-plate--glass rounded-2xl p-7 md:p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" aria-hidden="true"></div>
+                    <div class="relative">
+                        <?php
+                        $steps = array(
+                            array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
+                            array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
+                            array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
+                        );
+                        foreach ( $steps as $step ) :
+                        ?>
+                        <div class="hstep relative flex gap-4 items-start">
+                            <div class="hstep-num" aria-hidden="true"><?php echo esc_html( $step['n'] ); ?></div>
+                            <div class="pt-1.5">
+                                <p class="text-sm font-bold text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
+                                <p class="text-xs text-slate-300 leading-relaxed"><?php echo esc_html( $step['d'] ); ?></p>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- ── Cobertura (línea limpia con icono de ubicación) ── -->
         <div class="rf-anim flex items-center justify-center flex-wrap gap-2 mb-8" style="animation-delay:.1s">

@@ -1,4 +1,4 @@
-﻿    <footer class="bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 py-12" role="contentinfo">
+﻿    <footer class="rv-footer py-12" role="contentinfo">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <?php $_lang = romvill_current_lang(); ?>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
@@ -6,21 +6,18 @@
                 <div class="flex flex-col items-center md:items-start gap-4">
                     <a href="<?php echo esc_url( romvill_link( home_url( '/' ) ) ); ?>" class="flex items-center gap-3">
                         <?php
-                        // Monograma transparente (mismo patrón que el header) — el JPG anterior
-                        // mostraba un recuadro de fondo en modo oscuro al no tener transparencia.
+                        // Footer navy en ambos modos → siempre el monograma blanco.
                         $rv_f_imgdir = get_template_directory() . '/assets/images/';
-                        $rv_f_dark   = @filemtime( $rv_f_imgdir . 'rv-logo-dark.png' );
                         $rv_f_white  = @filemtime( $rv_f_imgdir . 'rv-logo-white.png' );
                         ?>
-                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-dark.png' ) . '?v=' . $rv_f_dark ); ?>" alt="RV" class="h-8 w-auto object-contain block dark:hidden">
-                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) . '?v=' . $rv_f_white ); ?>" alt="RV" class="h-8 w-auto object-contain hidden dark:block">
-                        <span class="text-lg font-serif font-bold tracking-[0.2em] text-slate-900 dark:text-white">ROMVILL</span>
+                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) . '?v=' . $rv_f_white ); ?>" alt="RV" class="h-8 w-auto object-contain">
+                        <span class="text-lg font-serif font-bold tracking-[0.2em] text-white">ROMVILL</span>
                     </a>
                     <span class="hiw-badge-line" aria-hidden="true"></span>
-                    <a href="mailto:contacto@romvill.com" class="text-sm text-slate-500 dark:text-slate-400 hover:text-secondary transition-colors">contacto@romvill.com</a>
+                    <a href="mailto:contacto@romvill.com" class="text-sm text-slate-400 hover:text-secondary transition-colors">contacto@romvill.com</a>
                 </div>
                 <!-- Col 2: navegación -->
-                <nav class="flex flex-col items-center md:items-start gap-3 text-sm text-slate-500 dark:text-slate-400" aria-label="<?php echo esc_attr( romvill_t( 'footer.aria' ) ); ?>">
+                <nav class="flex flex-col items-center md:items-start gap-3 text-sm text-slate-400" aria-label="<?php echo esc_attr( romvill_t( 'footer.aria' ) ); ?>">
                     <?php
                     $footer_links = array(
                         'metodologia' => romvill_t( 'nav.metodologia' ),
@@ -42,17 +39,17 @@
                 <!-- Col 3: newsletter -->
                 <div class="w-full text-center md:text-left">
                     <p class="text-xs font-bold tracking-[0.3em] uppercase text-secondary mb-1"><?php echo esc_html( romvill_t( 'news.title' ) ); ?></p>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4"><?php echo esc_html( romvill_t( 'news.desc' ) ); ?></p>
+                    <p class="text-sm text-slate-400 mb-4"><?php echo esc_html( romvill_t( 'news.desc' ) ); ?></p>
                     <form id="rv-news-form" class="flex w-full gap-2" novalidate>
                         <label for="rv-news-email" class="sr-only"><?php echo esc_html( romvill_t( 'news.ph' ) ); ?></label>
                         <input type="email" id="rv-news-email" required placeholder="<?php echo esc_attr( romvill_t( 'news.ph' ) ); ?>"
-                               class="flex-1 min-w-0 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-secondary transition-colors">
+                               class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors">
                         <button type="submit" class="shrink-0 bg-secondary hover:bg-[#a3884c] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                             <?php echo esc_html( romvill_t( 'news.btn' ) ); ?>
                         </button>
                     </form>
                     <p id="rv-news-msg" class="hidden text-xs mt-2" role="status"></p>
-                    <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-2"><?php echo esc_html( romvill_t( 'news.gdpr' ) ); ?></p>
+                    <p class="text-[11px] text-slate-500 mt-2"><?php echo esc_html( romvill_t( 'news.gdpr' ) ); ?></p>
                 </div>
             </div>
             <script>
@@ -88,7 +85,7 @@
             })();
             </script>
 
-            <div class="border-t border-slate-100 dark:border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <p class="text-xs text-slate-400">&copy; <?php echo esc_html( date( 'Y' ) ); ?> ROMVILL. <?php echo esc_html( romvill_t( 'footer.rights' ) ); ?></p>
                 <div class="flex gap-6">
                     <?php

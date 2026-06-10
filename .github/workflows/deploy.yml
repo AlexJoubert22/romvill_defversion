@@ -38,3 +38,16 @@ jobs:
             exit 1
           fi
           echo "Deploy complete - romvill.com is live"
+
+      # La caché del borde de WordPress.com sirve copias STALE unos minutos
+      # tras el deploy. Visitamos cada página dos veces para que la copia
+      # rancia se la coma este robot (la 1ª revalida, la 2ª ya es fresca)
+      # y ningún visitante vea la versión antigua.
+      - name: Warm edge cache
+        run: |
+          for path in "" "metodologia/" "analisis/" "sectores/" "precios/" "contacto/" "perfil-seguridad/" "perfil-demografico/" "perfil-sanidad/" "perfil-movilidad/" "perfil-proyeccion/" "privacidad/" "terminos/"; do
+            curl -s -o /dev/null "https://romvill.com/$path"
+            sleep 1
+            curl -s -o /dev/null "https://romvill.com/$path"
+          done
+          echo "Edge cache warmed"
