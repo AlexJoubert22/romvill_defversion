@@ -165,12 +165,14 @@ function romvill_enqueue_assets() {
         add_action( 'wp_footer', 'romvill_lottie_lazy', 99 );
     }
 
-    // Main Theme JS
+    // Main Theme JS — versionado por filemtime (cache-busting automático,
+    // igual que los CSS en romvill_print_theme_css)
+    $js_path = get_template_directory() . '/assets/js/romvill.js';
     wp_enqueue_script(
         'romvill-main',
         get_template_directory_uri() . '/assets/js/romvill.js',
         array(),
-        wp_get_theme()->get( 'Version' ),
+        file_exists( $js_path ) ? (string) filemtime( $js_path ) : wp_get_theme()->get( 'Version' ),
         true
     );
 }
