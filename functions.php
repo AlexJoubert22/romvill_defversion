@@ -1316,6 +1316,119 @@ function romvill_icon( $name, $class = 'w-6 h-6' ) {
     echo '<svg class="' . esc_attr( $class ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $paths[ $name ] . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput
 }
 
+// ─── Panel infográfico animado de las páginas de perfil ─────────
+// Escena SVG temática por dimensión (se autodibuja al entrar en
+// viewport vía .ana-block/.is-visible) + chips glass con barras
+// segmentadas. Decorativo: sin cifras ni texto (aria-hidden).
+function romvill_perfil_viz( $key ) {
+    $scenes = array(
+        // Radar de seguridad: anillos + barrido + blips + escudo.
+        'seguridad' => '
+            <g class="rv-viz-draw">
+                <circle cx="105" cy="75" r="62" pathLength="1"/>
+                <circle cx="105" cy="75" r="42" pathLength="1"/>
+                <circle cx="105" cy="75" r="22" pathLength="1"/>
+                <line x1="105" y1="13" x2="105" y2="137" pathLength="1" opacity=".35"/>
+                <line x1="43" y1="75" x2="167" y2="75" pathLength="1" opacity=".35"/>
+            </g>
+            <g class="rv-viz-sweep"><path d="M105 75 L105 13 A62 62 0 0 1 158 44 Z" fill="url(#rvSweep)" stroke="none"/></g>
+            <circle class="rv-viz-blip" cx="138" cy="52" r="4" fill="#BFA15F" stroke="none"/>
+            <circle class="rv-viz-blip rv-viz-blip--2" cx="78" cy="98" r="3.5" fill="#BFA15F" stroke="none"/>
+            <circle class="rv-viz-blip rv-viz-blip--3" cx="126" cy="102" r="3" fill="#BFA15F" stroke="none"/>
+            <g class="rv-viz-draw" transform="translate(231 30) scale(3.75)"><path pathLength="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" transform="translate(-12 -2)"/></g>
+            <g class="rv-viz-draw"><polyline pathLength="1" points="196,120 230,106 258,112 292,92 320,98 344,82" opacity=".85"/></g>',
+        // Demografía: barras que crecen + línea media punteada.
+        'demografico' => '
+            <g class="rv-viz-bars" stroke="none">
+                <rect x="36"  y="58" width="26" height="68" rx="3" fill="#243450" class="rv-viz-bar"/>
+                <rect x="78"  y="42" width="26" height="84" rx="3" fill="#2c3f63" class="rv-viz-bar rv-viz-bar--2"/>
+                <rect x="120" y="70" width="26" height="56" rx="3" fill="#243450" class="rv-viz-bar rv-viz-bar--3"/>
+                <rect x="162" y="30" width="26" height="96" rx="3" fill="rgba(191,161,95,.8)" class="rv-viz-bar rv-viz-bar--4"/>
+                <rect x="204" y="52" width="26" height="74" rx="3" fill="#2c3f63" class="rv-viz-bar rv-viz-bar--5"/>
+                <rect x="246" y="64" width="26" height="62" rx="3" fill="#243450" class="rv-viz-bar rv-viz-bar--6"/>
+            </g>
+            <g class="rv-viz-draw"><line x1="28" y1="126" x2="332" y2="126" pathLength="1" opacity=".4"/></g>
+            <g class="rv-viz-draw" stroke-dasharray="4 6"><line x1="28" y1="62" x2="332" y2="62" pathLength="1" opacity=".55"/></g>
+            <g class="rv-viz-draw" transform="translate(306 38) scale(2.4)"><path pathLength="1" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" transform="translate(-11 -10)"/><circle pathLength="1" cx="-2" cy="-3" r="4"/></g>',
+        // Sanidad: electrocardiograma con pulso en bucle + cruz.
+        'sanidad' => '
+            <g class="rv-viz-draw">
+                <path id="rvEcg" pathLength="1" d="M16 80 H74 l10 -16 12 30 14 -52 16 64 12 -34 8 8 H188 l10 -14 10 14 H352" fill="none"/>
+            </g>
+            <path class="rv-viz-pulse" d="M16 80 H74 l10 -16 12 30 14 -52 16 64 12 -34 8 8 H188 l10 -14 10 14 H352" fill="none"/>
+            <g class="rv-viz-draw" opacity=".35"><line x1="16" y1="118" x2="352" y2="118" pathLength="1"/></g>
+            <g class="rv-viz-draw" transform="translate(322 34) scale(2.2)"><rect pathLength="1" x="-9" y="-9" width="18" height="18" rx="3"/><line pathLength="1" x1="0" y1="-4.5" x2="0" y2="4.5"/><line pathLength="1" x1="-4.5" y1="0" x2="4.5" y2="0"/></g>',
+        // Movilidad: ruta que se traza + pin + cometa en bucle.
+        'movilidad' => '
+            <g class="rv-viz-draw" stroke-dasharray="2 7" opacity=".5">
+                <path pathLength="1" d="M20 118 C70 118 60 50 120 50 S180 110 240 96 300 40 340 36" fill="none"/>
+            </g>
+            <g class="rv-viz-draw">
+                <path id="rvRoute" pathLength="1" d="M20 110 C72 110 64 44 122 44 S178 104 238 90 298 34 338 30" fill="none"/>
+            </g>
+            <path class="rv-viz-pulse" d="M20 110 C72 110 64 44 122 44 S178 104 238 90 298 34 338 30" fill="none"/>
+            <g class="rv-viz-pop"><circle cx="338" cy="30" r="5" fill="#BFA15F" stroke="none"/><circle cx="338" cy="30" r="10" fill="none" opacity=".5"/></g>
+            <circle class="rv-viz-blip" cx="20" cy="110" r="4" fill="#BFA15F" stroke="none"/>',
+        // Proyección: área ascendente + flecha final.
+        'proyeccion' => '
+            <g stroke="none"><path class="rv-viz-area" d="M24 122 L80 102 130 110 190 76 250 58 330 26 330 126 24 126 Z" fill="url(#rvArea)"/></g>
+            <g class="rv-viz-draw"><polyline pathLength="1" points="24,122 80,102 130,110 190,76 250,58 330,26"/></g>
+            <g class="rv-viz-pop"><polyline points="316,28 330,26 328,40" fill="none"/></g>
+            <g class="rv-viz-draw" opacity=".3">
+                <line x1="24" y1="126" x2="330" y2="126" pathLength="1"/>
+                <line x1="24" y1="92"  x2="330" y2="92"  pathLength="1" stroke-dasharray="3 6"/>
+                <line x1="24" y1="58"  x2="330" y2="58"  pathLength="1" stroke-dasharray="3 6"/>
+            </g>',
+    );
+    if ( ! isset( $scenes[ $key ] ) ) {
+        return;
+    }
+    // Chips laterales: icono + barra segmentada (relleno decorativo).
+    $chips = array(
+        'seguridad'   => array( array( 'shield', 4 ), array( 'eye', 5 ), array( 'double-check', 3 ) ),
+        'demografico' => array( array( 'users', 4 ), array( 'home-family', 3 ), array( 'globe', 5 ) ),
+        'sanidad'     => array( array( 'plus-square', 5 ), array( 'clipboard-check', 4 ), array( 'pill', 3 ) ),
+        'movilidad'   => array( array( 'car', 4 ), array( 'navigation', 5 ), array( 'parking', 3 ) ),
+        'proyeccion'  => array( array( 'trending-up', 5 ), array( 'building', 3 ), array( 'bank', 4 ) ),
+    );
+    ?>
+    <div class="max-w-5xl mx-auto px-6 mb-4" aria-hidden="true">
+        <div class="rv-viz ana-block">
+            <span class="ana-tile__corner ana-tile__corner--tl" aria-hidden="true"></span>
+            <span class="ana-tile__corner ana-tile__corner--br" aria-hidden="true"></span>
+            <div class="rv-viz__grid"></div>
+            <div class="rv-viz__scene">
+                <svg viewBox="0 0 360 150" fill="none" stroke="#BFA15F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="rvArea" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#BFA15F" stop-opacity=".28"/>
+                            <stop offset="1" stop-color="#BFA15F" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="rvSweep" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#BFA15F" stop-opacity=".3"/>
+                            <stop offset="1" stop-color="#BFA15F" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                    <?php echo $scenes[ $key ]; // phpcs:ignore WordPress.Security.EscapeOutput -- SVG estático definido arriba. ?>
+                </svg>
+            </div>
+            <div class="rv-viz__side">
+                <?php foreach ( $chips[ $key ] as $i => $chip ) : ?>
+                <div class="rv-viz__chip" style="transition-delay:<?php echo esc_attr( 0.25 + $i * 0.15 ); ?>s">
+                    <span class="rv-viz__chip-ic"><?php romvill_icon( $chip[0], 'w-4 h-4' ); ?></span>
+                    <span class="rv-viz__seg">
+                        <?php for ( $s = 1; $s <= 5; $s++ ) : ?>
+                        <i class="<?php echo $s <= $chip[1] ? 'on' : ''; ?>" style="transition-delay:<?php echo esc_attr( 0.45 + $i * 0.15 + $s * 0.07 ); ?>s"></i>
+                        <?php endfor; ?>
+                    </span>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
 // ─── Newsletter (footer) AJAX Handler ────────────────────────
 // Guarda los suscriptores en la opción 'romvill_newsletter_subscribers'
 // (array de {email, lang, date, ip}) y notifica al admin por email.

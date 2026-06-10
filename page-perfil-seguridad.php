@@ -24,17 +24,8 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
         </div>
     </section>
 
-    <!-- Banda decorativa: visualización abstracta de informe (sin datos reales) -->
-    <div class="max-w-5xl mx-auto px-6 mb-2" aria-hidden="true">
-        <div class="rv-dataart">
-            <svg viewBox="0 0 600 90" fill="none" preserveAspectRatio="none">
-                <g stroke="#94a3b8" stroke-width="1" opacity=".18">
-                    <line x1="0" y1="70" x2="600" y2="70"/><line x1="0" y1="45" x2="600" y2="45"/><line x1="0" y1="20" x2="600" y2="20"/>
-                </g>
-                <polyline points="0,72 60,58 120,64 180,40 240,48 300,30 360,38 420,22 480,30 540,14 600,20" stroke="#BFA15F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
-            </svg>
-        </div>
-    </div>
+    <!-- Panel infográfico animado de la dimensión -->
+    <?php romvill_perfil_viz( 'seguridad' ); ?>
 
     <section class="max-w-5xl mx-auto px-6 pb-24">
         <div class="grid md:grid-cols-2 gap-8">
