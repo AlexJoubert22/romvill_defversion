@@ -71,9 +71,9 @@ for ( $i = 1; $i <= 4; $i++ ) {
     transition: background 0.15s, color 0.15s;
     border-radius: 8px 0 0 8px;
 }
-.phone-prefix-btn:hover { background: rgba(19,91,236,.06); color: #135bec; }
+.phone-prefix-btn:hover { background: rgba(191,161,95,.10); color: #9A7529; }
 .dark .phone-prefix-btn { border-right-color: #334155; color: #cbd5e1; }
-.dark .phone-prefix-btn:hover { background: rgba(19,91,236,.12); color: #6fa3f7; }
+.dark .phone-prefix-btn:hover { background: rgba(205,178,119,.14); color: #cdb277; }
 .phone-number-input {
     flex: 1;
     background: transparent;
@@ -116,7 +116,7 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     background: #f8fafc; color: #111827; transition: border-color 0.2s;
     font-family: inherit;
 }
-.prefix-search:focus { border-color: #135bec; }
+.prefix-search:focus { border-color: #BFA15F; }
 .dark .prefix-search { background: #0f172a; border-color: #334155; color: #f1f5f9; }
 .prefix-list { max-height: 230px; overflow-y: auto; padding: 4px 0; }
 .prefix-list::-webkit-scrollbar { width: 4px; }
@@ -127,10 +127,11 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     padding: 8px 14px; cursor: pointer; font-size: 0.84rem;
     color: #374151; transition: background 0.12s;
 }
-.prefix-item:hover { background: #f0f5ff; }
+.prefix-item:hover { background: #faf6ec; }
 .dark .prefix-item { color: #cbd5e1; }
 .dark .prefix-item:hover { background: #0f172a; }
-.prefix-item.is-active { color: #135bec; font-weight: 700; }
+.prefix-item.is-active { color: #9A7529; font-weight: 700; }
+.dark .prefix-item.is-active { color: #cdb277; }
 .prefix-flag { font-size: 1.1rem; }
 .prefix-name { flex: 1; }
 .prefix-code { color: #94a3b8; font-size: 0.78rem; font-weight: 600; }
@@ -172,44 +173,44 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     border-color: #334155;
 }
 .prof-card:hover {
-    border-color: #135bec;
-    box-shadow: 0 8px 32px rgba(19,91,236,.12);
+    border-color: rgba(191,161,95,.65);
+    box-shadow: 0 8px 32px rgba(191,161,95,.18);
     transform: translateY(-3px);
 }
-.dark .prof-card:hover { box-shadow: 0 8px 32px rgba(19,91,236,.2); }
+.dark .prof-card:hover { box-shadow: 0 8px 32px rgba(191,161,95,.22); }
 .prof-card.is-selected {
-    border-color: #135bec;
-    box-shadow: 0 8px 32px rgba(19,91,236,.16);
-    background: linear-gradient(135deg, #f0f5ff 0%, #fff 100%);
+    border-color: #BFA15F;
+    box-shadow: 0 8px 32px rgba(191,161,95,.25);
+    background: linear-gradient(135deg, #faf6ec 0%, #fff 100%);
 }
 .dark .prof-card.is-selected {
-    background: linear-gradient(135deg, rgba(19,91,236,.12) 0%, #1e293b 100%);
+    border-color: #BFA15F;
+    background: linear-gradient(135deg, rgba(191,161,95,.12) 0%, #1e293b 100%);
 }
 .prof-card__check {
     position: absolute; top: 14px; right: 14px;
     width: 22px; height: 22px;
-    background: #135bec; border-radius: 50%;
+    background: #BFA15F; border-radius: 50%;
     display: none; align-items: center; justify-content: center;
-    box-shadow: 0 2px 8px rgba(19,91,236,.35);
+    box-shadow: 0 2px 8px rgba(191,161,95,.45);
 }
 .prof-card.is-selected .prof-card__check { display: flex; }
 .prof-card__num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px;
-    background: rgba(19,91,236,.08); border-radius: 10px;
-    font-size: 13px; font-weight: 800; color: #135bec;
-    margin-bottom: 14px; font-family: 'Playfair Display', serif;
+    display: block;
+    font-size: 1.7rem; font-weight: 700; line-height: 1; color: #BFA15F;
+    margin-bottom: 12px; font-family: 'Playfair Display', serif;
 }
-.dark .prof-card__num { background: rgba(19,91,236,.15); }
+.dark .prof-card__num { color: #cdb277; }
 .prof-card__title {
     font-size: 1rem; font-weight: 700; color: #0f172a;
     margin: 0 0 6px; line-height: 1.3;
 }
 .dark .prof-card__title { color: #f1f5f9; }
 .prof-card__sub {
-    font-size: 0.78rem; font-weight: 600; color: #135bec;
+    font-size: 0.78rem; font-weight: 600; color: #9A7529;
     font-style: italic; line-height: 1.5; margin: 0 0 14px;
 }
+.dark .prof-card__sub { color: #cdb277; }
 .prof-card__hr { border: none; border-top: 1px solid #f1f5f9; margin: 0 0 14px; }
 .dark .prof-card__hr { border-top-color: #334155; }
 .prof-card__desc {
@@ -219,15 +220,15 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .dark .prof-card__desc { color: #94a3b8; }
 .prof-card__btn {
     display: block; width: 100%;
-    background: rgba(19,91,236,.06); border: 1.5px solid rgba(19,91,236,.2);
-    color: #135bec; border-radius: 8px; padding: 10px;
+    background: transparent; border: 1.5px solid rgba(154,117,41,.45);
+    color: #9A7529; border-radius: 8px; padding: 10px;
     font-size: 0.8rem; font-weight: 700; text-align: center;
     text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s;
     letter-spacing: .3px; box-sizing: border-box;
 }
-.prof-card__btn:hover { background: #135bec; color: #fff; border-color: #135bec; }
-.dark .prof-card__btn { background: rgba(19,91,236,.12); }
-.dark .prof-card__btn:hover { background: #135bec; }
+.prof-card__btn:hover { background: #BFA15F; color: #0f172a; border-color: #BFA15F; }
+.dark .prof-card__btn { background: rgba(191,161,95,.08); border-color: rgba(205,178,119,.4); color: #cdb277; }
+.dark .prof-card__btn:hover { background: #BFA15F; color: #0f172a; }
 
 /* ── Why reasons enhanced ──────────────────────────── */
 .why-reason {
@@ -235,21 +236,22 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     padding: 12px; border-radius: 12px;
     transition: background 0.2s;
 }
-.why-reason:hover { background: rgba(19,91,236,.04); }
-.dark .why-reason:hover { background: rgba(19,91,236,.08); }
+.why-reason:hover { background: rgba(191,161,95,.07); }
+.dark .why-reason:hover { background: rgba(191,161,95,.10); }
 .why-reason-icon {
     flex-shrink: 0; width: 38px; height: 38px;
     border-radius: 10px;
-    background: linear-gradient(135deg, rgba(19,91,236,.12) 0%, rgba(19,91,236,.06) 100%);
-    display: flex; align-items: center; justify-content: center; color: #135bec;
+    background: rgba(191,161,95,.10);
+    border: 1px solid rgba(191,161,95,.35);
+    display: flex; align-items: center; justify-content: center; color: #BFA15F;
 }
 
 /* ============================================================
    REDISEÑO v5 — sistema de tokens (claro/oscuro) + componentes.
    Estas reglas van al final → sobrescriben las anteriores.
    ============================================================ */
-:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0f172a;--rv-text-soft:#475569;--rv-text-faint:#64748b;--rv-border:#e2e8f0;--rv-border-soft:#eef2f7;--rv-accent:#135bec;--rv-gold:#BFA15F;--rv-gold-hover:#a3884c;--rv-on-gold:#0f172a;--rv-ring:rgba(19,91,236,.16);--rv-radius-in:8px;}
-.dark{--rv-surface:#0f172a;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#cbd5e1;--rv-text-faint:#94a3b8;--rv-border:#334155;--rv-border-soft:#1e293b;--rv-accent:#6fa3f7;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0f172a;--rv-ring:rgba(111,163,247,.28);}
+:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0f172a;--rv-text-soft:#475569;--rv-text-faint:#64748b;--rv-border:#e2e8f0;--rv-border-soft:#eef2f7;--rv-accent:#1D3557;--rv-gold:#BFA15F;--rv-gold-hover:#a3884c;--rv-on-gold:#0f172a;--rv-ring:rgba(191,161,95,.22);--rv-radius-in:8px;}
+.dark{--rv-surface:#0f172a;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#cbd5e1;--rv-text-faint:#94a3b8;--rv-border:#334155;--rv-border-soft:#1e293b;--rv-accent:#cdb277;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0f172a;--rv-ring:rgba(205,178,119,.30);}
 /* Campos: padding generoso, radio sutil, foco con anillo (sin reflujo), translúcido en oscuro */
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]){padding:12px 16px;color:var(--rv-text);background:var(--rv-field);border:1.5px solid var(--rv-border);border-radius:var(--rv-radius-in);transition:border-color .2s,box-shadow .2s,background .2s;}
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]):focus{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
@@ -268,7 +270,7 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .rf-submit:focus-visible{outline:3px solid var(--rv-ring);outline-offset:2px;}
 /* Tarjetas de perfil tokenizadas */
 .prof-card{background:var(--rv-surface);border:1.5px solid var(--rv-border);}
-.prof-card:hover{border-color:var(--rv-accent);box-shadow:0 10px 34px -14px rgba(19,91,236,.3);}
+.prof-card:hover{border-color:rgba(191,161,95,.65);box-shadow:0 10px 34px -14px rgba(191,161,95,.35);}
 .prof-card__title{color:var(--rv-text);} .prof-card__desc{color:var(--rv-text-faint);}
 /* Tira horizontal de pilares */
 .rv-vbar{border:1px solid var(--rv-border);background:var(--rv-surface);border-radius:16px;overflow:hidden;}
@@ -285,6 +287,21 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 /* #4 — "Por qué Romvill" más compacto (lateral estrecho) */
 .why-reason{padding:7px 9px;gap:11px;}
 .why-reason-icon{width:32px;height:32px;}
+/* ============================================================
+   REDISEÑO v6 — unificación navy+oro.
+   El acento azul desaparece de los elementos de identidad;
+   "Por qué Romvill" pasa a placa navy con detalles dorados.
+   ============================================================ */
+.why-panel{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(191,161,95,.28);}
+.rgpd-consent a{color:var(--rv-gold);}
+html:not(.dark) .rgpd-consent a{color:#9A7529;}
+/* El plugin @tailwindcss/forms pinta el checkbox con currentColor → forzamos oro */
+.rgpd-consent input[type='checkbox']{color:#9A7529;border-radius:3px;}
+.rgpd-consent input[type='checkbox']:focus{--tw-ring-color:rgba(191,161,95,.4);}
+.dark .rgpd-consent input[type='checkbox']{color:#BFA15F;}
+.cont-hr{height:1px;flex:1;}
+.cont-hr--l{background:linear-gradient(90deg,transparent,rgba(191,161,95,.45));}
+.cont-hr--r{background:linear-gradient(90deg,rgba(191,161,95,.45),transparent);}
 </style>
 
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
@@ -292,14 +309,18 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 
         <!-- ── Hero: Solicite su presupuesto ── -->
         <div class="rf-anim text-center mb-12" style="animation-delay:.05s">
-            <p class="text-xs font-medium tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-5">
-                <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
-            </p>
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-3" style="font-family:'Playfair Display',serif; font-weight:600;">
+            <div class="flex items-center justify-center gap-4 mb-5">
+                <span class="hiw-badge-line" aria-hidden="true"></span>
+                <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary">
+                    <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
+                </p>
+                <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
+            </div>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-slate-900 dark:text-white tracking-tight mb-3">
                 <?php echo esc_html( romvill_t( 'contact.hero.h1a' ) ); ?><br>
-                <em class="text-secondary" style="font-style:italic;"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
+                <em class="text-secondary italic"><?php echo esc_html( romvill_t( 'contact.hero.h1b' ) ); ?></em>
             </h1>
-            <p class="text-sm italic text-slate-400 dark:text-slate-500 mb-4" style="font-family:'Playfair Display',serif;">
+            <p class="font-serif text-sm italic text-slate-400 dark:text-slate-500 mb-4">
                 <?php echo esc_html( romvill_t( 'contact.hero.slogan' ) ); ?>
             </p>
             <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto leading-relaxed mb-8">
@@ -317,7 +338,7 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
                 foreach ( $steps as $i => $step ) :
                 ?>
                 <div class="flex-1 text-center<?php echo $i < 2 ? ' sm:border-r sm:border-slate-100 sm:dark:border-slate-800' : ''; ?> px-4">
-                    <div class="rounded-full border border-secondary/30 flex items-center justify-center text-secondary text-xs font-semibold mx-auto mb-2" style="width:2rem; height:2rem; flex:0 0 auto;"><?php echo esc_html( $step['n'] ); ?></div>
+                    <div class="w-9 h-9 rounded-full border border-secondary/50 flex items-center justify-center text-secondary text-xs font-serif font-bold mx-auto mb-2"><?php echo esc_html( $step['n'] ); ?></div>
                     <p class="text-sm font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
                     <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( $step['d'] ); ?></p>
                 </div>
@@ -363,7 +384,7 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
         <div id="perfiles" class="rf-anim mb-10" style="animation-delay:.2s">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                 <div>
-                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-primary bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
+                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#9A7529] dark:text-[#cdb277] border border-secondary/40 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
                     <span class="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2 ml-1" style="background:var(--rv-gold);color:var(--rv-on-gold)"><?php echo esc_html( romvill_t( 'presup.sel.recommended' ) ); ?></span>
                     <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                         <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>
@@ -382,7 +403,7 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
                 ?>
                 <div class="prof-card" onclick="rvPickProfile(this,event)">
                     <div class="prof-card__check" aria-hidden="true">
-                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <span class="prof-card__num"><?php echo esc_html( $b['num'] ); ?></span>
                     <h3 class="prof-card__title"><?php echo esc_html( $b['title'] ); ?></h3>
@@ -406,9 +427,9 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 
         <!-- ── Divider ──────────────────────────────── -->
         <div id="contacto" class="rf-anim flex items-center gap-4 mb-10" style="animation-delay:.28s; scroll-margin-top: 6rem;">
-            <div class="flex-1 border-t border-slate-100 dark:border-slate-800"></div>
-            <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-600 px-2"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
-            <div class="flex-1 border-t border-slate-100 dark:border-slate-800"></div>
+            <div class="cont-hr cont-hr--l" aria-hidden="true"></div>
+            <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-500 px-2"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
+            <div class="cont-hr cont-hr--r" aria-hidden="true"></div>
         </div>
 
         <!-- Main grid -->
@@ -488,11 +509,11 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
                         <div class="rgpd-consent mt-4 mb-3">
                             <label class="flex items-start gap-2 text-sm cursor-pointer p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <input type="checkbox" name="rgpd_consent" id="rgpd_consent" required
-                                       class="mt-1 flex-shrink-0 w-4 h-4" style="accent-color:#135bec;">
+                                       class="mt-1 flex-shrink-0 w-4 h-4" style="accent-color:#9A7529;">
                                 <span class="text-slate-600 dark:text-slate-300">
                                     <?php echo esc_html( romvill_t( 'contact.rgpd_checkbox' ) ); ?>
                                     <a href="<?php echo esc_url( add_query_arg( 'lang', romvill_current_lang(), home_url( '/privacidad/' ) ) ); ?>"
-                                       target="_blank" rel="noopener" class="text-primary underline">
+                                       target="_blank" rel="noopener" class="underline font-semibold">
                                         <?php echo esc_html( romvill_t( 'contact.rgpd_link' ) ); ?></a><?php if ( romvill_current_lang() === 'de' ) : ?> gelesen und akzeptiere sie<?php endif; ?>
                                 </span>
                             </label>
@@ -652,18 +673,18 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
                 <div class="rf-anim mt-6" style="animation-delay:.3s">
                     <h3 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4 px-1"><?php echo esc_html( romvill_t( 'contact.channels' ) ); ?></h3>
                     <div class="grid grid-cols-1 gap-4 mb-6">
-                        <a href="mailto:contacto@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/30 hover:shadow-md transition-all group">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <a href="mailto:contacto@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-secondary/40 hover:shadow-md transition-all group">
+                            <div class="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0 group-hover:scale-110 transition-transform">
                                 <span aria-hidden="true" class="material-symbols-outlined text-xl">mail</span>
                             </div>
                             <div>
                                 <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.email.label' ) ); ?></p>
-                                <span class="text-slate-900 dark:text-white font-semibold text-sm group-hover:text-primary transition-colors">contacto@romvill.com</span>
+                                <span class="text-slate-900 dark:text-white font-semibold text-sm group-hover:text-secondary transition-colors">contacto@romvill.com</span>
                             </div>
                         </a>
                     </div>
                     <div class="flex items-center gap-2 px-1 text-xs text-slate-500 dark:text-slate-400">
-                        <a href="https://www.instagram.com/romvillspain" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-primary transition-colors" aria-label="Instagram">
+                        <a href="https://www.instagram.com/romvillspain" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-secondary transition-colors" aria-label="Instagram">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg>
                                 <span>@romvillspain</span>
                             </a>
@@ -675,14 +696,14 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 
             <!-- ── Right: Why Romvill ─────────────────────────── -->
             <div class="rf-anim lg:col-span-5" style="animation-delay:.25s">
-                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl shadow-slate-200/70 dark:shadow-slate-950/60 border border-slate-100 dark:border-slate-800 p-8 md:p-10 relative overflow-hidden">
+                <div class="why-panel rounded-2xl shadow-xl shadow-slate-200/70 dark:shadow-slate-950/60 p-8 md:p-10 relative overflow-hidden">
                     <!-- Decorative glow -->
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                     <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-secondary/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
                     <div class="relative">
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center text-primary flex-shrink-0">
+                        <h2 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0">
                                 <span aria-hidden="true" class="material-symbols-outlined text-[18px]">verified_user</span>
                             </span>
                             <?php echo esc_html( romvill_t( 'contact.why.title' ) ); ?>
@@ -707,18 +728,18 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
                                     <span aria-hidden="true" class="material-symbols-outlined text-[17px]"><?php echo esc_html( $r['icon'] ); ?></span>
                                 </div>
                                 <div>
-                                    <h3 class="text-sm font-bold text-slate-900 dark:text-white"><?php echo esc_html( $r['title'] ); ?></h3>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed"><?php echo esc_html( $r['desc'] ); ?></p>
+                                    <h3 class="text-sm font-bold text-white"><?php echo esc_html( $r['title'] ); ?></h3>
+                                    <p class="text-xs text-slate-300 mt-0.5 leading-relaxed"><?php echo esc_html( $r['desc'] ); ?></p>
                                 </div>
                             </div>
                             <?php endforeach; ?>
                         </div>
 
                         <!-- Quote -->
-                        <div class="mt-8 pt-7 border-t border-slate-100 dark:border-slate-800">
+                        <div class="mt-8 pt-7 border-t border-white/10">
                             <div class="flex items-start gap-3">
-                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-4xl opacity-20 flex-shrink-0 -mt-1">format_quote</span>
-                                <p class="text-sm font-medium text-slate-600 dark:text-slate-400 italic leading-relaxed">
+                                <span aria-hidden="true" class="material-symbols-outlined text-secondary text-4xl opacity-40 flex-shrink-0 -mt-1">format_quote</span>
+                                <p class="font-serif text-sm font-medium text-slate-300 italic leading-relaxed">
                                     <?php echo esc_html( romvill_t( 'contact.why.quote' ) ); ?>
                                 </p>
                             </div>
