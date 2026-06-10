@@ -138,16 +138,16 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
                 <?php
                 $pillars = array(
-                    array( 'icon' => 'shield',         'title' => romvill_t( 'pillar.security.title' ), 'desc' => romvill_t( 'pillar.security.desc' ) ),
-                    array( 'icon' => 'people',          'title' => romvill_t( 'pillar.demog.title' ),    'desc' => romvill_t( 'pillar.demog.desc' ) ),
-                    array( 'icon' => 'local_hospital',  'title' => romvill_t( 'pillar.services.title' ), 'desc' => romvill_t( 'pillar.services.desc' ) ),
-                    array( 'icon' => 'trending_up',     'title' => romvill_t( 'pillar.proj.title' ),     'desc' => romvill_t( 'pillar.proj.desc' ) ),
+                    array( 'icon' => 'shield',      'title' => romvill_t( 'pillar.security.title' ), 'desc' => romvill_t( 'pillar.security.desc' ) ),
+                    array( 'icon' => 'users',       'title' => romvill_t( 'pillar.demog.title' ),    'desc' => romvill_t( 'pillar.demog.desc' ) ),
+                    array( 'icon' => 'plus-square', 'title' => romvill_t( 'pillar.services.title' ), 'desc' => romvill_t( 'pillar.services.desc' ) ),
+                    array( 'icon' => 'trending-up', 'title' => romvill_t( 'pillar.proj.title' ),     'desc' => romvill_t( 'pillar.proj.desc' ) ),
                 );
                 foreach ( $pillars as $p ) :
                 ?>
                 <div class="rv-pillar group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
-                        <span aria-hidden="true" class="material-symbols-outlined text-secondary text-2xl"><?php echo esc_html( $p['icon'] ); ?></span>
+                    <div class="w-14 h-14 rounded-full bg-secondary/10 border border-secondary/30 text-secondary flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
+                        <?php romvill_icon( $p['icon'], 'w-6 h-6' ); ?>
                     </div>
                     <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2"><?php echo esc_html( $p['title'] ); ?></h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed"><?php echo esc_html( $p['desc'] ); ?></p>
@@ -229,15 +229,15 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                     <div class="space-y-6">
                         <?php
                         $features = array(
-                            array( 'icon' => 'analytics',    'title' => romvill_t( 'work.feat1.title' ), 'desc' => romvill_t( 'work.feat1.desc' ) ),
-                            array( 'icon' => 'map',          'title' => romvill_t( 'work.feat2.title' ), 'desc' => romvill_t( 'work.feat2.desc' ) ),
-                            array( 'icon' => 'description',  'title' => romvill_t( 'work.feat3.title' ), 'desc' => romvill_t( 'work.feat3.desc' ) ),
+                            array( 'icon' => 'bar-chart', 'title' => romvill_t( 'work.feat1.title' ), 'desc' => romvill_t( 'work.feat1.desc' ) ),
+                            array( 'icon' => 'map',       'title' => romvill_t( 'work.feat2.title' ), 'desc' => romvill_t( 'work.feat2.desc' ) ),
+                            array( 'icon' => 'file-text', 'title' => romvill_t( 'work.feat3.title' ), 'desc' => romvill_t( 'work.feat3.desc' ) ),
                         );
                         foreach ( $features as $f ) :
                         ?>
                         <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-secondary shrink-0">
-                                <span aria-hidden="true" class="material-symbols-outlined"><?php echo esc_html( $f['icon'] ); ?></span>
+                            <div class="w-12 h-12 rounded bg-secondary/10 border border-secondary/25 flex items-center justify-center text-secondary shrink-0">
+                                <?php romvill_icon( $f['icon'], 'w-5 h-5' ); ?>
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( $f['title'] ); ?></h3>
@@ -250,7 +250,37 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <div class="lg:w-1/2 relative">
                     <div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl z-0"></div>
                     <div class="relative z-10 rounded overflow-hidden shadow-2xl">
-                        <lottie-player src="<?php echo esc_url( romvill_asset( 'lottie/business-meeting.json' ) ); ?>" background="transparent" speed="1" style="width: 100%; height: auto; aspect-ratio: 4/5; filter: saturate(0.3) brightness(0.85) sepia(0.15);" loop autoplay></lottie-player>
+                        <!-- Mockup del informe ROMVILL (composición CSS/SVG, sin librerías externas) -->
+                        <div class="rv-report-mock" aria-hidden="true">
+                            <div class="rv-report-mock__grid"></div>
+                            <div class="rv-report-mock__back">
+                                <svg viewBox="0 0 220 140" fill="none" class="rv-report-mock__chart" aria-hidden="true">
+                                    <g stroke="#94a3b8" stroke-width="1" opacity=".35">
+                                        <line x1="14" y1="118" x2="206" y2="118"/>
+                                        <line x1="14" y1="88"  x2="206" y2="88"/>
+                                        <line x1="14" y1="58"  x2="206" y2="58"/>
+                                        <line x1="14" y1="28"  x2="206" y2="28"/>
+                                    </g>
+                                    <rect x="28"  y="84" width="18" height="34" rx="2" fill="#1c2a44" opacity=".25"/>
+                                    <rect x="62"  y="66" width="18" height="52" rx="2" fill="#1c2a44" opacity=".35"/>
+                                    <rect x="96"  y="74" width="18" height="44" rx="2" fill="#1c2a44" opacity=".3"/>
+                                    <rect x="130" y="48" width="18" height="70" rx="2" fill="#1c2a44" opacity=".45"/>
+                                    <rect x="164" y="34" width="18" height="84" rx="2" fill="#1c2a44" opacity=".55"/>
+                                    <polyline points="20,100 54,82 88,90 122,60 156,48 198,22" stroke="#BFA15F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="198" cy="22" r="4" fill="#BFA15F"/>
+                                </svg>
+                                <div class="rv-report-mock__lines"><span></span><span></span><span></span></div>
+                            </div>
+                            <div class="rv-report-mock__cover">
+                                <span class="rv-report-mock__corner rv-report-mock__corner--tl"></span>
+                                <span class="rv-report-mock__corner rv-report-mock__corner--br"></span>
+                                <span class="rv-report-mock__pin">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </span>
+                                <span class="rv-report-mock__brand font-serif">ROMVILL</span>
+                                <span class="rv-report-mock__rule"></span>
+                            </div>
+                        </div>
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                             <p class="text-white font-serif italic text-lg"><?php echo esc_html( romvill_t( 'work.quote' ) ); ?></p>
                         </div>
@@ -278,7 +308,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 foreach ( $cities as $city ) :
                 ?>
                 <div class="group relative h-96 rounded-lg overflow-hidden cursor-pointer shadow-lg" onclick="openCityModal('<?php echo esc_attr( $city['id'] ); ?>')">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    <div class="rv-city-photo absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                         style="background-image: url('<?php echo esc_url( romvill_img( $city['img'] ) ); ?>');"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-colors duration-300"></div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -313,10 +343,10 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         <div class="min-h-screen w-full flex items-center justify-center p-4 py-12">
             <?php
             $dimensions = array(
-                array( 'icon' => 'shield',              'title' => romvill_t( 'modal.dim.security' ), 'desc' => romvill_t( 'modal.dim.sec.desc' ) ),
-                array( 'icon' => 'groups',              'title' => romvill_t( 'modal.dim.demog' ),    'desc' => romvill_t( 'modal.dim.dem.desc' ) ),
-                array( 'icon' => 'local_hospital',      'title' => romvill_t( 'modal.dim.health' ),   'desc' => romvill_t( 'modal.dim.hea.desc' ) ),
-                array( 'icon' => 'directions_transit',  'title' => romvill_t( 'modal.dim.mobility' ), 'desc' => romvill_t( 'modal.dim.mob.desc' ) ),
+                array( 'icon' => 'shield',      'title' => romvill_t( 'modal.dim.security' ), 'desc' => romvill_t( 'modal.dim.sec.desc' ) ),
+                array( 'icon' => 'users',       'title' => romvill_t( 'modal.dim.demog' ),    'desc' => romvill_t( 'modal.dim.dem.desc' ) ),
+                array( 'icon' => 'plus-square', 'title' => romvill_t( 'modal.dim.health' ),   'desc' => romvill_t( 'modal.dim.hea.desc' ) ),
+                array( 'icon' => 'navigation',  'title' => romvill_t( 'modal.dim.mobility' ), 'desc' => romvill_t( 'modal.dim.mob.desc' ) ),
             );
             ?>
 
@@ -343,7 +373,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
+                                <span class="text-secondary shrink-0"><?php romvill_icon( $d['icon'], 'w-5 h-5' ); ?></span>
                                 <div>
                                     <p class="text-sm font-semibold text-slate-800 dark:text-slate-200"><?php echo esc_html( $d['title'] ); ?></p>
                                     <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( $d['desc'] ); ?></p>
@@ -382,7 +412,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
+                                <span class="text-secondary shrink-0"><?php romvill_icon( $d['icon'], 'w-5 h-5' ); ?></span>
                                 <div>
                                     <p class="text-sm font-semibold text-slate-800 dark:text-slate-200"><?php echo esc_html( $d['title'] ); ?></p>
                                     <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( $d['desc'] ); ?></p>
@@ -421,7 +451,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                <span aria-hidden="true" class="material-symbols-outlined text-primary text-xl"><?php echo esc_html( $d['icon'] ); ?></span>
+                                <span class="text-secondary shrink-0"><?php romvill_icon( $d['icon'], 'w-5 h-5' ); ?></span>
                                 <div>
                                     <p class="text-sm font-semibold text-slate-800 dark:text-slate-200"><?php echo esc_html( $d['title'] ); ?></p>
                                     <p class="text-xs text-slate-500 dark:text-slate-400"><?php echo esc_html( $d['desc'] ); ?></p>

@@ -582,6 +582,100 @@ html {
   background: rgba(255,255,255,0.1) !important;
 }
 
+/* ===== Mockup del informe ROMVILL (home, sección "Cómo trabajamos") =====
+   Composición CSS/SVG: placa navy con retícula, página trasera con gráfica
+   y portada del informe con marco dorado. Sustituye al Lottie de stock. */
+.rv-report-mock {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(155deg, #0f172a 0%, #1c2a44 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.rv-report-mock__grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(191, 161, 95, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(circle at 32% 30%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(circle at 32% 30%, #000 20%, transparent 75%);
+}
+.rv-report-mock__back {
+    position: absolute;
+    width: 62%;
+    aspect-ratio: 3 / 4;
+    background: #f8f9fc;
+    border-radius: 10px;
+    box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6);
+    transform: rotate(6deg) translate(17%, -4%);
+    padding: 8% 7%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.rv-report-mock__chart { width: 100%; height: auto; }
+.rv-report-mock__lines { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+.rv-report-mock__lines span { display: block; height: 5px; border-radius: 3px; background: #e2e8f0; }
+.rv-report-mock__lines span:nth-child(1) { width: 90%; }
+.rv-report-mock__lines span:nth-child(2) { width: 74%; }
+.rv-report-mock__lines span:nth-child(3) { width: 55%; }
+.rv-report-mock__cover {
+    position: absolute;
+    width: 58%;
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(160deg, #101622 0%, #1b2942 100%);
+    border: 1px solid rgba(191, 161, 95, 0.45);
+    border-radius: 10px;
+    box-shadow: 0 34px 70px -25px rgba(0, 0, 0, 0.75);
+    transform: rotate(-5deg) translate(-19%, 3%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    transition: transform 0.5s ease;
+}
+.rv-report-mock:hover .rv-report-mock__cover { transform: rotate(-3.5deg) translate(-19%, 1.5%); }
+.rv-report-mock__brand {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: 0.45em;
+    padding-left: 0.45em; /* compensa el tracking del último carácter */
+    color: #fff;
+}
+.rv-report-mock__rule { width: 44px; height: 1px; background: linear-gradient(90deg, transparent, #BFA15F, transparent); }
+.rv-report-mock__pin { color: #BFA15F; opacity: 0.9; }
+.rv-report-mock__pin svg { width: 30px; height: 30px; }
+.rv-report-mock__corner { position: absolute; width: 18px; height: 18px; }
+.rv-report-mock__corner--tl { top: 12px; left: 12px; border-top: 1px solid rgba(191, 161, 95, 0.55); border-left: 1px solid rgba(191, 161, 95, 0.55); }
+.rv-report-mock__corner--br { bottom: 12px; right: 12px; border-bottom: 1px solid rgba(191, 161, 95, 0.55); border-right: 1px solid rgba(191, 161, 95, 0.55); }
+
+/* ===== Tratamiento fotográfico de marca (tarjetas de ciudades) ===== */
+.rv-city-photo { filter: saturate(0.85) contrast(1.05); }
+
+/* ===== Banda decorativa de datos (páginas de perfil) ===== */
+.rv-dataart {
+    height: 90px;
+    border-radius: 12px;
+    background: linear-gradient(155deg, #0f172a 0%, #1c2a44 100%);
+    border: 1px solid rgba(191, 161, 95, 0.25);
+    overflow: hidden;
+}
+.rv-dataart svg { width: 100%; height: 100%; display: block; }
+
+/* ===== Microdetalles premium ===== */
+::selection { background: rgba(191, 161, 95, 0.35); }
+.dark ::-webkit-scrollbar-track { background: #0f172a; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #475569; }
+a:focus-visible,
+button:focus-visible { outline: 2px solid rgba(191, 161, 95, 0.65); outline-offset: 2px; }
+.rf-submit:active,
+.prof-card__btn:active { transform: scale(0.98); }
+
 /* ─── Accesibilidad: oculto visualmente pero legible por lectores de pantalla ─── */
 .sr-only {
     position: absolute;

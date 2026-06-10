@@ -1275,6 +1275,47 @@ add_action( 'init', function () {
     }
 }, 5 );
 
+// ─── Iconos SVG de marca (trazo fino, sustituyen a Material Symbols) ──
+// Uso en plantillas: romvill_icon( 'shield', 'w-6 h-6' );
+// Decorativos (aria-hidden); el color se hereda vía currentColor.
+function romvill_icon( $name, $class = 'w-6 h-6' ) {
+    $paths = array(
+        'shield'         => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11.5 11 13.5 15 9.5"/>',
+        'users'          => '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+        'plus-square'    => '<rect x="3" y="3" width="18" height="18" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>',
+        'trending-up'    => '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+        'navigation'     => '<polygon points="3 11 22 2 13 21 11 13 3 11"/>',
+        'map'            => '<polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21 1 6"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/>',
+        'bar-chart'      => '<line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/><line x1="3" y1="20" x2="21" y2="20"/>',
+        'file-text'      => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
+        'search-area'    => '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><circle cx="11" cy="11" r="2.5"/>',
+        'layers'         => '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/>',
+        'repeat'         => '<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
+        'eye'            => '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+        'double-check'   => '<polyline points="1.5 13 6 17.5 14 8"/><polyline points="10 13.5 13.5 17 22.5 6.5"/>',
+        'clipboard-check'=> '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 13.5 11.5 16 15.5 10.5"/>',
+        'alert-triangle' => '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+        'globe'          => '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+        'scale'          => '<line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="m5 7-3 6a3.5 3.5 0 0 0 6 0z"/><path d="m19 7-3 6a3.5 3.5 0 0 0 6 0z"/><line x1="8" y1="21" x2="16" y2="21"/>',
+        'mountain'       => '<path d="m8 3 4 8 5-5 5 15H2L8 3z"/>',
+        'sun'            => '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>',
+        'building'       => '<rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="7" x2="10.5" y2="7"/><line x1="13.5" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="10.5" y2="11"/><line x1="13.5" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="10.5" y2="15"/><line x1="13.5" y1="15" x2="15" y2="15"/><path d="M10 22v-3h4v3"/>',
+        'award'          => '<circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/>',
+        'shield-person'  => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="9.5" r="2"/><path d="M8.8 15.5c.5-1.6 1.7-2.5 3.2-2.5s2.7.9 3.2 2.5"/>',
+        'arrow-right'    => '<line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/>',
+        'home-family'    => '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><circle cx="12" cy="13" r="1.8"/><path d="M9.2 18c.4-1.4 1.5-2.2 2.8-2.2s2.4.8 2.8 2.2"/>',
+        'car'            => '<rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l2-5h10l2 5"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="16.5" cy="17" r="1.8"/>',
+        'parking'        => '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9.5 16.5V7.5h3.5a2.75 2.75 0 0 1 0 5.5H9.5"/>',
+        'clock'          => '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>',
+        'bank'           => '<path d="M3 9.5 12 4l9 5.5"/><line x1="4" y1="21" x2="20" y2="21"/><line x1="6" y1="12.5" x2="6" y2="18"/><line x1="10" y1="12.5" x2="10" y2="18"/><line x1="14" y1="12.5" x2="14" y2="18"/><line x1="18" y1="12.5" x2="18" y2="18"/>',
+        'pill'           => '<path d="m10.5 20.5-7-7a4.95 4.95 0 1 1 7-7l7 7a4.95 4.95 0 1 1-7 7z"/><line x1="7" y1="10" x2="14" y2="17"/>',
+    );
+    if ( ! isset( $paths[ $name ] ) ) {
+        return;
+    }
+    echo '<svg class="' . esc_attr( $class ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $paths[ $name ] . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput
+}
+
 // ─── Newsletter (footer) AJAX Handler ────────────────────────
 // Guarda los suscriptores en la opción 'romvill_newsletter_subscribers'
 // (array de {email, lang, date, ip}) y notifica al admin por email.
