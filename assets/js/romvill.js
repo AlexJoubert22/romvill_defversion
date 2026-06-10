@@ -173,6 +173,25 @@
         }
     }
 
+    // ─── Sección "Cómo funciona" — activa animaciones al entrar en viewport ───
+    var hiw = document.getElementById('hiw');
+    if (hiw) {
+        var hiwReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (hiwReduce || !('IntersectionObserver' in window)) {
+            hiw.classList.add('hiw-on');
+        } else {
+            var hiwObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('hiw-on');
+                        hiwObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.25 });
+            hiwObserver.observe(hiw);
+        }
+    }
+
     // ─── City Modals ───────────────────────────────────────
     window.openCityModal = function (city) {
         document.querySelectorAll('.city-modal').forEach(function (m) {

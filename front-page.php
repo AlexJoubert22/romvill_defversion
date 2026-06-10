@@ -155,29 +155,54 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <?php endforeach; ?>
             </div>
 
-            <!-- Proceso 3 pasos -->
-            <div class="border-t border-slate-100 dark:border-slate-800 pt-16">
-                <p class="text-center text-xs font-bold uppercase tracking-[0.4em] text-secondary mb-12"><?php echo esc_html( romvill_t( 'how.badge' ) ); ?></p>
+            <!-- Proceso 3 pasos — iconos SVG autodibujados + línea animada (.hiw-on vía IntersectionObserver) -->
+            <div id="hiw" class="hiw border-t border-slate-100 dark:border-slate-800 pt-16">
+                <div class="flex items-center justify-center gap-4 mb-12">
+                    <span class="hiw-badge-line" aria-hidden="true"></span>
+                    <p class="text-center text-xs font-bold uppercase tracking-[0.4em] text-secondary"><?php echo esc_html( romvill_t( 'how.badge' ) ); ?></p>
+                    <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
+                </div>
                 <div class="grid md:grid-cols-3 gap-8 relative">
-                    <div class="hidden md:block absolute top-7 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-slate-200 dark:bg-slate-700 z-0"></div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg">1</div>
+                    <div class="hiw-line hidden md:block absolute z-0" aria-hidden="true"></div>
+                    <div class="hiw-step hiw-step-1 relative z-10 flex flex-col items-center text-center">
+                        <div class="hiw-medal">
+                            <svg class="hiw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path pathLength="1" d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/>
+                                <circle pathLength="1" cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="hiw-num font-serif">1</span>
+                        </div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2"><?php echo esc_html( romvill_t( 'how.step1.title' ) ); ?></h3>
                         <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto"><?php echo esc_html( romvill_t( 'how.step1.desc' ) ); ?></p>
                     </div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg">2</div>
+                    <div class="hiw-step hiw-step-2 relative z-10 flex flex-col items-center text-center">
+                        <div class="hiw-medal">
+                            <svg class="hiw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle pathLength="1" cx="11" cy="11" r="7"/>
+                                <line pathLength="1" x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                <polyline pathLength="1" points="7.5 12.5 10 9.5 12 11.5 14.5 8.5"/>
+                            </svg>
+                            <span class="hiw-num font-serif">2</span>
+                        </div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2"><?php echo esc_html( romvill_t( 'how.step2.title' ) ); ?></h3>
                         <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto"><?php echo esc_html( romvill_t( 'how.step2.desc' ) ); ?></p>
                     </div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-full bg-secondary text-slate-900 flex items-center justify-center font-serif font-bold text-lg mb-5 shadow-lg shadow-secondary/30">3</div>
+                    <div class="hiw-step hiw-step-3 relative z-10 flex flex-col items-center text-center">
+                        <div class="hiw-medal hiw-medal--gold">
+                            <svg class="hiw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path pathLength="1" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline pathLength="1" points="14 2 14 8 20 8"/>
+                                <line pathLength="1" x1="8" y1="13" x2="16" y2="13"/>
+                                <line pathLength="1" x1="8" y1="17" x2="13" y2="17"/>
+                            </svg>
+                            <span class="hiw-num font-serif">3</span>
+                        </div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2"><?php echo esc_html( romvill_t( 'how.step3.title' ) ); ?></h3>
                         <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs mx-auto"><?php echo esc_html( romvill_t( 'how.step3.desc' ) ); ?></p>
                     </div>
                 </div>
                 <div class="text-center mt-14">
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="hiw-cta inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20">
                         <?php echo esc_html( romvill_t( 'how.cta' ) ); ?>
                         <span aria-hidden="true" class="material-symbols-outlined text-base">arrow_forward</span>
                     </a>

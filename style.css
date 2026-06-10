@@ -594,3 +594,174 @@ html {
     white-space: nowrap;
     border: 0;
 }
+
+/* ===== Cómo Funciona — proceso 3 pasos animado =====
+   Medallones con iconos SVG que se autodibujan (pathLength=1 +
+   stroke-dashoffset), línea conectora que se traza hacia el dorado
+   con un pulso luminoso en bucle, y entrada escalonada de los pasos.
+   Todo se activa con .hiw-on (IntersectionObserver en romvill.js). */
+
+/* Filetes dorados que flanquean el rótulo "CÓMO FUNCIONA" */
+.hiw-badge-line {
+    height: 1px;
+    width: 2.5rem;
+    background: linear-gradient(90deg, transparent, rgba(191, 161, 95, 0.7));
+}
+.hiw-badge-line--r {
+    background: linear-gradient(90deg, rgba(191, 161, 95, 0.7), transparent);
+}
+
+/* Entrada escalonada de los pasos */
+.hiw-step {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hiw-step-2 { transition-delay: 0.15s; }
+.hiw-step-3 { transition-delay: 0.30s; }
+.hiw-on .hiw-step { opacity: 1; transform: translateY(0); }
+
+/* Medallón: círculo sólido con icono dibujado + insignia numérica */
+.hiw-medal {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 9999px;
+    background: #0f172a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 10px 25px -8px rgba(15, 23, 42, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dark .hiw-medal { background: #fff; color: #0f172a; }
+.hiw-medal--gold,
+.dark .hiw-medal--gold {
+    background: #BFA15F;
+    color: #0f172a;
+    box-shadow: 0 10px 25px -8px rgba(191, 161, 95, 0.5);
+}
+.hiw-step:hover .hiw-medal {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px -10px rgba(191, 161, 95, 0.45);
+}
+
+.hiw-icon { width: 30px; height: 30px; }
+
+/* Trazos del icono: ocultos hasta que .hiw-on los dibuja en cascada */
+.hiw-icon path,
+.hiw-icon circle,
+.hiw-icon line,
+.hiw-icon polyline {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+.hiw-on .hiw-icon path,
+.hiw-on .hiw-icon circle,
+.hiw-on .hiw-icon line,
+.hiw-on .hiw-icon polyline {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hiw-on .hiw-step-1 .hiw-icon :nth-child(1) { transition-delay: 0.35s; }
+.hiw-on .hiw-step-1 .hiw-icon :nth-child(2) { transition-delay: 0.60s; }
+.hiw-on .hiw-step-2 .hiw-icon :nth-child(1) { transition-delay: 0.55s; }
+.hiw-on .hiw-step-2 .hiw-icon :nth-child(2) { transition-delay: 0.80s; }
+.hiw-on .hiw-step-2 .hiw-icon :nth-child(3) { transition-delay: 0.95s; }
+.hiw-on .hiw-step-3 .hiw-icon :nth-child(1) { transition-delay: 0.75s; }
+.hiw-on .hiw-step-3 .hiw-icon :nth-child(2) { transition-delay: 1.00s; }
+.hiw-on .hiw-step-3 .hiw-icon :nth-child(3) { transition-delay: 1.15s; }
+.hiw-on .hiw-step-3 .hiw-icon :nth-child(4) { transition-delay: 1.25s; }
+
+/* Insignia numérica en la esquina del medallón */
+.hiw-num {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 26px;
+    height: 26px;
+    border-radius: 9999px;
+    background: #fff;
+    color: #0f172a;
+    border: 1px solid rgba(191, 161, 95, 0.65);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.dark .hiw-num { background: #0f172a; color: #fff; }
+.hiw-on .hiw-num { opacity: 1; transform: scale(1); }
+.hiw-on .hiw-step-1 .hiw-num { transition-delay: 0.85s; }
+.hiw-on .hiw-step-2 .hiw-num { transition-delay: 1.10s; }
+.hiw-on .hiw-step-3 .hiw-num { transition-delay: 1.40s; }
+
+/* Línea conectora: se traza de izquierda a derecha hacia el dorado */
+.hiw-line {
+    top: 40px;
+    left: calc(16.666% + 3.25rem);
+    right: calc(16.666% + 3.25rem);
+    height: 1px;
+    background: linear-gradient(90deg, #cbd5e1, #BFA15F);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+}
+.dark .hiw-line { background: linear-gradient(90deg, #334155, #BFA15F); }
+.hiw-on .hiw-line { transform: scaleX(1); }
+
+/* Pulso dorado que recorre la línea en bucle */
+.hiw-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    border-radius: 50%;
+    background: #BFA15F;
+    box-shadow: 0 0 8px 2px rgba(191, 161, 95, 0.55);
+    opacity: 0;
+}
+.hiw-on .hiw-line::after { animation: hiwDot 4.5s ease-in-out 2s infinite; }
+@keyframes hiwDot {
+    0%   { left: 0;                  opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { left: calc(100% - 6px);   opacity: 0; }
+}
+
+/* Conector vertical entre pasos apilados (solo móvil) */
+@media (max-width: 767px) {
+    .hiw-step:not(:last-child)::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 36px;
+        margin: 1.5rem auto 0;
+        background: linear-gradient(180deg, rgba(191, 161, 95, 0.5), transparent);
+    }
+}
+
+/* CTA: la flecha se desliza al hacer hover */
+.hiw-cta .material-symbols-outlined { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.hiw-cta:hover .material-symbols-outlined { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+    .hiw-step,
+    .hiw-num { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .hiw-line { transform: scaleX(1) !important; transition: none !important; }
+    .hiw-line::after { animation: none !important; display: none; }
+    .hiw-icon path,
+    .hiw-icon circle,
+    .hiw-icon line,
+    .hiw-icon polyline { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; transition: none !important; }
+    .hiw-cta .material-symbols-outlined { transition: none !important; }
+}
