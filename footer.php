@@ -1,4 +1,4 @@
-    <footer class="bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 py-12" role="contentinfo">
+﻿    <footer class="bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 py-12" role="contentinfo">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <?php $_lang = romvill_current_lang(); ?>
             <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
@@ -30,11 +30,11 @@
                         $page = get_page_by_path( $slug );
                         $url  = romvill_link( $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' ) );
                     ?>
-                        <a class="hover:text-primary transition-colors" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
+                        <a class="hover:text-secondary transition-colors" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
                     <?php endforeach; ?>
                 </nav>
                 <div class="text-sm text-slate-500 dark:text-slate-400">
-                    <a href="mailto:contacto@romvill.com" class="hover:text-primary transition-colors">contacto@romvill.com</a>
+                    <a href="mailto:contacto@romvill.com" class="hover:text-secondary transition-colors">contacto@romvill.com</a>
                 </div>
             </div>
             <!-- ── Newsletter ─────────────────────────────────── -->
@@ -98,9 +98,9 @@
                     $terms_page = get_page_by_path( 'terminos' );
                     $terms_url  = romvill_link( $terms_page ? get_permalink( $terms_page ) : home_url( '/terminos/' ) );
                     ?>
-                    <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="<?php echo esc_url( $priv_url ); ?>"><?php echo esc_html( romvill_t( 'footer.privacy' ) ); ?></a>
-                    <a class="text-xs text-slate-400 hover:text-primary transition-colors" href="<?php echo esc_url( $terms_url ); ?>"><?php echo esc_html( romvill_t( 'footer.terms' ) ); ?></a>
-                    <button type="button" class="cmplz-manage-consent text-xs text-slate-400 hover:text-primary transition-colors bg-transparent border-0 p-0 cursor-pointer"><?php echo esc_html( romvill_t( 'footer.cookies' ) ); ?></button>
+                    <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $priv_url ); ?>"><?php echo esc_html( romvill_t( 'footer.privacy' ) ); ?></a>
+                    <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $terms_url ); ?>"><?php echo esc_html( romvill_t( 'footer.terms' ) ); ?></a>
+                    <button type="button" class="cmplz-manage-consent text-xs text-slate-400 hover:text-secondary transition-colors bg-transparent border-0 p-0 cursor-pointer"><?php echo esc_html( romvill_t( 'footer.cookies' ) ); ?></button>
                 </div>
             </div>
         </div>
