@@ -227,6 +227,29 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 /* Hero: placa navy con los 3 pasos en línea de tiempo vertical */
 .hero-steps-plate{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(191,161,95,.28);box-shadow:0 24px 48px -24px rgba(15,23,42,.5);}
 .hero-steps-plate--glass{background:rgba(255,255,255,.045);border-color:rgba(191,161,95,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -20px rgba(0,0,0,.5);}
+/* Escena animada del hero (se anima al cargar — el hero ya está en viewport) */
+.rv-hviz-scene{width:100%;height:64px;margin-bottom:1.1rem;display:block;}
+.rv-hviz-draw polyline,.rv-hviz-draw line{stroke-dasharray:1;stroke-dashoffset:1;animation:rvHeroDraw 1.1s cubic-bezier(.4,0,.2,1) forwards .45s;}
+.rv-hviz-draw line{animation-delay:.7s;}
+@keyframes rvHeroDraw{to{stroke-dashoffset:0;}}
+.rv-hviz-pulse{stroke:#f4e4bd;stroke-width:2.5;stroke-dasharray:30 800;stroke-dashoffset:830;opacity:0;filter:drop-shadow(0 0 5px rgba(191,161,95,.9));animation:rvHeroPulse 3s linear 1.6s infinite;}
+@keyframes rvHeroPulse{0%{opacity:1;stroke-dashoffset:830;}96%{opacity:1;}100%{opacity:0;stroke-dashoffset:0;}}
+.rv-hviz-tip{opacity:0;animation:rvHeroTip .5s ease forwards 1.4s;}
+@keyframes rvHeroTip{to{opacity:1;}}
+/* Pasos como recuadros de cristal en cascada + conector con punto viajero */
+.rv-hsteps{position:relative;}
+.rv-hsteps::before{content:'';position:absolute;left:29px;top:52px;bottom:34px;width:1px;background:linear-gradient(180deg,rgba(191,161,95,.45),rgba(191,161,95,.06));}
+.rv-hsteps::after{content:'';position:absolute;left:27px;top:52px;width:5px;height:5px;border-radius:50%;background:#f4e4bd;box-shadow:0 0 6px 2px rgba(191,161,95,.65);opacity:0;animation:rvHeroDot 3.8s ease-in-out 2.2s infinite;}
+@keyframes rvHeroDot{0%{top:52px;opacity:0;}10%{opacity:1;}80%{opacity:1;}100%{top:calc(100% - 44px);opacity:0;}}
+.rv-hstep{position:relative;z-index:1;display:flex;gap:.8rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(191,161,95,.25);border-radius:12px;padding:.7rem .85rem;opacity:0;animation:rfFadeUp .6s cubic-bezier(.16,1,.3,1) forwards;}
+.rv-hstep + .rv-hstep{margin-top:.65rem;}
+.rv-hstep .hstep-num{width:32px;height:32px;font-size:.8rem;}
+@media (prefers-reduced-motion: reduce){
+    .rv-hstep{opacity:1!important;animation:none!important;}
+    .rv-hviz-draw polyline,.rv-hviz-draw line{stroke-dasharray:none!important;stroke-dashoffset:0!important;animation:none!important;}
+    .rv-hviz-pulse,.rv-hsteps::after{animation:none!important;opacity:0!important;}
+    .rv-hviz-tip{animation:none!important;opacity:1!important;}
+}
 .hstep{padding-bottom:1.75rem;}
 .hstep:last-child{padding-bottom:0;}
 .hstep-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(191,161,95,.6);color:#BFA15F;background:rgba(191,161,95,.08);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;}
@@ -275,26 +298,37 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                     </p>
                 </div>
 
-                <!-- Placa de cristal: proceso en 3 pasos como línea de tiempo vertical -->
-                <div class="lg:col-span-2 hero-steps-plate hero-steps-plate--glass rounded-2xl p-7 md:p-8 relative overflow-hidden">
+                <!-- Placa de cristal: escena animada + 3 pasos como recuadros en cascada -->
+                <div class="lg:col-span-2 hero-steps-plate hero-steps-plate--glass rounded-2xl p-6 md:p-7 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" aria-hidden="true"></div>
                     <div class="relative">
-                        <?php
-                        $steps = array(
-                            array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
-                            array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
-                            array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
-                        );
-                        foreach ( $steps as $step ) :
-                        ?>
-                        <div class="hstep relative flex gap-4 items-start">
-                            <div class="hstep-num" aria-hidden="true"><?php echo esc_html( $step['n'] ); ?></div>
-                            <div class="pt-1.5">
-                                <p class="text-sm font-bold text-white mb-1"><?php echo esc_html( $step['t'] ); ?></p>
-                                <p class="text-xs text-slate-300 leading-relaxed"><?php echo esc_html( $step['d'] ); ?></p>
+                        <!-- Escena: línea de inteligencia con cometa de pulso -->
+                        <svg class="rv-hviz-scene" viewBox="0 0 300 70" fill="none" stroke="#BFA15F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <g class="rv-hviz-draw">
+                                <polyline pathLength="1" points="6,52 40,40 70,46 104,26 138,34 170,18 206,30 240,12 294,22" opacity=".9"/>
+                                <line pathLength="1" x1="6" y1="62" x2="294" y2="62" opacity=".3"/>
+                            </g>
+                            <path class="rv-hviz-pulse" d="M6 52 L40 40 L70 46 L104 26 L138 34 L170 18 L206 30 L240 12 L294 22" fill="none"/>
+                            <circle class="rv-hviz-tip" cx="294" cy="22" r="3.5" fill="#BFA15F" stroke="none"/>
+                        </svg>
+                        <div class="rv-hsteps">
+                            <?php
+                            $steps = array(
+                                array( 'n' => '1', 't' => romvill_t( 'contact.step1.t' ), 'd' => romvill_t( 'contact.step1.d' ) ),
+                                array( 'n' => '2', 't' => romvill_t( 'contact.step2.t' ), 'd' => romvill_t( 'contact.step2.d' ) ),
+                                array( 'n' => '3', 't' => romvill_t( 'contact.step3.t' ), 'd' => romvill_t( 'contact.step3.d' ) ),
+                            );
+                            foreach ( $steps as $i => $step ) :
+                            ?>
+                            <div class="rv-hstep" style="animation-delay:<?php echo esc_attr( 0.5 + $i * 0.2 ); ?>s">
+                                <div class="hstep-num" aria-hidden="true"><?php echo esc_html( $step['n'] ); ?></div>
+                                <div class="pt-0.5">
+                                    <p class="text-sm font-bold text-white mb-0.5"><?php echo esc_html( $step['t'] ); ?></p>
+                                    <p class="text-xs text-slate-300 leading-relaxed"><?php echo esc_html( $step['d'] ); ?></p>
+                                </div>
                             </div>
+                            <?php endforeach; ?>
                         </div>
-                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
