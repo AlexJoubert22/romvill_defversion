@@ -1321,6 +1321,11 @@ function romvill_rest_deploy( WP_REST_Request $request ) {
     // Flush rewrite rules so any template changes take effect
     flush_rewrite_rules( false );
 
+    // Purga la caché de página (Batcache/objeto) de WordPress.com: sin esto,
+    // el HTML anónimo cacheado sigue sirviéndose hasta 5 min tras el deploy
+    // y los cambios "no se ven" aunque los archivos ya estén actualizados.
+    wp_cache_flush();
+
     // Borra archivos de desarrollo huérfanos (el ZIP no los trae —export-ignore—
     // pero el deploy no elimina lo que ya existe en el servidor).
     $purged = romvill_purge_dev_files();
