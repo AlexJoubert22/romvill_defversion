@@ -1504,7 +1504,76 @@ add_action( 'rest_api_init', function () {
             return current_user_can( 'manage_options' );
         },
     ] );
+    register_rest_route( 'romvill/v1', '/purge', [
+        'methods'             => 'POST',
+        'callback'            => 'romvill_rest_purge',
+        'permission_callback' => function () {
+            return current_user_can( 'manage_options' );
+        },
+    ] );
 } );
+
+// ─── Purga de caché edge/página (diagnóstico + mejor esfuerzo) ──────
+// Tres vías: (1) object cache (incluye páginas Batcache en memcached),
+// (2) funciones de purga definidas por los mu-plugins de Atomic,
+// (3) endpoint oficial de purga del edge de WP.com llamado como el
+// propio sitio mediante el token de conexión de Jetpack (misma vía
+// que usa el botón "Clear cache" del panel de Hosting de WP.com).
+function romvill_rest_purge() {
+    $report = array();
+
+    // (1) Object cache / Batcache.
+    $report['wp_cache_flush'] = function_exists( 'wp_cache_flush' ) ? (bool) wp_cache_flush() : 'n/a';
+
+    // (2) Funciones de purga expuestas por la plataforma.
+    $cands = array();
+    $all   = get_defined_functions();
+    foreach ( array_merge( $all['internal'], $all['user'] ) as $fn ) {
+        if ( preg_match( '/(edge|batcache|page_?cache).{0,12}(purge|flush|clear)|(purge|flush|clear).{0,12}(edge|batcache)/i', $fn ) ) {
+            $cands[] = $fn;
+        }
+    }
+    $report['candidatas'] = $cands;
+    foreach ( $cands as $fn ) {
+        try {
+            $rf = new ReflectionFunction( $fn );
+            if ( 0 === $rf->getNumberOfRequiredParameters() ) {
+                $fn();
+                $report['ejecutadas'][] = $fn;
+            } else {
+                $report['saltadas_requieren_args'][] = $fn;
+            }
+        } catch ( \Throwable $e ) {
+            $report['errores'][ $fn ] = $e->getMessage();
+        }
+    }
+
+    // (3) API de WP.com como blog (token Jetpack) → purga oficial del edge.
+    try {
+        if ( class_exists( 'Automattic\\Jetpack\\Connection\\Client' ) && class_exists( 'Jetpack_Options' ) ) {
+            $blog_id = (int) Jetpack_Options::get_option( 'id' );
+            $resp    = Automattic\Jetpack\Connection\Client::wpcom_json_api_request_as_blog(
+                sprintf( '/sites/%d/hosting/edge-cache/purge', $blog_id ),
+                '2',
+                array( 'method' => 'POST' ),
+                null,
+                'wpcom'
+            );
+            $report['wpcom_edge_api'] = is_wp_error( $resp )
+                ? array( 'error' => $resp->get_error_message() )
+                : array(
+                    'code' => wp_remote_retrieve_response_code( $resp ),
+                    'body' => substr( (string) wp_remote_retrieve_body( $resp ), 0, 300 ),
+                );
+        } else {
+            $report['wpcom_edge_api'] = 'Jetpack Connection Client no disponible';
+        }
+    } catch ( \Throwable $e ) {
+        $report['wpcom_edge_api'] = array( 'exception' => $e->getMessage() );
+    }
+
+    return rest_ensure_response( $report );
+}
 
 function romvill_rest_deploy( WP_REST_Request $request ) {
     $files = $request->get_file_params();

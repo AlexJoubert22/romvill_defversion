@@ -39,6 +39,18 @@ jobs:
           fi
           echo "Deploy complete - romvill.com is live"
 
+      # Purga programática: object cache + funciones de purga de Atomic +
+      # endpoint oficial de purga del edge de WP.com vía token Jetpack.
+      # Se ejecuta DESPUÉS del deploy para que cargue el functions.php nuevo.
+      # No rompe el build si falla: imprime el diagnóstico y sigue.
+      - name: Purge caches
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            -u "romvill:${{ secrets.WP_APP_PASS }}" \
+            "https://romvill.com/wp-json/romvill/v1/purge")
+          echo "Purge response:"
+          echo "$RESPONSE"
+
       # La caché del borde de WordPress.com sirve copias STALE unos minutos
       # tras el deploy. Visitamos cada página dos veces para que la copia
       # rancia se la coma este robot (la 1ª revalida, la 2ª ya es fresca)
