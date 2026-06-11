@@ -1511,6 +1511,17 @@ add_action( 'rest_api_init', function () {
             return current_user_can( 'manage_options' );
         },
     ] );
+    // Estado del último purge — resumen NO sensible (códigos y contadores,
+    // sin nombres de funciones internas), de solo lectura, para poder
+    // auditar el resultado sin acceso a los logs de GitHub Actions.
+    register_rest_route( 'romvill/v1', '/purge-status', [
+        'methods'             => 'GET',
+        'callback'            => function () {
+            $s = get_option( 'romvill_last_purge', null );
+            return rest_ensure_response( $s ? $s : array( 'status' => 'sin purgas registradas' ) );
+        },
+        'permission_callback' => '__return_true',
+    ] );
 } );
 
 // ─── Purga de caché edge/página (diagnóstico + mejor esfuerzo) ──────
@@ -1613,6 +1624,18 @@ function romvill_rest_purge() {
         }
         $report['purga_por_url'][ $fn ] = $ok;
     }
+
+    // Resumen no sensible consultable en GET /romvill/v1/purge-status.
+    $edge = $report['wpcom_edge_api'];
+    update_option( 'romvill_last_purge', array(
+        'cuando'             => gmdate( 'c' ),
+        'object_cache'       => $report['wp_cache_flush'],
+        'candidatas'         => count( $cands ),
+        'ejecutadas'         => isset( $report['ejecutadas'] ) ? count( $report['ejecutadas'] ) : 0,
+        'edge_api_resultado' => is_array( $edge ) ? ( $edge['code'] ?? ( isset( $edge['error'] ) ? 'error: ' . substr( $edge['error'], 0, 120 ) : 'desconocido' ) ) : $edge,
+        'urls_objetivo'      => count( $expanded ),
+        'funciones_por_url'  => count( $url_fns ),
+    ), false );
 
     return rest_ensure_response( $report );
 }
