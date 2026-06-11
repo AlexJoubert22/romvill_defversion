@@ -50,6 +50,15 @@ jobs:
             "https://romvill.com/wp-json/romvill/v1/purge")
           echo "Purge response:"
           echo "$RESPONSE"
+          # Publica el diagnóstico como comentario del commit para que sea
+          # legible sin acceso a los logs de Actions.
+          BODY=$(echo "$RESPONSE" | head -c 6000)
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/comments" \
+            --data "$(python3 -c 'import json,sys;print(json.dumps({"body":"Diagnostico purge:\n```\n"+sys.argv[1]+"\n```"}))' "$BODY")" \
+            -o /dev/null -w "comment HTTP %{http_code}\n" || true
 
       # La caché del borde de WordPress.com sirve copias STALE unos minutos
       # tras el deploy. Visitamos cada página dos veces para que la copia
@@ -58,8 +67,14 @@ jobs:
       - name: Warm edge cache
         run: |
           for path in "" "metodologia/" "analisis/" "sectores/" "precios/" "contacto/" "perfil-seguridad/" "perfil-demografico/" "perfil-sanidad/" "perfil-movilidad/" "perfil-proyeccion/" "privacidad/" "terminos/"; do
-            curl -s -o /dev/null "https://romvill.com/$path"
-            sleep 1
-            curl -s -o /dev/null "https://romvill.com/$path"
+            # URL base + las 5 variantes de idioma (cada una es una entrada
+            # distinta en el edge y todas deben quedar frescas).
+            for q in "" "?lang=es" "?lang=en" "?lang=fr" "?lang=de" "?lang=ru"; do
+              curl -s -o /dev/null "https://romvill.com/$path$q"
+              curl -s -o /dev/null "https://romvill.com/$path$q"
+            done
           done
-          echo "Edge cache warmed"
+          # El endpoint de usuarios: dos visitas para fijar el 401 fresco.
+          curl -s -o /dev/null "https://romvill.com/wp-json/wp/v2/users"
+          curl -s -o /dev/null "https://romvill.com/wp-json/wp/v2/users"
+          echo "Edge cache warmed (incl. lang variants + users endpoint)"

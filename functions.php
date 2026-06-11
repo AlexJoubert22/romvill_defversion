@@ -1572,6 +1572,48 @@ function romvill_rest_purge() {
         $report['wpcom_edge_api'] = array( 'exception' => $e->getMessage() );
     }
 
+    // (4) Purga explícita por URL (Batcache y candidatas con argumento):
+    // todas las páginas publicadas + home, con las 5 variantes ?lang=,
+    // más el endpoint REST de usuarios. Cubre el caso de que la purga
+    // global del edge no esté disponible y solo exista purga por URL.
+    $urls = array( home_url( '/' ) );
+    foreach ( get_pages( array( 'post_status' => 'publish' ) ) as $pg ) {
+        $urls[] = get_permalink( $pg );
+    }
+    $langs    = defined( 'ROMVILL_LANGS' ) ? ROMVILL_LANGS : array( 'es', 'en', 'fr', 'de', 'ru' );
+    $expanded = array();
+    foreach ( $urls as $u ) {
+        $expanded[] = $u;
+        foreach ( $langs as $lc ) {
+            $expanded[] = add_query_arg( 'lang', $lc, $u );
+        }
+    }
+    $expanded[] = rest_url( 'wp/v2/users' );
+    $expanded   = array_values( array_unique( $expanded ) );
+
+    $url_fns = array_filter(
+        array( 'batcache_clear_url', 'wpcom_purge_edge_cache_for_url', 'wpcom_vip_purge_edge_cache_for_url' ),
+        'function_exists'
+    );
+    $report['purga_por_url'] = array(
+        'funciones_disponibles' => array_values( $url_fns ),
+        'urls'                  => count( $expanded ),
+    );
+    foreach ( $url_fns as $fn ) {
+        $ok = 0;
+        foreach ( $expanded as $u ) {
+            try {
+                if ( $fn( $u ) !== false ) {
+                    $ok++;
+                }
+            } catch ( \Throwable $e ) {
+                $report['purga_por_url']['error_' . $fn] = $e->getMessage();
+                break;
+            }
+        }
+        $report['purga_por_url'][ $fn ] = $ok;
+    }
+
     return rest_ensure_response( $report );
 }
 
