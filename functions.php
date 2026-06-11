@@ -352,6 +352,24 @@ function romvill_filter_title( $title ) {
     return romvill_seo_title();
 }
 
+// ─── Hardening: ocultar /wp/v2/users a peticiones sin autenticar ───
+// La REST API exponía el usuario admin a anónimos (enumeración). Solo
+// se bloquean las rutas de usuarios; el resto de la REST API (deploy
+// romvill/v1, Jetpack, Complianz) no se toca. Con Application Password
+// la autenticación ocurre antes del dispatch, así que el deploy y los
+// usuarios logueados siguen teniendo acceso normal.
+add_filter( 'rest_pre_dispatch', function ( $result, $server, $request ) {
+    $route = $request->get_route();
+    if ( preg_match( '#^/wp/v2/users(?:/|$)#', $route ) && ! is_user_logged_in() ) {
+        return new WP_Error(
+            'rest_unauthorized',
+            'Authentication required.',
+            array( 'status' => 401 )
+        );
+    }
+    return $result;
+}, 10, 3 );
+
 // ─── Central SEO emitter (Tanda 1 lang tags + Tanda 2 content) ─
 // Hooked on wp_head priority 1, registered at theme load — ALWAYS
 // runs regardless of template order. Computes everything from the
