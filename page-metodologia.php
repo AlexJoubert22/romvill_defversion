@@ -176,6 +176,63 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         </div>
     </section>
 
+    <!-- Interactivo: Verificación sobre el terreno -->
+    <section class="w-full bg-white dark:bg-slate-900 py-16 md:py-20">
+      <div class="max-w-5xl mx-auto px-4 md:px-8" id="rvix-hs">
+        <div class="text-center mb-8">
+          <span class="text-secondary font-bold uppercase tracking-[0.26em] text-xs mb-2 block"><?php echo esc_html( romvill_t( 'ix.hs.kicker' ) ); ?></span>
+          <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'ix.hs.title' ) ); ?></h2>
+          <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto"><?php echo esc_html( romvill_t( 'ix.hs.help' ) ); ?></p>
+        </div>
+        <style>
+        #rvix-hs .scene{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(148,163,184,.25)}
+        #rvix-hs .bg2{position:absolute;inset:0;background-size:cover;background-position:center}
+        #rvix-hs .vl2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,16,24,.45),rgba(11,16,24,.78))}
+        #rvix-hs .spot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border:0;background:transparent;cursor:pointer;padding:0;z-index:3}
+        #rvix-hs .spot .core{position:absolute;inset:7px;border-radius:50%;background:#D4B86A;box-shadow:0 0 10px rgba(212,184,106,.8)}
+        #rvix-hs .spot .rng{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(212,184,106,.7);animation:rvixpulse 2.2s ease-out infinite}
+        @keyframes rvixpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
+        #rvix-hs .spot.on .core{background:#fff;box-shadow:0 0 0 5px rgba(212,184,106,.5),0 0 16px rgba(212,184,106,.9)}
+        #rvix-hs .spot.on .rng{animation:none;border-color:#fff}
+        #rvix-hs .spanel{position:absolute;left:14px;right:14px;bottom:14px;z-index:4;background:rgba(13,18,27,.92);border:1px solid rgba(212,184,106,.3);border-radius:13px;padding:14px 16px;display:flex;align-items:flex-start;gap:13px;transition:opacity .3s,transform .3s}
+        #rvix-hs .spanel.hidden{opacity:0;transform:translateY(12px);pointer-events:none}
+        #rvix-hs .spanel .sic{width:38px;height:38px;border-radius:9px;background:rgba(212,184,106,.16);color:#D4B86A;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+        #rvix-hs .spanel .sic svg{width:21px;height:21px}
+        #rvix-hs .spanel h3{font-size:.98rem;font-weight:700;color:#fff;margin-bottom:3px}
+        #rvix-hs .spanel p{font-size:.88rem;color:#c8d0dc;line-height:1.5}
+        #rvix-hs .shint{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#cdd5e0;font-size:.84rem;z-index:4;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+        #rvix-hs .shint.gone{opacity:0;transition:opacity .3s}
+        @media(prefers-reduced-motion:reduce){#rvix-hs .spot .rng{animation:none}}
+        @media(max-width:680px){#rvix-hs .scene{height:420px}}
+        </style>
+        <div class="scene" id="rvix-scene">
+          <div class="bg2" style="background-image:url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/metodologia-campo.webp' ); ?>')"></div><div class="vl2"></div>
+          <button class="spot" style="left:20%;top:34%" data-i="0" aria-label="<?php echo esc_attr( romvill_t( 'ix.hs.seg.t' ) ); ?>"><span class="rng"></span><span class="core"></span></button>
+          <button class="spot" style="left:58%;top:26%" data-i="1" aria-label="<?php echo esc_attr( romvill_t( 'ix.hs.dem.t' ) ); ?>"><span class="rng"></span><span class="core"></span></button>
+          <button class="spot" style="left:40%;top:52%" data-i="2" aria-label="<?php echo esc_attr( romvill_t( 'ix.hs.san.t' ) ); ?>"><span class="rng"></span><span class="core"></span></button>
+          <button class="spot" style="left:78%;top:46%" data-i="3" aria-label="<?php echo esc_attr( romvill_t( 'ix.hs.mov.t' ) ); ?>"><span class="rng"></span><span class="core"></span></button>
+          <button class="spot" style="left:64%;top:64%" data-i="4" aria-label="<?php echo esc_attr( romvill_t( 'ix.hs.dev.t' ) ); ?>"><span class="rng"></span><span class="core"></span></button>
+          <div class="shint" id="rvix-shint"><?php echo esc_html( romvill_t( 'ix.hs.hint' ) ); ?></div>
+          <div class="spanel hidden" id="rvix-spanel"><div class="sic" id="rvix-sic"></div><div><h3 id="rvix-stt"></h3><p id="rvix-sdd"></p></div></div>
+        </div>
+      </div>
+      <script>
+      (function(){
+      var IC={seg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>',dem:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="2.6"/><path d="M4 19a5 5 0 0 1 10 0"/><circle cx="17.5" cy="9.5" r="2"/><path d="M16.5 14.2a4.5 4.5 0 0 1 4 3.8"/></svg>',san:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2.2-5.2 3.6 11 2.2-5.8H22"/></svg>',mov:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><path d="M12 9.8V4M12 14.2V20M9.8 12H4M14.2 12H20"/><circle cx="12" cy="4" r="1"/><circle cx="12" cy="20" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="20" cy="12" r="1"/></svg>',dev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.2"/><path d="M3 9.5h18M9.5 9.5V20"/></svg>'};
+      var D=[
+       {k:'seg',t:<?php echo json_encode( romvill_t( 'ix.hs.seg.t' ), JSON_UNESCAPED_UNICODE ); ?>,d:<?php echo json_encode( romvill_t( 'ix.hs.seg.d' ), JSON_UNESCAPED_UNICODE ); ?>},
+       {k:'dem',t:<?php echo json_encode( romvill_t( 'ix.hs.dem.t' ), JSON_UNESCAPED_UNICODE ); ?>,d:<?php echo json_encode( romvill_t( 'ix.hs.dem.d' ), JSON_UNESCAPED_UNICODE ); ?>},
+       {k:'san',t:<?php echo json_encode( romvill_t( 'ix.hs.san.t' ), JSON_UNESCAPED_UNICODE ); ?>,d:<?php echo json_encode( romvill_t( 'ix.hs.san.d' ), JSON_UNESCAPED_UNICODE ); ?>},
+       {k:'mov',t:<?php echo json_encode( romvill_t( 'ix.hs.mov.t' ), JSON_UNESCAPED_UNICODE ); ?>,d:<?php echo json_encode( romvill_t( 'ix.hs.mov.d' ), JSON_UNESCAPED_UNICODE ); ?>},
+       {k:'dev',t:<?php echo json_encode( romvill_t( 'ix.hs.dev.t' ), JSON_UNESCAPED_UNICODE ); ?>,d:<?php echo json_encode( romvill_t( 'ix.hs.dev.d' ), JSON_UNESCAPED_UNICODE ); ?>}
+      ];
+      var sp=document.getElementById('rvix-spanel'),sh=document.getElementById('rvix-shint');if(!sp)return;
+      function ac(i,el){document.querySelectorAll('#rvix-scene .spot').forEach(function(s){s.classList.remove('on');});el.classList.add('on');document.getElementById('rvix-sic').innerHTML=IC[D[i].k];document.getElementById('rvix-stt').textContent=D[i].t;document.getElementById('rvix-sdd').textContent=D[i].d;sp.classList.remove('hidden');if(sh)sh.classList.add('gone');}
+      document.querySelectorAll('#rvix-scene .spot').forEach(function(s){s.addEventListener('click',function(){ac(+s.dataset.i,s);});s.addEventListener('mouseenter',function(){ac(+s.dataset.i,s);});});
+      })();
+      </script>
+    </section>
+
     <section class="w-full px-4 pb-20">
         <div class="relative overflow-hidden rounded-2xl bg-[#101622] text-white max-w-7xl mx-auto px-6 py-16 md:px-20 md:py-24">
             <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"></div>
