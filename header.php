@@ -72,6 +72,10 @@ $contacto_url  = romvill_link( $contacto_url );
                         'analisis'    => romvill_t( 'nav.analisis' ),
                         'sectores'    => romvill_t( 'nav.sectores' ),
                     );
+                    // 'Quiénes somos' solo si la Page ya existe (evita enlace roto antes de su creación automática).
+                    if ( get_page_by_path( 'quienes-somos' ) ) {
+                        $nav_items['quienes-somos'] = romvill_t( 'nav.quienes' );
+                    }
                     // 'Precios' solo si la Page ya existe (evita enlace roto antes de su creación automática).
                     if ( get_page_by_path( 'precios' ) ) {
                         $nav_items['precios'] = romvill_t( 'nav.precios' );

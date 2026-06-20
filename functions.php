@@ -419,7 +419,12 @@ function romvill_emit_lang_seo() {
     $site_name = get_bloginfo( 'name' ) ?: 'ROMVILL';
     $title     = romvill_seo_title();
     $desc      = romvill_seo_desc();
-    $image     = get_template_directory_uri() . '/assets/images/og-romvill.jpg';
+    // og:image por página si existe assets/images/og-{slug}.jpg; si no, la genérica.
+    $_seo_key = romvill_current_page_key();
+    $_og_rel  = $_seo_key ? '/assets/images/og-' . $_seo_key . '.jpg' : '';
+    $image    = ( $_og_rel && file_exists( get_template_directory() . $_og_rel ) )
+        ? get_template_directory_uri() . $_og_rel
+        : get_template_directory_uri() . '/assets/images/og-romvill.jpg';
     $img_alt   = romvill_t( 'seo.img.alt' );
 
     echo "\n";
@@ -726,6 +731,12 @@ function romvill_activate() {
             'order'    => 6,
         ),
         array(
+            'title'    => 'Quiénes somos',
+            'slug'     => 'quienes-somos',
+            'template' => 'page-quienes-somos.php',
+            'order'    => 8,
+        ),
+        array(
             'title'    => 'Perfil — Seguridad',
             'slug'     => 'perfil-seguridad',
             'template' => 'page-perfil-seguridad.php',
@@ -828,7 +839,7 @@ add_action( 'after_switch_theme', 'romvill_activate' );
 // Only runs for logged-in users with manage_options capability to
 // avoid race conditions with anonymous traffic + transient lock to
 // prevent simultaneous executions.
-define( 'ROMVILL_PAGES_VERSION', '2026.06.04.1' );
+define( 'ROMVILL_PAGES_VERSION', '2026.06.12.1' );
 add_action( 'admin_init', 'romvill_ensure_pages' );
 function romvill_ensure_pages() {
     if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
@@ -844,6 +855,30 @@ function romvill_ensure_pages() {
     romvill_activate();
     update_option( 'romvill_pages_version', ROMVILL_PAGES_VERSION );
     delete_transient( 'romvill_pages_lock' );
+}
+
+// ─── Creación pública (una sola vez) de "Quiénes somos" ──────
+add_action( 'init', 'romvill_create_quienes' );
+function romvill_create_quienes() {
+    if ( get_option( 'romvill_qs_created' ) === 'v1' ) {
+        return;
+    }
+    if ( get_transient( 'romvill_qs_lock' ) ) {
+        return;
+    }
+    set_transient( 'romvill_qs_lock', 1, 30 );
+    if ( ! get_page_by_path( 'quienes-somos' ) ) {
+        wp_insert_post( array(
+            'post_title'   => 'Quiénes somos',
+            'post_name'    => 'quienes-somos',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'menu_order'   => 8,
+            'post_content' => '',
+        ) );
+    }
+    update_option( 'romvill_qs_created', 'v1' );
+    delete_transient( 'romvill_qs_lock' );
 }
 
 // ─── Generic Questionnaire AJAX Handler (Bloques 2/3/4) ──────

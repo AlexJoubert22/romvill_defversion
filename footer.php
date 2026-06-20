@@ -24,6 +24,9 @@
                         'analisis'    => romvill_t( 'nav.analisis' ),
                         'sectores'    => romvill_t( 'nav.sectores' ),
                     );
+                    if ( get_page_by_path( 'quienes-somos' ) ) {
+                        $footer_links['quienes-somos'] = romvill_t( 'nav.quienes' );
+                    }
                     // /precios/ en el footer: página comercial clave con enlazado interno débil.
                     if ( get_page_by_path( 'precios' ) ) {
                         $footer_links['precios'] = romvill_t( 'nav.precios' );

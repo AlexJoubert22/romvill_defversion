@@ -324,6 +324,22 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         </div>
     </section>
 
+    <!-- Quiénes somos (teaser) -->
+    <?php $qs_page = get_page_by_path( 'quienes-somos' ); if ( $qs_page ) :
+        $qs_url = romvill_link( get_permalink( $qs_page ) ); ?>
+    <section class="py-24 bg-background-light dark:bg-background-dark border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'qs.kicker' ) ); ?></span>
+            <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white mb-5 leading-snug"><?php echo esc_html( romvill_t( 'qs.teaser.title' ) ); ?></h2>
+            <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mb-8 leading-relaxed"><?php echo esc_html( romvill_t( 'qs.teaser.desc' ) ); ?></p>
+            <a href="<?php echo esc_url( $qs_url ); ?>" class="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
+                <?php echo esc_html( romvill_t( 'qs.teaser.cta' ) ); ?>
+                <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+    <?php endif; ?>
+
     <!-- CTA Section -->
     <section class="py-20 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
