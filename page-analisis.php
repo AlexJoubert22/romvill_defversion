@@ -189,7 +189,7 @@ $perfil_pages = array(
         #rvix-sl .dv{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#D4B86A;box-shadow:0 0 12px rgba(212,184,106,.7);z-index:5}
         #rvix-sl .hd2{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);z-index:6;width:44px;height:44px;border-radius:50%;background:#D4B86A;color:#101622;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.4)}
         #rvix-sl .hd2 svg{width:22px;height:22px}
-        @media(max-width:680px){#rvix-sl .cmp{height:420px}#rvix-sl .nd .lb{max-width:none;padding:6px 9px}#rvix-sl .nd .lbx i{display:none}#rvix-sl .nd .lbx b{font-size:11px}}
+        @media(max-width:900px){#rvix-sl .cmp{height:420px}#rvix-sl .nd .lb{max-width:none;padding:6px 9px}#rvix-sl .nd .lbx i{display:none}#rvix-sl .nd .lbx b{font-size:11px}}
         </style>
         <?php $rvix_img = esc_url( get_template_directory_uri() . '/assets/images/quienes-hero.webp' ); ?>
         <div class="cmp" id="rvix-cmp">
