@@ -1882,3 +1882,8 @@ function romvill_related_dimensions( $current_slug ) {
     <?php
 }
 
+
+// ─── Verificación de Google Search Console ──────────────────
+add_action( 'wp_head', function () {
+    echo '<meta name="google-site-verification" content="LfiGrjyRGhr5UtnRQmwjVewLr8Qo_LOh8WGFiI6Xg0A" />' . "\n";
+}, 1 );
