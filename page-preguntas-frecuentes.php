@@ -22,7 +22,7 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 #rv-faq{background:#f6f7fb}
 .dark #rv-faq{background:#0b111e}
 #rv-faq .hero{position:relative;text-align:center;color:#fff;padding:92px 20px 80px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#1d2a4a 0%,#131d34 45%,#0d1424 100%)}
-#rv-faq .hero::before{content:"";position:absolute;inset:0;opacity:.35;background-image:radial-gradient(rgba(191,161,95,.16) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent)}
+#rv-faq .hero::before{content:"";position:absolute;inset:-30px;opacity:.35;background-image:radial-gradient(rgba(191,161,95,.16) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);transform:translate(calc(var(--mx,0)*1px),calc(var(--my,0)*1px));transition:transform .25s ease-out}
 #rv-faq .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(191,161,95,.20),transparent 62%);filter:blur(8px);animation:rvfaqBreathe 7s ease-in-out infinite}
 @keyframes rvfaqBreathe{0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}50%{opacity:.9;transform:translateX(-50%) scale(1.12)}}
 #rv-faq .hero>*{position:relative;z-index:2}
@@ -45,6 +45,10 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 #rv-faq .item:hover{box-shadow:0 10px 30px rgba(16,22,34,.09)}
 #rv-faq .item.open{border-color:#dcd0ad;box-shadow:0 14px 40px rgba(16,22,34,.10)}
 #rv-faq .item:target{border-color:#BFA15F;box-shadow:0 0 0 3px rgba(191,161,95,.18)}
+#rv-faq .item{position:relative}
+#rv-faq .item .q,#rv-faq .item .a-wrap{position:relative;z-index:2}
+#rv-faq .item::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;opacity:0;transition:opacity .35s ease;z-index:1;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,50%),rgba(191,161,95,.16),transparent 46%)}
+#rv-faq .item:hover::after{opacity:1}
 #rv-faq .q{position:relative;cursor:pointer;padding:20px 22px;display:flex;align-items:center;gap:15px;font-weight:700;font-size:1.04rem;color:#101622;user-select:none}
 .dark #rv-faq .q{color:#fff}
 #rv-faq .q::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:#BFA15F;transform:scaleY(0);transform-origin:center;transition:transform .3s ease}
@@ -149,6 +153,40 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
             });
             noResult.style.display = any ? 'none' : 'block';
         });
+        // Profundidad: inclinación 3D + sombra dinámica + foco de luz en tarjetas, y parallax del hero.
+        var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+        var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if (fine && !reduce) {
+            items.forEach(function(it){
+                it.addEventListener('pointermove', function(e){
+                    var r = it.getBoundingClientRect();
+                    var px = (e.clientX - r.left) / r.width - 0.5;
+                    var py = (e.clientY - r.top) / r.height - 0.5;
+                    it.style.transition = 'transform .1s ease-out, box-shadow .1s ease-out';
+                    it.style.transform = 'perspective(900px) rotateX(' + (-py*2.6).toFixed(2) + 'deg) rotateY(' + (px*3.4).toFixed(2) + 'deg) translateY(-2px)';
+                    it.style.boxShadow = (-px*16).toFixed(1) + 'px ' + (12 - py*10).toFixed(1) + 'px 34px rgba(16,22,34,.15)';
+                    it.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+                    it.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+                });
+                it.addEventListener('pointerleave', function(){
+                    it.style.transition = 'transform .5s ease, box-shadow .5s ease';
+                    it.style.transform = '';
+                    it.style.boxShadow = '';
+                });
+            });
+            var hero = root.querySelector('.hero');
+            if (hero) {
+                hero.addEventListener('pointermove', function(e){
+                    var r = hero.getBoundingClientRect();
+                    hero.style.setProperty('--mx', (((e.clientX - r.left)/r.width - 0.5) * 22).toFixed(1));
+                    hero.style.setProperty('--my', (((e.clientY - r.top)/r.height - 0.5) * 22).toFixed(1));
+                });
+                hero.addEventListener('pointerleave', function(){
+                    hero.style.setProperty('--mx', 0);
+                    hero.style.setProperty('--my', 0);
+                });
+            }
+        }
     })();
     </script>
 </main>
