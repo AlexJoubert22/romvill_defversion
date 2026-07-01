@@ -18,6 +18,7 @@ add_filter( 'default_option_blog_public', '__return_true' );
 
 // ─── Multilingual Engine ──────────────────────────────────────
 require_once get_template_directory() . '/inc/translations.php';
+require_once get_template_directory() . '/inc/zonas.php';
 
 // ─── Solicitudes panel (private CRM) ──────────────────────────
 require_once get_template_directory() . '/inc/solicitudes-cpt.php';
@@ -206,6 +207,11 @@ function romvill_page_template( $template ) {
         $custom = get_template_directory() . '/page-' . $slug . '.php';
         if ( file_exists( $custom ) ) {
             return $custom;
+        }
+        // Páginas de zona: una plantilla común para todos sus slugs.
+        if ( function_exists( 'romvill_zona_slugs' ) && in_array( $slug, romvill_zona_slugs(), true ) ) {
+            $zt = get_template_directory() . '/template-zona.php';
+            if ( file_exists( $zt ) ) return $zt;
         }
     }
     return $template;
@@ -1887,3 +1893,28 @@ function romvill_related_dimensions( $current_slug ) {
 add_action( 'wp_head', function () {
     echo '<meta name="google-site-verification" content="LfiGrjyRGhr5UtnRQmwjVewLr8Qo_LOh8WGFiI6Xg0A" />' . "\n";
 }, 1 );
+
+
+// ─── Creación pública de las páginas de zona (idempotente) ──────
+add_action( 'init', 'romvill_create_zonas' );
+function romvill_create_zonas() {
+    if ( ! function_exists( 'romvill_zonas' ) ) return;
+    $sig = md5( implode( ',', romvill_zona_slugs() ) );
+    if ( get_option( 'romvill_zonas_created' ) === $sig ) return;
+    if ( get_transient( 'romvill_zonas_lock' ) ) return;
+    set_transient( 'romvill_zonas_lock', 1, 30 );
+    foreach ( romvill_zonas() as $slug => $z ) {
+        if ( ! get_page_by_path( $slug ) ) {
+            wp_insert_post( array(
+                'post_title'   => $z['title'],
+                'post_name'    => $slug,
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+                'menu_order'   => isset( $z['order'] ) ? (int) $z['order'] : 30,
+                'post_content' => '',
+            ) );
+        }
+    }
+    update_option( 'romvill_zonas_created', $sig );
+    delete_transient( 'romvill_zonas_lock' );
+}
