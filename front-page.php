@@ -317,6 +317,11 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                     <div class="absolute bottom-0 left-0 right-0 p-8 text-center">
                         <h3 class="text-white text-3xl font-serif mb-2 group-hover:text-secondary transition-colors"><?php echo esc_html( $city['name'] ); ?></h3>
                         <p class="text-slate-300 text-sm font-light"><?php echo esc_html( $city['desc'] ); ?></p>
+                        <?php
+                        $zpage = get_page_by_path( 'analisis-' . $city['id'] );
+                        $zurl  = $zpage ? add_query_arg( 'lang', romvill_current_lang(), get_permalink( $zpage ) ) : home_url( '/analisis-' . $city['id'] . '/' );
+                        ?>
+                        <a href="<?php echo esc_url( $zurl ); ?>" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 mt-3 text-secondary text-sm font-bold hover:gap-2.5 transition-all"><?php echo esc_html( romvill_t( 'zona.link.ver' ) ); ?> <span aria-hidden="true">&rarr;</span></a>
                     </div>
                 </div>
                 <?php endforeach; ?>
