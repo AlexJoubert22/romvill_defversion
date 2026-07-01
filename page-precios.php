@@ -129,18 +129,18 @@ $packs = array(
             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed"><?php echo esc_html( romvill_t( 'precios.credit.desc' ) ); ?></p>
         </div>
 
-        <!-- FAQ -->
-        <div class="mt-16 max-w-3xl mx-auto">
-            <h2 class="font-serif text-2xl font-bold text-slate-900 dark:text-white text-center mb-8"><?php echo esc_html( romvill_t( 'precios.faq.title' ) ); ?></h2>
-            <div class="space-y-4">
-                <?php foreach ( array( '1', '2', '3' ) as $i ) : ?>
-                    <div class="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-5">
-                        <h3 class="font-bold text-slate-900 dark:text-white mb-2"><?php echo esc_html( romvill_t( "precios.faq.q$i" ) ); ?></h3>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed"><?php echo esc_html( romvill_t( "precios.faq.a$i" ) ); ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+        <!-- Enlace a Preguntas frecuentes -->
+        <?php
+        $faq_page = get_page_by_path( 'preguntas-frecuentes' );
+        if ( $faq_page ) :
+            $faq_url = romvill_link( get_permalink( $faq_page ) );
+        ?>
+        <div class="mt-16 text-center">
+            <a href="<?php echo esc_url( $faq_url ); ?>" class="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
+                <?php echo esc_html( romvill_t( 'precios.faq.title' ) ); ?> <span aria-hidden="true">&rarr;</span>
+            </a>
         </div>
+        <?php endif; ?>
 
     </div>
 </main>

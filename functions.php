@@ -19,6 +19,7 @@ add_filter( 'default_option_blog_public', '__return_true' );
 // ─── Multilingual Engine ──────────────────────────────────────
 require_once get_template_directory() . '/inc/translations.php';
 require_once get_template_directory() . '/inc/zonas.php';
+require_once get_template_directory() . '/inc/faq.php';
 
 // ─── Solicitudes panel (private CRM) ──────────────────────────
 require_once get_template_directory() . '/inc/solicitudes-cpt.php';
@@ -523,6 +524,7 @@ function romvill_emit_lang_seo() {
             'sectores'    => array( 'es' => 'Sectores', 'en' => 'Sectors', 'fr' => 'Secteurs', 'de' => 'Sektoren', 'ru' => 'Секторы' ),
             'precios'     => array( 'es' => 'Precios', 'en' => 'Pricing', 'fr' => 'Tarifs', 'de' => 'Preise', 'ru' => 'Цены' ),
             'contacto'    => array( 'es' => 'Contacto', 'en' => 'Contact', 'fr' => 'Contact', 'de' => 'Kontakt', 'ru' => 'Контакт' ),
+            'preguntas-frecuentes' => array( 'es' => 'Preguntas frecuentes', 'en' => 'FAQ', 'fr' => 'Questions fréquentes', 'de' => 'Häufige Fragen', 'ru' => 'Частые вопросы' ),
             'privacidad'  => array( 'es' => 'Privacidad', 'en' => 'Privacy', 'fr' => 'Confidentialité', 'de' => 'Datenschutz', 'ru' => 'Конфиденциальность' ),
             'terminos'    => array( 'es' => 'Términos', 'en' => 'Terms', 'fr' => 'Conditions', 'de' => 'Bedingungen', 'ru' => 'Условия' ),
         );
@@ -626,36 +628,37 @@ function romvill_emit_lang_seo() {
             ),
         );
 
-        // FAQPage (3 preguntas de la sección FAQ existente)
+    } elseif ( $page_key === 'preguntas-frecuentes' ) {
+        // WebPage
         $graph[] = array(
-            '@type'      => 'FAQPage',
-            'mainEntity' => array(
-                array(
-                    '@type' => 'Question',
-                    'name'  => romvill_t( 'schema.faq1.q' ),
-                    'acceptedAnswer' => array(
-                        '@type' => 'Answer',
-                        'text'  => romvill_t( 'schema.faq1.a' ),
-                    ),
-                ),
-                array(
-                    '@type' => 'Question',
-                    'name'  => romvill_t( 'schema.faq2.q' ),
-                    'acceptedAnswer' => array(
-                        '@type' => 'Answer',
-                        'text'  => romvill_t( 'schema.faq2.a' ),
-                    ),
-                ),
-                array(
-                    '@type' => 'Question',
-                    'name'  => romvill_t( 'schema.faq3.q' ),
-                    'acceptedAnswer' => array(
-                        '@type' => 'Answer',
-                        'text'  => romvill_t( 'schema.faq3.a' ),
-                    ),
-                ),
-            ),
+            '@type'       => 'WebPage',
+            '@id'         => $canonical . '#webpage',
+            'url'         => $canonical,
+            'name'        => $title,
+            'description' => $desc,
+            'inLanguage'  => $lang_bcp,
+            'isPartOf'    => array( '@id' => $home . '#website' ),
         );
+
+        // FAQPage con TODAS las preguntas (desde inc/faq.php)
+        if ( function_exists( 'romvill_faq_ids' ) ) {
+            $faq_entities = array();
+            foreach ( romvill_faq_ids() as $fid ) {
+                $ans = wp_strip_all_tags( romvill_t( 'faq.a.' . $fid ) );
+                $faq_entities[] = array(
+                    '@type'          => 'Question',
+                    'name'           => romvill_t( 'faq.q.' . $fid ),
+                    'acceptedAnswer' => array(
+                        '@type' => 'Answer',
+                        'text'  => $ans,
+                    ),
+                );
+            }
+            $graph[] = array(
+                '@type'      => 'FAQPage',
+                'mainEntity' => $faq_entities,
+            );
+        }
 
     } else {
         // WebPage genérica para todas las demás páginas
@@ -885,6 +888,30 @@ function romvill_create_quienes() {
     }
     update_option( 'romvill_qs_created', 'v1' );
     delete_transient( 'romvill_qs_lock' );
+}
+
+// ─── Crear la Page de Preguntas frecuentes (FAQ) si no existe ─
+add_action( 'init', 'romvill_create_faq' );
+function romvill_create_faq() {
+    if ( get_option( 'romvill_faq_created' ) === 'v1' ) {
+        return;
+    }
+    if ( get_transient( 'romvill_faq_lock' ) ) {
+        return;
+    }
+    set_transient( 'romvill_faq_lock', 1, 30 );
+    if ( ! get_page_by_path( 'preguntas-frecuentes' ) ) {
+        wp_insert_post( array(
+            'post_title'   => 'Preguntas frecuentes',
+            'post_name'    => 'preguntas-frecuentes',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'menu_order'   => 9,
+            'post_content' => '',
+        ) );
+    }
+    update_option( 'romvill_faq_created', 'v1' );
+    delete_transient( 'romvill_faq_lock' );
 }
 
 // ─── Generic Questionnaire AJAX Handler (Bloques 2/3/4) ──────

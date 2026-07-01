@@ -31,6 +31,9 @@
                     if ( get_page_by_path( 'precios' ) ) {
                         $footer_links['precios'] = romvill_t( 'nav.precios' );
                     }
+                    if ( get_page_by_path( 'preguntas-frecuentes' ) ) {
+                        $footer_links['preguntas-frecuentes'] = romvill_t( 'nav.faq.full' );
+                    }
                     $footer_links['contacto'] = romvill_t( 'nav.contacto' );
                     foreach ( $footer_links as $slug => $label ) :
                         $page = get_page_by_path( $slug );

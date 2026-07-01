@@ -80,6 +80,10 @@ $contacto_url  = romvill_link( $contacto_url );
                     if ( get_page_by_path( 'precios' ) ) {
                         $nav_items['precios'] = romvill_t( 'nav.precios' );
                     }
+                    // 'FAQ' solo si la Page ya existe (evita enlace roto antes de su creación automática).
+                    if ( get_page_by_path( 'preguntas-frecuentes' ) ) {
+                        $nav_items['preguntas-frecuentes'] = romvill_t( 'nav.faq' );
+                    }
                     $nav_items['contacto'] = romvill_t( 'nav.contacto' );
                     foreach ( $nav_items as $slug => $label ) :
                         $page = get_page_by_path( $slug );
