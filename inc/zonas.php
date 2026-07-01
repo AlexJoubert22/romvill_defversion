@@ -18,8 +18,18 @@ function romvill_zonas() {
             'title' => 'Análisis de zona en Marbella',
             'order' => 30,
         ),
-        // Próximas (fase 1 premium): analisis-benahavis, analisis-nueva-andalucia, analisis-sotogrande
-        // Fase 2: analisis-malaga, analisis-alicante
+        'analisis-malaga' => array(
+            'key'   => 'malaga',
+            'img'   => 'malaga.jpg',
+            'title' => 'Análisis de zona en Málaga',
+            'order' => 31,
+        ),
+        'analisis-alicante' => array(
+            'key'   => 'alicante',
+            'img'   => 'alicante.jpg',
+            'title' => 'Análisis de zona en Alicante',
+            'order' => 32,
+        ),
     );
 }
 
