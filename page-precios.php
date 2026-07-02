@@ -123,6 +123,20 @@ $packs = array(
         }
         </script>
 
+        <!-- Ver una muestra del informe (botón destacado) -->
+        <?php
+        $muestra_page = get_page_by_path( 'muestra-de-informe' );
+        if ( $muestra_page ) :
+            $muestra_url = romvill_link( get_permalink( $muestra_page ) );
+        ?>
+        <div class="mt-10 text-center">
+            <a href="<?php echo esc_url( $muestra_url ); ?>" class="inline-flex items-center justify-center gap-2" style="background:#BFA15F;color:#101622;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5L14 3z"/><path d="M14 3v4.5h4.5M9 13h6M9 16.5h6"/></svg>
+                <?php echo esc_html( romvill_t( 'mu.link.ver' ) ); ?> <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+        <?php endif; ?>
+
         <!-- No pagas dos veces: descuento al subir de nivel -->
         <div class="mt-12 bg-secondary/10 border border-secondary/30 rounded-xl p-6 text-center max-w-3xl mx-auto">
             <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white mb-1"><?php echo esc_html( romvill_t( 'precios.credit.title' ) ); ?></h3>

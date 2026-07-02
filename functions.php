@@ -525,6 +525,7 @@ function romvill_emit_lang_seo() {
             'precios'     => array( 'es' => 'Precios', 'en' => 'Pricing', 'fr' => 'Tarifs', 'de' => 'Preise', 'ru' => 'Цены' ),
             'contacto'    => array( 'es' => 'Contacto', 'en' => 'Contact', 'fr' => 'Contact', 'de' => 'Kontakt', 'ru' => 'Контакт' ),
             'preguntas-frecuentes' => array( 'es' => 'Preguntas frecuentes', 'en' => 'FAQ', 'fr' => 'Questions fréquentes', 'de' => 'Häufige Fragen', 'ru' => 'Частые вопросы' ),
+            'muestra-de-informe' => array( 'es' => 'Muestra de informe', 'en' => 'Sample report', 'fr' => 'Exemple de rapport', 'de' => 'Musterbericht', 'ru' => 'Образец отчёта' ),
             'privacidad'  => array( 'es' => 'Privacidad', 'en' => 'Privacy', 'fr' => 'Confidentialité', 'de' => 'Datenschutz', 'ru' => 'Конфиденциальность' ),
             'terminos'    => array( 'es' => 'Términos', 'en' => 'Terms', 'fr' => 'Conditions', 'de' => 'Bedingungen', 'ru' => 'Условия' ),
         );
@@ -912,6 +913,30 @@ function romvill_create_faq() {
     }
     update_option( 'romvill_faq_created', 'v1' );
     delete_transient( 'romvill_faq_lock' );
+}
+
+// ─── Crear la Page de Muestra de informe si no existe ─────────
+add_action( 'init', 'romvill_create_muestra' );
+function romvill_create_muestra() {
+    if ( get_option( 'romvill_muestra_created' ) === 'v1' ) {
+        return;
+    }
+    if ( get_transient( 'romvill_muestra_lock' ) ) {
+        return;
+    }
+    set_transient( 'romvill_muestra_lock', 1, 30 );
+    if ( ! get_page_by_path( 'muestra-de-informe' ) ) {
+        wp_insert_post( array(
+            'post_title'   => 'Muestra de informe',
+            'post_name'    => 'muestra-de-informe',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'menu_order'   => 10,
+            'post_content' => '',
+        ) );
+    }
+    update_option( 'romvill_muestra_created', 'v1' );
+    delete_transient( 'romvill_muestra_lock' );
 }
 
 // ─── Generic Questionnaire AJAX Handler (Bloques 2/3/4) ──────
