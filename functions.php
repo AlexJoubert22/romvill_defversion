@@ -1946,6 +1946,21 @@ add_action( 'wp_head', function () {
     echo '<meta name="google-site-verification" content="LfiGrjyRGhr5UtnRQmwjVewLr8Qo_LOh8WGFiI6Xg0A" />' . "\n";
 }, 1 );
 
+// ─── Microsoft Clarity (medición de uso; proyecto xg89blblyk) ─
+// Complianz reconoce clarity.ms y lo bloquea hasta que el visitante
+// acepta cookies de estadística, así que respeta el RGPD.
+add_action( 'wp_head', function () {
+    ?>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xg89blblyk");
+</script>
+    <?php
+}, 20 );
+
 
 // ─── Creación pública de las páginas de zona (idempotente) ──────
 add_action( 'init', 'romvill_create_zonas' );
