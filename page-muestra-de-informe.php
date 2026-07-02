@@ -16,7 +16,10 @@ $kses  = array( 'b' => array() );
 $contacto_page = get_page_by_path( 'contacto' );
 $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' ) );
 
-$_ref  = 'RV-2026-MUEE-EJEM-0417';
+$_ref    = 'RV-2026-MUEE-EJEM-0417';
+$_imgdir = get_template_directory() . '/assets/images/';
+$_logo_w = romvill_img( 'rv-logo-white.png' ) . '?v=' . @filemtime( $_imgdir . 'rv-logo-white.png' );
+$_logo_d = romvill_img( 'rv-logo-dark.png' )  . '?v=' . @filemtime( $_imgdir . 'rv-logo-dark.png' );
 $_toc  = explode( '|', romvill_t( 'mu.toc.items' ) );
 $_tocp = array( 2, 3, 6, 10, 13, 16, 19, 22, 25, 28, 30, 33 ); // páginas ficticias del índice
 $_th   = explode( '|', romvill_t( 'mu.cap.th' ) );
@@ -49,9 +52,7 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
 #rv-mu .cover{background:linear-gradient(165deg,#131d34,#0d1424);color:#fff;padding:50px 46px 42px;min-height:540px;display:flex;flex-direction:column}
 #rv-mu .cover .ctop{display:flex;justify-content:space-between;align-items:flex-start;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#8fa0bd}
 #rv-mu .stampx{border:2px solid rgba(191,161,95,.8);color:#D4B86A;font-weight:800;font-size:.64rem;letter-spacing:.2em;padding:6px 12px;border-radius:4px;transform:rotate(4deg)}
-#rv-mu .seal{width:78px;height:78px;border-radius:50%;border:2px solid #BFA15F;display:flex;align-items:center;justify-content:center;margin:36px auto 18px;position:relative}
-#rv-mu .seal::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(191,161,95,.5)}
-#rv-mu .seal span{font-family:'Playfair Display',serif;font-weight:700;font-size:1.55rem;color:#D4B86A}
+#rv-mu .seal{display:block;height:78px;width:auto;margin:36px auto 18px}
 #rv-mu .cover h2{text-align:center;font-weight:700;font-size:1.85rem;margin:0;line-height:1.2;color:#fff}
 #rv-mu .cover .czona{text-align:center;color:#D4B86A;font-size:1rem;margin-top:8px;letter-spacing:.04em}
 #rv-mu .cover .cscope{max-width:420px;margin:26px auto 0;text-align:center;font-size:.82rem;color:#aab6cc;line-height:1.7;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 0}
@@ -102,7 +103,7 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
 #rv-mu .fsrc .nm{font-weight:700;color:#101622;font-size:.88rem}
 #rv-mu .fsrc .ds{font-size:.75rem;color:#64748b}
 #rv-mu .verifx{margin-top:18px;display:flex;align-items:center;gap:14px;background:#101622;border-radius:10px;padding:14px 18px;color:#cdd5e0;font-size:.8rem;line-height:1.6}
-#rv-mu .verifx .vseal{flex:0 0 46px;width:46px;height:46px;border-radius:50%;border:1.5px solid #BFA15F;display:flex;align-items:center;justify-content:center;color:#D4B86A;font-family:'Playfair Display',serif;font-weight:700}
+#rv-mu .verifx .vseal{flex:0 0 auto;height:42px;width:auto;display:block}
 #rv-mu .verifx b{color:#fff}
 #rv-mu .deliv{max-width:740px;margin:4px auto 10px;padding:0 20px}
 #rv-mu .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -118,7 +119,7 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
 #rv-mu .mock{height:120px;border-radius:9px;position:relative;overflow:hidden;border:1px solid #e7e9ee}
 #rv-mu .mock.pdf{background:linear-gradient(165deg,#131d34,#0d1424);display:flex;align-items:center;justify-content:center}
 #rv-mu .mock.pdf .mini{width:64px;height:84px;background:#fefefc;border-radius:4px;position:relative;box-shadow:0 6px 16px rgba(0,0,0,.35)}
-#rv-mu .mock.pdf .mini::before{content:"RV";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;border:1.5px solid #BFA15F;color:#BFA15F;font-size:.55rem;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif}
+#rv-mu .mock.pdf .mini img{position:absolute;top:8px;left:50%;transform:translateX(-50%);height:22px;width:auto}
 #rv-mu .mock.pdf .mini::after{content:"";position:absolute;left:10px;right:10px;top:38px;height:38px;background:repeating-linear-gradient(180deg,#d8dce4 0 3px,transparent 3px 9px)}
 #rv-mu .mock.pdf .lockx{position:absolute;right:10px;bottom:8px;color:#D4B86A;font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
 #rv-mu .mock.pdf .lockx svg{width:12px;height:12px}
@@ -146,6 +147,9 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
   #rv-mu .phead,#rv-mu .pfoot{padding-left:22px;padding-right:22px}
   #rv-mu .phead{flex-direction:column;align-items:flex-start;gap:3px}
   #rv-mu .cover{min-height:0;padding-top:38px;padding-bottom:32px}
+  #rv-mu .seal{height:60px;margin:26px auto 14px}
+  #rv-mu .verifx{flex-direction:column;align-items:flex-start;gap:10px}
+  #rv-mu .verifx .vseal{height:34px}
   #rv-mu .cover .cmeta{grid-template-columns:1fr 1fr;gap:12px}
   #rv-mu .brief{grid-template-columns:1fr}
   #rv-mu .sheet::after{font-size:1.5rem}
@@ -186,7 +190,7 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
                     <div><?php echo esc_html( romvill_t( 'mu.cov.brand' ) ); ?><br>Ref. <b style="color:#fff"><?php echo esc_html( $_ref ); ?></b> · Rev. 1.0</div>
                     <div class="stampx"><?php echo esc_html( romvill_t( 'mu.cov.conf' ) ); ?></div>
                 </div>
-                <div class="seal"><span>RV</span></div>
+                <img class="seal" src="<?php echo esc_url( $_logo_w ); ?>" alt="ROMVILL">
                 <h2 class="serif" style="<?php echo $serif; ?>"><?php echo esc_html( romvill_t( 'mu.cov.title' ) ); ?></h2>
                 <div class="czona"><?php echo esc_html( romvill_t( 'mu.cov.zona' ) ); ?></div>
                 <div class="cscope"><?php echo esc_html( romvill_t( 'mu.cov.scope' ) ); ?></div>
@@ -293,7 +297,7 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
                 </div>
                 <div class="callout" style="margin-top:14px"><?php echo wp_kses( romvill_t( 'mu.fu.vig' ), $kses ); ?></div>
                 <div class="verifx">
-                    <div class="vseal">RV</div>
+                    <img class="vseal" src="<?php echo esc_url( $_logo_w ); ?>" alt="ROMVILL">
                     <div><?php echo wp_kses( romvill_t( 'mu.fu.indep' ), $kses ); ?></div>
                 </div>
             </div>
@@ -305,7 +309,7 @@ $_chip = explode( '|', romvill_t( 'mu.enc.chips' ) );
             <div class="grid2">
                 <div class="dcard">
                     <div class="mock pdf">
-                        <div class="mini"></div>
+                        <div class="mini"><img src="<?php echo esc_url( $_logo_d ); ?>" alt="ROMVILL"></div>
                         <div class="lockx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><?php echo esc_html( romvill_t( 'mu.ent.lock' ) ); ?></div>
                     </div>
                     <div class="dt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5L14 3z"/><path d="M14 3v4.5h4.5"/></svg><?php echo esc_html( romvill_t( 'mu.ent.pdf.t' ) ); ?></div>
