@@ -558,7 +558,7 @@ function romvill_emit_lang_seo() {
         $svc_name = array(
             'es' => 'Análisis de Inteligencia Territorial',
             'en' => 'Territorial Intelligence Analysis',
-            'fr' => 'Analyse de Renseignement Territorial',
+            'fr' => 'Analyse d\'Intelligence Territoriale',
             'de' => 'Territoriale Standortanalyse',
             'ru' => 'Анализ территориальной аналитики',
         );
