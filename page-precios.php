@@ -1,6 +1,6 @@
 <?php
 /**
- * Template: Precios — paquetes públicos (Exprés / Análisis / Premium)
+ * Template: Precios — paquetes públicos (Esencial / Superior / Premium)
  *
  * Los importes se leen de las constantes de inc/estimacion.php para que
  * coincidan siempre con el motor de estimación y los emails (single source).
@@ -27,10 +27,13 @@ for ( $i = 1; $i <= 4; $i++ ) {
         : add_query_arg( 'lang', $_lang, home_url( '/presupuesto-bloque-' . $i . '/' ) );
 }
 
+// Oferta de lanzamiento (cupo limitado): se muestra tachando el precio oficial.
+// Premium NUNCA lleva descuento. Desactivar en inc/estimacion.php (ROMVILL_LANZ_ACTIVO).
+$lanz_on = defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO;
 $packs = array(
-    array( 'key' => 'expres',   'price' => $p1, 'featured' => false ),
-    array( 'key' => 'analisis', 'price' => $p2, 'featured' => true ),
-    array( 'key' => 'premium',  'price' => $p3, 'featured' => false ),
+    array( 'key' => 'expres',   'price' => $p1, 'launch' => $lanz_on && defined( 'ROMVILL_LANZ_ESENCIAL' ) ? ROMVILL_LANZ_ESENCIAL : 0, 'featured' => false ),
+    array( 'key' => 'analisis', 'price' => $p2, 'launch' => $lanz_on && defined( 'ROMVILL_LANZ_SUPERIOR' ) ? ROMVILL_LANZ_SUPERIOR : 0, 'featured' => true ),
+    array( 'key' => 'premium',  'price' => $p3, 'launch' => 0, 'featured' => false ),
 );
 ?>
 <main class="pt-32 pb-24 bg-background-light dark:bg-background-dark">
@@ -58,8 +61,17 @@ $packs = array(
                     <p class="text-slate-500 dark:text-slate-400 text-sm mb-5 min-h-[40px] leading-snug"><?php echo esc_html( romvill_t( "precios.$k.desc" ) ); ?></p>
 
                     <div class="mb-6">
-                        <span class="text-xs text-slate-400 uppercase tracking-wider"><?php echo esc_html( romvill_t( 'precios.from' ) ); ?></span>
-                        <div class="font-serif text-4xl font-bold text-slate-900 dark:text-white leading-none mt-1"><?php echo (int) $pk['price']; ?>€</div>
+                        <?php if ( ! empty( $pk['launch'] ) ) : ?>
+                            <span class="inline-block bg-secondary text-slate-900 text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full"><?php echo esc_html( romvill_t( 'precios.launch.badge' ) ); ?></span>
+                            <div class="mt-2" style="display:flex;align-items:baseline;gap:12px">
+                                <div class="font-serif text-4xl font-bold text-slate-900 dark:text-white leading-none"><?php echo (int) $pk['launch']; ?>€</div>
+                                <div class="text-slate-400" style="text-decoration:line-through;font-size:1.15rem"><?php echo (int) $pk['price']; ?>€</div>
+                            </div>
+                            <div class="text-slate-500 dark:text-slate-400 mt-2" style="font-size:11px;line-height:1.5"><?php echo esc_html( romvill_t( 'precios.launch.note' ) ); ?></div>
+                        <?php else : ?>
+                            <span class="text-xs text-slate-400 uppercase tracking-wider"><?php echo esc_html( romvill_t( 'precios.from' ) ); ?></span>
+                            <div class="font-serif text-4xl font-bold text-slate-900 dark:text-white leading-none mt-1"><?php echo (int) $pk['price']; ?>€</div>
+                        <?php endif; ?>
                     </div>
 
                     <ul class="space-y-3 mb-6 flex-grow">
@@ -122,6 +134,22 @@ $packs = array(
             card.classList.add('is-selected');
         }
         </script>
+
+        <!-- Suplementos opcionales (Carta de Servicio: se añade, nunca se recorta) -->
+        <div class="mt-14 max-w-3xl mx-auto">
+            <h2 class="font-serif text-2xl font-bold text-slate-900 dark:text-white text-center mb-6"><?php echo esc_html( romvill_t( 'precios.sup.title' ) ); ?></h2>
+            <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+                <ul class="space-y-3">
+                <?php foreach ( array_filter( array_map( 'trim', explode( '|', romvill_t( 'precios.sup.items' ) ) ) ) as $sup ) : ?>
+                    <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+                        <span aria-hidden="true" class="material-symbols-outlined text-secondary text-lg leading-none flex-shrink-0">add_circle</span>
+                        <span><?php echo esc_html( $sup ); ?></span>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+                <p class="text-xs text-slate-400 mt-4"><?php echo esc_html( romvill_t( 'precios.sup.note' ) ); ?></p>
+            </div>
+        </div>
 
         <!-- Ver una muestra del informe (botón destacado) -->
         <?php

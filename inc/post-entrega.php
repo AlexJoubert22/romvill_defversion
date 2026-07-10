@@ -18,7 +18,7 @@
  *   Día 90 — Fin de seguimiento .......... no se envía email (solo se marca)
  *
  * "Upgrade" = meta _rv_upgrade ('1'), casilla en el metabox de estado.
- * Precio pagado por bloque: 1→149€ (Exprés), 2→349€ (Análisis), 3/4→890€ (Premium).
+ * Precio pagado por bloque: 1→290€ oficial / 149€ lanzamiento (Esencial), 2→349€ (Superior), 3/4→890€+ (Premium).
  * Remitente: contacto@romvill.com.
  *
  * @package Romvill
@@ -46,11 +46,11 @@ function romvill_pe_review_url() {
  * @return array|null  array(lineas[], oferta_corta) o null si es premium/sin nivel.
  */
 function romvill_pe_credito( $precio ) {
-    if ( $precio === 149 ) {
+    if ( $precio === 149 || $precio === ROMVILL_PRECIO_ESENCIAL ) {
         return array(
-            'lineas'  => array( 'Informe Análisis (desde 349€)   ·   Su crédito -149€   ·   Solo pagaría desde 200€',
-                                'Informe Premium (desde 890€)   ·   Su crédito -149€   ·   Solo pagaría desde 741€' ),
-            'destino' => 'un Informe Análisis (desde 200€ adicionales) o Premium (desde 741€ adicionales)',
+            'lineas'  => array( 'Informe Superior (desde 349€)   ·   Su crédito -' . $precio . '€   ·   Solo pagaría desde ' . ( 349 - $precio ) . '€',
+                                'Informe Premium (desde 890€)   ·   Su crédito -' . $precio . '€   ·   Solo pagaría desde ' . ( 890 - $precio ) . '€' ),
+            'destino' => 'un Informe Superior (desde ' . ( 349 - $precio ) . '€ adicionales) o Premium (desde ' . ( 890 - $precio ) . '€ adicionales)',
         );
     }
     if ( $precio === 349 ) {
@@ -138,7 +138,7 @@ function romvill_postentrega_run() {
                     . "Estimado/a {$nombre},\n\n"
                     . "Desde que elaboramos su informe de {$zona_d}, hemos identificado una actualización relevante para su perfil:\n\n"
                     . "  [DATO REAL DE LA ZONA — rellenar a mano antes de enviar]\n\n"
-                    . "Su Informe Exprés cubrió las dimensiones esenciales. El Informe Análisis incluye sanidad en profundidad, fiscalidad para no residentes, conectividad digital y 5 dimensiones adicionales verificadas.\n\n"
+                    . "Su Informe Esencial cubrió las dimensiones esenciales. El Informe Superior incluye sanidad en profundidad, fiscalidad para no residentes, conectividad digital y 5 dimensiones adicionales verificadas.\n\n"
                     . "Recuerde que sus {$precio}€ se aplican como crédito (válido hasta el {$f_vence}).\n"
                     . "ROMVILL · Criterio antes de decidir";
                 update_post_meta( $id, '_rv_seq15_draft', $draft );

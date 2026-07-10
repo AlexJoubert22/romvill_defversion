@@ -19,12 +19,23 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /* ═══════════════════════════════════════════════════════════════
  *  PRECIOS Y PARÁMETROS — EDITABLES
  * ═══════════════════════════════════════════════════════════════ */
-const ROMVILL_PRECIO_ESENCIAL = 149;   // Bloque 1 Particular (Exprés)
-const ROMVILL_PRECIO_COMPLETO = 349;   // Bloque 2 Inversor (Análisis)
+const ROMVILL_PRECIO_ESENCIAL = 290;   // Bloque 1 Particular (Esencial) — precio oficial
+const ROMVILL_PRECIO_COMPLETO = 349;   // Bloque 2 Inversor (Superior)
 const ROMVILL_PRECIO_PREMIUM  = 890;   // Bloque 3 Promotor / Bloque 4 Empresa (Premium)
 
+// Oferta de lanzamiento: primeras plazas con descuento a cambio de reseña.
+// Al agotar plazas o cerrar la oferta: poner ROMVILL_LANZ_ACTIVO en false.
+const ROMVILL_LANZ_ACTIVO   = true;
+const ROMVILL_LANZ_PLAZAS   = 5;     // cupo TOTAL entre Esencial y Superior
+const ROMVILL_LANZ_ESENCIAL = 149;
+const ROMVILL_LANZ_SUPERIOR = 249;
+
+// Suplementos aprobados (Carta de Servicio). Los informes se amplían, nunca se recortan.
+const ROMVILL_DIMENSION_EUR = 69;    // dimensión adicional del catálogo (máx. 2)
+const ROMVILL_PROPIEDAD_EUR = 180;   // análisis de propiedad concreta (desde Superior)
+
 // Recargo por urgencia (solo opción 1 del plazo: "Prioritario")
-const ROMVILL_URGENCIA_ESENCIAL_EUR = 15;    // +15 € fijo (~10% de 149€)
+const ROMVILL_URGENCIA_ESENCIAL_EUR = 15;    // +15 € fijo (~5% de 290€)
 const ROMVILL_URGENCIA_COMPLETO_PCT = 0.30;  // +30 % (~105€ sobre 349€)
 // Premium: urgencia manual (no se suma automáticamente)
 
@@ -34,8 +45,8 @@ const ROMVILL_DESPL_PROVINCIA = 60;  // misma provincia (~17% de 349€)
 const ROMVILL_DESPL_LEJANA   = 120;  // otra provincia (~34% de 349€)
 // Internacional → "a presupuestar" (no se suma número)
 
-const ROMVILL_COMPARATIVA_PCT = 0.50; // comparativa entre zonas: +50 % del base
-const ROMVILL_IDIOMA_EUR      = 40;   // por idioma adicional (~11-27% según nivel)
+const ROMVILL_COMPARATIVA_EUR = 150; // segunda zona comparada: +150 € fijos
+const ROMVILL_IDIOMA_EUR      = 80;   // por versión ADICIONAL de idioma (el idioma de entrega va incluido)
 const ROMVILL_PRESENTACION_EUR = 120; // presentación / reunión al comité (~13% de 890€)
 
 const ROMVILL_SENAL_PCT_BASE    = 0.50; // señal Esencial / Completo
@@ -45,7 +56,7 @@ const ROMVILL_SENAL_PCT_PREMIUM = 0.40; // señal Premium
 function romvill_niveles() {
     return array(
         'esencial' => array( 'label' => 'ESENCIAL', 'precio' => ROMVILL_PRECIO_ESENCIAL ),
-        'completo' => array( 'label' => 'COMPLETO', 'precio' => ROMVILL_PRECIO_COMPLETO ),
+        'completo' => array( 'label' => 'SUPERIOR', 'precio' => ROMVILL_PRECIO_COMPLETO ),
         'premium'  => array( 'label' => 'PREMIUM',  'precio' => ROMVILL_PRECIO_PREMIUM ),
     );
 }
@@ -199,8 +210,8 @@ function romvill_estimar( $args ) {
 
     // 3d. Comparativa entre zonas
     if ( romvill_txt_has( $body, array( 'comparativo entre varias zonas', 'comparativa entre zonas', 'varias zonas candidatas', 'comparar zonas' ) ) ) {
-        $pct_mult += ROMVILL_COMPARATIVA_PCT;
-        $extras[]  = 'comparativa entre zonas (+' . round( ROMVILL_COMPARATIVA_PCT * 100 ) . '%)';
+        $extra_eur += ROMVILL_COMPARATIVA_EUR;
+        $extras[]   = 'comparativa segunda zona (+' . ROMVILL_COMPARATIVA_EUR . '€)';
     }
 
     // 3e. Presentación / reunión al comité (Promotor / Empresa)
@@ -346,9 +357,9 @@ function romvill_calcular_precio( $in ) {
 
     // Comparativa
     if ( ! empty( $in['comparativa'] ) ) {
-        $inc = (int) round( $base * ROMVILL_COMPARATIVA_PCT );
-        $pct_mult += ROMVILL_COMPARATIVA_PCT;
-        $desglose[] = array( 'concepto' => 'Comparativa entre zonas (+' . round( ROMVILL_COMPARATIVA_PCT * 100 ) . '%)', 'importe' => $inc );
+        $inc = ROMVILL_COMPARATIVA_EUR;
+        $extra_eur += $inc;
+        $desglose[] = array( 'concepto' => 'Comparativa segunda zona (+' . ROMVILL_COMPARATIVA_EUR . '€)', 'importe' => $inc );
     }
 
     // Desplazamiento

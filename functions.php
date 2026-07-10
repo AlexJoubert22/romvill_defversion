@@ -603,7 +603,7 @@ function romvill_emit_lang_seo() {
                     '@type'         => 'Offer',
                     'name'          => romvill_t( 'schema.service.express.name' ),
                     'description'   => romvill_t( 'schema.service.express.desc' ),
-                    'price'         => '149',
+                    'price'         => (string) ROMVILL_PRECIO_ESENCIAL,
                     'priceCurrency' => 'EUR',
                     'availability'  => 'https://schema.org/OnlineOnly',
                     'url'           => romvill_lang_url( '/precios/', $cur_lang ),
@@ -612,7 +612,7 @@ function romvill_emit_lang_seo() {
                     '@type'         => 'Offer',
                     'name'          => romvill_t( 'schema.service.analysis.name' ),
                     'description'   => romvill_t( 'schema.service.analysis.desc' ),
-                    'price'         => '349',
+                    'price'         => (string) ROMVILL_PRECIO_COMPLETO,
                     'priceCurrency' => 'EUR',
                     'availability'  => 'https://schema.org/OnlineOnly',
                     'url'           => romvill_lang_url( '/precios/', $cur_lang ),
@@ -621,7 +621,7 @@ function romvill_emit_lang_seo() {
                     '@type'         => 'Offer',
                     'name'          => romvill_t( 'schema.service.premium.name' ),
                     'description'   => romvill_t( 'schema.service.premium.desc' ),
-                    'price'         => '890',
+                    'price'         => (string) ROMVILL_PRECIO_PREMIUM,
                     'priceCurrency' => 'EUR',
                     'availability'  => 'https://schema.org/OnlineOnly',
                     'url'           => romvill_lang_url( '/precios/', $cur_lang ),
@@ -1253,21 +1253,24 @@ Análisis de Inteligencia Zonal
 
     $sent = wp_mail( $to, $subject, $body, $headers );
 
-    // ── [Spec 2.3] Auto-cotización Exprés (solo Bloque 1: esencial + ALTA + local) ──
+    // ── [Spec 2.3] Auto-cotización Esencial (solo Bloque 1: esencial + ALTA + local) ──
     // Email ADICIONAL al cliente; NO sustituye el email interno. Giovanny sigue
     // recibiendo la estimación completa y puede ajustar si algo no cuadra.
     if ( $est
          && $est['nivel'] === 'esencial'
          && $est['confianza'] === 'ALTA'
-         && $est['precio_min'] <= 200 // sanity check: no auto-cotizar si extras lo subieron mucho (base Exprés 149€)
+         && $est['precio_min'] <= ROMVILL_PRECIO_ESENCIAL + 60 // sanity check: no auto-cotizar si los extras lo subieron mucho
     ) {
-        $quote_subject = 'Su presupuesto — Informe Exprés de zona';
+        $quote_subject = 'Su presupuesto — Informe Esencial de zona';
         $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
+        $precio_linea  = ( defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO )
+            ? 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)'
+            : 'Precio: desde ' . ROMVILL_PRECIO_ESENCIAL . '€';
         $quote_body = "Estimado/a {$nom},\n\n"
-            . "Su Informe Exprés para {$zona_display}:\n\n"
+            . "Su Informe Esencial para {$zona_display}:\n\n"
             . "Incluye: dashboard de zona, 6-7 dimensiones esenciales, datos oficiales, mapas, patrones detectados, versión web interactiva\n"
-            . "Precio: desde 149€\n"
-            . "Entrega: el mismo día tras confirmación\n"
+            . $precio_linea . "\n"
+            . "Entrega: 3-4 días laborables tras confirmación\n"
             . "Referencia: {$ref}\n\n"
             . "Para aceptar, responda \"Acepto\" o escríbanos a contacto@romvill.com.\n\n"
             . "ROMVILL · Criterio antes de decidir\n"

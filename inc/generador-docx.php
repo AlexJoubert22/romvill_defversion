@@ -474,16 +474,16 @@ function romvill_docx_construir( $post_id ) {
     }
 
     /* ── [Spec 3.1] SECCIÓN "SIGUIENTE PASO" (crédito hacia el nivel superior) ── */
-    // Variantes: Exprés (esencial, 149€) y Análisis (completo, 349€). Premium ya es
+    // Variantes: Esencial (290€ oficial / 149€ lanzamiento) y Superior (349€). Premium ya es
     // el nivel máximo → no lleva sección. Se añade al FINAL del documento.
     $sp = null;
     if ( $nivel === 'esencial' ) {
         $sp = array(
             'intro'   => 'Este informe ofrece una visión de conjunto fiable de la zona. Si desea profundizar — verificación exhaustiva, fiscalidad, planificación, conectividad, propiedad concreta — ROMVILL ofrece niveles superiores de análisis.',
-            'credito' => 'Los 149€ de este informe se aplican íntegramente. Solo paga la diferencia.',
+            'credito' => 'El importe pagado por este informe se aplica íntegramente como crédito. Solo paga la diferencia.',
             'ofertas' => array(
-                'Informe Análisis (desde 349€)   ·   Su crédito aplicado -149€   ·   Solo pagaría desde 200€',
-                'Informe Premium (desde 890€)   ·   Su crédito aplicado -149€   ·   Solo pagaría desde 741€',
+                'Informe Superior (desde 349€)   ·   Crédito íntegro de lo pagado   ·   Solo la diferencia',
+                'Informe Premium (desde 890€)   ·   Crédito íntegro de lo pagado   ·   Solo la diferencia',
             ),
             'extra'   => 'Validez: 60 días desde la entrega.',
         );
