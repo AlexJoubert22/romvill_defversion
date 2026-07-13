@@ -315,7 +315,7 @@ romvill_seo( array(
 <div class="rv-b1-screen" id="rv-b1-sc-cover">
     <div class="rv-b1-cover-wrap">
         <div class="rv-b1-cover-title" id="rv-b1-cover-ttl">Solicitar Presupuesto</div>
-        <div class="rv-b1-cover-tag">Cuestionario de solicitud · Análisis de Inteligencia Zonal</div>
+        <div class="rv-b1-cover-tag" id="rv-b1-cover-doc">Cuestionario de solicitud · Análisis de Inteligencia Zonal</div>
         <div class="rv-b1-cover-body">
             <div class="rv-b1-cover-intro">
                 <p id="rv-b1-cv-p1">Respondiendo las siguientes preguntas nos ayudará a conocer su caso en detalle y elaborar un <strong>presupuesto totalmente personalizado</strong> y adaptado exclusivamente a sus necesidades.</p>
@@ -472,6 +472,7 @@ var TR={
 
 // Copy ES to other langs (minimal overrides)
 ['en','de','fr','pt','ru'].forEach(function(l){TR[l]=Object.assign({},TR.es);});
+TR.en.coverDoc='Request questionnaire · Area Intelligence Analysis';TR.fr.coverDoc='Questionnaire de demande · Analyse d\'Intelligence Territoriale';TR.de.coverDoc='Fragebogen zur Angebotsanfrage · Standort-Analyse';TR.pt.coverDoc='Questionário de pedido · Análise de Inteligência Zonal';TR.ru.coverDoc='Анкета запроса · Анализ локации';
 // ── PT: portada, estáticos y envío (antes heredaban el español) ──
 TR.pt.cvp1='Ao responder às perguntas seguintes ajudar-nos-á a conhecer o seu caso em detalhe e a elaborar um <strong>orçamento totalmente personalizado</strong>, adaptado exclusivamente às suas necessidades.';TR.pt.cvp2='Uma vez mais, obrigado por confiar em nós.';TR.pt.cvp3='O seu critério antes de decidir, nas melhores mãos.';TR.pt.cvdisc='<strong>A ROMVILL não vende imóveis, não cobra comissões e não tem qualquer interesse na sua decisão.</strong> Nós apenas analisamos — a decisão é sua. Os seus dados são tratados com total confidencialidade.';TR.pt.step='Pergunta';TR.pt.of='de';TR.pt.pct='concluído';TR.pt.optional='Opcional';TR.pt.editBtn='Editar';TR.pt.profile='Ver o meu perfil';TR.pt.midBtn='Ver o meu perfil';TR.pt.confirm='Pedido recebido';TR.pt.confirmTxt='Recebemos o seu pedido. Receberá um email de confirmação nos próximos minutos.';TR.pt.sendFail='Não foi possível enviar o seu pedido neste momento. As suas respostas foram guardadas. Por favor, tente novamente.';TR.pt.tag='O seu critério antes de decidir, nas melhores mãos.';TR.pt.sendTitle='Está tudo correto?';TR.pt.sendSub='Reveja o seu perfil e, se estiver tudo correto, prima o botão para nos enviar o seu pedido. Receberá um orçamento personalizado no prazo de 24-48 horas úteis.';TR.pt.legal='Ao enviar, aceita o tratamento dos seus dados conforme a nossa <a href="/privacidad" target="_blank">Política de Privacidade</a>.';TR.pt.midP1='Com os dados fornecidos, procederemos à elaboração do seu orçamento personalizado.';TR.pt.midP2='Uma vez recebido e aceite o orçamento, iniciaremos a sua Análise de Inteligência Zonal.';TR.pt.psTtl='Secções prioritárias do relatório';TR.pt.psSub='Calculadas automaticamente segundo o seu perfil';TR.pt.idleTtl='Ainda aí?';TR.pt.idleTxt='As suas respostas estão guardadas.';TR.pt.idleBtn='CONTINUAR';TR.pt.hdrTitle='Pedir orçamento';TR.pt.docType='Análise de Inteligência Zonal';TR.pt.locale='pt-PT';TR.pt.steps=['<strong>Pedido recebido</strong> — temos as suas respostas e o seu perfil.','<strong>Orçamento a caminho</strong> — preparamos o seu orçamento personalizado e enviamo-lo por email.','<strong>Relatório à medida</strong> — após a sua aceitação, iniciamos a sua Análise de Inteligência Zonal.'];
 // ── EN: portada, cabecera de progreso, toast de inactividad y perfil ──
@@ -579,7 +580,7 @@ function b1SetLang(l,el){
 
 function b1ApplyStatic(){
   function _s(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=v;}
-  _s('rv-b1-hs',T.hdrTitle);_s('rv-b1-cover-ttl',T.hdrTitle);
+  _s('rv-b1-hs',T.hdrTitle);_s('rv-b1-cover-ttl',T.hdrTitle);_s('rv-b1-cover-doc',T.coverDoc);
   var ls=document.getElementById('rv-b1-logo-sub');
   if(ls)ls.textContent=(T.docType||'Análisis de Inteligencia Zonal')+' · '+(T.hdrTitle||'Solicitar Presupuesto');
   _s('rv-b1-idle-ttl',T.idleTtl);_s('rv-b1-idle-txt',T.idleTxt);_s('rv-b1-idle-btn',T.idleBtn);
