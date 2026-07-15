@@ -927,8 +927,8 @@ function b1RenderProfile(){
       +(com?b1CD('Comentarios adicionales','<em>"'+com+'"</em>',true,16,false):'')
       +(como?b1CD('Cómo nos conoció',como,false,15,false):'')
     +'</div>'
-    +'<div class="rv-b1-ps-ttl">Secciones prioritarias del informe</div>'
-    +'<div class="rv-b1-ps-sub">Calculadas automáticamente según el perfil y los datos aportados</div>'
+    +'<div class="rv-b1-ps-ttl">'+(T.psTtl||'Secciones prioritarias del informe')+'</div>'
+    +'<div class="rv-b1-ps-sub">'+(T.psSub||'Calculadas automáticamente según el perfil y los datos aportados')+'</div>'
     +'<div class="rv-b1-sg">'+secs.map(function(s){return'<div class="rv-b1-si '+s.l+'"><div class="rv-b1-sb">'+sl[s.l]+'</div><div class="rv-b1-sn">'+s.n+'</div></div>';}).join('')+'</div>'
     +'<div class="rv-b1-send-box">'
       +'<div class="rv-b1-send-ttl">'+T.sendTitle+'</div>'

@@ -1944,6 +1944,15 @@ function romvill_related_dimensions( $current_slug ) {
 }
 
 
+// ─── Sin caché en páginas con nonce (formularios) ───────────
+// La caché de borde servía HTML con nonces caducados → los envíos
+// de cuestionarios y contacto devolvían 403 a clientes reales.
+add_action( 'template_redirect', function () {
+    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto' ) ) ) {
+        nocache_headers();
+    }
+} );
+
 // ─── Verificación de Google Search Console ──────────────────
 add_action( 'wp_head', function () {
     echo '<meta name="google-site-verification" content="LfiGrjyRGhr5UtnRQmwjVewLr8Qo_LOh8WGFiI6Xg0A" />' . "\n";
