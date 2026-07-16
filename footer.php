@@ -41,6 +41,13 @@
                     ?>
                         <a class="hover:text-secondary transition-colors" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
                     <?php endforeach; ?>
+                    <p class="text-xs font-bold tracking-[0.3em] uppercase text-secondary mt-4 mb-0"><?php echo esc_html( romvill_t( 'footer.zonas' ) ); ?></p>
+                    <?php foreach ( romvill_zonas() as $zn_slug => $zn ) :
+                        $zn_page = get_page_by_path( $zn_slug );
+                        $zn_url  = romvill_link( $zn_page ? get_permalink( $zn_page ) : home_url( '/' . $zn_slug . '/' ) );
+                    ?>
+                        <a class="hover:text-secondary transition-colors" href="<?php echo esc_url( $zn_url ); ?>"><?php echo esc_html( romvill_t( 'zona.' . $zn['key'] . '.nombre' ) ); ?></a>
+                    <?php endforeach; ?>
                 </nav>
                 <!-- Col 3: newsletter -->
                 <div class="w-full text-center md:text-left">

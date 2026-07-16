@@ -22,6 +22,11 @@ function romvill_translations() {
         'cookies.title'    => [ 'es'=>'Usamos cookies', 'en'=>'We use cookies', 'fr'=>'Nous utilisons des cookies', 'de'=>'Wir verwenden Cookies', 'ru'=>'Мы используем cookies' ],
         'cookies.short'    => [ 'es'=>'Cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia.', 'en'=>'Our own and third-party cookies to analyse traffic and improve your experience.', 'fr'=>'Cookies internes et tiers pour analyser le trafic et améliorer votre expérience.', 'de'=>'Eigene und Drittanbieter-Cookies zur Analyse des Traffics und zur Verbesserung Ihres Erlebnisses.', 'ru'=>'Собственные и сторонние файлы cookie для анализа трафика и улучшения вашего опыта.' ],
         'footer.aria'      => [ 'es'=>'Navegación del pie de página','en'=>'Footer navigation','fr'=>'Navigation pied de page','de'=>'Fußzeilennavigation','ru'=>'Навигация в подвале' ],
+        'footer.zonas'     => [ 'es'=>'Zonas',          'en'=>'Areas',          'fr'=>'Zones',          'de'=>'Gebiete',        'ru'=>'Регионы'        ],
+        'zona.marbella.nombre' => [ 'es'=>'Marbella','en'=>'Marbella','fr'=>'Marbella','de'=>'Marbella','ru'=>'Марбелья' ],
+        'zona.malaga.nombre'   => [ 'es'=>'Málaga','en'=>'Málaga','fr'=>'Málaga','de'=>'Málaga','ru'=>'Малага' ],
+        'zona.alicante.nombre' => [ 'es'=>'Alicante','en'=>'Alicante','fr'=>'Alicante','de'=>'Alicante','ru'=>'Аликанте' ],
+        'zona.other.title'     => [ 'es'=>'También analizamos','en'=>'We also analyse','fr'=>'Nous analysons aussi','de'=>'Wir analysieren auch','ru'=>'Мы также анализируем' ],
 
         // ── HERO ──────────────────────────────────────────────────
         'hero.tagline'     => [ 'es'=>'Inteligencia Territorial · Costa Mediterránea','en'=>'Territorial Intelligence · Mediterranean Coast','fr'=>'Intelligence Territoriale · Côte Méditerranéenne','de'=>'Territoriale Standortanalyse · Mittelmeerküste','ru'=>'Территориальная Аналитика · Средиземноморское Побережье' ],

@@ -68,20 +68,22 @@ $contacto_url  = romvill_link( $contacto_url );
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center mb-16">
                 <?php
                 $areas = array(
-                    array( 'name' => 'Alicante', 'img' => 'alicante.jpg', 'sub' => romvill_t( 'sec.alicante.sub' ) ),
-                    array( 'name' => 'Marbella', 'img' => 'marbella.jpg', 'sub' => romvill_t( 'sec.marbella.sub' ) ),
-                    array( 'name' => 'Málaga',   'img' => 'malaga.jpg',   'sub' => romvill_t( 'sec.malaga.sub' ) ),
+                    array( 'name' => 'Alicante', 'img' => 'alicante.jpg', 'sub' => romvill_t( 'sec.alicante.sub' ), 'zona' => 'analisis-alicante' ),
+                    array( 'name' => 'Marbella', 'img' => 'marbella.jpg', 'sub' => romvill_t( 'sec.marbella.sub' ), 'zona' => 'analisis-marbella' ),
+                    array( 'name' => 'Málaga',   'img' => 'malaga.jpg',   'sub' => romvill_t( 'sec.malaga.sub' ), 'zona' => 'analisis-malaga' ),
                 );
                 foreach ( $areas as $a ) :
+                    $a_page = get_page_by_path( $a['zona'] );
+                    $a_url  = romvill_link( $a_page ? get_permalink( $a_page ) : home_url( '/' . $a['zona'] . '/' ) );
                 ?>
-                <div class="flex flex-col items-center">
+                <a href="<?php echo esc_url( $a_url ); ?>" class="group flex flex-col items-center" aria-label="<?php echo esc_attr( $a['name'] ); ?>">
                     <div class="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-white dark:border-slate-800 shadow-xl relative group">
                         <img src="<?php echo esc_url( romvill_img( $a['img'] ) ); ?>" alt="<?php echo esc_attr( $a['name'] ); ?>" loading="lazy" decoding="async" width="192" height="192" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-slate-900/25 group-hover:bg-transparent transition-colors duration-500"></div>
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-white"><?php echo esc_html( $a['name'] ); ?></h3>
+                    <h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-white group-hover:text-secondary transition-colors"><?php echo esc_html( $a['name'] ); ?></h3>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 uppercase tracking-widest"><?php echo esc_html( $a['sub'] ); ?></p>
-                </div>
+                </a>
                 <?php endforeach; ?>
             </div>
             <div class="max-w-3xl mx-auto bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 text-center shadow-lg">

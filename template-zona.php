@@ -92,6 +92,25 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
         </div>
     </section>
 
+    <!-- OTRAS ZONAS (enlazado interno) -->
+    <section class="w-full bg-white dark:bg-slate-900 zn-reveal">
+        <div class="mx-auto px-6 pb-16 text-center" style="max-width:760px">
+            <p class="text-slate-600 dark:text-slate-300" style="font-size:1rem">
+                <?php echo esc_html( romvill_t( 'zona.other.title' ) ); ?>:
+                <?php
+                $zn_others = array();
+                foreach ( romvill_zonas() as $zn_slug => $zn ) {
+                    if ( $zn_slug === $_slug ) { continue; }
+                    $zn_page  = get_page_by_path( $zn_slug );
+                    $zn_url   = romvill_link( $zn_page ? get_permalink( $zn_page ) : home_url( '/' . $zn_slug . '/' ) );
+                    $zn_others[] = '<a href="' . esc_url( $zn_url ) . '" class="text-secondary hover:underline" style="font-weight:700">' . esc_html( romvill_t( 'zona.' . $zn['key'] . '.nombre' ) ) . '</a>';
+                }
+                echo implode( ' · ', $zn_others );
+                ?>
+            </p>
+        </div>
+    </section>
+
     <!-- CIERRE + CTA (común) -->
     <section class="w-full zn-reveal" style="background:#101622">
         <div class="mx-auto px-6 py-20 text-center" style="max-width:760px">
