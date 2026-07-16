@@ -2,3 +2,10 @@ node_modules/
 wp_setup.py
 deploy.py
 .DS_Store
+
+# Config local de Claude Code (contiene credenciales) — NUNCA subir
+.claude/settings.local.json
+
+# Backups manuales y notas de estado
+*.backup*
+_ESTADO_*.txt
