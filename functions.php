@@ -384,12 +384,14 @@ add_filter( 'rest_pre_dispatch', function ( $result, $server, $request ) {
 // works on every page without editing templates. Static guard
 // prevents double output. Every tag appears exactly once.
 add_action( 'wp_head', 'romvill_emit_lang_seo', 1 );
-// Slugs que nunca deben indexarse (pasos del embudo de presupuesto = thin content).
+// Slugs que nunca deben indexarse (pasos del embudo de presupuesto = thin content;
+// la política de cookies de Complianz duplica title/description de la home).
 const ROMVILL_NOINDEX_SLUGS = array(
     'presupuesto-bloque-1',
     'presupuesto-bloque-2',
     'presupuesto-bloque-3',
     'presupuesto-bloque-4',
+    'politica-de-cookies-ue',
 );
 
 // Excluir las páginas noindex del sitemap de Jetpack (coherencia robots ↔ sitemap).
