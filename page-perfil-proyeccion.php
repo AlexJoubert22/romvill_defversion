@@ -14,12 +14,12 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
     <section class="relative py-24 text-center px-6">
         <div class="max-w-3xl mx-auto">
             <a href="<?php echo esc_url($analisis_url); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-secondary uppercase tracking-widest mb-6 hover:text-[#9A7529] transition-colors">
-                <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_back</span> Volver a Análisis
+                <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_back</span> <?php echo esc_html( romvill_t( 'perfil.volver' ) ); ?>
             </a>
-            <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3">Dimensión 05</span>
-            <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6">Perfil de Proyección</h1>
+            <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> 05</span>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6"><?php echo esc_html( romvill_t( 'perfil.pro.h1' ) ); ?></h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                Analizamos hacia dónde va la zona: inversión pública prevista, proyectos urbanísticos y potencial de revalorización a medio plazo.
+                <?php echo esc_html( romvill_t( 'perfil.pro.intro' ) ); ?>
             </p>
         </div>
     </section>
@@ -31,10 +31,10 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
         <div class="grid md:grid-cols-2 gap-8">
             <?php
             $cards = array(
-                array('icon'=>'trending-up','title'=>'Potencial de revalorización','desc'=>'Evolución histórica de precios, tendencia actual del mercado y proyección estimada para los próximos años.'),
-                array('icon'=>'building','title'=>'Proyectos urbanísticos','desc'=>'Obras previstas, nuevas infraestructuras, cambios en el PGOU y desarrollos que afectarán la zona a medio plazo.'),
-                array('icon'=>'bank','title'=>'Inversión pública','desc'=>'Presupuestos municipales asignados a la zona, mejoras previstas en servicios públicos y planes de rehabilitación urbana.'),
-                array('icon'=>'bar-chart','title'=>'Indicadores de oportunidad','desc'=>'Señales de gentrificación, cambios en el perfil de compradores, nuevos negocios y transformación del tejido comercial.'),
+                array('icon'=>'trending-up','title'=>romvill_t('perfil.pro.c1.title'),'desc'=>romvill_t('perfil.pro.c1.desc')),
+                array('icon'=>'building','title'=>romvill_t('perfil.pro.c2.title'),'desc'=>romvill_t('perfil.pro.c2.desc')),
+                array('icon'=>'bank','title'=>romvill_t('perfil.pro.c3.title'),'desc'=>romvill_t('perfil.pro.c3.desc')),
+                array('icon'=>'bar-chart','title'=>romvill_t('perfil.pro.c4.title'),'desc'=>romvill_t('perfil.pro.c4.desc')),
             );
             foreach ($cards as $c) :
             ?>
@@ -48,7 +48,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
 
         <div class="mt-16 text-center">
             <a href="<?php echo esc_url($contacto_url); ?>" class="inline-flex items-center gap-2 bg-secondary hover:bg-[#a3884c] text-slate-900 px-8 py-4 rounded-lg font-bold shadow-lg shadow-secondary/20 hover:shadow-xl transition-all">
-                Solicitar Análisis de Proyección <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
+                <?php echo esc_html( romvill_t( 'perfil.pro.cta' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
         </div>
     </section>

@@ -14,12 +14,12 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
     <section class="relative py-24 text-center px-6">
         <div class="max-w-3xl mx-auto">
             <a href="<?php echo esc_url($analisis_url); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-secondary uppercase tracking-widest mb-6 hover:text-[#9A7529] transition-colors">
-                <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_back</span> Volver a Análisis
+                <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_back</span> <?php echo esc_html( romvill_t( 'perfil.volver' ) ); ?>
             </a>
-            <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3">Dimensión 04</span>
-            <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6">Perfil de Movilidad</h1>
+            <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> 04</span>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6"><?php echo esc_html( romvill_t( 'perfil.mov.h1' ) ); ?></h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                Estudiamos cómo se mueve la zona: accesos por carretera, transporte público, aparcamiento y tiempos reales de desplazamiento.
+                <?php echo esc_html( romvill_t( 'perfil.mov.intro' ) ); ?>
             </p>
         </div>
     </section>
@@ -31,9 +31,9 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
         <div class="grid md:grid-cols-2 gap-8">
             <?php
             $cards = array(
-                array('icon'=>'car','title'=>'Accesos por carretera','desc'=>'Autopistas, autovías y carreteras principales conectadas con la zona. Tiempos de acceso al aeropuerto y a las ciudades cercanas.'),
-                array('icon'=>'navigation','title'=>'Transporte público','desc'=>romvill_t('perfil.mov.c2.desc')),
-                array('icon'=>'parking','title'=>'Aparcamiento','desc'=>romvill_t('perfil.mov.c3.desc')),
+                array('icon'=>'car','title'=>romvill_t('perfil.mov.c1.title'),'desc'=>romvill_t('perfil.mov.c1.desc')),
+                array('icon'=>'navigation','title'=>romvill_t('perfil.mov.c2.title'),'desc'=>romvill_t('perfil.mov.c2.desc')),
+                array('icon'=>'parking','title'=>romvill_t('perfil.mov.c3.title'),'desc'=>romvill_t('perfil.mov.c3.desc')),
                 array('icon'=>'clock','title'=>romvill_t('perfil.mov.c4.title'),'desc'=>romvill_t('perfil.mov.c4.desc')),
             );
             foreach ($cards as $c) :
@@ -48,7 +48,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
 
         <div class="mt-16 text-center">
             <a href="<?php echo esc_url($contacto_url); ?>" class="inline-flex items-center gap-2 bg-secondary hover:bg-[#a3884c] text-slate-900 px-8 py-4 rounded-lg font-bold shadow-lg shadow-secondary/20 hover:shadow-xl transition-all">
-                Solicitar Análisis de Movilidad <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
+                <?php echo esc_html( romvill_t( 'perfil.mov.cta' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
         </div>
     </section>
