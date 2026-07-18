@@ -206,6 +206,14 @@ textarea.rv-b1-fi.valid { border-color:var(--b1-ok); }
 .rv-b1-btn-send:disabled { opacity:.4; cursor:not-allowed; transform:none; }
 .rv-b1-send-legal { font-size:11px; color:var(--b1-text3); margin-top:16px; line-height:1.6; }
 .rv-b1-send-legal a { color:var(--b1-accent); }
+.rv-b1-inv { margin:18px 0 4px; }
+.rv-b1-inv-toggle { background:none; border:none; padding:0; font-family:inherit; font-size:11px; letter-spacing:.4px; color:var(--b1-text3); text-decoration:underline; text-underline-offset:3px; cursor:pointer; transition:color .2s; }
+.rv-b1-inv-toggle:hover { color:var(--b1-accent); }
+.rv-b1-inv-box { display:none; margin-top:12px; }
+.rv-b1-inv-box.open { display:block; }
+.rv-b1-inv-lbl { display:block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--b1-text3); margin-bottom:6px; }
+.rv-b1-inv-in { width:230px; max-width:100%; padding:10px 14px; border:1px solid var(--b1-border2); border-radius:8px; font-family:inherit; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; text-align:center; color:var(--b1-text); background:transparent; }
+.rv-b1-inv-in:focus { outline:none; border-color:var(--b1-accent); }
 
 /* ── Confirmation ── */
 .rv-b1-conf-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding:72px 24px 60px; text-align:center; }
@@ -449,6 +457,8 @@ var TR={
     errSend:'Error al enviar. Por favor inténtelo de nuevo.',
     sendFail:'No hemos podido enviar su solicitud en este momento. Sus respuestas se han guardado. Por favor, inténtelo de nuevo.',
     retry:'Reintentar envío',
+    invToggle:'¿Tiene un código de invitación?',invLbl:'Código de invitación',invPh:'RV-INV-XXXXX',
+    invInvalid:'El código de invitación indicado no es válido o ya ha sido utilizado. Hemos registrado su solicitud correctamente y recibirá su presupuesto por el cauce habitual.',
     questions:[
       {text:'¿Cuál es su nombre completo y nacionalidad?',note:'Queremos dirigirnos a usted de forma personalizada y adaptar mejor el contenido de su análisis a su perfil.',type:'cmp',fields:[{id:'nt',lbl:'Nombre completo',type:'text',ph:'Nombre y apellidos',req:true},{id:'nac',lbl:'Nacionalidad',type:'sel',opts:['Seleccione su nacionalidad','Española','Británica','Alemana','Francesa','Neerlandesa','Rusa','Otra'],req:true}],req:true},
       {text:'¿En qué ciudad reside actualmente?',type:'text',ph:'Ciudad de residencia actual',req:true},
@@ -536,6 +546,12 @@ TR.ru.confirmTxt='Мы получили вашу заявку. В ближайш
 TR.de.btn='LOSLEGEN';TR.de.next='Weiter';TR.de.prev='Zurück';TR.de.send='ANGEBOT ANFORDERN';TR.de.sending='WIRD GESENDET...';TR.de.intlBadge='INTERNATIONALER KUNDE';TR.de.time='Ungefähr 4 Minuten';TR.de.midTitle='Vielen Dank für das Ausfüllen des Fragebogens.';TR.de.midP1='Mit den bereitgestellten Daten werden wir Ihr persönliches Angebot erstellen.';TR.de.midP2='Nach Erhalt und Annahme des Angebots beginnen wir Ihre Standort-Analyse auf Basis derselben Angaben.';TR.de.secLabels={hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'};TR.de.motivators={6:{txt:'INTERESSENSGEBIET REGISTRIERT',sub:'Wir haben, was wir brauchen'},10:{txt:'ENDSPURT',sub:'Noch ein paar Fragen'},13:{txt:'FAST FERTIG',sub:'Wir bereiten Ihr Profil vor'}};TR.de.agentTitle='Ich möchte persönliche Unterstützung';TR.de.agentSub='Ein Analyst wird Sie so bald wie möglich kontaktieren.';TR.de.errMsg='Bitte beantworten Sie diese Frage.';TR.de.errSend='Fehler beim Senden. Bitte versuchen Sie es erneut.';TR.de.sendFail='Wir konnten Ihre Anfrage gerade nicht senden. Ihre Antworten wurden gespeichert. Bitte versuchen Sie es erneut.';TR.de.retry='Erneut senden';TR.de.blocks={1:'Über Sie',6:'Ihr Interessensgebiet',8:'Ihre Anfrage',10:'Zur Personalisierung',13:'Ihre Fristen'};
 TR.fr.btn='COMMENÇONS';TR.fr.next='Suivant';TR.fr.prev='Précédent';TR.fr.send='DEMANDER UN DEVIS';TR.fr.sending='ENVOI EN COURS...';TR.fr.intlBadge='CLIENT INTERNATIONAL';TR.fr.time='Environ 4 minutes';TR.fr.midTitle='Merci d\'avoir rempli le questionnaire.';TR.fr.midP1='Avec les données fournies, nous établirons votre devis personnalisé.';TR.fr.midP2='Une fois reçu et accepté, nous commencerons votre Analyse d\'Intelligence Territoriale.';TR.fr.secLabels={hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'};TR.fr.motivators={6:{txt:'ZONE D\'INTÉRÊT ENREGISTRÉE',sub:'Nous avons ce qu\'il nous faut'},10:{txt:'DERNIÈRE LIGNE DROITE',sub:'Encore quelques questions'},13:{txt:'PRESQUE TERMINÉ',sub:'Nous préparons votre profil'}};TR.fr.agentTitle='Je souhaite l\'assistance personnalisée d\'un analyste';TR.fr.agentSub='Un analyste vous contactera dès que possible.';TR.fr.errMsg='Veuillez répondre à cette question.';TR.fr.errSend='Erreur d\'envoi. Veuillez réessayer.';TR.fr.sendFail='Nous n\'avons pas pu envoyer votre demande pour le moment. Vos réponses ont été sauvegardées. Veuillez réessayer.';TR.fr.retry='Réessayer l\'envoi';TR.fr.blocks={1:'À votre sujet',6:'Votre zone d\'intérêt',8:'Votre demande',10:'Personnalisation',13:'Vos délais'};
 TR.pt.btn='VAMOS COMEÇAR';TR.pt.next='Seguinte';TR.pt.prev='Anterior';TR.pt.send='SOLICITAR ORÇAMENTO';TR.pt.sending='A ENVIAR...';TR.pt.intlBadge='CLIENTE INTERNACIONAL';TR.pt.time='Aproximadamente 4 minutos';TR.pt.midTitle='Obrigado por preencher o questionário.';TR.pt.midP1='Com os dados fornecidos, procederemos à elaboração do seu orçamento personalizado.';TR.pt.midP2='Uma vez recebido e aceite o orçamento, iniciaremos a sua Análise de Inteligência Zonal.';TR.pt.secLabels={hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'};TR.pt.motivators={6:{txt:'ZONA DE INTERESSE REGISTADA',sub:'Já temos o que precisamos'},10:{txt:'RETA FINAL',sub:'Só mais algumas perguntas'},13:{txt:'QUASE PRONTO',sub:'Estamos a preparar o seu perfil'}};TR.pt.agentTitle='Desejo assistência personalizada de um analista';TR.pt.agentSub='Um analista entrará em contacto consigo brevemente.';TR.pt.errMsg='Por favor, responda a esta pergunta.';TR.pt.errSend='Erro ao enviar. Por favor tente novamente.';TR.pt.sendFail='Não foi possível enviar o seu pedido neste momento. As suas respostas foram guardadas. Por favor, tente novamente.';TR.pt.retry='Tentar novamente';TR.pt.blocks={1:'Sobre si',6:'A sua zona de interesse',8:'A sua consulta',10:'Personalização',13:'Os seus prazos'};
+// ── Código de invitación (envío) ──
+TR.en.invToggle='Do you have an invitation code?';TR.en.invLbl='Invitation code';TR.en.invInvalid='The invitation code provided is not valid or has already been used. Your request has been registered correctly and you will receive your quote through the usual channel.';
+TR.fr.invToggle='Avez-vous un code d\'invitation ?';TR.fr.invLbl='Code d\'invitation';TR.fr.invInvalid='Le code d\'invitation indiqué n\'est pas valide ou a déjà été utilisé. Votre demande a bien été enregistrée et vous recevrez votre devis par la voie habituelle.';
+TR.de.invToggle='Haben Sie einen Einladungscode?';TR.de.invLbl='Einladungscode';TR.de.invInvalid='Der angegebene Einladungscode ist ungültig oder wurde bereits verwendet. Ihre Anfrage wurde ordnungsgemäß registriert; Sie erhalten Ihr Angebot auf dem üblichen Weg.';
+TR.pt.invToggle='Tem um código de convite?';TR.pt.invLbl='Código de convite';TR.pt.invInvalid='O código de convite indicado não é válido ou já foi utilizado. O seu pedido foi registado corretamente e receberá o seu orçamento pela via habitual.';
+TR.ru.invToggle='У вас есть код приглашения?';TR.ru.invLbl='Код приглашения';TR.ru.invInvalid='Указанный код приглашения недействителен или уже был использован. Ваша заявка зарегистрирована; вы получите предложение в обычном порядке.';
 TR.ru.btn='НАЧНЁМ';TR.ru.next='Далее';TR.ru.prev='Назад';TR.ru.send='ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ';TR.ru.sending='ОТПРАВКА...';TR.ru.intlBadge='МЕЖДУНАРОДНЫЙ КЛИЕНТ';TR.ru.time='Приблизительно 4 минуты';TR.ru.midTitle='Спасибо за заполнение анкеты.';TR.ru.midP1='На основе предоставленных данных мы подготовим ваше персональное предложение.';TR.ru.midP2='После получения и принятия мы начнём ваш Анализ локации.';TR.ru.secLabels={hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'};TR.ru.motivators={6:{txt:'ЗОНА ИНТЕРЕСА ЗАРЕГИСТРИРОВАНА',sub:'У нас есть всё необходимое'},10:{txt:'ФИНИШНАЯ ПРЯМАЯ',sub:'Ещё несколько вопросов'},13:{txt:'ПОЧТИ ГОТОВО',sub:'Мы готовим ваш профиль'}};TR.ru.agentTitle='Я хочу персональную помощь аналитика';TR.ru.agentSub='Аналитик свяжется с вами в ближайшее время.';TR.ru.errMsg='Пожалуйста, ответьте на этот вопрос.';TR.ru.errSend='Ошибка отправки. Попробуйте ещё раз.';TR.ru.sendFail='Не удалось отправить вашу заявку сейчас. Ваши ответы сохранены. Пожалуйста, попробуйте ещё раз.';TR.ru.retry='Повторить отправку';TR.ru.blocks={1:'О вас',6:'Зона интереса',8:'Ваш запрос',10:'Персонализация',13:'Ваши сроки'};
 
 // ── State ──
@@ -936,6 +952,13 @@ function b1RenderProfile(){
       +'<button class="rv-b1-btn-send" id="rv-b1-bs" onclick="b1SendProfile(\''+REF+'\')">'
         +'<span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">send</span>'+T.send
       +'</button>'
+      +'<div class="rv-b1-inv">'
+        +'<button type="button" class="rv-b1-inv-toggle" id="rv-b1-inv-t" aria-expanded="false" aria-controls="rv-b1-inv-b" onclick="b1InvToggle()">'+(T.invToggle||TR.es.invToggle)+'</button>'
+        +'<div class="rv-b1-inv-box" id="rv-b1-inv-b">'
+          +'<label class="rv-b1-inv-lbl" for="rv-b1-codigo">'+(T.invLbl||TR.es.invLbl)+'</label>'
+          +'<input type="text" id="rv-b1-codigo" class="rv-b1-inv-in" placeholder="'+(T.invPh||TR.es.invPh)+'" maxlength="32" autocomplete="off" spellcheck="false">'
+        +'</div>'
+      +'</div>'
       +'<div class="rv-b1-send-legal">'+T.legal+'</div>'
     +'</div>';
 
@@ -997,6 +1020,15 @@ function b1Claves(){
   };
 }
 
+// Desplegable discreto del código de invitación (pantalla de envío).
+function b1InvToggle(){
+  var b=document.getElementById('rv-b1-inv-b'), t=document.getElementById('rv-b1-inv-t');
+  if(!b)return;
+  var open=b.classList.toggle('open');
+  if(t)t.setAttribute('aria-expanded',open?'true':'false');
+  if(open){var i=document.getElementById('rv-b1-codigo');if(i)i.focus();}
+}
+
 function b1SendProfile(ref){
   var btn=document.getElementById('rv-b1-bs');
   btn.disabled=true;
@@ -1004,6 +1036,10 @@ function b1SendProfile(ref){
   var old=document.getElementById('rv-b1-send-err'); if(old&&old.parentNode)old.parentNode.removeChild(old);
 
   var payload=Object.assign({},A,{ref:ref,lang:lang,claves:b1Claves()});
+  // Código de invitación (opcional): viaja en el POST; se valida SOLO en servidor.
+  var invEl=document.getElementById('rv-b1-codigo');
+  var invCod=invEl?invEl.value.toUpperCase().replace(/[^A-Z0-9\-]/g,'').substring(0,32):'';
+  if(invCod)payload.codigo=invCod;
   var fd=new FormData();
   fd.append('action','romvill_b1_submit');
   fd.append('nonce',B1_NONCE);
@@ -1013,7 +1049,19 @@ function b1SendProfile(ref){
     .then(function(r){return r.json();})
     .then(function(res){
       // Only treat as success if the server confirms (wp_mail true).
-      if(res&&res.success){ b1ShowConf(res.data&&res.data.ref?res.data.ref:ref); }
+      if(res&&res.success){
+        b1ShowConf(res.data&&res.data.ref?res.data.ref:ref);
+        // Aviso no bloqueante: el código era inválido o ya usado.
+        if(res.data&&res.data.codigo==='invalido'){
+          var ct=document.getElementById('rv-b1-conf-txt');
+          if(ct){
+            var n=document.createElement('div');
+            n.style.cssText='margin-top:14px;padding:12px 16px;border:1px solid var(--b1-border2);border-left:3px solid var(--b1-accent);border-radius:8px;font-size:12px;line-height:1.7;color:var(--b1-text2);text-align:left';
+            n.textContent=T.invInvalid||TR.es.invInvalid;
+            ct.appendChild(n);
+          }
+        }
+      }
       else{ b1SendFail(ref); }
     })
     .catch(function(){ b1SendFail(ref); });

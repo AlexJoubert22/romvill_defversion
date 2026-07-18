@@ -48,6 +48,10 @@ require_once get_template_directory() . '/inc/generador-docx.php';
 // ─── Informe interactivo HTML (token público, datos editables por el analista) ─
 require_once get_template_directory() . '/inc/informe-html.php';
 
+// Códigos de invitación (un solo uso): registro, validación y consumo.
+// El registro vive SOLO en el servidor; nunca se expone al navegador.
+require_once get_template_directory() . '/inc/codigos.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
@@ -1138,6 +1142,19 @@ function romvill_handle_b1_submit() {
         wp_send_json_error( array( 'message' => 'Email inválido o no indicado.' ) );
     }
 
+    // ── Código de invitación (opcional; validación 100 % servidor) ──
+    // Un solo uso: si es válido se consume aquí mismo. Si es inválido
+    // o ya usado, la solicitud sigue ADELANTE con normalidad.
+    $codigo_in  = function_exists( 'romvill_codigo_sanitizar' ) ? romvill_codigo_sanitizar( $d['codigo'] ?? '' ) : '';
+    $codigo_ok  = false;
+    $codigo_mal = '';
+    if ( $codigo_in !== '' ) {
+        if ( romvill_codigo_valido( $codigo_in ) ) {
+            $codigo_ok = romvill_codigo_consumir( $codigo_in );
+        }
+        if ( ! $codigo_ok ) $codigo_mal = $codigo_in;
+    }
+
     $intl_flag = $intl ? '⭐ CLIENTE INTERNACIONAL' : '';
     $to        = get_option( 'admin_email' );
     $subject   = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTERNACIONAL' : '' ) . " — Nueva Solicitud Bloque 1";
@@ -1224,6 +1241,19 @@ Análisis de Inteligencia Zonal
         $subject = $est['asunto_prefix'] . ' Particular · ' . ( $zona_short ?: '—' ) . ' · ' . $ref . ( $intl ? ' ⭐' : '' );
     }
 
+    // ── Marcado de invitación en el email INTERNO (solo Giovanny) ──
+    if ( $codigo_ok ) {
+        $codigo_nota = romvill_codigo_nota( $codigo_in );
+        $subject = '🎟 INVITACIÓN — 0 € · ' . $subject;
+        $body = "\n🎟 INVITACIÓN — 0 € · Código consumido: {$codigo_in}"
+              . ( $codigo_nota ? "\nNota del código: {$codigo_nota}" : '' )
+              . "\nEl cliente recibe su cotización a 0 € (encargo cubierto por ROMVILL).\n"
+              . $body;
+    } elseif ( $codigo_mal !== '' ) {
+        $body .= "\n⚠ Código de invitación inválido o ya usado intentado: {$codigo_mal}\n"
+               . "(La solicitud sigue su curso normal; el cliente recibe la cotización habitual.)\n";
+    }
+
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
         "Reply-To: {$nom} <{$ema}>",
@@ -1268,16 +1298,21 @@ Análisis de Inteligencia Zonal
     // ── [Spec 2.3] Auto-cotización Esencial (solo Bloque 1: esencial + ALTA + local) ──
     // Email ADICIONAL al cliente; NO sustituye el email interno. Giovanny sigue
     // recibiendo la estimación completa y puede ajustar si algo no cuadra.
-    if ( $est
+    // Con código de invitación VÁLIDO la cotización se envía siempre y el
+    // importe se sustituye por la línea de 0 € (encargo cubierto por ROMVILL).
+    if ( $codigo_ok
+         || ( $est
          && $est['nivel'] === 'esencial'
          && $est['confianza'] === 'ALTA'
          && $est['precio_min'] <= ROMVILL_PRECIO_ESENCIAL + 60 // sanity check: no auto-cotizar si los extras lo subieron mucho
-    ) {
+    ) ) {
         $quote_subject = 'Su presupuesto — Informe Esencial de zona';
         $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
-        $precio_linea  = ( defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO )
-            ? 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)'
-            : 'Precio: desde ' . ROMVILL_PRECIO_ESENCIAL . '€';
+        $precio_linea  = $codigo_ok
+            ? romvill_codigo_linea_cliente( $lang )
+            : ( ( defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO )
+                ? 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)'
+                : 'Precio: desde ' . ROMVILL_PRECIO_ESENCIAL . '€' );
         $quote_body = "Estimado/a {$nom},\n\n"
             . "Su Informe Esencial para {$zona_display}:\n\n"
             . "Incluye: dashboard de zona, 6-7 dimensiones esenciales, datos oficiales, mapas, patrones detectados, versión web interactiva\n"
@@ -1295,7 +1330,12 @@ Análisis de Inteligencia Zonal
     }
 
     if ( $sent ) {
-        wp_send_json_success( array( 'ref' => $ref ) );
+        // 'codigo': 'ok' (invitación aplicada) | 'invalido' (aviso: la
+        // solicitud sigue adelante con cotización normal) | '' (sin código).
+        wp_send_json_success( array(
+            'ref'    => $ref,
+            'codigo' => $codigo_ok ? 'ok' : ( $codigo_mal !== '' ? 'invalido' : '' ),
+        ) );
     } else {
         wp_send_json_error( array( 'message' => 'Error al enviar. Inténtelo de nuevo.' ) );
     }
