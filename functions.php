@@ -36,6 +36,9 @@ require_once get_template_directory() . '/inc/post-entrega.php';
 // ─── Lector/parser de solicitudes (interno) ───────────────────
 require_once get_template_directory() . '/inc/solicitud-parser.php';
 
+// ─── Endpoint REST privado de LECTURA de solicitudes (app password) ─
+require_once get_template_directory() . '/inc/solicitudes-api.php';
+
 // ─── Internal auto price estimate (email only) ────────────────
 require_once get_template_directory() . '/inc/estimacion.php';
 
