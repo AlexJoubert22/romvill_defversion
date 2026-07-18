@@ -21,6 +21,13 @@
  *   GET /wp-json/romvill/v1/solicitudes/<id>
  *       Detalle completo (todas las metas '_rv_*' y '_rgpd_*').
  *
+ *   POST /wp-json/romvill/v1/feedback/<id>/estado
+ *       Moderación de una valoración desde fuera de wp-admin.
+ *       estado (aprobado|rechazado|pendiente, obligatorio) · nota (texto)
+ *       Marco legal: ninguna valoración se publica sin estado 'aprobado'
+ *       Y consentimiento explícito del cliente ('_rvf_consent'). Este
+ *       endpoint NUNCA modifica el consentimiento: solo lo declara el cliente.
+ *
  * ── USO (curl) ──────────────────────────────────────────────────────
  *   curl -u "usuario:app-password" \
  *     "https://romvill.com/wp-json/romvill/v1/solicitudes?per_page=5"
@@ -37,9 +44,12 @@
  *   (La app password se crea en wp-admin → Usuarios → Perfil →
  *    "Contraseñas de aplicación". Se envía por Basic Auth sobre HTTPS.)
  *
- * ── SOLO LECTURA ────────────────────────────────────────────────────
- * No se registra ningún método POST/PUT/PATCH/DELETE. Este archivo no
- * llama nunca a update_post_meta(), wp_insert_post() ni wp_delete_post().
+ * ── ESCRITURA ───────────────────────────────────────────────────────
+ * Las rutas de solicitudes son SOLO LECTURA: no se registra sobre ellas
+ * ningún método POST/PUT/PATCH/DELETE y nunca se llama a wp_insert_post()
+ * ni wp_delete_post(). La única escritura de este archivo es la ruta de
+ * moderación de valoraciones (POST .../feedback/<id>/estado), que toca
+ * exclusivamente las metas '_rvf_estado' y '_rvf_nota_mod'.
  *
  * ── PRIVACIDAD ──────────────────────────────────────────────────────
  * La meta '_rv_html_token' NO se expone: es la llave del informe HTML
@@ -103,6 +113,92 @@ function romvill_api_sol_rutas() {
 			),
 		),
 	) );
+
+	// ── Moderación de valoraciones (única ruta de escritura) ──
+	register_rest_route( 'romvill/v1', '/feedback/(?P<id>\d+)/estado', array(
+		'methods'             => 'POST',
+		'callback'            => 'romvill_api_fb_moderar',
+		'permission_callback' => 'romvill_api_sol_permiso',
+		'args'                => array(
+			'id' => array(
+				'type'              => 'integer',
+				'required'          => true,
+				'sanitize_callback' => 'absint',
+			),
+			'estado' => array(
+				'type'              => 'string',
+				'required'          => true,
+				'sanitize_callback' => 'sanitize_key',
+			),
+			'nota' => array(
+				'type'              => 'string',
+				'default'           => '',
+				'sanitize_callback' => 'sanitize_textarea_field',
+			),
+		),
+	) );
+}
+
+/* ── POST /feedback/<id>/estado ──────────────────────────────────── */
+/**
+ * Aprueba, rechaza o devuelve a pendiente una valoración.
+ *
+ * No toca el consentimiento del cliente ('_rvf_consent'): ese dato solo lo
+ * declara él en el formulario. Una valoración aprobada SIN consentimiento
+ * sigue sin ser publicable, y la respuesta lo indica en 'publicable'.
+ */
+function romvill_api_fb_moderar( WP_REST_Request $req ) {
+	if ( ! function_exists( 'romvill_fb_estados' ) || ! defined( 'ROMVILL_FB_CPT' ) ) {
+		return new WP_Error(
+			'romvill_feedback_no_disponible',
+			'El sistema de valoraciones no está cargado.',
+			array( 'status' => 500 )
+		);
+	}
+
+	$id   = (int) $req->get_param( 'id' );
+	$post = get_post( $id );
+
+	if ( ! $post || $post->post_type !== ROMVILL_FB_CPT ) {
+		return new WP_Error(
+			'romvill_feedback_no_encontrada',
+			'No existe ninguna valoración con ese ID.',
+			array( 'status' => 404 )
+		);
+	}
+
+	$estados = romvill_fb_estados();
+	$estado  = (string) $req->get_param( 'estado' );
+	if ( ! array_key_exists( $estado, $estados ) ) {
+		return new WP_Error(
+			'romvill_estado_invalido',
+			'Estado no válido. Valores admitidos: ' . implode( ', ', array_keys( $estados ) ) . '.',
+			array( 'status' => 400 )
+		);
+	}
+
+	update_post_meta( $id, '_rvf_estado', $estado );
+
+	// La nota solo se sobrescribe si el cliente de la API la envía.
+	if ( null !== $req->get_param( 'nota' ) && '' !== (string) $req->get_param( 'nota' ) ) {
+		update_post_meta( $id, '_rvf_nota_mod', (string) $req->get_param( 'nota' ) );
+	}
+
+	$consent = romvill_fb_consent( $id );
+
+	$res = rest_ensure_response( array(
+		'id'           => $id,
+		'estado'       => $estado,
+		'estado_label' => sanitize_text_field( $estados[ $estado ] ),
+		'consent'      => $consent,
+		'nota_mod'     => sanitize_textarea_field( (string) get_post_meta( $id, '_rvf_nota_mod', true ) ),
+		'publicable'   => ( $estado === 'aprobado' && $consent ),
+		'aviso'        => ( $estado === 'aprobado' && ! $consent )
+			? 'Aprobada, pero el cliente no autorizó la publicación: NO es publicable.'
+			: '',
+	) );
+	$res->header( 'Cache-Control', 'no-store, private' );
+	return $res;
 }
 
 /* ── Helpers ─────────────────────────────────────────────────────── */
@@ -218,6 +314,32 @@ function romvill_api_resumen( $id ) {
 	return $out;
 }
 
+/**
+ * Estado del Programa Inaugural (inc/inaugural.php).
+ * Se devuelve en la respuesta general del listado para saber de un vistazo
+ * cuántas plazas gratuitas quedan sin abrir wp-admin.
+ */
+function romvill_api_programa_inaugural() {
+	if ( ! function_exists( 'romvill_inaugural_activo' ) ) {
+		return array( 'activo' => false, 'plazas' => 0, 'usadas' => array(), 'disponibles' => 0 );
+	}
+	$usadas = romvill_inaugural_usadas();
+	$limpio = array();
+	foreach ( $usadas as $plaza => $datos ) {
+		$limpio[] = array(
+			'plaza' => (int) $plaza,
+			'ref'   => sanitize_text_field( (string) ( $datos['ref'] ?? '' ) ),
+			'fecha' => sanitize_text_field( (string) ( $datos['fecha'] ?? '' ) ),
+		);
+	}
+	return array(
+		'activo'      => romvill_inaugural_activo(),
+		'plazas'      => (int) ROMVILL_INAUGURAL_PLAZAS,
+		'usadas'      => $limpio,
+		'disponibles' => romvill_inaugural_disponibles(),
+	);
+}
+
 /** Ficha resumida de una solicitud (para el listado). */
 function romvill_api_sol_item( $post ) {
 	$id      = (int) $post->ID;
@@ -243,6 +365,10 @@ function romvill_api_sol_item( $post ) {
 		'bloque'          => $bloque === '' ? null : (int) $bloque,
 		'nivel'           => romvill_api_nivel( $bloque ),
 		'invitacion'      => romvill_api_invitacion( $id ),
+		// Programa Inaugural: nº de plaza concedida, o false si no la tiene.
+		// A diferencia de 'invitacion', esto SÍ se apoya en una meta real
+		// ('_rv_inaugural'), escrita por romvill_handle_b1_submit().
+		'inaugural'       => ( (int) get_post_meta( $id, '_rv_inaugural', true ) ) ?: false,
 		'estado'          => $estado,
 		'estado_label'    => sanitize_text_field( $estados[ $estado ] ?? $estado ),
 		'upgrade'         => get_post_meta( $id, '_rv_upgrade', true ) === '1',
@@ -313,12 +439,13 @@ function romvill_api_sol_listado( WP_REST_Request $req ) {
 	wp_reset_postdata();
 
 	$res = rest_ensure_response( array(
-		'total'       => (int) $q->found_posts,
-		'paginas'     => (int) $q->max_num_pages,
-		'page'        => $page,
-		'per_page'    => $per_page,
-		'filtros'     => array( 'desde' => $desde, 'ref' => $ref ),
-		'solicitudes' => $items,
+		'total'             => (int) $q->found_posts,
+		'paginas'           => (int) $q->max_num_pages,
+		'page'              => $page,
+		'per_page'          => $per_page,
+		'filtros'           => array( 'desde' => $desde, 'ref' => $ref ),
+		'programa_inaugural' => romvill_api_programa_inaugural(),
+		'solicitudes'       => $items,
 	) );
 	$res->header( 'X-WP-Total', (int) $q->found_posts );
 	$res->header( 'X-WP-TotalPages', (int) $q->max_num_pages );

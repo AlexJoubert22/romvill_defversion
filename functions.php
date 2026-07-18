@@ -55,6 +55,13 @@ require_once get_template_directory() . '/inc/informe-html.php';
 // El registro vive SOLO en el servidor; nunca se expone al navegador.
 require_once get_template_directory() . '/inc/codigos.php';
 
+// Programa Inaugural: concesión AUTOMÁTICA de las primeras N plazas
+// gratuitas a solicitudes sin código. Contador solo en servidor.
+require_once get_template_directory() . '/inc/inaugural.php';
+
+// Feedback del cliente sobre su expediente (CPT privado + panel).
+require_once get_template_directory() . '/inc/feedback.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
@@ -403,6 +410,7 @@ const ROMVILL_NOINDEX_SLUGS = array(
     'presupuesto-bloque-4',
     'politica-de-cookies-ue',
     'verificar', // verificación de autenticidad: página utilitaria, no indexable
+    'feedback',  // valoración del expediente: privada, solo por enlace de entrega
 );
 
 // Excluir las páginas noindex del sitemap de Jetpack (coherencia robots ↔ sitemap).
@@ -796,6 +804,12 @@ function romvill_activate() {
             'order'    => 30,
         ),
         array(
+            'title'    => 'Valoración del expediente',
+            'slug'     => 'feedback',
+            'template' => 'page-feedback.php',
+            'order'    => 31,
+        ),
+        array(
             'title'    => 'Solicitar Presupuesto — Bloque 1',
             'slug'     => 'presupuesto-bloque-1',
             'template' => 'page-presupuesto-bloque-1.php',
@@ -868,7 +882,7 @@ add_action( 'after_switch_theme', 'romvill_activate' );
 // Only runs for logged-in users with manage_options capability to
 // avoid race conditions with anonymous traffic + transient lock to
 // prevent simultaneous executions.
-define( 'ROMVILL_PAGES_VERSION', '2026.07.18.1' );
+define( 'ROMVILL_PAGES_VERSION', '2026.07.18.2' );
 add_action( 'admin_init', 'romvill_ensure_pages' );
 function romvill_ensure_pages() {
     if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
@@ -1158,6 +1172,17 @@ function romvill_handle_b1_submit() {
         if ( ! $codigo_ok ) $codigo_mal = $codigo_in;
     }
 
+    // ── Programa Inaugural (inc/inaugural.php) ──────────────────────
+    // Concesión AUTOMÁTICA de plaza gratuita a las primeras N solicitudes
+    // que lleguen SIN código de invitación. Si ya viene código válido, el
+    // código manda y NO se gasta plaza inaugural.
+    $inaug_plaza = false;
+    if ( ! $codigo_ok
+         && function_exists( 'romvill_inaugural_activo' )
+         && romvill_inaugural_activo() ) {
+        $inaug_plaza = romvill_inaugural_consumir( $ref );
+    }
+
     $intl_flag = $intl ? '⭐ CLIENTE INTERNACIONAL' : '';
     $to        = get_option( 'admin_email' );
     $subject   = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTERNACIONAL' : '' ) . " — Nueva Solicitud Bloque 1";
@@ -1257,6 +1282,18 @@ Análisis de Inteligencia Zonal
                . "(La solicitud sigue su curso normal; el cliente recibe la cotización habitual.)\n";
     }
 
+    // ── Marcado del Programa Inaugural en el email INTERNO ──────────
+    if ( $inaug_plaza ) {
+        $inaug_total = defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 5;
+        $inaug_rest  = function_exists( 'romvill_inaugural_disponibles' ) ? romvill_inaugural_disponibles() : 0;
+        $subject = '🏛 PLAZA INAUGURAL Nº ' . $inaug_plaza . '/' . $inaug_total . ' — 0 € · ' . $subject;
+        $body = "\n🏛 PLAZA INAUGURAL Nº {$inaug_plaza}/{$inaug_total} — 0 €"
+              . "\nConcesión automática del Programa Inaugural (sin código)."
+              . "\nEl cliente recibe su expediente sin coste; la contraprestación es su reseña en Google."
+              . "\nPlazas que quedan tras esta: {$inaug_rest} de {$inaug_total}.\n"
+              . $body;
+    }
+
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
         "Reply-To: {$nom} <{$ema}>",
@@ -1264,7 +1301,7 @@ Análisis de Inteligencia Zonal
 
     // Persist into the private Solicitudes panel (besides the email).
     if ( function_exists( 'romvill_save_solicitud' ) ) {
-        romvill_save_solicitud( array(
+        $sol_id_b1 = romvill_save_solicitud( array(
             'ref'        => $ref,
             'perfil'     => 'Particular / Residencial',
             'bloque'     => '1',
@@ -1278,6 +1315,11 @@ Análisis de Inteligencia Zonal
             'estimacion' => $est ? $est['bloque_email'] : '',
             'claves'     => $claves,
         ) );
+        // Meta del Programa Inaugural: es lo que permite detectar la plaza
+        // después (panel de Solicitudes y endpoint REST).
+        if ( $sol_id_b1 && $inaug_plaza ) {
+            update_post_meta( $sol_id_b1, '_rv_inaugural', (int) $inaug_plaza );
+        }
     }
 
     // ── [Spec 2.1] Email de confirmación al cliente (contacto@romvill.com) ──
@@ -1303,7 +1345,10 @@ Análisis de Inteligencia Zonal
     // recibiendo la estimación completa y puede ajustar si algo no cuadra.
     // Con código de invitación VÁLIDO la cotización se envía siempre y el
     // importe se sustituye por la línea de 0 € (encargo cubierto por ROMVILL).
+    // Con plaza del Programa Inaugural la cotización se envía siempre y el
+    // importe se sustituye por el texto de admisión + contraprestación.
     if ( $codigo_ok
+         || $inaug_plaza
          || ( $est
          && $est['nivel'] === 'esencial'
          && $est['confianza'] === 'ALTA'
@@ -1311,11 +1356,21 @@ Análisis de Inteligencia Zonal
     ) ) {
         $quote_subject = 'Su presupuesto — Informe Esencial de zona';
         $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
-        $precio_linea  = $codigo_ok
-            ? romvill_codigo_linea_cliente( $lang )
-            : ( ( defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO )
-                ? 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)'
-                : 'Precio: desde ' . ROMVILL_PRECIO_ESENCIAL . '€' );
+        // Orden de prioridad: plaza inaugural > código de invitación >
+        // precio de lanzamiento > precio oficial. Mientras el Programa
+        // Inaugural siga activo NO se ofrece el precio de lanzamiento
+        // (decisión de dirección: una sola oferta a la vez).
+        $lanz_disponible = defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO
+            && ! ( function_exists( 'romvill_inaugural_activo' ) && romvill_inaugural_activo() );
+        if ( $inaug_plaza ) {
+            $precio_linea = romvill_inaugural_linea_cliente( $inaug_plaza, $lang );
+        } elseif ( $codigo_ok ) {
+            $precio_linea = romvill_codigo_linea_cliente( $lang );
+        } elseif ( $lanz_disponible ) {
+            $precio_linea = 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)';
+        } else {
+            $precio_linea = 'Precio: desde ' . ROMVILL_PRECIO_ESENCIAL . '€';
+        }
         $quote_body = "Estimado/a {$nom},\n\n"
             . "Su Informe Esencial para {$zona_display}:\n\n"
             . "Incluye: dashboard de zona, 6-7 dimensiones esenciales, datos oficiales, mapas, patrones detectados, versión web interactiva\n"
@@ -2003,7 +2058,7 @@ function romvill_related_dimensions( $current_slug ) {
 // La caché de borde servía HTML con nonces caducados → los envíos
 // de cuestionarios y contacto devolvían 403 a clientes reales.
 add_action( 'template_redirect', function () {
-    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto' ) ) ) {
+    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto', 'feedback' ) ) ) {
         nocache_headers();
     }
 } );

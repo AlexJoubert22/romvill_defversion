@@ -27,9 +27,16 @@ for ( $i = 1; $i <= 4; $i++ ) {
         : add_query_arg( 'lang', $_lang, home_url( '/presupuesto-bloque-' . $i . '/' ) );
 }
 
+// Programa Inaugural (inc/inaugural.php): mientras esté activo es la ÚNICA
+// oferta visible. Decisión de dirección: una sola oferta a la vez.
+$inaug_on    = function_exists( 'romvill_inaugural_activo' ) && romvill_inaugural_activo();
+$inaug_badge = $inaug_on ? romvill_inaugural_badge() : '';
+
 // Oferta de lanzamiento (cupo limitado): se muestra tachando el precio oficial.
 // Premium NUNCA lleva descuento. Desactivar en inc/estimacion.php (ROMVILL_LANZ_ACTIVO).
-$lanz_on = defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO;
+// El código NO se borra: queda condicionado y vuelve solo cuando se agota o
+// se desactiva el Programa Inaugural.
+$lanz_on = ( defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO ) && ! $inaug_on;
 $packs = array(
     array( 'key' => 'expres',   'price' => $p1, 'launch' => $lanz_on && defined( 'ROMVILL_LANZ_ESENCIAL' ) ? ROMVILL_LANZ_ESENCIAL : 0, 'featured' => false ),
     array( 'key' => 'analisis', 'price' => $p2, 'launch' => $lanz_on && defined( 'ROMVILL_LANZ_SUPERIOR' ) ? ROMVILL_LANZ_SUPERIOR : 0, 'featured' => true ),
@@ -44,6 +51,23 @@ $packs = array(
             <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'precios.kicker' ) ); ?></span>
             <h1 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4"><?php echo esc_html( romvill_t( 'precios.title' ) ); ?></h1>
             <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed"><?php echo esc_html( romvill_t( 'precios.subtitle' ) ); ?></p>
+
+            <?php if ( $inaug_badge ) : ?>
+                <!-- Chip del Programa Inaugural: solo mientras queden plazas -->
+                <div class="mt-6 flex justify-center">
+                    <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(191,161,95,.55);background:linear-gradient(180deg,rgba(191,161,95,.14),rgba(191,161,95,.06));color:#8a6d2f;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:9px 20px;border-radius:999px">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;flex:0 0 auto">
+                            <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
+                        </svg>
+                        <?php echo esc_html( $inaug_badge ); ?>
+                    </span>
+                </div>
+                <?php $inaug_letra = function_exists( 'romvill_inaugural_letra_pequena' ) ? romvill_inaugural_letra_pequena() : ''; ?>
+                <?php if ( $inaug_letra ) : ?>
+                    <!-- Letra pequeña: zonas cubiertas y plazo comprometido -->
+                    <p class="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400 max-w-xl mx-auto"><?php echo esc_html( $inaug_letra ); ?></p>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
 
         <!-- Paquetes -->

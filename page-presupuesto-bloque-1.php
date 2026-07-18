@@ -324,6 +324,29 @@ romvill_seo( array(
     <div class="rv-b1-cover-wrap">
         <div class="rv-b1-cover-title" id="rv-b1-cover-ttl">Solicitar Presupuesto</div>
         <div class="rv-b1-cover-tag" id="rv-b1-cover-doc">Cuestionario de solicitud · Análisis de Inteligencia Zonal</div>
+        <?php
+        // Chip del Programa Inaugural (inc/inaugural.php): solo si quedan plazas.
+        $rv_inaug_badge = function_exists( 'romvill_inaugural_badge' ) ? romvill_inaugural_badge() : '';
+        if ( $rv_inaug_badge ) :
+        ?>
+        <div style="margin:18px 0 4px">
+            <span style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(191,161,95,.55);background:linear-gradient(180deg,rgba(191,161,95,.14),rgba(191,161,95,.05));color:#8a6d2f;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:8px 18px;border-radius:999px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;flex:0 0 auto">
+                    <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
+                </svg>
+                <?php echo esc_html( $rv_inaug_badge ); ?>
+            </span>
+        </div>
+        <?php
+        // Letra pequeña bajo el chip: zonas cubiertas y plazo comprometido.
+        $rv_inaug_letra = function_exists( 'romvill_inaugural_letra_pequena' ) ? romvill_inaugural_letra_pequena() : '';
+        if ( $rv_inaug_letra ) :
+        ?>
+        <div style="margin:0 auto 4px;max-width:560px;font-size:11.5px;line-height:1.6;color:#64748b">
+            <?php echo esc_html( $rv_inaug_letra ); ?>
+        </div>
+        <?php endif; ?>
+        <?php endif; ?>
         <div class="rv-b1-cover-body">
             <div class="rv-b1-cover-intro">
                 <p id="rv-b1-cv-p1">Respondiendo las siguientes preguntas nos ayudará a conocer su caso en detalle y elaborar un <strong>presupuesto totalmente personalizado</strong> y adaptado exclusivamente a sus necesidades.</p>

@@ -347,6 +347,17 @@ function romvill_sol_box_contacto( $post ) {
         'Idioma'     => strtoupper( get_post_meta( $post->ID, '_rv_lang', true ) ),
         'Internac.'  => get_post_meta( $post->ID, '_rv_intl', true ) === '1' ? '⭐ Sí' : 'No',
     );
+    // Programa Inaugural: si esta solicitud tiene plaza gratuita concedida
+    // (meta '_rv_inaugural', escrita por romvill_handle_b1_submit()).
+    $inaug = (int) get_post_meta( $post->ID, '_rv_inaugural', true );
+    if ( $inaug ) {
+        $total = defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 5;
+        echo '<p style="margin:0 0 10px;padding:8px 12px;background:#fffbe6;border:1px solid #f0d98a;'
+            . 'border-left:4px solid #BFA15F;border-radius:6px;font-size:12px;line-height:1.5">'
+            . '<strong>🏛 Plaza inaugural nº ' . (int) $inaug . '/' . (int) $total . '</strong><br>'
+            . 'Expediente sin coste. Contraprestación: reseña en Google.</p>';
+    }
+
     echo '<table style="width:100%;font-size:13px">';
     foreach ( $rows as $k => $v ) {
         if ( $k === 'Email' && $v ) $v = '<a href="mailto:' . esc_attr( $v ) . '">' . esc_html( $v ) . '</a>';
