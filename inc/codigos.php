@@ -29,9 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // ─── Registro de códigos ─────────────────────────────────────────
 function romvill_codigos_invitacion() {
 	return array(
-		// código            => nota interna (para quién) + nivel cubierto
-		'RV-INV-DEMO1' => array( 'nota' => 'Código de ejemplo 1 — sustituir por invitación real', 'nivel' => 'superior' ),
-		'RV-INV-DEMO2' => array( 'nota' => 'Código de ejemplo 2 — sustituir por invitación real', 'nivel' => 'superior' ),
+		// código       => nota interna (para quién) + nivel cubierto
+		'RV-VPM-84' => array( 'nota' => 'Victoria Pérez Mestre — 1ª invitada (concedida 18-07-2026)', 'nivel' => 'superior' ),
 	);
 }
 
