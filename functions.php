@@ -21,6 +21,9 @@ require_once get_template_directory() . '/inc/translations.php';
 require_once get_template_directory() . '/inc/zonas.php';
 require_once get_template_directory() . '/inc/faq.php';
 
+// ─── Registro de expedientes emitidos (verificación de autenticidad) ─
+require_once get_template_directory() . '/inc/expedientes.php';
+
 // ─── Solicitudes panel (private CRM) ──────────────────────────
 require_once get_template_directory() . '/inc/solicitudes-cpt.php';
 
@@ -392,6 +395,7 @@ const ROMVILL_NOINDEX_SLUGS = array(
     'presupuesto-bloque-3',
     'presupuesto-bloque-4',
     'politica-de-cookies-ue',
+    'verificar', // verificación de autenticidad: página utilitaria, no indexable
 );
 
 // Excluir las páginas noindex del sitemap de Jetpack (coherencia robots ↔ sitemap).
@@ -779,6 +783,12 @@ function romvill_activate() {
             'order'    => 24,
         ),
         array(
+            'title'    => 'Verificación de autenticidad',
+            'slug'     => 'verificar',
+            'template' => 'page-verificar.php',
+            'order'    => 30,
+        ),
+        array(
             'title'    => 'Solicitar Presupuesto — Bloque 1',
             'slug'     => 'presupuesto-bloque-1',
             'template' => 'page-presupuesto-bloque-1.php',
@@ -851,7 +861,7 @@ add_action( 'after_switch_theme', 'romvill_activate' );
 // Only runs for logged-in users with manage_options capability to
 // avoid race conditions with anonymous traffic + transient lock to
 // prevent simultaneous executions.
-define( 'ROMVILL_PAGES_VERSION', '2026.06.12.1' );
+define( 'ROMVILL_PAGES_VERSION', '2026.07.18.1' );
 add_action( 'admin_init', 'romvill_ensure_pages' );
 function romvill_ensure_pages() {
     if ( get_option( 'romvill_pages_version' ) === ROMVILL_PAGES_VERSION ) {
