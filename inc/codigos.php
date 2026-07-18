@@ -87,7 +87,7 @@ function romvill_codigo_linea_cliente( $lang ) {
  * ENDPOINT DE CONCESIÓN DE INVITACIONES
  * POST /wp-json/romvill/v1/conceder
  *
- * Envía al invitado el email de concesión (en su idioma) con su código
+ * Envía al invitado el email de invitación (en su idioma) con su código
  * personal, y un aviso al email del administrador del sitio. NO consume
  * el código: el consumo sigue ocurriendo cuando el invitado envía el
  * cuestionario del Bloque 1.
@@ -160,7 +160,7 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		return new WP_Error( 'codigo_usado', 'El código ya fue usado el ' . $usados[ $codigo ] . '. Crea un código nuevo.', array( 'status' => 400 ) );
 	}
 
-	// ── Email de concesión al invitado (HTML sencillo, en su idioma) ──
+	// ── Email de invitación al invitado (HTML sencillo, en su idioma) ──
 	$t = function ( $key ) use ( $idioma ) { return romvill_conc_t( $key, $idioma ); };
 
 	$asunto_inv = $t( 'conc.subject' );
@@ -208,8 +208,8 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 	}
 
 	// ── Aviso interno al admin (texto plano, en español) ─────────
-	$asunto_admin = 'Concesión enviada: ' . $codigo . ' → ' . $nombre;
-	$cuerpo_admin = "Se ha enviado un email de concesión del Programa de Expedientes Fundacionales.\n\n"
+	$asunto_admin = 'Invitación enviada: ' . $codigo . ' → ' . $nombre;
+	$cuerpo_admin = "Se ha enviado un email de invitación al Programa Inaugural.\n\n"
 		. "Invitado:  {$nombre}\n"
 		. "Email:     {$email}\n"
 		. "Código:    {$codigo}\n"

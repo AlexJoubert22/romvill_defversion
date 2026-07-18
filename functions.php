@@ -55,7 +55,7 @@ require_once get_template_directory() . '/inc/informe-html.php';
 // El registro vive SOLO en el servidor; nunca se expone al navegador.
 require_once get_template_directory() . '/inc/codigos.php';
 
-// Programa Inaugural: concesión AUTOMÁTICA de las primeras N plazas
+// Programa Inaugural: alta AUTOMÁTICA de las primeras N plazas
 // gratuitas a solicitudes sin código. Contador solo en servidor.
 require_once get_template_directory() . '/inc/inaugural.php';
 
@@ -1173,7 +1173,7 @@ function romvill_handle_b1_submit() {
     }
 
     // ── Programa Inaugural (inc/inaugural.php) ──────────────────────
-    // Concesión AUTOMÁTICA de plaza gratuita a las primeras N solicitudes
+    // Alta AUTOMÁTICA de plaza gratuita a las primeras N solicitudes
     // que lleguen SIN código de invitación. Si ya viene código válido, el
     // código manda y NO se gasta plaza inaugural.
     $inaug_plaza = false;
@@ -1288,7 +1288,7 @@ Análisis de Inteligencia Zonal
         $inaug_rest  = function_exists( 'romvill_inaugural_disponibles' ) ? romvill_inaugural_disponibles() : 0;
         $subject = '🏛 PLAZA INAUGURAL Nº ' . $inaug_plaza . '/' . $inaug_total . ' — 0 € · ' . $subject;
         $body = "\n🏛 PLAZA INAUGURAL Nº {$inaug_plaza}/{$inaug_total} — 0 €"
-              . "\nConcesión automática del Programa Inaugural (sin código)."
+              . "\nPlaza del Programa Inaugural asignada automáticamente (sin código)."
               . "\nEl cliente recibe su expediente sin coste; la contraprestación es su reseña en Google."
               . "\nPlazas que quedan tras esta: {$inaug_rest} de {$inaug_total}.\n"
               . $body;
