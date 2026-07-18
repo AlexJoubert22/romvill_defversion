@@ -118,6 +118,19 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
             <form id="rvf-form" novalidate>
                 <?php wp_nonce_field( 'romvill_feedback_nonce', 'nonce' ); ?>
 
+                <?php /* [I4] El POST va a admin-ajax.php, que no recibe ?lang:
+                         el idioma tiene que viajar en el propio formulario para
+                         que la valoración se archive y se conteste en el idioma
+                         del cliente. */ ?>
+                <input type="hidden" name="lang" value="<?php echo esc_attr( $_lang ); ?>">
+
+                <?php /* [I5] Honeypot antirrobots: invisible y fuera del foco
+                         del teclado. Un cliente real jamás lo rellena. */ ?>
+                <div style="position:absolute;left:-9999px" aria-hidden="true">
+                    <label for="rvf-website">No rellenar</label>
+                    <input type="text" id="rvf-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
                 <!-- Referencia del expediente -->
                 <div class="fld">
                     <label class="lbl" for="rvf-ref"><?php echo esc_html( romvill_t( 'fb.ref.label' ) ); ?></label>

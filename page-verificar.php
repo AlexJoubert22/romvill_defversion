@@ -3,11 +3,15 @@
  * Página de Verificación de autenticidad (/verificar/).
  * Destino del QR impreso en cada informe: /verificar?ref=RV-AAAA-XXXX-XXX-NNNN
  *
- * La comprobación se hace en JS contra el registro de expedientes
- * (inc/expedientes.php) embebido en la página como JSON. Vía elegida
- * a propósito: el edge cache de WordPress.com cachea el HTML, y con el
- * array embebido la verificación funciona siempre — sin AJAX, sin nonces
- * y sin depender de que la URL con ?ref= llegue al PHP sin cachear.
+ * [I6] La comprobación se hace contra el endpoint público
+ * GET /wp-json/romvill/v1/verificar?ref=… (inc/expedientes.php), que
+ * responde SOLO por la referencia preguntada.
+ *
+ * Antes el registro entero viajaba embebido en el HTML como JSON: era
+ * cómodo frente al edge cache, pero en cuanto hubiera clientes reales
+ * cualquiera podría leer todas las referencias emitidas y sus zonas con
+ * "ver código fuente". El endpoint no se cachea y limita las consultas por
+ * IP, así que la verificación sigue funcionando aunque el HTML esté cacheado.
  *
  * SEO: noindex (slug en ROMVILL_NOINDEX_SLUGS, functions.php).
  * @package Romvill
@@ -19,17 +23,6 @@ $serif = "font-family:'Playfair Display',Georgia,serif;";
 
 $contacto_page = get_page_by_path( 'contacto' );
 $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' ) );
-
-// Registro embebido: ref => datos. El estado viaja como código y se
-// traduce aquí a etiqueta visible en el idioma actual.
-$_registro = array();
-foreach ( romvill_expedientes() as $_ref => $_e ) {
-	$_registro[ $_ref ] = array(
-		'zona'    => $_e['zona'],
-		'emitido' => $_e['emitido'],
-		'estado'  => romvill_t( 'verif.estado.' . $_e['estado'] ),
-	);
-}
 ?>
 <main class="flex-grow" id="rv-verif">
 <style>
@@ -132,11 +125,15 @@ foreach ( romvill_expedientes() as $_ref => $_e ) {
 
     <script>
     (function(){
-        var REG = <?php echo wp_json_encode( $_registro ); ?>;
+        // [I6] El registro ya no viaja en la página: se pregunta al endpoint
+        // por UNA referencia y solo se recibe esa.
+        var API   = <?php echo wp_json_encode( rest_url( 'romvill/v1/verificar' ) ); ?>;
+        var LANG  = <?php echo wp_json_encode( $_lang ); ?>;
         var form  = document.getElementById('rvv-form');
         var input = document.getElementById('rvv-ref');
         var okBox = document.getElementById('rvv-ok');
         var koBox = document.getElementById('rvv-ko');
+        var btn   = form ? form.querySelector('button[type=submit]') : null;
         if(!form || !input) return;
 
         function normalize(v){
@@ -147,16 +144,29 @@ foreach ( romvill_expedientes() as $_ref => $_e ) {
             okBox.classList.remove('show');
             koBox.classList.remove('show');
             if(!ref) return;
-            var e = Object.prototype.hasOwnProperty.call(REG, ref) ? REG[ref] : null;
-            if(e){
-                document.getElementById('rvv-d-ref').textContent = ref;
-                document.getElementById('rvv-d-zona').textContent = e.zona;
-                document.getElementById('rvv-d-emitido').textContent = e.emitido;
-                document.getElementById('rvv-d-estado').textContent = e.estado;
-                okBox.classList.add('show');
-            } else {
-                koBox.classList.add('show');
-            }
+            if(btn) btn.disabled = true;
+
+            var url = API + (API.indexOf('?') > -1 ? '&' : '?')
+                + 'ref=' + encodeURIComponent(ref) + '&lang=' + encodeURIComponent(LANG);
+
+            fetch(url, { credentials:'omit', headers:{ 'Accept':'application/json' } })
+            .then(function(r){ return r.json(); })
+            .then(function(e){
+                if(e && e.ok){
+                    document.getElementById('rvv-d-ref').textContent     = e.ref;
+                    document.getElementById('rvv-d-zona').textContent    = e.zona;
+                    document.getElementById('rvv-d-emitido').textContent = e.emitido;
+                    document.getElementById('rvv-d-estado').textContent  = e.estado;
+                    okBox.classList.add('show');
+                } else {
+                    // Incluye el caso "no consta" y el límite de consultas:
+                    // en ambos, lo honesto es no afirmar autenticidad.
+                    koBox.classList.add('show');
+                }
+            })
+            .catch(function(){ koBox.classList.add('show'); })
+            .then(function(){ if(btn) btn.disabled = false; });
+
             // Reflejar la referencia en la URL sin recargar (enlace compartible).
             try {
                 var u = new URL(window.location.href);

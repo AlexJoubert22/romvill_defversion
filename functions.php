@@ -1180,7 +1180,11 @@ function romvill_handle_b1_submit() {
     if ( ! $codigo_ok
          && function_exists( 'romvill_inaugural_activo' )
          && romvill_inaugural_activo() ) {
-        $inaug_plaza = romvill_inaugural_consumir( $ref );
+        // [C1] La concesión ya NO depende solo de la referencia del navegador:
+        // romvill_inaugural_consumir() exige referencia válida, una plaza por
+        // email y una plaza por IP/hora. Si deniega, la solicitud sigue su
+        // curso normal con la cotización de siempre.
+        $inaug_plaza = romvill_inaugural_consumir( $ref, $ema );
     }
 
     $intl_flag = $intl ? '⭐ CLIENTE INTERNACIONAL' : '';
@@ -2058,7 +2062,10 @@ function romvill_related_dimensions( $current_slug ) {
 // La caché de borde servía HTML con nonces caducados → los envíos
 // de cuestionarios y contacto devolvían 403 a clientes reales.
 add_action( 'template_redirect', function () {
-    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto', 'feedback' ) ) ) {
+    // [M12] 'precios' se añade no por el nonce, sino porque muestra el contador
+    // de plazas del Programa Inaugural: cacheado, seguiría anunciando plazas
+    // libres cuando ya se han agotado.
+    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto', 'feedback', 'precios' ) ) ) {
         nocache_headers();
     }
 } );

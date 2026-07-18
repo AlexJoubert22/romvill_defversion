@@ -349,9 +349,13 @@ romvill_seo( array(
         <?php endif; ?>
         <div class="rv-b1-cover-body">
             <div class="rv-b1-cover-intro">
-                <p id="rv-b1-cv-p1">Respondiendo las siguientes preguntas nos ayudará a conocer su caso en detalle y elaborar un <strong>presupuesto totalmente personalizado</strong> y adaptado exclusivamente a sus necesidades.</p>
-                <p id="rv-b1-cv-p2">Una vez más, gracias por confiar en nosotros.</p>
-                <p><em id="rv-b1-cv-p3">Su criterio antes de decidir, en las mejores manos.</em></p>
+                <?php /* [P2] Antes iban en castellano a pelo, así que un cliente
+                         alemán o ruso los leía en español. El JS los traduce al
+                         pasar por la pantalla de idioma; esto arregla el PRIMER
+                         pintado, que es lo que veía el visitante. */ ?>
+                <p id="rv-b1-cv-p1"><?php echo wp_kses( romvill_t( 'b1.cover.p1' ), array( 'strong' => array(), 'br' => array() ) ); ?></p>
+                <p id="rv-b1-cv-p2"><?php echo esc_html( romvill_t( 'b1.cover.p2' ) ); ?></p>
+                <p><em id="rv-b1-cv-p3"><?php echo esc_html( romvill_t( 'b1.cover.p3' ) ); ?></em></p>
             </div>
             <div class="rv-b1-cover-disc">
                 <p id="rv-b1-cv-disc"><strong>ROMVILL no vende inmuebles, no cobra comisiones y no tiene ningún interés en su decisión.</strong> Nosotros solo analizamos — usted decide. Sus datos son tratados con total confidencialidad.</p>
@@ -456,7 +460,8 @@ var COUNTRIES=[
 // ── Translations ──
 var TR={
   es:{time:'Aproximadamente 4 minutos',btn:'EMPEZAMOS',
-    cvp1:'Respondiendo las siguientes preguntas nos ayudará a conocer su caso en detalle y elaborar un <strong>presupuesto totalmente personalizado</strong> y adaptado exclusivamente a sus necesidades.',
+    // [P2] Castellano corregido: "Respondiendo … nos ayudará" no concordaba.
+    cvp1:'Responder a las siguientes preguntas nos permitirá conocer su caso en detalle y elaborar un <strong>presupuesto totalmente personalizado</strong>, adaptado exclusivamente a sus necesidades.',
     cvp2:'Una vez más, gracias por confiar en nosotros.',cvp3:'Su criterio antes de decidir, en las mejores manos.',
     cvdisc:'<strong>ROMVILL no vende inmuebles, no cobra comisiones y no tiene ningún interés en su decisión.</strong> Nosotros solo analizamos — usted decide. Sus datos son tratados con total confidencialidad.',
     step:'Pregunta',of:'de',pct:'completado',next:'Siguiente',prev:'Anterior',profile:'Ver mi perfil',
@@ -623,6 +628,12 @@ function b1ApplyStatic(){
   var ls=document.getElementById('rv-b1-logo-sub');
   if(ls)ls.textContent=(T.docType||'Análisis de Inteligencia Zonal')+' · '+(T.hdrTitle||'Solicitar Presupuesto');
   _s('rv-b1-idle-ttl',T.idleTtl);_s('rv-b1-idle-txt',T.idleTxt);_s('rv-b1-idle-btn',T.idleBtn);
+  // [P2] Los párrafos de la portada también: antes solo se traducían al pasar
+  // por b1GoToCover(), así que quien llegaba con ?lang=de y no tocaba la
+  // pantalla de idioma seguía leyéndolos en español.
+  function _h(id,v){var e=document.getElementById(id);if(e&&v)e.innerHTML=v;}
+  _h('rv-b1-cv-p1',T.cvp1);_s('rv-b1-cv-p2',T.cvp2);_s('rv-b1-cv-p3',T.cvp3);
+  _h('rv-b1-cv-disc',T.cvdisc);
 }
 
 function b1GoToCover(){
@@ -639,7 +650,10 @@ function b1GoToCover(){
 
 function b1StartForm(){
   b1Load();
-  var ref=b1GenRef();
+  // [C2] Aquí NO se genera la referencia: al empezar el cuestionario todavía
+  // no hay nombre ni zona, y b1GenRef() ahora cachea el primer valor que
+  // calcula. La referencia se crea al pintar el perfil, con los datos ya
+  // rellenados. (La variable era además un valor sin usar.)
   cQ=0; idleDismissed=false;
   b1Show('rv-b1-sc-q'); b1RenderQ(); b1ResetIdle();
 }
@@ -861,7 +875,13 @@ function rvZoneCode(z,intl,ciudad,pais){
   if(nz.indexOf('ALICANTE')>-1)return'ALC';
   return nz?nz.substring(0,3):'EXT';
 }
+// [C2] La referencia se genera UNA sola vez por sesión y se guarda en
+// sessionStorage. Antes se generaba en cada renderizado del perfil: un
+// cliente que volviera atrás a corregir un dato y reenviara llegaba al
+// servidor con una referencia distinta y se llevaba una segunda plaza
+// inaugural. (La comprobación por email en el servidor cubre lo mismo.)
 function b1GenRef(){
+  try{ var guardada=sessionStorage.getItem('rv_b1_ref'); if(guardada) return guardada; }catch(e){}
   var n=A['nt']||'X'; var y=new Date().getFullYear();
   var parts=n.trim().split(/\s+/);
   var apellido=(parts.length>1?parts[parts.length-1]:parts[0])||'XXXX';
@@ -870,7 +890,9 @@ function b1GenRef(){
   if(ini.length<4) ini=(ini+'XXXX').substring(0,4);
   var zc=rvZoneCode(A['zona']||'',A['zona_intl']===true,A['zona_ciudad']||'',A['zona_pais']||'');
   var seq=String(Math.floor(Math.random()*9000)+1000);
-  return'RV-'+y+'-'+ini+'-'+zc+'-'+seq;
+  var ref='RV-'+y+'-'+ini+'-'+zc+'-'+seq;
+  try{ sessionStorage.setItem('rv_b1_ref',ref); }catch(e){}
+  return ref;
 }
 
 function b1CalcSec(){

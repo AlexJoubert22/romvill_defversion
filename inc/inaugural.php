@@ -15,6 +15,13 @@
  * En la opción de WordPress `romvill_inaugural_usadas` (sin autoload):
  * un array plaza => array( ref, fecha ). Vive SOLO en el servidor.
  *
+ * ── CERROJOS (auditoría I3) ─────────────────────────────────────────
+ * Cada plaza concedida deja además una opción `rv_lock_plaza_N` que impide
+ * que dos peticiones simultáneas se lleven la misma. Es un cerrojo, no un
+ * registro: si alguna vez hay que REINICIAR el programa a mano, hay que
+ * borrar `romvill_inaugural_usadas` Y las opciones `rv_lock_plaza_1..N`;
+ * si solo se borra la primera, las plazas seguirán bloqueadas.
+ *
  * ── DÓNDE SE CONSUME ────────────────────────────────────────────────
  * En romvill_handle_b1_submit() (functions.php). Al conceder la plaza se
  * escribe la meta `_rv_inaugural` (número de plaza) en la solicitud, que
@@ -54,6 +61,72 @@ function romvill_inaugural_activo() {
 	return ROMVILL_INAUGURAL_ACTIVO && romvill_inaugural_disponibles() > 0;
 }
 
+/* ── Defensas anti-abuso (auditoría C1 / I3) ─────────────────────── */
+
+/**
+ * [C1] IP del visitante.
+ *
+ * Se usa EXCLUSIVAMENTE REMOTE_ADDR: es el único valor que no puede
+ * falsificar el cliente. Las cabeceras X-Forwarded-For sí son falsificables,
+ * así que no se leen (en WordPress.com REMOTE_ADDR ya llega correcto).
+ *
+ * @return string IP válida, o '' si no se puede determinar.
+ */
+function romvill_ip_cliente() {
+	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? (string) wp_unslash( $_SERVER['REMOTE_ADDR'] ) : '';
+	$ip = filter_var( $ip, FILTER_VALIDATE_IP );
+	return $ip ? $ip : '';
+}
+
+/**
+ * [C1a] ¿La referencia tiene el formato que genera el Bloque 1?
+ *
+ * Formato: RV-AAAA-XXXX-XXX-NNNN (ver b1GenRef() en
+ * page-presupuesto-bloque-1.php). Una referencia vacía o inventada ya no
+ * puede saltarse la idempotencia: se rechaza antes de tocar el registro.
+ */
+function romvill_inaugural_ref_valida( $ref ) {
+	// El código de zona puede quedarse en 1-3 letras (rvZoneCode recorta el
+	// nombre normalizado), así que el tramo se admite desde 1 carácter.
+	return (bool) preg_match( '/^RV-[0-9]{4}-[A-Z0-9]{2,8}-[A-Z0-9]{1,8}-[0-9]{3,6}$/', (string) $ref );
+}
+
+/**
+ * [C1b] ¿Este email ya se llevó una plaza inaugural?
+ *
+ * Busca en el CPT de Solicitudes una entrada con el mismo `_rv_email` que
+ * además tenga la meta `_rv_inaugural`. Si la hay, esa persona ya está
+ * admitida y NO puede consumir una segunda plaza.
+ *
+ * @param string $email Email ya normalizado (minúsculas, sin espacios).
+ * @return int|false Número de la plaza que ya tenía, o false si no consta.
+ */
+function romvill_inaugural_plaza_por_email( $email ) {
+	$email = strtolower( trim( (string) $email ) );
+	if ( $email === '' || ! defined( 'ROMVILL_SOL_CPT' ) ) return false;
+
+	$q = new WP_Query( array(
+		'post_type'      => ROMVILL_SOL_CPT,
+		'post_status'    => 'any',
+		'posts_per_page' => 1,
+		'fields'         => 'ids',
+		'no_found_rows'  => true,
+		'orderby'        => 'date',
+		'order'          => 'ASC',
+		'meta_query'     => array(
+			'relation' => 'AND',
+			// La colación por defecto de MySQL no distingue mayúsculas,
+			// así que la comparación es efectivamente insensible al caso.
+			array( 'key' => '_rv_email',     'value' => $email, 'compare' => '=' ),
+			array( 'key' => '_rv_inaugural', 'compare' => 'EXISTS' ),
+		),
+	) );
+
+	if ( empty( $q->posts ) ) return false;
+	$plaza = (int) get_post_meta( (int) $q->posts[0], '_rv_inaugural', true );
+	return $plaza > 0 ? $plaza : false;
+}
+
 /**
  * Consumir una plaza para una referencia concreta.
  *
@@ -61,31 +134,77 @@ function romvill_inaugural_activo() {
  * reintento del cliente), devuelve la plaza que ya tenía en vez de gastar
  * otra. Devuelve el número de plaza (1..N) o false si no quedan.
  *
- * @param string $ref Referencia de la solicitud (RV-…).
+ * TRES CAPAS DE PROTECCIÓN (auditoría C1/C2):
+ *   a) La referencia debe existir y tener formato válido.
+ *   b) Una plaza por email: si ese email ya tiene plaza, se reutiliza.
+ *   c) Una plaza por IP y hora (transient de 3600 s).
+ * Y un cerrojo atómico (I3) para que dos peticiones simultáneas no
+ * puedan reservar la misma plaza.
+ *
+ * Cuando se deniega la plaza, la solicitud NO se pierde: el llamante la
+ * tramita como una solicitud normal con su cotización de siempre.
+ *
+ * @param string $ref   Referencia de la solicitud (RV-…).
+ * @param string $email Email del solicitante (obligatorio para conceder).
  * @return int|false
  */
-function romvill_inaugural_consumir( $ref ) {
-	$ref    = sanitize_text_field( (string) $ref );
+function romvill_inaugural_consumir( $ref, $email = '' ) {
+	$ref    = strtoupper( sanitize_text_field( (string) $ref ) );
+	$email  = strtolower( trim( (string) $email ) );
+
+	// [C1a] Referencia vacía o malformada: no se concede nada.
+	if ( ! romvill_inaugural_ref_valida( $ref ) ) return false;
+
 	$usadas = romvill_inaugural_usadas();
 
 	// Reintento de la misma solicitud: no se gasta una plaza nueva.
-	if ( $ref !== '' ) {
-		foreach ( $usadas as $plaza => $datos ) {
-			if ( isset( $datos['ref'] ) && $datos['ref'] === $ref ) {
-				return (int) $plaza;
-			}
+	foreach ( $usadas as $plaza => $datos ) {
+		if ( isset( $datos['ref'] ) && $datos['ref'] === $ref ) {
+			return (int) $plaza;
 		}
 	}
 
 	if ( ! ROMVILL_INAUGURAL_ACTIVO ) return false;
 	if ( count( $usadas ) >= ROMVILL_INAUGURAL_PLAZAS ) return false;
 
-	$plaza = count( $usadas ) + 1;
+	// [C1b] Una plaza por email. Sin email no se concede plaza.
+	if ( $email === '' || ! is_email( $email ) ) return false;
+	$plaza_previa = romvill_inaugural_plaza_por_email( $email );
+	if ( $plaza_previa !== false ) {
+		return (int) $plaza_previa; // Ya admitido: se reutiliza la suya.
+	}
+
+	// [C1c] Límite por IP: una plaza por IP cada hora.
+	$ip    = romvill_ip_cliente();
+	$t_key = $ip !== '' ? 'rv_inaug_ip_' . md5( $ip ) : '';
+	if ( $t_key !== '' && get_transient( $t_key ) ) return false;
+
+	// [I3] Cerrojo atómico: add_option() devuelve false si la opción ya
+	// existe, y esa comprobación la hace la base de datos en una sola
+	// operación. Quien logre crear 'rv_lock_plaza_N' se queda la plaza N.
+	$siguiente = max( array_keys( $usadas ) ?: array( 0 ) ) + 1; // [M10]
+	$plaza     = false;
+	for ( $n = (int) $siguiente; $n <= ROMVILL_INAUGURAL_PLAZAS; $n++ ) {
+		if ( isset( $usadas[ $n ] ) ) continue;
+		if ( add_option( 'rv_lock_plaza_' . $n, current_time( 'Y-m-d H:i:s' ), '', 'no' ) ) {
+			$plaza = $n;
+			break;
+		}
+	}
+	if ( ! $plaza ) return false; // Todas las plazas reservadas por otros.
+
+	// Relectura fresca: el registro es la fuente de datos, el cerrojo solo
+	// impide el doble consumo.
+	$usadas = romvill_inaugural_usadas();
+	if ( isset( $usadas[ $plaza ] ) ) return (int) $plaza;
+
 	$usadas[ $plaza ] = array(
 		'ref'   => $ref,
 		'fecha' => current_time( 'Y-m-d H:i:s' ),
 	);
 	update_option( 'romvill_inaugural_usadas', $usadas, false ); // sin autoload
+
+	if ( $t_key !== '' ) set_transient( $t_key, (int) $plaza, 3600 );
 
 	return (int) $plaza;
 }

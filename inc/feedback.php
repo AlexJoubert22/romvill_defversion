@@ -298,19 +298,78 @@ function romvill_save_feedback( $a ) {
 add_action( 'wp_ajax_romvill_feedback',        'romvill_handle_feedback' );
 add_action( 'wp_ajax_nopriv_romvill_feedback', 'romvill_handle_feedback' );
 
+/**
+ * [I4] Traducción con idioma EXPLÍCITO, al modo de romvill_inaug_t().
+ *
+ * El POST del formulario va a admin-ajax.php, que no lleva ?lang, así que
+ * romvill_current_lang() siempre devolvía 'es': un cliente alemán recibía
+ * el mensaje de gracias en español y su valoración se archivaba como ES.
+ * El idioma viaja ahora en un campo oculto del formulario.
+ */
+function romvill_fb_t( $key, $lang ) {
+	$tabla = function_exists( 'romvill_translations' ) ? romvill_translations() : array();
+	$fila  = isset( $tabla[ $key ] ) ? $tabla[ $key ] : array();
+	if ( isset( $fila[ $lang ] ) ) return $fila[ $lang ];
+	return isset( $fila['es'] ) ? $fila['es'] : '';
+}
+
 function romvill_handle_feedback() {
 	check_ajax_referer( 'romvill_feedback_nonce', 'nonce' );
 
-	$rating = (int) ( $_POST['rating'] ?? 0 );
-	if ( $rating < 1 || $rating > 5 ) {
-		wp_send_json_error( array( 'message' => romvill_t( 'fb.err.rating' ) ) );
+	// [I4] Idioma del formulario, validado contra los 5 admitidos.
+	$lang = strtolower( sanitize_key( (string) ( $_POST['lang'] ?? '' ) ) );
+	if ( ! in_array( $lang, array( 'es', 'en', 'fr', 'de', 'ru' ), true ) ) $lang = 'es';
+
+	// [I5] Honeypot: campo oculto que ningún cliente real rellena. Si viene
+	// con contenido es un robot: se responde "ok" para no darle pistas, pero
+	// no se guarda nada ni se envía email.
+	if ( trim( (string) ( $_POST['website'] ?? '' ) ) !== '' ) {
+		wp_send_json_success( array(
+			'title'  => romvill_fb_t( 'fb.ok.title',  $lang ),
+			'body'   => romvill_fb_t( 'fb.ok.body',   $lang ),
+			'google' => romvill_fb_t( 'fb.ok.google', $lang ),
+			'btn'    => romvill_fb_t( 'fb.ok.btn',    $lang ),
+			'url'    => romvill_feedback_review_url(),
+		) );
 	}
 
-	$ref     = sanitize_text_field( (string) ( $_POST['ref'] ?? '' ) );
-	$checks  = isset( $_POST['checks'] ) && is_array( $_POST['checks'] ) ? $_POST['checks'] : array();
-	$mejora  = sanitize_textarea_field( (string) ( $_POST['mejora']  ?? '' ) );
-	$valioso = sanitize_textarea_field( (string) ( $_POST['valioso'] ?? '' ) );
-	$lang    = romvill_current_lang();
+	// [I5] Límite por IP: máximo 3 envíos por hora. Sin él, un script podía
+	// generar miles de valoraciones y otros tantos emails a Giovanny.
+	$ip    = function_exists( 'romvill_ip_cliente' ) ? romvill_ip_cliente() : '';
+	$t_key = $ip !== '' ? 'rv_fb_ip_' . md5( $ip ) : '';
+	$envios = 0;
+	if ( $t_key !== '' ) {
+		$envios = (int) get_transient( $t_key );
+		if ( $envios >= 3 ) {
+			wp_send_json_error( array( 'message' => romvill_fb_t( 'fb.err.limite', $lang ) ) );
+		}
+	}
+
+	$rating = (int) ( $_POST['rating'] ?? 0 );
+	if ( $rating < 1 || $rating > 5 ) {
+		wp_send_json_error( array( 'message' => romvill_fb_t( 'fb.err.rating', $lang ) ) );
+	}
+
+	// [I7] wp_unslash() antes de sanear: WordPress añade barras invertidas a
+	// todo lo que llega en $_POST. Sin quitarlas, «l'accès» se guardaba como
+	// «l\'accès».
+	$ref     = sanitize_text_field( (string) wp_unslash( $_POST['ref'] ?? '' ) );
+	$checks  = isset( $_POST['checks'] ) && is_array( $_POST['checks'] )
+		? array_map( 'sanitize_key', (array) wp_unslash( $_POST['checks'] ) )
+		: array();
+	$mejora  = sanitize_textarea_field( (string) wp_unslash( $_POST['mejora']  ?? '' ) );
+	$valioso = sanitize_textarea_field( (string) wp_unslash( $_POST['valioso'] ?? '' ) );
+
+	// [I5] Tope de longitud: 2000 caracteres por campo de texto libre.
+	// (mb_substr cuenta caracteres, no bytes: no parte una tilde por la mitad.)
+	if ( function_exists( 'mb_substr' ) ) {
+		$mejora  = mb_substr( $mejora,  0, 2000 );
+		$valioso = mb_substr( $valioso, 0, 2000 );
+	} else {
+		$mejora  = substr( $mejora,  0, 2000 );
+		$valioso = substr( $valioso, 0, 2000 );
+	}
+
 	// Casilla de consentimiento: no marcada por defecto. Solo cuenta si llega.
 	$consent = ! empty( $_POST['consent'] );
 
@@ -325,8 +384,11 @@ function romvill_handle_feedback() {
 	) );
 
 	if ( ! $id ) {
-		wp_send_json_error( array( 'message' => romvill_t( 'fb.err.conn' ) ) );
+		wp_send_json_error( array( 'message' => romvill_fb_t( 'fb.err.conn', $lang ) ) ); // [I4]
 	}
+
+	// [I5] Envío contabilizado (la ventana de 1 h arranca en el primero).
+	if ( $t_key !== '' ) set_transient( $t_key, $envios + 1, 3600 );
 
 	// ── Aviso interno a Giovanny (texto plano, en español) ──
 	$guardadas = json_decode( (string) get_post_meta( $id, '_rvf_checks', true ), true );
@@ -358,11 +420,12 @@ function romvill_handle_feedback() {
 		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <contacto@romvill.com>' )
 	);
 
+	// [I4] Respuesta en el idioma del formulario, no en el de admin-ajax.
 	wp_send_json_success( array(
-		'title'  => romvill_t( 'fb.ok.title' ),
-		'body'   => romvill_t( 'fb.ok.body' ),
-		'google' => romvill_t( 'fb.ok.google' ),
-		'btn'    => romvill_t( 'fb.ok.btn' ),
+		'title'  => romvill_fb_t( 'fb.ok.title',  $lang ),
+		'body'   => romvill_fb_t( 'fb.ok.body',   $lang ),
+		'google' => romvill_fb_t( 'fb.ok.google', $lang ),
+		'btn'    => romvill_fb_t( 'fb.ok.btn',    $lang ),
 		'url'    => romvill_feedback_review_url(),
 	) );
 }
@@ -397,7 +460,9 @@ function romvill_fb_column_content( $col, $post_id ) {
 			$n = (int) get_post_meta( $post_id, '_rvf_rating', true );
 			$c = $n >= 4 ? '#1a7f37' : ( $n === 3 ? '#b8860b' : '#b32d2e' );
 			echo '<span style="color:' . esc_attr( $c ) . ';font-size:14px;letter-spacing:1px">'
-				. esc_html( str_repeat( '★', $n ) . str_repeat( '☆', 5 - $n ) )
+				// [M11] max(0, …): con una valoración corrupta o ausente,
+				// 5 - $n podía ser negativo y str_repeat() lanzaba un error.
+				. esc_html( str_repeat( '★', max( 0, $n ) ) . str_repeat( '☆', max( 0, 5 - $n ) ) )
 				. '</span> <strong>' . (int) $n . '/5</strong>';
 			break;
 
@@ -521,7 +586,8 @@ function romvill_fb_box_detalle( $post ) {
 	echo '<tr><td style="padding:4px 8px 4px 0;color:#666;width:150px"><strong>Referencia</strong></td><td>'
 		. ( $ref ? '<code>' . esc_html( $ref ) . '</code>' : '<span style="color:#888">no indicada</span>' ) . '</td></tr>';
 	echo '<tr><td style="padding:4px 8px 4px 0;color:#666"><strong>Valoración</strong></td><td style="font-size:16px">'
-		. esc_html( str_repeat( '★', $rating ) . str_repeat( '☆', 5 - $rating ) ) . ' &nbsp;<strong>' . $rating . '/5</strong></td></tr>';
+		// [M11] Igual que en la columna del listado: nunca un repeat negativo.
+		. esc_html( str_repeat( '★', max( 0, $rating ) ) . str_repeat( '☆', max( 0, 5 - $rating ) ) ) . ' &nbsp;<strong>' . $rating . '/5</strong></td></tr>';
 	echo '<tr><td style="padding:4px 8px 4px 0;color:#666"><strong>Idioma</strong></td><td>' . esc_html( strtoupper( $lang ) ) . '</td></tr>';
 	echo '<tr><td style="padding:4px 8px 4px 0;color:#666"><strong>Fecha</strong></td><td>' . esc_html( $fecha ) . '</td></tr>';
 
@@ -621,7 +687,12 @@ function romvill_api_fb_rutas() {
 	register_rest_route( 'romvill/v1', '/feedback', array(
 		'methods'             => 'GET',
 		'callback'            => 'romvill_api_fb_listado',
-		'permission_callback' => 'romvill_api_sol_permiso',
+		// [M15] Si inc/solicitudes-api.php no estuviera cargado, el
+		// permission_callback apuntaría a una función inexistente y WordPress
+		// dejaría la ruta ABIERTA. Cierre de respaldo con manage_options.
+		'permission_callback' => function_exists( 'romvill_api_sol_permiso' )
+			? 'romvill_api_sol_permiso'
+			: function () { return current_user_can( 'manage_options' ); },
 		'args'                => array(
 			'per_page' => array( 'type' => 'integer', 'default' => 20, 'sanitize_callback' => 'absint' ),
 			'page'     => array( 'type' => 'integer', 'default' => 1,  'sanitize_callback' => 'absint' ),

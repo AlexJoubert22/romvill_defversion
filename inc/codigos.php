@@ -53,12 +53,27 @@ function romvill_codigo_valido( $codigo ) {
 }
 
 // ─── Consumir (un solo uso): registra código => fecha en wp_options ──
+// [I3] Cerrojo atómico antes de escribir. add_option() falla si la opción ya
+// existe, y esa comprobación la resuelve la base de datos en una sola
+// operación: entre dos peticiones simultáneas con el mismo código, solo una
+// logra crear 'rv_lock_codigo_<CÓDIGO>' y por tanto solo una lo consume.
+// El registro 'romvill_codigos_usados' sigue siendo la fuente de datos.
 function romvill_codigo_consumir( $codigo ) {
 	$c = romvill_codigo_sanitizar( $codigo );
 	if ( $c === '' ) return false;
 	$usados = get_option( 'romvill_codigos_usados', array() );
 	if ( ! is_array( $usados ) ) $usados = array();
 	if ( isset( $usados[ $c ] ) ) return false; // ya gastado
+
+	// Cerrojo: si otra petición se adelantó, aquí se para en seco.
+	if ( ! add_option( 'rv_lock_codigo_' . $c, current_time( 'Y-m-d H:i:s' ), '', 'no' ) ) {
+		return false;
+	}
+
+	$usados = get_option( 'romvill_codigos_usados', array() ); // relectura fresca
+	if ( ! is_array( $usados ) ) $usados = array();
+	if ( isset( $usados[ $c ] ) ) return false;
+
 	$usados[ $c ] = current_time( 'Y-m-d H:i:s' );
 	update_option( 'romvill_codigos_usados', $usados, false ); // no autoload
 	return true;
@@ -164,8 +179,11 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 	$t = function ( $key ) use ( $idioma ) { return romvill_conc_t( $key, $idioma ); };
 
 	$asunto_inv = $t( 'conc.subject' );
-	$saludo     = sprintf( $t( 'conc.saludo' ), esc_html( $nombre ) );
-	$p1         = sprintf( $t( 'conc.p1' ), esc_html( $nivel ) );
+	// [M8] Doble escapado: estos dos valores se escapan una sola vez, al
+	// imprimirlos más abajo. Antes se escapaban aquí Y allí, y un apóstrofo
+	// o un acento se veía como "&amp;#039;" en el email del invitado.
+	$saludo     = sprintf( $t( 'conc.saludo' ), $nombre );
+	$p1         = sprintf( $t( 'conc.p1' ), $nivel );
 	$url_b1     = add_query_arg( 'lang', $idioma, home_url( '/presupuesto-bloque-1/' ) );
 
 	$estilo_p = 'margin:0 0 16px;font-size:15px;line-height:1.65;color:#1f2937;';
@@ -177,7 +195,7 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		. '<div style="font-size:11px;letter-spacing:2px;color:#BFA15F;margin-top:6px;text-transform:uppercase;">' . esc_html( $t( 'conc.firma' ) ) . '</div>'
 		. '</div>'
 		. '<div style="padding:32px 36px;">'
-		. '<p style="' . $estilo_p . '">' . $saludo . '</p>'
+		. '<p style="' . $estilo_p . '">' . esc_html( $saludo ) . '</p>'
 		. '<p style="' . $estilo_p . '">' . esc_html( $p1 ) . '</p>'
 		. '<p style="' . $estilo_p . '">' . esc_html( $t( 'conc.p2' ) ) . '</p>'
 		. '<p style="' . $estilo_p . 'font-style:italic;color:#4b5563;border-left:3px solid #BFA15F;padding-left:14px;">' . esc_html( $t( 'conc.p2b' ) ) . '</p>'
