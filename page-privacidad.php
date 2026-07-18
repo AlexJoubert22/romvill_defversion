@@ -13,6 +13,12 @@ romvill_seo( array(
 $sections = array(
     array( 'title' => romvill_t( 'priv.s1.title' ), 'body' => romvill_t( 'priv.s1.body' ) ),
     array( 'title' => romvill_t( 'priv.s2.title' ), 'body' => romvill_t( 'priv.s2.body' ) ),
+    // Tratamiento añadido (julio 2026): valoraciones de /feedback y su
+    // eventual publicación como testimonio. Va aquí, tras "Cómo usamos sus
+    // datos", porque describe un tratamiento; la numeración visible (1, 2,
+    // 3…) la genera el bucle a partir del orden de este array, de modo que
+    // las secciones siguientes se renumeran solas y no queda ningún hueco.
+    array( 'title' => romvill_t( 'priv.sval.title' ), 'body' => romvill_t( 'priv.sval.body' ) ),
     array( 'title' => romvill_t( 'priv.s3.title' ), 'body' => romvill_t( 'priv.s3.body' ) ),
     array( 'title' => romvill_t( 'priv.s4.title' ), 'body' => romvill_t( 'priv.s4.body' ) ),
 );

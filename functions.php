@@ -62,6 +62,12 @@ require_once get_template_directory() . '/inc/inaugural.php';
 // Feedback del cliente sobre su expediente (CPT privado + panel).
 require_once get_template_directory() . '/inc/feedback.php';
 
+// Entrega del expediente: endpoint POST romvill/v1/entregar (email al
+// cliente en su idioma + cierre de la solicitud en el CRM).
+// Va DESPUÉS de feedback.php: usa romvill_feedback_url() y
+// romvill_feedback_review_url() de aquel archivo.
+require_once get_template_directory() . '/inc/entrega.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
