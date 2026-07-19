@@ -266,3 +266,61 @@ function romvill_inaugural_badge() {
 		ROMVILL_INAUGURAL_PLAZAS
 	);
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+ * GESTIÓN DEL CONTADOR (endpoint privado)
+ * POST /wp-json/romvill/v1/inaugural/reset
+ *
+ * Permite liberar plazas del Programa Inaugural: borra el registro de
+ * plazas usadas y los cerrojos rv_lock_plaza_N asociados. Sin esto, una
+ * plaza gastada en pruebas quedaría bloqueada para siempre.
+ *
+ * Parámetros:
+ *   plaza  (opcional) número de plaza concreta a liberar (1..N)
+ *   todas  (opcional) '1' para reiniciar el contador entero
+ *
+ * SEGURIDAD: requiere manage_options (Application Password vía Basic Auth).
+ *
+ *   curl -u "usuario:app-password" -X POST \
+ *     https://romvill.com/wp-json/romvill/v1/inaugural/reset -d plaza=1
+ * ═══════════════════════════════════════════════════════════════════ */
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'romvill/v1', '/inaugural/reset', array(
+		'methods'             => 'POST',
+		'callback'            => 'romvill_rest_inaugural_reset',
+		'permission_callback' => function () { return current_user_can( 'manage_options' ); },
+	) );
+} );
+
+function romvill_rest_inaugural_reset( WP_REST_Request $req ) {
+	$plaza = (int) $req->get_param( 'plaza' );
+	$todas = (string) $req->get_param( 'todas' ) === '1';
+	$usadas = romvill_inaugural_usadas();
+	$liberadas = array();
+
+	if ( $todas ) {
+		foreach ( array_keys( $usadas ) as $n ) {
+			delete_option( 'rv_lock_plaza_' . (int) $n );
+			$liberadas[] = (int) $n;
+		}
+		delete_option( 'romvill_inaugural_usadas' );
+	} elseif ( $plaza > 0 ) {
+		if ( ! isset( $usadas[ $plaza ] ) ) {
+			return new WP_Error( 'plaza_libre', 'Esa plaza no consta como usada.', array( 'status' => 400 ) );
+		}
+		unset( $usadas[ $plaza ] );
+		delete_option( 'rv_lock_plaza_' . $plaza );
+		update_option( 'romvill_inaugural_usadas', $usadas, false );
+		$liberadas[] = $plaza;
+	} else {
+		return new WP_Error( 'falta_parametro', 'Indique plaza=N o todas=1.', array( 'status' => 400 ) );
+	}
+
+	return array(
+		'ok'          => true,
+		'liberadas'   => $liberadas,
+		'plazas'      => ROMVILL_INAUGURAL_PLAZAS,
+		'usadas'      => count( romvill_inaugural_usadas() ),
+		'disponibles' => romvill_inaugural_disponibles(),
+	);
+}
