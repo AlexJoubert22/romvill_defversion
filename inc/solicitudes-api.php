@@ -114,7 +114,21 @@ function romvill_api_sol_rutas() {
 		),
 	) );
 
-	// ── Moderación de valoraciones (única ruta de escritura) ──
+	// ── Borrado de valoraciones (limpieza de ensayos y RGPD) ──
+	register_rest_route( 'romvill/v1', '/feedback/(?P<id>\d+)', array(
+		'methods'             => 'DELETE',
+		'callback'            => 'romvill_api_fb_borrar',
+		'permission_callback' => 'romvill_api_sol_permiso',
+		'args'                => array(
+			'id' => array(
+				'type'              => 'integer',
+				'required'          => true,
+				'sanitize_callback' => 'absint',
+			),
+		),
+	) );
+
+	// ── Moderación de valoraciones ──
 	register_rest_route( 'romvill/v1', '/feedback/(?P<id>\d+)/estado', array(
 		'methods'             => 'POST',
 		'callback'            => 'romvill_api_fb_moderar',
@@ -137,6 +151,34 @@ function romvill_api_sol_rutas() {
 			),
 		),
 	) );
+}
+
+/* ── DELETE /feedback/<id> ───────────────────────────────────────── */
+/**
+ * Borra definitivamente una valoración (sin papelera). Uso previsto:
+ * limpieza de ensayos técnicos y derecho de supresión RGPD.
+ */
+function romvill_api_fb_borrar( WP_REST_Request $req ) {
+	if ( ! defined( 'ROMVILL_FB_CPT' ) ) {
+		return new WP_Error(
+			'romvill_feedback_no_disponible',
+			'El sistema de valoraciones no está cargado.',
+			array( 'status' => 500 )
+		);
+	}
+
+	$id   = (int) $req->get_param( 'id' );
+	$post = get_post( $id );
+	if ( ! $post || $post->post_type !== ROMVILL_FB_CPT ) {
+		return new WP_Error( 'no_encontrada', 'No existe una valoración con ese id.', array( 'status' => 404 ) );
+	}
+
+	$ref = (string) get_post_meta( $id, '_rvf_ref', true );
+	if ( ! wp_delete_post( $id, true ) ) {
+		return new WP_Error( 'no_borrada', 'WordPress no pudo borrar la valoración.', array( 'status' => 500 ) );
+	}
+
+	return array( 'ok' => true, 'borrada' => $id, 'referencia' => $ref );
 }
 
 /* ── POST /feedback/<id>/estado ──────────────────────────────────── */
