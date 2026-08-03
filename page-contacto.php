@@ -275,7 +275,7 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                 <div class="lg:col-span-3 text-center lg:text-left">
                     <div class="flex items-center justify-center lg:justify-start gap-4 mb-6">
                         <span class="hiw-badge-line" aria-hidden="true"></span>
-                        <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary">
+                        <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary-ink dark:text-secondary">
                             <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
                         </p>
                         <span class="hiw-badge-line hiw-badge-line--r hidden lg:block" aria-hidden="true"></span>

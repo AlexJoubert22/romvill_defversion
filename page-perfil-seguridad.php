@@ -13,10 +13,10 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
 <main class="flex-grow">
     <section class="relative py-24 text-center px-6">
         <div class="max-w-3xl mx-auto">
-            <a href="<?php echo esc_url($analisis_url); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-secondary uppercase tracking-widest mb-6 hover:text-[#9A7529] transition-colors">
+            <a href="<?php echo esc_url($analisis_url); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-widest mb-6 hover:text-[#9A7529] transition-colors">
                 <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_back</span> <?php echo esc_html( romvill_t( 'perfil.volver' ) ); ?>
             </a>
-            <span class="block text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-3"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> 01</span>
+            <span class="block text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-[0.3em] mb-3"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> 01</span>
             <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6"><?php echo esc_html( romvill_t( 'perfil.seg.h1' ) ); ?></h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                 <?php echo esc_html( romvill_t( 'perfil.seg.intro' ) ); ?>

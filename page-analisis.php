@@ -26,7 +26,7 @@ $perfil_pages = array(
     <section class="relative pt-16 pb-12 lg:pt-24 lg:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
         <div class="flex items-center justify-center gap-4 mb-6">
             <span class="hiw-badge-line" aria-hidden="true"></span>
-            <span class="text-secondary font-bold uppercase tracking-[0.4em] text-xs"><?php echo esc_html( romvill_t( 'ana.badge' ) ); ?></span>
+            <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-[0.4em] text-xs"><?php echo esc_html( romvill_t( 'ana.badge' ) ); ?></span>
             <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15] text-slate-900 dark:text-white mb-6">
@@ -139,7 +139,7 @@ $perfil_pages = array(
                     </svg>
                     <?php endif; ?>
                 </div>
-                <span class="text-secondary font-bold tracking-[0.25em] text-xs uppercase mb-2 block"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> <?php echo esc_html( $d['num'] ); ?></span>
+                <span class="text-secondary-ink dark:text-secondary font-bold tracking-[0.25em] text-xs uppercase mb-2 block"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> <?php echo esc_html( $d['num'] ); ?></span>
                 <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-900 dark:text-white mb-4"><?php echo esc_html( $d['title'] ); ?></h2>
                 <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6"><?php echo esc_html( $d['desc'] ); ?></p>
                 <ul class="space-y-3 mb-8">
@@ -166,7 +166,7 @@ $perfil_pages = array(
     <section class="w-full bg-background-light dark:bg-background-dark py-16 md:py-20">
       <div class="max-w-5xl mx-auto px-4 md:px-8" id="rvix-sl">
         <div class="text-center mb-8">
-          <span class="text-secondary font-bold uppercase tracking-[0.26em] text-xs mb-2 block"><?php echo esc_html( romvill_t( 'ix.sl.kicker' ) ); ?></span>
+          <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-[0.26em] text-xs mb-2 block"><?php echo esc_html( romvill_t( 'ix.sl.kicker' ) ); ?></span>
           <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'ix.sl.title' ) ); ?></h2>
           <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto"><?php echo esc_html( romvill_t( 'ix.sl.help' ) ); ?></p>
         </div>

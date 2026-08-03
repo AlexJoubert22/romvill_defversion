@@ -61,7 +61,7 @@ $contacto_url  = romvill_link( $contacto_url );
     <section class="py-24 bg-background-light dark:bg-background-dark relative border-t border-slate-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="inline-block py-1 px-3 mb-4 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'sec.cover.badge' ) ); ?></span>
+                <span class="inline-block py-1 px-3 mb-4 rounded-full bg-secondary/10 text-secondary-ink dark:text-secondary text-xs font-bold uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'sec.cover.badge' ) ); ?></span>
                 <h2 class="text-4xl md:text-5xl font-serif text-slate-900 dark:text-white mb-6"><?php echo esc_html( romvill_t( 'sec.cover.title' ) ); ?></h2>
                 <p class="max-w-2xl mx-auto text-slate-500 dark:text-slate-400 text-lg"><?php echo esc_html( romvill_t( 'sec.cover.desc' ) ); ?></p>
             </div>
@@ -107,7 +107,7 @@ $contacto_url  = romvill_link( $contacto_url );
     <section class="py-32 bg-white dark:bg-slate-900 overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-24">
-                <span class="inline-block py-1 px-3 mb-4 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'sec.spec.badge' ) ); ?></span>
+                <span class="inline-block py-1 px-3 mb-4 rounded-full bg-secondary/10 text-secondary-ink dark:text-secondary text-xs font-bold uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'sec.spec.badge' ) ); ?></span>
                 <h2 class="text-4xl md:text-6xl font-serif text-slate-900 dark:text-white mb-8"><?php echo esc_html( romvill_t( 'sec.spec.title' ) ); ?></h2>
                 <p class="max-w-2xl mx-auto text-slate-500 dark:text-slate-400 text-lg"><?php echo esc_html( romvill_t( 'sec.spec.desc' ) ); ?></p>
             </div>
@@ -115,7 +115,7 @@ $contacto_url  = romvill_link( $contacto_url );
                 <!-- Particulares -->
                 <div class="relative p-10 lg:p-14 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
                     <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary-ink dark:text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
                             <?php romvill_icon( 'shield', 'w-3 h-3' ); ?> <?php echo esc_html( romvill_t( 'sec.res.badge' ) ); ?>
                         </span>
                         <div class="flex items-center gap-4 mb-5">
@@ -154,7 +154,7 @@ $contacto_url  = romvill_link( $contacto_url );
                 <!-- Inversores -->
                 <div class="relative p-10 lg:p-14 flex flex-col gap-8 bg-slate-900 dark:bg-slate-950">
                     <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/15 text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/15 text-secondary-ink dark:text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
                             <?php romvill_icon( 'award', 'w-3 h-3' ); ?> <?php echo esc_html( romvill_t( 'sec.inv.badge' ) ); ?>
                         </span>
                         <div class="flex items-center gap-4 mb-5">

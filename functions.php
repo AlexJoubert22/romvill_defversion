@@ -2038,7 +2038,7 @@ function romvill_related_dimensions( $current_slug ) {
     <section class="py-24 bg-background-light dark:bg-background-dark border-t border-slate-100 dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
-                <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'related.kicker' ) ); ?></span>
+                <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'related.kicker' ) ); ?></span>
                 <h2 class="font-serif text-2xl md:text-3xl font-bold text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'related.title' ) ); ?></h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -2054,7 +2054,7 @@ function romvill_related_dimensions( $current_slug ) {
                         <h3 class="font-bold text-slate-900 dark:text-white text-lg"><?php echo esc_html( $d['name'] ); ?></h3>
                     </div>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed flex-grow"><?php echo esc_html( $d['desc'] ); ?></p>
-                    <span class="mt-4 text-xs font-bold text-secondary uppercase tracking-wider inline-flex items-center gap-1"><?php echo esc_html( romvill_t( 'related.cta' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></span>
+                    <span class="mt-4 text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-wider inline-flex items-center gap-1"><?php echo esc_html( romvill_t( 'related.cta' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></span>
                 </a>
                 <?php endforeach; ?>
             </div>

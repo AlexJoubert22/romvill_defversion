@@ -48,7 +48,7 @@ $packs = array(
 
         <!-- Cabecera -->
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'precios.kicker' ) ); ?></span>
+            <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'precios.kicker' ) ); ?></span>
             <h1 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4"><?php echo esc_html( romvill_t( 'precios.title' ) ); ?></h1>
             <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed"><?php echo esc_html( romvill_t( 'precios.subtitle' ) ); ?></p>
 

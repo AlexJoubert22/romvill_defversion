@@ -108,7 +108,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
     <!-- VALORES -->
     <section class="w-full bg-background-light dark:bg-background-dark">
         <div class="mx-auto px-6 py-16 md:py-20 text-center" style="max-width:1000px">
-            <div class="text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;margin-bottom:.6rem">
+            <div class="text-secondary-ink dark:text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;margin-bottom:.6rem">
                 <?php echo esc_html( romvill_t( 'qs.values.kicker' ) ); ?>
             </div>
             <h2 class="text-slate-900 dark:text-white" style="<?php echo $serif; ?>font-weight:600;font-size:clamp(1.5rem,3.4vw,2rem);margin:0">

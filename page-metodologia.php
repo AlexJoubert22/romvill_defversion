@@ -18,7 +18,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
     <section class="w-full max-w-7xl px-4 md:px-10 py-16 md:py-24 text-center">
         <div class="flex items-center justify-center gap-4 mb-6">
             <span class="hiw-badge-line" aria-hidden="true"></span>
-            <span class="text-xs font-bold tracking-[0.4em] uppercase text-secondary"><?php echo esc_html( romvill_t( 'met.badge' ) ); ?></span>
+            <span class="text-xs font-bold tracking-[0.4em] uppercase text-secondary-ink dark:text-secondary"><?php echo esc_html( romvill_t( 'met.badge' ) ); ?></span>
             <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
         </div>
         <h1 class="text-4xl md:text-6xl font-serif font-bold tracking-tight text-slate-900 dark:text-white mb-4"><?php echo esc_html( romvill_t( 'met.title' ) ); ?></h1>
@@ -85,7 +85,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     </div>
                     <div class="space-y-2">
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold text-secondary uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'met.level' ) ); ?> <?php echo esc_html( $l['level'] ); ?></span>
+                            <span class="text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'met.level' ) ); ?> <?php echo esc_html( $l['level'] ); ?></span>
                             <div class="h-px w-4 bg-secondary/40"></div>
                         </div>
                         <h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-white"><?php echo esc_html( $l['title'] ); ?></h3>
@@ -114,7 +114,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                 <div>
                     <div class="flex items-center gap-3 mb-6">
                         <div class="h-[1px] w-12 bg-secondary"></div>
-                        <span class="text-xs font-bold text-secondary uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'met.filter.badge' ) ); ?></span>
+                        <span class="text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'met.filter.badge' ) ); ?></span>
                     </div>
                     <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white leading-[1.15] mb-6">
                         <?php echo wp_kses( romvill_t( 'met.filter.title' ), [ 'span' => [ 'class' => [] ] ] ); ?>
@@ -180,7 +180,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
     <section class="w-full bg-white dark:bg-slate-900 py-16 md:py-20">
       <div class="max-w-5xl mx-auto px-4 md:px-8" id="rvix-hs">
         <div class="text-center mb-8">
-          <span class="text-secondary font-bold uppercase tracking-[0.26em] text-xs mb-2 block"><?php echo esc_html( romvill_t( 'ix.hs.kicker' ) ); ?></span>
+          <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-[0.26em] text-xs mb-2 block"><?php echo esc_html( romvill_t( 'ix.hs.kicker' ) ); ?></span>
           <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white"><?php echo esc_html( romvill_t( 'ix.hs.title' ) ); ?></h2>
           <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto"><?php echo esc_html( romvill_t( 'ix.hs.help' ) ); ?></p>
         </div>

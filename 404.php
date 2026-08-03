@@ -56,7 +56,7 @@ $rv_precios_url = $rv_precios ? romvill_link( get_permalink( $rv_precios ) ) : '
 
 <main class="flex-grow flex items-center justify-center min-h-[70vh] px-6 pt-32 pb-24">
     <div class="text-center max-w-xl">
-        <p class="text-sm font-bold uppercase tracking-[0.25em] text-secondary mb-4"><?php echo esc_html( $rv_txt['code'] ); ?></p>
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-secondary-ink dark:text-secondary mb-4"><?php echo esc_html( $rv_txt['code'] ); ?></p>
         <h1 class="text-4xl md:text-5xl font-serif text-slate-900 dark:text-white leading-tight mb-6"><?php echo esc_html( $rv_txt['title'] ); ?></h1>
         <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-10"><?php echo esc_html( $rv_txt['desc'] ); ?></p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">

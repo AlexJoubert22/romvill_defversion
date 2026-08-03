@@ -125,7 +125,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
     <section class="rv-service-sep py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16 max-w-2xl mx-auto">
-                <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'service.badge' ) ); ?></span>
+                <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'service.badge' ) ); ?></span>
                 <h2 class="text-3xl md:text-5xl font-serif text-slate-900 dark:text-white mb-4 leading-tight">
                     <?php echo wp_kses( romvill_t( 'service.title' ), [ 'br' => [ 'class' => [] ] ] ); ?>
                 </h2>
@@ -159,7 +159,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div id="hiw" class="hiw border-t border-slate-100 dark:border-slate-800 pt-16">
                 <div class="flex items-center justify-center gap-4 mb-12">
                     <span class="hiw-badge-line" aria-hidden="true"></span>
-                    <p class="text-center text-xs font-bold uppercase tracking-[0.4em] text-secondary"><?php echo esc_html( romvill_t( 'how.badge' ) ); ?></p>
+                    <p class="text-center text-xs font-bold uppercase tracking-[0.4em] text-secondary-ink dark:text-secondary"><?php echo esc_html( romvill_t( 'how.badge' ) ); ?></p>
                     <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 relative">
@@ -218,7 +218,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 <div class="lg:w-1/2">
                     <div class="flex items-center gap-2 mb-4">
                         <span class="h-px w-12 bg-secondary"></span>
-                        <span class="text-secondary font-bold uppercase tracking-widest text-xs"><?php echo esc_html( romvill_t( 'work.badge' ) ); ?></span>
+                        <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-widest text-xs"><?php echo esc_html( romvill_t( 'work.badge' ) ); ?></span>
                     </div>
                     <h2 class="text-4xl md:text-5xl font-serif text-slate-900 dark:text-white leading-tight mb-6">
                         <?php echo wp_kses( romvill_t( 'work.title' ), [ 'br' => [], 'span' => [ 'class' => [] ] ] ); ?>
@@ -294,7 +294,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
     <section class="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800" id="locations">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16 max-w-2xl mx-auto">
-                <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-2 block"><?php echo esc_html( romvill_t( 'cities.badge' ) ); ?></span>
+                <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-widest text-xs mb-2 block"><?php echo esc_html( romvill_t( 'cities.badge' ) ); ?></span>
                 <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white mb-4"><?php echo esc_html( romvill_t( 'cities.title' ) ); ?></h2>
                 <p class="text-slate-500 dark:text-slate-400"><?php echo esc_html( romvill_t( 'cities.desc' ) ); ?></p>
             </div>
@@ -334,7 +334,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
         $qs_url = romvill_link( get_permalink( $qs_page ) ); ?>
     <section class="py-24 bg-background-light dark:bg-background-dark border-t border-slate-100 dark:border-slate-800">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'qs.kicker' ) ); ?></span>
+            <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-widest text-xs mb-3 block"><?php echo esc_html( romvill_t( 'qs.kicker' ) ); ?></span>
             <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white mb-5 leading-snug"><?php echo esc_html( romvill_t( 'qs.teaser.title' ) ); ?></h2>
             <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mb-8 leading-relaxed"><?php echo esc_html( romvill_t( 'qs.teaser.desc' ) ); ?></p>
             <a href="<?php echo esc_url( $qs_url ); ?>" class="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
@@ -379,7 +379,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.alicante.badge' ) ); ?></span>
+                        <span class="text-secondary-ink dark:text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.alicante.badge' ) ); ?></span>
                         <h2 class="text-white text-2xl font-serif font-bold mt-0.5">Alicante</h2>
                     </div>
                 </div>

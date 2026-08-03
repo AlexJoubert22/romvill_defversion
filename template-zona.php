@@ -47,7 +47,7 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
     <!-- INTRO -->
     <section class="w-full bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 zn-reveal">
         <div class="mx-auto px-6 py-16 md:py-20" style="max-width:760px">
-            <div class="text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;margin-bottom:10px"><?php echo esc_html( romvill_t( 'zona.intro.kicker' ) ); ?></div>
+            <div class="text-secondary-ink dark:text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;margin-bottom:10px"><?php echo esc_html( romvill_t( 'zona.intro.kicker' ) ); ?></div>
             <h2 class="text-slate-900 dark:text-white" style="<?php echo $serif; ?>font-weight:600;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.2;margin:0 0 1rem"><?php echo esc_html( romvill_t( 'zona.' . $_key . '.intro.title' ) ); ?></h2>
             <p class="text-slate-600 dark:text-slate-300" style="font-size:1.06rem;line-height:1.8;margin:0 0 1rem"><?php echo wp_kses( romvill_t( 'zona.' . $_key . '.intro.p1' ), array( 'b' => array() ) ); ?></p>
             <p class="text-slate-600 dark:text-slate-300" style="font-size:1.06rem;line-height:1.8;margin:0"><?php echo wp_kses( romvill_t( 'zona.' . $_key . '.intro.p2' ), array( 'b' => array() ) ); ?></p>
@@ -58,7 +58,7 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
     <section class="w-full bg-background-light dark:bg-background-dark zn-reveal">
         <div class="mx-auto px-6 py-16 md:py-20" style="max-width:1000px">
             <div class="text-center" style="margin-bottom:30px">
-                <div class="text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;margin-bottom:10px"><?php echo esc_html( romvill_t( 'zona.dim.kicker' ) ); ?></div>
+                <div class="text-secondary-ink dark:text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;margin-bottom:10px"><?php echo esc_html( romvill_t( 'zona.dim.kicker' ) ); ?></div>
                 <h2 class="text-slate-900 dark:text-white" style="<?php echo $serif; ?>font-weight:600;font-size:clamp(1.6rem,3.6vw,2.2rem);margin:0"><?php echo esc_html( romvill_t( 'zona.dim.title' ) ); ?></h2>
             </div>
             <div class="grid md:grid-cols-2 gap-5">
@@ -85,7 +85,7 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
     <!-- POR QUÉ ROMVILL (común) -->
     <section class="w-full bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 zn-reveal">
         <div class="mx-auto px-6 py-16 md:py-20" style="max-width:760px">
-            <div class="text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;margin-bottom:10px"><?php echo esc_html( romvill_t( 'zona.why.kicker' ) ); ?></div>
+            <div class="text-secondary-ink dark:text-secondary" style="font-weight:800;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;margin-bottom:10px"><?php echo esc_html( romvill_t( 'zona.why.kicker' ) ); ?></div>
             <h2 class="text-slate-900 dark:text-white" style="<?php echo $serif; ?>font-weight:600;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.2;margin:0 0 1rem"><?php echo esc_html( romvill_t( 'zona.why.title' ) ); ?></h2>
             <p class="text-slate-600 dark:text-slate-300" style="font-size:1.06rem;line-height:1.8;margin:0 0 1rem"><?php echo wp_kses( romvill_t( 'zona.why.p1' ), array( 'b' => array() ) ); ?></p>
             <p class="text-slate-600 dark:text-slate-300" style="font-size:1.06rem;line-height:1.8;margin:0"><?php echo wp_kses( romvill_t( 'zona.why.p2' ), array( 'b' => array() ) ); ?></p>
