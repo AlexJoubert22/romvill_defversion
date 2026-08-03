@@ -160,7 +160,7 @@ textarea.rv-bq-fi.valid { border-color:var(--bq-ok); }
 .rv-bq-zona-in::placeholder { color:var(--bq-text3); }
 
 .rv-bq-nav { display:flex; align-items:center; gap:12px; margin-top:40px; padding-top:24px; border-top:1px solid var(--bq-bg2); }
-.rv-bq-opt-hint { margin-left:auto; font-size:11px; color:var(--bq-text3); font-style:italic; }
+.rv-bq-opt-hint { margin-left:auto; font-size:11px; color:var(--bq-text3); }
 .rv-bq-err { font-size:12px; color:var(--bq-err); font-weight:500; margin-top:12px; min-height:18px; display:flex; align-items:center; gap:4px; }
 
 .rv-bq-idle { display:none; position:fixed; bottom:24px; right:24px; background:var(--bq-text); color:#fff; padding:16px 20px; z-index:500; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,.15); max-width:260px; }
@@ -198,7 +198,7 @@ textarea.rv-bq-fi.valid { border-color:var(--bq-ok); }
 .rv-bq-pc-val.lg { font-size:16px; font-weight:600; }
 .rv-bq-tag { display:inline-block; background:var(--bq-bg3); color:var(--bq-accent); font-size:9px; font-weight:700; letter-spacing:1px; padding:3px 9px; margin:2px; border-radius:4px; text-transform:uppercase; }
 .rv-bq-ps-ttl { font-size:10px; font-weight:700; letter-spacing:3px; color:var(--bq-accent); text-transform:uppercase; margin:28px 0 6px; }
-.rv-bq-ps-sub { font-size:11px; color:var(--bq-text3); font-style:italic; margin-bottom:14px; }
+.rv-bq-ps-sub { font-size:11px; color:var(--bq-text3); margin-bottom:14px; }
 .rv-bq-sg { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; margin-bottom:32px; }
 .rv-bq-si { padding:14px 16px; border:1px solid var(--bq-bg2); border-radius:8px; background:#fff; }
 .rv-bq-si.hi { border-left:3px solid var(--bq-text); background:var(--bq-bg2); }
@@ -230,7 +230,7 @@ textarea.rv-bq-fi.valid { border-color:var(--bq-ok); }
 .rv-bq-conf-step:last-child { border-bottom:none; }
 .rv-bq-conf-num { width:26px; height:26px; background:var(--bq-text); color:#fff; font-size:11px; font-weight:700; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .rv-bq-conf-stxt { font-size:13px; color:var(--bq-text2); line-height:1.6; padding-top:3px; }
-.rv-bq-conf-tag { font-size:12px; font-style:italic; color:var(--bq-text3); margin-top:8px; }
+.rv-bq-conf-tag { font-size:12px; color:var(--bq-text3); margin-top:8px; }
 
 @media(max-width:768px){
   .rv-bq-hdr { padding:0 20px; }
@@ -270,7 +270,7 @@ function romvill_q_print_html( $config ) { ?>
 </header>
 
 <div class="rv-bq-idle" id="rv-bq-idle">
-    <p><strong id="rv-bq-idle-1">¿Sigue ahí?</strong> <span id="rv-bq-idle-2">Sus respuestas están guardadas.</span></p>
+    <p><strong id="rv-bq-idle-1">Sus respuestas están guardadas.</strong> <span id="rv-bq-idle-2">Puede continuar cuando lo desee.</span></p>
     <button class="rv-bq-idle-btn" onclick="bqDismissIdle()">CONTINUAR</button>
 </div>
 
@@ -306,7 +306,7 @@ function romvill_q_print_html( $config ) { ?>
             <div class="rv-bq-cover-intro">
                 <p id="rv-bq-cv-p1"></p>
                 <p id="rv-bq-cv-p2"></p>
-                <p><em id="rv-bq-cv-p3"></em></p>
+                <p id="rv-bq-cv-p3"></p>
             </div>
             <div class="rv-bq-cover-disc">
                 <p id="rv-bq-cv-disc"></p>
@@ -314,7 +314,7 @@ function romvill_q_print_html( $config ) { ?>
         </div>
         <button class="rv-bq-btn" onclick="bqStartForm()">
             <span aria-hidden="true" class="material-symbols-outlined" style="font-size:17px">arrow_forward</span>
-            <span id="rv-bq-cv-btn">EMPEZAMOS</span>
+            <span id="rv-bq-cv-btn">COMENZAR</span>
         </button>
     </div>
 </div>
@@ -390,8 +390,8 @@ var BQ_UI={
       errSend:'Error al enviar. Por favor inténtelo de nuevo.',
       sendFail:'No hemos podido enviar su solicitud en este momento. Sus respuestas se han guardado. Por favor, inténtelo de nuevo.',
       retry:'Reintentar envío',
-      profile:'Ver mi perfil',idleTtl:'¿Sigue ahí?',idleTxt:'Sus respuestas están guardadas.',
-      sendTitle:'¿Todo correcto?',sendSub:'Revise su perfil y envíe su solicitud.',
+      profile:'Ver mi perfil',idleTtl:'Sus respuestas están guardadas.',idleTxt:'Puede continuar cuando lo desee.',
+      sendTitle:'Revisión final de su solicitud',sendSub:'Revise su perfil y envíe su solicitud.',
       legal:'Al enviar acepta nuestra <a href="/privacidad" target="_blank">Política de Privacidad</a>.',
       confirm:'Solicitud recibida',confirmTxt:'Hemos recibido su solicitud. Recibirá un email de confirmación en los próximos minutos.',
       steps:['<strong>Solicitud recibida</strong> — tenemos sus respuestas y su perfil.','<strong>Presupuesto en camino</strong> — preparamos su presupuesto personalizado y se lo enviamos por correo.','<strong>Informe a medida</strong> — al aceptarlo, comenzamos su Análisis de Inteligencia Zonal.'],
@@ -404,8 +404,8 @@ var BQ_UI={
       send:'REQUEST QUOTE',sending:'SENDING...',editBtn:'Edit',
       errMsg:'Please answer this question before continuing.',errSend:'We couldn\'t send your request. Please try again.',
       sendFail:'We could not send your request right now. Your answers have been saved. Please try again.',retry:'Retry submission',
-      profile:'View my profile',idleTtl:'Still there?',idleTxt:'Your answers are saved.',
-      sendTitle:'Is everything correct?',sendSub:'Review your profile and submit.',
+      profile:'View my profile',idleTtl:'Your answers have been saved.',idleTxt:'Please continue at your convenience.',
+      sendTitle:'Final review of your request',sendSub:'Review your profile and submit.',
       legal:'By submitting you accept our <a href="/privacidad" target="_blank">Privacy Policy</a>.',
       confirm:'Request received',confirmTxt:'We have received your request. You will receive a confirmation email within the next few minutes.',
       steps:['<strong>Request received</strong> — we have your answers and your profile.','<strong>Quote on its way</strong> — we prepare your personalised quote and send it by email.','<strong>Tailored report</strong> — once you accept, we begin your Area Intelligence Analysis.'],
@@ -413,10 +413,10 @@ var BQ_UI={
       secLabels:{hi:'PRIORITY',md:'RELEVANT',lo:'STANDARD'},
       psTtl:'Priority report sections',psSub:'Calculated automatically from your profile and data',
       intl:'INTERNATIONAL CLIENT'},
-  de:{step:'Frage',of:'von',pct:'erledigt',next:'Weiter',prev:'Zurück',optional:'Optional',send:'ANGEBOT ANFORDERN',sending:'WIRD GESENDET...',editBtn:'Bearbeiten',errMsg:'Bitte beantworten Sie diese Frage.',errSend:'Fehler. Bitte erneut versuchen.',sendFail:'Wir konnten Ihre Anfrage gerade nicht senden. Ihre Antworten wurden gespeichert. Bitte versuchen Sie es erneut.',retry:'Erneut senden',profile:'Mein Profil anzeigen',idleTtl:'Sind Sie noch da?',idleTxt:'Ihre Antworten sind gespeichert.',sendTitle:'Alles korrekt?',sendSub:'Überprüfen Sie Ihr Profil und senden Sie Ihre Anfrage.',legal:'Mit dem Absenden akzeptieren Sie unsere <a href="/privacidad" target="_blank">Datenschutzerklärung</a>.',confirm:'Anfrage erhalten',confirmTxt:'Wir haben Ihre Anfrage erhalten. Sie erhalten in den nächsten Minuten eine Bestätigungs-E-Mail.',steps:['<strong>Anfrage erhalten</strong> — wir haben Ihre Antworten und Ihr Profil.','<strong>Angebot unterwegs</strong> — wir erstellen Ihr persönliches Angebot und senden es per E-Mail.','<strong>Maßgeschneiderter Bericht</strong> — nach Ihrer Annahme beginnen wir Ihre Standort-Analyse.'],tag:'Klarheit, bevor Sie entscheiden — jede Angabe geprüft.',back:'Zur Startseite',secLabels:{hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'},psTtl:'Prioritäre Berichtsabschnitte',psSub:'Automatisch berechnet anhand Ihres Profils',intl:'INTERNATIONALER KUNDE'},
-  fr:{step:'Question',of:'sur',pct:'complété',next:'Suivant',prev:'Précédent',optional:'Facultatif',send:'DEMANDER UN DEVIS',sending:'ENVOI...',editBtn:'Modifier',errMsg:'Veuillez répondre à cette question.',errSend:'Erreur. Veuillez réessayer.',sendFail:'Nous n\'avons pas pu envoyer votre demande pour le moment. Vos réponses ont été sauvegardées. Veuillez réessayer.',retry:'Réessayer l\'envoi',profile:'Voir mon profil',idleTtl:'Toujours là ?',idleTxt:'Vos réponses sont sauvegardées.',sendTitle:'Tout est correct ?',sendSub:'Vérifiez votre profil et envoyez.',legal:'En envoyant votre demande, vous acceptez notre <a href="/privacidad" target="_blank">Politique de confidentialité</a>.',confirm:'Demande reçue',confirmTxt:'Nous avons reçu votre demande. Vous recevrez un e-mail de confirmation dans les prochaines minutes.',steps:['<strong>Demande reçue</strong> — nous avons vos réponses et votre profil.','<strong>Devis en préparation</strong> — nous préparons votre devis personnalisé et vous l\'envoyons par e-mail.','<strong>Rapport sur mesure</strong> — dès votre acceptation, nous commençons votre Analyse d\'Intelligence Territoriale.'],tag:'Votre jugement avant de décider, chaque donnée vérifiée.',back:'Retour à l\'accueil',secLabels:{hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'},psTtl:'Sections prioritaires du rapport',psSub:'Calculées automatiquement selon votre profil',intl:'CLIENT INTERNATIONAL'},
-  pt:{step:'Pergunta',of:'de',pct:'concluído',next:'Seguinte',prev:'Anterior',optional:'Opcional',send:'SOLICITAR ORÇAMENTO',sending:'A ENVIAR...',editBtn:'Editar',errMsg:'Por favor, responda a esta pergunta.',errSend:'Erro. Por favor, tente novamente.',sendFail:'Não foi possível enviar o seu pedido neste momento. As suas respostas foram guardadas. Por favor, tente novamente.',retry:'Tentar novamente',profile:'Ver o meu perfil',idleTtl:'Ainda aí?',idleTxt:'As suas respostas estão guardadas.',sendTitle:'Está tudo correto?',sendSub:'Reveja o seu perfil e envie.',legal:'Ao enviar aceita a nossa <a href="/privacidad" target="_blank">Política de Privacidade</a>.',confirm:'Pedido recebido',confirmTxt:'Recebemos o seu pedido. Receberá um email de confirmação nos próximos minutos.',steps:['<strong>Pedido recebido</strong> — temos as suas respostas e o seu perfil.','<strong>Orçamento a caminho</strong> — preparamos o seu orçamento personalizado e enviamo-lo por email.','<strong>Relatório à medida</strong> — após aceitar, iniciamos a sua Análise de Inteligência Zonal.'],tag:'O seu critério antes de decidir, com cada dado verificado.',back:'Voltar ao início',secLabels:{hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'},psTtl:'Secções prioritárias do relatório',psSub:'Calculadas automaticamente conforme o seu perfil',intl:'CLIENTE INTERNACIONAL'},
-  ru:{step:'Вопрос',of:'из',pct:'выполнено',next:'Далее',prev:'Назад',optional:'Необязательно',send:'ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ',sending:'ОТПРАВКА...',editBtn:'Изменить',errMsg:'Пожалуйста, ответьте на этот вопрос.',errSend:'Ошибка. Попробуйте ещё раз.',sendFail:'Не удалось отправить вашу заявку сейчас. Ваши ответы сохранены. Пожалуйста, попробуйте ещё раз.',retry:'Повторить отправку',profile:'Мой профиль',idleTtl:'Вы ещё здесь?',idleTxt:'Ваши ответы сохранены.',sendTitle:'Всё верно?',sendSub:'Проверьте профиль и отправьте.',legal:'Отправляя, вы принимаете нашу <a href="/privacidad" target="_blank">Политику конфиденциальности</a>.',confirm:'Заявка получена',confirmTxt:'Мы получили вашу заявку. В ближайшие минуты вы получите письмо с подтверждением.',steps:['<strong>Заявка получена</strong> — у нас есть ваши ответы и профиль.','<strong>Предложение готовится</strong> — мы подготовим персональное предложение и отправим его на email.','<strong>Индивидуальный отчёт</strong> — после принятия предложения мы начнём ваш Анализ локации.'],tag:'Ваше суждение перед решением — каждый факт проверен.',back:'На главную',secLabels:{hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'},psTtl:'Приоритетные разделы отчёта',psSub:'Рассчитано автоматически по вашему профилю',intl:'МЕЖДУНАРОДНЫЙ КЛИЕНТ'}
+  de:{step:'Frage',of:'von',pct:'erledigt',next:'Weiter',prev:'Zurück',optional:'Optional',send:'ANGEBOT ANFORDERN',sending:'WIRD GESENDET...',editBtn:'Bearbeiten',errMsg:'Bitte beantworten Sie diese Frage.',errSend:'Fehler. Bitte erneut versuchen.',sendFail:'Wir konnten Ihre Anfrage gerade nicht senden. Ihre Antworten wurden gespeichert. Bitte versuchen Sie es erneut.',retry:'Erneut senden',profile:'Mein Profil anzeigen',idleTtl:'Ihre Antworten sind gespeichert.',idleTxt:'Sie können jederzeit fortfahren.',sendTitle:'Abschließende Prüfung Ihrer Anfrage',sendSub:'Überprüfen Sie Ihr Profil und senden Sie Ihre Anfrage.',legal:'Mit dem Absenden akzeptieren Sie unsere <a href="/privacidad" target="_blank">Datenschutzerklärung</a>.',confirm:'Anfrage erhalten',confirmTxt:'Wir haben Ihre Anfrage erhalten. Sie erhalten in den nächsten Minuten eine Bestätigungs-E-Mail.',steps:['<strong>Anfrage erhalten</strong> — wir haben Ihre Antworten und Ihr Profil.','<strong>Angebot unterwegs</strong> — wir erstellen Ihr persönliches Angebot und senden es per E-Mail.','<strong>Maßgeschneiderter Bericht</strong> — nach Ihrer Annahme beginnen wir Ihre Standort-Analyse.'],tag:'Klarheit, bevor Sie entscheiden — jede Angabe geprüft.',back:'Zur Startseite',secLabels:{hi:'PRIORITÄT',md:'RELEVANT',lo:'STANDARD'},psTtl:'Prioritäre Berichtsabschnitte',psSub:'Automatisch berechnet anhand Ihres Profils',intl:'INTERNATIONALER KUNDE'},
+  fr:{step:'Question',of:'sur',pct:'complété',next:'Suivant',prev:'Précédent',optional:'Facultatif',send:'DEMANDER UN DEVIS',sending:'ENVOI...',editBtn:'Modifier',errMsg:'Veuillez répondre à cette question.',errSend:'Erreur. Veuillez réessayer.',sendFail:'Nous n\'avons pas pu envoyer votre demande pour le moment. Vos réponses ont été sauvegardées. Veuillez réessayer.',retry:'Réessayer l\'envoi',profile:'Voir mon profil',idleTtl:'Vos réponses sont sauvegardées.',idleTxt:'Vous pouvez reprendre à tout moment.',sendTitle:'Vérification finale de votre demande',sendSub:'Vérifiez votre profil et envoyez.',legal:'En envoyant votre demande, vous acceptez notre <a href="/privacidad" target="_blank">Politique de confidentialité</a>.',confirm:'Demande reçue',confirmTxt:'Nous avons reçu votre demande. Vous recevrez un e-mail de confirmation dans les prochaines minutes.',steps:['<strong>Demande reçue</strong> — nous avons vos réponses et votre profil.','<strong>Devis en préparation</strong> — nous préparons votre devis personnalisé et vous l\'envoyons par e-mail.','<strong>Rapport sur mesure</strong> — dès votre acceptation, nous commençons votre Analyse d\'Intelligence Territoriale.'],tag:'Votre jugement avant de décider, chaque donnée vérifiée.',back:'Retour à l\'accueil',secLabels:{hi:'PRIORITAIRE',md:'PERTINENT',lo:'STANDARD'},psTtl:'Sections prioritaires du rapport',psSub:'Calculées automatiquement selon votre profil',intl:'CLIENT INTERNATIONAL'},
+  pt:{step:'Pergunta',of:'de',pct:'concluído',next:'Seguinte',prev:'Anterior',optional:'Opcional',send:'SOLICITAR ORÇAMENTO',sending:'A ENVIAR...',editBtn:'Editar',errMsg:'Por favor, responda a esta pergunta.',errSend:'Erro. Por favor, tente novamente.',sendFail:'Não foi possível enviar o seu pedido neste momento. As suas respostas foram guardadas. Por favor, tente novamente.',retry:'Tentar novamente',profile:'Ver o meu perfil',idleTtl:'As suas respostas estão guardadas.',idleTxt:'Pode continuar quando desejar.',sendTitle:'Revisão final do seu pedido',sendSub:'Reveja o seu perfil e envie.',legal:'Ao enviar aceita a nossa <a href="/privacidad" target="_blank">Política de Privacidade</a>.',confirm:'Pedido recebido',confirmTxt:'Recebemos o seu pedido. Receberá um email de confirmação nos próximos minutos.',steps:['<strong>Pedido recebido</strong> — temos as suas respostas e o seu perfil.','<strong>Orçamento a caminho</strong> — preparamos o seu orçamento personalizado e enviamo-lo por email.','<strong>Relatório à medida</strong> — após aceitar, iniciamos a sua Análise de Inteligência Zonal.'],tag:'O seu critério antes de decidir, com cada dado verificado.',back:'Voltar ao início',secLabels:{hi:'PRIORITÁRIO',md:'RELEVANTE',lo:'PADRÃO'},psTtl:'Secções prioritárias do relatório',psSub:'Calculadas automaticamente conforme o seu perfil',intl:'CLIENTE INTERNACIONAL'},
+  ru:{step:'Вопрос',of:'из',pct:'выполнено',next:'Далее',prev:'Назад',optional:'Необязательно',send:'ЗАПРОСИТЬ ПРЕДЛОЖЕНИЕ',sending:'ОТПРАВКА...',editBtn:'Изменить',errMsg:'Пожалуйста, ответьте на этот вопрос.',errSend:'Ошибка. Попробуйте ещё раз.',sendFail:'Не удалось отправить вашу заявку сейчас. Ваши ответы сохранены. Пожалуйста, попробуйте ещё раз.',retry:'Повторить отправку',profile:'Мой профиль',idleTtl:'Ваши ответы сохранены.',idleTxt:'Вы можете продолжить в любой момент.',sendTitle:'Итоговая проверка вашего запроса',sendSub:'Проверьте профиль и отправьте.',legal:'Отправляя, вы принимаете нашу <a href="/privacidad" target="_blank">Политику конфиденциальности</a>.',confirm:'Заявка получена',confirmTxt:'Мы получили вашу заявку. В ближайшие минуты вы получите письмо с подтверждением.',steps:['<strong>Заявка получена</strong> — у нас есть ваши ответы и профиль.','<strong>Предложение готовится</strong> — мы подготовим персональное предложение и отправим его на email.','<strong>Индивидуальный отчёт</strong> — после принятия предложения мы начнём ваш Анализ локации.'],tag:'Ваше суждение перед решением — каждый факт проверен.',back:'На главную',secLabels:{hi:'ПРИОРИТЕТ',md:'АКТУАЛЬНО',lo:'СТАНДАРТ'},psTtl:'Приоритетные разделы отчёта',psSub:'Рассчитано автоматически по вашему профилю',intl:'МЕЖДУНАРОДНЫЙ КЛИЕНТ'}
 };
 
 /* ── State ── */
