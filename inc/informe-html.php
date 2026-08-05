@@ -262,7 +262,7 @@ function romvill_informe_render( $d ) {
     if ( $dash_rows ) $h .= '<table class="dash"><tr><th>Dimensi&oacute;n</th><th>Nivel</th><th>Lectura clave</th></tr>' . $dash_rows . '</table><p class="note">Escala descriptiva (Alto / Medio / Limitado) = nivel de cobertura o disponibilidad observado. No constituye juicio de valor ni recomendaci&oacute;n.</p>';
     $h .= '<div class="radar-wrap" id="radarHolder"></div></section>';
     $h .= $secs_html . $pat_html . '</div>';
-    $h .= '<div class="foot">ROMVILL &middot; An&aacute;lisis de Inteligencia Territorial &middot; info@romvill.com<br>Versi&oacute;n de trabajo interna &middot; validaci&oacute;n final humana</div>';
+    $h .= '<div class="foot">ROMVILL &middot; An&aacute;lisis de Inteligencia Territorial &middot; clients@romvill.com<br>Versi&oacute;n de trabajo interna &middot; validaci&oacute;n final humana</div>';
 
     // ── Script: navegación + radar parametrizado ──
     $h .= '<script>'

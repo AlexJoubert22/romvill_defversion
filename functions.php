@@ -1107,7 +1107,7 @@ Análisis de Inteligencia Zonal
         . "www.romvill.com";
     $client_headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ROMVILL <info@romvill.com>',
+        'From: ROMVILL <clients@romvill.com>',
     );
     wp_mail( $email, $client_subject, $client_body, $client_headers );
 
@@ -1344,7 +1344,7 @@ Análisis de Inteligencia Zonal
         . "www.romvill.com";
     $client_headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ROMVILL <info@romvill.com>',
+        'From: ROMVILL <clients@romvill.com>',
     );
     wp_mail( $ema, $client_subject, $client_body, $client_headers );
 
@@ -1387,12 +1387,12 @@ Análisis de Inteligencia Zonal
             . $precio_linea . "\n"
             . "Entrega: 3-4 días laborables tras confirmación\n"
             . "Referencia: {$ref}\n\n"
-            . "Para aceptar, responda \"Acepto\" o escríbanos a info@romvill.com.\n\n"
+            . "Para aceptar, responda \"Acepto\" o escríbanos a clients@romvill.com.\n\n"
             . "ROMVILL · Criterio antes de decidir\n"
             . "www.romvill.com";
         $quote_headers = array(
             'Content-Type: text/plain; charset=UTF-8',
-            'From: ROMVILL <info@romvill.com>',
+            'From: ROMVILL <clients@romvill.com>',
         );
         wp_mail( $ema, $quote_subject, $quote_body, $quote_headers );
     }

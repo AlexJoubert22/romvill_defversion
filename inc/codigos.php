@@ -218,7 +218,7 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 
 	$headers_inv = array(
 		'Content-Type: text/html; charset=UTF-8',
-		'From: ROMVILL <info@romvill.com>',
+		'From: ROMVILL <clients@romvill.com>',
 	);
 	$enviado_inv = wp_mail( $email, $asunto_inv, $html, $headers_inv );
 

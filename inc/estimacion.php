@@ -460,7 +460,7 @@ function romvill_presupuesto_texto( $d, $lang = 'es' ) {
             'senal'    => "Para iniciar el trabajo se abona una señal del $spct% ($senal); el resto ($resto) a la entrega del informe.",
             'plazo'    => "Plazo estimado de entrega: $plazo.",
             'cierre'   => 'Quedamos a su disposición para cualquier aclaración. Para confirmar, basta con responder a este correo.',
-            'firma'    => "Un cordial saludo,\nEquipo ROMVILL\ninfo@romvill.com · www.romvill.com",
+            'firma'    => "Un cordial saludo,\nEquipo ROMVILL\nclients@romvill.com · www.romvill.com",
         ),
         'en' => array(
             'saludo'   => $nombre ? "Dear $nombre," : 'Dear client,',
@@ -472,7 +472,7 @@ function romvill_presupuesto_texto( $d, $lang = 'es' ) {
             'senal'    => "To begin, a $spct% deposit is paid ($senal); the remainder ($resto) on delivery of the report.",
             'plazo'    => "Estimated delivery time: $plazo.",
             'cierre'   => 'We remain at your disposal for any clarification. To confirm, simply reply to this email.',
-            'firma'    => "Kind regards,\nThe ROMVILL Team\ninfo@romvill.com · www.romvill.com",
+            'firma'    => "Kind regards,\nThe ROMVILL Team\nclients@romvill.com · www.romvill.com",
         ),
         'fr' => array(
             'saludo'   => $nombre ? "Cher/Chère $nombre," : 'Cher client,',
@@ -484,7 +484,7 @@ function romvill_presupuesto_texto( $d, $lang = 'es' ) {
             'senal'    => "Pour commencer, un acompte de $spct% est versé ($senal) ; le solde ($resto) à la remise du rapport.",
             'plazo'    => "Délai estimé de livraison : $plazo.",
             'cierre'   => 'Nous restons à votre disposition pour toute précision. Pour confirmer, il suffit de répondre à cet e-mail.',
-            'firma'    => "Cordialement,\nL'équipe ROMVILL\ninfo@romvill.com · www.romvill.com",
+            'firma'    => "Cordialement,\nL'équipe ROMVILL\nclients@romvill.com · www.romvill.com",
         ),
         'de' => array(
             'saludo'   => $nombre ? "Sehr geehrte(r) $nombre," : 'Sehr geehrte(r) Kunde/Kundin,',
@@ -496,7 +496,7 @@ function romvill_presupuesto_texto( $d, $lang = 'es' ) {
             'senal'    => "Zum Start wird eine Anzahlung von $spct% geleistet ($senal); der Rest ($resto) bei Lieferung des Berichts.",
             'plazo'    => "Voraussichtliche Lieferzeit: $plazo.",
             'cierre'   => 'Für Rückfragen stehen wir Ihnen gerne zur Verfügung. Zur Bestätigung genügt eine Antwort auf diese E-Mail.',
-            'firma'    => "Mit freundlichen Grüßen,\nIhr ROMVILL-Team\ninfo@romvill.com · www.romvill.com",
+            'firma'    => "Mit freundlichen Grüßen,\nIhr ROMVILL-Team\nclients@romvill.com · www.romvill.com",
         ),
         'ru' => array(
             'saludo'   => $nombre ? "Уважаемый(ая) $nombre," : 'Уважаемый клиент,',
@@ -508,7 +508,7 @@ function romvill_presupuesto_texto( $d, $lang = 'es' ) {
             'senal'    => "Для начала работы вносится задаток $spct% ($senal); остаток ($resto) при сдаче отчёта.",
             'plazo'    => "Ориентировочный срок: $plazo.",
             'cierre'   => 'Мы остаёмся на связи для любых уточнений. Для подтверждения просто ответьте на это письмо.',
-            'firma'    => "С уважением,\nКоманда ROMVILL\ninfo@romvill.com · www.romvill.com",
+            'firma'    => "С уважением,\nКоманда ROMVILL\nclients@romvill.com · www.romvill.com",
         ),
     );
     $t = $T[ $lang ] ?? $T['es'];

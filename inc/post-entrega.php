@@ -19,7 +19,7 @@
  *
  * "Upgrade" = meta _rv_upgrade ('1'), casilla en el metabox de estado.
  * Precio pagado por bloque: 1→290€ oficial / 149€ lanzamiento (Esencial), 2→349€ (Superior), 3/4→890€+ (Premium).
- * Remitente: info@romvill.com.
+ * Remitente: clients@romvill.com.
  *
  * @package Romvill
  */
@@ -98,7 +98,7 @@ function romvill_postentrega_run() {
 
         $headers = array(
             'Content-Type: text/plain; charset=UTF-8',
-            'From: ROMVILL <info@romvill.com>',
+            'From: ROMVILL <clients@romvill.com>',
         );
         $firma   = "\n\nROMVILL · Criterio antes de decidir";
         $f_vence = date_i18n( 'j \d\e F \d\e Y', $delivered + 60 * DAY_IN_SECONDS );
@@ -123,7 +123,7 @@ function romvill_postentrega_run() {
                     . "Si tras revisar su informe desea profundizar en la zona — fiscalidad, planificación urbanística, verificación exhaustiva de cada dato — su inversión de {$precio}€ se aplica íntegramente como crédito.\n\n"
                     . "  " . implode( "\n  ", $credito['lineas'] ) . "\n\n"
                     . "Validez del crédito: 60 días desde la entrega (hasta el {$f_vence}).\n"
-                    . "Contacto: info@romvill.com" . $firma;
+                    . "Contacto: clients@romvill.com" . $firma;
                 wp_mail( $email, $subject, $body, $headers );
             }
             update_post_meta( $id, '_rv_seq5_at', $now ); // se marca aunque no se envíe (upgrade/premium)
@@ -165,7 +165,7 @@ function romvill_postentrega_run() {
                 $body = "Estimado/a {$nombre},\n\n"
                     . "Su crédito de {$precio}€ aplicable hacia un informe superior de ROMVILL vence mañana.\n\n"
                     . "Si desea aprovecharlo para {$credito['destino']}, contáctenos cuanto antes.\n\n"
-                    . "info@romvill.com · Ref: {$ref}" . $firma;
+                    . "clients@romvill.com · Ref: {$ref}" . $firma;
                 wp_mail( $email, $subject, $body, $headers );
             }
             update_post_meta( $id, '_rv_seq60_at', $now );

@@ -252,7 +252,7 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		$html,
 		array(
 			'Content-Type: text/html; charset=UTF-8',
-			'From: ROMVILL <info@romvill.com>',
+			'From: ROMVILL <clients@romvill.com>',
 		)
 	);
 
