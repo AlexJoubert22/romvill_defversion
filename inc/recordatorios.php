@@ -13,7 +13,7 @@
  * Antispam: cada recordatorio se marca al enviarse (_rv_rem48_at / _rv_rem7_at),
  * así nunca se repite aunque el cron corra varias veces. Se usa umbral
  * (>=2 d, >=7 d) en lugar de día exacto, para no perder un envío si el cron
- * se salta un día. Remitente: contacto@romvill.com.
+ * se salta un día. Remitente: info@romvill.com.
  *
  * @package Romvill
  */
@@ -62,7 +62,7 @@ function romvill_run_reminders() {
 
         $headers = array(
             'Content-Type: text/plain; charset=UTF-8',
-            'From: ROMVILL <contacto@romvill.com>',
+            'From: ROMVILL <info@romvill.com>',
         );
 
         // ── Recordatorio 48 h ──
@@ -70,7 +70,7 @@ function romvill_run_reminders() {
             $subject = 'Su presupuesto está listo — ' . $ref;
             $body = "Estimado/a {$nombre},\n\n"
                 . "Le enviamos su presupuesto hace 2 días. ¿Tiene alguna pregunta o necesita algún ajuste?\n\n"
-                . "Estamos a su disposición en contacto@romvill.com.\n\n"
+                . "Estamos a su disposición en info@romvill.com.\n\n"
                 . "ROMVILL · Criterio antes de decidir";
             wp_mail( $email, $subject, $body, $headers );
             update_post_meta( $id, '_rv_rem48_at', $now );
@@ -83,7 +83,7 @@ function romvill_run_reminders() {
             $body = "Estimado/a {$nombre},\n\n"
                 . "Su solicitud de análisis territorial para {$zona_disp} sigue activa. "
                 . "Si desea retomarlo o tiene dudas, estamos a su disposición.\n\n"
-                . "contacto@romvill.com\n\n"
+                . "info@romvill.com\n\n"
                 . "ROMVILL · Criterio antes de decidir";
             wp_mail( $email, $subject, $body, $headers );
             update_post_meta( $id, '_rv_rem7_at', $now );

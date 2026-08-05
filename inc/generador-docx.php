@@ -513,7 +513,7 @@ function romvill_docx_construir( $post_id ) {
             );
         }
         $b .= romvill_docx_p( romvill_docx_run( $sp['extra'], array( 'i' => true, 'color' => $GRAY ) ), '<w:spacing w:before="100" w:after="40"/>' );
-        $b .= romvill_docx_p( romvill_docx_run( 'Contacto: contacto@romvill.com' . ( $d['ref'] ? '   ·   Ref: ' . $d['ref'] : '' ), array( 'color' => $GRAY ) ) );
+        $b .= romvill_docx_p( romvill_docx_run( 'Contacto: info@romvill.com' . ( $d['ref'] ? '   ·   Ref: ' . $d['ref'] : '' ), array( 'color' => $GRAY ) ) );
     }
 
     // ── Encabezado y pie (discretos: referencia + nº de página) ──

@@ -411,13 +411,13 @@ function romvill_handle_feedback() {
 		. 'Consentimiento de publicación: ' . ( $consent ? 'SÍ (nombre de pila + inicial + zona)' : 'NO' ) . "\n"
 		. "Estado: pendiente de moderación (no publicable hasta aprobarla a mano).\n\n"
 		. 'Ficha en wp-admin: ' . admin_url( 'post.php?post=' . $id . '&action=edit' ) . "\n\n"
-		. 'ROMVILL · contacto@romvill.com · www.romvill.com';
+		. 'ROMVILL · info@romvill.com · www.romvill.com';
 
 	wp_mail(
 		get_option( 'admin_email' ),
 		$subject,
 		$cuerpo,
-		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <contacto@romvill.com>' )
+		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
 	);
 
 	// [I4] Respuesta en el idioma del formulario, no en el de admin-ajax.

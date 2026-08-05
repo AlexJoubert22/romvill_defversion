@@ -14,7 +14,7 @@
                         <span class="text-lg font-serif font-bold tracking-[0.2em] text-white">ROMVILL</span>
                     </a>
                     <span class="hiw-badge-line" aria-hidden="true"></span>
-                    <a href="mailto:contacto@romvill.com" class="text-sm text-slate-400 hover:text-secondary transition-colors">contacto@romvill.com</a>
+                    <a href="mailto:info@romvill.com" class="text-sm text-slate-400 hover:text-secondary transition-colors">info@romvill.com</a>
                 </div>
                 <!-- Col 2: navegación -->
                 <nav class="flex flex-col items-center md:items-start gap-3 text-sm text-slate-400" aria-label="<?php echo esc_attr( romvill_t( 'footer.aria' ) ); ?>">

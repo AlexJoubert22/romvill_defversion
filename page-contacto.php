@@ -609,13 +609,13 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                 <div class="rf-anim mt-6" style="animation-delay:.3s">
                     <h3 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4 px-1"><?php echo esc_html( romvill_t( 'contact.channels' ) ); ?></h3>
                     <div class="grid grid-cols-1 gap-4 mb-6">
-                        <a href="mailto:contacto@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-secondary/40 hover:shadow-md transition-all group">
+                        <a href="mailto:info@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-secondary/40 hover:shadow-md transition-all group">
                             <div class="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0 group-hover:scale-110 transition-transform">
                                 <span aria-hidden="true" class="material-symbols-outlined text-xl">mail</span>
                             </div>
                             <div>
                                 <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.email.label' ) ); ?></p>
-                                <span class="text-slate-900 dark:text-white font-semibold text-sm group-hover:text-secondary transition-colors">contacto@romvill.com</span>
+                                <span class="text-slate-900 dark:text-white font-semibold text-sm group-hover:text-secondary transition-colors">info@romvill.com</span>
                             </div>
                         </a>
                     </div>

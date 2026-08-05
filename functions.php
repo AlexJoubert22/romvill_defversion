@@ -514,7 +514,7 @@ function romvill_emit_lang_seo() {
             '@id'         => $home . '#organization',
             'name'        => 'ROMVILL',
             'url'         => $home,
-            'email'       => 'contacto@romvill.com',
+            'email'       => 'info@romvill.com',
             'logo'        => array(
                 '@type' => 'ImageObject',
                 'url'   => $logo,
@@ -1021,7 +1021,7 @@ Idioma:        " . strtoupper( $lang ) . "{$intl_flag}
 {$body_in}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ROMVILL · contacto@romvill.com · www.romvill.com
+ROMVILL · info@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
@@ -1095,19 +1095,19 @@ Análisis de Inteligencia Zonal
         ) );
     }
 
-    // ── [Spec 2.1] Email de confirmación al cliente (contacto@romvill.com) ──
+    // ── [Spec 2.1] Email de confirmación al cliente (info@romvill.com) ──
     $client_subject = 'Hemos recibido su solicitud — ' . $ref;
     $client_body = "Estimado/a {$name},\n\n"
         . "Hemos recibido su solicitud de análisis territorial"
         . ( $_zona && $_zona !== '—' ? " para {$_zona}" : '' ) . ".\n\n"
         . "Referencia: {$ref}\n"
         . "Siguiente paso: Recibirá su presupuesto personalizado en las próximas horas.\n\n"
-        . "Para cualquier consulta: contacto@romvill.com\n\n"
+        . "Para cualquier consulta: info@romvill.com\n\n"
         . "ROMVILL · Criterio antes de decidir\n"
         . "www.romvill.com";
     $client_headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ROMVILL <contacto@romvill.com>',
+        'From: ROMVILL <info@romvill.com>',
     );
     wp_mail( $email, $client_subject, $client_body, $client_headers );
 
@@ -1243,7 +1243,7 @@ Cómo nos conoció:    {$como}
 Comentarios:         {$com}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ROMVILL · contacto@romvill.com · www.romvill.com
+ROMVILL · info@romvill.com · www.romvill.com
 Análisis de Inteligencia Zonal
 ";
 
@@ -1332,19 +1332,19 @@ Análisis de Inteligencia Zonal
         }
     }
 
-    // ── [Spec 2.1] Email de confirmación al cliente (contacto@romvill.com) ──
+    // ── [Spec 2.1] Email de confirmación al cliente (info@romvill.com) ──
     $client_subject = 'Hemos recibido su solicitud — ' . $ref;
     $client_body = "Estimado/a {$nom},\n\n"
         . "Hemos recibido su solicitud de análisis territorial"
         . ( $zona && $zona !== '—' ? " para {$zona}" : '' ) . ".\n\n"
         . "Referencia: {$ref}\n"
         . "Siguiente paso: Recibirá su presupuesto personalizado en las próximas horas.\n\n"
-        . "Para cualquier consulta: contacto@romvill.com\n\n"
+        . "Para cualquier consulta: info@romvill.com\n\n"
         . "ROMVILL · Criterio antes de decidir\n"
         . "www.romvill.com";
     $client_headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ROMVILL <contacto@romvill.com>',
+        'From: ROMVILL <info@romvill.com>',
     );
     wp_mail( $ema, $client_subject, $client_body, $client_headers );
 
@@ -1387,12 +1387,12 @@ Análisis de Inteligencia Zonal
             . $precio_linea . "\n"
             . "Entrega: 3-4 días laborables tras confirmación\n"
             . "Referencia: {$ref}\n\n"
-            . "Para aceptar, responda \"Acepto\" o escríbanos a contacto@romvill.com.\n\n"
+            . "Para aceptar, responda \"Acepto\" o escríbanos a info@romvill.com.\n\n"
             . "ROMVILL · Criterio antes de decidir\n"
             . "www.romvill.com";
         $quote_headers = array(
             'Content-Type: text/plain; charset=UTF-8',
-            'From: ROMVILL <contacto@romvill.com>',
+            'From: ROMVILL <info@romvill.com>',
         );
         wp_mail( $ema, $quote_subject, $quote_body, $quote_headers );
     }

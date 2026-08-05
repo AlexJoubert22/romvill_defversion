@@ -241,7 +241,7 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		. '<p style="margin:26px 0 0;font-size:14px;color:#101622;">ROMVILL<br>'
 		. '<span style="font-size:12px;color:#6b7280;">' . esc_html( $t( 'conc.firma' ) ) . '</span></p>'
 		. '</div>'
-		. '<div style="border-top:1px solid #e5e7eb;padding:16px 36px;font-size:11px;color:#9ca3af;">ROMVILL · contacto@romvill.com · www.romvill.com</div>'
+		. '<div style="border-top:1px solid #e5e7eb;padding:16px 36px;font-size:11px;color:#9ca3af;">ROMVILL · info@romvill.com · www.romvill.com</div>'
 		. '</div></div>';
 
 	$asunto = sprintf( $t( 'entrega.subject' ), $ref );
@@ -252,7 +252,7 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		$html,
 		array(
 			'Content-Type: text/html; charset=UTF-8',
-			'From: ROMVILL <contacto@romvill.com>',
+			'From: ROMVILL <info@romvill.com>',
 		)
 	);
 
@@ -290,13 +290,13 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		. 'Solicitud en el CRM: ' . ( $sol_id ? admin_url( 'post.php?post=' . $sol_id . '&action=edit' ) . ' → marcada como ENTREGADA' : 'no consta ninguna solicitud con esa referencia (no se ha cambiado ningún estado)' ) . "\n"
 		. 'Fecha:      ' . current_time( 'Y-m-d H:i:s' ) . "\n\n"
 		. "La secuencia posterior (inc/post-entrega.php) arranca desde la fecha de entrega sellada.\n\n"
-		. "ROMVILL · contacto@romvill.com · www.romvill.com";
+		. "ROMVILL · info@romvill.com · www.romvill.com";
 
 	$aviso_admin = wp_mail(
 		get_option( 'admin_email' ),
 		'Expediente entregado: ' . $ref . ( $nombre !== '' ? ' → ' . $nombre : '' ),
 		$cuerpo_admin,
-		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <contacto@romvill.com>' )
+		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
 	);
 
 	return rest_ensure_response( array(

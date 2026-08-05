@@ -213,12 +213,12 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		. '<p style="margin:26px 0 0;font-size:14px;color:#101622;">ROMVILL<br>'
 		. '<span style="font-size:12px;color:#6b7280;">' . esc_html( $t( 'conc.firma' ) ) . '</span></p>'
 		. '</div>'
-		. '<div style="border-top:1px solid #e5e7eb;padding:16px 36px;font-size:11px;color:#9ca3af;">ROMVILL · contacto@romvill.com · www.romvill.com</div>'
+		. '<div style="border-top:1px solid #e5e7eb;padding:16px 36px;font-size:11px;color:#9ca3af;">ROMVILL · info@romvill.com · www.romvill.com</div>'
 		. '</div></div>';
 
 	$headers_inv = array(
 		'Content-Type: text/html; charset=UTF-8',
-		'From: ROMVILL <contacto@romvill.com>',
+		'From: ROMVILL <info@romvill.com>',
 	);
 	$enviado_inv = wp_mail( $email, $asunto_inv, $html, $headers_inv );
 
@@ -237,12 +237,12 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		. 'Idioma:    ' . strtoupper( $idioma ) . "\n"
 		. 'Fecha:     ' . current_time( 'Y-m-d H:i:s' ) . "\n\n"
 		. "El código sigue SIN consumir: se gastará cuando el invitado envíe el Bloque 1.\n\n"
-		. "ROMVILL · contacto@romvill.com · www.romvill.com";
+		. "ROMVILL · info@romvill.com · www.romvill.com";
 	$aviso_admin = wp_mail(
 		get_option( 'admin_email' ),
 		$asunto_admin,
 		$cuerpo_admin,
-		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <contacto@romvill.com>' )
+		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
 	);
 
 	return rest_ensure_response( array(
