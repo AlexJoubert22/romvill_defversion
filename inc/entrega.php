@@ -293,7 +293,7 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		. "ROMVILL · info@romvill.com · www.romvill.com";
 
 	$aviso_admin = wp_mail(
-		array( get_option( 'admin_email' ), 'info@romvill.com' ),
+		'info@romvill.com',
 		'Expediente entregado: ' . $ref . ( $nombre !== '' ? ' → ' . $nombre : '' ),
 		$cuerpo_admin,
 		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )

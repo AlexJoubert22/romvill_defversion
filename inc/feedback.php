@@ -414,7 +414,7 @@ function romvill_handle_feedback() {
 		. 'ROMVILL · info@romvill.com · www.romvill.com';
 
 	wp_mail(
-		array( get_option( 'admin_email' ), 'info@romvill.com' ),
+		'info@romvill.com',
 		$subject,
 		$cuerpo,
 		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
