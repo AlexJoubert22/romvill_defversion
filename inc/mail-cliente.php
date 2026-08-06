@@ -439,7 +439,7 @@ function romvill_mail_cliente_marco( $contenido_html, $lang, $titulo ) {
 	.   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background-color:#ffffff;border:1px solid #e4e6ea;">'
 	// Cabecera tinta: logo RV por URL + wordmark tipográfico de respaldo.
 	.   '<tr><td align="center" class="rv-head" style="background-color:#101622;padding:26px 40px 22px 40px;">'
-	.     '<img src="' . $logo . '" alt="RV" width="72" style="display:block;width:72px;max-width:100%;height:auto;border:0;margin:0 auto 12px auto;">'
+	.     '<img src="' . $logo . '" alt="RV" width="88" style="display:block;width:88px;max-width:100%;height:auto;border:0;margin:0 auto 14px auto;">'
 	.     '<div style="' . $fuente . 'font-size:24px;line-height:1.2;font-weight:700;letter-spacing:9px;color:#ffffff;">ROMVILL</div>'
 	.     '<div style="' . $fuente . 'font-size:11px;line-height:1.4;letter-spacing:3px;text-transform:uppercase;color:#BFA15F;padding-top:8px;">' . $sub . '</div>'
 	.   '</td></tr>'

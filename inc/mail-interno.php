@@ -65,7 +65,7 @@ function romvill_mint_marco( $contenido_html, $titulo ) {
 	.   '<tr><td class="rv-head" style="background-color:#101622;padding:14px 24px 13px 24px;">'
 	.     '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
 	.       '<td valign="middle" style="padding-right:12px;">'
-	.         '<img src="' . $logo . '" alt="RV" width="44" style="display:block;width:44px;max-width:100%;height:auto;border:0;">'
+	.         '<img src="' . $logo . '" alt="RV" width="56" style="display:block;width:56px;max-width:100%;height:auto;border:0;">'
 	.       '</td>'
 	.       '<td valign="middle">'
 	.         '<span style="' . $f . 'font-size:17px;line-height:1.2;font-weight:700;letter-spacing:6px;color:#ffffff;">ROMVILL</span>'
