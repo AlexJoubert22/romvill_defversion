@@ -59,6 +59,10 @@ require_once get_template_directory() . '/inc/codigos.php';
 // gratuitas a solicitudes sin código. Contador solo en servidor.
 require_once get_template_directory() . '/inc/inaugural.php';
 
+// Emails HTML de marca al cliente del Bloque 1: confirmación de
+// recepción + plaza del Programa Inaugural (6 idiomas, multipart).
+require_once get_template_directory() . '/inc/mail-cliente.php';
+
 // Feedback del cliente sobre su expediente (CPT privado + panel).
 require_once get_template_directory() . '/inc/feedback.php';
 
@@ -1332,21 +1336,18 @@ Análisis de Inteligencia Zonal
         }
     }
 
-    // ── [Spec 2.1] Email de confirmación al cliente (info@romvill.com) ──
-    $client_subject = 'Hemos recibido su solicitud — ' . $ref;
-    $client_body = "Estimado/a {$nom},\n\n"
-        . "Hemos recibido su solicitud de análisis territorial"
-        . ( $zona && $zona !== '—' ? " para {$zona}" : '' ) . ".\n\n"
-        . "Referencia: {$ref}\n"
-        . "Siguiente paso: Recibirá su presupuesto personalizado en las próximas horas.\n\n"
-        . "Para cualquier consulta: info@romvill.com\n\n"
-        . "ROMVILL · Criterio antes de decidir\n"
-        . "www.romvill.com";
-    $client_headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        'From: ROMVILL <clients@romvill.com>',
-    );
-    wp_mail( $ema, $client_subject, $client_body, $client_headers );
+    // ── [Spec 2.1] Email 1 al cliente: confirmación de recepción ──
+    // HTML de marca + alternativa de texto plano, en el idioma del
+    // payload (6 idiomas). Ver inc/mail-cliente.php.
+    romvill_mail_confirmacion_cliente( $ema, $nom, $ref, $lang );
+
+    // ── Email 2 al cliente: plaza del Programa Inaugural ──────────
+    // SOLO si esta solicitud obtuvo plaza. Email separado, con el
+    // plazo comprometido (máx. 10 días laborables). No pide nada a
+    // cambio (marco legal). La CONCESIÓN de la plaza no se toca aquí.
+    if ( $inaug_plaza ) {
+        romvill_mail_inaugural_cliente( $ema, $nom, $ref, (int) $inaug_plaza, $lang );
+    }
 
     $sent = wp_mail( $to, $subject, $body, $headers );
 
@@ -1355,26 +1356,25 @@ Análisis de Inteligencia Zonal
     // recibiendo la estimación completa y puede ajustar si algo no cuadra.
     // Con código de invitación VÁLIDO la cotización se envía siempre y el
     // importe se sustituye por la línea de 0 € (encargo cubierto por ROMVILL).
-    // Con plaza del Programa Inaugural la cotización se envía siempre y el
-    // importe se sustituye por el texto de admisión + contraprestación.
-    if ( $codigo_ok
-         || $inaug_plaza
+    // Con plaza del Programa Inaugural NO se envía cotización: el cliente
+    // ya recibe su email propio de plaza confirmada (inc/mail-cliente.php)
+    // y no debe recibir un tercer email que duplique la información.
+    if ( ! $inaug_plaza && ( $codigo_ok
          || ( $est
          && $est['nivel'] === 'esencial'
          && $est['confianza'] === 'ALTA'
          && $est['precio_min'] <= ROMVILL_PRECIO_ESENCIAL + 60 // sanity check: no auto-cotizar si los extras lo subieron mucho
-    ) ) {
+    ) ) ) {
         $quote_subject = 'Su presupuesto — Informe Esencial de zona';
         $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
-        // Orden de prioridad: plaza inaugural > código de invitación >
-        // precio de lanzamiento > precio oficial. Mientras el Programa
+        // Orden de prioridad: código de invitación > precio de lanzamiento
+        // > precio oficial. (La plaza inaugural ya no entra aquí: tiene su
+        // email propio en inc/mail-cliente.php.) Mientras el Programa
         // Inaugural siga activo NO se ofrece el precio de lanzamiento
         // (decisión de dirección: una sola oferta a la vez).
         $lanz_disponible = defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO
             && ! ( function_exists( 'romvill_inaugural_activo' ) && romvill_inaugural_activo() );
-        if ( $inaug_plaza ) {
-            $precio_linea = romvill_inaugural_linea_cliente( $inaug_plaza, $lang );
-        } elseif ( $codigo_ok ) {
+        if ( $codigo_ok ) {
             $precio_linea = romvill_codigo_linea_cliente( $lang );
         } elseif ( $lanz_disponible ) {
             $precio_linea = 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)';
