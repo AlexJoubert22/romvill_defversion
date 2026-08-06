@@ -1083,6 +1083,7 @@ Análisis de Inteligencia Zonal
     // Saved on every VALID submission so it survives even if the email
     // fails; retries dedupe by reference (same $ref → updates).
     $sol_id_q = 0;
+    $sol_id_q = 0;
     if ( function_exists( 'romvill_save_solicitud' ) ) {
         $sol_id_q = (int) romvill_save_solicitud( array(
             'ref'      => $ref,
@@ -1100,21 +1101,18 @@ Análisis de Inteligencia Zonal
         ) );
     }
 
-    // ── [Spec 2.1] Email de confirmación al cliente (info@romvill.com) ──
-    $client_subject = 'Hemos recibido su solicitud — ' . $ref;
-    $client_body = "Estimado/a {$name},\n\n"
-        . "Hemos recibido su solicitud de análisis territorial"
-        . ( $_zona && $_zona !== '—' ? " para {$_zona}" : '' ) . ".\n\n"
-        . "Referencia: {$ref}\n"
-        . "Siguiente paso: Recibirá su presupuesto personalizado en las próximas horas.\n\n"
-        . "Para cualquier consulta: info@romvill.com\n\n"
-        . "ROMVILL · Criterio antes de decidir\n"
-        . "www.romvill.com";
-    $client_headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        'From: ROMVILL <clients@romvill.com>',
-    );
-    wp_mail( $email, $client_subject, $client_body, $client_headers );
+    // ── Email 1 al cliente: confirmación corporativa (inc/mail-cliente.php) ──
+    // Mismo email de marca que el Bloque 1: la identidad no depende del bloque.
+    romvill_mail_confirmacion_cliente( $email, $name, $ref, $lang );
+
+    // ── Testeadores con pase libre: plaza inaugural también en bloques 2-4 ──
+    if ( function_exists( 'romvill_es_tester' ) && romvill_es_tester( $email ) && function_exists( 'romvill_inaugural_consumir' ) ) {
+        $plaza_test = romvill_inaugural_consumir( $ref, $email );
+        if ( $plaza_test ) {
+            if ( ! empty( $sol_id_q ) ) { update_post_meta( $sol_id_q, '_rv_inaugural', (int) $plaza_test ); }
+            romvill_mail_inaugural_cliente( $email, $name, $ref, (int) $plaza_test, $lang );
+        }
+    }
 
     // ── Aviso interno en HTML ordenado (inc/mail-interno.php) ──
     // Mismo destinatario y mismo asunto de siempre; el texto plano
