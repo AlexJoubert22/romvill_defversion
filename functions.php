@@ -1419,8 +1419,9 @@ Análisis de Inteligencia Zonal
          && $est['confianza'] === 'ALTA'
          && $est['precio_min'] <= ROMVILL_PRECIO_ESENCIAL + 60 // sanity check: no auto-cotizar si los extras lo subieron mucho
     ) ) ) {
-        $quote_subject = 'Su presupuesto — Informe Esencial de zona';
-        $zona_display  = $zona && $zona !== '—' ? $zona : 'la zona solicitada';
+        // Email HTML de marca (inc/mail-cliente.php, email 3), mismo marco
+        // que la confirmación y la plaza inaugural. Multipart con AltBody.
+        $zona_display = ( $zona && $zona !== '—' ) ? $zona : '';
         // Orden de prioridad: código de invitación > precio de lanzamiento
         // > precio oficial. (La plaza inaugural ya no entra aquí: tiene su
         // email propio en inc/mail-cliente.php.) Mientras el Programa
@@ -1429,26 +1430,25 @@ Análisis de Inteligencia Zonal
         $lanz_disponible = defined( 'ROMVILL_LANZ_ACTIVO' ) && ROMVILL_LANZ_ACTIVO
             && ! ( function_exists( 'romvill_inaugural_activo' ) && romvill_inaugural_activo() );
         if ( $codigo_ok ) {
-            $precio_linea = romvill_codigo_linea_cliente( $lang );
+            $quote_precio = array(
+                'modo'    => 'codigo',
+                'linea'   => romvill_codigo_linea_cliente( $lang ),
+                'oficial' => ROMVILL_PRECIO_ESENCIAL,
+            );
         } elseif ( $lanz_disponible ) {
-            $precio_linea = 'Precio de lanzamiento: ' . ROMVILL_LANZ_ESENCIAL . '€ (primeras ' . ROMVILL_LANZ_PLAZAS . ' plazas, a cambio de su reseña — precio oficial ' . ROMVILL_PRECIO_ESENCIAL . '€)';
+            $quote_precio = array(
+                'modo'    => 'lanzamiento',
+                'importe' => ROMVILL_LANZ_ESENCIAL,
+                'oficial' => ROMVILL_PRECIO_ESENCIAL,
+                'plazas'  => ROMVILL_LANZ_PLAZAS,
+            );
         } else {
-            $precio_linea = 'Precio: desde ' . ROMVILL_PRECIO_ESENCIAL . '€';
+            $quote_precio = array(
+                'modo'    => 'oficial',
+                'oficial' => ROMVILL_PRECIO_ESENCIAL,
+            );
         }
-        $quote_body = "Estimado/a {$nom},\n\n"
-            . "Su Informe Esencial para {$zona_display}:\n\n"
-            . "Incluye: dashboard de zona, 6-7 dimensiones esenciales, datos oficiales, mapas, patrones detectados, versión web interactiva\n"
-            . $precio_linea . "\n"
-            . "Entrega: 3-4 días laborables tras confirmación\n"
-            . "Referencia: {$ref}\n\n"
-            . "Para aceptar, responda \"Acepto\" o escríbanos a clients@romvill.com.\n\n"
-            . "ROMVILL · Criterio antes de decidir\n"
-            . "www.romvill.com";
-        $quote_headers = array(
-            'Content-Type: text/plain; charset=UTF-8',
-            'From: ROMVILL <clients@romvill.com>',
-        );
-        wp_mail( $ema, $quote_subject, $quote_body, $quote_headers );
+        romvill_mail_presupuesto_cliente( $ema, $nom, $ref, $zona_display, $quote_precio, $lang );
     }
 
     if ( $sent ) {
