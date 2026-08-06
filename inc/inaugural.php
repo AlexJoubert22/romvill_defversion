@@ -292,6 +292,35 @@ add_action( 'rest_api_init', function () {
 	) );
 } );
 
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'romvill/v1', '/inaugural/registrar', array(
+		'methods'             => 'POST',
+		'callback'            => 'romvill_rest_inaugural_registrar',
+		'permission_callback' => function () { return current_user_can( 'manage_options' ); },
+	) );
+} );
+
+/**
+ * Registra a mano una plaza en el contador (restauraciones tras un reset
+ * accidental o migraciones). Parametros: plaza=N, ref=RV-..., fecha (opcional).
+ */
+function romvill_rest_inaugural_registrar( WP_REST_Request $req ) {
+	$plaza = (int) $req->get_param( 'plaza' );
+	$ref   = strtoupper( sanitize_text_field( (string) $req->get_param( 'ref' ) ) );
+	$fecha = sanitize_text_field( (string) $req->get_param( 'fecha' ) );
+	if ( $plaza < 1 || $plaza > ROMVILL_INAUGURAL_PLAZAS || ! romvill_inaugural_ref_valida( $ref ) ) {
+		return new WP_Error( 'parametros', 'Indique plaza=1..N y una ref valida.', array( 'status' => 400 ) );
+	}
+	$usadas = romvill_inaugural_usadas();
+	if ( isset( $usadas[ $plaza ] ) ) {
+		return new WP_Error( 'ocupada', 'Esa plaza ya consta como usada.', array( 'status' => 409 ) );
+	}
+	$usadas[ $plaza ] = array( 'ref' => $ref, 'fecha' => $fecha !== '' ? $fecha : current_time( 'mysql' ) );
+	update_option( 'romvill_inaugural_usadas', $usadas, false );
+	add_option( 'rv_lock_plaza_' . $plaza, $ref, '', 'no' );
+	return array( 'ok' => true, 'plaza' => $plaza, 'ref' => $ref, 'disponibles' => romvill_inaugural_disponibles() );
+}
+
 function romvill_rest_inaugural_reset( WP_REST_Request $req ) {
 	$plaza = (int) $req->get_param( 'plaza' );
 	$todas = (string) $req->get_param( 'todas' ) === '1';
