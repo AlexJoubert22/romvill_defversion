@@ -114,6 +114,16 @@ function romvill_api_sol_rutas() {
 		),
 	) );
 
+	// ── Borrado de solicitudes (limpieza de pruebas y RGPD) ──
+	register_rest_route( 'romvill/v1', '/solicitudes/(?P<id>\\d+)', array(
+		'methods'             => 'DELETE',
+		'callback'            => 'romvill_api_sol_borrar',
+		'permission_callback' => 'romvill_api_sol_permiso',
+		'args'                => array(
+			'id' => array( 'type' => 'integer', 'required' => true, 'sanitize_callback' => 'absint' ),
+		),
+	) );
+
 	// ── Borrado de valoraciones (limpieza de ensayos y RGPD) ──
 	register_rest_route( 'romvill/v1', '/feedback/(?P<id>\d+)', array(
 		'methods'             => 'DELETE',
@@ -153,7 +163,22 @@ function romvill_api_sol_rutas() {
 	) );
 }
 
+/* ── DELETE /solicitudes/<id> ────────────────────────────────────── */
+function romvill_api_sol_borrar( WP_REST_Request $req ) {
+	$id   = (int) $req->get_param( 'id' );
+	$post = get_post( $id );
+	if ( ! $post || ! defined( 'ROMVILL_SOL_CPT' ) || $post->post_type !== ROMVILL_SOL_CPT ) {
+		return new WP_Error( 'no_encontrada', 'No existe una solicitud con ese id.', array( 'status' => 404 ) );
+	}
+	$ref = (string) get_post_meta( $id, '_rv_ref', true );
+	if ( ! wp_delete_post( $id, true ) ) {
+		return new WP_Error( 'no_borrada', 'WordPress no pudo borrar la solicitud.', array( 'status' => 500 ) );
+	}
+	return array( 'ok' => true, 'borrada' => $id, 'referencia' => $ref );
+}
+
 /* ── DELETE /feedback/<id> ───────────────────────────────────────── */
+
 /**
  * Borra definitivamente una valoración (sin papelera). Uso previsto:
  * limpieza de ensayos técnicos y derecho de supresión RGPD.
