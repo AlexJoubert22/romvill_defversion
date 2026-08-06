@@ -228,7 +228,9 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		return new WP_Error( 'envio_fallido', 'wp_mail devolvió error al enviar al invitado. No se ha enviado nada.', array( 'status' => 500 ) );
 	}
 
-	// ── Aviso interno al admin (texto plano, en español) ─────────
+	// ── Aviso interno al admin (formato de ley aprobado el 06-08-2026:
+	// HTML de inc/mail-interno.php; el texto plano de siempre viaja como
+	// AltBody del multipart). Destinatario y asunto, intactos. ─────────
 	$asunto_admin = 'Invitación enviada: ' . $codigo . ' → ' . $nombre;
 	$cuerpo_admin = "Se ha enviado un email de invitación al Programa Inaugural.\n\n"
 		. "Invitado:  {$nombre}\n"
@@ -240,11 +242,22 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		. 'Fecha:     ' . current_time( 'Y-m-d H:i:s' ) . "\n\n"
 		. "El código sigue SIN consumir: se gastará cuando el invitado envíe el Bloque 1.\n\n"
 		. "ROMVILL · info@romvill.com · www.romvill.com";
-	$aviso_admin = wp_mail(
+	$html_admin = romvill_mint_html_invitacion( array(
+		'nombre' => $nombre,
+		'email'  => $email,
+		'codigo' => $codigo,
+		'nota'   => romvill_codigo_nota( $codigo ),
+		'nivel'  => $nivel,
+		'idioma' => $idioma,
+	) );
+
+	$aviso_admin = romvill_mint_enviar(
 		'info@romvill.com',
 		$asunto_admin,
+		$html_admin,
 		$cuerpo_admin,
-		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
+		'',
+		'ROMVILL <info@romvill.com>'
 	);
 
 	return rest_ensure_response( array(

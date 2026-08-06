@@ -280,7 +280,9 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		$estado_final = 'entregada';
 	}
 
-	/* ── Aviso interno al admin (texto plano, español) ───────────── */
+	/* ── Aviso interno al admin (formato de ley aprobado el 06-08-2026:
+	 * HTML de inc/mail-interno.php; el texto plano de siempre viaja como
+	 * AltBody del multipart). Destinatario y asunto, intactos. ───────── */
 	$cuerpo_admin = "Expediente entregado al cliente.\n\n"
 		. "Referencia: {$ref}\n"
 		. 'Cliente:    ' . ( $nombre !== '' ? $nombre : '(sin nombre en el registro)' ) . "\n"
@@ -295,11 +297,31 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		. "La secuencia posterior (inc/post-entrega.php) arranca desde la fecha de entrega sellada.\n\n"
 		. "ROMVILL · info@romvill.com · www.romvill.com";
 
-	$aviso_admin = wp_mail(
+	// Plaza del Programa Inaugural, solo para el chip dorado del aviso
+	// (dato ya sellado en la solicitud por inc/inaugural.php; no se toca).
+	$plaza_inaug = $sol_id ? (int) get_post_meta( $sol_id, '_rv_inaugural', true ) : 0;
+
+	$html_admin = romvill_mint_html_entrega( array(
+		'ref'          => $ref,
+		'nombre'       => $nombre,
+		'email'        => $email,
+		'idioma'       => $idioma,
+		'enlace_web'   => $enlace_web,
+		'nota'         => $nota,
+		'url_feedback' => $url_feedback,
+		'url_resena'   => $url_resena,
+		'sol_id'       => $sol_id,
+		'plaza'        => $plaza_inaug,
+		'plaza_total'  => defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 8,
+	) );
+
+	$aviso_admin = romvill_mint_enviar(
 		'info@romvill.com',
 		'Expediente entregado: ' . $ref . ( $nombre !== '' ? ' → ' . $nombre : '' ),
+		$html_admin,
 		$cuerpo_admin,
-		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
+		'',
+		'ROMVILL <info@romvill.com>'
 	);
 
 	return rest_ensure_response( array(

@@ -390,7 +390,9 @@ function romvill_handle_feedback() {
 	// [I5] Envío contabilizado (la ventana de 1 h arranca en el primero).
 	if ( $t_key !== '' ) set_transient( $t_key, $envios + 1, 3600 );
 
-	// ── Aviso interno a Giovanny (texto plano, en español) ──
+	// ── Aviso interno a Giovanny (formato de ley aprobado el 06-08-2026:
+	// HTML de inc/mail-interno.php; el texto plano de siempre viaja como
+	// AltBody del multipart). Destinatario y asunto, intactos. ──
 	$guardadas = json_decode( (string) get_post_meta( $id, '_rvf_checks', true ), true );
 	$labels    = romvill_fb_checks_labels( 'es' );
 	$marcadas  = array();
@@ -413,11 +415,24 @@ function romvill_handle_feedback() {
 		. 'Ficha en wp-admin: ' . admin_url( 'post.php?post=' . $id . '&action=edit' ) . "\n\n"
 		. 'ROMVILL · info@romvill.com · www.romvill.com';
 
-	wp_mail(
+	$html_admin = romvill_mint_html_valoracion( array(
+		'ref'      => $ref,
+		'rating'   => $rating,
+		'idioma'   => $lang,
+		'marcadas' => $marcadas,
+		'mejora'   => $mejora,
+		'valioso'  => $valioso,
+		'consent'  => $consent,
+		'fb_id'    => $id,
+	) );
+
+	romvill_mint_enviar(
 		'info@romvill.com',
 		$subject,
+		$html_admin,
 		$cuerpo,
-		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
+		'',
+		'ROMVILL <info@romvill.com>'
 	);
 
 	// [I4] Respuesta en el idioma del formulario, no en el de admin-ajax.
