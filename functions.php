@@ -63,6 +63,11 @@ require_once get_template_directory() . '/inc/inaugural.php';
 // recepción + plaza del Programa Inaugural (6 idiomas, multipart).
 require_once get_template_directory() . '/inc/mail-cliente.php';
 
+// Avisos internos en HTML para el dueño (B1, B2-4 y contacto): mismo
+// lenguaje visual de marca en versión utilitaria; el texto plano de
+// siempre viaja como AltBody.
+require_once get_template_directory() . '/inc/mail-interno.php';
+
 // Feedback del cliente sobre su expediente (CPT privado + panel).
 require_once get_template_directory() . '/inc/feedback.php';
 
@@ -1054,11 +1059,6 @@ Análisis de Inteligencia Zonal
              . trim( $profile_name ) . ' · ' . ( $zona_short ?: '—' ) . ' · ' . $ref
              . ( $intl ? ' ⭐' : '' );
 
-    $headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        "Reply-To: {$name} <{$email}>",
-    );
-
     // Claves canónicas (independientes del idioma) — dato interno ADICIONAL.
     // Bloques 2/3/4: { idPregunta => 'bN_id_idx' (single/swf/zona) | ['bN_id_idx',...] (multi) }.
     // El texto legible (body/email/wp-admin) NO cambia. Parser/estimación se
@@ -1082,8 +1082,9 @@ Análisis de Inteligencia Zonal
     // Persist into the private Solicitudes panel (besides the email).
     // Saved on every VALID submission so it survives even if the email
     // fails; retries dedupe by reference (same $ref → updates).
+    $sol_id_q = 0;
     if ( function_exists( 'romvill_save_solicitud' ) ) {
-        romvill_save_solicitud( array(
+        $sol_id_q = (int) romvill_save_solicitud( array(
             'ref'      => $ref,
             'perfil'   => $profile_name,
             'bloque'   => (string) $block,
@@ -1115,7 +1116,26 @@ Análisis de Inteligencia Zonal
     );
     wp_mail( $email, $client_subject, $client_body, $client_headers );
 
-    $sent = wp_mail( 'info@romvill.com', $subject, $email_body, $headers );
+    // ── Aviso interno en HTML ordenado (inc/mail-interno.php) ──
+    // Mismo destinatario y mismo asunto de siempre; el texto plano
+    // clásico ($email_body) viaja como AltBody.
+    $html_interno = romvill_mint_html_q( array(
+        'block'        => $block,
+        'profile_name' => $profile_name,
+        'profile_ref'  => $profile_ref,
+        'ref'          => $ref,
+        'fecha'        => $fecha,
+        'lang'         => $lang,
+        'intl'         => $intl,
+        'name'         => $name,
+        'email'        => $email,
+        'tel'          => $_tel,
+        'zona'         => $_zona,
+        'body'         => $body_in,
+        'est_texto'    => $est ? $est['bloque_email'] : '',
+        'sol_id'       => $sol_id_q,
+    ) );
+    $sent = romvill_mint_enviar( 'info@romvill.com', $subject, $html_interno, $email_body, "{$name} <{$email}>" );
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
     } else {
@@ -1308,14 +1328,10 @@ Análisis de Inteligencia Zonal
               . $body;
     }
 
-    $headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        "Reply-To: {$nom} <{$ema}>",
-    );
-
     // Persist into the private Solicitudes panel (besides the email).
+    $sol_id_b1 = 0;
     if ( function_exists( 'romvill_save_solicitud' ) ) {
-        $sol_id_b1 = romvill_save_solicitud( array(
+        $sol_id_b1 = (int) romvill_save_solicitud( array(
             'ref'        => $ref,
             'perfil'     => 'Particular / Residencial',
             'bloque'     => '1',
@@ -1349,7 +1365,45 @@ Análisis de Inteligencia Zonal
         romvill_mail_inaugural_cliente( $ema, $nom, $ref, (int) $inaug_plaza, $lang );
     }
 
-    $sent = wp_mail( $to, $subject, $body, $headers );
+    // ── Aviso interno en HTML ordenado (inc/mail-interno.php) ──
+    // Mismo destinatario ($to = info@romvill.com) y mismo asunto de
+    // siempre; el texto plano clásico ($body) viaja como AltBody.
+    $html_interno = romvill_mint_html_b1( array(
+        'ref'         => $ref,
+        'fecha'       => $fecha,
+        'lang'        => $lang,
+        'intl'        => $intl,
+        'nom'         => $nom,
+        'nac'         => $nac,
+        'ciu'         => $ciu,
+        'ema'         => $ema,
+        'tel'         => $tel,
+        'telp'        => $telp,
+        'agent'       => $agent,
+        'idio'        => $idio,
+        'zona'        => $zona,
+        'dir'         => $dir,
+        'prop'        => $prop,
+        'obj'         => $obj,
+        'ni'          => $ni,
+        'ma'          => $ma,
+        'ac'          => $ac,
+        'acd'         => $acd,
+        'urg'         => $urg,
+        'pref'        => $pref,
+        'como'        => $como,
+        'com'         => $com,
+        'est_texto'   => $est ? $est['bloque_email'] : '',
+        'inaug_plaza' => $inaug_plaza ? (int) $inaug_plaza : 0,
+        'inaug_total' => $inaug_plaza ? ( defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 5 ) : 0,
+        'inaug_rest'  => $inaug_plaza && function_exists( 'romvill_inaugural_disponibles' ) ? romvill_inaugural_disponibles() : 0,
+        'codigo_ok'   => $codigo_ok,
+        'codigo_in'   => $codigo_in,
+        'codigo_nota' => $codigo_ok && function_exists( 'romvill_codigo_nota' ) ? romvill_codigo_nota( $codigo_in ) : '',
+        'codigo_mal'  => $codigo_mal,
+        'sol_id'      => $sol_id_b1,
+    ) );
+    $sent = romvill_mint_enviar( $to, $subject, $html_interno, $body, "{$nom} <{$ema}>" );
 
     // ── [Spec 2.3] Auto-cotización Esencial (solo Bloque 1: esencial + ALTA + local) ──
     // Email ADICIONAL al cliente; NO sustituye el email interno. Giovanny sigue
@@ -1446,12 +1500,9 @@ function romvill_handle_contact() {
              . "Mensaje:\n{$mensaje}\n"
              . "\nConsentimiento RGPD: SÍ | Fecha: {$rgpd_when} | IP: {$rgpd_ip}\n";
 
-    $headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        "Reply-To: {$nombre} {$apellido} <{$email}>",
-    );
-
     // Persist into the private Solicitudes panel (besides the email).
+    $ref    = '';
+    $sol_id = 0;
     if ( function_exists( 'romvill_save_solicitud' ) ) {
         $parts = preg_split( '/\s+/', trim( $nombre . ' ' . $apellido ) );
         $apellido_ref = count( $parts ) > 1 ? end( $parts ) : $parts[0];
@@ -1480,7 +1531,23 @@ function romvill_handle_contact() {
         }
     }
 
-    $sent = wp_mail( $to, $subject, $body, $headers );
+    // ── Aviso interno en HTML ordenado (inc/mail-interno.php) ──
+    // Mismo destinatario y mismo asunto; el texto plano ($body) viaja
+    // como AltBody.
+    $html_interno = romvill_mint_html_contacto( array(
+        'ref'       => $ref,
+        'fecha'     => date_i18n( 'l, j \d\e F \d\e Y' ),
+        'nombre'    => trim( $nombre . ' ' . $apellido ),
+        'email'     => $email,
+        'telefono'  => $telefono,
+        'zona'      => $zona,
+        'objetivo'  => $objetivo,
+        'mensaje'   => $mensaje,
+        'rgpd_when' => $rgpd_when,
+        'rgpd_ip'   => $rgpd_ip,
+        'sol_id'    => $sol_id,
+    ) );
+    $sent = romvill_mint_enviar( $to, $subject, $html_interno, $body, "{$nombre} {$apellido} <{$email}>" );
     if ( $sent ) {
         wp_send_json_success( array( 'message' => romvill_t( 'contact.f.success' ) ) );
     } else {
