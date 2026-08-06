@@ -176,7 +176,9 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		return new WP_Error( 'codigo_usado', 'El código ya fue usado el ' . $usados[ $codigo ] . '. Crea un código nuevo.', array( 'status' => 400 ) );
 	}
 
-	// ── Email de invitación al invitado (HTML sencillo, en su idioma) ──
+	// ── Email de invitación al invitado (marco corporativo de
+	// inc/mail-cliente.php: cabecera tinta con logo RV, filete dorado,
+	// responsive, multipart HTML + texto plano; en su idioma) ──────────
 	$t = function ( $key ) use ( $idioma ) { return romvill_conc_t( $key, $idioma ); };
 
 	$asunto_inv = $t( 'conc.subject' );
@@ -187,40 +189,40 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 	$p1         = sprintf( $t( 'conc.p1' ), $nivel );
 	$url_b1     = add_query_arg( 'lang', $idioma, home_url( '/presupuesto-bloque-1/' ) );
 
-	$estilo_p = 'margin:0 0 16px;font-size:15px;line-height:1.65;color:#1f2937;';
-	$html = '<div style="background-color:#f8f9fc;padding:32px 12px;font-family:Georgia,\'Times New Roman\',serif;">'
-		. '<div style="max-width:560px;margin:0 auto;background-color:#ffffff;border:1px solid #e5e7eb;">'
-		// Cabecera sobria (los emails de la casa no llevan logo de imagen; se mantiene la marca tipográfica).
-		. '<div style="background-color:#101622;padding:26px 36px;">'
-		. '<div style="font-size:20px;letter-spacing:5px;color:#ffffff;">ROMVILL</div>'
-		. '<div style="font-size:11px;letter-spacing:2px;color:#BFA15F;margin-top:6px;text-transform:uppercase;">' . esc_html( $t( 'conc.firma' ) ) . '</div>'
-		. '</div>'
-		. '<div style="padding:32px 36px;">'
-		. '<p style="' . $estilo_p . '">' . esc_html( $saludo ) . '</p>'
-		. '<p style="' . $estilo_p . '">' . esc_html( $p1 ) . '</p>'
-		. '<p style="' . $estilo_p . '">' . esc_html( $t( 'conc.p2' ) ) . '</p>'
-		. '<p style="' . $estilo_p . 'font-style:italic;color:#4b5563;border-left:3px solid #BFA15F;padding-left:14px;">' . esc_html( $t( 'conc.p2b' ) ) . '</p>'
-		// Bloque del código
-		. '<div style="border:1px solid #e5e7eb;background-color:#f8f9fc;text-align:center;padding:20px;margin:24px 0;">'
-		. '<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:8px;">' . esc_html( $t( 'conc.codigo.lbl' ) ) . '</div>'
-		. '<div style="font-family:Courier,monospace;font-size:22px;letter-spacing:3px;color:#101622;font-weight:bold;">' . esc_html( $codigo ) . '</div>'
-		. '</div>'
-		. '<p style="' . $estilo_p . '">' . esc_html( $t( 'conc.p3' ) ) . ' ' . esc_html( $t( 'conc.p3b' ) ) . '</p>'
-		. '<div style="text-align:center;margin:26px 0;">'
-		. '<a href="' . esc_url( $url_b1 ) . '" style="display:inline-block;background-color:#101622;color:#ffffff;text-decoration:none;padding:13px 30px;font-size:14px;letter-spacing:1px;">' . esc_html( $t( 'conc.btn' ) ) . '</a>'
-		. '</div>'
-		. '<p style="' . $estilo_p . '">' . esc_html( $t( 'conc.p4' ) ) . '</p>'
-		. '<p style="margin:26px 0 0;font-size:14px;color:#101622;">ROMVILL<br>'
-		. '<span style="font-size:12px;color:#6b7280;">' . esc_html( $t( 'conc.firma' ) ) . '</span></p>'
-		. '</div>'
-		. '<div style="border-top:1px solid #e5e7eb;padding:16px 36px;font-size:11px;color:#9ca3af;">ROMVILL · info@romvill.com · www.romvill.com</div>'
-		. '</div></div>';
+	$fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
+	$cuerpo = romvill_mail_cliente_h1( $t( 'conc.subject' ) )
+		. romvill_mail_cliente_p( esc_html( $saludo ) )
+		. romvill_mail_cliente_p( esc_html( $p1 ) )
+		. romvill_mail_cliente_p( esc_html( $t( 'conc.p2' ) ) )
+		// Nota de confianza: recuadro con filete dorado (sin cursiva).
+		. '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 20px 0;">'
+		. '<tr><td style="background-color:#faf7ef;border-left:3px solid #BFA15F;padding:16px 20px;">'
+		. '<div style="' . $fuente . 'font-size:14px;line-height:1.6;color:#4b5563;">' . esc_html( $t( 'conc.p2b' ) ) . '</div>'
+		. '</td></tr></table>'
+		// Tarjeta con el CÓDIGO grande.
+		. romvill_mail_cliente_tarjeta( $t( 'conc.codigo.lbl' ), $codigo )
+		// Cómo usarlo + enlace al cuestionario.
+		. romvill_mail_cliente_p( esc_html( $t( 'conc.p3' ) ) . ' ' . esc_html( $t( 'conc.p3b' ) ) )
+		. romvill_mail_cliente_btn( $t( 'conc.btn' ), $url_b1, true )
+		. romvill_mail_cliente_p( esc_html( $t( 'conc.p4' ) ), 'margin-bottom:0;' );
 
-	$headers_inv = array(
-		'Content-Type: text/html; charset=UTF-8',
-		'From: ROMVILL <clients@romvill.com>',
-	);
-	$enviado_inv = wp_mail( $email, $asunto_inv, $html, $headers_inv );
+	$html = romvill_mail_cliente_marco( $cuerpo, $idioma, $t( 'conc.subject' ) );
+
+	// ── Versión en texto plano (AltBody del multipart) ──────────────
+	$alt = "ROMVILL\n\n"
+		. $t( 'conc.subject' ) . "\n\n"
+		. $saludo . "\n\n"
+		. $p1 . "\n\n"
+		. $t( 'conc.p2' ) . "\n"
+		. $t( 'conc.p2b' ) . "\n\n"
+		. $t( 'conc.codigo.lbl' ) . ': ' . $codigo . "\n\n"
+		. $t( 'conc.p3' ) . ' ' . $t( 'conc.p3b' ) . "\n"
+		. $t( 'conc.btn' ) . ': ' . $url_b1 . "\n\n"
+		. $t( 'conc.p4' ) . "\n\n"
+		. "ROMVILL - romvill.com";
+
+	// Mismo remitente de siempre (clients@) — lo fija romvill_mail_cliente_enviar().
+	$enviado_inv = romvill_mail_cliente_enviar( $email, $asunto_inv, $html, $alt );
 
 	if ( ! $enviado_inv ) {
 		return new WP_Error( 'envio_fallido', 'wp_mail devolvió error al enviar al invitado. No se ha enviado nada.', array( 'status' => 500 ) );

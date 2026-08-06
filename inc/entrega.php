@@ -178,83 +178,86 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 	$t = function ( $key ) use ( $idioma ) { return romvill_entrega_t( $key, $idioma ); };
 
 	// El saludo lleva %s: sin nombre conocido se usa el genérico de la casa.
-	$saludo = $nombre !== ''
-		? sprintf( $t( 'entrega.saludo' ), $nombre )
+	// El nombre se capitaliza al modo de la casa ("victoria perez" → "Victoria Perez").
+	$nombre_saludo = romvill_mail_cliente_nombre( $nombre );
+	$saludo = $nombre_saludo !== ''
+		? sprintf( $t( 'entrega.saludo' ), $nombre_saludo )
 		: $t( 'entrega.saludo.generico' );
 
 	$url_feedback = romvill_feedback_url( $ref );
 	$url_resena   = romvill_feedback_review_url();
 
-	/* ── Composición del email (mismo sistema visual que /conceder) ── */
-	$estilo_p   = 'margin:0 0 16px;font-size:15px;line-height:1.65;color:#1f2937;';
-	$estilo_btn = 'display:inline-block;background-color:#101622;color:#ffffff;text-decoration:none;padding:13px 30px;font-size:14px;letter-spacing:1px;';
-	// El botón secundario (Google) va en tono claro: la jerarquía visual
-	// refleja la jerarquía legal — obligación primero, invitación después.
-	$estilo_btn2 = 'display:inline-block;background-color:#ffffff;color:#101622;border:1px solid #101622;text-decoration:none;padding:12px 28px;font-size:14px;letter-spacing:1px;';
+	/* ── Composición del email (marco corporativo de inc/mail-cliente.php:
+	 * cabecera tinta con logo RV, filete dorado, responsive, multipart).
+	 * El ORDEN de los bloques es ley (ver cabecera del archivo): saludo ·
+	 * párrafo · [web] · valoración (obligación) · reseña (invitación) ·
+	 * [nota] · cierre. Solo cambia la presentación. ─────────────────── */
+	$fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
 
-	$html = '<div style="background-color:#f8f9fc;padding:32px 12px;font-family:Georgia,\'Times New Roman\',serif;">'
-		. '<div style="max-width:560px;margin:0 auto;background-color:#ffffff;border:1px solid #e5e7eb;">'
-		// Cabecera tipográfica de la casa (sin logo de imagen).
-		. '<div style="background-color:#101622;padding:26px 36px;">'
-		. '<div style="font-size:20px;letter-spacing:5px;color:#ffffff;">ROMVILL</div>'
-		. '<div style="font-size:11px;letter-spacing:2px;color:#BFA15F;margin-top:6px;text-transform:uppercase;">' . esc_html( $t( 'conc.firma' ) ) . '</div>'
-		. '</div>'
-		. '<div style="padding:32px 36px;">'
+	$cuerpo = romvill_mail_cliente_h1( $t( 'entrega.titulo' ) )
 		// 1. Saludo
-		. '<p style="' . $estilo_p . '">' . esc_html( $saludo ) . '</p>'
+		. romvill_mail_cliente_p( esc_html( $saludo ) )
 		// 2. Párrafo de entrega
-		. '<p style="' . $estilo_p . '">' . esc_html( $t( 'entrega.parrafo' ) ) . '</p>'
+		. romvill_mail_cliente_p( esc_html( $t( 'entrega.parrafo' ) ) )
 		// Referencia del expediente (permite verificarlo en /verificar/)
-		. '<div style="border:1px solid #e5e7eb;background-color:#f8f9fc;text-align:center;padding:18px;margin:22px 0;">'
-		. '<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:8px;">' . esc_html( $t( 'entrega.ref.lbl' ) ) . '</div>'
-		. '<div style="font-family:Courier,monospace;font-size:18px;letter-spacing:2px;color:#101622;font-weight:bold;">' . esc_html( $ref ) . '</div>'
-		. '</div>';
+		. romvill_mail_cliente_tarjeta( $t( 'entrega.ref.lbl' ), $ref );
 
 	// 3. Informe web interactivo (solo si se pasó)
 	if ( $enlace_web !== '' ) {
-		$html .= '<p style="' . $estilo_p . '">' . esc_html( $t( 'entrega.web.instruccion' ) ) . '</p>'
-			. '<div style="text-align:center;margin:22px 0;">'
-			. '<a href="' . esc_url( $enlace_web ) . '" style="' . $estilo_btn . '">' . esc_html( $t( 'entrega.web.btn' ) ) . '</a>'
-			. '</div>';
+		$cuerpo .= romvill_mail_cliente_p( esc_html( $t( 'entrega.web.instruccion' ) ) )
+			. romvill_mail_cliente_btn( $t( 'entrega.web.btn' ), $enlace_web, true );
 	}
 
 	// 4. Formulario de valoración — OBLIGATORIO (contraprestación).
-	$html .= '<div style="border-top:1px solid #e5e7eb;margin:28px 0 0;padding-top:24px;">'
-		. '<p style="' . $estilo_p . '">' . esc_html( $t( 'entrega.feedback.instruccion' ) ) . '</p>'
-		. '<div style="text-align:center;margin:20px 0;">'
-		. '<a href="' . esc_url( $url_feedback ) . '" style="' . $estilo_btn . '">' . esc_html( $t( 'entrega.feedback.btn' ) ) . '</a>'
-		. '</div></div>'
-		// 5. Reseña de Google — INVITACIÓN, nunca condición.
-		. '<div style="margin-top:8px;">'
-		. '<p style="' . $estilo_p . 'font-style:italic;color:#4b5563;border-left:3px solid #BFA15F;padding-left:14px;">' . esc_html( $t( 'entrega.resena.instruccion' ) ) . '</p>'
-		. '<div style="text-align:center;margin:18px 0;">'
-		. '<a href="' . esc_url( $url_resena ) . '" style="' . $estilo_btn2 . '">' . esc_html( $t( 'entrega.resena.btn' ) ) . '</a>'
-		. '</div></div>';
+	// La jerarquía visual refleja la jerarquía legal: botón tinta sólido
+	// para la obligación, botón de borde para la invitación.
+	$cuerpo .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:8px 0 0 0;">'
+		. '<tr><td style="border-top:1px solid #e4e6ea;padding-top:22px;">'
+		. romvill_mail_cliente_p( esc_html( $t( 'entrega.feedback.instruccion' ) ) )
+		. romvill_mail_cliente_btn( $t( 'entrega.feedback.btn' ), $url_feedback, true )
+		. '</td></tr></table>'
+		// 5. Reseña de Google — INVITACIÓN, nunca condición. El texto de
+		// 'entrega.resena.instruccion' no se toca sin pasar por dirección.
+		. '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 18px 0;">'
+		. '<tr><td style="background-color:#faf7ef;border-left:3px solid #BFA15F;padding:16px 20px;">'
+		. '<div style="' . $fuente . 'font-size:14px;line-height:1.6;color:#4b5563;">' . esc_html( $t( 'entrega.resena.instruccion' ) ) . '</div>'
+		. '</td></tr></table>'
+		. romvill_mail_cliente_btn( $t( 'entrega.resena.btn' ), $url_resena, false );
 
 	// 6. Nota personal de Giovanny (si viene)
 	if ( $nota !== '' ) {
-		$html .= '<p style="' . $estilo_p . 'margin-top:24px;">' . nl2br( esc_html( $nota ) ) . '</p>';
+		$cuerpo .= romvill_mail_cliente_p( nl2br( esc_html( $nota ) ) );
 	}
 
-	// 7. Cierre y firma
-	$html .= '<p style="' . $estilo_p . 'margin-top:24px;">' . esc_html( $t( 'entrega.cierre' ) ) . '</p>'
-		. '<p style="margin:26px 0 0;font-size:14px;color:#101622;">ROMVILL<br>'
-		. '<span style="font-size:12px;color:#6b7280;">' . esc_html( $t( 'conc.firma' ) ) . '</span></p>'
-		. '</div>'
-		. '<div style="border-top:1px solid #e5e7eb;padding:16px 36px;font-size:11px;color:#9ca3af;">ROMVILL · info@romvill.com · www.romvill.com</div>'
-		. '</div></div>';
+	// 7. Cierre (la firma la pone el pie del marco)
+	$cuerpo .= romvill_mail_cliente_p( esc_html( $t( 'entrega.cierre' ) ), 'margin-bottom:0;' );
+
+	$html = romvill_mail_cliente_marco( $cuerpo, $idioma, $t( 'entrega.titulo' ) );
+
+	// ── Versión en texto plano (AltBody del multipart) ──────────────
+	$alt = "ROMVILL\n\n"
+		. $t( 'entrega.titulo' ) . "\n\n"
+		. $saludo . "\n\n"
+		. $t( 'entrega.parrafo' ) . "\n\n"
+		. $t( 'entrega.ref.lbl' ) . ': ' . $ref . "\n\n";
+	if ( $enlace_web !== '' ) {
+		$alt .= $t( 'entrega.web.instruccion' ) . "\n"
+			. $t( 'entrega.web.btn' ) . ': ' . $enlace_web . "\n\n";
+	}
+	$alt .= $t( 'entrega.feedback.instruccion' ) . "\n"
+		. $t( 'entrega.feedback.btn' ) . ': ' . $url_feedback . "\n\n"
+		. $t( 'entrega.resena.instruccion' ) . "\n"
+		. $t( 'entrega.resena.btn' ) . ': ' . $url_resena . "\n\n";
+	if ( $nota !== '' ) {
+		$alt .= $nota . "\n\n";
+	}
+	$alt .= $t( 'entrega.cierre' ) . "\n\n"
+		. "ROMVILL - romvill.com";
 
 	$asunto = sprintf( $t( 'entrega.subject' ), $ref );
 
-	$enviado = wp_mail(
-		$email,
-		$asunto,
-		$html,
-		array(
-			'Content-Type: text/html; charset=UTF-8',
-			'From: ROMVILL <clients@romvill.com>',
-		)
-	);
+	// Mismo remitente de siempre (clients@) — lo fija romvill_mail_cliente_enviar().
+	$enviado = romvill_mail_cliente_enviar( $email, $asunto, $html, $alt );
 
 	if ( ! $enviado ) {
 		// Nada se marca como entregado si el cliente no ha recibido el email.

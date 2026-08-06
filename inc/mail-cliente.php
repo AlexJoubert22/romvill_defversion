@@ -481,6 +481,27 @@ function romvill_mail_cliente_tarjeta( $etiqueta, $valor_grande, $valor_peq = ''
 	. '</td></tr></table>';
 }
 
+/**
+ * Botón centrado de la casa: tinta sólida (primario) o borde tinta
+ * sobre blanco (secundario). Tabla propia para Outlook; el <a> lleva
+ * el estilo completo para el resto de clientes.
+ *
+ * @param string $texto    Texto del botón (se escapa aquí).
+ * @param string $url      Destino (se escapa aquí).
+ * @param bool   $primario true = tinta sólida; false = borde tinta.
+ */
+function romvill_mail_cliente_btn( $texto, $url, $primario = true ) {
+	$fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
+	$celda  = $primario
+		? 'background-color:#101622;border:1px solid #101622;'
+		: 'background-color:#ffffff;border:1px solid #101622;';
+	$color  = $primario ? '#ffffff' : '#101622';
+	return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:6px auto 24px auto;">'
+	. '<tr><td align="center" style="' . $celda . '">'
+	.   '<a href="' . esc_url( $url ) . '" style="' . $fuente . 'display:inline-block;padding:13px 30px;font-size:14px;line-height:1.4;letter-spacing:1px;color:' . $color . ';text-decoration:none;">' . esc_html( $texto ) . '</a>'
+	. '</td></tr></table>';
+}
+
 /* ═══════════════════════════════════════════════════════════════════
  * ENVÍO MULTIPART (HTML + AltBody de texto plano vía phpmailer_init)
  * ═══════════════════════════════════════════════════════════════════ */

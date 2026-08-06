@@ -21,6 +21,12 @@
  * Precio pagado por bloque: 1→290€ oficial / 149€ lanzamiento (Esencial), 2→349€ (Superior), 3/4→890€+ (Premium).
  * Remitente: clients@romvill.com.
  *
+ * PRESENTACIÓN: marco corporativo de inc/mail-cliente.php (cabecera tinta
+ * con logo RV, filete dorado, responsive, multipart HTML + texto plano).
+ * Idioma: español, como siempre fue en este archivo (sistema monolingüe).
+ * El borrador del día 15 sigue siendo texto plano: no es un email que se
+ * envíe, es material de trabajo que Giovanny personaliza a mano.
+ *
  * @package Romvill
  */
 
@@ -96,22 +102,25 @@ function romvill_postentrega_run() {
         $can_credit = ( ! $upgrade && $credito !== null ); // crédito solo esencial/completo sin upgrade
         $days    = ( $now - $delivered ) / DAY_IN_SECONDS;
 
-        $headers = array(
-            'Content-Type: text/plain; charset=UTF-8',
-            'From: ROMVILL <clients@romvill.com>',
-        );
-        $firma   = "\n\nROMVILL · Criterio antes de decidir";
         $f_vence = date_i18n( 'j \d\e F \d\e Y', $delivered + 60 * DAY_IN_SECONDS );
+        $saludo  = romvill_pe_saludo( $nombre );
 
         // ── Día 2 — Reseña Google (SIEMPRE) ──
         if ( $days >= 2 && ! get_post_meta( $id, '_rv_seq2_at', true ) ) {
             $subject = '¿Le ha resultado útil su informe de ' . $zona_d . '?';
-            $body = "Estimado/a {$nombre},\n\n"
-                . "Esperamos que su informe territorial de {$zona_d} le esté siendo de utilidad.\n\n"
-                . "Si tiene un minuto, su valoración nos ayuda enormemente a seguir mejorando:\n\n"
-                . "Dejar mi opinión en Google → " . romvill_pe_review_url() . "\n\n"
-                . "Gracias por confiar en ROMVILL." . $firma;
-            wp_mail( $email, $subject, $body, $headers );
+            $titulo  = '¿Le ha resultado útil su informe?';
+            $p1 = 'Esperamos que su informe territorial de ' . $zona_d . ' le esté siendo de utilidad.';
+            $p2 = 'Si dispone de un minuto, su valoración pública nos ayuda a seguir mejorando. Escriba lo que realmente piense.';
+            $cuerpo = romvill_mail_cliente_h1( $titulo )
+                . romvill_mail_cliente_p( esc_html( $saludo ) )
+                . romvill_mail_cliente_p( esc_html( $p1 ) )
+                . romvill_mail_cliente_p( esc_html( $p2 ) )
+                . romvill_mail_cliente_btn( 'Dejar mi opinión en Google', romvill_pe_review_url(), true )
+                . romvill_mail_cliente_p( 'Gracias por confiar en ROMVILL.', 'margin-bottom:0;' );
+            $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n" . $p2 . "\n\n"
+                . 'Dejar mi opinión en Google: ' . romvill_pe_review_url() . "\n\n"
+                . "Gracias por confiar en ROMVILL.\n\nROMVILL - romvill.com";
+            romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
             update_post_meta( $id, '_rv_seq2_at', $now );
         }
 
@@ -119,12 +128,28 @@ function romvill_postentrega_run() {
         if ( $days >= 5 && ! get_post_meta( $id, '_rv_seq5_at', true ) ) {
             if ( $can_credit ) {
                 $subject = 'Sus ' . $precio . '€ cuentan como crédito — ' . $ref;
-                $body = "Estimado/a {$nombre},\n\n"
-                    . "Si tras revisar su informe desea profundizar en la zona — fiscalidad, planificación urbanística, verificación exhaustiva de cada dato — su inversión de {$precio}€ se aplica íntegramente como crédito.\n\n"
-                    . "  " . implode( "\n  ", $credito['lineas'] ) . "\n\n"
-                    . "Validez del crédito: 60 días desde la entrega (hasta el {$f_vence}).\n"
-                    . "Contacto: clients@romvill.com" . $firma;
-                wp_mail( $email, $subject, $body, $headers );
+                $titulo  = 'Su inversión cuenta como crédito';
+                $p1 = 'Si tras revisar su informe desea profundizar en la zona — fiscalidad, planificación urbanística, verificación exhaustiva de cada dato — su inversión de ' . $precio . ' € se aplica íntegramente como crédito.';
+                $fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
+                $filas  = '';
+                foreach ( $credito['lineas'] as $linea ) {
+                    $filas .= '<div style="' . $fuente . 'font-size:14px;line-height:1.7;color:#333b47;">' . esc_html( $linea ) . '</div>';
+                }
+                $tarjeta_credito = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 20px 0;">'
+                    . '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #BFA15F;padding:18px 20px;">'
+                    . '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding-bottom:8px;">Su cr&#233;dito</div>'
+                    . $filas
+                    . '</td></tr></table>';
+                $p2 = 'Validez del crédito: 60 días desde la entrega (hasta el ' . $f_vence . ').';
+                $cuerpo = romvill_mail_cliente_h1( $titulo )
+                    . romvill_mail_cliente_p( esc_html( $saludo ) )
+                    . romvill_mail_cliente_p( esc_html( $p1 ) )
+                    . $tarjeta_credito
+                    . romvill_mail_cliente_p( esc_html( $p2 ), 'margin-bottom:0;color:#6b7280;font-size:14px;' );
+                $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n"
+                    . '  ' . implode( "\n  ", $credito['lineas'] ) . "\n\n"
+                    . $p2 . "\n" . "Contacto: clients@romvill.com\n\nROMVILL - romvill.com";
+                romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
             }
             update_post_meta( $id, '_rv_seq5_at', $now ); // se marca aunque no se envíe (upgrade/premium)
         }
@@ -149,12 +174,17 @@ function romvill_postentrega_run() {
         // ── Día 30 — Referidos (SIEMPRE) ──
         if ( $days >= 30 && ! get_post_meta( $id, '_rv_seq30_at', true ) ) {
             $subject = '¿Conoce a alguien que esté considerando la costa?';
-            $body = "Estimado/a {$nombre},\n\n"
-                . "Muchos de nuestros clientes llegan por recomendación de personas como usted.\n\n"
-                . "Si conoce a alguien que esté considerando mudarse, invertir o establecerse en la costa mediterránea, estaremos encantados de ayudarle con el mismo rigor.\n\n"
-                . "Si nos recomienda y esa persona contrata un informe, aplicamos un crédito en su próximo análisis como agradecimiento.\n\n"
-                . "Solo necesita que nos mencione su nombre o referencia ({$ref}) al contactar." . $firma;
-            wp_mail( $email, $subject, $body, $headers );
+            $titulo  = '¿Conoce a alguien que esté considerando la costa?';
+            $p1 = 'Muchos de nuestros clientes llegan por recomendación de personas como usted. Si conoce a alguien que esté considerando mudarse, invertir o establecerse en la costa mediterránea, estaremos encantados de ayudarle con el mismo rigor.';
+            $p2 = 'Si nos recomienda y esa persona contrata un informe, aplicamos un crédito en su próximo análisis como agradecimiento. Solo necesita que nos mencione su nombre o su referencia al contactar.';
+            $cuerpo = romvill_mail_cliente_h1( $titulo )
+                . romvill_mail_cliente_p( esc_html( $saludo ) )
+                . romvill_mail_cliente_p( esc_html( $p1 ) )
+                . romvill_mail_cliente_p( esc_html( $p2 ) )
+                . romvill_mail_cliente_tarjeta( 'Su referencia', $ref );
+            $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n" . $p2 . "\n\n"
+                . 'Su referencia: ' . $ref . "\n\nROMVILL - romvill.com";
+            romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
             update_post_meta( $id, '_rv_seq30_at', $now );
         }
 
@@ -162,11 +192,15 @@ function romvill_postentrega_run() {
         if ( $days >= 60 && ! get_post_meta( $id, '_rv_seq60_at', true ) ) {
             if ( $can_credit ) {
                 $subject = 'Su crédito de ' . $precio . '€ vence mañana';
-                $body = "Estimado/a {$nombre},\n\n"
-                    . "Su crédito de {$precio}€ aplicable hacia un informe superior de ROMVILL vence mañana.\n\n"
-                    . "Si desea aprovecharlo para {$credito['destino']}, contáctenos cuanto antes.\n\n"
-                    . "clients@romvill.com · Ref: {$ref}" . $firma;
-                wp_mail( $email, $subject, $body, $headers );
+                $titulo  = 'Su crédito vence mañana';
+                $p1 = 'Su crédito de ' . $precio . ' € aplicable hacia un informe superior de ROMVILL vence mañana. Si desea aprovecharlo para ' . $credito['destino'] . ', le agradeceremos que nos escriba cuanto antes.';
+                $cuerpo = romvill_mail_cliente_h1( $titulo )
+                    . romvill_mail_cliente_p( esc_html( $saludo ) )
+                    . romvill_mail_cliente_p( esc_html( $p1 ) )
+                    . romvill_mail_cliente_tarjeta( 'Su referencia', $ref );
+                $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n"
+                    . 'Su referencia: ' . $ref . "\n" . "Contacto: clients@romvill.com\n\nROMVILL - romvill.com";
+                romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
             }
             update_post_meta( $id, '_rv_seq60_at', $now );
         }
@@ -176,6 +210,21 @@ function romvill_postentrega_run() {
             update_post_meta( $id, '_rv_seq90_at', $now );
         }
     }
+}
+
+/** Saludo con nombre capitalizado; sin nombre, el genérico de la casa. */
+function romvill_pe_saludo( $nombre ) {
+    $n = romvill_mail_cliente_nombre( $nombre );
+    return $n !== '' ? sprintf( romvill_mail_cliente_t( 'saludo', 'es' ), $n ) : 'Estimado cliente:';
+}
+
+/**
+ * Envuelve el cuerpo en el marco corporativo (español) y envía multipart
+ * con AltBody. Remitente clients@ — lo fija romvill_mail_cliente_enviar().
+ */
+function romvill_pe_enviar( $email, $asunto, $titulo, $cuerpo_html, $alt ) {
+    $html = romvill_mail_cliente_marco( $cuerpo_html, 'es', $titulo );
+    return romvill_mail_cliente_enviar( $email, $asunto, $html, $alt );
 }
 
 /* ── Metabox: estado de la secuencia + borrador del día 15 ─────── */
