@@ -1111,7 +1111,7 @@ Análisis de Inteligencia Zonal
     );
     wp_mail( $email, $client_subject, $client_body, $client_headers );
 
-    $sent = wp_mail( get_option( 'admin_email' ), $subject, $email_body, $headers );
+    $sent = wp_mail( array( get_option( 'admin_email' ), 'info@romvill.com' ), $subject, $email_body, $headers );
     if ( $sent ) {
         wp_send_json_success( array( 'ref' => $ref ) );
     } else {
@@ -1194,7 +1194,7 @@ function romvill_handle_b1_submit() {
     }
 
     $intl_flag = $intl ? '⭐ CLIENTE INTERNACIONAL' : '';
-    $to        = get_option( 'admin_email' );
+    $to        = array( get_option( 'admin_email' ), 'info@romvill.com' );
     $subject   = "ROMVILL [{$ref}]" . ( $intl ? ' ⭐ INTERNACIONAL' : '' ) . " — Nueva Solicitud Bloque 1";
     $body      = "
 ╔══════════════════════════════════════════════════════╗
@@ -1435,7 +1435,7 @@ function romvill_handle_contact() {
     $rgpd_ip   = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
     $rgpd_when = current_time( 'Y-m-d H:i:s' );
 
-    $to      = get_option( 'admin_email' );
+    $to      = array( get_option( 'admin_email' ), 'info@romvill.com' );
     $subject = "Nueva solicitud de informe — {$nombre} {$apellido}";
     $body    = "Nueva solicitud de informe recibida desde romvill.com\n\n"
              . "Nombre:    {$nombre} {$apellido}\n"
@@ -1696,7 +1696,7 @@ function romvill_handle_newsletter() {
     update_option( 'romvill_newsletter_subscribers', $subs, false );
 
     wp_mail(
-        get_option( 'admin_email' ),
+        array( get_option( 'admin_email' ), 'info@romvill.com' ),
         'ROMVILL — Nueva suscripción al boletín',
         "Nuevo suscriptor del boletín de novedades:\n\n"
         . "Email:  {$email}\n"

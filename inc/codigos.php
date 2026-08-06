@@ -239,7 +239,7 @@ function romvill_rest_conceder( WP_REST_Request $req ) {
 		. "El código sigue SIN consumir: se gastará cuando el invitado envíe el Bloque 1.\n\n"
 		. "ROMVILL · info@romvill.com · www.romvill.com";
 	$aviso_admin = wp_mail(
-		get_option( 'admin_email' ),
+		array( get_option( 'admin_email' ), 'info@romvill.com' ),
 		$asunto_admin,
 		$cuerpo_admin,
 		array( 'Content-Type: text/plain; charset=UTF-8', 'From: ROMVILL <info@romvill.com>' )
