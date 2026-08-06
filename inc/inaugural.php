@@ -41,6 +41,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 const ROMVILL_INAUGURAL_ACTIVO = true;
 const ROMVILL_INAUGURAL_PLAZAS = 8;
 
+/* ── Testeadores con pase libre (decisión del dueño, 06-08-2026) ──
+ * Estos emails NUNCA son frenados por el escudo anti-abuso (ni límite
+ * por IP ni una-plaza-por-email): son las personas de confianza que
+ * prueban el sistema. Al terminar los testeos se reinicia el contador
+ * (endpoint /inaugural/reset con todas=1). */
+function romvill_es_tester( $email ) {
+	$testers = array( 'victoriaprz23@gmail.com', 'ggueter@gmail.com' );
+	return in_array( strtolower( trim( (string) $email ) ), $testers, true );
+}
+
 /* ── Registro de plazas ya concedidas ────────────────────────────── */
 /**
  * @return array plaza(int) => array( 'ref' => string, 'fecha' => 'Y-m-d H:i:s' )
@@ -169,14 +179,18 @@ function romvill_inaugural_consumir( $ref, $email = '' ) {
 
 	// [C1b] Una plaza por email. Sin email no se concede plaza.
 	if ( $email === '' || ! is_email( $email ) ) return false;
-	$plaza_previa = romvill_inaugural_plaza_por_email( $email );
-	if ( $plaza_previa !== false ) {
-		return (int) $plaza_previa; // Ya admitido: se reutiliza la suya.
+	$tester = romvill_es_tester( $email );
+	if ( ! $tester ) {
+		$plaza_previa = romvill_inaugural_plaza_por_email( $email );
+		if ( $plaza_previa !== false ) {
+			return (int) $plaza_previa; // Ya admitido: se reutiliza la suya.
+		}
 	}
 
-	// [C1c] Límite por IP: una plaza por IP cada hora.
+	// [C1c] Límite por IP: una plaza por IP cada hora (los testeadores
+	// tienen pase libre y no computan en este freno).
 	$ip    = romvill_ip_cliente();
-	$t_key = $ip !== '' ? 'rv_inaug_ip_' . md5( $ip ) : '';
+	$t_key = ( $ip !== '' && ! $tester ) ? 'rv_inaug_ip_' . md5( $ip ) : '';
 	if ( $t_key !== '' && get_transient( $t_key ) ) return false;
 
 	// [I3] Cerrojo atómico: add_option() devuelve false si la opción ya
