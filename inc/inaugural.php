@@ -304,6 +304,51 @@ add_action( 'rest_api_init', function () {
  * Registra a mano una plaza en el contador (restauraciones tras un reset
  * accidental o migraciones). Parametros: plaza=N, ref=RV-..., fecha (opcional).
  */
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'romvill/v1', '/inaugural/conceder-manual', array(
+		'methods'             => 'POST',
+		'callback'            => 'romvill_rest_inaugural_conceder_manual',
+		'permission_callback' => function () { return current_user_can( 'manage_options' ); },
+	) );
+} );
+
+/**
+ * Concede una plaza a una solicitud EXISTENTE saltando los limites
+ * anti-abuso (para falsos positivos: el escudo por IP bloqueo a un
+ * cliente real). Escribe la meta, el contador y envia el email de
+ * plaza al cliente. Parametro: id (de la solicitud).
+ */
+function romvill_rest_inaugural_conceder_manual( WP_REST_Request $req ) {
+	$id   = (int) $req->get_param( 'id' );
+	$post = get_post( $id );
+	if ( ! $post || ! defined( 'ROMVILL_SOL_CPT' ) || $post->post_type !== ROMVILL_SOL_CPT ) {
+		return new WP_Error( 'no_encontrada', 'No existe una solicitud con ese id.', array( 'status' => 404 ) );
+	}
+	if ( (int) get_post_meta( $id, '_rv_inaugural', true ) > 0 ) {
+		return new WP_Error( 'ya_tiene', 'Esa solicitud ya tiene plaza.', array( 'status' => 409 ) );
+	}
+	$usadas = romvill_inaugural_usadas();
+	if ( count( $usadas ) >= ROMVILL_INAUGURAL_PLAZAS ) {
+		return new WP_Error( 'agotadas', 'No quedan plazas.', array( 'status' => 409 ) );
+	}
+	$ref   = (string) get_post_meta( $id, '_rv_ref', true );
+	$email = (string) get_post_meta( $id, '_rv_email', true );
+	$nom   = (string) get_post_meta( $id, '_rv_nombre', true );
+	$lang  = (string) get_post_meta( $id, '_rv_lang', true );
+	if ( $lang === '' ) $lang = 'es';
+	$plaza = max( array_keys( $usadas ) ?: array( 0 ) ) + 1;
+	if ( ! add_option( 'rv_lock_plaza_' . $plaza, $ref, '', 'no' ) ) {
+		return new WP_Error( 'cerrojo', 'Cerrojo ocupado: reintente.', array( 'status' => 409 ) );
+	}
+	$usadas[ $plaza ] = array( 'ref' => $ref, 'fecha' => current_time( 'mysql' ) );
+	update_option( 'romvill_inaugural_usadas', $usadas, false );
+	update_post_meta( $id, '_rv_inaugural', $plaza );
+	$mail_ok = function_exists( 'romvill_mail_inaugural_cliente' ) && $email !== ''
+		? romvill_mail_inaugural_cliente( $email, $nom, $ref, $plaza, $lang )
+		: false;
+	return array( 'ok' => true, 'plaza' => $plaza, 'ref' => $ref, 'email_enviado' => (bool) $mail_ok, 'disponibles' => romvill_inaugural_disponibles() );
+}
+
 function romvill_rest_inaugural_registrar( WP_REST_Request $req ) {
 	$plaza = (int) $req->get_param( 'plaza' );
 	$ref   = strtoupper( sanitize_text_field( (string) $req->get_param( 'ref' ) ) );
