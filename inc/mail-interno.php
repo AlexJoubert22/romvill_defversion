@@ -42,7 +42,7 @@ function romvill_mint_marco( $contenido_html, $titulo ) {
 	// Logo RV claro por URL desde la propia web (no base64: Gmail lo
 	// bloquea). El wordmark tipográfico queda de respaldo si el gestor
 	// de correo bloquea imágenes.
-	$logo = esc_url( get_template_directory_uri() . '/assets/images/rv-logo-white.png' );
+	$logo = esc_url( get_template_directory_uri() . '/assets/images/rv-logo-email.png' );
 	return '<!DOCTYPE html>'
 	. '<html lang="es">'
 	. '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">'

@@ -417,11 +417,11 @@ function romvill_mail_cliente_marco( $contenido_html, $lang, $titulo ) {
 	// Logo RV claro para la cabecera tinta, por URL (no base64: Gmail lo
 	// bloquea). get_template_directory_uri() resuelve la ruta real del
 	// tema en producción (wp-content/themes/romvill-theme).
-	$logo = esc_url( get_template_directory_uri() . '/assets/images/rv-logo-white.png' );
+	$logo = esc_url( get_template_directory_uri() . '/assets/images/rv-logo-email.png' );
 
 	return '<!DOCTYPE html>'
 	. '<html lang="' . esc_attr( $lang ) . '">'
-	. '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">'
+	. '<head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">'
 	. '<title>' . esc_html( $titulo ) . '</title>'
 	. '<style type="text/css">'
 	. '@media only screen and (max-width:480px){'
