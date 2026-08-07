@@ -77,6 +77,9 @@ require_once get_template_directory() . '/inc/feedback.php';
 // romvill_feedback_review_url() de aquel archivo.
 require_once get_template_directory() . '/inc/entrega.php';
 
+// Agenda de llamadas: usa mail-cliente.php y mail-interno.php.
+require_once get_template_directory() . '/inc/agenda.php';
+
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
 function romvill_current_lang() {
@@ -985,6 +988,29 @@ function romvill_create_muestra() {
     }
     update_option( 'romvill_muestra_created', 'v1' );
     delete_transient( 'romvill_muestra_lock' );
+}
+
+add_action( 'init', 'romvill_create_agenda' );
+function romvill_create_agenda() {
+    if ( get_option( 'romvill_agenda_created' ) === 'v1' ) {
+        return;
+    }
+    if ( get_transient( 'romvill_agenda_lock' ) ) {
+        return;
+    }
+    set_transient( 'romvill_agenda_lock', 1, 30 );
+    if ( ! get_page_by_path( 'agendar-llamada' ) ) {
+        wp_insert_post( array(
+            'post_title'   => 'Agendar llamada',
+            'post_name'    => 'agendar-llamada',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'menu_order'   => 90,
+            'post_content' => '',
+        ) );
+    }
+    update_option( 'romvill_agenda_created', 'v1' );
+    delete_transient( 'romvill_agenda_lock' );
 }
 
 // ─── Generic Questionnaire AJAX Handler (Bloques 2/3/4) ──────
@@ -2136,7 +2162,7 @@ add_action( 'template_redirect', function () {
     // [M12] 'precios' se añade no por el nonce, sino porque muestra el contador
     // de plazas del Programa Inaugural: cacheado, seguiría anunciando plazas
     // libres cuando ya se han agotado.
-    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto', 'feedback', 'precios' ) ) ) {
+    if ( is_page( array( 'presupuesto-bloque-1', 'presupuesto-bloque-2', 'presupuesto-bloque-3', 'presupuesto-bloque-4', 'contacto', 'feedback', 'precios', 'agendar-llamada' ) ) ) {
         nocache_headers();
     }
 } );
