@@ -568,6 +568,7 @@ function romvill_emit_lang_seo() {
             'muestra-de-informe' => array( 'es' => 'Muestra de informe', 'en' => 'Sample report', 'fr' => 'Exemple de rapport', 'de' => 'Musterbericht', 'ru' => 'Образец отчёта' ),
             'privacidad'  => array( 'es' => 'Privacidad', 'en' => 'Privacy', 'fr' => 'Confidentialité', 'de' => 'Datenschutz', 'ru' => 'Конфиденциальность' ),
             'terminos'    => array( 'es' => 'Términos', 'en' => 'Terms', 'fr' => 'Conditions', 'de' => 'Bedingungen', 'ru' => 'Условия' ),
+            'aviso-legal' => array( 'es' => 'Aviso legal', 'en' => 'Legal Notice', 'fr' => 'Mentions légales', 'de' => 'Impressum', 'ru' => 'Правовая информация' ),
         );
         $bc_name = isset( $breadcrumb_names[ $page_key ][ $cur_lang ] )
             ? $breadcrumb_names[ $page_key ][ $cur_lang ]
@@ -781,6 +782,12 @@ function romvill_activate() {
             'order'    => 6,
         ),
         array(
+            'title'    => 'Aviso legal',
+            'slug'     => 'aviso-legal',
+            'template' => 'page-aviso-legal.php',
+            'order'    => 9,
+        ),
+        array(
             'title'    => 'Quiénes somos',
             'slug'     => 'quienes-somos',
             'template' => 'page-quienes-somos.php',
@@ -989,6 +996,33 @@ function romvill_create_muestra() {
     }
     update_option( 'romvill_muestra_created', 'v1' );
     delete_transient( 'romvill_muestra_lock' );
+}
+
+// Página /aviso-legal/ (LSSI-CE): creador idempotente en 'init', mismo
+// patrón que romvill_create_muestra. Es página legal INDEXABLE (no va en
+// ROMVILL_NOINDEX_SLUGS). El template page-aviso-legal.php se resuelve por
+// la jerarquía de plantillas de WordPress (page-{slug}.php).
+add_action( 'init', 'romvill_create_aviso' );
+function romvill_create_aviso() {
+    if ( get_option( 'romvill_aviso_created' ) === 'v1' ) {
+        return;
+    }
+    if ( get_transient( 'romvill_aviso_lock' ) ) {
+        return;
+    }
+    set_transient( 'romvill_aviso_lock', 1, 30 );
+    if ( ! get_page_by_path( 'aviso-legal' ) ) {
+        wp_insert_post( array(
+            'post_title'   => 'Aviso legal',
+            'post_name'    => 'aviso-legal',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'menu_order'   => 9,
+            'post_content' => '',
+        ) );
+    }
+    update_option( 'romvill_aviso_created', 'v1' );
+    delete_transient( 'romvill_aviso_lock' );
 }
 
 add_action( 'init', 'romvill_create_agenda' );

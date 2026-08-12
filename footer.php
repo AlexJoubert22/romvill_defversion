@@ -106,9 +106,12 @@
                     $priv_url   = romvill_link( $priv_page ? get_permalink( $priv_page ) : home_url( '/privacidad/' ) );
                     $terms_page = get_page_by_path( 'terminos' );
                     $terms_url  = romvill_link( $terms_page ? get_permalink( $terms_page ) : home_url( '/terminos/' ) );
+                    $aviso_page = get_page_by_path( 'aviso-legal' );
+                    $aviso_url  = romvill_link( $aviso_page ? get_permalink( $aviso_page ) : home_url( '/aviso-legal/' ) );
                     ?>
                     <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $priv_url ); ?>"><?php echo esc_html( romvill_t( 'footer.privacy' ) ); ?></a>
                     <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $terms_url ); ?>"><?php echo esc_html( romvill_t( 'footer.terms' ) ); ?></a>
+                    <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $aviso_url ); ?>"><?php echo esc_html( romvill_t( 'footer.avisolegal' ) ); ?></a>
                     <button type="button" class="cmplz-manage-consent text-xs text-slate-400 hover:text-secondary transition-colors bg-transparent border-0 p-0 cursor-pointer"><?php echo esc_html( romvill_t( 'footer.cookies' ) ); ?></button>
                 </div>
             </div>
