@@ -233,6 +233,21 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
       </script>
     </section>
 
+    <!-- Declaración de uso de IA (AI Act art. 50) -->
+    <section class="w-full px-4 md:px-10 pb-16 md:pb-24">
+        <div class="max-w-3xl mx-auto">
+            <div class="relative rounded-2xl border border-slate-200 dark:border-slate-700 border-t-[3px] border-t-secondary bg-white dark:bg-slate-800/50 shadow-xl p-8 md:p-10">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="h-[1px] w-10 bg-secondary"></div>
+                    <span class="text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-[0.2em]"><?php echo esc_html( romvill_t( 'met.ia.kicker' ) ); ?></span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-900 dark:text-white mb-5"><?php echo esc_html( romvill_t( 'met.ia.title' ) ); ?></h2>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4"><?php echo wp_kses( romvill_t( 'met.ia.p1' ), [ 'strong' => [ 'class' => [] ] ] ); ?></p>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed"><?php echo wp_kses( romvill_t( 'met.ia.p2' ), [ 'strong' => [ 'class' => [] ] ] ); ?></p>
+            </div>
+        </div>
+    </section>
+
     <section class="w-full px-4 pb-20">
         <div class="relative overflow-hidden rounded-2xl bg-[#101622] text-white max-w-7xl mx-auto px-6 py-16 md:px-20 md:py-24">
             <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"></div>
