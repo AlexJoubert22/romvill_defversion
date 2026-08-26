@@ -80,6 +80,7 @@ require_once get_template_directory() . '/inc/entrega.php';
 // Agenda de llamadas: usa mail-cliente.php y mail-interno.php.
 require_once get_template_directory() . '/inc/agenda.php';
 require_once get_template_directory() . '/inc/enviar-correo.php';
+require_once get_template_directory() . '/inc/publicar-informe.php';
 
 define( 'ROMVILL_LANGS', [ 'es', 'en', 'fr', 'de', 'ru' ] );
 
