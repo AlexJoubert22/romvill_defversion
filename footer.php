@@ -57,7 +57,7 @@
                         <label for="rv-news-email" class="sr-only"><?php echo esc_html( romvill_t( 'news.ph' ) ); ?></label>
                         <input type="email" id="rv-news-email" required placeholder="<?php echo esc_attr( romvill_t( 'news.ph' ) ); ?>"
                                class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors">
-                        <button type="submit" class="shrink-0 bg-secondary hover:bg-[#a3884c] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                        <button type="submit" class="shrink-0 bg-secondary hover:bg-[#B5952C] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                             <?php echo esc_html( romvill_t( 'news.btn' ) ); ?>
                         </button>
                     </form>
@@ -129,12 +129,12 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 /* === Banner de cookies Complianz — estilo ROMVILL (compacto, azul noche) === */
 #cmplz-cookiebanner-container .cmplz-cookiebanner.banner-1{
     --cmplz_banner_width:340px !important;
-    --cmplz_hyperlink_color:#BFA15F !important;
+    --cmplz_hyperlink_color:#D4AF37 !important;
     width:340px !important;
     max-width:calc(100vw - 32px) !important;
-    background:#101622 !important;
+    background:#000000 !important;
     color:#cbd5e1 !important;
-    border:1px solid rgba(191,161,95,.35) !important;
+    border:1px solid rgba(212,175,55,.35) !important;
     border-radius:14px !important;
     box-shadow:0 18px 50px rgba(0,0,0,.45) !important;
     padding:14px 18px 12px !important;
@@ -180,7 +180,7 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 .cmplz-message a,
 .cmplz-cookiebanner.banner-1 a.cmplz-link,
 .cmplz-cookiebanner.banner-1 .cmplz-links a,
-.cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#BFA15F !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#D4AF37 !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-categories .cmplz-category{ background-color:rgba(255,255,255,.06) !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-manage-options,
 .cmplz-cookiebanner.banner-1 .cmplz-manage-third-parties,
@@ -200,8 +200,8 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     font-weight:600 !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-accept{
-    background:#BFA15F !important;
-    color:#101622 !important;
+    background:#D4AF37 !important;
+    color:#000000 !important;
     border:none !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-accept:hover{ background:#cbb06e !important; }

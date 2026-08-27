@@ -10,10 +10,10 @@ module.exports = {
             colors: {
                 'primary':           '#135bec',
                 'primary-dark':      '#0d3c9e',
-                'secondary':         '#BFA15F',
+                'secondary':         '#D4AF37',
                 'secondary-ink':     '#8A6B18',
                 'background-light':  '#f8f9fc',
-                'background-dark':   '#101622',
+                'background-dark':   '#000000',
                 'slate-dark':        '#1e293b',
             },
             fontFamily: {

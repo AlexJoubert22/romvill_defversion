@@ -54,7 +54,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
             );
             foreach ( $marks as $i => $mk ) :
                 if ( $i > 0 ) : ?>
-                    <span style="color:#BFA15F;font-weight:700">·</span>
+                    <span style="color:#D4AF37;font-weight:700">·</span>
                 <?php endif; ?>
                 <span class="text-slate-600 dark:text-slate-300" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em">
                     <span class="material-symbols-outlined text-secondary" style="font-size:18px" aria-hidden="true"><?php echo esc_html( $mk[0] ); ?></span>
@@ -78,7 +78,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
             </p>
 
             <!-- PULL-QUOTE -->
-            <blockquote class="text-secondary" style="<?php echo $serif; ?>font-style:italic;font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.4;border-left:3px solid #BFA15F;padding-left:1.1rem;margin:2.4rem 0 0">
+            <blockquote class="text-secondary" style="<?php echo $serif; ?>font-style:italic;font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.4;border-left:3px solid #D4AF37;padding-left:1.1rem;margin:2.4rem 0 0">
                 <?php echo esc_html( romvill_t( 'qs.quote' ) ); ?>
             </blockquote>
         </div>
@@ -123,7 +123,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
                     array( 'tune',       'qs.v4.t', 'qs.v4.d' ),
                 );
                 foreach ( $vals as $v ) : ?>
-                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl" style="padding:1.5rem 1.6rem;border-left:3px solid #BFA15F">
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl" style="padding:1.5rem 1.6rem;border-left:3px solid #D4AF37">
                         <span class="material-symbols-outlined text-secondary" style="font-size:30px;margin-bottom:.5rem;display:block"><?php echo esc_html( $v[0] ); ?></span>
                         <h3 class="text-slate-900 dark:text-white" style="font-weight:800;font-size:1.02rem;margin:0 0 .35rem"><?php echo esc_html( romvill_t( $v[1] ) ); ?></h3>
                         <p class="text-slate-600 dark:text-slate-400" style="font-size:.92rem;line-height:1.6;margin:0"><?php echo esc_html( romvill_t( $v[2] ) ); ?></p>
@@ -134,7 +134,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
     </section>
 
     <!-- CIERRE -->
-    <section class="w-full" style="background:#101622">
+    <section class="w-full" style="background:#000000">
         <div class="mx-auto px-6 py-20 text-center" style="max-width:760px">
             <p style="<?php echo $serif; ?>font-style:italic;color:#e8ecf3;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:0">
                 <?php echo esc_html( romvill_t( 'qs.close1' ) ); ?>
@@ -145,7 +145,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
             <p style="color:#9aa7b8;font-size:.95rem;letter-spacing:.04em;margin:1.6rem 0 0">
                 <?php echo esc_html( romvill_t( 'qs.sign' ) ); ?>
             </p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center" style="margin-top:1.8rem;background:#BFA15F;color:#101622;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center" style="margin-top:1.8rem;background:#D4AF37;color:#000000;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
                 <?php echo esc_html( romvill_t( 'qs.cta' ) ); ?>
             </a>
         </div>

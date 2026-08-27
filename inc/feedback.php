@@ -647,7 +647,7 @@ function romvill_fb_box_detalle( $post ) {
 			return;
 		}
 		echo '<pre style="white-space:pre-wrap;font-family:inherit;font-size:13px;line-height:1.7;background:#f6f7f7;'
-			. 'border:1px solid #dcdcde;border-left:4px solid #BFA15F;border-radius:6px;padding:14px;margin:0 0 18px">'
+			. 'border:1px solid #dcdcde;border-left:4px solid #D4AF37;border-radius:6px;padding:14px;margin:0 0 18px">'
 			. esc_html( $texto ) . '</pre>';
 	};
 	$bloque( '¿QUÉ MEJORARÍA?', $mejora );
@@ -675,7 +675,7 @@ function romvill_fb_counters() {
 	$media = round( $suma / $n, 2 );
 
 	echo '<div style="margin:12px 0 4px;padding:12px 16px;background:#fff;border:1px solid #dcdcde;'
-		. 'border-left:4px solid #BFA15F;border-radius:6px">'
+		. 'border-left:4px solid #D4AF37;border-radius:6px">'
 		. '<strong>Valoraciones recibidas:</strong> ' . (int) $n
 		. ' &nbsp;·&nbsp; <strong>Media:</strong> ' . esc_html( number_format_i18n( $media, 2 ) ) . ' / 5'
 		. '</div>';

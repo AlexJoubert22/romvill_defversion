@@ -185,9 +185,9 @@ $perfil_pages = array(
         #rvix-sl .nd .lbx i{font-style:normal;font-weight:400;font-size:10px;color:#cdd5e1;margin-top:1px}
         #rvix-sl .tg{position:absolute;bottom:14px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
         #rvix-sl .tg.l{left:14px;background:rgba(255,255,255,.14);color:#fff}
-        #rvix-sl .tg.r{right:14px;background:rgba(212,184,106,.92);color:#101622}
+        #rvix-sl .tg.r{right:14px;background:rgba(212,184,106,.92);color:#000000}
         #rvix-sl .dv{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#D4B86A;box-shadow:0 0 12px rgba(212,184,106,.7);z-index:5}
-        #rvix-sl .hd2{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);z-index:6;width:44px;height:44px;border-radius:50%;background:#D4B86A;color:#101622;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+        #rvix-sl .hd2{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);z-index:6;width:44px;height:44px;border-radius:50%;background:#D4B86A;color:#000000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.4)}
         #rvix-sl .hd2 svg{width:22px;height:22px}
         @media(max-width:900px){#rvix-sl .cmp{height:420px}#rvix-sl .nd .lb{max-width:none;padding:6px 9px}#rvix-sl .nd .lbx i{display:none}#rvix-sl .nd .lbx b{font-size:11px}}
         </style>
@@ -225,7 +225,7 @@ $perfil_pages = array(
             <p class="text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
                 <?php echo esc_html( romvill_t( 'ana.cta.desc' ) ); ?>
             </p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#a3884c] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#B5952C] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
                 <?php echo esc_html( romvill_t( 'ana.cta.btn' ) ); ?>
             </a>
         </div>

@@ -353,7 +353,7 @@ function romvill_sol_box_contacto( $post ) {
     if ( $inaug ) {
         $total = defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 5;
         echo '<p style="margin:0 0 10px;padding:8px 12px;background:#fffbe6;border:1px solid #f0d98a;'
-            . 'border-left:4px solid #BFA15F;border-radius:6px;font-size:12px;line-height:1.5">'
+            . 'border-left:4px solid #D4AF37;border-radius:6px;font-size:12px;line-height:1.5">'
             . '<strong>🏛 Plaza inaugural nº ' . (int) $inaug . '/' . (int) $total . '</strong><br>'
             . 'Expediente sin coste. Contraprestación: reseña en Google.</p>';
     }

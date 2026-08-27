@@ -448,8 +448,8 @@ function romvill_agenda_mail_interno( $a ) {
 
 	// La cita: día y hora GRANDES.
 	$cita_html = '<div style="' . $f . 'padding:18px 16px;text-align:center;">'
-		. '<div style="' . $f . 'font-size:22px;line-height:1.35;font-weight:800;color:#101622;text-transform:capitalize;">' . esc_html( $legible ) . '</div>'
-		. '<div style="' . $f . 'font-size:30px;line-height:1.25;font-weight:800;color:#101622;letter-spacing:1px;padding-top:2px;">' . esc_html( $d( 'hora' ) ) . '</div>'
+		. '<div style="' . $f . 'font-size:22px;line-height:1.35;font-weight:800;color:#000000;text-transform:capitalize;">' . esc_html( $legible ) . '</div>'
+		. '<div style="' . $f . 'font-size:30px;line-height:1.25;font-weight:800;color:#000000;letter-spacing:1px;padding-top:2px;">' . esc_html( $d( 'hora' ) ) . '</div>'
 		. '<div style="' . $f . 'font-size:13px;color:#6b7280;padding-top:6px;">Le llama usted al ' . esc_html( $d( 'tel', '—' ) ) . '</div>'
 		. ( $d( 'previa' ) !== ''
 			? '<div style="' . $f . 'font-size:12.5px;color:#8a919c;padding-top:8px;">Sustituye a la cita anterior: ' . esc_html( $d( 'previa' ) ) . '</div>'

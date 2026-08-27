@@ -55,7 +55,7 @@ $packs = array(
             <?php if ( $inaug_badge ) : ?>
                 <!-- Chip del Programa Inaugural: solo mientras queden plazas -->
                 <div class="mt-6 flex justify-center">
-                    <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(191,161,95,.55);background:linear-gradient(180deg,rgba(191,161,95,.14),rgba(191,161,95,.06));color:#8a6d2f;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:9px 20px;border-radius:999px">
+                    <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(212,175,55,.55);background:linear-gradient(180deg,rgba(212,175,55,.14),rgba(212,175,55,.06));color:#8a6d2f;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:9px 20px;border-radius:999px">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;flex:0 0 auto">
                             <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
                         </svg>
@@ -182,7 +182,7 @@ $packs = array(
             $muestra_url = romvill_link( get_permalink( $muestra_page ) );
         ?>
         <div class="mt-10 text-center">
-            <a href="<?php echo esc_url( $muestra_url ); ?>" class="inline-flex items-center justify-center gap-2" style="background:#BFA15F;color:#101622;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
+            <a href="<?php echo esc_url( $muestra_url ); ?>" class="inline-flex items-center justify-center gap-2" style="background:#D4AF37;color:#000000;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5L14 3z"/><path d="M14 3v4.5h4.5M9 13h6M9 16.5h6"/></svg>
                 <?php echo esc_html( romvill_t( 'mu.link.ver' ) ); ?> <span aria-hidden="true">&rarr;</span>
             </a>

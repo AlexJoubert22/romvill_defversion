@@ -40,7 +40,7 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
             <div style="color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;margin-bottom:1.1rem"><?php echo esc_html( romvill_t( 'zona.hero.kicker' ) ); ?></div>
             <h1 class="text-white" style="<?php echo $serif; ?>font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.08;margin:0"><?php echo esc_html( romvill_t( 'zona.' . $_key . '.h1' ) ); ?></h1>
             <p style="color:#e4e9f1;font-size:clamp(1.05rem,2.3vw,1.25rem);line-height:1.6;max-width:620px;margin:1.5rem auto 0"><?php echo esc_html( romvill_t( 'zona.' . $_key . '.sub' ) ); ?></p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center gap-2" style="margin-top:1.9rem;background:#BFA15F;color:#101622;font-weight:700;padding:.9rem 2rem;border-radius:999px;text-decoration:none"><?php echo esc_html( romvill_t( 'zona.hero.cta' ) ); ?> <?php echo $arrow; ?></a>
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center gap-2" style="margin-top:1.9rem;background:#D4AF37;color:#000000;font-weight:700;padding:.9rem 2rem;border-radius:999px;text-decoration:none"><?php echo esc_html( romvill_t( 'zona.hero.cta' ) ); ?> <?php echo $arrow; ?></a>
         </div>
     </section>
 
@@ -72,7 +72,7 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
                     array( 'dev', '<rect x="3" y="4" width="18" height="16" rx="1.2"/><path d="M3 9.5h18M9.5 9.5V20"/>' ),
                 );
                 foreach ( $dims as $d ) : ?>
-                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl" style="padding:20px 22px;border-left:3px solid #BFA15F">
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl" style="padding:20px 22px;border-left:3px solid #D4AF37">
                         <svg class="text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:26px;height:26px;margin-bottom:10px"><?php echo $d[1]; ?></svg>
                         <h3 class="text-slate-900 dark:text-white" style="font-weight:800;font-size:1.02rem;margin:0 0 .35rem"><?php echo esc_html( romvill_t( 'zona.dim.' . $d[0] . '.t' ) ); ?></h3>
                         <p class="text-slate-600 dark:text-slate-400" style="font-size:.94rem;line-height:1.6;margin:0"><?php echo esc_html( romvill_t( 'zona.dim.' . $d[0] . '.d' ) ); ?></p>
@@ -112,11 +112,11 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
     </section>
 
     <!-- CIERRE + CTA (común) -->
-    <section class="w-full zn-reveal" style="background:#101622">
+    <section class="w-full zn-reveal" style="background:#000000">
         <div class="mx-auto px-6 py-20 text-center" style="max-width:760px">
             <h2 class="text-white" style="<?php echo $serif; ?>font-weight:600;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.25;margin:0"><?php echo esc_html( romvill_t( 'zona.close.title' ) ); ?></h2>
             <p style="color:#cdd5e0;font-size:1.08rem;line-height:1.7;max-width:560px;margin:1rem auto 0"><?php echo esc_html( romvill_t( 'zona.close.p' ) ); ?></p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center gap-2" style="margin-top:1.8rem;background:#BFA15F;color:#101622;font-weight:700;padding:.9rem 2rem;border-radius:999px;text-decoration:none"><?php echo esc_html( romvill_t( 'zona.close.cta' ) ); ?> <?php echo $arrow; ?></a>
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center gap-2" style="margin-top:1.8rem;background:#D4AF37;color:#000000;font-weight:700;padding:.9rem 2rem;border-radius:999px;text-decoration:none"><?php echo esc_html( romvill_t( 'zona.close.cta' ) ); ?> <?php echo $arrow; ?></a>
         </div>
     </section>
 

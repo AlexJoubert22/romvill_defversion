@@ -396,9 +396,9 @@ function romvill_mail_cliente_t( $key, $lang ) {
 
 /**
  * Envuelve el contenido en el marco de marca: fondo claro, cabecera
- * tinta #101622 con el logo RV servido por URL desde la propia web
+ * tinta #000000 con el logo RV servido por URL desde la propia web
  * (el wordmark ROMVILL tipográfico se mantiene como respaldo si el
- * cliente bloquea imágenes), filete dorado #BFA15F y pie sobrio.
+ * cliente bloquea imágenes), filete dorado #D4AF37 y pie sobrio.
  *
  * RESPONSIVE: tabla fluida width:100% con max-width:600px (nada de
  * ancho fijo), imágenes con height:auto y media query a 480 px que
@@ -438,13 +438,13 @@ function romvill_mail_cliente_marco( $contenido_html, $lang, $titulo ) {
 	. '<tr><td align="center" class="rv-outer" style="padding:28px 12px;">'
 	.   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background-color:#ffffff;border:1px solid #e4e6ea;">'
 	// Cabecera tinta: logo RV por URL + wordmark tipográfico de respaldo.
-	.   '<tr><td align="center" class="rv-head" style="background-color:#101622;padding:26px 40px 22px 40px;">'
+	.   '<tr><td align="center" class="rv-head" style="background-color:#000000;padding:26px 40px 22px 40px;">'
 	.     '<img src="' . $logo . '" alt="RV" width="88" style="display:block;width:88px;max-width:100%;height:auto;border:0;margin:0 auto 14px auto;">'
 	.     '<div style="' . $fuente . 'font-size:24px;line-height:1.2;font-weight:700;letter-spacing:9px;color:#ffffff;">ROMVILL</div>'
-	.     '<div style="' . $fuente . 'font-size:11px;line-height:1.4;letter-spacing:3px;text-transform:uppercase;color:#BFA15F;padding-top:8px;">' . $sub . '</div>'
+	.     '<div style="' . $fuente . 'font-size:11px;line-height:1.4;letter-spacing:3px;text-transform:uppercase;color:#D4AF37;padding-top:8px;">' . $sub . '</div>'
 	.   '</td></tr>'
 	// Filete dorado fino.
-	.   '<tr><td style="height:3px;line-height:3px;font-size:1px;background-color:#BFA15F;">&#160;</td></tr>'
+	.   '<tr><td style="height:3px;line-height:3px;font-size:1px;background-color:#D4AF37;">&#160;</td></tr>'
 	// Contenido.
 	.   '<tr><td class="rv-body" style="padding:38px 44px 30px 44px;">' . $contenido_html . '</td></tr>'
 	// Pie sobrio.
@@ -464,7 +464,7 @@ function romvill_mail_cliente_p( $texto_html, $extra = '' ) {
 
 /** Título H1 del email. */
 function romvill_mail_cliente_h1( $texto ) {
-	return '<h1 style="margin:0 0 20px 0;font-family:-apple-system,\'Segoe UI\',Calibri,Arial,sans-serif;font-size:22px;line-height:1.35;font-weight:600;color:#101622;">' . esc_html( $texto ) . '</h1>';
+	return '<h1 style="margin:0 0 20px 0;font-family:-apple-system,\'Segoe UI\',Calibri,Arial,sans-serif;font-size:22px;line-height:1.35;font-weight:600;color:#000000;">' . esc_html( $texto ) . '</h1>';
 }
 
 /**
@@ -476,7 +476,7 @@ function romvill_mail_cliente_tarjeta( $etiqueta, $valor_grande, $valor_peq = ''
 	return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:6px 0 22px 0;">'
 	. '<tr><td align="center" class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;padding:20px 16px;">'
 	.   '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding-bottom:6px;">' . esc_html( $etiqueta ) . '</div>'
-	.   '<div class="rv-big" style="' . $fuente . 'font-size:24px;line-height:1.3;font-weight:700;letter-spacing:1px;color:#101622;word-break:break-word;">' . esc_html( $valor_grande ) . '</div>'
+	.   '<div class="rv-big" style="' . $fuente . 'font-size:24px;line-height:1.3;font-weight:700;letter-spacing:1px;color:#000000;word-break:break-word;">' . esc_html( $valor_grande ) . '</div>'
 	.   ( $valor_peq !== '' ? '<div style="' . $fuente . 'font-size:14px;line-height:1.5;color:#6b7280;padding-top:6px;">' . esc_html( $valor_peq ) . '</div>' : '' )
 	. '</td></tr></table>';
 }
@@ -493,9 +493,9 @@ function romvill_mail_cliente_tarjeta( $etiqueta, $valor_grande, $valor_peq = ''
 function romvill_mail_cliente_btn( $texto, $url, $primario = true ) {
 	$fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
 	$celda  = $primario
-		? 'background-color:#101622;border:1px solid #101622;'
-		: 'background-color:#ffffff;border:1px solid #101622;';
-	$color  = $primario ? '#ffffff' : '#101622';
+		? 'background-color:#000000;border:1px solid #000000;'
+		: 'background-color:#ffffff;border:1px solid #000000;';
+	$color  = $primario ? '#ffffff' : '#000000';
 	return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:6px auto 24px auto;">'
 	. '<tr><td align="center" style="' . $celda . '">'
 	.   '<a href="' . esc_url( $url ) . '" style="' . $fuente . 'display:inline-block;padding:13px 30px;font-size:14px;line-height:1.4;letter-spacing:1px;color:' . $color . ';text-decoration:none;">' . esc_html( $texto ) . '</a>'
@@ -608,8 +608,8 @@ function romvill_mail_inaugural_cliente( $email, $nom, $ref, $plaza, $lang ) {
 	// Recuadro del plazo: filete dorado a la izquierda, fondo marfil.
 	$fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
 	$plazo_html = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 22px 0;">'
-		. '<tr><td style="background-color:#faf7ef;border-left:3px solid #BFA15F;padding:16px 20px;">'
-		.   '<div style="' . $fuente . 'font-size:15px;line-height:1.6;font-weight:600;color:#101622;">' . esc_html( $t( 'c2.plazo' ) ) . '</div>'
+		. '<tr><td style="background-color:#faf7ef;border-left:3px solid #D4AF37;padding:16px 20px;">'
+		.   '<div style="' . $fuente . 'font-size:15px;line-height:1.6;font-weight:600;color:#000000;">' . esc_html( $t( 'c2.plazo' ) ) . '</div>'
 		. '</td></tr></table>';
 
 	$cuerpo = romvill_mail_cliente_h1( $t( 'c2.titulo' ) )
@@ -697,17 +697,17 @@ function romvill_mail_presupuesto_cliente( $email, $nom, $ref, $zona, $precio, $
 	$incluye_filas = '';
 	foreach ( array( 'p.inc1', 'p.inc2', 'p.inc3', 'p.inc4', 'p.inc5' ) as $k ) {
 		$incluye_filas .= '<tr>'
-			. '<td valign="top" width="22" style="' . $fuente . 'font-size:15px;line-height:1.55;color:#BFA15F;font-weight:700;padding:0 0 8px 0;">&#10003;</td>'
+			. '<td valign="top" width="22" style="' . $fuente . 'font-size:15px;line-height:1.55;color:#D4AF37;font-weight:700;padding:0 0 8px 0;">&#10003;</td>'
 			. '<td style="' . $fuente . 'font-size:14px;line-height:1.55;color:#333b47;padding:0 0 8px 0;">' . esc_html( $t( $k ) ) . '</td>'
 			. '</tr>';
 	}
 
 	$tarjeta = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:6px 0 24px 0;">'
-		. '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #BFA15F;padding:22px 24px;">'
+		. '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #D4AF37;padding:22px 24px;">'
 		.   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">'
 		// Producto.
 		.   '<tr><td colspan="2" style="' . $label_css . 'padding-bottom:6px;">' . esc_html( $t( 'p.card_label' ) ) . '</td></tr>'
-		.   '<tr><td colspan="2" style="' . $fuente . 'font-size:19px;line-height:1.35;font-weight:700;color:#101622;">' . esc_html( $t( 'p.producto' ) ) . '</td></tr>'
+		.   '<tr><td colspan="2" style="' . $fuente . 'font-size:19px;line-height:1.35;font-weight:700;color:#000000;">' . esc_html( $t( 'p.producto' ) ) . '</td></tr>'
 		.   '<tr><td colspan="2" style="' . $fuente . 'font-size:14px;line-height:1.5;color:#6b7280;padding-top:4px;">' . esc_html( $t( 'p.zona_label' ) ) . ': ' . esc_html( $zona_txt ) . '</td></tr>'
 		.   $divisor
 		// Qué incluye.
@@ -720,23 +720,23 @@ function romvill_mail_presupuesto_cliente( $email, $nom, $ref, $zona, $precio, $
 		.   $divisor
 		// Precio.
 		.   '<tr><td colspan="2" style="' . $label_css . 'padding-bottom:4px;">' . esc_html( $t( 'p.precio_label' ) ) . '</td></tr>'
-		.   '<tr><td colspan="2" class="rv-big" style="' . $fuente . 'font-size:26px;line-height:1.25;font-weight:700;color:#101622;">' . esc_html( $precio_big ) . '</td></tr>'
+		.   '<tr><td colspan="2" class="rv-big" style="' . $fuente . 'font-size:26px;line-height:1.25;font-weight:700;color:#000000;">' . esc_html( $precio_big ) . '</td></tr>'
 		.   ( $precio_nota !== '' ? '<tr><td colspan="2" style="' . $fuente . 'font-size:13px;line-height:1.5;color:#6b7280;padding-top:4px;">' . esc_html( $precio_nota ) . '</td></tr>' : '' )
 		.   $divisor
 		// Plazo de entrega.
 		.   '<tr><td colspan="2" style="' . $label_css . 'padding-bottom:4px;">' . esc_html( $t( 'p.plazo_label' ) ) . '</td></tr>'
-		.   '<tr><td colspan="2" style="' . $fuente . 'font-size:15px;line-height:1.5;font-weight:600;color:#101622;">' . esc_html( $t( 'p.plazo' ) ) . '</td></tr>'
+		.   '<tr><td colspan="2" style="' . $fuente . 'font-size:15px;line-height:1.5;font-weight:600;color:#000000;">' . esc_html( $t( 'p.plazo' ) ) . '</td></tr>'
 		.   '</table>'
 		. '</td></tr></table>';
 
 	// ── Bloque CÓMO ACEPTAR (tinta + palabra de aceptación en dorado) ─
 	$aceptar_txt = sprintf(
 		esc_html( $t( 'p.aceptar' ) ),
-		'<strong style="color:#BFA15F;">' . esc_html( $t( 'p.palabra' ) ) . '</strong>'
+		'<strong style="color:#D4AF37;">' . esc_html( $t( 'p.palabra' ) ) . '</strong>'
 	);
 	$aceptar = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 24px 0;">'
-		. '<tr><td class="rv-card" style="background-color:#101622;padding:22px 24px;">'
-		.   '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#BFA15F;padding-bottom:8px;">' . esc_html( $t( 'p.aceptar_titulo' ) ) . '</div>'
+		. '<tr><td class="rv-card" style="background-color:#000000;padding:22px 24px;">'
+		.   '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;padding-bottom:8px;">' . esc_html( $t( 'p.aceptar_titulo' ) ) . '</div>'
 		.   '<div style="' . $fuente . 'font-size:15px;line-height:1.6;color:#ffffff;">' . $aceptar_txt . '</div>'
 		.   '<div style="' . $fuente . 'font-size:13px;line-height:1.5;color:#9aa1ac;padding-top:8px;">' . esc_html( $t( 'p.aceptar_alt' ) ) . '</div>'
 		. '</td></tr></table>';

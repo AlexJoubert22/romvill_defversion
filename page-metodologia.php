@@ -249,7 +249,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
     </section>
 
     <section class="w-full px-4 pb-20">
-        <div class="relative overflow-hidden rounded-2xl bg-[#101622] text-white max-w-7xl mx-auto px-6 py-16 md:px-20 md:py-24">
+        <div class="relative overflow-hidden rounded-2xl bg-[#000000] text-white max-w-7xl mx-auto px-6 py-16 md:px-20 md:py-24">
             <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"></div>
             <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
                 <div class="max-w-xl space-y-6">
@@ -257,7 +257,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     <p class="text-slate-300 text-lg font-light leading-relaxed"><?php echo esc_html( romvill_t( 'met.cta.desc' ) ); ?></p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-secondary text-slate-900 font-bold text-sm hover:bg-[#a3884c] transition-colors shadow-lg shadow-secondary/20">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-secondary text-slate-900 font-bold text-sm hover:bg-[#B5952C] transition-colors shadow-lg shadow-secondary/20">
                         <?php echo esc_html( romvill_t( 'met.cta.btn' ) ); ?>
                     </a>
                 </div>

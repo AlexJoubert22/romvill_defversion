@@ -136,7 +136,7 @@ function romvill_postentrega_run() {
                     $filas .= '<div style="' . $fuente . 'font-size:14px;line-height:1.7;color:#333b47;">' . esc_html( $linea ) . '</div>';
                 }
                 $tarjeta_credito = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 20px 0;">'
-                    . '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #BFA15F;padding:18px 20px;">'
+                    . '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #D4AF37;padding:18px 20px;">'
                     . '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding-bottom:8px;">Su cr&#233;dito</div>'
                     . $filas
                     . '</td></tr></table>';
