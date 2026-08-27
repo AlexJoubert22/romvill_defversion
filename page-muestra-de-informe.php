@@ -68,7 +68,7 @@ $_seasons = array(
 <main class="flex-grow" id="rv-mu">
 <style>
 #rv-mu{
-  --mu-bg:#FBFAF7;--mu-surface:#FFFFFF;--mu-surface2:#F5F3EE;--mu-cover:#000000;--mu-cover2:#1A2338;
+  --mu-bg:#FBFAF7;--mu-surface:#FFFFFF;--mu-surface2:#F5F3EE;--mu-cover:#000000;--mu-cover2:#000000;
   --mu-t1:#000000;--mu-t2:#3D4A5F;--mu-t3:#5C6B80;
   --mu-oc1:#FFFFFF;--mu-oc2:#C7D1E0;--mu-oc3:#93A3BA;
   --mu-line:#E8E4DA;--mu-lines:#D6D0C2;
@@ -78,7 +78,7 @@ $_seasons = array(
   background:var(--mu-bg)
 }
 .dark #rv-mu{
-  --mu-bg:#0B101B;--mu-surface:#141B2A;--mu-surface2:#1C2537;--mu-cover:#080C14;--mu-cover2:#141B2A;
+  --mu-bg:#000000;--mu-surface:#0E0D0A;--mu-surface2:#161410;--mu-cover:#000000;--mu-cover2:#0E0D0A;
   --mu-t1:#EDF1F7;--mu-t2:#B8C2D2;--mu-t3:#8593A8;
   --mu-line:#232D42;--mu-lines:#313D57;
   --mu-goldd:#E3C566;--mu-golds:rgba(212,175,55,.10);--mu-goldb:rgba(212,175,55,.28);
@@ -129,7 +129,7 @@ $_seasons = array(
 #rv-mu .mini{display:block;font-size:.8rem;color:var(--mu-t3);margin-top:2px;line-height:1.5}
 #rv-mu .chev{flex:0 0 auto;width:30px;height:30px;border-radius:999px;border:1.5px solid var(--mu-lines);display:flex;align-items:center;justify-content:center;color:var(--mu-t3);transition:transform .45s ease,background .15s ease,color .15s ease}
 #rv-mu .chev svg{width:15px;height:15px}
-#rv-mu .dim.open .chev{transform:rotate(90deg);background:var(--mu-gold);border-color:var(--mu-gold);color:#0B101B}
+#rv-mu .dim.open .chev{transform:rotate(90deg);background:var(--mu-gold);border-color:var(--mu-gold);color:#000000}
 #rv-mu .dbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
 #rv-mu .dim.open .dbody{grid-template-rows:1fr}
 #rv-mu .dwrap{overflow:hidden}
@@ -226,7 +226,7 @@ $_seasons = array(
 #rv-mu .ctax{position:relative;overflow:hidden;background:linear-gradient(160deg,#16203a,var(--mu-cover));color:#fff;text-align:center;padding:64px 20px;margin-top:10px}
 #rv-mu .ctax h2{font-weight:600;font-size:clamp(1.5rem,3.4vw,2.1rem);margin:0;color:#fff}
 #rv-mu .ctax p{color:#cdd5e0;max-width:560px;margin:14px auto 0;line-height:1.7}
-#rv-mu .btnx{display:inline-flex;align-items:center;gap:9px;background:var(--mu-gold);color:#0B101B;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+#rv-mu .btnx{display:inline-flex;align-items:center;gap:9px;background:var(--mu-gold);color:#000000;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
 #rv-mu .btnx:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(212,175,55,.34)}
 
 @media(max-width:860px){
