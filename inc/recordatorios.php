@@ -106,13 +106,13 @@ function romvill_rem_bloque_acepto() {
     $fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
     $txt = sprintf(
         esc_html( romvill_rem_txt( 'p.aceptar' ) ),
-        '<strong style="color:#D4AF37;">' . esc_html( romvill_rem_txt( 'p.palabra' ) ) . '</strong>'
+        '<strong style="color:#F0C24A;">' . esc_html( romvill_rem_txt( 'p.palabra' ) ) . '</strong>'
     );
     return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 22px 0;">'
         . '<tr><td class="rv-card" style="background-color:#000000;padding:22px 24px;">'
-        .   '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;padding-bottom:8px;">' . esc_html( romvill_rem_txt( 'p.aceptar_titulo' ) ) . '</div>'
+        .   '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F0C24A;padding-bottom:8px;">' . esc_html( romvill_rem_txt( 'p.aceptar_titulo' ) ) . '</div>'
         .   '<div style="' . $fuente . 'font-size:15px;line-height:1.6;color:#ffffff;">' . $txt . '</div>'
-        .   '<div style="' . $fuente . 'font-size:13px;line-height:1.5;color:#9aa1ac;padding-top:8px;">' . esc_html( romvill_rem_txt( 'p.aceptar_alt' ) ) . '</div>'
+        .   '<div style="' . $fuente . 'font-size:13px;line-height:1.5;color:#A3A09D;padding-top:8px;">' . esc_html( romvill_rem_txt( 'p.aceptar_alt' ) ) . '</div>'
         . '</td></tr></table>';
 }
 

@@ -185,22 +185,22 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
           <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto"><?php echo esc_html( romvill_t( 'ix.hs.help' ) ); ?></p>
         </div>
         <style>
-        #rvix-hs .scene{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(148,163,184,.25)}
+        #rvix-hs .scene{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(164, 161, 158,.25)}
         #rvix-hs .bg2{position:absolute;inset:0;background-size:cover;background-position:center}
-        #rvix-hs .vl2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,16,24,.45),rgba(11,16,24,.78))}
+        #rvix-hs .vl2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.45),rgba(0, 0, 0,.78))}
         #rvix-hs .spot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border:0;background:transparent;cursor:pointer;padding:0;z-index:3}
         #rvix-hs .spot .core{position:absolute;inset:7px;border-radius:50%;background:#D4B86A;box-shadow:0 0 10px rgba(212,184,106,.8)}
         #rvix-hs .spot .rng{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(212,184,106,.7);animation:rvixpulse 2.2s ease-out infinite}
         @keyframes rvixpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
         #rvix-hs .spot.on .core{background:#fff;box-shadow:0 0 0 5px rgba(212,184,106,.5),0 0 16px rgba(212,184,106,.9)}
         #rvix-hs .spot.on .rng{animation:none;border-color:#fff}
-        #rvix-hs .spanel{position:absolute;left:14px;right:14px;bottom:14px;z-index:4;background:rgba(13,18,27,.92);border:1px solid rgba(212,184,106,.3);border-radius:13px;padding:14px 16px;display:flex;align-items:flex-start;gap:13px;transition:opacity .3s,transform .3s}
+        #rvix-hs .spanel{position:absolute;left:14px;right:14px;bottom:14px;z-index:4;background:rgba(0, 0, 0,.92);border:1px solid rgba(212,184,106,.3);border-radius:13px;padding:14px 16px;display:flex;align-items:flex-start;gap:13px;transition:opacity .3s,transform .3s}
         #rvix-hs .spanel.hidden{opacity:0;transform:translateY(12px);pointer-events:none}
         #rvix-hs .spanel .sic{width:38px;height:38px;border-radius:9px;background:rgba(212,184,106,.16);color:#D4B86A;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
         #rvix-hs .spanel .sic svg{width:21px;height:21px}
         #rvix-hs .spanel h3{font-size:.98rem;font-weight:700;color:#fff;margin-bottom:3px}
-        #rvix-hs .spanel p{font-size:.88rem;color:#c8d0dc;line-height:1.5}
-        #rvix-hs .shint{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#cdd5e0;font-size:.84rem;z-index:4;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+        #rvix-hs .spanel p{font-size:.88rem;color:#D2CFCC;line-height:1.5}
+        #rvix-hs .shint{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#D7D4D1;font-size:.84rem;z-index:4;text-shadow:0 1px 8px rgba(0,0,0,.7)}
         #rvix-hs .shint.gone{opacity:0;transition:opacity .3s}
         @media(prefers-reduced-motion:reduce){#rvix-hs .spot .rng{animation:none}}
         @media(max-width:680px){#rvix-hs .scene{height:420px}}
@@ -257,7 +257,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                     <p class="text-slate-300 text-lg font-light leading-relaxed"><?php echo esc_html( romvill_t( 'met.cta.desc' ) ); ?></p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-secondary text-slate-900 font-bold text-sm hover:bg-[#B5952C] transition-colors shadow-lg shadow-secondary/20">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-secondary text-slate-900 font-bold text-sm hover:bg-[#D9AC33] transition-colors shadow-lg shadow-secondary/20">
                         <?php echo esc_html( romvill_t( 'met.cta.btn' ) ); ?>
                     </a>
                 </div>

@@ -16,7 +16,7 @@
 get_header();
 $_lang = romvill_current_lang();
 
-$serif = "font-family:'Playfair Display',Georgia,serif;";
+$serif = "font-family:'Cormorant Garamond',Georgia,serif;";
 
 // Referencia que llega por URL (?ref=RV-…). Se saneará también en servidor.
 $ref_url = isset( $_GET['ref'] ) ? sanitize_text_field( wp_unslash( $_GET['ref'] ) ) : '';
@@ -33,76 +33,76 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
 <main class="flex-grow" id="rv-fb">
 <style>
 #rv-fb{background:#f6f7fb}
-.dark #rv-fb{background:#0b111e}
-#rv-fb .hero{position:relative;text-align:center;color:#fff;padding:84px 20px 66px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#1d2a4a 0%,#131d34 45%,#0d1424 100%)}
-#rv-fb .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(212,175,55,.18),transparent 62%);filter:blur(8px)}
+.dark #rv-fb{background:#000000}
+#rv-fb .hero{position:relative;text-align:center;color:#fff;padding:84px 20px 66px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#000000 0%,#000000 45%,#000000 100%)}
+#rv-fb .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.18),transparent 62%);filter:blur(8px)}
 #rv-fb .hero>*{position:relative;z-index:2}
 #rv-fb .kick{color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
-#rv-fb .rule{width:54px;height:2px;background:linear-gradient(90deg,transparent,#D4AF37,transparent);margin:0 auto 24px}
+#rv-fb .rule{width:54px;height:2px;background:linear-gradient(90deg,transparent,#F0C24A,transparent);margin:0 auto 24px}
 #rv-fb h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.12;margin:0 auto;max-width:720px}
-#rv-fb .hsub{color:#d7deea;font-size:1.05rem;line-height:1.65;max-width:600px;margin:18px auto 0}
+#rv-fb .hsub{color:#E0DDDA;font-size:1.05rem;line-height:1.65;max-width:600px;margin:18px auto 0}
 #rv-fb .wrap{max-width:680px;margin:0 auto;padding:48px 20px 76px}
-#rv-fb .panel{background:#fff;border:1px solid #e7e9ee;border-radius:18px;padding:32px 28px;box-shadow:0 1px 2px rgba(16,22,34,.05)}
-.dark #rv-fb .panel{background:#111a2b;border-color:#1f2b42}
+#rv-fb .panel{background:#fff;border:1px solid #e7e9ee;border-radius:18px;padding:32px 28px;box-shadow:0 1px 2px rgba(0, 0, 0,.05)}
+.dark #rv-fb .panel{background:#000000;border-color:#000000}
 #rv-fb .fld{margin-bottom:30px}
 #rv-fb .fld:last-of-type{margin-bottom:22px}
 #rv-fb label.lbl{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:.68rem;color:#8a6d2f;margin-bottom:9px}
 .dark #rv-fb label.lbl{color:#D4B86A}
-#rv-fb .opt{font-weight:600;text-transform:none;letter-spacing:0;color:#94a3b8;font-size:.68rem}
-#rv-fb .hint{margin-top:9px;color:#64748b;font-size:.84rem;line-height:1.55}
-.dark #rv-fb .hint{color:#8b98ab}
-#rv-fb input[type=text]{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #d6dae2;background:#fbfbfd;color:#000000;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.98rem;letter-spacing:.04em;text-transform:uppercase;outline:none;transition:.2s}
-.dark #rv-fb input[type=text]{background:#0d1524;border-color:#243350;color:#fff}
-#rv-fb input[type=text]:focus{border-color:#D4AF37;box-shadow:0 0 0 4px rgba(212,175,55,.15)}
-#rv-fb textarea{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #d6dae2;background:#fbfbfd;color:#000000;font-family:inherit;font-size:.96rem;line-height:1.6;outline:none;resize:vertical;min-height:82px;transition:.2s}
-.dark #rv-fb textarea{background:#0d1524;border-color:#243350;color:#fff}
-#rv-fb textarea:focus{border-color:#D4AF37;box-shadow:0 0 0 4px rgba(212,175,55,.15)}
+#rv-fb .opt{font-weight:600;text-transform:none;letter-spacing:0;color:#A4A19E;font-size:.68rem}
+#rv-fb .hint{margin-top:9px;color:#75726F;font-size:.84rem;line-height:1.55}
+.dark #rv-fb .hint{color:#9A9794}
+#rv-fb input[type=text]{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #DDDAD7;background:#fbfbfd;color:#000000;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.98rem;letter-spacing:.04em;text-transform:uppercase;outline:none;transition:.2s}
+.dark #rv-fb input[type=text]{background:#000000;border-color:#35322F;color:#fff}
+#rv-fb input[type=text]:focus{border-color:#F0C24A;box-shadow:0 0 0 4px rgba(240,194,74,.15)}
+#rv-fb textarea{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #DDDAD7;background:#fbfbfd;color:#000000;font-family:inherit;font-size:.96rem;line-height:1.6;outline:none;resize:vertical;min-height:82px;transition:.2s}
+.dark #rv-fb textarea{background:#000000;border-color:#35322F;color:#fff}
+#rv-fb textarea:focus{border-color:#F0C24A;box-shadow:0 0 0 4px rgba(240,194,74,.15)}
 /* ── Estrellas: radios reales, sin librerías. Orden inverso en el DOM
       para poder colorear "las anteriores" solo con CSS (~ selector). ── */
 #rv-fb .stars{display:inline-flex;flex-direction:row-reverse;justify-content:flex-end;gap:5px}
 #rv-fb .stars input{position:absolute;opacity:0;width:0;height:0}
 #rv-fb .stars label{cursor:pointer;line-height:1;padding:2px;border-radius:8px;transition:transform .15s}
-#rv-fb .stars label svg{width:36px;height:36px;display:block;fill:transparent;stroke:#c8ced8;stroke-width:1.5;transition:fill .18s,stroke .18s}
-.dark #rv-fb .stars label svg{stroke:#33415c}
+#rv-fb .stars label svg{width:36px;height:36px;display:block;fill:transparent;stroke:#D0CDCA;stroke-width:1.5;transition:fill .18s,stroke .18s}
+.dark #rv-fb .stars label svg{stroke:#43403D}
 #rv-fb .stars label:hover{transform:scale(1.1)}
 #rv-fb .stars input:checked~label svg,
 #rv-fb .stars label:hover svg,
-#rv-fb .stars label:hover~label svg{fill:#D4AF37;stroke:#A9873F}
-#rv-fb .stars input:focus-visible+label{box-shadow:0 0 0 3px rgba(212,175,55,.4)}
+#rv-fb .stars label:hover~label svg{fill:#F0C24A;stroke:#A9873F}
+#rv-fb .stars input:focus-visible+label{box-shadow:0 0 0 3px rgba(240,194,74,.4)}
 #rv-fb .starnum{margin-left:14px;font-weight:700;color:#8a6d2f;font-size:.95rem;vertical-align:8px}
 .dark #rv-fb .starnum{color:#D4B86A}
 /* ── Casillas rápidas ── */
 #rv-fb .chips{display:flex;flex-wrap:wrap;gap:9px}
 #rv-fb .chip input{position:absolute;opacity:0;width:0;height:0}
-#rv-fb .chip span{display:inline-block;cursor:pointer;border:1px solid #d6dae2;background:#fbfbfd;color:#3f4a5c;padding:9px 16px;border-radius:999px;font-size:.88rem;line-height:1.3;transition:.18s;user-select:none}
-.dark #rv-fb .chip span{background:#0d1524;border-color:#243350;color:#aeb9c9}
-#rv-fb .chip span:hover{border-color:#D4AF37}
-#rv-fb .chip input:checked+span{background:#D4AF37;border-color:#A9873F;color:#000000;font-weight:600}
-#rv-fb .chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(212,175,55,.4)}
+#rv-fb .chip span{display:inline-block;cursor:pointer;border:1px solid #DDDAD7;background:#fbfbfd;color:#4C4946;padding:9px 16px;border-radius:999px;font-size:.88rem;line-height:1.3;transition:.18s;user-select:none}
+.dark #rv-fb .chip span{background:#000000;border-color:#35322F;color:#BBB8B5}
+#rv-fb .chip span:hover{border-color:#F0C24A}
+#rv-fb .chip input:checked+span{background:#F0C24A;border-color:#A9873F;color:#000000;font-weight:600}
+#rv-fb .chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(240,194,74,.4)}
 /* ── Consentimiento de publicación (nunca marcada por defecto) ── */
-#rv-fb .consent{display:flex;gap:12px;align-items:flex-start;border:1px solid #d6dae2;background:#fbfbfd;border-radius:12px;padding:15px 16px;cursor:pointer}
-.dark #rv-fb .consent{background:#0d1524;border-color:#243350}
-#rv-fb .consent:hover{border-color:#D4AF37}
-#rv-fb .consent input{flex:0 0 auto;width:18px;height:18px;margin:2px 0 0;accent-color:#D4AF37;cursor:pointer}
-#rv-fb .consent .ctxt{font-size:.9rem;line-height:1.6;color:#3f4a5c}
-.dark #rv-fb .consent .ctxt{color:#aeb9c9}
-#rv-fb button.send{width:100%;background:#D4AF37;color:#000000;font-weight:700;border:0;border-radius:12px;padding:15px 26px;cursor:pointer;font-size:1rem;transition:transform .2s,box-shadow .2s}
-#rv-fb button.send:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 22px rgba(212,175,55,.32)}
+#rv-fb .consent{display:flex;gap:12px;align-items:flex-start;border:1px solid #DDDAD7;background:#fbfbfd;border-radius:12px;padding:15px 16px;cursor:pointer}
+.dark #rv-fb .consent{background:#000000;border-color:#35322F}
+#rv-fb .consent:hover{border-color:#F0C24A}
+#rv-fb .consent input{flex:0 0 auto;width:18px;height:18px;margin:2px 0 0;accent-color:#F0C24A;cursor:pointer}
+#rv-fb .consent .ctxt{font-size:.9rem;line-height:1.6;color:#4C4946}
+.dark #rv-fb .consent .ctxt{color:#BBB8B5}
+#rv-fb button.send{width:100%;background:#F0C24A;color:#000000;font-weight:700;border:0;border-radius:12px;padding:15px 26px;cursor:pointer;font-size:1rem;transition:transform .2s,box-shadow .2s}
+#rv-fb button.send:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 22px rgba(240,194,74,.32)}
 #rv-fb button.send:disabled{opacity:.6;cursor:default}
 #rv-fb .err{display:none;margin-top:14px;background:#fef2f2;color:#991b1b;border-left:4px solid #dc2626;border-radius:8px;padding:12px 14px;font-size:.9rem;line-height:1.55}
-#rv-fb .note{text-align:center;color:#64748b;font-size:.85rem;line-height:1.6;max-width:520px;margin:26px auto 0}
-.dark #rv-fb .note{color:#8b98ab}
+#rv-fb .note{text-align:center;color:#75726F;font-size:.85rem;line-height:1.6;max-width:520px;margin:26px auto 0}
+.dark #rv-fb .note{color:#9A9794}
 /* ── Agradecimiento ── */
 #rv-fb .done{display:none}
 #rv-fb .done.show{display:block;animation:rvfIn .4s ease}
 @keyframes rvfIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-#rv-fb .done .card{background:linear-gradient(160deg,#16203a,#0d1424);color:#fff;border:1px solid rgba(212,175,55,.45);border-radius:18px;padding:38px 30px;text-align:center}
-#rv-fb .done .seal{width:56px;height:56px;color:#D4AF37;margin:0 auto 18px;display:block}
+#rv-fb .done .card{background:linear-gradient(160deg,#000000,#000000);color:#fff;border:1px solid rgba(240,194,74,.45);border-radius:18px;padding:38px 30px;text-align:center}
+#rv-fb .done .seal{width:56px;height:56px;color:#F0C24A;margin:0 auto 18px;display:block}
 #rv-fb .done .dt{font-weight:700;font-size:1.5rem;margin-bottom:12px}
-#rv-fb .done .db{color:#cdd5e0;line-height:1.7;font-size:1rem;max-width:460px;margin:0 auto}
-#rv-fb .done .dg{color:#a9b4c4;line-height:1.65;font-size:.93rem;max-width:460px;margin:20px auto 0;padding-top:20px;border-top:1px solid rgba(212,175,55,.3)}
-#rv-fb .done a.gbtn{display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:#D4AF37;color:#000000;font-weight:700;padding:13px 26px;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s}
-#rv-fb .done a.gbtn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(212,175,55,.3)}
+#rv-fb .done .db{color:#D7D4D1;line-height:1.7;font-size:1rem;max-width:460px;margin:0 auto}
+#rv-fb .done .dg{color:#B6B3B0;line-height:1.65;font-size:.93rem;max-width:460px;margin:20px auto 0;padding-top:20px;border-top:1px solid rgba(240,194,74,.3)}
+#rv-fb .done a.gbtn{display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:#F0C24A;color:#000000;font-weight:700;padding:13px 26px;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+#rv-fb .done a.gbtn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(240,194,74,.3)}
 @media (prefers-reduced-motion:reduce){#rv-fb *{animation:none!important;transition:none!important}}
 </style>
 

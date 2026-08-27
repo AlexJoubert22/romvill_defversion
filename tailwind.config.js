@@ -8,25 +8,28 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'primary':           '#135bec',
-                'primary-dark':      '#0d3c9e',
-                'secondary':         '#D4AF37',
+                'primary':           '#F0C24A',
+                'primary-dark':      '#B8862B',
+                'secondary':         '#F0C24A',   // oro brillante (sobre negro)
                 'secondary-ink':     '#8A6B18',
                 'background-light':  '#f8f9fc',
                 'background-dark':   '#000000',
-                'slate-dark':        '#141414',
+                'slate-dark':        '#0A0A0A',
                 // Fondos oscuros del tema: negro de verdad, no azul marino.
                 // Solo se pisan los tonos de FONDO; 50-600 (textos) siguen siendo slate.
                 'slate': {
-                    '700': '#2E2E2E',
-                    '800': '#141414',
-                    '900': '#0A0A0A',
+                    '50':  '#FAF9F7',
+                    '100': '#F3F1ED',
+                    '200': '#E6E3DD',
+                    '700': '#1C1C1C',
+                    '800': '#0A0A0A',
+                    '900': '#000000',
                     '950': '#000000',
                 },
             },
             fontFamily: {
-                'display': ['Manrope', 'sans-serif'],
-                'serif':   ['Playfair Display', 'serif'],
+                'display': ['Onest', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+                'serif':   ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
             },
             borderRadius: {
                 DEFAULT: '0.25rem',

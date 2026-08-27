@@ -171,18 +171,18 @@ $perfil_pages = array(
           <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto"><?php echo esc_html( romvill_t( 'ix.sl.help' ) ); ?></p>
         </div>
         <style>
-        #rvix-sl .cmp{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(148,163,184,.25);--x:50%;cursor:ew-resize;user-select:none;touch-action:none}
+        #rvix-sl .cmp{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(164, 161, 158,.25);--x:50%;cursor:ew-resize;user-select:none;touch-action:none}
         #rvix-sl .ly{position:absolute;inset:0;background-size:cover;background-position:center 42%}
-        #rvix-sl .base::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,22,34,.15),rgba(16,22,34,.55))}
+        #rvix-sl .base::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.15),rgba(0, 0, 0,.55))}
         #rvix-sl .intel{clip-path:inset(0 0 0 var(--x))}
-        #rvix-sl .intel .vl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,16,24,.78),rgba(11,16,24,.86))}
+        #rvix-sl .intel .vl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.78),rgba(0, 0, 0,.86))}
         #rvix-sl .nd{position:absolute;display:flex;align-items:flex-start;gap:8px;transform:translate(-50%,-50%)}
         #rvix-sl .nd .dt{width:10px;height:10px;border-radius:50%;background:#D4B86A;box-shadow:0 0 0 4px rgba(212,184,106,.22),0 0 12px rgba(212,184,106,.6);flex:0 0 auto;margin-top:8px}
-        #rvix-sl .nd .lb{background:rgba(16,22,34,.9);border:1px solid rgba(212,184,106,.4);color:#fff;padding:8px 11px;border-radius:9px;max-width:210px;display:flex;align-items:flex-start;gap:8px}
+        #rvix-sl .nd .lb{background:rgba(0, 0, 0,.9);border:1px solid rgba(212,184,106,.4);color:#fff;padding:8px 11px;border-radius:9px;max-width:210px;display:flex;align-items:flex-start;gap:8px}
         #rvix-sl .nd .lb .ico{width:16px;height:16px;color:#D4B86A;flex:0 0 auto;margin-top:1px}
         #rvix-sl .nd .lbx{display:flex;flex-direction:column;line-height:1.3}
         #rvix-sl .nd .lbx b{font-weight:700;font-size:11.5px;white-space:nowrap}
-        #rvix-sl .nd .lbx i{font-style:normal;font-weight:400;font-size:10px;color:#cdd5e1;margin-top:1px}
+        #rvix-sl .nd .lbx i{font-style:normal;font-weight:400;font-size:10px;color:#D7D4D1;margin-top:1px}
         #rvix-sl .tg{position:absolute;bottom:14px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
         #rvix-sl .tg.l{left:14px;background:rgba(255,255,255,.14);color:#fff}
         #rvix-sl .tg.r{right:14px;background:rgba(212,184,106,.92);color:#000000}
@@ -225,7 +225,7 @@ $perfil_pages = array(
             <p class="text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
                 <?php echo esc_html( romvill_t( 'ana.cta.desc' ) ); ?>
             </p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#B5952C] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-[#D9AC33] text-slate-900 font-bold rounded transition-colors duration-300 shadow-lg shadow-secondary/20 uppercase tracking-wider text-sm">
                 <?php echo esc_html( romvill_t( 'ana.cta.btn' ) ); ?>
             </a>
         </div>

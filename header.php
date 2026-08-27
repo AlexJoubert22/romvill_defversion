@@ -10,7 +10,7 @@
     .lang-switcher { position: relative; }
     .lang-switcher .lang-dropdown {
         display: none; position: absolute; top: 100%; right: 0;
-        background: #fff; border: 1px solid #e2e8f0; border-radius: 0.5rem;
+        background: #fff; border: 1px solid #EAE7E4; border-radius: 0.5rem;
         box-shadow: 0 8px 24px rgba(0,0,0,.12); min-width: 8rem; z-index: 200;
         padding: .375rem 0; margin-top: .375rem;
     }
@@ -23,10 +23,10 @@
         color: #2E2E2E; text-decoration: none; white-space: nowrap;
         transition: background .15s;
     }
-    .dark .lang-dropdown a { color: #cbd5e1; }
+    .dark .lang-dropdown a { color: #D7D4D1; }
     .lang-dropdown a:hover { background: #f1f5f9; }
     .dark .lang-dropdown a:hover { background: #0A0A0A; }
-    .lang-dropdown a.active { color: #135bec; font-weight: 700; }
+    .lang-dropdown a.active { color: #F0C24A; font-weight: 700; }
     .lang-flag { font-size: 1rem; line-height: 1; }
     </style>
 </head>

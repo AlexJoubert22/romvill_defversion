@@ -57,7 +57,7 @@
                         <label for="rv-news-email" class="sr-only"><?php echo esc_html( romvill_t( 'news.ph' ) ); ?></label>
                         <input type="email" id="rv-news-email" required placeholder="<?php echo esc_attr( romvill_t( 'news.ph' ) ); ?>"
                                class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors">
-                        <button type="submit" class="shrink-0 bg-secondary hover:bg-[#B5952C] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                        <button type="submit" class="shrink-0 bg-secondary hover:bg-[#D9AC33] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                             <?php echo esc_html( romvill_t( 'news.btn' ) ); ?>
                         </button>
                     </form>
@@ -129,12 +129,12 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 /* === Banner de cookies Complianz — estilo ROMVILL (compacto, azul noche) === */
 #cmplz-cookiebanner-container .cmplz-cookiebanner.banner-1{
     --cmplz_banner_width:340px !important;
-    --cmplz_hyperlink_color:#D4AF37 !important;
+    --cmplz_hyperlink_color:#F0C24A !important;
     width:340px !important;
     max-width:calc(100vw - 32px) !important;
     background:#000000 !important;
-    color:#cbd5e1 !important;
-    border:1px solid rgba(212,175,55,.35) !important;
+    color:#D7D4D1 !important;
+    border:1px solid rgba(240,194,74,.35) !important;
     border-radius:14px !important;
     box-shadow:0 18px 50px rgba(0,0,0,.45) !important;
     padding:14px 18px 12px !important;
@@ -165,22 +165,22 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     position:absolute !important;
     top:0 !important;
     right:0 !important;
-    color:#64748b !important;
+    color:#75726F !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-body,
 .cmplz-cookiebanner.banner-1 .cmplz-message{
-    color:#9aa7b8 !important;
+    color:#A8A5A2 !important;
     font-size:12.5px !important;
     line-height:1.4 !important;
     min-width:0 !important;
     margin:6px 0 0 !important;
     text-align:center !important;
 }
-.cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#cbd5e1 !important; font-size:12px !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-categories{ color:#D7D4D1 !important; font-size:12px !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-message a,
 .cmplz-cookiebanner.banner-1 a.cmplz-link,
 .cmplz-cookiebanner.banner-1 .cmplz-links a,
-.cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#D4AF37 !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#F0C24A !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-categories .cmplz-category{ background-color:rgba(255,255,255,.06) !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-manage-options,
 .cmplz-cookiebanner.banner-1 .cmplz-manage-third-parties,
@@ -200,21 +200,21 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     font-weight:600 !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-accept{
-    background:#D4AF37 !important;
+    background:#F0C24A !important;
     color:#000000 !important;
     border:none !important;
 }
-.cmplz-cookiebanner.banner-1 .cmplz-accept:hover{ background:#E3C566 !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-accept:hover{ background:#FFE08A !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-deny{
     background:transparent !important;
-    color:#e2e8f0 !important;
+    color:#EAE7E4 !important;
     border:1px solid rgba(255,255,255,.25) !important;
 }
 .cmplz-cookiebanner.banner-1 .cmplz-deny:hover{ background:rgba(255,255,255,.08) !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-view-preferences,
 .cmplz-cookiebanner.banner-1 .cmplz-save-preferences{
     background:transparent !important;
-    color:#94a3b8 !important;
+    color:#A4A19E !important;
     border:none !important;
     text-decoration:underline !important;
 }

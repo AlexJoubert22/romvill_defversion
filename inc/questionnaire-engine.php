@@ -45,7 +45,7 @@ function romvill_q_print_css() { ?>
 :root {
   --bq-bg:#FFFFFF; --bq-bg2:#F5F5F7; --bq-bg3:#EEF2F7;
   --bq-text:#1D1D1F; --bq-text2:#6E6E73; --bq-text3:#AEAEB2;
-  --bq-accent:#1D3557; --bq-border:#E8E8ED; --bq-border2:#D1D1D6;
+  --bq-accent:#35322F; --bq-border:#E8E8ED; --bq-border2:#D1D1D6;
   --bq-ok:#34C759; --bq-err:#FF3B30;
 }
 

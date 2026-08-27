@@ -47,7 +47,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
         </div>
 
         <div class="mt-16 text-center">
-            <a href="<?php echo esc_url($contacto_url); ?>" class="inline-flex items-center gap-2 bg-secondary hover:bg-[#B5952C] text-slate-900 px-8 py-4 rounded-lg font-bold shadow-lg shadow-secondary/20 hover:shadow-xl transition-all">
+            <a href="<?php echo esc_url($contacto_url); ?>" class="inline-flex items-center gap-2 bg-secondary hover:bg-[#D9AC33] text-slate-900 px-8 py-4 rounded-lg font-bold shadow-lg shadow-secondary/20 hover:shadow-xl transition-all">
                 <?php echo esc_html( romvill_t( 'perfil.dem.cta' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
         </div>

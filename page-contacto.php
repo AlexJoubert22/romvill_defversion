@@ -29,7 +29,7 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     display: flex;
     align-items: center;
     gap: 0;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid #EAE7E4;
     border-radius: 10px;
     background: #f8fafc;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
@@ -37,18 +37,18 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     position: relative;
 }
 .phone-row:focus-within {
-    border-color: #135bec;
+    border-color: #F0C24A;
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(19,91,236,.1);
+    box-shadow: 0 0 0 3px rgba(240, 194, 74,.1);
 }
 .dark .phone-row {
     border-color: #2E2E2E;
     background: #141414;
 }
 .dark .phone-row:focus-within {
-    border-color: #135bec;
+    border-color: #F0C24A;
     background: #141414;
-    box-shadow: 0 0 0 3px rgba(19,91,236,.15);
+    box-shadow: 0 0 0 3px rgba(240, 194, 74,.15);
 }
 .phone-prefix-btn {
     display: flex;
@@ -56,21 +56,21 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     gap: 5px;
     background: transparent;
     border: none;
-    border-right: 1.5px solid #e2e8f0;
+    border-right: 1.5px solid #EAE7E4;
     padding: 0 12px;
     height: 42px;
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #374151;
+    color: #43403D;
     white-space: nowrap;
     flex-shrink: 0;
     outline: none;
     transition: background 0.15s, color 0.15s;
     border-radius: 8px 0 0 8px;
 }
-.phone-prefix-btn:hover { background: rgba(212,175,55,.10); color: #9A7529; }
-.dark .phone-prefix-btn { border-right-color: #2E2E2E; color: #cbd5e1; }
+.phone-prefix-btn:hover { background: rgba(240,194,74,.10); color: #9A7529; }
+.dark .phone-prefix-btn { border-right-color: #2E2E2E; color: #D7D4D1; }
 .dark .phone-prefix-btn:hover { background: rgba(205,178,119,.14); color: #cdb277; }
 .phone-number-input {
     flex: 1;
@@ -79,13 +79,13 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     padding: 0 14px;
     height: 42px;
     font-size: 0.9375rem;
-    color: #111827;
+    color: #000000;
     outline: none;
     font-family: inherit;
 }
-.phone-number-input::placeholder { color: #94a3b8; }
-.rf-opt { font-size: .68rem; font-weight: 400; color: #94a3b8; text-transform: none; letter-spacing: 0; }
-html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro */
+.phone-number-input::placeholder { color: #A4A19E; }
+.rf-opt { font-size: .68rem; font-weight: 400; color: #A4A19E; text-transform: none; letter-spacing: 0; }
+html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro */
 .dark .phone-number-input { color: #f1f5f9; }
 
 .prefix-dropdown {
@@ -95,7 +95,7 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     top: calc(100% + 6px);
     width: 290px;
     background: #fff;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #EAE7E4;
     border-radius: 14px;
     box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
     overflow: hidden;
@@ -109,40 +109,40 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .prefix-search-wrap { padding: 10px 12px 8px; border-bottom: 1px solid #f1f5f9; }
 .dark .prefix-search-wrap { border-bottom-color: #2E2E2E; }
 .prefix-search {
-    width: 100%; border: 1px solid #e2e8f0; border-radius: 8px;
+    width: 100%; border: 1px solid #EAE7E4; border-radius: 8px;
     padding: 7px 10px; font-size: 0.8125rem; outline: none;
-    background: #f8fafc; color: #111827; transition: border-color 0.2s;
+    background: #f8fafc; color: #000000; transition: border-color 0.2s;
     font-family: inherit;
 }
-.prefix-search:focus { border-color: #D4AF37; }
+.prefix-search:focus { border-color: #F0C24A; }
 .dark .prefix-search { background: #0A0A0A; border-color: #2E2E2E; color: #f1f5f9; }
 .prefix-list { max-height: 230px; overflow-y: auto; padding: 4px 0; }
 .prefix-list::-webkit-scrollbar { width: 4px; }
-.prefix-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.prefix-list::-webkit-scrollbar-thumb { background: #D7D4D1; border-radius: 4px; }
 .dark .prefix-list::-webkit-scrollbar-thumb { background: #3D3D3D; }
 .prefix-item {
     display: flex; align-items: center; gap: 10px;
     padding: 8px 14px; cursor: pointer; font-size: 0.84rem;
-    color: #374151; transition: background 0.12s;
+    color: #43403D; transition: background 0.12s;
 }
 .prefix-item:hover { background: #faf6ec; }
-.dark .prefix-item { color: #cbd5e1; }
+.dark .prefix-item { color: #D7D4D1; }
 .dark .prefix-item:hover { background: #0A0A0A; }
 .prefix-item.is-active { color: #9A7529; font-weight: 700; }
 .dark .prefix-item.is-active { color: #cdb277; }
 .prefix-flag { font-size: 1.1rem; }
 .prefix-name { flex: 1; }
-.prefix-code { color: #94a3b8; font-size: 0.78rem; font-weight: 600; }
+.prefix-code { color: #A4A19E; font-size: 0.78rem; font-weight: 600; }
 
 /* ── Form submit ───────────────────────────────────── */
 .rf-submit {
     position: relative; overflow: hidden;
     width: 100%; padding: 0.875rem 2rem;
-    background: linear-gradient(135deg, #135bec 0%, #0d3c9e 100%);
+    background: linear-gradient(135deg, #F0C24A 0%, #B8862B 100%);
     color: #fff; border: none; border-radius: 10px;
     font-size: 0.9375rem; font-weight: 700; cursor: pointer;
     transition: transform 0.2s, box-shadow 0.25s;
-    box-shadow: 0 4px 18px rgba(19,91,236,.35);
+    box-shadow: 0 4px 18px rgba(240, 194, 74,.35);
     display: flex; align-items: center; justify-content: center; gap: 8px;
 }
 .rf-submit::after {
@@ -151,7 +151,7 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     transform: translateX(-100%); transition: transform 0.5s ease;
 }
 .rf-submit:hover::after { transform: translateX(100%); }
-.rf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(19,91,236,.45); }
+.rf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(240, 194, 74,.45); }
 .rf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 /* Las tarjetas de perfil (.prof-card) viven ahora en style.css global
@@ -163,22 +163,22 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     padding: 12px; border-radius: 12px;
     transition: background 0.2s;
 }
-.why-reason:hover { background: rgba(212,175,55,.07); }
-.dark .why-reason:hover { background: rgba(212,175,55,.10); }
+.why-reason:hover { background: rgba(240,194,74,.07); }
+.dark .why-reason:hover { background: rgba(240,194,74,.10); }
 .why-reason-icon {
     flex-shrink: 0; width: 38px; height: 38px;
     border-radius: 10px;
-    background: rgba(212,175,55,.10);
-    border: 1px solid rgba(212,175,55,.35);
-    display: flex; align-items: center; justify-content: center; color: #D4AF37;
+    background: rgba(240,194,74,.10);
+    border: 1px solid rgba(240,194,74,.35);
+    display: flex; align-items: center; justify-content: center; color: #F0C24A;
 }
 
 /* ============================================================
    REDISEÑO v5 — sistema de tokens (claro/oscuro) + componentes.
    Estas reglas van al final → sobrescriben las anteriores.
    ============================================================ */
-:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0A0A0A;--rv-text-soft:#3D3D3D;--rv-text-faint:#64748b;--rv-border:#e2e8f0;--rv-border-soft:#eef2f7;--rv-accent:#1D3557;--rv-gold:#D4AF37;--rv-gold-hover:#B5952C;--rv-on-gold:#0A0A0A;--rv-ring:rgba(212,175,55,.22);--rv-radius-in:8px;}
-.dark{--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#cbd5e1;--rv-text-faint:#94a3b8;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#cdb277;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0A0A0A;--rv-ring:rgba(205,178,119,.30);}
+:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0A0A0A;--rv-text-soft:#3D3D3D;--rv-text-faint:#75726F;--rv-border:#EAE7E4;--rv-border-soft:#eef2f7;--rv-accent:#35322F;--rv-gold:#F0C24A;--rv-gold-hover:#D9AC33;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240,194,74,.22);--rv-radius-in:8px;}
+.dark{--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#D7D4D1;--rv-text-faint:#A4A19E;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#cdb277;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0A0A0A;--rv-ring:rgba(205,178,119,.30);}
 /* Campos: padding generoso, radio sutil, foco con anillo (sin reflujo), translúcido en oscuro */
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]){padding:12px 16px;color:var(--rv-text);background:var(--rv-field);border:1.5px solid var(--rv-border);border-radius:var(--rv-radius-in);transition:border-color .2s,box-shadow .2s,background .2s;}
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]):focus{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
@@ -189,9 +189,9 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .phone-prefix-btn{border-right:1.5px solid var(--rv-border);color:var(--rv-text-soft);}
 .phone-number-input{color:var(--rv-text);}
 /* CTA principal — oro de marca + flecha + micro-interacción */
-.rf-submit{background:var(--rv-gold)!important;color:var(--rv-on-gold)!important;border-radius:var(--rv-radius-in);box-shadow:0 6px 22px -8px rgba(212,175,55,.55);transition:all .3s ease;padding:14px 24px;}
+.rf-submit{background:var(--rv-gold)!important;color:var(--rv-on-gold)!important;border-radius:var(--rv-radius-in);box-shadow:0 6px 22px -8px rgba(240,194,74,.55);transition:all .3s ease;padding:14px 24px;}
 .rf-submit::after{display:none;}
-.rf-submit:hover{background:var(--rv-gold-hover)!important;transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(212,175,55,.6);}
+.rf-submit:hover{background:var(--rv-gold-hover)!important;transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(240,194,74,.6);}
 .rf-submit .rf-arrow{transition:transform .3s ease;}
 .rf-submit:hover .rf-arrow{transform:translateX(4px);}
 .rf-submit:focus-visible{outline:3px solid var(--rv-ring);outline-offset:2px;}
@@ -200,7 +200,7 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 .rv-vcell{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;}
 .rv-vcell + .rv-vcell{border-top:1px solid var(--rv-border-soft);}
 @media(min-width:640px){.rv-vbar{display:grid;grid-template-columns:1fr 1fr 1fr;}.rv-vcell + .rv-vcell{border-top:none;border-left:1px solid var(--rv-border-soft);}}
-.rv-vic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--rv-gold);background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(212,175,55,.06));}
+.rv-vic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--rv-gold);background:linear-gradient(135deg,rgba(240,194,74,.18),rgba(240,194,74,.06));}
 .rv-vt{font-size:.875rem;font-weight:700;color:var(--rv-text);margin:0 0 2px;}
 .rv-vd{font-size:.75rem;line-height:1.4;color:var(--rv-text-faint);margin:0;}
 /* CTA hero en contorno (un solo botón sólido por pantalla) */
@@ -215,33 +215,33 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
    El acento azul desaparece de los elementos de identidad;
    "Por qué Romvill" pasa a placa navy con detalles dorados.
    ============================================================ */
-.why-panel{background:linear-gradient(155deg,#0A0A0A 0%,#1c2a44 100%);border:1px solid rgba(212,175,55,.28);}
+.why-panel{background:linear-gradient(155deg,#0A0A0A 0%,#000000 100%);border:1px solid rgba(240,194,74,.28);}
 /* Hero oscuro a sangre completa (estilo Tesla): banda navy con retícula
    de puntos, orbe dorado y placa de pasos en cristal esmerilado. */
 .rv-dark-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(165deg,#000000 0%,#000000 100%);position:relative;overflow:hidden;}
-.rv-dark-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,175,55,.13) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);pointer-events:none;}
-.rv-dark-hero::after{content:'';position:absolute;top:-22%;right:-12%;width:520px;height:520px;background:radial-gradient(circle,rgba(212,175,55,.15),transparent 65%);pointer-events:none;}
-.rv-dark-hero .rv-cta-outline{color:#D4AF37;border-color:rgba(212,175,55,.75);}
-.rv-dark-hero .rv-cta-outline:hover{background:#D4AF37;color:#0A0A0A;border-color:#D4AF37;}
+.rv-dark-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(240,194,74,.13) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);pointer-events:none;}
+.rv-dark-hero::after{content:'';position:absolute;top:-22%;right:-12%;width:520px;height:520px;background:radial-gradient(circle,rgba(240,194,74,.15),transparent 65%);pointer-events:none;}
+.rv-dark-hero .rv-cta-outline{color:#F0C24A;border-color:rgba(240,194,74,.75);}
+.rv-dark-hero .rv-cta-outline:hover{background:#F0C24A;color:#0A0A0A;border-color:#F0C24A;}
 
 /* Hero: placa navy con los 3 pasos en línea de tiempo vertical */
-.hero-steps-plate{background:linear-gradient(155deg,#0A0A0A 0%,#1c2a44 100%);border:1px solid rgba(212,175,55,.28);box-shadow:0 24px 48px -24px rgba(0,0,0,.5);}
-.hero-steps-plate--glass{background:rgba(255,255,255,.045);border-color:rgba(212,175,55,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -20px rgba(0,0,0,.5);}
+.hero-steps-plate{background:linear-gradient(155deg,#0A0A0A 0%,#000000 100%);border:1px solid rgba(240,194,74,.28);box-shadow:0 24px 48px -24px rgba(0,0,0,.5);}
+.hero-steps-plate--glass{background:rgba(255,255,255,.045);border-color:rgba(240,194,74,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -20px rgba(0,0,0,.5);}
 /* Escena animada del hero (se anima al cargar — el hero ya está en viewport) */
 .rv-hviz-scene{width:100%;height:64px;margin-bottom:1.1rem;display:block;}
 .rv-hviz-draw polyline,.rv-hviz-draw line{stroke-dasharray:1;stroke-dashoffset:1;animation:rvHeroDraw 1.1s cubic-bezier(.4,0,.2,1) forwards .45s;}
 .rv-hviz-draw line{animation-delay:.7s;}
 @keyframes rvHeroDraw{to{stroke-dashoffset:0;}}
-.rv-hviz-pulse{stroke:#f4e4bd;stroke-width:2.5;stroke-dasharray:30 800;stroke-dashoffset:830;opacity:0;filter:drop-shadow(0 0 5px rgba(212,175,55,.9));animation:rvHeroPulse 3s linear 1.6s infinite;}
+.rv-hviz-pulse{stroke:#f4e4bd;stroke-width:2.5;stroke-dasharray:30 800;stroke-dashoffset:830;opacity:0;filter:drop-shadow(0 0 5px rgba(240,194,74,.9));animation:rvHeroPulse 3s linear 1.6s infinite;}
 @keyframes rvHeroPulse{0%{opacity:1;stroke-dashoffset:830;}96%{opacity:1;}100%{opacity:0;stroke-dashoffset:0;}}
 .rv-hviz-tip{opacity:0;animation:rvHeroTip .5s ease forwards 1.4s;}
 @keyframes rvHeroTip{to{opacity:1;}}
 /* Pasos como recuadros de cristal en cascada + conector con punto viajero */
 .rv-hsteps{position:relative;}
-.rv-hsteps::before{content:'';position:absolute;left:29px;top:52px;bottom:34px;width:1px;background:linear-gradient(180deg,rgba(212,175,55,.45),rgba(212,175,55,.06));}
-.rv-hsteps::after{content:'';position:absolute;left:27px;top:52px;width:5px;height:5px;border-radius:50%;background:#f4e4bd;box-shadow:0 0 6px 2px rgba(212,175,55,.65);opacity:0;animation:rvHeroDot 3.8s ease-in-out 2.2s infinite;}
+.rv-hsteps::before{content:'';position:absolute;left:29px;top:52px;bottom:34px;width:1px;background:linear-gradient(180deg,rgba(240,194,74,.45),rgba(240,194,74,.06));}
+.rv-hsteps::after{content:'';position:absolute;left:27px;top:52px;width:5px;height:5px;border-radius:50%;background:#f4e4bd;box-shadow:0 0 6px 2px rgba(240,194,74,.65);opacity:0;animation:rvHeroDot 3.8s ease-in-out 2.2s infinite;}
 @keyframes rvHeroDot{0%{top:52px;opacity:0;}10%{opacity:1;}80%{opacity:1;}100%{top:calc(100% - 44px);opacity:0;}}
-.rv-hstep{position:relative;z-index:1;display:flex;gap:.8rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:.7rem .85rem;opacity:0;animation:rfFadeUp .6s cubic-bezier(.16,1,.3,1) forwards;}
+.rv-hstep{position:relative;z-index:1;display:flex;gap:.8rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(240,194,74,.25);border-radius:12px;padding:.7rem .85rem;opacity:0;animation:rfFadeUp .6s cubic-bezier(.16,1,.3,1) forwards;}
 .rv-hstep + .rv-hstep{margin-top:.65rem;}
 .rv-hstep .hstep-num{width:32px;height:32px;font-size:.8rem;}
 @media (prefers-reduced-motion: reduce){
@@ -252,18 +252,18 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 }
 .hstep{padding-bottom:1.75rem;}
 .hstep:last-child{padding-bottom:0;}
-.hstep-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(212,175,55,.6);color:#D4AF37;background:rgba(212,175,55,.08);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;}
-.hstep::before{content:'';position:absolute;left:17.5px;top:40px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(212,175,55,.5),rgba(212,175,55,.06));}
+.hstep-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,194,74,.6);color:#F0C24A;background:rgba(240,194,74,.08);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:.85rem;}
+.hstep::before{content:'';position:absolute;left:17.5px;top:40px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(240,194,74,.5),rgba(240,194,74,.06));}
 .hstep:last-child::before{display:none;}
 .rgpd-consent a{color:var(--rv-gold);}
 html:not(.dark) .rgpd-consent a{color:#9A7529;}
 /* El plugin @tailwindcss/forms pinta el checkbox con currentColor → forzamos oro */
 .rgpd-consent input[type='checkbox']{color:#9A7529;border-radius:3px;}
-.rgpd-consent input[type='checkbox']:focus{--tw-ring-color:rgba(212,175,55,.4);}
-.dark .rgpd-consent input[type='checkbox']{color:#D4AF37;}
+.rgpd-consent input[type='checkbox']:focus{--tw-ring-color:rgba(240,194,74,.4);}
+.dark .rgpd-consent input[type='checkbox']{color:#F0C24A;}
 .cont-hr{height:1px;flex:1;}
-.cont-hr--l{background:linear-gradient(90deg,transparent,rgba(212,175,55,.45));}
-.cont-hr--r{background:linear-gradient(90deg,rgba(212,175,55,.45),transparent);}
+.cont-hr--l{background:linear-gradient(90deg,transparent,rgba(240,194,74,.45));}
+.cont-hr--r{background:linear-gradient(90deg,rgba(240,194,74,.45),transparent);}
 </style>
 
 <main class="flex-grow flex items-start justify-center px-4 pt-12 pb-16 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
@@ -303,13 +303,13 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                     <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" aria-hidden="true"></div>
                     <div class="relative">
                         <!-- Escena: línea de inteligencia con cometa de pulso -->
-                        <svg class="rv-hviz-scene" viewBox="0 0 300 70" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg class="rv-hviz-scene" viewBox="0 0 300 70" fill="none" stroke="#F0C24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <g class="rv-hviz-draw">
                                 <polyline pathLength="1" points="6,52 40,40 70,46 104,26 138,34 170,18 206,30 240,12 294,22" opacity=".9"/>
                                 <line pathLength="1" x1="6" y1="62" x2="294" y2="62" opacity=".3"/>
                             </g>
                             <path class="rv-hviz-pulse" d="M6 52 L40 40 L70 46 L104 26 L138 34 L170 18 L206 30 L240 12 L294 22" fill="none"/>
-                            <circle class="rv-hviz-tip" cx="294" cy="22" r="3.5" fill="#D4AF37" stroke="none"/>
+                            <circle class="rv-hviz-tip" cx="294" cy="22" r="3.5" fill="#F0C24A" stroke="none"/>
                         </svg>
                         <div class="rv-hsteps">
                             <?php
@@ -336,7 +336,7 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
 
         <!-- ── Cobertura (línea limpia con icono de ubicación) ── -->
         <div class="rf-anim flex items-center justify-center flex-wrap gap-2 mb-8" style="animation-delay:.1s">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F0C24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--rv-text-soft)"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
             <span class="text-sm ml-1" style="color:var(--rv-text-faint)">Alicante · Costa Blanca</span>
             <span aria-hidden="true" style="color:var(--rv-gold)">•</span>
@@ -518,7 +518,7 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                                     '<span class="prefix-name">'+co.n+'</span>'+
                                     '<span class="prefix-code">'+co.c+'</span></div>';
                             });
-                            list.innerHTML = h || '<div style="padding:12px 14px;font-size:.82rem;color:#94a3b8">Sin resultados</div>';
+                            list.innerHTML = h || '<div style="padding:12px 14px;font-size:.82rem;color:#A4A19E">Sin resultados</div>';
                             list.querySelectorAll('.prefix-item').forEach(function(el){
                                 el.addEventListener('click',function(){
                                     var co=COUNTRIES[+el.dataset.i];

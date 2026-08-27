@@ -133,11 +133,11 @@ function romvill_postentrega_run() {
                 $fuente = "font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif;";
                 $filas  = '';
                 foreach ( $credito['lineas'] as $linea ) {
-                    $filas .= '<div style="' . $fuente . 'font-size:14px;line-height:1.7;color:#333b47;">' . esc_html( $linea ) . '</div>';
+                    $filas .= '<div style="' . $fuente . 'font-size:14px;line-height:1.7;color:#3D3A37;">' . esc_html( $linea ) . '</div>';
                 }
                 $tarjeta_credito = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 20px 0;">'
-                    . '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #D4AF37;padding:18px 20px;">'
-                    . '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding-bottom:8px;">Su cr&#233;dito</div>'
+                    . '<tr><td class="rv-card" style="background-color:#f8f9fc;border:1px solid #e4e6ea;border-top:3px solid #F0C24A;padding:18px 20px;">'
+                    . '<div style="' . $fuente . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#93908D;padding-bottom:8px;">Su cr&#233;dito</div>'
                     . $filas
                     . '</td></tr></table>';
                 $p2 = 'Validez del crédito: 60 días desde la entrega (hasta el ' . $f_vence . ').';
@@ -145,7 +145,7 @@ function romvill_postentrega_run() {
                     . romvill_mail_cliente_p( esc_html( $saludo ) )
                     . romvill_mail_cliente_p( esc_html( $p1 ) )
                     . $tarjeta_credito
-                    . romvill_mail_cliente_p( esc_html( $p2 ), 'margin-bottom:0;color:#6b7280;font-size:14px;' );
+                    . romvill_mail_cliente_p( esc_html( $p2 ), 'margin-bottom:0;color:#75726F;font-size:14px;' );
                 $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n"
                     . '  ' . implode( "\n  ", $credito['lineas'] ) . "\n\n"
                     . $p2 . "\n" . "Contacto: clients@romvill.com\n\nROMVILL - romvill.com";

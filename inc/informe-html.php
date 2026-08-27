@@ -160,7 +160,7 @@ table.cmp td:first-child{background:var(--sandl);font-weight:bold}
 .you h3{font-family:Georgia,serif;color:var(--goldd);font-size:20px;margin-bottom:10px}
 .you p{font-size:15px;margin-bottom:8px}
 .map{border:2px dashed var(--gold);border-radius:10px;padding:34px;text-align:center;color:var(--goldd);font-style:italic;background:#FFFEF8;margin:14px 0;font-size:14px}
-.links a{display:inline-block;margin:4px 14px 4px 0;color:#1C5DBE;text-decoration:none;font-size:14px}
+.links a{display:inline-block;margin:4px 14px 4px 0;color:#F0C24A;text-decoration:none;font-size:14px}
 .links a:before{content:"\2192 ";color:var(--gold)}
 .pat{background:var(--sandl);border-left:5px solid var(--gold);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:18px}
 .pat .pn{font-size:11px;font-weight:bold;letter-spacing:1px;color:var(--gold)}

@@ -11,7 +11,7 @@
 get_header();
 $_lang = romvill_current_lang();
 
-$serif = "font-family:'Playfair Display',Georgia,serif;";
+$serif = "font-family:'Cormorant Garamond',Georgia,serif;";
 $kses  = array( 'b' => array() );
 
 $b1_page = get_page_by_path( 'presupuesto-bloque-1' );
@@ -69,33 +69,33 @@ $_seasons = array(
 <style>
 #rv-mu{
   --mu-bg:#FBFAF7;--mu-surface:#FFFFFF;--mu-surface2:#F5F3EE;--mu-cover:#000000;--mu-cover2:#000000;
-  --mu-t1:#000000;--mu-t2:#3D4A5F;--mu-t3:#5C6B80;
-  --mu-oc1:#FFFFFF;--mu-oc2:#C7D1E0;--mu-oc3:#93A3BA;
+  --mu-t1:#000000;--mu-t2:#4C4946;--mu-t3:#6C6966;
+  --mu-oc1:#FFFFFF;--mu-oc2:#D3D0CD;--mu-oc3:#A4A19E;
   --mu-line:#E8E4DA;--mu-lines:#D6D0C2;
-  --mu-gold:#D4AF37;--mu-goldd:#7A6229;--mu-golds:#F6F0E1;--mu-goldb:#E7DCC0;
+  --mu-gold:#F0C24A;--mu-goldd:#7A6229;--mu-golds:#F6F0E1;--mu-goldb:#E7DCC0;
   --mu-green:#166B42;--mu-greens:#E9F5EE;--mu-amber:#8A5A00;--mu-ambers:#FBF3E2;
-  --mu-sh1:0 1px 2px rgba(16,22,34,.05);--mu-sh2:0 6px 18px rgba(16,22,34,.07);
+  --mu-sh1:0 1px 2px rgba(0, 0, 0,.05);--mu-sh2:0 6px 18px rgba(0, 0, 0,.07);
   background:var(--mu-bg)
 }
 .dark #rv-mu{
   --mu-bg:#000000;--mu-surface:#0E0D0A;--mu-surface2:#161410;--mu-cover:#000000;--mu-cover2:#0E0D0A;
-  --mu-t1:#EDF1F7;--mu-t2:#B8C2D2;--mu-t3:#8593A8;
-  --mu-line:#232D42;--mu-lines:#313D57;
-  --mu-goldd:#E3C566;--mu-golds:rgba(212,175,55,.10);--mu-goldb:rgba(212,175,55,.28);
+  --mu-t1:#EDF1F7;--mu-t2:#C4C1BE;--mu-t3:#95928F;
+  --mu-line:#000000;--mu-lines:#3F3C39;
+  --mu-goldd:#FFE08A;--mu-golds:rgba(240,194,74,.10);--mu-goldb:rgba(240,194,74,.28);
   --mu-green:#5FBF8F;--mu-greens:rgba(95,191,143,.12);--mu-amber:#E0B25C;--mu-ambers:rgba(224,178,92,.12);
   --mu-sh1:0 1px 2px rgba(0,0,0,.35);--mu-sh2:0 8px 22px rgba(0,0,0,.45)
 }
-#rv-mu .serif{font-family:'Playfair Display',Georgia,serif}
+#rv-mu .serif{font-family:'Cormorant Garamond',Georgia,serif}
 #rv-mu .ic{width:1.15em;height:1.15em;flex:0 0 auto}
 
 /* ── Hero ── */
-#rv-mu .hero{position:relative;text-align:center;color:#fff;padding:88px 20px 64px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,var(--mu-cover2) 0%,#131d34 45%,var(--mu-cover) 100%)}
-#rv-mu .hero::before{content:"";position:absolute;inset:0;opacity:.3;background-image:radial-gradient(rgba(212,175,55,.16) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent)}
+#rv-mu .hero{position:relative;text-align:center;color:#fff;padding:88px 20px 64px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,var(--mu-cover2) 0%,#000000 45%,var(--mu-cover) 100%)}
+#rv-mu .hero::before{content:"";position:absolute;inset:0;opacity:.3;background-image:radial-gradient(rgba(240,194,74,.16) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent)}
 #rv-mu .hero>*{position:relative;z-index:2}
 #rv-mu .kick{color:var(--mu-gold);font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.72rem;margin-bottom:18px}
 #rv-mu h1{font-weight:600;font-size:clamp(2rem,5vw,2.9rem);line-height:1.12;margin:0 auto;max-width:760px;color:#fff}
-#rv-mu .hsub{color:#d7deea;font-size:1.03rem;line-height:1.7;max-width:640px;margin:18px auto 0}
-#rv-mu .hint{display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);color:#E8D9B4;border-radius:999px;padding:9px 18px;font-size:.86rem;font-weight:600}
+#rv-mu .hsub{color:#E0DDDA;font-size:1.03rem;line-height:1.7;max-width:640px;margin:18px auto 0}
+#rv-mu .hint{display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:rgba(240,194,74,.12);border:1px solid rgba(240,194,74,.4);color:#E8D9B4;border-radius:999px;padding:9px 18px;font-size:.86rem;font-weight:600}
 
 /* ── Documento ── */
 #rv-mu .doc{max-width:860px;margin:0 auto;padding:34px 20px 40px}
@@ -105,7 +105,7 @@ $_seasons = array(
 #rv-mu .cov{position:relative;background:linear-gradient(165deg,var(--mu-cover2),var(--mu-cover));color:#fff;padding:44px 40px 34px;overflow:hidden}
 #rv-mu .cov .ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu-oc3)}
 #rv-mu .cov .ctop b{color:#fff;letter-spacing:.06em}
-#rv-mu .stampx{border:2px solid rgba(212,175,55,.8);color:#D4B86A;font-weight:800;font-size:.62rem;letter-spacing:.18em;padding:6px 12px;border-radius:4px;transform:rotate(3deg);white-space:nowrap;text-transform:uppercase}
+#rv-mu .stampx{border:2px solid rgba(240,194,74,.8);color:#D4B86A;font-weight:800;font-size:.62rem;letter-spacing:.18em;padding:6px 12px;border-radius:4px;transform:rotate(3deg);white-space:nowrap;text-transform:uppercase}
 #rv-mu .cov .clogo{display:block;height:64px;width:auto;margin:26px auto 14px}
 #rv-mu .cov h2{text-align:center;font-weight:600;font-size:clamp(1.5rem,4vw,2rem);margin:0;line-height:1.2;color:#fff}
 #rv-mu .cov .czona{text-align:center;color:#D4B86A;font-size:.98rem;margin-top:7px;letter-spacing:.04em}
@@ -120,7 +120,7 @@ $_seasons = array(
 #rv-mu .dim:last-of-type{border-bottom:0}
 #rv-mu .dhead{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:20px 26px;transition:background .15s ease}
 #rv-mu .dhead:hover{background:var(--mu-surface2)}
-#rv-mu .sec-num{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:2.5rem;line-height:1;color:var(--mu-gold);opacity:.32;font-variant-numeric:lining-nums;flex:0 0 auto;min-width:52px}
+#rv-mu .sec-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:2.5rem;line-height:1;color:var(--mu-gold);opacity:.32;font-variant-numeric:lining-nums;flex:0 0 auto;min-width:52px}
 #rv-mu .dico{width:44px;height:44px;flex:0 0 auto;border:1px solid var(--mu-line);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--mu-t1);background:var(--mu-surface)}
 #rv-mu .dico .ic{width:22px;height:22px}
 #rv-mu .tt{flex:1;min-width:0}
@@ -223,11 +223,11 @@ $_seasons = array(
 #rv-mu .iso-sep svg{width:100%;height:100%;display:block}
 
 /* CTA final */
-#rv-mu .ctax{position:relative;overflow:hidden;background:linear-gradient(160deg,#16203a,var(--mu-cover));color:#fff;text-align:center;padding:64px 20px;margin-top:10px}
+#rv-mu .ctax{position:relative;overflow:hidden;background:linear-gradient(160deg,#000000,var(--mu-cover));color:#fff;text-align:center;padding:64px 20px;margin-top:10px}
 #rv-mu .ctax h2{font-weight:600;font-size:clamp(1.5rem,3.4vw,2.1rem);margin:0;color:#fff}
-#rv-mu .ctax p{color:#cdd5e0;max-width:560px;margin:14px auto 0;line-height:1.7}
+#rv-mu .ctax p{color:#D7D4D1;max-width:560px;margin:14px auto 0;line-height:1.7}
 #rv-mu .btnx{display:inline-flex;align-items:center;gap:9px;background:var(--mu-gold);color:#000000;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
-#rv-mu .btnx:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(212,175,55,.34)}
+#rv-mu .btnx:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(240,194,74,.34)}
 
 @media(max-width:860px){
   #rv-mu .dgrid,#rv-mu .seasons{grid-template-columns:repeat(2,1fr)}
@@ -260,28 +260,28 @@ $_seasons = array(
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="rv-ic-sanidad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <circle stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="4.6 3.4" cx="12" cy="12" r="8.6"/><path d="M12 8v8M8 12h8"/>
+    <circle stroke="#F0C24A" stroke-width="1.5" stroke-dasharray="4.6 3.4" cx="12" cy="12" r="8.6"/><path d="M12 8v8M8 12h8"/>
   </symbol>
   <symbol id="rv-ic-seguridad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 2.75 19 5.4v5.35c0 4.35-2.9 7.45-7 9.5-4.1-2.05-7-5.15-7-9.5V5.4L12 2.75Z"/><path stroke="#D4AF37" stroke-width="1.5" d="M7.8 11.55c1.6-1.3 2.75.6 4.2.6s2.6-1.9 4.2-.6"/>
+    <path d="M12 2.75 19 5.4v5.35c0 4.35-2.9 7.45-7 9.5-4.1-2.05-7-5.15-7-9.5V5.4L12 2.75Z"/><path stroke="#F0C24A" stroke-width="1.5" d="M7.8 11.55c1.6-1.3 2.75.6 4.2.6s2.6-1.9 4.2-.6"/>
   </symbol>
   <symbol id="rv-ic-movilidad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="4.75" cy="19.5" r="1.35" fill="currentColor" stroke="none"/><path d="M22 3.25 14.3 6.3l3.05 1.05 1.05 3.05L22 3.25Z"/><path stroke="#D4AF37" stroke-width="1.5" d="M6.1 17.6c1.3-4.2 4.1-7.1 7.8-8.75"/>
+    <circle cx="4.75" cy="19.5" r="1.35" fill="currentColor" stroke="none"/><path d="M22 3.25 14.3 6.3l3.05 1.05 1.05 3.05L22 3.25Z"/><path stroke="#F0C24A" stroke-width="1.5" d="M6.1 17.6c1.3-4.2 4.1-7.1 7.8-8.75"/>
   </symbol>
   <symbol id="rv-ic-natural" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="8.6" r="3.6"/><path d="M12 2.5v1.3M18.1 8.6h1.3M4.6 8.6h1.3M16.35 4.25l-.92.92M7.65 4.25l.92.92"/><path stroke="#D4AF37" stroke-width="1.5" d="M2.75 17.4c2.5-1.4 4.2.55 6.6.3 2.4-.25 3.4-1.45 6-1.2 2.1.2 3.3 1.1 5.9.5"/>
+    <circle cx="12" cy="8.6" r="3.6"/><path d="M12 2.5v1.3M18.1 8.6h1.3M4.6 8.6h1.3M16.35 4.25l-.92.92M7.65 4.25l.92.92"/><path stroke="#F0C24A" stroke-width="1.5" d="M2.75 17.4c2.5-1.4 4.2.55 6.6.3 2.4-.25 3.4-1.45 6-1.2 2.1.2 3.3 1.1 5.9.5"/>
   </symbol>
   <symbol id="rv-ic-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 4 21 19.5H3L12 4Z"/><path d="M12 10v4M12 16.75v.05"/>
   </symbol>
   <symbol id="rv-ic-verificado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="8.6"/><path d="M7.9 12.4l2.85 2.9 5.35-6"/><path stroke="#D4AF37" stroke-width="1.5" d="M5.9 16.9c2-1.15 3.4.45 5.3.45s3.2-1.3 5.3-.75"/>
+    <circle cx="12" cy="12" r="8.6"/><path d="M7.9 12.4l2.85 2.9 5.35-6"/><path stroke="#F0C24A" stroke-width="1.5" d="M5.9 16.9c2-1.15 3.4.45 5.3.45s3.2-1.3 5.3-.75"/>
   </symbol>
   <symbol id="rv-ic-para-usted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <circle stroke="#D4AF37" stroke-width="1.5" cx="12" cy="12" r="8.6"/><circle cx="12" cy="9.3" r="2.4"/><path d="M8.1 16a3.9 3.9 0 0 1 7.8 0"/>
+    <circle stroke="#F0C24A" stroke-width="1.5" cx="12" cy="12" r="8.6"/><circle cx="12" cy="9.3" r="2.4"/><path d="M8.1 16a3.9 3.9 0 0 1 7.8 0"/>
   </symbol>
   <symbol id="rv-ic-tiempo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20.25 12A8.25 8.25 0 1 1 12 3.75"/><path stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="2.5 2.3" d="M12 3.75A8.25 8.25 0 0 1 20.25 12"/><path d="M12 7.5V12l3.4 2"/>
+    <path d="M20.25 12A8.25 8.25 0 1 1 12 3.75"/><path stroke="#F0C24A" stroke-width="1.5" stroke-dasharray="2.5 2.3" d="M12 3.75A8.25 8.25 0 0 1 20.25 12"/><path d="M12 7.5V12l3.4 2"/>
   </symbol>
   <symbol id="rv-ic-invierno-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 3v18M5 6.5l14 11M19 6.5l-14 11M12 3l-2 2.5M12 3l2 2.5M12 21l-2-2.5M12 21l2-2.5"/>
@@ -296,15 +296,15 @@ $_seasons = array(
     <path d="M12 3.5C8 7 5.5 10.5 5.5 14a6.5 6.5 0 0 0 13 0c0-3.5-2.5-7-6.5-10.5ZM12 20.5V11"/>
   </symbol>
   <symbol id="rv-iso-sep" viewBox="0 0 820 30" preserveAspectRatio="none">
-    <path d="M0 19c110-14 190 7 300 2s210-21 330-11 130 11 190 5" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity=".55" vector-effect="non-scaling-stroke"/>
-    <path d="M0 26c130-11 220 5 330 1s230-16 320-8 110 7 170 4" stroke="#D4AF37" stroke-width="1" fill="none" opacity=".28" vector-effect="non-scaling-stroke"/>
-    <circle cx="410" cy="11" r="3" fill="#D4AF37"/>
+    <path d="M0 19c110-14 190 7 300 2s210-21 330-11 130 11 190 5" stroke="#F0C24A" stroke-width="1.5" fill="none" opacity=".55" vector-effect="non-scaling-stroke"/>
+    <path d="M0 26c130-11 220 5 330 1s230-16 320-8 110 7 170 4" stroke="#F0C24A" stroke-width="1" fill="none" opacity=".28" vector-effect="non-scaling-stroke"/>
+    <circle cx="410" cy="11" r="3" fill="#F0C24A"/>
   </symbol>
   <symbol id="rv-sello-grande" viewBox="0 0 120 120" fill="none">
     <circle cx="60" cy="60" r="57.5" stroke="currentColor" stroke-width="1.6"/>
     <circle cx="60" cy="60" r="52.5" stroke="currentColor" stroke-width=".8" opacity=".7"/>
     <circle cx="60" cy="60" r="38" stroke="currentColor" stroke-width="1" opacity=".9"/>
-    <text x="60" y="60" text-anchor="middle" dominant-baseline="middle" font-family="'Playfair Display',Georgia,serif" font-size="30" font-weight="600" fill="currentColor">RV</text>
+    <text x="60" y="60" text-anchor="middle" dominant-baseline="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="30" font-weight="600" fill="currentColor">RV</text>
     <path d="M42 78c5-4 9 2 14 2s9-6 14-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
     <path d="M46 86c4-3 7 1.5 11 1.5s7-4.5 11-1.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".65"/>
   </symbol>

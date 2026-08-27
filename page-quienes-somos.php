@@ -13,7 +13,7 @@ $contacto_page = get_page_by_path( 'contacto' );
 $contacto_url  = $contacto_page ? get_permalink( $contacto_page ) : home_url( '/contacto/' );
 $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
 $hero_img      = get_template_directory_uri() . '/assets/images/quienes-hero.webp';
-$serif         = "font-family:'Playfair Display',Georgia,serif;";
+$serif         = "font-family:'Cormorant Garamond',Georgia,serif;";
 ?>
 
 <main class="flex-grow" id="qs-main">
@@ -26,7 +26,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
     <!-- HERO -->
     <section class="relative w-full flex items-center justify-center text-center overflow-hidden" style="min-height:62vh">
         <div class="absolute inset-0" style="background:url('<?php echo esc_url( $hero_img ); ?>') center 42%/cover no-repeat;"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(16,22,34,.42),rgba(16,22,34,.66) 50%,rgba(16,22,34,.88));"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(0, 0, 0,.42),rgba(0, 0, 0,.66) 50%,rgba(0, 0, 0,.88));"></div>
         <div class="relative z-10 px-6 py-20" style="max-width:840px">
             <div style="color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;margin-bottom:1.1rem">
                 <?php echo esc_html( romvill_t( 'qs.kicker' ) ); ?>
@@ -35,7 +35,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
                 <?php echo esc_html( romvill_t( 'qs.h1.a' ) ); ?>
                 <span style="display:block;font-style:italic;color:#D4B86A;font-size:.82em;margin-top:.25rem"><?php echo esc_html( romvill_t( 'qs.h1.b' ) ); ?></span>
             </h1>
-            <p style="color:#cdd5e0;font-size:clamp(1rem,2.2vw,1.18rem);line-height:1.7;max-width:660px;margin:1.6rem auto 0">
+            <p style="color:#D7D4D1;font-size:clamp(1rem,2.2vw,1.18rem);line-height:1.7;max-width:660px;margin:1.6rem auto 0">
                 <?php echo esc_html( romvill_t( 'qs.lead' ) ); ?>
                 <strong style="color:#ffffff;font-weight:700"><?php echo esc_html( romvill_t( 'qs.lead.b' ) ); ?></strong>
             </p>
@@ -54,7 +54,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
             );
             foreach ( $marks as $i => $mk ) :
                 if ( $i > 0 ) : ?>
-                    <span style="color:#D4AF37;font-weight:700">·</span>
+                    <span style="color:#F0C24A;font-weight:700">·</span>
                 <?php endif; ?>
                 <span class="text-slate-600 dark:text-slate-300" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em">
                     <span class="material-symbols-outlined text-secondary" style="font-size:18px" aria-hidden="true"><?php echo esc_html( $mk[0] ); ?></span>
@@ -78,7 +78,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
             </p>
 
             <!-- PULL-QUOTE -->
-            <blockquote class="text-secondary" style="<?php echo $serif; ?>font-style:italic;font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.4;border-left:3px solid #D4AF37;padding-left:1.1rem;margin:2.4rem 0 0">
+            <blockquote class="text-secondary" style="<?php echo $serif; ?>font-style:italic;font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.4;border-left:3px solid #F0C24A;padding-left:1.1rem;margin:2.4rem 0 0">
                 <?php echo esc_html( romvill_t( 'qs.quote' ) ); ?>
             </blockquote>
         </div>
@@ -123,7 +123,7 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
                     array( 'tune',       'qs.v4.t', 'qs.v4.d' ),
                 );
                 foreach ( $vals as $v ) : ?>
-                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl" style="padding:1.5rem 1.6rem;border-left:3px solid #D4AF37">
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl" style="padding:1.5rem 1.6rem;border-left:3px solid #F0C24A">
                         <span class="material-symbols-outlined text-secondary" style="font-size:30px;margin-bottom:.5rem;display:block"><?php echo esc_html( $v[0] ); ?></span>
                         <h3 class="text-slate-900 dark:text-white" style="font-weight:800;font-size:1.02rem;margin:0 0 .35rem"><?php echo esc_html( romvill_t( $v[1] ) ); ?></h3>
                         <p class="text-slate-600 dark:text-slate-400" style="font-size:.92rem;line-height:1.6;margin:0"><?php echo esc_html( romvill_t( $v[2] ) ); ?></p>
@@ -136,16 +136,16 @@ $serif         = "font-family:'Playfair Display',Georgia,serif;";
     <!-- CIERRE -->
     <section class="w-full" style="background:#000000">
         <div class="mx-auto px-6 py-20 text-center" style="max-width:760px">
-            <p style="<?php echo $serif; ?>font-style:italic;color:#e8ecf3;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:0">
+            <p style="<?php echo $serif; ?>font-style:italic;color:#EFECE9;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:0">
                 <?php echo esc_html( romvill_t( 'qs.close1' ) ); ?>
             </p>
             <p style="<?php echo $serif; ?>font-style:italic;color:#D4B86A;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:.5rem 0 0">
                 <?php echo esc_html( romvill_t( 'qs.close2' ) ); ?>
             </p>
-            <p style="color:#9aa7b8;font-size:.95rem;letter-spacing:.04em;margin:1.6rem 0 0">
+            <p style="color:#A8A5A2;font-size:.95rem;letter-spacing:.04em;margin:1.6rem 0 0">
                 <?php echo esc_html( romvill_t( 'qs.sign' ) ); ?>
             </p>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center" style="margin-top:1.8rem;background:#D4AF37;color:#000000;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center" style="margin-top:1.8rem;background:#F0C24A;color:#000000;font-weight:700;padding:.85rem 1.9rem;border-radius:999px;text-decoration:none">
                 <?php echo esc_html( romvill_t( 'qs.cta' ) ); ?>
             </a>
         </div>

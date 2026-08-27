@@ -392,7 +392,7 @@ function romvill_agenda_mail_cliente( $email, $nom, $ref, $fecha, $hora, $tel, $
 		. romvill_mail_cliente_tarjeta( $t( 'll.card_label' ), $legible . ' · ' . $hora, $tel )
 		. romvill_mail_cliente_p( esc_html( $llamamos ) )
 		. romvill_mail_cliente_tarjeta( $t( 'll.ref_label' ), $ref )
-		. romvill_mail_cliente_p( esc_html( $t( 'll.cambiar' ) ), 'margin-bottom:0;color:#6b7280;font-size:14px;' );
+		. romvill_mail_cliente_p( esc_html( $t( 'll.cambiar' ) ), 'margin-bottom:0;color:#75726F;font-size:14px;' );
 
 	$html = romvill_mail_cliente_marco( $cuerpo, $lang, $t( 'll.titulo' ) );
 
@@ -450,9 +450,9 @@ function romvill_agenda_mail_interno( $a ) {
 	$cita_html = '<div style="' . $f . 'padding:18px 16px;text-align:center;">'
 		. '<div style="' . $f . 'font-size:22px;line-height:1.35;font-weight:800;color:#000000;text-transform:capitalize;">' . esc_html( $legible ) . '</div>'
 		. '<div style="' . $f . 'font-size:30px;line-height:1.25;font-weight:800;color:#000000;letter-spacing:1px;padding-top:2px;">' . esc_html( $d( 'hora' ) ) . '</div>'
-		. '<div style="' . $f . 'font-size:13px;color:#6b7280;padding-top:6px;">Le llama usted al ' . esc_html( $d( 'tel', '—' ) ) . '</div>'
+		. '<div style="' . $f . 'font-size:13px;color:#75726F;padding-top:6px;">Le llama usted al ' . esc_html( $d( 'tel', '—' ) ) . '</div>'
 		. ( $d( 'previa' ) !== ''
-			? '<div style="' . $f . 'font-size:12.5px;color:#8a919c;padding-top:8px;">Sustituye a la cita anterior: ' . esc_html( $d( 'previa' ) ) . '</div>'
+			? '<div style="' . $f . 'font-size:12.5px;color:#93908D;padding-top:8px;">Sustituye a la cita anterior: ' . esc_html( $d( 'previa' ) ) . '</div>'
 			: '' )
 		. '</div>';
 	$html .= romvill_mint_seccion( 'La cita', $cita_html, 'ley' );

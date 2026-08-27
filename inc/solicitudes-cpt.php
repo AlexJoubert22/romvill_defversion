@@ -253,7 +253,7 @@ function romvill_sol_counters() {
         $counts[ $e ]++;
     }
 
-    echo '<div style="margin:12px 0 4px;padding:12px 16px;background:#fff;border:1px solid #dcdcde;border-left:4px solid #135bec;border-radius:6px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">';
+    echo '<div style="margin:12px 0 4px;padding:12px 16px;background:#fff;border:1px solid #dcdcde;border-left:4px solid #F0C24A;border-radius:6px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">';
     echo '<strong style="margin-right:6px">Solicitudes:</strong>';
     // "Todas" link
     $all_active = $current === '' ? 'font-weight:700;text-decoration:underline;' : '';
@@ -325,7 +325,7 @@ function romvill_sol_box_estado( $post ) {
     $r48 = (int) get_post_meta( $post->ID, '_rv_rem48_at', true );
     $r7  = (int) get_post_meta( $post->ID, '_rv_rem7_at', true );
     $fmt = function ( $t ) { return $t ? date_i18n( 'j M Y, H:i', $t ) : '—'; };
-    echo '<hr style="margin:12px 0;border:0;border-top:1px solid #e2e8f0">';
+    echo '<hr style="margin:12px 0;border:0;border-top:1px solid #EAE7E4">';
     echo '<p style="margin:0 0 6px;font-size:12px;color:#666"><strong>Recordatorios automáticos</strong></p>';
     echo '<table style="width:100%;font-size:11px;color:#555">';
     echo '<tr><td>Presupuesto enviado</td><td style="text-align:right">' . esc_html( $fmt( $q ) ) . '</td></tr>';
@@ -353,7 +353,7 @@ function romvill_sol_box_contacto( $post ) {
     if ( $inaug ) {
         $total = defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 5;
         echo '<p style="margin:0 0 10px;padding:8px 12px;background:#fffbe6;border:1px solid #f0d98a;'
-            . 'border-left:4px solid #D4AF37;border-radius:6px;font-size:12px;line-height:1.5">'
+            . 'border-left:4px solid #F0C24A;border-radius:6px;font-size:12px;line-height:1.5">'
             . '<strong>🏛 Plaza inaugural nº ' . (int) $inaug . '/' . (int) $total . '</strong><br>'
             . 'Expediente sin coste. Contraprestación: reseña en Google.</p>';
     }

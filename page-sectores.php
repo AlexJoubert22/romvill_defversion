@@ -147,7 +147,7 @@ $contacto_url  = romvill_link( $contacto_url );
                         </li>
                         <?php endforeach; ?>
                     </ul>
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#B5952C] transition-colors mt-auto">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#D9AC33] transition-colors mt-auto">
                         <?php echo esc_html( romvill_t( 'sec.res.link' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
@@ -201,7 +201,7 @@ $contacto_url  = romvill_link( $contacto_url );
             <h2 class="text-4xl md:text-6xl font-serif mb-10 text-slate-900 dark:text-white leading-tight">
                 <?php echo esc_html( romvill_t( 'sec.final.title' ) ); ?>
             </h2>
-            <a href="<?php echo esc_url( $contacto_url ); ?>" class="group relative inline-flex items-center justify-center gap-4 bg-secondary hover:bg-[#B5952C] text-slate-900 px-12 py-5 rounded-xl font-bold transition-all duration-300 hover:shadow-2xl hover:shadow-secondary/25 hover:-translate-y-1">
+            <a href="<?php echo esc_url( $contacto_url ); ?>" class="group relative inline-flex items-center justify-center gap-4 bg-secondary hover:bg-[#D9AC33] text-slate-900 px-12 py-5 rounded-xl font-bold transition-all duration-300 hover:shadow-2xl hover:shadow-secondary/25 hover:-translate-y-1">
                 <span><?php echo esc_html( romvill_t( 'sec.final.btn' ) ); ?></span>
                 <span class="transition-transform group-hover:translate-x-1"><?php romvill_icon( 'arrow-right', 'w-5 h-5' ); ?></span>
             </a>

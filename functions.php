@@ -1693,20 +1693,20 @@ function romvill_perfil_viz( $key ) {
                 <line x1="43" y1="75" x2="167" y2="75" pathLength="1" opacity=".35"/>
             </g>
             <g class="rv-viz-sweep"><path d="M105 75 L105 13 A62 62 0 0 1 158 44 Z" fill="url(#rvSweep)" stroke="none"/></g>
-            <circle class="rv-viz-blip" cx="138" cy="52" r="4" fill="#D4AF37" stroke="none"/>
-            <circle class="rv-viz-blip rv-viz-blip--2" cx="78" cy="98" r="3.5" fill="#D4AF37" stroke="none"/>
-            <circle class="rv-viz-blip rv-viz-blip--3" cx="126" cy="102" r="3" fill="#D4AF37" stroke="none"/>
+            <circle class="rv-viz-blip" cx="138" cy="52" r="4" fill="#F0C24A" stroke="none"/>
+            <circle class="rv-viz-blip rv-viz-blip--2" cx="78" cy="98" r="3.5" fill="#F0C24A" stroke="none"/>
+            <circle class="rv-viz-blip rv-viz-blip--3" cx="126" cy="102" r="3" fill="#F0C24A" stroke="none"/>
             <g class="rv-viz-draw" transform="translate(231 30) scale(3.75)"><path pathLength="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" transform="translate(-12 -2)"/></g>
             <g class="rv-viz-draw"><polyline pathLength="1" points="196,120 230,106 258,112 292,92 320,98 344,82" opacity=".85"/></g>',
         // Demografía: barras que crecen + línea media punteada.
         'demografico' => '
             <g class="rv-viz-bars" stroke="none">
-                <rect x="36"  y="58" width="26" height="68" rx="3" fill="#243450" class="rv-viz-bar"/>
-                <rect x="78"  y="42" width="26" height="84" rx="3" fill="#2c3f63" class="rv-viz-bar rv-viz-bar--2"/>
-                <rect x="120" y="70" width="26" height="56" rx="3" fill="#243450" class="rv-viz-bar rv-viz-bar--3"/>
-                <rect x="162" y="30" width="26" height="96" rx="3" fill="rgba(212,175,55,.8)" class="rv-viz-bar rv-viz-bar--4"/>
-                <rect x="204" y="52" width="26" height="74" rx="3" fill="#2c3f63" class="rv-viz-bar rv-viz-bar--5"/>
-                <rect x="246" y="64" width="26" height="62" rx="3" fill="#243450" class="rv-viz-bar rv-viz-bar--6"/>
+                <rect x="36"  y="58" width="26" height="68" rx="3" fill="#363330" class="rv-viz-bar"/>
+                <rect x="78"  y="42" width="26" height="84" rx="3" fill="#413E3B" class="rv-viz-bar rv-viz-bar--2"/>
+                <rect x="120" y="70" width="26" height="56" rx="3" fill="#363330" class="rv-viz-bar rv-viz-bar--3"/>
+                <rect x="162" y="30" width="26" height="96" rx="3" fill="rgba(240,194,74,.8)" class="rv-viz-bar rv-viz-bar--4"/>
+                <rect x="204" y="52" width="26" height="74" rx="3" fill="#413E3B" class="rv-viz-bar rv-viz-bar--5"/>
+                <rect x="246" y="64" width="26" height="62" rx="3" fill="#363330" class="rv-viz-bar rv-viz-bar--6"/>
             </g>
             <g class="rv-viz-draw"><line x1="28" y1="126" x2="332" y2="126" pathLength="1" opacity=".4"/></g>
             <g class="rv-viz-draw" stroke-dasharray="4 6"><line x1="28" y1="62" x2="332" y2="62" pathLength="1" opacity=".55"/></g>
@@ -1728,8 +1728,8 @@ function romvill_perfil_viz( $key ) {
                 <path id="rvRoute" pathLength="1" d="M20 110 C72 110 64 44 122 44 S178 104 238 90 298 34 338 30" fill="none"/>
             </g>
             <path class="rv-viz-pulse" d="M20 110 C72 110 64 44 122 44 S178 104 238 90 298 34 338 30" fill="none"/>
-            <g class="rv-viz-pop"><circle cx="338" cy="30" r="5" fill="#D4AF37" stroke="none"/><circle cx="338" cy="30" r="10" fill="none" opacity=".5"/></g>
-            <circle class="rv-viz-blip" cx="20" cy="110" r="4" fill="#D4AF37" stroke="none"/>',
+            <g class="rv-viz-pop"><circle cx="338" cy="30" r="5" fill="#F0C24A" stroke="none"/><circle cx="338" cy="30" r="10" fill="none" opacity=".5"/></g>
+            <circle class="rv-viz-blip" cx="20" cy="110" r="4" fill="#F0C24A" stroke="none"/>',
         // Proyección: área ascendente + flecha final.
         'proyeccion' => '
             <g stroke="none"><path class="rv-viz-area" d="M24 122 L80 102 130 110 190 76 250 58 330 26 330 126 24 126 Z" fill="url(#rvArea)"/></g>
@@ -1759,15 +1759,15 @@ function romvill_perfil_viz( $key ) {
             <span class="ana-tile__corner ana-tile__corner--br" aria-hidden="true"></span>
             <div class="rv-viz__grid"></div>
             <div class="rv-viz__scene">
-                <svg viewBox="0 0 360 150" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet">
+                <svg viewBox="0 0 360 150" fill="none" stroke="#F0C24A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet">
                     <defs>
                         <linearGradient id="rvArea" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#D4AF37" stop-opacity=".28"/>
-                            <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+                            <stop offset="0" stop-color="#F0C24A" stop-opacity=".28"/>
+                            <stop offset="1" stop-color="#F0C24A" stop-opacity="0"/>
                         </linearGradient>
                         <linearGradient id="rvSweep" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0" stop-color="#D4AF37" stop-opacity=".3"/>
-                            <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+                            <stop offset="0" stop-color="#F0C24A" stop-opacity=".3"/>
+                            <stop offset="1" stop-color="#F0C24A" stop-opacity="0"/>
                         </linearGradient>
                     </defs>
                     <?php echo $scenes[ $key ]; // phpcs:ignore WordPress.Security.EscapeOutput -- SVG estático definido arriba. ?>
@@ -2067,7 +2067,7 @@ add_action( 'init', function () {
 
 /**
  * Coherencia visual: en metodología, análisis, sectores y precios sustituye el
- * acento AZUL (primary) por el DORADO de marca (secondary #D4AF37), igualando el
+ * acento AZUL (primary) por el DORADO de marca (secondary #F0C24A), igualando el
  * estilo premium de /contacto/. Solo color de acento, acotado a <main> para no
  * tocar header/footer. 100% reversible (basta borrar esta función).
  */
@@ -2077,21 +2077,21 @@ function romvill_coherencia_gold() {
     }
     echo <<<'CSS'
 <style id="rv-coherencia-gold">
-main .text-primary{color:#D4AF37!important}
-html:not(.dark) main .text-primary{color:#9A7529!important}
-html:not(.dark) main .bg-slate-900 .text-primary,html:not(.dark) main .bg-slate-950 .text-primary,html:not(.dark) main .bg-slate-800 .text-primary{color:#D4AF37!important}
+main .text-primary{color:#F0C24A!important}
+html:not(.dark) main .text-primary{color:#8A6B18!important}
+html:not(.dark) main .bg-slate-900 .text-primary,html:not(.dark) main .bg-slate-950 .text-primary,html:not(.dark) main .bg-slate-800 .text-primary{color:#F0C24A!important}
 main .text-primary-dark{color:#a98e4e!important}
-main .bg-primary{background-color:#D4AF37!important}
-main .bg-primary\/10{background-color:rgba(212,175,55,.10)!important}
-main .bg-primary\/20{background-color:rgba(212,175,55,.20)!important}
-main .bg-primary\/30{background-color:rgba(212,175,55,.30)!important}
-main .border-primary{border-color:#D4AF37!important}
-main .border-primary\/20{border-color:rgba(212,175,55,.22)!important}
-main .hover\:bg-primary:hover{background-color:#D4AF37!important}
-main .hover\:text-primary:hover{color:#D4AF37!important}
+main .bg-primary{background-color:#F0C24A!important}
+main .bg-primary\/10{background-color:rgba(240,194,74,.10)!important}
+main .bg-primary\/20{background-color:rgba(240,194,74,.20)!important}
+main .bg-primary\/30{background-color:rgba(240,194,74,.30)!important}
+main .border-primary{border-color:#F0C24A!important}
+main .border-primary\/20{border-color:rgba(240,194,74,.22)!important}
+main .hover\:bg-primary:hover{background-color:#F0C24A!important}
+main .hover\:text-primary:hover{color:#F0C24A!important}
 main .hover\:text-primary-dark:hover{color:#a98e4e!important}
 main .text-blue-100,main .text-blue-200,main .text-blue-300{color:#d8c489!important}
-main .from-primary{--tw-gradient-from:#D4AF37 var(--tw-gradient-from-position)!important;--tw-gradient-to:rgba(212,175,55,0) var(--tw-gradient-to-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+main .from-primary{--tw-gradient-from:#F0C24A var(--tw-gradient-from-position)!important;--tw-gradient-to:rgba(240,194,74,0) var(--tw-gradient-to-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
 main .to-blue-400{--tw-gradient-to:#d8c489 var(--tw-gradient-to-position)!important}
 </style>
 CSS;
@@ -2115,16 +2115,16 @@ html:not(.dark) .bg-slate-950 .text-slate-400,
 html:not(.dark) .bg-slate-800 .text-slate-400,
 html:not(.dark) .bg-black .text-slate-400,
 html:not(.dark) .bg-background-dark .text-slate-400,
-html:not(.dark) [class*="from-slate-9"] .text-slate-400{color:#94a3b8 !important}
+html:not(.dark) [class*="from-slate-9"] .text-slate-400{color:#A4A19E !important}
 </style>
 CSS;
 }
 add_action( 'wp_head', 'romvill_contrast_fix', 99 );
 
 /**
- * Accesibilidad (dorado): el dorado de marca (#D4AF37) sobre fondo blanco falla
+ * Accesibilidad (dorado): el dorado de marca (#F0C24A) sobre fondo blanco falla
  * contraste (2.48). En MODO CLARO lo oscurece a un dorado rico legible
- * (#9A7529, 4.24:1) en los textos sobre fondo claro. Se EXCLUYEN los fondos
+ * (#8A6B18, 5.00:1) en los textos sobre fondo claro. Se EXCLUYEN los fondos
  * oscuros (héroe, tarjetas), donde el dorado debe seguir brillante. No toca el
  * modo oscuro. 100% reversible.
  */
@@ -2132,13 +2132,13 @@ function romvill_gold_contrast() {
     if ( is_admin() ) return;
     echo <<<'CSS'
 <style id="rv-gold-contrast">
-html:not(.dark) .text-secondary{color:#9A7529 !important}
+html:not(.dark) .text-secondary{color:#8A6B18 !important}
 html:not(.dark) .bg-slate-900 .text-secondary,
 html:not(.dark) .bg-slate-950 .text-secondary,
 html:not(.dark) .bg-slate-800 .text-secondary,
 html:not(.dark) .bg-black .text-secondary,
 html:not(.dark) .bg-background-dark .text-secondary,
-html:not(.dark) [class*="from-slate-9"] .text-secondary{color:#D4AF37 !important}
+html:not(.dark) [class*="from-slate-9"] .text-secondary{color:#F0C24A !important}
 </style>
 CSS;
 }
@@ -2175,7 +2175,7 @@ function romvill_related_dimensions( $current_slug ) {
                 ?>
                 <a href="<?php echo esc_url( $url ); ?>" class="group flex flex-col bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-8 shadow-sm hover:border-secondary hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div class="flex items-center gap-4 mb-3">
-                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-secondary shrink-0" style="background:rgba(212,175,55,0.14)">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-secondary shrink-0" style="background:rgba(240,194,74,0.14)">
                             <span aria-hidden="true" class="material-symbols-outlined"><?php echo esc_html( $d['icon'] ); ?></span>
                         </div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-lg"><?php echo esc_html( $d['name'] ); ?></h3>

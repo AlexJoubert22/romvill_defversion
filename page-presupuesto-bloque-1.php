@@ -22,7 +22,7 @@ add_action( 'wp_head', function () { ?>
 :root {
   --b1-bg:#FFFFFF; --b1-bg2:#F5F5F7; --b1-bg3:#EEF2F7;
   --b1-text:#1D1D1F; --b1-text2:#6E6E73; --b1-text3:#AEAEB2;
-  --b1-accent:#1D3557; --b1-border:#E8E8ED; --b1-border2:#D1D1D6;
+  --b1-accent:#35322F; --b1-border:#E8E8ED; --b1-border2:#D1D1D6;
   --b1-ok:#34C759; --b1-err:#FF3B30;
 }
 
@@ -330,7 +330,7 @@ romvill_seo( array(
         if ( $rv_inaug_badge ) :
         ?>
         <div style="margin:18px 0 4px">
-            <span style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(212,175,55,.55);background:linear-gradient(180deg,rgba(212,175,55,.14),rgba(212,175,55,.05));color:#8a6d2f;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:8px 18px;border-radius:999px">
+            <span style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(240,194,74,.55);background:linear-gradient(180deg,rgba(240,194,74,.14),rgba(240,194,74,.05));color:#8a6d2f;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:8px 18px;border-radius:999px">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;flex:0 0 auto">
                     <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
                 </svg>
@@ -342,7 +342,7 @@ romvill_seo( array(
         $rv_inaug_letra = function_exists( 'romvill_inaugural_letra_pequena' ) ? romvill_inaugural_letra_pequena() : '';
         if ( $rv_inaug_letra ) :
         ?>
-        <div style="margin:0 auto 4px;max-width:560px;font-size:11.5px;line-height:1.6;color:#64748b">
+        <div style="margin:0 auto 4px;max-width:560px;font-size:11.5px;line-height:1.6;color:#75726F">
             <?php echo esc_html( $rv_inaug_letra ); ?>
         </div>
         <?php endif; ?>

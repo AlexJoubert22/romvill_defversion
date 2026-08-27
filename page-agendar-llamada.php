@@ -39,45 +39,45 @@ add_action( 'wp_head', function () { ?>
 .rv-ag-page { background:#FCFBF9 !important; }
 
 /* ── Maqueta aprobada (paleta tinta/oro/crema) ── */
-.rv-ag { font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif; background:#FCFBF9; color:#333b47; min-height:100vh; padding-bottom:48px; }
+.rv-ag { font-family:-apple-system,'Segoe UI',Calibri,Arial,sans-serif; background:#FCFBF9; color:#3D3A37; min-height:100vh; padding-bottom:48px; }
 .rv-ag * { box-sizing:border-box; }
 .rv-ag-head { background:#000000; text-align:center; padding:26px 18px 20px; }
 .rv-ag-head .nm { color:#fff; font-weight:800; font-size:20px; letter-spacing:7px; text-indent:7px; }
-.rv-ag-head .sb { color:#D4AF37; font-size:11px; letter-spacing:3px; text-transform:uppercase; margin-top:6px; }
-.rv-ag-gold { height:3px; background:#D4AF37; }
+.rv-ag-head .sb { color:#F0C24A; font-size:11px; letter-spacing:3px; text-transform:uppercase; margin-top:6px; }
+.rv-ag-gold { height:3px; background:#F0C24A; }
 .rv-ag-wrap { max-width:520px; margin:0 auto; padding:24px 16px; }
 .rv-ag h1 { font-family:Georgia,serif; font-size:23px; color:#000000; margin:0 0 6px; font-weight:700; line-height:1.3; }
-.rv-ag-sub { font-size:14.5px; color:#5c6b80; margin:0 0 18px; line-height:1.6; }
+.rv-ag-sub { font-size:14.5px; color:#6C6966; margin:0 0 18px; line-height:1.6; }
 .rv-ag-exp { display:inline-block; background:#000000; color:#fff; font-size:12px; font-weight:800; letter-spacing:1px; padding:5px 12px; border-radius:999px; margin-bottom:20px; text-transform:uppercase; }
 .rv-ag-lbl { font-size:12px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:#8a6b18; margin:18px 0 8px; }
 .rv-ag-dias { display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; }
 .rv-ag-dia { flex:0 0 auto; text-align:center; border:1.5px solid #e4e1d8; background:#fff; border-radius:12px; padding:10px 0; width:72px; cursor:pointer; }
-.rv-ag-dia .dsem { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#8a919c; }
+.rv-ag-dia .dsem { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#93908D; }
 .rv-ag-dia .dnum { font-size:20px; font-weight:800; color:#000000; margin:2px 0; }
-.rv-ag-dia .dmes { font-size:11px; color:#8a919c; }
+.rv-ag-dia .dmes { font-size:11px; color:#93908D; }
 .rv-ag-dia.sel { border-color:#000000; background:#000000; }
-.rv-ag-dia.sel .dsem, .rv-ag-dia.sel .dmes { color:#D4AF37; }
+.rv-ag-dia.sel .dsem, .rv-ag-dia.sel .dmes { color:#F0C24A; }
 .rv-ag-dia.sel .dnum { color:#fff; }
 .rv-ag-horas { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
 .rv-ag-hora { border:1.5px solid #e4e1d8; background:#fff; border-radius:10px; padding:11px 0; text-align:center; font-size:15px; font-weight:700; color:#000000; cursor:pointer; }
-.rv-ag-hora.sel { background:#000000; color:#D4AF37; border-color:#000000; }
+.rv-ag-hora.sel { background:#000000; color:#F0C24A; border-color:#000000; }
 .rv-ag-hora.off { opacity:.35; text-decoration:line-through; cursor:default; }
 .rv-ag input[type=text], .rv-ag input[type=tel], .rv-ag textarea { width:100%; border:1.5px solid #e4e1d8; border-radius:10px; padding:13px 14px; font-size:16px; font-family:inherit; background:#fff; color:#000000; outline:none; }
 .rv-ag input:focus, .rv-ag textarea:focus { border-color:#000000; }
 .rv-ag textarea { min-height:96px; resize:vertical; }
 .rv-ag-btn { display:block; width:100%; background:#000000; color:#fff; border:0; border-radius:10px; padding:16px; font-size:16px; font-weight:800; letter-spacing:.5px; margin-top:20px; font-family:inherit; cursor:pointer; }
 .rv-ag-btn[disabled] { opacity:.45; cursor:not-allowed; }
-.rv-ag-btn small { display:block; font-weight:600; font-size:12px; color:#D4AF37; margin-top:3px; letter-spacing:1px; text-transform:uppercase; }
-.rv-ag-nota { font-size:12.5px; color:#8a919c; text-align:center; margin-top:14px; line-height:1.6; }
+.rv-ag-btn small { display:block; font-weight:600; font-size:12px; color:#F0C24A; margin-top:3px; letter-spacing:1px; text-transform:uppercase; }
+.rv-ag-nota { font-size:12.5px; color:#93908D; text-align:center; margin-top:14px; line-height:1.6; }
 .rv-ag-err { font-size:13px; color:#a13333; text-align:center; margin-top:12px; min-height:18px; line-height:1.5; }
 .rv-ag-card { background:#fff; border:1px solid #e4e1d8; border-radius:12px; padding:18px 16px; margin-bottom:6px; }
 .rv-ag-card .clbl { font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#8a6b18; margin-bottom:6px; }
 .rv-ag-card .cbig { font-size:19px; font-weight:800; color:#000000; line-height:1.4; }
-.rv-ag-card .csub { font-size:13.5px; color:#5c6b80; margin-top:4px; line-height:1.6; }
+.rv-ag-card .csub { font-size:13.5px; color:#6C6966; margin-top:4px; line-height:1.6; }
 .rv-ag-link { display:inline-block; margin-top:12px; background:none; border:1.5px solid #000000; border-radius:999px; color:#000000; font-family:inherit; font-size:13px; font-weight:700; padding:9px 18px; cursor:pointer; }
 .rv-ag-okic { width:52px; height:52px; border-radius:50%; background:#166B42; color:#fff; font-size:26px; line-height:52px; text-align:center; margin:0 auto 14px; }
 .rv-ag-okwrap { text-align:center; padding:26px 0 6px; }
-.rv-ag-rgpd { display:flex; align-items:flex-start; gap:10px; margin-top:14px; font-size:13px; color:#5c6b80; line-height:1.55; }
+.rv-ag-rgpd { display:flex; align-items:flex-start; gap:10px; margin-top:14px; font-size:13px; color:#6C6966; line-height:1.55; }
 .rv-ag-rgpd input { width:18px; height:18px; margin-top:1px; flex:0 0 auto; }
 .rv-ag-hide { display:none !important; }
 </style>

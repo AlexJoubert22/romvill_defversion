@@ -219,8 +219,8 @@ function romvill_rest_entregar( WP_REST_Request $req ) {
 		// 5. Reseña de Google — INVITACIÓN, nunca condición. El texto de
 		// 'entrega.resena.instruccion' no se toca sin pasar por dirección.
 		. '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 18px 0;">'
-		. '<tr><td style="background-color:#faf7ef;border-left:3px solid #D4AF37;padding:16px 20px;">'
-		. '<div style="' . $fuente . 'font-size:14px;line-height:1.6;color:#4b5563;">' . esc_html( $t( 'entrega.resena.instruccion' ) ) . '</div>'
+		. '<tr><td style="background-color:#faf7ef;border-left:3px solid #F0C24A;padding:16px 20px;">'
+		. '<div style="' . $fuente . 'font-size:14px;line-height:1.6;color:#575451;">' . esc_html( $t( 'entrega.resena.instruccion' ) ) . '</div>'
 		. '</td></tr></table>'
 		. romvill_mail_cliente_btn( $t( 'entrega.resena.btn' ), $url_resena, false );
 

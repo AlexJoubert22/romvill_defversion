@@ -4,7 +4,7 @@
  *
  * Sustituye el cuerpo de texto plano (cajas ASCII) de los avisos internos
  * por un HTML sobrio y escaneable, con el mismo lenguaje visual que
- * inc/mail-cliente.php (cabecera tinta #000000, filete dorado #D4AF37)
+ * inc/mail-cliente.php (cabecera tinta #000000, filete dorado #F0C24A)
  * en versión utilitaria. Siempre en español: es para el dueño.
  *
  * El texto plano de siempre NO desaparece: viaja como AltBody
@@ -79,17 +79,17 @@ function romvill_mint_marco( $contenido_html, $titulo, $etiqueta = 'Aviso intern
 	.       '</td>'
 	.       '<td valign="middle">'
 	.         '<span style="' . $f . 'font-size:17px;line-height:1.2;font-weight:700;letter-spacing:6px;color:#ffffff;">ROMVILL</span>'
-	.         '<span style="' . $f . 'font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;padding-left:10px;">' . esc_html( $etiqueta ) . '</span>'
+	.         '<span style="' . $f . 'font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F0C24A;padding-left:10px;">' . esc_html( $etiqueta ) . '</span>'
 	.       '</td>'
 	.     '</tr></table>'
 	.   '</td></tr>'
 	// Filete dorado fino.
-	.   '<tr><td style="height:3px;line-height:3px;font-size:1px;background-color:#D4AF37;">&#160;</td></tr>'
+	.   '<tr><td style="height:3px;line-height:3px;font-size:1px;background-color:#F0C24A;">&#160;</td></tr>'
 	// Contenido.
 	.   '<tr><td class="rv-body" style="padding:22px 24px 22px 24px;">' . $contenido_html . '</td></tr>'
 	// Pie mínimo.
 	.   '<tr><td class="rv-foot" align="center" style="padding:14px 24px 18px 24px;border-top:1px solid #e4e6ea;">'
-	.     '<div style="' . $f . 'font-size:12px;line-height:1.6;color:#8a919c;">ROMVILL &#183; Solo para uso interno</div>'
+	.     '<div style="' . $f . 'font-size:12px;line-height:1.6;color:#93908D;">ROMVILL &#183; Solo para uso interno</div>'
 	.   '</td></tr>'
 	.   '</table>'
 	. '</td></tr></table>'
@@ -133,12 +133,12 @@ function romvill_mint_marco_ley( $contenido_html, $titulo, $etiqueta ) {
 	.       '<td style="width:14px;">&#160;</td>'
 	.       '<td valign="middle">'
 	.         '<div style="' . $f . 'font-size:17px;line-height:1.2;font-weight:800;letter-spacing:5px;color:#ffffff;">ROMVILL</div>'
-	.         '<div style="' . $f . 'font-size:10px;letter-spacing:2px;color:#D4AF37;text-transform:uppercase;padding-top:3px;">' . esc_html( $etiqueta ) . '</div>'
+	.         '<div style="' . $f . 'font-size:10px;letter-spacing:2px;color:#F0C24A;text-transform:uppercase;padding-top:3px;">' . esc_html( $etiqueta ) . '</div>'
 	.       '</td>'
 	.     '</tr></table>'
 	.   '</td></tr>'
 	// Filete dorado fino.
-	.   '<tr><td style="height:3px;line-height:3px;font-size:1px;background-color:#D4AF37;">&#160;</td></tr>'
+	.   '<tr><td style="height:3px;line-height:3px;font-size:1px;background-color:#F0C24A;">&#160;</td></tr>'
 	// Contenido.
 	.   '<tr><td class="rv-body" style="padding:24px 22px 28px 22px;">' . $contenido_html . '</td></tr>'
 	.   '</table>'
@@ -174,7 +174,7 @@ function romvill_mint_fecha_legible( $ts = 0 ) {
 function romvill_mint_titular( $titulo, $fecha ) {
 	$f = romvill_mint_fuente();
 	return '<div style="' . $f . 'font-size:20px;font-weight:700;color:#000000;margin-bottom:4px;">' . esc_html( $titulo ) . '</div>'
-	. '<div style="' . $f . 'font-size:14px;color:#6b7280;margin-bottom:14px;">' . esc_html( $fecha ) . '</div>';
+	. '<div style="' . $f . 'font-size:14px;color:#75726F;margin-bottom:14px;">' . esc_html( $fecha ) . '</div>';
 }
 
 /**
@@ -192,7 +192,7 @@ function romvill_mint_chips( $chips ) {
 	$mapa = array(
 		'tinta' => 'background-color:#000000;color:#ffffff;padding:5px 12px;',
 		'verde' => 'border:1px solid #166B42;color:#166B42;padding:4px 12px;',
-		'oro'   => 'border:1px solid #D4AF37;color:#8a6b18;padding:4px 12px;',
+		'oro'   => 'border:1px solid #F0C24A;color:#8a6b18;padding:4px 12px;',
 		'ambar' => 'border:1px solid #d09a3e;color:#8a5a16;padding:4px 12px;',
 	);
 	$out = '<div style="margin:0 0 4px 0;">';
@@ -239,12 +239,12 @@ function romvill_mint_cabecera( $ref, $badge, $extras = array(), $meta = '' ) {
 	$f = romvill_mint_fuente();
 	$badges = '<span style="' . $f . 'display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#ffffff;background-color:#000000;padding:4px 10px;margin:0 6px 6px 0;">' . esc_html( $badge ) . '</span>';
 	foreach ( (array) $extras as $ex ) {
-		$badges .= '<span style="' . $f . 'display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#000000;background-color:#D4AF37;padding:4px 10px;margin:0 6px 6px 0;">' . esc_html( $ex ) . '</span>';
+		$badges .= '<span style="' . $f . 'display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#000000;background-color:#F0C24A;padding:4px 10px;margin:0 6px 6px 0;">' . esc_html( $ex ) . '</span>';
 	}
-	return '<div style="' . $f . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding-bottom:4px;">Referencia</div>'
+	return '<div style="' . $f . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#93908D;padding-bottom:4px;">Referencia</div>'
 	. '<div class="rv-big" style="' . $f . 'font-size:21px;line-height:1.3;font-weight:700;letter-spacing:1px;color:#000000;word-break:break-word;padding-bottom:10px;">' . esc_html( $ref ) . '</div>'
 	. '<div style="padding-bottom:2px;">' . $badges . '</div>'
-	. ( $meta !== '' ? '<div style="' . $f . 'font-size:13px;line-height:1.6;color:#6b7280;padding-bottom:6px;">' . esc_html( $meta ) . '</div>' : '' )
+	. ( $meta !== '' ? '<div style="' . $f . 'font-size:13px;line-height:1.6;color:#75726F;padding-bottom:6px;">' . esc_html( $meta ) . '</div>' : '' )
 	. '<div style="height:1px;line-height:1px;font-size:1px;background-color:#e4e6ea;margin:10px 0 16px 0;">&#160;</div>';
 }
 
@@ -258,14 +258,14 @@ function romvill_mint_cabecera( $ref, $badge, $extras = array(), $meta = '' ) {
 function romvill_mint_aviso( $texto, $tono = 'neutro' ) {
 	$f = romvill_mint_fuente();
 	$mapa = array(
-		'oro'    => array( '#faf7ef', '#D4AF37' ),
+		'oro'    => array( '#faf7ef', '#F0C24A' ),
 		'alerta' => array( '#fdf6ec', '#d09a3e' ),
-		'neutro' => array( '#f5f6f8', '#8a919c' ),
+		'neutro' => array( '#f5f6f8', '#93908D' ),
 	);
 	$c = isset( $mapa[ $tono ] ) ? $mapa[ $tono ] : $mapa['neutro'];
 	return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px 0;">'
 	. '<tr><td style="background-color:' . $c[0] . ';border-left:3px solid ' . $c[1] . ';padding:10px 14px;">'
-	.   '<div style="' . $f . 'font-size:13px;line-height:1.6;color:#333b47;">' . nl2br( esc_html( $texto ) ) . '</div>'
+	.   '<div style="' . $f . 'font-size:13px;line-height:1.6;color:#3D3A37;">' . nl2br( esc_html( $texto ) ) . '</div>'
 	. '</td></tr></table>';
 }
 
@@ -286,7 +286,7 @@ function romvill_mint_seccion( $titulo, $interior_html, $estilo = '' ) {
 		. '<tr><td style="padding:0;">' . $interior_html . '</td></tr>'
 		. '</table>';
 	}
-	return '<div style="' . $f . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding:4px 0 6px 0;">' . esc_html( $titulo ) . '</div>'
+	return '<div style="' . $f . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#93908D;padding:4px 0 6px 0;">' . esc_html( $titulo ) . '</div>'
 	. '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px 0;border:1px solid #e4e6ea;">'
 	. '<tr><td style="padding:2px 0;">' . $interior_html . '</td></tr>'
 	. '</table>';
@@ -307,8 +307,8 @@ function romvill_mint_filas( $pares, $estilo = '' ) {
 		$out = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">';
 		foreach ( $pares as $par ) {
 			$out .= '<tr>'
-			. '<td class="rv-lbl" valign="top" width="38%" style="' . $f . 'width:38%;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8a919c;padding:9px 14px;border-bottom:1px solid #eef0f3;">' . esc_html( $par[0] ) . '</td>'
-			. '<td valign="top" style="' . $f . 'font-size:14.5px;line-height:1.55;color:#1f2733;padding:9px 14px;border-bottom:1px solid #eef0f3;word-break:break-word;">' . $par[1] . '</td>'
+			. '<td class="rv-lbl" valign="top" width="38%" style="' . $f . 'width:38%;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#93908D;padding:9px 14px;border-bottom:1px solid #eef0f3;">' . esc_html( $par[0] ) . '</td>'
+			. '<td valign="top" style="' . $f . 'font-size:14.5px;line-height:1.55;color:#000000;padding:9px 14px;border-bottom:1px solid #eef0f3;word-break:break-word;">' . $par[1] . '</td>'
 			. '</tr>';
 		}
 		return $out . '</table>';
@@ -318,7 +318,7 @@ function romvill_mint_filas( $pares, $estilo = '' ) {
 	foreach ( $pares as $par ) {
 		$borde = $i === 0 ? '' : 'border-top:1px solid #eef0f3;';
 		$out .= '<tr>'
-		. '<td class="rv-lbl" valign="top" width="38%" style="' . $f . $borde . 'width:38%;padding:8px 10px 8px 14px;font-size:13px;line-height:1.55;color:#8a919c;">' . esc_html( $par[0] ) . '</td>'
+		. '<td class="rv-lbl" valign="top" width="38%" style="' . $f . $borde . 'width:38%;padding:8px 10px 8px 14px;font-size:13px;line-height:1.55;color:#93908D;">' . esc_html( $par[0] ) . '</td>'
 		. '<td valign="top" style="' . $f . $borde . 'padding:8px 14px 8px 6px;font-size:14px;line-height:1.55;color:#000000;word-break:break-word;">' . $par[1] . '</td>'
 		. '</tr>';
 		$i++;
@@ -331,7 +331,7 @@ function romvill_mint_texto( $texto ) {
 	$f = romvill_mint_fuente();
 	$t = trim( (string) $texto );
 	if ( $t === '' || $t === '—' ) $t = '—';
-	return '<div style="' . $f . 'padding:10px 14px;font-size:14px;line-height:1.65;color:#333b47;word-break:break-word;">' . nl2br( esc_html( $t ) ) . '</div>';
+	return '<div style="' . $f . 'padding:10px 14px;font-size:14px;line-height:1.65;color:#3D3A37;word-break:break-word;">' . nl2br( esc_html( $t ) ) . '</div>';
 }
 
 /**
@@ -348,8 +348,8 @@ function romvill_mint_qa( $pares ) {
 	foreach ( $pares as $par ) {
 		$borde = $i === 0 ? '' : 'border-top:1px solid #e4e6ea;';
 		$out .= '<tr><td style="' . $f . $borde . 'background-color:#f8f9fc;padding:8px 14px 7px 14px;font-size:13px;line-height:1.5;color:#000000;font-weight:600;">'
-		. '<span style="color:#D4AF37;font-weight:700;">' . esc_html( $par['num'] ) . '</span>&#160;&#160;' . esc_html( $par['q'] ) . '</td></tr>'
-		. '<tr><td style="' . $f . 'padding:8px 14px 10px 14px;font-size:14px;line-height:1.6;color:#333b47;word-break:break-word;">' . nl2br( esc_html( $par['a'] !== '' ? $par['a'] : '—' ) ) . '</td></tr>';
+		. '<span style="color:#F0C24A;font-weight:700;">' . esc_html( $par['num'] ) . '</span>&#160;&#160;' . esc_html( $par['q'] ) . '</td></tr>'
+		. '<tr><td style="' . $f . 'padding:8px 14px 10px 14px;font-size:14px;line-height:1.6;color:#3D3A37;word-break:break-word;">' . nl2br( esc_html( $par['a'] !== '' ? $par['a'] : '—' ) ) . '</td></tr>';
 		$i++;
 	}
 	return $out . '</table>';
@@ -366,11 +366,11 @@ function romvill_mint_estimacion( $texto ) {
 	$texto = trim( (string) $texto );
 	if ( $texto === '' ) return '';
 	$f = romvill_mint_fuente();
-	return '<div style="' . $f . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a919c;padding:4px 0 6px 0;">Estimaci&oacute;n &#183; Solo interno</div>'
+	return '<div style="' . $f . 'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#93908D;padding:4px 0 6px 0;">Estimaci&oacute;n &#183; Solo interno</div>'
 	. '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px 0;">'
-	. '<tr><td style="background-color:#f2f3f6;border:1px dashed #c7ccd4;padding:12px 14px;">'
-	.   '<div style="font-family:Menlo,Consolas,\'Courier New\',monospace;font-size:12px;line-height:1.6;color:#4b5563;white-space:pre-wrap;word-break:break-word;">' . esc_html( $texto ) . '</div>'
-	.   '<div style="' . $f . 'font-size:11px;line-height:1.5;color:#8a919c;padding-top:8px;">No llega al cliente.</div>'
+	. '<tr><td style="background-color:#f2f3f6;border:1px dashed #CFCCC9;padding:12px 14px;">'
+	.   '<div style="font-family:Menlo,Consolas,\'Courier New\',monospace;font-size:12px;line-height:1.6;color:#575451;white-space:pre-wrap;word-break:break-word;">' . esc_html( $texto ) . '</div>'
+	.   '<div style="' . $f . 'font-size:11px;line-height:1.5;color:#93908D;padding-top:8px;">No llega al cliente.</div>'
 	. '</td></tr></table>';
 }
 
@@ -410,7 +410,7 @@ function romvill_mint_enlace( $url, $texto = '' ) {
 	if ( $url === '' ) return '&#8212;';
 	if ( $texto === '' ) $texto = $url;
 	$href = 0 === strpos( $url, 'mailto:' ) ? 'mailto:' . esc_attr( substr( $url, 7 ) ) : esc_url( $url );
-	return '<a href="' . $href . '" style="color:#1a56a0;">' . esc_html( $texto ) . '</a>';
+	return '<a href="' . $href . '" style="color:#B8862B;">' . esc_html( $texto ) . '</a>';
 }
 
 /** Valor teléfono como enlace tel: clicable (ya escapado). */
@@ -421,7 +421,7 @@ function romvill_mint_tel( $tel, $sufijo = '' ) {
 	$out  = $href !== ''
 		? '<a href="tel:' . esc_attr( $href ) . '" style="color:#000000;text-decoration:underline;">' . esc_html( $tel ) . '</a>'
 		: esc_html( $tel );
-	if ( $sufijo !== '' ) $out .= ' <span style="color:#6b7280;">(' . esc_html( $sufijo ) . ')</span>';
+	if ( $sufijo !== '' ) $out .= ' <span style="color:#75726F;">(' . esc_html( $sufijo ) . ')</span>';
 	return $out;
 }
 
