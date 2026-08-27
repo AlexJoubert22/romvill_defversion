@@ -187,7 +187,7 @@ function romvill_lottie_lazy() {
 
 // ─── Enqueue Styles & Scripts ───────────────────────────────
 function romvill_enqueue_assets() {
-    // Las fuentes (Manrope, Playfair Display, Material Symbols) ahora se ALOJAN
+    // Las fuentes (Onest, Cormorant Garamond, Material Symbols) ahora se ALOJAN
     // EN EL PROPIO DOMINIO (assets/fonts/fonts.css + .woff2), no se cargan de
     // Google. Ventajas: ningún bloqueador anti-Google-Fonts rompe iconos/tipografía,
     // más rápido y conforme al RGPD (no se envía la IP del visitante a Google).

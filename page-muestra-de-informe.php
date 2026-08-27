@@ -412,8 +412,8 @@ $_seasons = array(
               <div class="csc"><svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="<?php echo esc_attr( romvill_t( 'muestra.s2.ct' ) ); ?>">
                 <?php foreach ( $_rob as $i => $r ) : ?>
                 <rect class="abar" style="transition-delay:<?php echo esc_attr( (string) ( .15 + $i * .18 ) ); ?>s" x="<?php echo esc_attr( (string) $r['x'] ); ?>" y="<?php echo esc_attr( (string) $r['y'] ); ?>" width="102.7" height="<?php echo esc_attr( (string) $r['h'] ); ?>" rx="4" fill="var(--mu-gold)"/>
-                <text class="alab" x="<?php echo esc_attr( (string) ( $r['x'] + 51.3 ) ); ?>" y="<?php echo esc_attr( (string) ( $r['y'] - 8 ) ); ?>" text-anchor="middle" font-size="14" font-weight="800" fill="var(--mu-t1)" font-family="Manrope,system-ui,sans-serif"><?php echo esc_html( $r['v'] ); ?></text>
-                <text x="<?php echo esc_attr( (string) ( $r['x'] + 51.3 ) ); ?>" y="258" text-anchor="middle" font-size="13" font-weight="600" fill="var(--mu-t3)" font-family="Manrope,system-ui,sans-serif"><?php echo esc_html( $r['a'] ); ?></text>
+                <text class="alab" x="<?php echo esc_attr( (string) ( $r['x'] + 51.3 ) ); ?>" y="<?php echo esc_attr( (string) ( $r['y'] - 8 ) ); ?>" text-anchor="middle" font-size="14" font-weight="800" fill="var(--mu-t1)" font-family="Onest,system-ui,sans-serif"><?php echo esc_html( $r['v'] ); ?></text>
+                <text x="<?php echo esc_attr( (string) ( $r['x'] + 51.3 ) ); ?>" y="258" text-anchor="middle" font-size="13" font-weight="600" fill="var(--mu-t3)" font-family="Onest,system-ui,sans-serif"><?php echo esc_html( $r['a'] ); ?></text>
                 <?php endforeach; ?>
                 <line x1="52" y1="236" x2="668" y2="236" stroke="var(--mu-lines)" stroke-width="1.5"/>
               </svg></div>
@@ -496,13 +496,13 @@ $_seasons = array(
                 foreach ( $_grid as $g ) :
                 ?>
                 <line x1="52" y1="<?php echo esc_attr( (string) $g[0] ); ?>" x2="668" y2="<?php echo esc_attr( (string) $g[0] ); ?>" stroke="var(--mu-line)" stroke-width="1"/>
-                <text x="44" y="<?php echo esc_attr( (string) ( $g[0] + 4 ) ); ?>" text-anchor="end" font-size="13" font-weight="600" fill="var(--mu-t3)" font-family="Manrope,system-ui,sans-serif"><?php echo esc_html( $g[1] ); ?></text>
+                <text x="44" y="<?php echo esc_attr( (string) ( $g[0] + 4 ) ); ?>" text-anchor="end" font-size="13" font-weight="600" fill="var(--mu-t3)" font-family="Onest,system-ui,sans-serif"><?php echo esc_html( $g[1] ); ?></text>
                 <?php endforeach; ?>
                 <polyline class="aline" pathLength="1" points="<?php echo esc_attr( $_temp_min ); ?>" fill="none" stroke="var(--mu-t3)" stroke-width="2.5" stroke-linejoin="round"/>
                 <polyline class="aline" style="transition-delay:.35s" pathLength="1" points="<?php echo esc_attr( $_temp_med ); ?>" fill="none" stroke="var(--mu-t1)" stroke-width="2.5" stroke-linejoin="round"/>
                 <polyline class="aline" style="transition-delay:.55s" pathLength="1" points="<?php echo esc_attr( $_temp_max ); ?>" fill="none" stroke="var(--mu-gold)" stroke-width="2.5" stroke-linejoin="round"/>
                 <?php foreach ( $_meses as $i => $m ) : ?>
-                <text x="<?php echo esc_attr( (string) ( 52 + 56 * $i ) ); ?>" y="278" text-anchor="middle" font-size="13" font-weight="600" fill="var(--mu-t3)" font-family="Manrope,system-ui,sans-serif"><?php echo esc_html( $m ); ?></text>
+                <text x="<?php echo esc_attr( (string) ( 52 + 56 * $i ) ); ?>" y="278" text-anchor="middle" font-size="13" font-weight="600" fill="var(--mu-t3)" font-family="Onest,system-ui,sans-serif"><?php echo esc_html( $m ); ?></text>
                 <?php endforeach; ?>
               </svg></div>
               <div class="cr"><?php echo wp_kses( romvill_t( 'muestra.s4.cr' ), $kses ); ?></div>
