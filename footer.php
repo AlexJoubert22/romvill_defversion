@@ -181,6 +181,16 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
 .cmplz-cookiebanner.banner-1 a.cmplz-link,
 .cmplz-cookiebanner.banner-1 .cmplz-links a,
 .cmplz-cookiebanner.banner-1 .cmplz-documents a{ color:#F0C24A !important; }
+
+/* Las casillas de consentimiento de Complianz vienen con el azul del plugin
+   (#2563EB). Era el ultimo azul del sitio: no salia de ninguna grep del tema
+   porque vive en la hoja del plugin. Se pasan al oro de marca. */
+.cmplz-cookiebanner .cmplz-consent-checkbox,
+.cmplz-cookiebanner input[type="checkbox"]{
+    accent-color:#F0C24A !important;
+    background-color:#F0C24A !important;
+    border-color:#F0C24A !important;
+}
 .cmplz-cookiebanner.banner-1 .cmplz-categories .cmplz-category{ background-color:rgba(255,255,255,.06) !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-manage-options,
 .cmplz-cookiebanner.banner-1 .cmplz-manage-third-parties,
