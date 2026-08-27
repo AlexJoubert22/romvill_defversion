@@ -204,7 +204,7 @@ button.cmplz-manage-consent.manage-consent-1{display:none !important;}
     color:#000000 !important;
     border:none !important;
 }
-.cmplz-cookiebanner.banner-1 .cmplz-accept:hover{ background:#cbb06e !important; }
+.cmplz-cookiebanner.banner-1 .cmplz-accept:hover{ background:#E3C566 !important; }
 .cmplz-cookiebanner.banner-1 .cmplz-deny{
     background:transparent !important;
     color:#e2e8f0 !important;

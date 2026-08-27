@@ -42,12 +42,12 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     box-shadow: 0 0 0 3px rgba(19,91,236,.1);
 }
 .dark .phone-row {
-    border-color: #334155;
-    background: #1e293b;
+    border-color: #2E2E2E;
+    background: #141414;
 }
 .dark .phone-row:focus-within {
     border-color: #135bec;
-    background: #1e293b;
+    background: #141414;
     box-shadow: 0 0 0 3px rgba(19,91,236,.15);
 }
 .phone-prefix-btn {
@@ -70,7 +70,7 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     border-radius: 8px 0 0 8px;
 }
 .phone-prefix-btn:hover { background: rgba(212,175,55,.10); color: #9A7529; }
-.dark .phone-prefix-btn { border-right-color: #334155; color: #cbd5e1; }
+.dark .phone-prefix-btn { border-right-color: #2E2E2E; color: #cbd5e1; }
 .dark .phone-prefix-btn:hover { background: rgba(205,178,119,.14); color: #cdb277; }
 .phone-number-input {
     flex: 1;
@@ -102,12 +102,12 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     animation: rfFadeUp 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 .dark .prefix-dropdown {
-    background: #1e293b;
-    border-color: #334155;
+    background: #141414;
+    border-color: #2E2E2E;
     box-shadow: 0 16px 48px rgba(0,0,0,0.4);
 }
 .prefix-search-wrap { padding: 10px 12px 8px; border-bottom: 1px solid #f1f5f9; }
-.dark .prefix-search-wrap { border-bottom-color: #334155; }
+.dark .prefix-search-wrap { border-bottom-color: #2E2E2E; }
 .prefix-search {
     width: 100%; border: 1px solid #e2e8f0; border-radius: 8px;
     padding: 7px 10px; font-size: 0.8125rem; outline: none;
@@ -115,11 +115,11 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
     font-family: inherit;
 }
 .prefix-search:focus { border-color: #D4AF37; }
-.dark .prefix-search { background: #0f172a; border-color: #334155; color: #f1f5f9; }
+.dark .prefix-search { background: #0A0A0A; border-color: #2E2E2E; color: #f1f5f9; }
 .prefix-list { max-height: 230px; overflow-y: auto; padding: 4px 0; }
 .prefix-list::-webkit-scrollbar { width: 4px; }
 .prefix-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-.dark .prefix-list::-webkit-scrollbar-thumb { background: #475569; }
+.dark .prefix-list::-webkit-scrollbar-thumb { background: #3D3D3D; }
 .prefix-item {
     display: flex; align-items: center; gap: 10px;
     padding: 8px 14px; cursor: pointer; font-size: 0.84rem;
@@ -127,7 +127,7 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
 }
 .prefix-item:hover { background: #faf6ec; }
 .dark .prefix-item { color: #cbd5e1; }
-.dark .prefix-item:hover { background: #0f172a; }
+.dark .prefix-item:hover { background: #0A0A0A; }
 .prefix-item.is-active { color: #9A7529; font-weight: 700; }
 .dark .prefix-item.is-active { color: #cdb277; }
 .prefix-flag { font-size: 1.1rem; }
@@ -177,8 +177,8 @@ html:not(.dark) .rf-opt { color: #64748b; } /* contraste WCAG sobre fondo claro 
    REDISEÑO v5 — sistema de tokens (claro/oscuro) + componentes.
    Estas reglas van al final → sobrescriben las anteriores.
    ============================================================ */
-:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0f172a;--rv-text-soft:#475569;--rv-text-faint:#64748b;--rv-border:#e2e8f0;--rv-border-soft:#eef2f7;--rv-accent:#1D3557;--rv-gold:#D4AF37;--rv-gold-hover:#B5952C;--rv-on-gold:#0f172a;--rv-ring:rgba(212,175,55,.22);--rv-radius-in:8px;}
-.dark{--rv-surface:#0f172a;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#cbd5e1;--rv-text-faint:#94a3b8;--rv-border:#334155;--rv-border-soft:#1e293b;--rv-accent:#cdb277;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0f172a;--rv-ring:rgba(205,178,119,.30);}
+:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0A0A0A;--rv-text-soft:#3D3D3D;--rv-text-faint:#64748b;--rv-border:#e2e8f0;--rv-border-soft:#eef2f7;--rv-accent:#1D3557;--rv-gold:#D4AF37;--rv-gold-hover:#B5952C;--rv-on-gold:#0A0A0A;--rv-ring:rgba(212,175,55,.22);--rv-radius-in:8px;}
+.dark{--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#cbd5e1;--rv-text-faint:#94a3b8;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#cdb277;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0A0A0A;--rv-ring:rgba(205,178,119,.30);}
 /* Campos: padding generoso, radio sutil, foco con anillo (sin reflujo), translúcido en oscuro */
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]){padding:12px 16px;color:var(--rv-text);background:var(--rv-field);border:1.5px solid var(--rv-border);border-radius:var(--rv-radius-in);transition:border-color .2s,box-shadow .2s,background .2s;}
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]):focus{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
@@ -215,17 +215,17 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
    El acento azul desaparece de los elementos de identidad;
    "Por qué Romvill" pasa a placa navy con detalles dorados.
    ============================================================ */
-.why-panel{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(212,175,55,.28);}
+.why-panel{background:linear-gradient(155deg,#0A0A0A 0%,#1c2a44 100%);border:1px solid rgba(212,175,55,.28);}
 /* Hero oscuro a sangre completa (estilo Tesla): banda navy con retícula
    de puntos, orbe dorado y placa de pasos en cristal esmerilado. */
 .rv-dark-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(165deg,#000000 0%,#000000 100%);position:relative;overflow:hidden;}
 .rv-dark-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,175,55,.13) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);pointer-events:none;}
 .rv-dark-hero::after{content:'';position:absolute;top:-22%;right:-12%;width:520px;height:520px;background:radial-gradient(circle,rgba(212,175,55,.15),transparent 65%);pointer-events:none;}
 .rv-dark-hero .rv-cta-outline{color:#D4AF37;border-color:rgba(212,175,55,.75);}
-.rv-dark-hero .rv-cta-outline:hover{background:#D4AF37;color:#0f172a;border-color:#D4AF37;}
+.rv-dark-hero .rv-cta-outline:hover{background:#D4AF37;color:#0A0A0A;border-color:#D4AF37;}
 
 /* Hero: placa navy con los 3 pasos en línea de tiempo vertical */
-.hero-steps-plate{background:linear-gradient(155deg,#0f172a 0%,#1c2a44 100%);border:1px solid rgba(212,175,55,.28);box-shadow:0 24px 48px -24px rgba(15,23,42,.5);}
+.hero-steps-plate{background:linear-gradient(155deg,#0A0A0A 0%,#1c2a44 100%);border:1px solid rgba(212,175,55,.28);box-shadow:0 24px 48px -24px rgba(0,0,0,.5);}
 .hero-steps-plate--glass{background:rgba(255,255,255,.045);border-color:rgba(212,175,55,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -20px rgba(0,0,0,.5);}
 /* Escena animada del hero (se anima al cargar — el hero ya está en viewport) */
 .rv-hviz-scene{width:100%;height:64px;margin-bottom:1.1rem;display:block;}

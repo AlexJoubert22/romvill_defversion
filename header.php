@@ -14,18 +14,18 @@
         box-shadow: 0 8px 24px rgba(0,0,0,.12); min-width: 8rem; z-index: 200;
         padding: .375rem 0; margin-top: .375rem;
     }
-    .dark .lang-switcher .lang-dropdown { background: #1e293b; border-color: #334155; }
+    .dark .lang-switcher .lang-dropdown { background: #141414; border-color: #2E2E2E; }
     .lang-switcher:hover .lang-dropdown,
     .lang-switcher .lang-btn:focus + .lang-dropdown { display: block; }
     .lang-dropdown a {
         display: flex; align-items: center; gap: .5rem;
         padding: .4rem 1rem; font-size: .8125rem; font-weight: 500;
-        color: #334155; text-decoration: none; white-space: nowrap;
+        color: #2E2E2E; text-decoration: none; white-space: nowrap;
         transition: background .15s;
     }
     .dark .lang-dropdown a { color: #cbd5e1; }
     .lang-dropdown a:hover { background: #f1f5f9; }
-    .dark .lang-dropdown a:hover { background: #0f172a; }
+    .dark .lang-dropdown a:hover { background: #0A0A0A; }
     .lang-dropdown a.active { color: #135bec; font-weight: 700; }
     .lang-flag { font-size: 1rem; line-height: 1; }
     </style>

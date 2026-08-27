@@ -31,7 +31,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" data-bg="url('<?php echo esc_url( romvill_img( 'hero-slide-3.webp' ) ); ?>')" style="opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" data-bg="url('<?php echo esc_url( romvill_img( 'hero-slide-4.webp' ) ); ?>')" style="opacity:0; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
         </div>
-        <div class="absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(15,23,42,0.82), rgba(15,23,42,0.55), rgba(15,23,42,0.88));"></div>
+        <div class="absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(0,0,0,0.82), rgba(0,0,0,0.55), rgba(0,0,0,0.88));"></div>
 
         <div class="hero-textglow relative z-20 container mx-auto px-6 text-center max-w-4xl pt-16">
             <div class="fade-item fade-1 font-serif font-bold text-white mb-4 leading-none" style="font-size: clamp(3.5rem, 11vw, 8.5rem); letter-spacing: -0.02em; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">

@@ -81,7 +81,7 @@ $_seasons = array(
   --mu-bg:#0B101B;--mu-surface:#141B2A;--mu-surface2:#1C2537;--mu-cover:#080C14;--mu-cover2:#141B2A;
   --mu-t1:#EDF1F7;--mu-t2:#B8C2D2;--mu-t3:#8593A8;
   --mu-line:#232D42;--mu-lines:#313D57;
-  --mu-goldd:#D4BC82;--mu-golds:rgba(212,175,55,.10);--mu-goldb:rgba(212,175,55,.28);
+  --mu-goldd:#E3C566;--mu-golds:rgba(212,175,55,.10);--mu-goldb:rgba(212,175,55,.28);
   --mu-green:#5FBF8F;--mu-greens:rgba(95,191,143,.12);--mu-amber:#E0B25C;--mu-ambers:rgba(224,178,92,.12);
   --mu-sh1:0 1px 2px rgba(0,0,0,.35);--mu-sh2:0 8px 22px rgba(0,0,0,.45)
 }

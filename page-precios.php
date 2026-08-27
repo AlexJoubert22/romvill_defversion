@@ -109,7 +109,7 @@ $packs = array(
 
                     <div class="text-xs text-slate-400 mb-5"><?php echo esc_html( romvill_t( 'precios.delivery' ) ); ?>: <?php echo esc_html( romvill_t( "precios.$k.delivery" ) ); ?></div>
 
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="flex items-center justify-center h-12 px-6 rounded-lg font-bold transition-colors duration-300 <?php echo $pk['featured'] ? 'bg-secondary hover:bg-[#cbb06e] text-slate-900' : 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90'; ?>"><?php echo esc_html( romvill_t( 'precios.cta' ) ); ?></a>
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="flex items-center justify-center h-12 px-6 rounded-lg font-bold transition-colors duration-300 <?php echo $pk['featured'] ? 'bg-secondary hover:bg-[#E3C566] text-slate-900' : 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90'; ?>"><?php echo esc_html( romvill_t( 'precios.cta' ) ); ?></a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -137,7 +137,7 @@ $packs = array(
                 ?>
                 <div class="prof-card" onclick="rvPickProfile(this,event)">
                     <div class="prof-card__check" aria-hidden="true">
-                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3 6-7" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <span class="prof-card__num"><?php echo esc_html( $b['num'] ); ?></span>
                     <h3 class="prof-card__title"><?php echo esc_html( $b['title'] ); ?></h3>

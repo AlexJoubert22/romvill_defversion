@@ -2101,7 +2101,7 @@ add_action( 'wp_head', 'romvill_coherencia_gold', 99 );
 /**
  * Accesibilidad (contraste WCAG): en MODO CLARO, los textos secundarios en
  * gris claro (text-slate-400, contraste 2.56 sobre blanco) se leen flojo y
- * fallan WCAG AA. Los oscurece a slate-600 (#475569, 7.6:1). Se EXCLUYEN los
+ * fallan WCAG AA. Los oscurece a slate-600 (#3D3D3D, 7.6:1). Se EXCLUYEN los
  * que viven dentro de contenedores de fondo oscuro (tarjetas/secciones), donde
  * el gris claro es correcto. No afecta al modo oscuro. 100% reversible.
  */
@@ -2109,7 +2109,7 @@ function romvill_contrast_fix() {
     if ( is_admin() ) return;
     echo <<<'CSS'
 <style id="rv-contrast-fix">
-html:not(.dark) .text-slate-400{color:#475569 !important}
+html:not(.dark) .text-slate-400{color:#3D3D3D !important}
 html:not(.dark) .bg-slate-900 .text-slate-400,
 html:not(.dark) .bg-slate-950 .text-slate-400,
 html:not(.dark) .bg-slate-800 .text-slate-400,

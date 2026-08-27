@@ -43,8 +43,8 @@ add_action( 'wp_head', function () { ?>
 .rv-ag * { box-sizing:border-box; }
 .rv-ag-head { background:#000000; text-align:center; padding:26px 18px 20px; }
 .rv-ag-head .nm { color:#fff; font-weight:800; font-size:20px; letter-spacing:7px; text-indent:7px; }
-.rv-ag-head .sb { color:#C9A653; font-size:11px; letter-spacing:3px; text-transform:uppercase; margin-top:6px; }
-.rv-ag-gold { height:3px; background:#C9A653; }
+.rv-ag-head .sb { color:#D4AF37; font-size:11px; letter-spacing:3px; text-transform:uppercase; margin-top:6px; }
+.rv-ag-gold { height:3px; background:#D4AF37; }
 .rv-ag-wrap { max-width:520px; margin:0 auto; padding:24px 16px; }
 .rv-ag h1 { font-family:Georgia,serif; font-size:23px; color:#000000; margin:0 0 6px; font-weight:700; line-height:1.3; }
 .rv-ag-sub { font-size:14.5px; color:#5c6b80; margin:0 0 18px; line-height:1.6; }
@@ -56,18 +56,18 @@ add_action( 'wp_head', function () { ?>
 .rv-ag-dia .dnum { font-size:20px; font-weight:800; color:#000000; margin:2px 0; }
 .rv-ag-dia .dmes { font-size:11px; color:#8a919c; }
 .rv-ag-dia.sel { border-color:#000000; background:#000000; }
-.rv-ag-dia.sel .dsem, .rv-ag-dia.sel .dmes { color:#C9A653; }
+.rv-ag-dia.sel .dsem, .rv-ag-dia.sel .dmes { color:#D4AF37; }
 .rv-ag-dia.sel .dnum { color:#fff; }
 .rv-ag-horas { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
 .rv-ag-hora { border:1.5px solid #e4e1d8; background:#fff; border-radius:10px; padding:11px 0; text-align:center; font-size:15px; font-weight:700; color:#000000; cursor:pointer; }
-.rv-ag-hora.sel { background:#000000; color:#C9A653; border-color:#000000; }
+.rv-ag-hora.sel { background:#000000; color:#D4AF37; border-color:#000000; }
 .rv-ag-hora.off { opacity:.35; text-decoration:line-through; cursor:default; }
 .rv-ag input[type=text], .rv-ag input[type=tel], .rv-ag textarea { width:100%; border:1.5px solid #e4e1d8; border-radius:10px; padding:13px 14px; font-size:16px; font-family:inherit; background:#fff; color:#000000; outline:none; }
 .rv-ag input:focus, .rv-ag textarea:focus { border-color:#000000; }
 .rv-ag textarea { min-height:96px; resize:vertical; }
 .rv-ag-btn { display:block; width:100%; background:#000000; color:#fff; border:0; border-radius:10px; padding:16px; font-size:16px; font-weight:800; letter-spacing:.5px; margin-top:20px; font-family:inherit; cursor:pointer; }
 .rv-ag-btn[disabled] { opacity:.45; cursor:not-allowed; }
-.rv-ag-btn small { display:block; font-weight:600; font-size:12px; color:#C9A653; margin-top:3px; letter-spacing:1px; text-transform:uppercase; }
+.rv-ag-btn small { display:block; font-weight:600; font-size:12px; color:#D4AF37; margin-top:3px; letter-spacing:1px; text-transform:uppercase; }
 .rv-ag-nota { font-size:12.5px; color:#8a919c; text-align:center; margin-top:14px; line-height:1.6; }
 .rv-ag-err { font-size:13px; color:#a13333; text-align:center; margin-top:12px; min-height:18px; line-height:1.5; }
 .rv-ag-card { background:#fff; border:1px solid #e4e1d8; border-radius:12px; padding:18px 16px; margin-bottom:6px; }

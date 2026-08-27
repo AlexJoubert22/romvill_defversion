@@ -133,7 +133,7 @@ function romvill_mint_marco_ley( $contenido_html, $titulo, $etiqueta ) {
 	.       '<td style="width:14px;">&#160;</td>'
 	.       '<td valign="middle">'
 	.         '<div style="' . $f . 'font-size:17px;line-height:1.2;font-weight:800;letter-spacing:5px;color:#ffffff;">ROMVILL</div>'
-	.         '<div style="' . $f . 'font-size:10px;letter-spacing:2px;color:#C9A653;text-transform:uppercase;padding-top:3px;">' . esc_html( $etiqueta ) . '</div>'
+	.         '<div style="' . $f . 'font-size:10px;letter-spacing:2px;color:#D4AF37;text-transform:uppercase;padding-top:3px;">' . esc_html( $etiqueta ) . '</div>'
 	.       '</td>'
 	.     '</tr></table>'
 	.   '</td></tr>'

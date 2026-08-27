@@ -14,7 +14,15 @@ module.exports = {
                 'secondary-ink':     '#8A6B18',
                 'background-light':  '#f8f9fc',
                 'background-dark':   '#000000',
-                'slate-dark':        '#1e293b',
+                'slate-dark':        '#141414',
+                // Fondos oscuros del tema: negro de verdad, no azul marino.
+                // Solo se pisan los tonos de FONDO; 50-600 (textos) siguen siendo slate.
+                'slate': {
+                    '700': '#2E2E2E',
+                    '800': '#141414',
+                    '900': '#0A0A0A',
+                    '950': '#000000',
+                },
             },
             fontFamily: {
                 'display': ['Manrope', 'sans-serif'],
