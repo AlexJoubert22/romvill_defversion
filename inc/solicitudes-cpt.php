@@ -41,7 +41,7 @@ function romvill_sol_estados() {
 function romvill_sol_colores() {
     return array(
         'nueva'               => '#3c434a', // gris oscuro
-        'presupuesto_enviado' => '#b8860b', // dorado
+        'presupuesto_enviado' => '#8A6B18', // dorado
         'aceptada'            => '#2271b1', // azul
         'entregada'           => '#1a7f37', // verde
         'descartada'          => '#888888', // gris
@@ -301,7 +301,7 @@ function romvill_sol_metaboxes() {
 function romvill_sol_box_estimacion( $post ) {
     $est = get_post_meta( $post->ID, '_rv_estimacion', true );
     if ( ! $est ) { echo '<p style="color:#888">Sin estimación.</p>'; return; }
-    echo '<pre style="white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;background:#fffbe6;border:1px solid #f0d98a;border-left:4px solid #b8860b;border-radius:6px;padding:16px;margin:0">' . esc_html( $est ) . '</pre>';
+    echo '<pre style="white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;background:#fffbe6;border:1px solid #F0C24A;border-left:4px solid #8A6B18;border-radius:6px;padding:16px;margin:0">' . esc_html( $est ) . '</pre>';
 }
 
 function romvill_sol_box_estado( $post ) {
@@ -352,7 +352,7 @@ function romvill_sol_box_contacto( $post ) {
     $inaug = (int) get_post_meta( $post->ID, '_rv_inaugural', true );
     if ( $inaug ) {
         $total = defined( 'ROMVILL_INAUGURAL_PLAZAS' ) ? ROMVILL_INAUGURAL_PLAZAS : 5;
-        echo '<p style="margin:0 0 10px;padding:8px 12px;background:#fffbe6;border:1px solid #f0d98a;'
+        echo '<p style="margin:0 0 10px;padding:8px 12px;background:#fffbe6;border:1px solid #F0C24A;'
             . 'border-left:4px solid #F0C24A;border-radius:6px;font-size:12px;line-height:1.5">'
             . '<strong>🏛 Plaza inaugural nº ' . (int) $inaug . '/' . (int) $total . '</strong><br>'
             . 'Expediente sin coste. Contraprestación: reseña en Google.</p>';

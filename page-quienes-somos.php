@@ -28,12 +28,12 @@ $serif         = "font-family:'Cormorant Garamond',Georgia,serif;";
         <div class="absolute inset-0" style="background:url('<?php echo esc_url( $hero_img ); ?>') center 42%/cover no-repeat;"></div>
         <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(0, 0, 0,.42),rgba(0, 0, 0,.66) 50%,rgba(0, 0, 0,.88));"></div>
         <div class="relative z-10 px-6 py-20" style="max-width:840px">
-            <div style="color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;margin-bottom:1.1rem">
+            <div style="color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;margin-bottom:1.1rem">
                 <?php echo esc_html( romvill_t( 'qs.kicker' ) ); ?>
             </div>
             <h1 class="text-white" style="<?php echo $serif; ?>font-weight:700;font-size:clamp(2rem,5.2vw,3.4rem);line-height:1.1;margin:0">
                 <?php echo esc_html( romvill_t( 'qs.h1.a' ) ); ?>
-                <span style="display:block;font-style:italic;color:#D4B86A;font-size:.82em;margin-top:.25rem"><?php echo esc_html( romvill_t( 'qs.h1.b' ) ); ?></span>
+                <span style="display:block;font-style:italic;color:#F0C24A;font-size:.82em;margin-top:.25rem"><?php echo esc_html( romvill_t( 'qs.h1.b' ) ); ?></span>
             </h1>
             <p style="color:#D7D4D1;font-size:clamp(1rem,2.2vw,1.18rem);line-height:1.7;max-width:660px;margin:1.6rem auto 0">
                 <?php echo esc_html( romvill_t( 'qs.lead' ) ); ?>
@@ -139,7 +139,7 @@ $serif         = "font-family:'Cormorant Garamond',Georgia,serif;";
             <p style="<?php echo $serif; ?>font-style:italic;color:#EFECE9;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:0">
                 <?php echo esc_html( romvill_t( 'qs.close1' ) ); ?>
             </p>
-            <p style="<?php echo $serif; ?>font-style:italic;color:#D4B86A;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:.5rem 0 0">
+            <p style="<?php echo $serif; ?>font-style:italic;color:#F0C24A;font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.45;margin:.5rem 0 0">
                 <?php echo esc_html( romvill_t( 'qs.close2' ) ); ?>
             </p>
             <p style="color:#A8A5A2;font-size:.95rem;letter-spacing:.04em;margin:1.6rem 0 0">

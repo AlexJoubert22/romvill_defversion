@@ -13,7 +13,7 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
 <main class="flex-grow">
     <section class="relative py-24 text-center px-6">
         <div class="max-w-3xl mx-auto">
-            <a href="<?php echo esc_url($analisis_url); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-widest mb-6 hover:text-[#9A7529] transition-colors">
+            <a href="<?php echo esc_url($analisis_url); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-widest mb-6 hover:text-[#8A6B18] transition-colors">
                 <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_back</span> <?php echo esc_html( romvill_t( 'perfil.volver' ) ); ?>
             </a>
             <span class="block text-xs font-bold text-secondary-ink dark:text-secondary uppercase tracking-[0.3em] mb-3"><?php echo esc_html( romvill_t( 'ana.dim' ) ); ?> 05</span>

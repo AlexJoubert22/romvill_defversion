@@ -72,8 +72,8 @@ $_seasons = array(
   --mu-t1:#000000;--mu-t2:#4C4946;--mu-t3:#6C6966;
   --mu-oc1:#FFFFFF;--mu-oc2:#D3D0CD;--mu-oc3:#A4A19E;
   --mu-line:#E8E4DA;--mu-lines:#D6D0C2;
-  --mu-gold:#F0C24A;--mu-goldd:#7A6229;--mu-golds:#F6F0E1;--mu-goldb:#E7DCC0;
-  --mu-green:#166B42;--mu-greens:#E9F5EE;--mu-amber:#8A5A00;--mu-ambers:#FBF3E2;
+  --mu-gold:#F0C24A;--mu-goldd:#8A6B18;--mu-golds:#F6F0E1;--mu-goldb:#E7DCC0;
+  --mu-green:#166B42;--mu-greens:#E9F5EE;--mu-amber:#8A6B18;--mu-ambers:#FBF3E2;
   --mu-sh1:0 1px 2px rgba(0, 0, 0,.05);--mu-sh2:0 6px 18px rgba(0, 0, 0,.07);
   background:var(--mu-bg)
 }
@@ -82,7 +82,7 @@ $_seasons = array(
   --mu-t1:#EDF1F7;--mu-t2:#C4C1BE;--mu-t3:#95928F;
   --mu-line:#000000;--mu-lines:#3F3C39;
   --mu-goldd:#FFE08A;--mu-golds:rgba(240,194,74,.10);--mu-goldb:rgba(240,194,74,.28);
-  --mu-green:#5FBF8F;--mu-greens:rgba(95,191,143,.12);--mu-amber:#E0B25C;--mu-ambers:rgba(224,178,92,.12);
+  --mu-green:#5FBF8F;--mu-greens:rgba(95,191,143,.12);--mu-amber:#F0C24A;--mu-ambers:rgba(240, 194, 74,.12);
   --mu-sh1:0 1px 2px rgba(0,0,0,.35);--mu-sh2:0 8px 22px rgba(0,0,0,.45)
 }
 #rv-mu .serif{font-family:'Cormorant Garamond',Georgia,serif}
@@ -105,10 +105,10 @@ $_seasons = array(
 #rv-mu .cov{position:relative;background:linear-gradient(165deg,var(--mu-cover2),var(--mu-cover));color:#fff;padding:44px 40px 34px;overflow:hidden}
 #rv-mu .cov .ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu-oc3)}
 #rv-mu .cov .ctop b{color:#fff;letter-spacing:.06em}
-#rv-mu .stampx{border:2px solid rgba(240,194,74,.8);color:#D4B86A;font-weight:800;font-size:.62rem;letter-spacing:.18em;padding:6px 12px;border-radius:4px;transform:rotate(3deg);white-space:nowrap;text-transform:uppercase}
+#rv-mu .stampx{border:2px solid rgba(240,194,74,.8);color:#F0C24A;font-weight:800;font-size:.62rem;letter-spacing:.18em;padding:6px 12px;border-radius:4px;transform:rotate(3deg);white-space:nowrap;text-transform:uppercase}
 #rv-mu .cov .clogo{display:block;height:64px;width:auto;margin:26px auto 14px}
 #rv-mu .cov h2{text-align:center;font-weight:600;font-size:clamp(1.5rem,4vw,2rem);margin:0;line-height:1.2;color:#fff}
-#rv-mu .cov .czona{text-align:center;color:#D4B86A;font-size:.98rem;margin-top:7px;letter-spacing:.04em}
+#rv-mu .cov .czona{text-align:center;color:#F0C24A;font-size:.98rem;margin-top:7px;letter-spacing:.04em}
 #rv-mu .cov .cscope{max-width:480px;margin:20px auto 0;text-align:center;font-size:.85rem;color:var(--mu-oc2);line-height:1.7;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);padding:12px 0}
 #rv-mu .cov .cmeta{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;font-size:.66rem;color:var(--mu-oc3);text-transform:uppercase;letter-spacing:.08em}
 #rv-mu .cov .cmeta b{display:block;color:#fff;font-size:.86rem;margin-top:3px;font-weight:700;text-transform:none;letter-spacing:0}

@@ -31,15 +31,15 @@ $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) 
 #rv-verif .hero{position:relative;text-align:center;color:#fff;padding:88px 20px 72px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#000000 0%,#000000 45%,#000000 100%)}
 #rv-verif .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.18),transparent 62%);filter:blur(8px)}
 #rv-verif .hero>*{position:relative;z-index:2}
-#rv-verif .kick{color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
+#rv-verif .kick{color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
 #rv-verif .rule{width:54px;height:2px;background:linear-gradient(90deg,transparent,#F0C24A,transparent);margin:0 auto 24px}
 #rv-verif h1{font-weight:700;font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;margin:0 auto;max-width:760px}
 #rv-verif .hsub{color:#E0DDDA;font-size:1.08rem;line-height:1.65;max-width:620px;margin:18px auto 0}
 #rv-verif .wrap{max-width:640px;margin:0 auto;padding:52px 20px 72px}
 #rv-verif .panel{background:#fff;border:1px solid #e7e9ee;border-radius:18px;padding:30px 28px;box-shadow:0 1px 2px rgba(0, 0, 0,.05)}
 .dark #rv-verif .panel{background:#000000;border-color:#000000}
-#rv-verif label{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;color:#8a6d2f;margin-bottom:10px}
-.dark #rv-verif label{color:#D4B86A}
+#rv-verif label{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;color:#8A6B18;margin-bottom:10px}
+.dark #rv-verif label{color:#F0C24A}
 #rv-verif .row{display:flex;gap:12px;flex-wrap:wrap}
 #rv-verif input[type=text]{flex:1 1 260px;min-width:0;padding:14px 16px;border-radius:12px;border:1px solid #DDDAD7;background:#fbfbfd;color:#000000;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;outline:none;transition:.2s}
 .dark #rv-verif input[type=text]{background:#000000;border-color:#35322F;color:#fff}
@@ -56,14 +56,14 @@ $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) 
 #rv-verif .ok .okt{font-weight:700;font-size:1.45rem;padding-right:80px}
 #rv-verif .ok .oks{color:#D7D4D1;margin-top:8px;line-height:1.6;font-size:.98rem;padding-right:80px}
 #rv-verif .ok dl{margin:22px 0 0;border-top:1px solid rgba(240,194,74,.3);padding-top:18px;display:grid;grid-template-columns:auto 1fr;gap:9px 22px;font-size:.96rem}
-#rv-verif .ok dt{color:#D4B86A;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;align-self:center}
+#rv-verif .ok dt{color:#F0C24A;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;align-self:center}
 #rv-verif .ok dd{margin:0;color:#fff}
 #rv-verif .ok dd.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em}
 #rv-verif .ko{background:#fff;border:1px solid #e3d9c2;padding:28px;color:#4C4946}
 .dark #rv-verif .ko{background:#000000;border-color:#3a3320;color:#BBB8B5}
 #rv-verif .ko .kot{font-weight:700;font-size:1.25rem;color:#000000;display:flex;align-items:center;gap:11px}
 .dark #rv-verif .ko .kot{color:#fff}
-#rv-verif .ko .kot svg{width:24px;height:24px;color:#8a6d2f;flex:0 0 auto}
+#rv-verif .ko .kot svg{width:24px;height:24px;color:#8A6B18;flex:0 0 auto}
 #rv-verif .ko p{margin:12px 0 0;line-height:1.7;font-size:.98rem}
 #rv-verif .ko a{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#F0C24A;color:#000000;font-weight:700;padding:12px 24px;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s}
 #rv-verif .ko a:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(240,194,74,.3)}

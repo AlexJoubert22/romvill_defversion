@@ -330,7 +330,7 @@ romvill_seo( array(
         if ( $rv_inaug_badge ) :
         ?>
         <div style="margin:18px 0 4px">
-            <span style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(240,194,74,.55);background:linear-gradient(180deg,rgba(240,194,74,.14),rgba(240,194,74,.05));color:#8a6d2f;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:8px 18px;border-radius:999px">
+            <span style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(240,194,74,.55);background:linear-gradient(180deg,rgba(240,194,74,.14),rgba(240,194,74,.05));color:#8A6B18;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:8px 18px;border-radius:999px">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;flex:0 0 auto">
                     <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
                 </svg>

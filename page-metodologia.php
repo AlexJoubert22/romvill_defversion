@@ -189,14 +189,14 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         #rvix-hs .bg2{position:absolute;inset:0;background-size:cover;background-position:center}
         #rvix-hs .vl2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.45),rgba(0, 0, 0,.78))}
         #rvix-hs .spot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border:0;background:transparent;cursor:pointer;padding:0;z-index:3}
-        #rvix-hs .spot .core{position:absolute;inset:7px;border-radius:50%;background:#D4B86A;box-shadow:0 0 10px rgba(212,184,106,.8)}
-        #rvix-hs .spot .rng{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(212,184,106,.7);animation:rvixpulse 2.2s ease-out infinite}
+        #rvix-hs .spot .core{position:absolute;inset:7px;border-radius:50%;background:#F0C24A;box-shadow:0 0 10px rgba(240, 194, 74,.8)}
+        #rvix-hs .spot .rng{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(240, 194, 74,.7);animation:rvixpulse 2.2s ease-out infinite}
         @keyframes rvixpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
-        #rvix-hs .spot.on .core{background:#fff;box-shadow:0 0 0 5px rgba(212,184,106,.5),0 0 16px rgba(212,184,106,.9)}
+        #rvix-hs .spot.on .core{background:#fff;box-shadow:0 0 0 5px rgba(240, 194, 74,.5),0 0 16px rgba(240, 194, 74,.9)}
         #rvix-hs .spot.on .rng{animation:none;border-color:#fff}
-        #rvix-hs .spanel{position:absolute;left:14px;right:14px;bottom:14px;z-index:4;background:rgba(0, 0, 0,.92);border:1px solid rgba(212,184,106,.3);border-radius:13px;padding:14px 16px;display:flex;align-items:flex-start;gap:13px;transition:opacity .3s,transform .3s}
+        #rvix-hs .spanel{position:absolute;left:14px;right:14px;bottom:14px;z-index:4;background:rgba(0, 0, 0,.92);border:1px solid rgba(240, 194, 74,.3);border-radius:13px;padding:14px 16px;display:flex;align-items:flex-start;gap:13px;transition:opacity .3s,transform .3s}
         #rvix-hs .spanel.hidden{opacity:0;transform:translateY(12px);pointer-events:none}
-        #rvix-hs .spanel .sic{width:38px;height:38px;border-radius:9px;background:rgba(212,184,106,.16);color:#D4B86A;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+        #rvix-hs .spanel .sic{width:38px;height:38px;border-radius:9px;background:rgba(240, 194, 74,.16);color:#F0C24A;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
         #rvix-hs .spanel .sic svg{width:21px;height:21px}
         #rvix-hs .spanel h3{font-size:.98rem;font-weight:700;color:#fff;margin-bottom:3px}
         #rvix-hs .spanel p{font-size:.88rem;color:#D2CFCC;line-height:1.5}

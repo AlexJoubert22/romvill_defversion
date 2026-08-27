@@ -193,7 +193,7 @@ function romvill_mint_chips( $chips ) {
 		'tinta' => 'background-color:#000000;color:#ffffff;padding:5px 12px;',
 		'verde' => 'border:1px solid #166B42;color:#166B42;padding:4px 12px;',
 		'oro'   => 'border:1px solid #F0C24A;color:#8a6b18;padding:4px 12px;',
-		'ambar' => 'border:1px solid #d09a3e;color:#8a5a16;padding:4px 12px;',
+		'ambar' => 'border:1px solid #F0C24A;color:#8A6B18;padding:4px 12px;',
 	);
 	$out = '<div style="margin:0 0 4px 0;">';
 	foreach ( (array) $chips as $chip ) {
@@ -259,7 +259,7 @@ function romvill_mint_aviso( $texto, $tono = 'neutro' ) {
 	$f = romvill_mint_fuente();
 	$mapa = array(
 		'oro'    => array( '#faf7ef', '#F0C24A' ),
-		'alerta' => array( '#fdf6ec', '#d09a3e' ),
+		'alerta' => array( '#fdf6ec', '#F0C24A' ),
 		'neutro' => array( '#f5f6f8', '#93908D' ),
 	);
 	$c = isset( $mapa[ $tono ] ) ? $mapa[ $tono ] : $mapa['neutro'];

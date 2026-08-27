@@ -26,7 +26,7 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 #rv-faq .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.20),transparent 62%);filter:blur(8px);animation:rvfaqBreathe 7s ease-in-out infinite}
 @keyframes rvfaqBreathe{0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}50%{opacity:.9;transform:translateX(-50%) scale(1.12)}}
 #rv-faq .hero>*{position:relative;z-index:2}
-#rv-faq .kick{color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
+#rv-faq .kick{color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
 #rv-faq .rule{width:54px;height:2px;background:linear-gradient(90deg,transparent,#F0C24A,transparent);margin:0 auto 24px}
 #rv-faq h1{font-weight:700;font-size:clamp(2.1rem,5.2vw,3.3rem);line-height:1.08;margin:0 auto;max-width:780px}
 #rv-faq .hsub{color:#E0DDDA;font-size:1.1rem;line-height:1.6;max-width:600px;margin:18px auto 0}
@@ -69,8 +69,8 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 .dark #rv-faq .a{color:#BBB8B5}
 #rv-faq .a b{color:#000000}
 .dark #rv-faq .a b{color:#fff}
-#rv-faq .a a{color:#9a7b2e;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(240,194,74,.45)}
-.dark #rv-faq .a a{color:#D4B86A}
+#rv-faq .a a{color:#8A6B18;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(240,194,74,.45)}
+.dark #rv-faq .a a{color:#F0C24A}
 #rv-faq .a a:hover{border-bottom-color:#F0C24A}
 #rv-faq .noresult{display:none;text-align:center;color:#75726F;padding:30px 0;font-size:.98rem}
 #rv-faq .noresult a{color:#F0C24A;font-weight:700}

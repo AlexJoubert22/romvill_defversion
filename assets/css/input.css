@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Correcciones al plugin @tailwindcss/forms ──────────────────────────────
+   El plugin fija el gris 6b7280 —un gris AZULADO— en el borde de los campos y en el
+   texto de marcador de posicion, y el navegador pinta de azul los controles
+   nativos (casillas, radios, barra de progreso). Eran los ultimos azules que
+   quedaban en el sitio, y no venian del tema sino de esas dos fuentes.
+
+   Van DESPUES de las utilidades a proposito: asi ganan por orden de origen y
+   no hace falta !important. */
+
+:root { accent-color: #F0C24A; }   /* casillas y radios en oro, no en azul */
+
+input::placeholder,
+textarea::placeholder { color: #75726F; opacity: 1; }
+
+select,
+textarea,
+input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='submit']) {
+  border-color: #565350;
+}

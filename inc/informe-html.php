@@ -111,7 +111,7 @@ function romvill_informe_default_data( $post_id ) {
  * ═══════════════════════════════════════════════════════════════ */
 function romvill_informe_css() {
     return <<<'CSS'
-:root{--ink:#1C1C1E;--gold:#B8960C;--goldd:#8A7209;--sand:#EFE8D6;--sandl:#FBF7EC;--grey:#6B6B6B;--line:#E5E0D5;--green:#3E7A5E;--amber:#C98A2B;--red:#A13333;--paper:#FCFAF5;}
+:root{--ink:#1C1C1E;--gold:#8A6B18;--goldd:#8A6B18;--sand:#EFE8D6;--sandl:#FBF7EC;--grey:#6B6B6B;--line:#E5E0D5;--green:#3E7A5E;--amber:#8A6B18;--red:#A13333;--paper:#FCFAF5;}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
 .serif{font-family:Georgia,'Times New Roman',serif}
@@ -155,7 +155,7 @@ table.cmp td:first-child{background:var(--sandl);font-weight:bold}
 .bar{margin:12px 0}
 .bar .lab{font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between}
 .bar .track{height:22px;background:#EFEAdd;border-radius:5px;overflow:hidden}
-.bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#D4B95E);border-radius:5px}
+.bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#F0C24A);border-radius:5px}
 .you{background:var(--sand);border:2px solid var(--gold);border-radius:12px;padding:22px 24px;margin:26px 0}
 .you h3{font-family:Georgia,serif;color:var(--goldd);font-size:20px;margin-bottom:10px}
 .you p{font-size:15px;margin-bottom:8px}
@@ -277,7 +277,7 @@ function romvill_informe_render( $d ) {
         . 'for(var r=1;r<=max;r++){var pts=[];for(var i=0;i<N;i++){var a=-Math.PI/2+i*2*Math.PI/N;pts.push((cx+R*r/max*Math.cos(a))+","+(cy+R*r/max*Math.sin(a)));}svg+=\'<polygon points="\'+pts.join(" ")+\'" fill="none" stroke="#E8E2D2" stroke-width="1"/>\';}'
         . 'for(var i=0;i<N;i++){var a=-Math.PI/2+i*2*Math.PI/N;var x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);svg+=\'<line x1="\'+cx+\'" y1="\'+cy+\'" x2="\'+x+\'" y2="\'+y+\'" stroke="#E8E2D2"/>\';var lx=cx+(R+22)*Math.cos(a),ly=cy+(R+22)*Math.sin(a);svg+=\'<text x="\'+lx+\'" y="\'+ly+\'" font-size="11" fill="#1C1C1E" text-anchor="middle" dominant-baseline="middle" font-family="Arial">\'+dims[i]+\'</text>\';}'
         . 'var dpts=[];for(var i=0;i<N;i++){var a=-Math.PI/2+i*2*Math.PI/N;var rr=R*(vals[i]||0)/max;dpts.push((cx+rr*Math.cos(a))+","+(cy+rr*Math.sin(a)));}'
-        . 'svg+=\'<polygon points="\'+dpts.join(" ")+\'" fill="rgba(184,150,12,0.25)" stroke="#B8960C" stroke-width="2.5"/>\';svg+="</svg>";'
+        . 'svg+=\'<polygon points="\'+dpts.join(" ")+\'" fill="rgba(138, 107, 24,0.25)" stroke="#8A6B18" stroke-width="2.5"/>\';svg+="</svg>";'
         . 'document.getElementById("radarHolder").innerHTML=svg+\'<div class="note">Perfil de cobertura por dimensión</div>\';})();'
         . '</script></body></html>';
 

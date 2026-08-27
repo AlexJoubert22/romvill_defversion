@@ -55,7 +55,7 @@ $packs = array(
             <?php if ( $inaug_badge ) : ?>
                 <!-- Chip del Programa Inaugural: solo mientras queden plazas -->
                 <div class="mt-6 flex justify-center">
-                    <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(240,194,74,.55);background:linear-gradient(180deg,rgba(240,194,74,.14),rgba(240,194,74,.06));color:#8a6d2f;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:9px 20px;border-radius:999px">
+                    <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(240,194,74,.55);background:linear-gradient(180deg,rgba(240,194,74,.14),rgba(240,194,74,.06));color:#8A6B18;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:9px 20px;border-radius:999px">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;flex:0 0 auto">
                             <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
                         </svg>
@@ -118,7 +118,7 @@ $packs = array(
         <div id="perfiles" class="mt-20" style="scroll-margin-top: 7rem;">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                 <div>
-                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#9A7529] dark:text-[#cdb277] border border-secondary/40 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
+                    <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#8A6B18] dark:text-[#F0C24A] border border-secondary/40 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
                     <span class="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2 ml-1 bg-secondary text-slate-900"><?php echo esc_html( romvill_t( 'presup.sel.recommended' ) ); ?></span>
                     <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                         <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>

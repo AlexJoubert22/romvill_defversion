@@ -2080,7 +2080,7 @@ function romvill_coherencia_gold() {
 main .text-primary{color:#F0C24A!important}
 html:not(.dark) main .text-primary{color:#8A6B18!important}
 html:not(.dark) main .bg-slate-900 .text-primary,html:not(.dark) main .bg-slate-950 .text-primary,html:not(.dark) main .bg-slate-800 .text-primary{color:#F0C24A!important}
-main .text-primary-dark{color:#a98e4e!important}
+main .text-primary-dark{color:#8A6B18!important}
 main .bg-primary{background-color:#F0C24A!important}
 main .bg-primary\/10{background-color:rgba(240,194,74,.10)!important}
 main .bg-primary\/20{background-color:rgba(240,194,74,.20)!important}
@@ -2089,10 +2089,10 @@ main .border-primary{border-color:#F0C24A!important}
 main .border-primary\/20{border-color:rgba(240,194,74,.22)!important}
 main .hover\:bg-primary:hover{background-color:#F0C24A!important}
 main .hover\:text-primary:hover{color:#F0C24A!important}
-main .hover\:text-primary-dark:hover{color:#a98e4e!important}
-main .text-blue-100,main .text-blue-200,main .text-blue-300{color:#d8c489!important}
+main .hover\:text-primary-dark:hover{color:#8A6B18!important}
+main .text-blue-100,main .text-blue-200,main .text-blue-300{color:#F0C24A!important}
 main .from-primary{--tw-gradient-from:#F0C24A var(--tw-gradient-from-position)!important;--tw-gradient-to:rgba(240,194,74,0) var(--tw-gradient-to-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
-main .to-blue-400{--tw-gradient-to:#d8c489 var(--tw-gradient-to-position)!important}
+main .to-blue-400{--tw-gradient-to:#F0C24A var(--tw-gradient-to-position)!important}
 </style>
 CSS;
 }

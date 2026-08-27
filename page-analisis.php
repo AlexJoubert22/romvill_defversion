@@ -153,7 +153,7 @@ $perfil_pages = array(
                     <?php endforeach; ?>
                 </ul>
                 <div class="mt-auto pt-5 border-t border-slate-100 dark:border-slate-700">
-                    <a href="<?php echo esc_url( $u ); ?>" class="hiw-cta inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#9A7529] transition-colors">
+                    <a href="<?php echo esc_url( $u ); ?>" class="hiw-cta inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#8A6B18] transition-colors">
                         <?php echo esc_html( $d['linktext'] ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
@@ -177,17 +177,17 @@ $perfil_pages = array(
         #rvix-sl .intel{clip-path:inset(0 0 0 var(--x))}
         #rvix-sl .intel .vl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.78),rgba(0, 0, 0,.86))}
         #rvix-sl .nd{position:absolute;display:flex;align-items:flex-start;gap:8px;transform:translate(-50%,-50%)}
-        #rvix-sl .nd .dt{width:10px;height:10px;border-radius:50%;background:#D4B86A;box-shadow:0 0 0 4px rgba(212,184,106,.22),0 0 12px rgba(212,184,106,.6);flex:0 0 auto;margin-top:8px}
-        #rvix-sl .nd .lb{background:rgba(0, 0, 0,.9);border:1px solid rgba(212,184,106,.4);color:#fff;padding:8px 11px;border-radius:9px;max-width:210px;display:flex;align-items:flex-start;gap:8px}
-        #rvix-sl .nd .lb .ico{width:16px;height:16px;color:#D4B86A;flex:0 0 auto;margin-top:1px}
+        #rvix-sl .nd .dt{width:10px;height:10px;border-radius:50%;background:#F0C24A;box-shadow:0 0 0 4px rgba(240, 194, 74,.22),0 0 12px rgba(240, 194, 74,.6);flex:0 0 auto;margin-top:8px}
+        #rvix-sl .nd .lb{background:rgba(0, 0, 0,.9);border:1px solid rgba(240, 194, 74,.4);color:#fff;padding:8px 11px;border-radius:9px;max-width:210px;display:flex;align-items:flex-start;gap:8px}
+        #rvix-sl .nd .lb .ico{width:16px;height:16px;color:#F0C24A;flex:0 0 auto;margin-top:1px}
         #rvix-sl .nd .lbx{display:flex;flex-direction:column;line-height:1.3}
         #rvix-sl .nd .lbx b{font-weight:700;font-size:11.5px;white-space:nowrap}
         #rvix-sl .nd .lbx i{font-style:normal;font-weight:400;font-size:10px;color:#D7D4D1;margin-top:1px}
         #rvix-sl .tg{position:absolute;bottom:14px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
         #rvix-sl .tg.l{left:14px;background:rgba(255,255,255,.14);color:#fff}
-        #rvix-sl .tg.r{right:14px;background:rgba(212,184,106,.92);color:#000000}
-        #rvix-sl .dv{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#D4B86A;box-shadow:0 0 12px rgba(212,184,106,.7);z-index:5}
-        #rvix-sl .hd2{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);z-index:6;width:44px;height:44px;border-radius:50%;background:#D4B86A;color:#000000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+        #rvix-sl .tg.r{right:14px;background:rgba(240, 194, 74,.92);color:#000000}
+        #rvix-sl .dv{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#F0C24A;box-shadow:0 0 12px rgba(240, 194, 74,.7);z-index:5}
+        #rvix-sl .hd2{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);z-index:6;width:44px;height:44px;border-radius:50%;background:#F0C24A;color:#000000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.4)}
         #rvix-sl .hd2 svg{width:22px;height:22px}
         @media(max-width:900px){#rvix-sl .cmp{height:420px}#rvix-sl .nd .lb{max-width:none;padding:6px 9px}#rvix-sl .nd .lbx i{display:none}#rvix-sl .nd .lbx b{font-size:11px}}
         </style>

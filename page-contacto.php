@@ -69,9 +69,9 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     transition: background 0.15s, color 0.15s;
     border-radius: 8px 0 0 8px;
 }
-.phone-prefix-btn:hover { background: rgba(240,194,74,.10); color: #9A7529; }
+.phone-prefix-btn:hover { background: rgba(240,194,74,.10); color: #8A6B18; }
 .dark .phone-prefix-btn { border-right-color: #2E2E2E; color: #D7D4D1; }
-.dark .phone-prefix-btn:hover { background: rgba(205,178,119,.14); color: #cdb277; }
+.dark .phone-prefix-btn:hover { background: rgba(240, 194, 74,.14); color: #F0C24A; }
 .phone-number-input {
     flex: 1;
     background: transparent;
@@ -128,8 +128,8 @@ html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro 
 .prefix-item:hover { background: #faf6ec; }
 .dark .prefix-item { color: #D7D4D1; }
 .dark .prefix-item:hover { background: #0A0A0A; }
-.prefix-item.is-active { color: #9A7529; font-weight: 700; }
-.dark .prefix-item.is-active { color: #cdb277; }
+.prefix-item.is-active { color: #8A6B18; font-weight: 700; }
+.dark .prefix-item.is-active { color: #F0C24A; }
 .prefix-flag { font-size: 1.1rem; }
 .prefix-name { flex: 1; }
 .prefix-code { color: #A4A19E; font-size: 0.78rem; font-weight: 600; }
@@ -178,7 +178,7 @@ html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro 
    Estas reglas van al final → sobrescriben las anteriores.
    ============================================================ */
 :root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0A0A0A;--rv-text-soft:#3D3D3D;--rv-text-faint:#75726F;--rv-border:#EAE7E4;--rv-border-soft:#eef2f7;--rv-accent:#35322F;--rv-gold:#F0C24A;--rv-gold-hover:#D9AC33;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240,194,74,.22);--rv-radius-in:8px;}
-.dark{--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#D7D4D1;--rv-text-faint:#A4A19E;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#cdb277;--rv-gold:#cdb277;--rv-gold-hover:#ddc488;--rv-on-gold:#0A0A0A;--rv-ring:rgba(205,178,119,.30);}
+.dark{--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#D7D4D1;--rv-text-faint:#A4A19E;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#F0C24A;--rv-gold:#F0C24A;--rv-gold-hover:#F0C24A;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240, 194, 74,.30);}
 /* Campos: padding generoso, radio sutil, foco con anillo (sin reflujo), translúcido en oscuro */
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]){padding:12px 16px;color:var(--rv-text);background:var(--rv-field);border:1.5px solid var(--rv-border);border-radius:var(--rv-radius-in);transition:border-color .2s,box-shadow .2s,background .2s;}
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]):focus{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
@@ -206,7 +206,7 @@ html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro 
 /* CTA hero en contorno (un solo botón sólido por pantalla) */
 .rv-cta-outline{border:1.5px solid var(--rv-gold);color:var(--rv-gold);background:transparent;transition:all .25s ease;}
 .rv-cta-outline:hover{background:var(--rv-gold);color:var(--rv-on-gold);}
-html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contraste WCAG sobre fondo claro */
+html:not(.dark) .rv-cta-outline{color:#8A6B18;border-color:#8A6B18;} /* contraste WCAG sobre fondo claro */
 /* #4 — "Por qué Romvill" más compacto (lateral estrecho) */
 .why-reason{padding:7px 9px;gap:11px;}
 .why-reason-icon{width:32px;height:32px;}
@@ -256,9 +256,9 @@ html:not(.dark) .rv-cta-outline{color:#9A7529;border-color:#9A7529;} /* contrast
 .hstep::before{content:'';position:absolute;left:17.5px;top:40px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(240,194,74,.5),rgba(240,194,74,.06));}
 .hstep:last-child::before{display:none;}
 .rgpd-consent a{color:var(--rv-gold);}
-html:not(.dark) .rgpd-consent a{color:#9A7529;}
+html:not(.dark) .rgpd-consent a{color:#8A6B18;}
 /* El plugin @tailwindcss/forms pinta el checkbox con currentColor → forzamos oro */
-.rgpd-consent input[type='checkbox']{color:#9A7529;border-radius:3px;}
+.rgpd-consent input[type='checkbox']{color:#8A6B18;border-radius:3px;}
 .rgpd-consent input[type='checkbox']:focus{--tw-ring-color:rgba(240,194,74,.4);}
 .dark .rgpd-consent input[type='checkbox']{color:#F0C24A;}
 .cont-hr{height:1px;flex:1;}
@@ -445,7 +445,7 @@ html:not(.dark) .rgpd-consent a{color:#9A7529;}
                         <div class="rgpd-consent mt-4 mb-3">
                             <label class="flex items-start gap-2 text-sm cursor-pointer p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <input type="checkbox" name="rgpd_consent" id="rgpd_consent" required
-                                       class="mt-1 flex-shrink-0 w-4 h-4" style="accent-color:#9A7529;">
+                                       class="mt-1 flex-shrink-0 w-4 h-4" style="accent-color:#8A6B18;">
                                 <span class="text-slate-600 dark:text-slate-300">
                                     <?php echo esc_html( romvill_t( 'contact.rgpd_checkbox' ) ); ?>
                                     <a href="<?php echo esc_url( add_query_arg( 'lang', romvill_current_lang(), home_url( '/privacidad/' ) ) ); ?>"

@@ -473,7 +473,7 @@ function romvill_fb_column_content( $col, $post_id ) {
 
 		case 'rvf_rating':
 			$n = (int) get_post_meta( $post_id, '_rvf_rating', true );
-			$c = $n >= 4 ? '#1a7f37' : ( $n === 3 ? '#b8860b' : '#b32d2e' );
+			$c = $n >= 4 ? '#1a7f37' : ( $n === 3 ? '#8A6B18' : '#b32d2e' );
 			echo '<span style="color:' . esc_attr( $c ) . ';font-size:14px;letter-spacing:1px">'
 				// [M11] max(0, …): con una valoración corrupta o ausente,
 				// 5 - $n podía ser negativo y str_repeat() lanzaba un error.
@@ -484,7 +484,7 @@ function romvill_fb_column_content( $col, $post_id ) {
 		case 'rvf_estado':
 			$e = romvill_fb_estado( $post_id );
 			$m = array(
-				'pendiente' => array( '#fff4e5', '#e0b070', '#8a5a11', 'Pendiente' ),
+				'pendiente' => array( '#fff4e5', '#F0C24A', '#8A6B18', 'Pendiente' ),
 				'aprobado'  => array( '#eaf6ec', '#8dc79a', '#1a5c2a', 'Aprobada' ),
 				'rechazado' => array( '#fdecec', '#e0a0a0', '#8a1111', 'Rechazada' ),
 			);
@@ -560,8 +560,8 @@ function romvill_fb_box_moderacion( $post ) {
 	echo '</p>';
 
 	if ( $estado === 'aprobado' && ! $consent ) {
-		echo '<p style="margin:10px 0 0;padding:9px 11px;background:#fff4e5;border:1px solid #e0b070;'
-			. 'color:#8a5a11;border-radius:6px;font-size:12px;line-height:1.55">Aprobada, pero sin '
+		echo '<p style="margin:10px 0 0;padding:9px 11px;background:#fff4e5;border:1px solid #F0C24A;'
+			. 'color:#8A6B18;border-radius:6px;font-size:12px;line-height:1.55">Aprobada, pero sin '
 			. 'consentimiento: sigue sin ser publicable. Uso interno únicamente.</p>';
 	}
 }
@@ -630,8 +630,8 @@ function romvill_fb_box_detalle( $post ) {
 			$neg = in_array( $k, array( 'info_incompleta', 'dificil_entender', 'datos_faltantes',
 				'entrega_tardia', 'atencion_mejorable', 'diseno_confuso' ), true );
 			$bg  = $neg ? '#fff4e5' : '#eaf6ec';
-			$bd  = $neg ? '#e0b070' : '#8dc79a';
-			$fg  = $neg ? '#8a5a11' : '#1a5c2a';
+			$bd  = $neg ? '#F0C24A' : '#8dc79a';
+			$fg  = $neg ? '#8A6B18' : '#1a5c2a';
 			echo '<span style="background:' . $bg . ';border:1px solid ' . $bd . ';color:' . $fg
 				. ';padding:3px 11px;border-radius:11px;font-size:12px">' . esc_html( $labels[ $k ] ?? $k ) . '</span>';
 		}

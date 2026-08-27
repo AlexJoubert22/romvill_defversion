@@ -257,7 +257,7 @@ function romvill_pe_box( $post ) {
 
     $draft = get_post_meta( $post->ID, '_rv_seq15_draft', true );
     if ( $draft ) {
-        echo '<p style="margin:12px 0 4px;font-size:12px;color:#b8860b"><strong>Borrador día 15 (revisar y enviar a mano):</strong></p>';
+        echo '<p style="margin:12px 0 4px;font-size:12px;color:#8A6B18"><strong>Borrador día 15 (revisar y enviar a mano):</strong></p>';
         echo '<textarea readonly rows="10" style="width:100%;font-size:11px;font-family:ui-monospace,monospace" onclick="this.select()">' . esc_textarea( $draft ) . '</textarea>';
     }
 }

@@ -37,7 +37,7 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
         <div class="absolute inset-0" style="background:url('<?php echo esc_url( $_img ); ?>') center/cover no-repeat;"></div>
         <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(0, 0, 0,.55),rgba(0, 0, 0,.80) 55%,rgba(0, 0, 0,.92));"></div>
         <div class="relative z-10 px-6 py-24" style="max-width:820px">
-            <div style="color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;margin-bottom:1.1rem"><?php echo esc_html( romvill_t( 'zona.hero.kicker' ) ); ?></div>
+            <div style="color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;margin-bottom:1.1rem"><?php echo esc_html( romvill_t( 'zona.hero.kicker' ) ); ?></div>
             <h1 class="text-white" style="<?php echo $serif; ?>font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.08;margin:0"><?php echo esc_html( romvill_t( 'zona.' . $_key . '.h1' ) ); ?></h1>
             <p style="color:#ECE9E6;font-size:clamp(1.05rem,2.3vw,1.25rem);line-height:1.6;max-width:620px;margin:1.5rem auto 0"><?php echo esc_html( romvill_t( 'zona.' . $_key . '.sub' ) ); ?></p>
             <a href="<?php echo esc_url( $contacto_url ); ?>" class="inline-flex items-center justify-center gap-2" style="margin-top:1.9rem;background:#F0C24A;color:#000000;font-weight:700;padding:.9rem 2rem;border-radius:999px;text-decoration:none"><?php echo esc_html( romvill_t( 'zona.hero.cta' ) ); ?> <?php echo $arrow; ?></a>

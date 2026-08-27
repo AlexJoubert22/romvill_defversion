@@ -37,7 +37,7 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
 #rv-fb .hero{position:relative;text-align:center;color:#fff;padding:84px 20px 66px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#000000 0%,#000000 45%,#000000 100%)}
 #rv-fb .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.18),transparent 62%);filter:blur(8px)}
 #rv-fb .hero>*{position:relative;z-index:2}
-#rv-fb .kick{color:#D4B86A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
+#rv-fb .kick{color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
 #rv-fb .rule{width:54px;height:2px;background:linear-gradient(90deg,transparent,#F0C24A,transparent);margin:0 auto 24px}
 #rv-fb h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.12;margin:0 auto;max-width:720px}
 #rv-fb .hsub{color:#E0DDDA;font-size:1.05rem;line-height:1.65;max-width:600px;margin:18px auto 0}
@@ -46,8 +46,8 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
 .dark #rv-fb .panel{background:#000000;border-color:#000000}
 #rv-fb .fld{margin-bottom:30px}
 #rv-fb .fld:last-of-type{margin-bottom:22px}
-#rv-fb label.lbl{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:.68rem;color:#8a6d2f;margin-bottom:9px}
-.dark #rv-fb label.lbl{color:#D4B86A}
+#rv-fb label.lbl{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:.68rem;color:#8A6B18;margin-bottom:9px}
+.dark #rv-fb label.lbl{color:#F0C24A}
 #rv-fb .opt{font-weight:600;text-transform:none;letter-spacing:0;color:#A4A19E;font-size:.68rem}
 #rv-fb .hint{margin-top:9px;color:#75726F;font-size:.84rem;line-height:1.55}
 .dark #rv-fb .hint{color:#9A9794}
@@ -67,17 +67,17 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
 #rv-fb .stars label:hover{transform:scale(1.1)}
 #rv-fb .stars input:checked~label svg,
 #rv-fb .stars label:hover svg,
-#rv-fb .stars label:hover~label svg{fill:#F0C24A;stroke:#A9873F}
+#rv-fb .stars label:hover~label svg{fill:#F0C24A;stroke:#8A6B18}
 #rv-fb .stars input:focus-visible+label{box-shadow:0 0 0 3px rgba(240,194,74,.4)}
-#rv-fb .starnum{margin-left:14px;font-weight:700;color:#8a6d2f;font-size:.95rem;vertical-align:8px}
-.dark #rv-fb .starnum{color:#D4B86A}
+#rv-fb .starnum{margin-left:14px;font-weight:700;color:#8A6B18;font-size:.95rem;vertical-align:8px}
+.dark #rv-fb .starnum{color:#F0C24A}
 /* ── Casillas rápidas ── */
 #rv-fb .chips{display:flex;flex-wrap:wrap;gap:9px}
 #rv-fb .chip input{position:absolute;opacity:0;width:0;height:0}
 #rv-fb .chip span{display:inline-block;cursor:pointer;border:1px solid #DDDAD7;background:#fbfbfd;color:#4C4946;padding:9px 16px;border-radius:999px;font-size:.88rem;line-height:1.3;transition:.18s;user-select:none}
 .dark #rv-fb .chip span{background:#000000;border-color:#35322F;color:#BBB8B5}
 #rv-fb .chip span:hover{border-color:#F0C24A}
-#rv-fb .chip input:checked+span{background:#F0C24A;border-color:#A9873F;color:#000000;font-weight:600}
+#rv-fb .chip input:checked+span{background:#F0C24A;border-color:#8A6B18;color:#000000;font-weight:600}
 #rv-fb .chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(240,194,74,.4)}
 /* ── Consentimiento de publicación (nunca marcada por defecto) ── */
 #rv-fb .consent{display:flex;gap:12px;align-items:flex-start;border:1px solid #DDDAD7;background:#fbfbfd;border-radius:12px;padding:15px 16px;cursor:pointer}

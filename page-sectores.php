@@ -95,7 +95,7 @@ $contacto_url  = romvill_link( $contacto_url );
                     <?php echo wp_kses( romvill_t( 'sec.intl.desc' ), [ 'strong' => [] ] ); ?>
                 </p>
                 <div class="mt-6">
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="hiw-cta text-sm font-bold text-secondary hover:text-[#9A7529] transition-colors inline-flex items-center gap-1">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="hiw-cta text-sm font-bold text-secondary hover:text-[#8A6B18] transition-colors inline-flex items-center gap-1">
                         <?php echo esc_html( romvill_t( 'sec.intl.link' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
@@ -186,7 +186,7 @@ $contacto_url  = romvill_link( $contacto_url );
                         </li>
                         <?php endforeach; ?>
                     </ul>
-                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="hiw-cta inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#cdb277] transition-colors mt-auto">
+                    <a href="<?php echo esc_url( $contacto_url ); ?>" class="hiw-cta inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-[#F0C24A] transition-colors mt-auto">
                         <?php echo esc_html( romvill_t( 'sec.inv.link' ) ); ?> <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
