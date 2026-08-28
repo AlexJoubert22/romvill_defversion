@@ -2120,9 +2120,13 @@ function romvill_contenedores_oscuros() {
         '.bg-slate-900', '.bg-slate-950', '.bg-slate-800', '.bg-black',
         '.bg-background-dark', '[class*="from-slate-9"]',
         // Bloques del tema que son oscuros en los dos modos
-        '.rv-nav', '.rv-footer', '.rv-dark-hero', '.why-panel',
-        '.hero-steps-plate', '.rv-report-mock', '.trust-bar', '.rv-viz',
-        '.romvill-form', '.hiw-medal', '.rv-ag-head', '.rv-ag-exp',
+        // OJO: solo bloques que son oscuros SIEMPRE. Verificado uno a uno
+        // sobre el sitio en vivo. Quedan fuera .rv-nav (es blanca en las
+        // paginas interiores), .hero-steps-plate (translucida, ya la cubre
+        // su padre) y .romvill-form (transparente sobre blanco).
+        '.rv-footer', '.rv-dark-hero', '.why-panel',
+        '.rv-report-mock', '.trust-bar', '.rv-viz',
+        '.hiw-medal', '.rv-ag-head', '.rv-ag-exp',
         '#rv-faq', '#rv-fb', '#rv-mu', '#rv-verif', '#rvix-hs',
     );
 }

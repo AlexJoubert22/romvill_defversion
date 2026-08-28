@@ -155,7 +155,8 @@ html {
     font-family: 'Onest', sans-serif;
     padding-top: 0.25rem;
 }
-.rf-req { color: #F0C24A; }
+.rf-req { color: #8A6B18; }  /* oro tinta: el brillante sobre blanco da 1.68:1 */
+.dark .rf-req { color: #F0C24A; }
 
 /* Inputs, selects, textarea */
 .romvill-form .wpcf7-form-control:not([type=submit]) {
