@@ -177,8 +177,8 @@ html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro 
    REDISEÑO v5 — sistema de tokens (claro/oscuro) + componentes.
    Estas reglas van al final → sobrescriben las anteriores.
    ============================================================ */
-:root{--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0A0A0A;--rv-text-soft:#3D3D3D;--rv-text-faint:#75726F;--rv-border:#EAE7E4;--rv-border-soft:#eef2f7;--rv-accent:#35322F;--rv-gold:#F0C24A;--rv-gold-hover:#D9AC33;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240,194,74,.22);--rv-radius-in:8px;}
-.dark{--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#D7D4D1;--rv-text-faint:#A4A19E;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#F0C24A;--rv-gold:#F0C24A;--rv-gold-hover:#F0C24A;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240, 194, 74,.30);}
+:root{--rv-gold-ink:#8A6B18;--rv-surface:#fff;--rv-field:#f8fafc;--rv-text:#0A0A0A;--rv-text-soft:#3D3D3D;--rv-text-faint:#75726F;--rv-border:#EAE7E4;--rv-border-soft:#eef2f7;--rv-accent:#35322F;--rv-gold:#F0C24A;--rv-gold-hover:#D9AC33;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240,194,74,.22);--rv-radius-in:8px;}
+.dark{--rv-gold-ink:#F0C24A;--rv-surface:#0A0A0A;--rv-field:rgba(255,255,255,.04);--rv-text:#f1f5f9;--rv-text-soft:#D7D4D1;--rv-text-faint:#A4A19E;--rv-border:#2E2E2E;--rv-border-soft:#141414;--rv-accent:#F0C24A;--rv-gold:#F0C24A;--rv-gold-hover:#F0C24A;--rv-on-gold:#0A0A0A;--rv-ring:rgba(240, 194, 74,.30);}
 /* Campos: padding generoso, radio sutil, foco con anillo (sin reflujo), translúcido en oscuro */
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]){padding:12px 16px;color:var(--rv-text);background:var(--rv-field);border:1.5px solid var(--rv-border);border-radius:var(--rv-radius-in);transition:border-color .2s,box-shadow .2s,background .2s;}
 .romvill-form .wpcf7-form-control:not([type=checkbox]):not([type=submit]):focus{border-color:var(--rv-accent);background:var(--rv-surface);box-shadow:0 0 0 3px var(--rv-ring);}
@@ -200,11 +200,11 @@ html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro 
 .rv-vcell{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;}
 .rv-vcell + .rv-vcell{border-top:1px solid var(--rv-border-soft);}
 @media(min-width:640px){.rv-vbar{display:grid;grid-template-columns:1fr 1fr 1fr;}.rv-vcell + .rv-vcell{border-top:none;border-left:1px solid var(--rv-border-soft);}}
-.rv-vic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--rv-gold);background:linear-gradient(135deg,rgba(240,194,74,.18),rgba(240,194,74,.06));}
+.rv-vic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--rv-gold-ink);background:linear-gradient(135deg,rgba(240,194,74,.18),rgba(240,194,74,.06));}
 .rv-vt{font-size:.875rem;font-weight:700;color:var(--rv-text);margin:0 0 2px;}
 .rv-vd{font-size:.75rem;line-height:1.4;color:var(--rv-text-faint);margin:0;}
 /* CTA hero en contorno (un solo botón sólido por pantalla) */
-.rv-cta-outline{border:1.5px solid var(--rv-gold);color:var(--rv-gold);background:transparent;transition:all .25s ease;}
+.rv-cta-outline{border:1.5px solid var(--rv-gold);color:var(--rv-gold-ink);background:transparent;transition:all .25s ease;}
 .rv-cta-outline:hover{background:var(--rv-gold);color:var(--rv-on-gold);}
 html:not(.dark) .rv-cta-outline{color:#8A6B18;border-color:#8A6B18;} /* contraste WCAG sobre fondo claro */
 /* #4 — "Por qué Romvill" más compacto (lateral estrecho) */
@@ -218,6 +218,10 @@ html:not(.dark) .rv-cta-outline{color:#8A6B18;border-color:#8A6B18;} /* contrast
 .why-panel{background:linear-gradient(155deg,#0A0A0A 0%,#000000 100%);border:1px solid rgba(240,194,74,.28);}
 /* Hero oscuro a sangre completa (estilo Tesla): banda navy con retícula
    de puntos, orbe dorado y placa de pasos en cristal esmerilado. */
+/* El heroe es oscuro SIEMPRE, tambien en modo claro, donde las variables
+   --rv-text-* valen los tonos pensados para fondo blanco. Aqui se le dan
+   los del modo oscuro o su texto sale casi negro sobre negro. */
+.rv-dark-hero{--rv-text:#F1F1EF;--rv-text-soft:#D7D4D1;--rv-text-faint:#A4A19E;--rv-gold-ink:#F0C24A;--rv-border:#2E2E2E;--rv-surface:#0A0A0A;}
 .rv-dark-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(165deg,#000000 0%,#191919 100%);position:relative;overflow:hidden;}
 .rv-dark-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(240,194,74,.13) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);pointer-events:none;}
 .rv-dark-hero::after{content:'';position:absolute;top:-22%;right:-12%;width:520px;height:520px;background:radial-gradient(circle,rgba(240,194,74,.15),transparent 65%);pointer-events:none;}
@@ -255,7 +259,7 @@ html:not(.dark) .rv-cta-outline{color:#8A6B18;border-color:#8A6B18;} /* contrast
 .hstep-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,194,74,.6);color:#F0C24A;background:rgba(240,194,74,.08);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:.85rem;}
 .hstep::before{content:'';position:absolute;left:17.5px;top:40px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(240,194,74,.5),rgba(240,194,74,.06));}
 .hstep:last-child::before{display:none;}
-.rgpd-consent a{color:var(--rv-gold);}
+.rgpd-consent a{color:var(--rv-gold-ink);}
 html:not(.dark) .rgpd-consent a{color:#8A6B18;}
 /* El plugin @tailwindcss/forms pinta el checkbox con currentColor → forzamos oro */
 .rgpd-consent input[type='checkbox']{color:#8A6B18;border-radius:3px;}
@@ -339,9 +343,9 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F0C24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--rv-text-soft)"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
             <span class="text-sm ml-1" style="color:var(--rv-text-faint)">Alicante · Costa Blanca</span>
-            <span aria-hidden="true" style="color:var(--rv-gold)">•</span>
+            <span aria-hidden="true" style="color:var(--rv-gold-ink)">•</span>
             <span class="text-sm" style="color:var(--rv-text-faint)">Málaga</span>
-            <span aria-hidden="true" style="color:var(--rv-gold)">•</span>
+            <span aria-hidden="true" style="color:var(--rv-gold-ink)">•</span>
             <span class="text-sm" style="color:var(--rv-text-faint)">Marbella · Costa del Sol</span>
         </div>
 

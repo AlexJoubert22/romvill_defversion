@@ -2099,48 +2099,65 @@ CSS;
 add_action( 'wp_head', 'romvill_coherencia_gold', 99 );
 
 /**
- * Accesibilidad (contraste WCAG): en MODO CLARO, los textos secundarios en
- * gris claro (text-slate-400, contraste 2.56 sobre blanco) se leen flojo y
- * fallan WCAG AA. Los oscurece a slate-600 (#3D3D3D, 7.6:1). Se EXCLUYEN los
- * que viven dentro de contenedores de fondo oscuro (tarjetas/secciones), donde
- * el gris claro es correcto. No afecta al modo oscuro. 100% reversible.
+ * Accesibilidad (contraste WCAG) en MODO CLARO.
+ *
+ * En modo claro los grises secundarios (text-slate-400) y el dorado de marca
+ * se leen flojo sobre blanco, asi que se oscurecen. Pero DENTRO de un bloque
+ * de fondo oscuro esa correccion los vuelve ilegibles, y el tema tiene
+ * bloques que son oscuros SIEMPRE, en los dos modos.
+ *
+ * El fallo que esto arregla: la lista de excepciones solo conocia las clases
+ * de fondo de Tailwind (bg-slate-900 y compania), no los contenedores propios
+ * del tema. Resultado: en el pie y en el heroe de contacto el texto salia
+ * #3D3D3D sobre negro (1.88:1) y el dorado #8A6B18 (4.07:1). Ilegibles.
+ *
+ * Por eso la lista vive AHORA en un solo sitio y la comparten las dos
+ * correcciones: si se anade un bloque oscuro nuevo, se anade aqui y ya.
  */
+function romvill_contenedores_oscuros() {
+    return array(
+        // Fondos oscuros de Tailwind
+        '.bg-slate-900', '.bg-slate-950', '.bg-slate-800', '.bg-black',
+        '.bg-background-dark', '[class*="from-slate-9"]',
+        // Bloques del tema que son oscuros en los dos modos
+        '.rv-nav', '.rv-footer', '.rv-dark-hero', '.why-panel',
+        '.hero-steps-plate', '.rv-report-mock', '.trust-bar', '.rv-viz',
+        '.romvill-form', '.hiw-medal', '.rv-ag-head', '.rv-ag-exp',
+        '#rv-faq', '#rv-fb', '#rv-mu', '#rv-verif', '#rvix-hs',
+    );
+}
+
+/** Construye "html:not(.dark) <contenedor> <clase>" para cada contenedor. */
+function romvill_regla_oscura( $clase, $color ) {
+    $sel = array();
+    foreach ( romvill_contenedores_oscuros() as $c ) {
+        $sel[] = 'html:not(.dark) ' . $c . ' ' . $clase;
+    }
+    return implode( ',', $sel ) . '{color:' . $color . ' !important}';
+}
+
 function romvill_contrast_fix() {
     if ( is_admin() ) return;
-    echo <<<'CSS'
-<style id="rv-contrast-fix">
-html:not(.dark) .text-slate-400{color:#3D3D3D !important}
-html:not(.dark) .bg-slate-900 .text-slate-400,
-html:not(.dark) .bg-slate-950 .text-slate-400,
-html:not(.dark) .bg-slate-800 .text-slate-400,
-html:not(.dark) .bg-black .text-slate-400,
-html:not(.dark) .bg-background-dark .text-slate-400,
-html:not(.dark) [class*="from-slate-9"] .text-slate-400{color:#A4A19E !important}
-</style>
-CSS;
+    $css  = 'html:not(.dark) .text-slate-400{color:#3D3D3D !important}';
+    $css .= romvill_regla_oscura( '.text-slate-400', '#A4A19E' );
+    $css .= 'html:not(.dark) .text-slate-500{color:#3D3D3D !important}';
+    $css .= romvill_regla_oscura( '.text-slate-500', '#A4A19E' );
+    $css .= romvill_regla_oscura( '.text-slate-300', '#D7D4D1' );
+    echo '<style id="rv-contrast-fix">' . $css . '</style>';
 }
 add_action( 'wp_head', 'romvill_contrast_fix', 99 );
 
 /**
- * Accesibilidad (dorado): el dorado de marca (#F0C24A) sobre fondo blanco falla
- * contraste (2.48). En MODO CLARO lo oscurece a un dorado rico legible
- * (#8A6B18, 5.00:1) en los textos sobre fondo claro. Se EXCLUYEN los fondos
- * oscuros (héroe, tarjetas), donde el dorado debe seguir brillante. No toca el
- * modo oscuro. 100% reversible.
+ * Dorado: brillante (#F0C24A) sobre oscuro, tinta (#8A6B18, 5.00:1) sobre
+ * claro. Comparte la lista de contenedores con la correccion de grises.
  */
 function romvill_gold_contrast() {
     if ( is_admin() ) return;
-    echo <<<'CSS'
-<style id="rv-gold-contrast">
-html:not(.dark) .text-secondary{color:#8A6B18 !important}
-html:not(.dark) .bg-slate-900 .text-secondary,
-html:not(.dark) .bg-slate-950 .text-secondary,
-html:not(.dark) .bg-slate-800 .text-secondary,
-html:not(.dark) .bg-black .text-secondary,
-html:not(.dark) .bg-background-dark .text-secondary,
-html:not(.dark) [class*="from-slate-9"] .text-secondary{color:#F0C24A !important}
-</style>
-CSS;
+    $css  = 'html:not(.dark) .text-secondary{color:#8A6B18 !important}';
+    $css .= romvill_regla_oscura( '.text-secondary', '#F0C24A' );
+    $css .= 'html:not(.dark) .text-secondary-ink{color:#8A6B18 !important}';
+    $css .= romvill_regla_oscura( '.text-secondary-ink', '#F0C24A' );
+    echo '<style id="rv-gold-contrast">' . $css . '</style>';
 }
 add_action( 'wp_head', 'romvill_gold_contrast', 99 );
 
