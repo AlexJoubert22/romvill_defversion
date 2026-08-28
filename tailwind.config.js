@@ -18,9 +18,9 @@ module.exports = {
                 // Fondos oscuros del tema: negro de verdad, no azul marino.
                 // Solo se pisan los tonos de FONDO; 50-600 (textos) siguen siendo slate.
                 'slate': {
-                    '50':  '#FAF9F7',
-                    '100': '#F3F1ED',
-                    '200': '#E6E3DD',
+                    '50':  '#F8F6F1',
+                    '100': '#EFEBE2',
+                    '200': '#E2DED3',
                     '300': '#D7D4D1',
                     '400': '#A4A19E',
                     '500': '#75726F',

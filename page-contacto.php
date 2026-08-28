@@ -218,7 +218,7 @@ html:not(.dark) .rv-cta-outline{color:#8A6B18;border-color:#8A6B18;} /* contrast
 .why-panel{background:linear-gradient(155deg,#0A0A0A 0%,#000000 100%);border:1px solid rgba(240,194,74,.28);}
 /* Hero oscuro a sangre completa (estilo Tesla): banda navy con retícula
    de puntos, orbe dorado y placa de pasos en cristal esmerilado. */
-.rv-dark-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(165deg,#000000 0%,#000000 100%);position:relative;overflow:hidden;}
+.rv-dark-hero{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(165deg,#000000 0%,#191919 100%);position:relative;overflow:hidden;}
 .rv-dark-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(240,194,74,.13) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);mask-image:radial-gradient(circle at 78% 18%,#000 8%,transparent 62%);pointer-events:none;}
 .rv-dark-hero::after{content:'';position:absolute;top:-22%;right:-12%;width:520px;height:520px;background:radial-gradient(circle,rgba(240,194,74,.15),transparent 65%);pointer-events:none;}
 .rv-dark-hero .rv-cta-outline{color:#F0C24A;border-color:rgba(240,194,74,.75);}

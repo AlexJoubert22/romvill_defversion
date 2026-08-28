@@ -589,7 +589,7 @@ html {
     position: relative;
     width: 100%;
     aspect-ratio: 4 / 5;
-    background: linear-gradient(155deg, #0A0A0A 0%, #000000 100%);
+    background: linear-gradient(155deg, #000000 0%, #1A1A1A 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -626,7 +626,7 @@ html {
     position: absolute;
     width: 58%;
     aspect-ratio: 3 / 4;
-    background: linear-gradient(160deg, #000000 0%, #000000 100%);
+    background: linear-gradient(160deg, #1C1C1C 0%, #000000 100%);
     border: 1px solid rgba(240, 194, 74, 0.45);
     border-radius: 10px;
     box-shadow: 0 34px 70px -25px rgba(0, 0, 0, 0.75);
@@ -664,7 +664,7 @@ html {
     display: flex;
     align-items: stretch;
     gap: 1.25rem;
-    background: linear-gradient(155deg, #0A0A0A 0%, #000000 100%);
+    background: linear-gradient(155deg, #000000 0%, #1A1A1A 100%);
     border: 1px solid rgba(240, 194, 74, 0.28);
     border-radius: 16px;
     padding: 1.4rem 1.5rem;
@@ -811,7 +811,7 @@ html {
 
 /* ===== Footer navy premium (igual en modo claro y oscuro) ===== */
 .rv-footer {
-    background: linear-gradient(180deg, #000000 0%, #000000 100%);
+    background: linear-gradient(180deg, #0A0A0A 0%, #000000 100%);
     border-top: 1px solid rgba(240, 194, 74, 0.22);
 }
 

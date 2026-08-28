@@ -1,0 +1,279 @@
+- generic [ref=f2e1]:
+  - dialog "Usamos cookies" [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - generic [ref=f2e4]: Usamos cookies
+      - button "Cerrar ventana" [active] [ref=f2e5] [cursor=pointer]
+    - generic [ref=f2e8]: Cookies propias y de terceros para analizar el tráfico y mejorar su experiencia.
+    - generic:
+      - list:
+        - listitem
+        - listitem
+        - listitem
+        - listitem
+    - generic [ref=f2e10]:
+      - button "Aceptar" [ref=f2e11] [cursor=pointer]
+      - button "Denegar" [ref=f2e12] [cursor=pointer]
+      - button "Ver preferencias" [ref=f2e13] [cursor=pointer]
+    - list [ref=f2e15]:
+      - listitem [ref=f2e16]:
+        - link "Política de cookies" [ref=f2e17] [cursor=pointer]:
+          - /url: https://romvill.com/politica-de-cookies-ue/
+      - listitem [ref=f2e18]:
+        - link "Privacidad" [ref=f2e19] [cursor=pointer]:
+          - /url: https://romvill.com/privacidad/
+      - listitem
+  - generic [ref=f2e20]:
+    - navigation "Navegación principal" [ref=f2e21]:
+      - generic [ref=f2e23]:
+        - link "RV ROMVILL" [ref=f2e24] [cursor=pointer]:
+          - /url: https://romvill.com/
+          - img "RV" [ref=f2e26]
+          - generic [ref=f2e27]: ROMVILL
+        - generic [ref=f2e28]:
+          - link "Metodología" [ref=f2e29] [cursor=pointer]:
+            - /url: https://romvill.com/metodologia/
+          - link "Análisis" [ref=f2e30] [cursor=pointer]:
+            - /url: https://romvill.com/analisis/
+          - link "Sectores" [ref=f2e31] [cursor=pointer]:
+            - /url: https://romvill.com/sectores/
+          - link "Quiénes somos" [ref=f2e32] [cursor=pointer]:
+            - /url: https://romvill.com/quienes-somos/
+          - link "Precios" [ref=f2e33] [cursor=pointer]:
+            - /url: https://romvill.com/precios/
+          - link "FAQ" [ref=f2e35] [cursor=pointer]:
+            - /url: https://romvill.com/preguntas-frecuentes/
+          - link "Contacto" [ref=f2e36] [cursor=pointer]:
+            - /url: https://romvill.com/contacto/#contacto
+          - button "🇪🇸 ES" [ref=f2e38] [cursor=pointer]:
+            - img "🇪🇸" [ref=f2e40]
+            - generic [ref=f2e41]: ES
+          - button "Cambiar tema" [ref=f2e44] [cursor=pointer]:
+            - generic [ref=f2e45]: dark_mode
+        - link "Solicitar Presupuesto" [ref=f2e47] [cursor=pointer]:
+          - /url: https://romvill.com/contacto/
+    - generic [ref=f2e48]:
+      - button [ref=f2e49] [cursor=pointer]:
+        - generic [ref=f2e50]: close
+      - navigation [ref=f2e51]:
+        - link [ref=f2e52] [cursor=pointer]:
+          - /url: https://romvill.com/metodologia/
+          - text: Metodología
+        - link [ref=f2e53] [cursor=pointer]:
+          - /url: https://romvill.com/analisis/
+          - text: Análisis
+        - link [ref=f2e54] [cursor=pointer]:
+          - /url: https://romvill.com/sectores/
+          - text: Sectores
+        - link [ref=f2e55] [cursor=pointer]:
+          - /url: https://romvill.com/quienes-somos/
+          - text: Quiénes somos
+        - link [ref=f2e56] [cursor=pointer]:
+          - /url: https://romvill.com/precios/
+          - text: Precios
+        - link [ref=f2e57] [cursor=pointer]:
+          - /url: https://romvill.com/preguntas-frecuentes/
+          - text: FAQ
+        - link [ref=f2e58] [cursor=pointer]:
+          - /url: https://romvill.com/contacto/#contacto
+          - text: Contacto
+      - link [ref=f2e60] [cursor=pointer]:
+        - /url: https://romvill.com/contacto/
+        - text: Solicitar Presupuesto
+    - main [ref=f2e61]:
+      - generic [ref=f2e62]:
+        - generic [ref=f2e63]:
+          - generic [ref=f2e64]: Precios
+          - heading "Un nivel de análisis para cada decisión" [level=1] [ref=f2e65]
+          - paragraph [ref=f2e66]: "Elija la profundidad que necesita. Si después desea subir de nivel, no paga dos veces: le descontamos lo ya abonado."
+          - generic [ref=f2e67]: Programa Inaugural — 4 de 8 plazas disponibles
+          - paragraph [ref=f2e71]: "El Programa Inaugural cubre nuestras zonas de análisis: Marbella, Málaga y Alicante (Costa del Sol y Costa Blanca). Plazo de entrega: 10 días hábiles desde la confirmación de su expediente."
+        - generic [ref=f2e72]:
+          - generic [ref=f2e73]:
+            - heading "Esencial" [level=2] [ref=f2e74]
+            - paragraph [ref=f2e75]: Una visión de conjunto fiable de la zona, con lo esencial.
+            - generic [ref=f2e76]:
+              - text: desde
+              - generic [ref=f2e77]: 290€
+            - list [ref=f2e78]:
+              - listitem [ref=f2e79]:
+                - generic [ref=f2e80]: check
+                - generic [ref=f2e81]: Dashboard de la zona
+              - listitem [ref=f2e82]:
+                - generic [ref=f2e83]: check
+                - generic [ref=f2e84]: 6-7 dimensiones esenciales (seguridad, demografía, servicios…)
+              - listitem [ref=f2e85]:
+                - generic [ref=f2e86]: check
+                - generic [ref=f2e87]: Datos oficiales verificables
+              - listitem [ref=f2e88]:
+                - generic [ref=f2e89]: check
+                - generic [ref=f2e90]: Mapas y patrones detectados
+              - listitem [ref=f2e91]:
+                - generic [ref=f2e92]: check
+                - generic [ref=f2e93]: Versión web interactiva
+            - generic [ref=f2e94]: "Entrega: 3-4 días laborables"
+            - link "Solicitar este informe" [ref=f2e95] [cursor=pointer]:
+              - /url: https://romvill.com/contacto/?lang=es
+          - generic [ref=f2e96]:
+            - generic [ref=f2e97]: Recomendado
+            - heading "Superior" [level=2] [ref=f2e98]
+            - paragraph [ref=f2e99]: "El nivel que elige la mayoría: profundidad y verificación a fondo."
+            - generic [ref=f2e100]:
+              - text: desde
+              - generic [ref=f2e101]: 349€
+            - list [ref=f2e102]:
+              - listitem [ref=f2e103]:
+                - generic [ref=f2e104]: check
+                - generic [ref=f2e105]: Todo lo del Esencial
+              - listitem [ref=f2e106]:
+                - generic [ref=f2e107]: check
+                - generic [ref=f2e108]: 11-12 dimensiones verificadas
+              - listitem [ref=f2e109]:
+                - generic [ref=f2e110]: check
+                - generic [ref=f2e111]: Fiscalidad para no residentes y conectividad
+              - listitem [ref=f2e112]:
+                - generic [ref=f2e113]: check
+                - generic [ref=f2e114]: Todas las fuentes citadas en cada dato
+            - generic [ref=f2e115]: "Entrega: 5-7 días laborables"
+            - link "Solicitar este informe" [ref=f2e116] [cursor=pointer]:
+              - /url: https://romvill.com/contacto/?lang=es
+          - generic [ref=f2e117]:
+            - heading "Premium" [level=2] [ref=f2e118]
+            - paragraph [ref=f2e119]: "Máximo nivel: una propiedad concreta y acompañamiento dedicado."
+            - generic [ref=f2e120]:
+              - text: desde
+              - generic [ref=f2e121]: 890€
+            - list [ref=f2e122]:
+              - listitem [ref=f2e123]:
+                - generic [ref=f2e124]: check
+                - generic [ref=f2e125]: Todo lo del Superior
+              - listitem [ref=f2e126]:
+                - generic [ref=f2e127]: check
+                - generic [ref=f2e128]: 14 dimensiones completas
+              - listitem [ref=f2e129]:
+                - generic [ref=f2e130]: check
+                - generic [ref=f2e131]: Análisis de una propiedad concreta
+              - listitem [ref=f2e132]:
+                - generic [ref=f2e133]: check
+                - generic [ref=f2e134]: Informe en 2 idiomas
+              - listitem [ref=f2e135]:
+                - generic [ref=f2e136]: check
+                - generic [ref=f2e137]: Llamada con analista + WhatsApp directo
+            - generic [ref=f2e138]: "Entrega: 7-14 días laborables"
+            - link "Solicitar este informe" [ref=f2e139] [cursor=pointer]:
+              - /url: https://romvill.com/contacto/?lang=es
+        - generic [ref=f2e140]:
+          - generic [ref=f2e142]:
+            - generic [ref=f2e143]: SELECCIONE SU PERFIL
+            - generic [ref=f2e144]: Recomendado
+            - heading "¿Cuál describe mejor su situación?" [level=2] [ref=f2e145]
+          - generic [ref=f2e146]:
+            - generic [ref=f2e147] [cursor=pointer]:
+              - generic [ref=f2e148]: "01"
+              - heading "Particulares" [level=3] [ref=f2e149]
+              - paragraph [ref=f2e150]: Para quienes desean mudarse, instalarse o conocer una zona antes de tomar una decisión personal.
+              - separator [ref=f2e151]
+              - paragraph [ref=f2e152]: Familias que buscan su nuevo hogar · Residentes europeos que se instalan en España · Personas que se trasladan por motivos personales o profesionales · Padres que quieren conocer la zona donde estudia o vive un familiar
+              - link "Quiero este análisis →" [ref=f2e153]:
+                - /url: https://romvill.com/presupuesto-bloque-1/?lang=es
+            - generic [ref=f2e154] [cursor=pointer]:
+              - generic [ref=f2e155]: "02"
+              - heading "Inversores" [level=3] [ref=f2e156]
+              - paragraph [ref=f2e157]: Para quienes evalúan una compra, adquisición o inversión inmobiliaria en la zona.
+              - separator [ref=f2e158]
+              - paragraph [ref=f2e159]: Inversores que buscan rentabilidad por alquiler · Compradores de segunda residencia · Compradores de obra nueva o sobre plano · Particulares que diversifican su patrimonio con inmuebles
+              - link "Quiero este análisis →" [ref=f2e160]:
+                - /url: https://romvill.com/presupuesto-bloque-2/?lang=es
+            - generic [ref=f2e161] [cursor=pointer]:
+              - generic [ref=f2e162]: "03"
+              - heading "Promotores y grandes proyectos" [level=3] [ref=f2e163]
+              - paragraph [ref=f2e164]: Para operaciones de mayor escala, desarrollos o promociones en la zona.
+              - separator [ref=f2e165]
+              - paragraph [ref=f2e166]: Promotores inmobiliarios · Propietarios de terrenos que quieren construir · Grandes inversores con proyectos de desarrollo · Quien gestiona activos inmobiliarios de envergadura
+              - link "Quiero este análisis →" [ref=f2e167]:
+                - /url: https://romvill.com/presupuesto-bloque-3/?lang=es
+            - generic [ref=f2e168] [cursor=pointer]:
+              - generic [ref=f2e169]: "04"
+              - heading "Empresas y profesionales" [level=3] [ref=f2e170]
+              - paragraph [ref=f2e171]: Para negocios y profesionales que necesitan analizar una zona antes de actuar.
+              - separator [ref=f2e172]
+              - paragraph [ref=f2e173]: Empresas que abren una nueva sede · Departamentos de RRHH que reubican empleados · Pymes que buscan local o nave · Franquicias en expansión · Profesionales independientes que buscan ubicación para su actividad
+              - link "Quiero este análisis →" [ref=f2e174]:
+                - /url: https://romvill.com/presupuesto-bloque-4/?lang=es
+        - generic [ref=f2e175]:
+          - heading "Suplementos opcionales" [level=2] [ref=f2e176]
+          - generic [ref=f2e177]:
+            - list [ref=f2e178]:
+              - listitem [ref=f2e179]:
+                - generic [ref=f2e180]: add_circle
+                - generic [ref=f2e181]: Dimensión adicional del catálogo — +69 € (máx. 2)
+              - listitem [ref=f2e182]:
+                - generic [ref=f2e183]: add_circle
+                - generic [ref=f2e184]: Comparativa con una segunda zona — +150 €
+              - listitem [ref=f2e185]:
+                - generic [ref=f2e186]: add_circle
+                - generic [ref=f2e187]: Versión del informe en otro idioma — +80 € (su idioma de entrega ya está incluido)
+              - listitem [ref=f2e188]:
+                - generic [ref=f2e189]: add_circle
+                - generic [ref=f2e190]: Análisis de una propiedad concreta — +180 € (desde nivel Superior)
+            - paragraph [ref=f2e191]: Los suplementos se acuerdan en su Resumen de Encargo. Los informes se amplían; nunca se recortan.
+        - link "Ver una muestra del informe" [ref=f2e193] [cursor=pointer]:
+          - /url: https://romvill.com/muestra-de-informe/
+          - text: Ver una muestra del informe
+          - generic [ref=f2e197]: →
+        - generic [ref=f2e198]:
+          - heading "No pagas dos veces" [level=3] [ref=f2e199]
+          - paragraph [ref=f2e200]: ¿Empieza por un informe básico y después desea uno más completo? Le descontamos íntegramente lo ya pagado y solo abona la diferencia. Dispone de 60 días para subir de nivel.
+        - link "Preguntas frecuentes" [ref=f2e202] [cursor=pointer]:
+          - /url: https://romvill.com/preguntas-frecuentes/
+          - text: Preguntas frecuentes
+          - generic [ref=f2e203]: →
+    - contentinfo [ref=f2e204]:
+      - generic [ref=f2e205]:
+        - generic [ref=f2e206]:
+          - generic [ref=f2e207]:
+            - link "RV ROMVILL" [ref=f2e208] [cursor=pointer]:
+              - /url: https://romvill.com/
+              - img "RV" [ref=f2e209]
+              - generic [ref=f2e210]: ROMVILL
+            - link "info@romvill.com" [ref=f2e212] [cursor=pointer]:
+              - /url: mailto:info@romvill.com
+          - navigation "Navegación del pie de página" [ref=f2e213]:
+            - link "Metodología" [ref=f2e214] [cursor=pointer]:
+              - /url: https://romvill.com/metodologia/
+            - link "Análisis" [ref=f2e215] [cursor=pointer]:
+              - /url: https://romvill.com/analisis/
+            - link "Sectores" [ref=f2e216] [cursor=pointer]:
+              - /url: https://romvill.com/sectores/
+            - link "Quiénes somos" [ref=f2e217] [cursor=pointer]:
+              - /url: https://romvill.com/quienes-somos/
+            - link "Precios" [ref=f2e218] [cursor=pointer]:
+              - /url: https://romvill.com/precios/
+            - link "Preguntas frecuentes" [ref=f2e219] [cursor=pointer]:
+              - /url: https://romvill.com/preguntas-frecuentes/
+            - link "Contacto" [ref=f2e220] [cursor=pointer]:
+              - /url: https://romvill.com/contacto/
+            - paragraph [ref=f2e221]: Zonas
+            - link "Marbella" [ref=f2e222] [cursor=pointer]:
+              - /url: https://romvill.com/analisis-marbella/
+            - link "Málaga" [ref=f2e223] [cursor=pointer]:
+              - /url: https://romvill.com/analisis-malaga/
+            - link "Alicante" [ref=f2e224] [cursor=pointer]:
+              - /url: https://romvill.com/analisis-alicante/
+          - generic [ref=f2e225]:
+            - paragraph [ref=f2e226]: Boletín ROMVILL
+            - paragraph [ref=f2e227]: Novedades, análisis de zonas y tendencias de la costa mediterránea.
+            - generic [ref=f2e228]:
+              - generic [ref=f2e229]: Su correo electrónico
+              - textbox "Su correo electrónico" [ref=f2e230]
+              - button "Suscribirme" [ref=f2e231] [cursor=pointer]
+            - paragraph [ref=f2e232]: Sin spam. Puede darse de baja en cualquier momento.
+        - generic [ref=f2e233]:
+          - paragraph [ref=f2e234]: © 2026 ROMVILL. Todos los derechos reservados.
+          - generic [ref=f2e235]:
+            - link "Privacidad" [ref=f2e236] [cursor=pointer]:
+              - /url: https://romvill.com/privacidad/
+            - link "Términos" [ref=f2e237] [cursor=pointer]:
+              - /url: https://romvill.com/terminos/
+            - link "Aviso legal" [ref=f2e238] [cursor=pointer]:
+              - /url: https://romvill.com/aviso-legal/
+            - button "Cookies" [ref=f2e239] [cursor=pointer]

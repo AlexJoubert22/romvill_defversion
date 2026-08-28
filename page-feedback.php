@@ -34,7 +34,7 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
 <style>
 #rv-fb{background:#f6f7fb}
 .dark #rv-fb{background:#000000}
-#rv-fb .hero{position:relative;text-align:center;color:#fff;padding:84px 20px 66px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#000000 0%,#000000 45%,#000000 100%)}
+#rv-fb .hero{position:relative;text-align:center;color:#fff;padding:84px 20px 66px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#1A1A1A 0%,#0A0A0A 45%,#000000 100%)}
 #rv-fb .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.18),transparent 62%);filter:blur(8px)}
 #rv-fb .hero>*{position:relative;z-index:2}
 #rv-fb .kick{color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
@@ -96,7 +96,7 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
 #rv-fb .done{display:none}
 #rv-fb .done.show{display:block;animation:rvfIn .4s ease}
 @keyframes rvfIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-#rv-fb .done .card{background:linear-gradient(160deg,#000000,#000000);color:#fff;border:1px solid rgba(240,194,74,.45);border-radius:18px;padding:38px 30px;text-align:center}
+#rv-fb .done .card{background:linear-gradient(160deg,#151515,#000000);color:#fff;border:1px solid rgba(240,194,74,.45);border-radius:18px;padding:38px 30px;text-align:center}
 #rv-fb .done .seal{width:56px;height:56px;color:#F0C24A;margin:0 auto 18px;display:block}
 #rv-fb .done .dt{font-weight:700;font-size:1.5rem;margin-bottom:12px}
 #rv-fb .done .db{color:#D7D4D1;line-height:1.7;font-size:1rem;max-width:460px;margin:0 auto}

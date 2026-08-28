@@ -21,7 +21,7 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 <style>
 #rv-faq{background:#f6f7fb}
 .dark #rv-faq{background:#000000}
-#rv-faq .hero{position:relative;text-align:center;color:#fff;padding:92px 20px 80px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#000000 0%,#000000 45%,#000000 100%)}
+#rv-faq .hero{position:relative;text-align:center;color:#fff;padding:92px 20px 80px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#1A1A1A 0%,#0A0A0A 45%,#000000 100%)}
 #rv-faq .hero::before{content:"";position:absolute;inset:-30px;opacity:.35;background-image:radial-gradient(rgba(240,194,74,.16) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent);transform:translate(calc(var(--mx,0)*1px),calc(var(--my,0)*1px));transition:transform .25s ease-out}
 #rv-faq .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.20),transparent 62%);filter:blur(8px);animation:rvfaqBreathe 7s ease-in-out infinite}
 @keyframes rvfaqBreathe{0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}50%{opacity:.9;transform:translateX(-50%) scale(1.12)}}
@@ -74,7 +74,7 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 #rv-faq .a a:hover{border-bottom-color:#F0C24A}
 #rv-faq .noresult{display:none;text-align:center;color:#75726F;padding:30px 0;font-size:.98rem}
 #rv-faq .noresult a{color:#F0C24A;font-weight:700}
-#rv-faq .cta{position:relative;overflow:hidden;background:linear-gradient(160deg,#000000,#000000);color:#fff;text-align:center;padding:70px 20px;margin-top:44px}
+#rv-faq .cta{position:relative;overflow:hidden;background:linear-gradient(160deg,#151515,#000000);color:#fff;text-align:center;padding:70px 20px;margin-top:44px}
 #rv-faq .cta::after{content:"";position:absolute;left:50%;bottom:-160px;width:460px;height:460px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.16),transparent 62%)}
 #rv-faq .cta>*{position:relative;z-index:2}
 #rv-faq .cta h2{font-weight:600;font-size:clamp(1.6rem,3.6vw,2.2rem);margin:0}

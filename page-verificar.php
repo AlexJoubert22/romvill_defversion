@@ -28,7 +28,7 @@ $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) 
 <style>
 #rv-verif{background:#f6f7fb}
 .dark #rv-verif{background:#000000}
-#rv-verif .hero{position:relative;text-align:center;color:#fff;padding:88px 20px 72px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#000000 0%,#000000 45%,#000000 100%)}
+#rv-verif .hero{position:relative;text-align:center;color:#fff;padding:88px 20px 72px;overflow:hidden;background:radial-gradient(120% 100% at 50% -10%,#1A1A1A 0%,#0A0A0A 45%,#000000 100%)}
 #rv-verif .hero::after{content:"";position:absolute;left:50%;top:-140px;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,194,74,.18),transparent 62%);filter:blur(8px)}
 #rv-verif .hero>*{position:relative;z-index:2}
 #rv-verif .kick{color:#F0C24A;font-weight:800;text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;margin-bottom:18px}
@@ -51,7 +51,7 @@ $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) 
 #rv-verif .res{display:none;margin-top:22px;border-radius:18px;overflow:hidden}
 #rv-verif .res.show{display:block;animation:rvvIn .4s ease}
 @keyframes rvvIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-#rv-verif .ok{background:linear-gradient(160deg,#000000,#000000);color:#fff;border:1px solid rgba(240,194,74,.45);padding:30px 28px;position:relative}
+#rv-verif .ok{background:linear-gradient(160deg,#151515,#000000);color:#fff;border:1px solid rgba(240,194,74,.45);padding:30px 28px;position:relative}
 #rv-verif .ok .seal{position:absolute;top:24px;right:24px;width:64px;height:64px;color:#F0C24A;opacity:.95}
 #rv-verif .ok .okt{font-weight:700;font-size:1.45rem;padding-right:80px}
 #rv-verif .ok .oks{color:#D7D4D1;margin-top:8px;line-height:1.6;font-size:.98rem;padding-right:80px}
