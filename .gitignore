@@ -9,3 +9,7 @@ deploy.py
 # Backups manuales y notas de estado
 *.backup*
 _ESTADO_*.txt
+
+# Artefactos de inspeccion visual (Playwright)
+.playwright-mcp/
+*.png.tmp
