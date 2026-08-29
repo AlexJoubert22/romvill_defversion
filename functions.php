@@ -1072,6 +1072,10 @@ function romvill_handle_q_submit() {
     if ( ! $email || ! is_email( $email ) ) {
         wp_send_json_error( array( 'message' => 'Email inválido.' ) );
     }
+    // RGPD: la casilla debe llegar marcada también al servidor (registro probatorio, art. 7.1).
+    if ( ( $_POST['rgpd'] ?? '' ) !== '1' ) {
+        wp_send_json_error( array( 'message' => 'Debe aceptar la política de privacidad para continuar.' ) );
+    }
 
     $fecha     = date_i18n( 'l, j \d\e F \d\e Y' );
     $intl_flag = $intl ? "\n⭐ CLIENTE INTERNACIONAL — GESTIÓN PRIORITARIA" : '';
@@ -1162,6 +1166,9 @@ Análisis de Inteligencia Zonal
             'claves'   => $claves,
         ) );
     }
+    if ( ! empty( $sol_id_q ) ) {
+        update_post_meta( $sol_id_q, '_rv_rgpd_consent', time() );
+    }
 
     // ── Email 1 al cliente: confirmación corporativa (inc/mail-cliente.php) ──
     // Mismo email de marca que el Bloque 1: la identidad no depende del bloque.
@@ -1247,6 +1254,10 @@ function romvill_handle_b1_submit() {
 
     if ( ! $ema || ! is_email( $ema ) ) {
         wp_send_json_error( array( 'message' => 'Email inválido o no indicado.' ) );
+    }
+    // RGPD: la casilla debe llegar marcada también al servidor (registro probatorio, art. 7.1).
+    if ( ( $d['rgpd'] ?? '' ) !== '1' ) {
+        wp_send_json_error( array( 'message' => 'Debe aceptar la política de privacidad para continuar.' ) );
     }
 
     // ── Código de invitación (opcional; validación 100 % servidor) ──
@@ -1409,6 +1420,9 @@ Análisis de Inteligencia Zonal
         // después (panel de Solicitudes y endpoint REST).
         if ( $sol_id_b1 && $inaug_plaza ) {
             update_post_meta( $sol_id_b1, '_rv_inaugural', (int) $inaug_plaza );
+        }
+        if ( $sol_id_b1 ) {
+            update_post_meta( $sol_id_b1, '_rv_rgpd_consent', time() );
         }
     }
 

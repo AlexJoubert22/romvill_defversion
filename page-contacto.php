@@ -461,14 +461,14 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
                         </div>
 
                         <div class="rgpd-info mb-4 text-xs p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400" style="line-height:1.8;">
-                            <strong class="uppercase tracking-wide text-slate-700 dark:text-slate-200"><?php echo esc_html( romvill_t( 'contact.info.ttl' ) ); ?></strong><br>
+                            <strong class="uppercase text-slate-700 dark:text-slate-200" style="letter-spacing:.05em;"><?php echo esc_html( romvill_t( 'contact.info.ttl' ) ); ?></strong><br>
                             <strong><?php echo esc_html( romvill_t( 'contact.info.resp' ) ); ?>:</strong> ROMVILL &nbsp;&middot;&nbsp;
                             <strong><?php echo esc_html( romvill_t( 'contact.info.fin' ) ); ?>:</strong> <?php echo esc_html( romvill_t( 'contact.info.fin.txt' ) ); ?><br>
                             <strong><?php echo esc_html( romvill_t( 'contact.info.dest' ) ); ?>:</strong> <?php echo esc_html( romvill_t( 'contact.info.dest.txt' ) ); ?> &nbsp;&middot;&nbsp;
                             <strong><?php echo esc_html( romvill_t( 'contact.info.der' ) ); ?>:</strong> <?php echo esc_html( romvill_t( 'contact.info.der.txt' ) ); ?><br>
                             <strong><?php echo esc_html( romvill_t( 'contact.info.mas' ) ); ?>:</strong>
                             <a href="<?php echo esc_url( add_query_arg( 'lang', romvill_current_lang(), home_url( '/privacidad/' ) ) ); ?>"
-                               target="_blank" rel="noopener" class="underline font-semibold"><?php echo esc_html( romvill_t( 'contact.rgpd_link' ) ); ?></a>
+                               target="_blank" rel="noopener" class="underline font-semibold"><?php echo esc_html( romvill_t( 'contact.info.link' ) ); ?></a>
                         </div>
 
                         <button type="submit" class="rf-submit" id="rf-submit-btn">
