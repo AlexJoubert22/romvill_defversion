@@ -120,8 +120,9 @@ function romvill_postentrega_run() {
             $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n" . $p2 . "\n\n"
                 . 'Dejar mi opinión en Google: ' . romvill_pe_review_url() . "\n\n"
                 . "Gracias por confiar en ROMVILL.\n\nROMVILL - romvill.com";
-            romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
-            update_post_meta( $id, '_rv_seq2_at', $now );
+            romvill_envio_sellado( $id, 'seq2', 'Post-entrega dia 2 (resena)', function () use ( $email, $subject, $titulo, $cuerpo, $alt ) {
+                return romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
+            } );
         }
 
         // ── Día 5 — Crédito (solo si NO upgrade y NO premium) ──
@@ -149,9 +150,13 @@ function romvill_postentrega_run() {
                 $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n"
                     . '  ' . implode( "\n  ", $credito['lineas'] ) . "\n\n"
                     . $p2 . "\n" . "Contacto: clients@romvill.com\n\nROMVILL - romvill.com";
-                romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
+                romvill_envio_sellado( $id, 'seq5', 'Post-entrega dia 5 (credito)', function () use ( $email, $subject, $titulo, $cuerpo, $alt ) {
+                    return romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
+                } );
+            } else {
+                // Sin credito no hay correo que mandar: el paso queda cumplido.
+                update_post_meta( $id, '_rv_seq5_at', $now );
             }
-            update_post_meta( $id, '_rv_seq5_at', $now ); // se marca aunque no se envíe (upgrade/premium)
         }
 
         // ── Día 15 — Dato nuevo (MODO BORRADOR: no se envía) ──
@@ -184,8 +189,9 @@ function romvill_postentrega_run() {
                 . romvill_mail_cliente_tarjeta( 'Su referencia', $ref );
             $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n" . $p2 . "\n\n"
                 . 'Su referencia: ' . $ref . "\n\nROMVILL - romvill.com";
-            romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
-            update_post_meta( $id, '_rv_seq30_at', $now );
+            romvill_envio_sellado( $id, 'seq30', 'Post-entrega dia 30 (referidos)', function () use ( $email, $subject, $titulo, $cuerpo, $alt ) {
+                return romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
+            } );
         }
 
         // ── Día 60 — Vence crédito (solo si NO upgrade y NO premium) ──
@@ -200,9 +206,13 @@ function romvill_postentrega_run() {
                     . romvill_mail_cliente_tarjeta( 'Su referencia', $ref );
                 $alt = "ROMVILL\n\n" . $titulo . "\n\n" . $saludo . "\n\n" . $p1 . "\n\n"
                     . 'Su referencia: ' . $ref . "\n" . "Contacto: clients@romvill.com\n\nROMVILL - romvill.com";
-                romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
+                romvill_envio_sellado( $id, 'seq60', 'Post-entrega dia 60 (vence credito)', function () use ( $email, $subject, $titulo, $cuerpo, $alt ) {
+                    return romvill_pe_enviar( $email, $subject, $titulo, $cuerpo, $alt );
+                } );
+            } else {
+                // Sin credito no hay correo que mandar: el paso queda cumplido.
+                update_post_meta( $id, '_rv_seq60_at', $now );
             }
-            update_post_meta( $id, '_rv_seq60_at', $now );
         }
 
         // ── Día 90 — Fin de seguimiento (no se envía email) ──

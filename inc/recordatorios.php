@@ -71,14 +71,17 @@ function romvill_run_reminders() {
 
         // ── Recordatorio 48 h ──
         if ( $days >= 2 && ! get_post_meta( $id, '_rv_rem48_at', true ) ) {
-            romvill_rem_enviar_48h( $email, $nombre, $ref );
-            update_post_meta( $id, '_rv_rem48_at', $now );
+            // Sella solo si sale bien; si falla, manana se reintenta.
+            romvill_envio_sellado( $id, 'rem48', 'Recordatorio 48 h', function () use ( $email, $nombre, $ref ) {
+                return romvill_rem_enviar_48h( $email, $nombre, $ref );
+            } );
         }
 
         // ── Recordatorio 7 días ──
         if ( $days >= 7 && ! get_post_meta( $id, '_rv_rem7_at', true ) ) {
-            romvill_rem_enviar_7d( $email, $nombre, $ref, $zona );
-            update_post_meta( $id, '_rv_rem7_at', $now );
+            romvill_envio_sellado( $id, 'rem7', 'Recordatorio 7 dias', function () use ( $email, $nombre, $ref, $zona ) {
+                return romvill_rem_enviar_7d( $email, $nombre, $ref, $zona );
+            } );
         }
     }
 }
