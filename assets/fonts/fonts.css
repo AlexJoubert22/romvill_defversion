@@ -209,6 +209,11 @@
    Al anadir un icono nuevo al tema hay que regenerar este archivo con la
    lista COMPLETA:
      curl "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined       :opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=<lista>"
+   El nombre del archivo lleva el numero de iconos a proposito: fonts.css lo
+   pide SIN sello de version, asi que la unica forma de que un navegador que
+   ya cacheo la fuente vieja reciba la nueva es CAMBIARLE EL NOMBRE. Al
+   regenerar, renombrar tambien (icons-25.woff2, etc.).
+
    Los 24 en uso hoy (28-08-2026):
      add_circle, arrow_back, arrow_forward, balance, check, close, dark_mode,
      edit, error_outline, expand_more, format_quote, home, hourglass_empty,
@@ -219,7 +224,7 @@
   font-family: 'Material Symbols Outlined';
   font-style: normal;
   font-weight: 100 700;
-  src: url('f15.woff2') format('woff2');
+  src: url('icons-24.woff2') format('woff2');
 }
 
 /* La clase que APLICA la fuente de iconos y activa las ligaduras.
