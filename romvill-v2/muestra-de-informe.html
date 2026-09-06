@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="es" data-base="" class="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Así es un informe ROMVILL — muestra real | ROMVILL</title>
+<meta name="description" content="Vea páginas reales de un informe de zona ROMVILL con datos de ejemplo: portada, encargo personalizado, capítulo con fuentes citadas, patrones detectados y formatos de entrega.">
+<link rel="canonical" href="https://romvill.com/muestra-de-informe/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ROMVILL">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Así es un informe ROMVILL — muestra real | ROMVILL">
+<meta property="og:description" content="Vea páginas reales de un informe de zona ROMVILL con datos de ejemplo: portada, encargo personalizado, capítulo con fuentes citadas, patrones detectados y formatos de entrega.">
+<meta property="og:url" content="https://romvill.com/muestra-de-informe/">
+<meta property="og:image" content="https://romvill.com/assets/images/og-romvill.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Así es un informe ROMVILL — muestra real | ROMVILL">
+<meta name="twitter:description" content="Vea páginas reales de un informe de zona ROMVILL con datos de ejemplo: portada, encargo personalizado, capítulo con fuentes citadas, patrones detectados y formatos de entrega.">
+<meta name="twitter:image" content="https://romvill.com/assets/images/og-romvill.jpg">
+<meta name="theme-color" content="#0a0f18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+
+<link rel="icon" href="assets/icons/favicon.svg?v=mt8fzcmk" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/f06.woff2" as="font" type="font/woff2" crossorigin>
+
+<script>
+/* Tema antes del primer pintado — evita el parpadeo.
+   Se conserva la regla del tema original: sin preferencia guardada, oscuro
+   entre las 20:00 y las 07:00. */
+/* Marca de JavaScript activo. Todo lo que se oculta para animarse va
+   condicionado a .js, de modo que sin JavaScript la web se ve entera. */
+document.documentElement.classList.add('js');
+(function () {
+  try {
+    var t = localStorage.getItem('romvill_theme');
+    if (!t) { var h = new Date().getHours(); t = (h >= 20 || h < 7) ? 'dark' : 'light'; }
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  } catch (e) {}
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://romvill.com/#organization","name":"ROMVILL","url":"https://romvill.com/","email":"info@romvill.com","logo":{"@type":"ImageObject","url":"https://romvill.com/assets/images/rv-logo-dark.png"},"image":"https://romvill.com/assets/images/og-romvill.jpg","description":"Análisis territorial independiente en Alicante, Málaga y Marbella. Informes sobre seguridad, entorno y servicios antes de comprar, invertir o establecerse.","priceRange":"€€","areaServed":[{"@type":"City","name":"Alicante"},{"@type":"City","name":"Málaga"},{"@type":"City","name":"Marbella"}],"sameAs":["https://www.instagram.com/romvillspain/"],"knowsLanguage":["es","en","fr","de","ru"]},{"@type":"WebSite","@id":"https://romvill.com/#website","url":"https://romvill.com/","name":"ROMVILL","inLanguage":"es-ES","publisher":{"@id":"https://romvill.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ROMVILL","item":"https://romvill.com/"},{"@type":"ListItem","position":2,"name":"Así es un informe ROMVILL — muestra real | ROMVILL","item":"https://romvill.com/muestra-de-informe/"}]}]}</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css?v=mt8kum1q">
+<link rel="stylesheet" href="assets/css/base.css?v=mt8qawsn">
+<link rel="stylesheet" href="assets/css/components.css?v=mt965zex">
+<link rel="stylesheet" href="assets/css/legacy-copy.css?v=mt8g8pmu">
+  <link rel="stylesheet" href="assets/css/pages/muestra.css?v=mt8j3hvq">
+</head>
+
+<body>
+<a class="skip-link" href="#main" data-t="a11y.skip">Saltar al contenido</a>
+<div class="progressbar" id="progressbar" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" data-nav-mode="dark" aria-label="Navegación principal">
+  <div class="nav__inner">
+
+    <a class="nav__logo" href="index.html" aria-label="ROMVILL">
+      <img class="nav__mark" src="assets/images/rv-logo-white.png" alt="" width="222" height="174" data-logo-dark="assets/images/rv-logo-white.png" data-logo-light="assets/images/rv-logo-dark.png">
+      <span>
+        <span class="nav__wordmark">Romvill</span>
+        <span class="nav__logo-sub" data-t="hero.tagline">Inteligencia Territorial · Costa Mediterránea</span>
+      </span>
+    </a>
+
+    <!-- ── Enlaces ─────────────────────────────────────────────────────────
+         Tres de las siete secciones tienen paginas debajo y hasta ahora no
+         habia forma de llegar a ellas desde la barra: los cinco perfiles de
+         dimension, las tres zonas y las tres vias de encargo estaban
+         enterradas dentro de sus paginas.
+
+         El titulo del grupo SIGUE SIENDO UN ENLACE —va a su pagina— y la
+         flecha es un boton aparte que abre el panel. Es la unica forma de
+         que funcione igual con raton, con teclado y en tactil: un titulo que
+         solo abre menu deja la pagina padre inaccesible, y uno que solo
+         navega hace el submenu inalcanzable sin puntero. -->
+    <div class="nav__links">
+      <a class="nav__link" href="metodologia.html"          data-nav="metodologia"          data-t="nav.metodologia">Metodología</a>
+
+      <div class="navgrp" data-navgrp>
+        <a class="nav__link nav__link--grp" href="analisis.html" data-nav="analisis" data-t="nav.analisis">Análisis</a>
+        <button class="navgrp__btn" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+
+        <div class="subnav" role="group">
+          <p class="subnav__t micro" data-t="ui.nav.dims">Las cinco dimensiones</p>
+          <a class="subnav__item" href="perfil-seguridad.html" data-rel="seg">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#shield"></use></svg></span>
+            <span data-t="ana.d1.title">Seguridad de la Zona</span>
+          </a>
+          <a class="subnav__item" href="perfil-demografico.html" data-rel="dem">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#users"></use></svg></span>
+            <span data-t="ana.d2.title">Perfil Demográfico</span>
+          </a>
+          <a class="subnav__item" href="perfil-sanidad.html" data-rel="san">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#health"></use></svg></span>
+            <span data-t="ana.d3.title">Cobertura Sanitaria</span>
+          </a>
+          <a class="subnav__item" href="perfil-movilidad.html" data-rel="mov">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#route"></use></svg></span>
+            <span data-t="ana.d4.title">Conectividad y Movilidad</span>
+          </a>
+          <a class="subnav__item" href="perfil-proyeccion.html" data-rel="pro">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#growth"></use></svg></span>
+            <span data-t="perfil.pro.h1">Perfil de Proyección</span>
+          </a>
+          <a class="subnav__all" href="analisis.html">
+            <span data-t="ui.nav.ver">Ver todo</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="navgrp" data-navgrp>
+        <a class="nav__link nav__link--grp" href="sectores.html" data-nav="sectores" data-t="nav.sectores">Sectores</a>
+        <button class="navgrp__btn" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+
+        <div class="subnav" role="group">
+          <p class="subnav__t micro" data-t="ui.nav.zonas">Zonas de cobertura</p>
+          <a class="subnav__item" href="analisis-alicante.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+            <span data-t="zona.alicante.nombre">Alicante</span>
+          </a>
+          <a class="subnav__item" href="analisis-malaga.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+            <span data-t="zona.malaga.nombre">Málaga</span>
+          </a>
+          <a class="subnav__item" href="analisis-marbella.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+            <span data-t="zona.marbella.nombre">Marbella</span>
+          </a>
+          <a class="subnav__all" href="sectores.html">
+            <span data-t="ui.nav.ver">Ver todo</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="quienes-somos.html"        data-nav="quienes-somos"        data-t="nav.quienes">Quiénes somos</a>
+
+      <div class="navgrp" data-navgrp>
+        <a class="nav__link nav__link--grp" href="precios.html" data-nav="precios" data-t="nav.precios">Precios</a>
+        <button class="navgrp__btn" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+
+        <div class="subnav" role="group">
+          <p class="subnav__t micro" data-t="ui.nav.encargo">Encargar un informe</p>
+          <a class="subnav__item" href="muestra-de-informe.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#doc"></use></svg></span>
+            <span data-t="mu.link.ver">Ver una muestra del informe</span>
+          </a>
+          <a class="subnav__item" href="presupuesto-bloque-1.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#target"></use></svg></span>
+            <span data-t="nav.cta">Solicitar Presupuesto</span>
+          </a>
+          <a class="subnav__item" href="agendar-llamada.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#calendar"></use></svg></span>
+            <span data-t="agenda.head">Agenda de llamadas</span>
+          </a>
+          <a class="subnav__all" href="precios.html">
+            <span data-t="ui.nav.ver">Ver todo</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="preguntas-frecuentes.html" data-nav="preguntas-frecuentes" data-t="nav.faq">FAQ</a>
+      <a class="nav__link" href="contacto.html"             data-nav="contacto"             data-t="nav.contacto">Contacto</a>
+    </div>
+
+    <div class="nav__actions">
+
+      <div class="langsel" id="langsel">
+        <button class="langsel__btn" type="button" id="langsel-btn"
+                aria-haspopup="true" aria-expanded="false" aria-controls="langsel-menu"
+                data-t-attr="aria-label:a11y.langLabel" aria-label="Idioma" aria-label="Idioma">
+          <svg class="langsel__flag" aria-hidden="true" data-lang-flag><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-es"></use></svg>
+          <span data-lang-current>ES</span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+        <div class="langsel__menu" id="langsel-menu" role="menu" aria-labelledby="langsel-btn">
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="es"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-es"></use></svg><span>Español</span><span class="langsel__code">ES</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="en"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-en"></use></svg><span>English</span><span class="langsel__code">EN</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="fr"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-fr"></use></svg><span>Français</span><span class="langsel__code">FR</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="de"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-de"></use></svg><span>Deutsch</span><span class="langsel__code">DE</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="ru"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-ru"></use></svg><span>Русский</span><span class="langsel__code">RU</span></button>
+        </div>
+      </div>
+
+      <button class="iconbtn" type="button" id="theme-toggle" data-t-attr="aria-label:dark.toggle" aria-label="Cambiar tema" aria-label="Cambiar tema">
+        <svg class="themebtn__sun" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#sun"></use></svg>
+        <svg class="themebtn__moon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#moon"></use></svg>
+      </button>
+
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="contacto.html" data-t="nav.cta">Solicitar Presupuesto</a>
+
+      <button class="iconbtn navtoggle" type="button" id="menu-open"
+              aria-expanded="false" aria-controls="mobilemenu" data-t-attr="aria-label:nav.open_menu" aria-label="Abrir menú" aria-label="Abrir menú">
+        <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobilemenu" id="mobilemenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <div class="mobilemenu__head">
+    <span class="nav__wordmark">Romvill</span>
+    <button class="iconbtn" type="button" id="menu-close" data-t-attr="aria-label:nav.close_menu" aria-label="Cerrar menú" aria-label="Cerrar menú">
+      <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#close"></use></svg>
+    </button>
+  </div>
+
+  <div class="mobilemenu__links">
+    <a class="mobilemenu__link" href="metodologia.html" style="--i:0"><span class="micro">01</span><span data-t="nav.metodologia">Metodología</span></a>
+
+    <div class="mobilemenu__grp" style="--i:1">
+      <div class="mobilemenu__row">
+        <a class="mobilemenu__link" href="analisis.html"><span class="micro">02</span><span data-t="nav.analisis">Análisis</span></a>
+        <button class="mobilemenu__toggle" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+      </div>
+      <div class="mobilemenu__panel">
+        <div>
+          <p class="mobilemenu__t micro" data-t="ui.nav.dims">Las cinco dimensiones</p>
+          <a class="mobilemenu__sub" href="perfil-seguridad.html"><span data-t="ana.d1.title">Seguridad de la Zona</span></a>
+          <a class="mobilemenu__sub" href="perfil-demografico.html"><span data-t="ana.d2.title">Perfil Demográfico</span></a>
+          <a class="mobilemenu__sub" href="perfil-sanidad.html"><span data-t="ana.d3.title">Cobertura Sanitaria</span></a>
+          <a class="mobilemenu__sub" href="perfil-movilidad.html"><span data-t="ana.d4.title">Conectividad y Movilidad</span></a>
+          <a class="mobilemenu__sub" href="perfil-proyeccion.html"><span data-t="perfil.pro.h1">Perfil de Proyección</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobilemenu__grp" style="--i:2">
+      <div class="mobilemenu__row">
+        <a class="mobilemenu__link" href="sectores.html"><span class="micro">03</span><span data-t="nav.sectores">Sectores</span></a>
+        <button class="mobilemenu__toggle" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+      </div>
+      <div class="mobilemenu__panel">
+        <div>
+          <p class="mobilemenu__t micro" data-t="ui.nav.zonas">Zonas de cobertura</p>
+          <a class="mobilemenu__sub" href="analisis-alicante.html"><span data-t="zona.alicante.nombre">Alicante</span></a>
+          <a class="mobilemenu__sub" href="analisis-malaga.html"><span data-t="zona.malaga.nombre">Málaga</span></a>
+          <a class="mobilemenu__sub" href="analisis-marbella.html"><span data-t="zona.marbella.nombre">Marbella</span></a>
+        </div>
+      </div>
+    </div>
+
+    <a class="mobilemenu__link" href="quienes-somos.html" style="--i:3"><span class="micro">04</span><span data-t="nav.quienes">Quiénes somos</span></a>
+
+    <div class="mobilemenu__grp" style="--i:4">
+      <div class="mobilemenu__row">
+        <a class="mobilemenu__link" href="precios.html"><span class="micro">05</span><span data-t="nav.precios">Precios</span></a>
+        <button class="mobilemenu__toggle" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+      </div>
+      <div class="mobilemenu__panel">
+        <div>
+          <p class="mobilemenu__t micro" data-t="ui.nav.encargo">Encargar un informe</p>
+          <a class="mobilemenu__sub" href="muestra-de-informe.html"><span data-t="mu.link.ver">Ver una muestra del informe</span></a>
+          <a class="mobilemenu__sub" href="presupuesto-bloque-1.html"><span data-t="nav.cta">Solicitar Presupuesto</span></a>
+          <a class="mobilemenu__sub" href="agendar-llamada.html"><span data-t="agenda.head">Agenda de llamadas</span></a>
+        </div>
+      </div>
+    </div>
+
+    <a class="mobilemenu__link" href="preguntas-frecuentes.html" style="--i:5"><span class="micro">06</span><span data-t="nav.faq.full">Preguntas frecuentes</span></a>
+    <a class="mobilemenu__link" href="contacto.html"             style="--i:6"><span class="micro">07</span><span data-t="nav.contacto">Contacto</span></a>
+  </div>
+  <div class="mobilemenu__foot">
+    <hr class="hairline">
+    <a class="btn btn--primary btn--block" href="contacto.html" data-t="nav.cta">Solicitar Presupuesto</a>
+  </div>
+</div>
+
+
+<main id="main">
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     MUESTRA DE INFORME
+     Reducción del expediente real del ensayo RV-2026-MUSH-MRB-8772
+     (Elviria · Marbella Este, cliente ficticio). Datos verificados: AEMET
+     normales 1981-2010 (estación Málaga Aeropuerto) y Ministerio del
+     Interior. Las cifras NO se han inventado para el rediseño: se han
+     extraído de la página original y convertidas a valores legibles.
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<section class="phero phero--center phero--photo on-dark grain">
+  <picture class="phero__media" aria-hidden="true">
+    <source media="(max-width: 700px)" srcset="assets/images/sec/panorama-costa-sm.webp" type="image/webp">
+    <source srcset="assets/images/sec/panorama-costa.webp" type="image/webp">
+    <img src="assets/images/sec/panorama-costa.jpg" alt="" width="1600" height="550"
+         fetchpriority="high" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="phero__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="phero__inner">
+      <p class="kicker kicker--center" data-reveal="veil" data-t="mu.hero.kicker">Expediente de muestra</p>
+      <h1 class="d-1" data-reveal="wipe" style="--reveal-delay:40ms" data-t="mu.hero.title">Así es un informe ROMVILL</h1>
+      <p class="lead" data-reveal="rise" style="--reveal-delay:100ms" data-t="mu.hero.sub">Antes de encargar nada, vea qué recibirá. Páginas de un informe de ejemplo, elaborado como los reales: enfocado a lo que usted nos pida, con cada dato citado a su fuente.</p>
+      <p class="micro" data-reveal="rise" style="--reveal-delay:140ms" data-t="muestra.hint">Toque cada apartado para abrirlo: es un expediente real, reducido</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTADA DEL EXPEDIENTE ════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <article class="dossier" data-reveal="scale-in">
+      <div class="dossier__head">
+        <span class="dossier__brand">ROMVILL</span>
+        <span class="pill pill--gold" data-t="muestra.stamp">Documento de muestra</span>
+      </div>
+      <hr class="hairline">
+      <p class="dossier__kicker" data-t="muestra.cov.kicker">Informe de Inteligencia Zonal</p>
+      <h2 class="dossier__zona" data-t="muestra.cov.zona">Marbella Este · Costa del Sol</h2>
+      <p class="dossier__scope" data-t="muestra.cov.scope">Expediente elaborado a medida del encargo del cliente: cada apartado responde a una prioridad concreta y cada dato está citado a su fuente.</p>
+      <dl class="dossier__meta">
+        <div><dt data-t="muestra.cov.m1k">Zona analizada</dt><dd data-t="muestra.cov.zona">Marbella Este · Costa del Sol</dd></div>
+        <div><dt data-t="muestra.cov.m2k">Referencia</dt><dd class="num-tab">RV-2026-MUSH-MRB-8772</dd></div>
+        <div><dt data-t="muestra.cov.m3k">Contenido</dt><dd data-t="muestra.cov.m3v">9 apartados + anexos</dd></div>
+      </dl>
+      <p class="dossier__fict" data-t-html="muestra.fict"><b>Documento de muestra.</b> Este expediente se elaboró en un ensayo real con cliente ficticio. Los datos de la zona — Elviria, Marbella Este — son reales y verificados; los datos personales del cliente son inventados. Aquí le mostramos una selección reducida de sus apartados.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══ CAPÍTULOS ═════════════════════════════════════════════════════════ -->
+<section class="section section-t0" aria-labelledby="chapters-h">
+  <div class="container">
+    <h2 class="visually-hidden" id="chapters-h" data-t="mu.hero.title">Así es un informe ROMVILL</h2>
+
+    <div class="chapters" data-stagger="70">
+
+      <!-- 01 · Sanidad -->
+      <article class="chapter" data-reveal="rise">
+        <button class="chapter__btn" type="button" aria-expanded="false">
+          <span class="chapter__n num-tab">01</span>
+          <span class="chapter__head">
+            <span class="chapter__t" data-t="muestra.s1.t">Sanidad pública y privada</span>
+            <span class="chapter__mini" data-t="muestra.s1.mini">Hospital de referencia, urgencias 24 h y consultas de la zona — con tiempos comprobados</span>
+          </span>
+          <span class="acc__sign" aria-hidden="true"></span>
+        </button>
+        <div class="chapter__panel"><div class="chapter__body">
+          <p class="chapter__lede" data-t="muestra.s1.lede">Lo hemos comprobado sobre el terreno: el hospital público de referencia está sobre la misma autovía que bordea Elviria, a 8 minutos.</p>
+
+          <div class="facs">
+            <div class="fac">
+              <span class="pill pill--gold" data-t="muestra.lbl.verificado">Verificado</span>
+              <p class="fac__d" data-t="muestra.s1.c1d">El hospital público de referencia de la zona, con urgencias abiertas 24 horas los 365 días. El trayecto es por autovía directa, sin atravesar el centro de la ciudad.</p>
+              <p class="fac__m"><b class="num-tab">5,9 km · 8 min</b> <span data-t="muestra.lbl.coche">en coche</span></p>
+              <p class="fac__u" data-t="muestra.s1.urg">Urgencias: 24 h · 365 días</p>
+            </div>
+            <div class="fac">
+              <span class="pill pill--gold" data-t="muestra.lbl.verificado">Verificado</span>
+              <p class="fac__d" data-t="muestra.s1.c2d">El hospital privado de referencia del municipio, con unas 75 especialidades y la única urgencia pediátrica privada permanente de la zona.</p>
+              <p class="fac__m"><b class="num-tab">9,5 km · 12 min</b> <span data-t="muestra.lbl.coche">en coche</span></p>
+              <p class="fac__u" data-t="muestra.s1.urg">Urgencias: 24 h · 365 días</p>
+            </div>
+            <div class="fac">
+              <span class="pill pill--gold" data-t="muestra.lbl.verificado">Verificado</span>
+              <p class="fac__d" data-t="muestra.s1.c3d">Consulta privada de medicina general orientada al residente extranjero — la primera dirección sanitaria del expediente que queda, literalmente, a un paseo de casa.</p>
+              <p class="fac__m"><b class="num-tab">1,0 km · 3 min</b> <span data-t="muestra.lbl.coche">en coche</span> · <b class="num-tab">13 min</b> <span data-t="muestra.lbl.pie">a pie</span></p>
+            </div>
+          </div>
+
+          <div class="fy">
+            <p class="fy__k" data-t="muestra.lbl.fy">Qué significa para usted</p>
+            <p class="fy__t" data-t-html="muestra.s1.fy"><b>Con niños pequeños, lo que tranquiliza no es que «haya un hospital cerca»:</b> es saber exactamente cuál es, que sus urgencias nunca cierran y que se llega por autovía directa, sin semáforos ni centro urbano. Lo hemos comprobado sobre el terreno.</p>
+          </div>
+          <p class="chapter__sign" data-t="muestra.firma">Análisis ROMVILL · verificado julio 2026</p>
+        </div></div>
+      </article>
+
+      <!-- 02 · Seguridad -->
+      <article class="chapter" data-reveal="rise">
+        <button class="chapter__btn" type="button" aria-expanded="false">
+          <span class="chapter__n num-tab">02</span>
+          <span class="chapter__head">
+            <span class="chapter__t" data-t="muestra.s2.t">Seguridad y protección</span>
+            <span class="chapter__mini" data-t="muestra.s2.mini">Tres años de estadística oficial del Ministerio del Interior, con gráfico</span>
+          </span>
+          <span class="acc__sign" aria-hidden="true"></span>
+        </button>
+        <div class="chapter__panel"><div class="chapter__body">
+          <p class="chapter__lede" data-t="muestra.s2.lede">Hemos analizado tres años de estadística oficial, y los tres dicen lo mismo: los delitos de calle se mantienen estables y los robos en casas llevan tres años bajando.</p>
+          <p class="hito" data-t-html="muestra.s2.hito"><b>Robos en viviendas: tercer año consecutivo a la baja.</b> Es la cifra que más importa a quien compra una casa — y es la que mejor evoluciona.</p>
+
+          <figure class="chart">
+            <figcaption>
+              <span class="chart__t" data-t="muestra.s2.ct">Robos en viviendas — municipio de Marbella</span>
+              <span class="chart__u" data-t="muestra.s2.cu">Casos por año · Ministerio del Interior</span>
+            </figcaption>
+            <!-- Robos en viviendas · municipio de Marbella · Ministerio del Interior -->
+            <svg class="chart__svg chart__svg--bars" viewBox="0 0 720 280" role="img" aria-label="629 (2023) · 523 (2024) · 410 (2025)">
+              <g class="chart__grid">
+                <line x1="44" y1="40"  x2="700" y2="40"/>
+                <line x1="44" y1="100" x2="700" y2="100"/>
+                <line x1="44" y1="160" x2="700" y2="160"/>
+                <line x1="44" y1="220" x2="700" y2="220"/>
+              </g>
+              <g class="chart__bars">
+                <g class="bar" style="--d:0ms">
+                  <rect x="110" y="34" width="130" height="186" rx="3"/>
+                  <text class="bar__v num-tab" x="175" y="22">629</text>
+                  <text class="bar__x" x="175" y="248">2023</text>
+                </g>
+                <g class="bar" style="--d:140ms">
+                  <rect x="295" y="66" width="130" height="154" rx="3"/>
+                  <text class="bar__v num-tab" x="360" y="54">523</text>
+                  <text class="bar__x" x="360" y="248">2024</text>
+                </g>
+                <g class="bar bar--now" style="--d:280ms">
+                  <rect x="480" y="99" width="130" height="121" rx="3"/>
+                  <text class="bar__v num-tab" x="545" y="87">≈410</text>
+                  <text class="bar__x" x="545" y="248">2025</text>
+                </g>
+              </g>
+              <line class="chart__axis" x1="44" y1="220" x2="700" y2="220"/>
+            </svg>
+            <p class="chart__read" data-t-html="muestra.s2.cr"><b>Lectura:</b> tres años consecutivos a la baja — de 629 casos en 2023 a unos 410 en 2025. El dato oficial de 2025 se publica como variación (−21%); lo mostramos en números redondos.</p>
+          </figure>
+
+          <div class="fy">
+            <p class="fy__k" data-t="muestra.lbl.fy">Qué significa para usted</p>
+            <p class="fy__t" data-t-html="muestra.s2.fy"><b>La pregunta que usted se hace de verdad es: ¿pueden mis hijos jugar fuera?</b> Tres años de datos oficiales responden: los delitos físicos no se deterioran, y la cifra que más importa a quien compra una casa mejora año tras año.</p>
+          </div>
+          <p class="chapter__sign" data-t="muestra.firma">Análisis ROMVILL · verificado julio 2026</p>
+        </div></div>
+      </article>
+
+      <!-- 03 · Movilidad -->
+      <article class="chapter" data-reveal="rise">
+        <button class="chapter__btn" type="button" aria-expanded="false">
+          <span class="chapter__n num-tab">03</span>
+          <span class="chapter__head">
+            <span class="chapter__t" data-t="muestra.s3.t">Movilidad y transporte</span>
+            <span class="chapter__mini" data-t="muestra.s3.mini">Tiempos de viaje comprobados por ROMVILL, en coche y a pie</span>
+          </span>
+          <span class="acc__sign" aria-hidden="true"></span>
+        </button>
+        <div class="chapter__panel"><div class="chapter__body">
+          <p class="chapter__lede" data-t="muestra.s3.lede">Hemos comprobado la ruta: el aeropuerto de Málaga queda a media hora larga por autovía, y el día a día se resuelve dentro de la propia zona.</p>
+
+          <ul class="dists">
+            <li><span class="dists__n" data-t="muestra.s3.d1">Aeropuerto de Málaga–Costa del Sol</span><span class="dists__v num-tab">35 min</span><span class="dists__m" data-t="muestra.lbl.coche">en coche</span></li>
+            <li><span class="dists__n" data-t="muestra.s3.d2">Hospital Costa del Sol</span><span class="dists__v num-tab">8 min</span><span class="dists__m" data-t="muestra.lbl.coche">en coche</span></li>
+            <li><span class="dists__n" data-t="muestra.s3.d3">Centro comercial de Elviria</span><span class="dists__v num-tab">2 min</span><span class="dists__m"><span data-t="muestra.lbl.coche">en coche</span> · <b class="num-tab">32 min</b> <span data-t="muestra.lbl.pie">a pie</span></span></li>
+            <li><span class="dists__n" data-t="muestra.s3.d4">Playa (La Víbora)</span><span class="dists__v num-tab">7 min</span><span class="dists__m"><span data-t="muestra.lbl.coche">en coche</span> · <b class="num-tab">~30 min</b> <span data-t="muestra.lbl.pie">a pie</span></span></li>
+            <li><span class="dists__n" data-t="muestra.s3.d5">Tren de cercanías (Fuengirola)</span><span class="dists__v num-tab">22 min</span><span class="dists__m" data-t="muestra.lbl.coche">en coche</span></li>
+            <li><span class="dists__n" data-t="muestra.s3.d6">Puerto de Cabopino</span><span class="dists__v num-tab">10 min</span><span class="dists__m" data-t="muestra.lbl.coche">en coche</span></li>
+          </ul>
+
+          <div class="note">
+            <h3 class="d-6" data-t="muestra.s3.trent">La situación ferroviaria, sin rodeos</h3>
+            <p class="body-sm" data-t-html="muestra.s3.tren">Se lo decimos con la claridad que merece: <b>Marbella no tiene estación de tren</b> — es la mayor ciudad de España sin conexión ferroviaria. Todo desplazamiento en tren empieza en coche o autobús: cercanías en Fuengirola (22 min) o alta velocidad en Málaga (44 min). Lo hemos verificado en la documentación oficial.</p>
+          </div>
+
+          <div class="fy">
+            <p class="fy__k" data-t="muestra.lbl.fy">Qué significa para usted</p>
+            <p class="fy__t" data-t-html="muestra.s3.fy"><b>Elviria funciona en coche;</b> el autobús resuelve el día suelto, y el aeropuerto de madrugada, con taxi reservado la víspera. Para una familia con un pie en el extranjero, la media hora al aeropuerto es de lo que más se agradece con los años.</p>
+          </div>
+          <p class="chapter__sign" data-t="muestra.firma">Análisis ROMVILL · verificado julio 2026</p>
+        </div></div>
+      </article>
+
+      <!-- 04 · Clima -->
+      <article class="chapter" data-reveal="rise">
+        <button class="chapter__btn" type="button" aria-expanded="false">
+          <span class="chapter__n num-tab">04</span>
+          <span class="chapter__head">
+            <span class="chapter__t" data-t="muestra.s4.t">Entorno, clima y vida anual</span>
+            <span class="chapter__mini" data-t="muestra.s4.mini">La serie oficial completa de la agencia estatal de meteorología, en gráficos</span>
+          </span>
+          <span class="acc__sign" aria-hidden="true"></span>
+        </button>
+        <div class="chapter__panel"><div class="chapter__body">
+          <p class="chapter__lede" data-t="muestra.s4.lede">Elviria vive entre el pinar y el mar, con uno de los inviernos más suaves de Europa continental — y no cierra fuera de temporada: sus residentes permanentes mantienen el comercio y los servicios los doce meses.</p>
+
+          <figure class="chart">
+            <figcaption>
+              <span class="chart__t" data-t="muestra.s4.ct">Temperatura por mes</span>
+              <span class="chart__u" data-t="muestra.s4.cu">°C · valores normales 1981-2010 · estación Málaga Aeropuerto (AEMET)</span>
+            </figcaption>
+
+            <ul class="chart__legend">
+              <li><i class="sw sw--max"></i><span data-t="muestra.s4.leg1">Máxima media</span></li>
+              <li><i class="sw sw--med"></i><span data-t="muestra.s4.leg2">Media</span></li>
+              <li><i class="sw sw--min"></i><span data-t="muestra.s4.leg3">Mínima media</span></li>
+            </ul>
+
+            <!-- AEMET, normales 1981-2010, estación Málaga Aeropuerto -->
+            <svg class="chart__svg" viewBox="0 0 720 260" role="img"
+                 aria-label="Máximas de 16,8 a 30,8 grados; medias de 12,1 a 26; mínimas de 7,4 a 21,1">
+              <g class="chart__grid">
+                <line x1="30" y1="50"  x2="706" y2="50"/>
+                <line x1="30" y1="110" x2="706" y2="110"/>
+                <line x1="30" y1="170" x2="706" y2="170"/>
+                <line x1="30" y1="230" x2="706" y2="230"/>
+              </g>
+              <g class="chart__ylab">
+                <text x="22" y="54">30°</text><text x="22" y="114">20°</text>
+                <text x="22" y="174">10°</text><text x="22" y="234">0°</text>
+              </g>
+              <polyline class="ln ln--max" data-draw style="--d:0ms"   points="44.0,129.2 101.8,123.8 159.6,112.4 217.4,101.6 275.2,84.2 333.0,61.4 390.8,47.0 448.6,45.2 506.4,60.8 564.2,85.4 622.0,109.4 679.8,125.0"/>
+              <polyline class="ln ln--med" data-draw style="--d:180ms" points="44.0,157.4 101.8,152.6 159.6,141.8 217.4,132.2 275.2,114.2 333.0,92.0 390.8,77.0 448.6,74.0 506.4,89.0 564.2,113.0 622.0,135.8 679.8,150.8"/>
+              <polyline class="ln ln--min" data-draw style="--d:360ms" points="44.0,185.6 101.8,180.8 159.6,171.2 217.4,163.4 275.2,144.8 333.0,122.0 390.8,107.0 448.6,103.4 506.4,117.2 564.2,140.0 622.0,162.2 679.8,176.6"/>
+              <g class="chart__xlab">
+                <text x="44" y="252">E</text><text x="101.8" y="252">F</text><text x="159.6" y="252">M</text>
+                <text x="217.4" y="252">A</text><text x="275.2" y="252">M</text><text x="333" y="252">J</text>
+                <text x="390.8" y="252">J</text><text x="448.6" y="252">A</text><text x="506.4" y="252">S</text>
+                <text x="564.2" y="252">O</text><text x="622" y="252">N</text><text x="679.8" y="252">D</text>
+              </g>
+            </svg>
+            <p class="chart__read" data-t-html="muestra.s4.cr"><b>Lectura:</b> ningún mes baja de 12 °C de temperatura media; el invierno se vive con máximas de 17 °C y el verano queda moderado por la brisa marina.</p>
+          </figure>
+
+          <ul class="seasons">
+            <li><b data-t="muestra.s4.inv">Invierno</b><span class="seasons__t num-tab">17° <i>/ 7–8°</i></span><i data-t="muestra.s4.invd">Soleado y suave: abrigo ligero por la noche, terraza al mediodía. La mayoría de los ~42 días de lluvia del año caen entre noviembre y marzo.</i></li>
+            <li><b data-t="muestra.s4.pri">Primavera</b><span class="seasons__t num-tab">21° <i>/ 11°</i></span><i data-t="muestra.s4.prid">Terrazas desde marzo; el campo, en su mejor momento. El mar, a 16–17°, aún frío para el baño.</i></li>
+            <li><b data-t="muestra.s4.ver">Verano</b><span class="seasons__t num-tab">30–31° <i>/ 20–21°</i></span><i data-t="muestra.s4.verd">Prácticamente sin lluvia en julio y agosto; mar a 22–24° y calor moderado por la brisa marina.</i></li>
+            <li><b data-t="muestra.s4.oto">Otoño</b><span class="seasons__t num-tab">24° <i>/ 15°</i></span><i data-t="muestra.s4.otod">La «segunda primavera»: el mar está más cálido que en junio y el baño se prolonga hasta octubre.</i></li>
+          </ul>
+
+          <p class="hito" data-t-html="muestra.s4.sol"><b>2.905 horas de sol al año — más de 1.000 horas más que Múnich</b> (~1.830 h según el servicio meteorológico alemán). El expediente del ensayo se elaboró para un cliente ficticio alemán: cada informe compara el clima con el del país del cliente.</p>
+
+          <div class="fy">
+            <p class="fy__k" data-t="muestra.lbl.fy">Qué significa para usted</p>
+            <p class="fy__t" data-t-html="muestra.s4.fy"><b>El invierno era la comprobación decisiva del cliente — y está superada:</b> la zona no cierra fuera de temporada, porque la mayoría de sus vecinos vive aquí todo el año. Colegio, supermercado, farmacia y restaurantes de diario siguen abiertos en enero.</p>
+          </div>
+          <p class="chapter__sign" data-t="muestra.firma">Análisis ROMVILL · verificado julio 2026</p>
+        </div></div>
+      </article>
+
+      <!-- 05 · Riesgos -->
+      <article class="chapter" data-reveal="rise">
+        <button class="chapter__btn" type="button" aria-expanded="false">
+          <span class="chapter__n num-tab">05</span>
+          <span class="chapter__head">
+            <span class="chapter__t" data-t="muestra.s5.t">Análisis de riesgos de la zona</span>
+            <span class="chapter__mini" data-t="muestra.s5.mini">Lectura honesta: cada riesgo con su nivel y su comprobación</span>
+          </span>
+          <span class="acc__sign" aria-hidden="true"></span>
+        </button>
+        <div class="chapter__panel"><div class="chapter__body">
+          <p class="chapter__lede" data-t="muestra.s5.intro">Ninguna zona está libre de riesgos. Lo que distingue una buena decisión es conocerlos con datos y saber qué comprobación corresponde a cada uno.</p>
+
+          <div class="tablewrap">
+            <table class="risks">
+              <thead>
+                <tr>
+                  <th scope="col" data-t="muestra.s5.th1">Riesgo</th>
+                  <th scope="col" data-t="muestra.s5.th2">Nivel</th>
+                  <th scope="col" data-t="muestra.s5.th3">Qué significa en llano</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row" data-t="muestra.s5.r1">Incendio forestal</th><td><span class="lvl lvl--aten" data-t="muestra.nivel.aten">Atención</span></td><td data-t-html="muestra.s5.r1d">Elviria vive entre pinares: hubo un gran incendio en 2012 y precisamente por eso hoy es una de las zonas con más prevención activa del municipio.</td></tr>
+                <tr><th scope="row" data-t="muestra.s5.r2">Inundación (arroyos)</th><td><span class="lvl lvl--mod"  data-t="muestra.nivel.mod">Moderado</span></td><td data-t-html="muestra.s5.r2d">El riesgo no es de zona: se concentra junto a los dos arroyos y los cruces bajo la autovía. Las villas en ladera quedan por altura fuera de lo habitual.</td></tr>
+                <tr><th scope="row" data-t="muestra.s5.r3">Tormentas de otoño</th><td><span class="lvl lvl--mod"  data-t="muestra.nivel.mod">Moderado</span></td><td data-t-html="muestra.s5.r3d">La lluvia del año cae concentrada en pocos episodios intensos entre septiembre y diciembre — el patrón normal de toda la costa mediterránea.</td></tr>
+                <tr><th scope="row" data-t="muestra.s5.r4">Terremotos</th><td><span class="lvl lvl--bajo" data-t="muestra.nivel.bajo">Bajo</span></td><td data-t-html="muestra.s5.r4d">Sismicidad moderada-baja: temblores ocasionales que se sienten sin causar daños. Desde 2002, toda vivienda nueva se calcula con norma antisísmica.</td></tr>
+                <tr><th scope="row" data-t="muestra.s5.r5">Seguridad ciudadana</th><td><span class="lvl lvl--bajo" data-t="muestra.nivel.bajo">Bajo</span></td><td data-t-html="muestra.s5.r5d">Criminalidad estable en el municipio y robos en vivienda bajando tres años seguidos; zona residencial consolidada con comunidades vigiladas.</td></tr>
+                <tr><th scope="row" data-t="muestra.s5.r6">Tráfico (A-7)</th><td><span class="lvl lvl--mod"  data-t="muestra.nivel.mod">Moderado</span></td><td data-t-html="muestra.s5.r6d">La autovía es la única arteria de Marbella Este: retenciones en hora punta y picos de verano. Es el coste práctico más constante de vivir en la zona.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="caption" data-t-html="muestra.s5.esc">Escala descriptiva — <b>Bajo</b>: documentado como poco significativo en la zona · <b>Moderado</b>: fenómeno real, acotado en tiempo o espacio, con gestión conocida · <b>Atención</b>: merece una comprobación activa por su parte.</p>
+          <p class="pill pill--gold" style="align-self:flex-start" data-t="muestra.verif">Verificado por ROMVILL</p>
+          <p class="chapter__sign" data-t="muestra.firma">Análisis ROMVILL · verificado julio 2026</p>
+        </div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bloque de cierre. La página elige las claves desde su cabecera:
+     ctaTitle / ctaDesc / ctaBtn / ctaHref  (ctaDesc puede omitirse). -->
+<section class="section-lg cta on-dark grain" aria-labelledby="cta-h">
+  <!-- El cierre era tinta plana con reticula: el ultimo pantallazo de casi
+       todas las paginas se leia vacio. La panoramica de Banus al anochecer
+       —muy apagada, con velo cerrado en los bordes— le da suelo sin robar
+       protagonismo al titular. -->
+  <picture class="cta__media" aria-hidden="true">
+    <source srcset="assets/images/sec/banus-dusk.webp" type="image/webp">
+    <img src="assets/images/sec/banus-dusk.jpg" alt="" width="1600" height="360" loading="lazy" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="cta__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="cta__inner" data-reveal="rise">
+      <h2 class="d-1" id="cta-h" data-t-html="muestra.cta.t">Su zona, con este mismo rigor</h2>
+      <p class="lead center-x center" data-t="muestra.cta.p">Lo que acaba de recorrer es una muestra reducida de un expediente real. El suyo se elabora desde cero sobre la zona exacta que le interesa, enfocado a sus prioridades y con todos los datos completos. Empiece por el cuestionario: cinco minutos.</p>
+      <div class="cluster" style="justify-content:center">
+        <a class="btn btn--primary btn--lg" href="presupuesto-bloque-1.html">
+          <span data-t="muestra.cta.btn">Empezar el cuestionario</span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--outline btn--lg" href="precios.html" data-t="hero.cta_secondary">Ver qué incluye</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer grain">
+  <div class="footer__top container-wide">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a class="nav__logo" href="index.html" aria-label="ROMVILL">
+          <img class="nav__mark" src="assets/images/rv-logo-white.png" alt="" width="222" height="174">
+          <span>
+            <span class="nav__wordmark">Romvill</span>
+            <span class="nav__logo-sub" data-t="hero.subheadline">Informes independientes de inteligencia territorial</span>
+          </span>
+        </a>
+        <p class="body-sm" style="color:rgb(242 245 250 / .55)" data-t="hero.lema">Analizamos la zona para que usted decida con criterio propio</p>
+        <p class="micro" style="color:var(--gold-400)" data-t="hero.cities">Alicante · Málaga · Marbella</p>
+
+        <form class="footer__news stack stack-3" id="newsletter" novalidate style="margin-top:var(--sp-4)">
+          <label class="footer__col-title" for="news-email" data-t="news.title">Boletín ROMVILL</label>
+          <p class="caption" style="color:rgb(242 245 250 / .5);margin-top:-8px" data-t="news.desc">Novedades, análisis de zonas y tendencias de la costa mediterránea.</p>
+          <div class="footer__news-row">
+            <input class="field__input" type="email" id="news-email" name="email" autocomplete="email"
+                   required data-t-attr="placeholder:news.ph" placeholder="Su correo electrónico" placeholder="Su correo electrónico" style="border-bottom-color:rgb(255 255 255 / .2)">
+            <button class="btn btn--primary btn--sm" type="submit" data-t="news.btn">Suscribirme</button>
+          </div>
+          <p class="caption" id="news-status" role="status" aria-live="polite" style="color:rgb(242 245 250 / .45)" data-t="news.gdpr">Sin spam. Puede darse de baja en cualquier momento.</p>
+        </form>
+      </div>
+
+      <nav aria-label="Navegación del pie de página">
+        <p class="footer__col-title" data-t="nav.aria">Navegación principal</p>
+        <div class="footer__links">
+          <a class="footer__link" href="metodologia.html"          data-t="nav.metodologia">Metodología</a>
+          <a class="footer__link" href="analisis.html"             data-t="nav.analisis">Análisis</a>
+          <a class="footer__link" href="sectores.html"             data-t="nav.sectores">Sectores</a>
+          <a class="footer__link" href="quienes-somos.html"        data-t="nav.quienes">Quiénes somos</a>
+          <a class="footer__link" href="precios.html"              data-t="nav.precios">Precios</a>
+          <a class="footer__link" href="preguntas-frecuentes.html" data-t="nav.faq.full">Preguntas frecuentes</a>
+          <a class="footer__link" href="muestra-de-informe.html"   data-t="mu.link.ver">Ver una muestra del informe</a>
+          <a class="footer__link" href="contacto.html"             data-t="nav.contacto">Contacto</a>
+        </div>
+      </nav>
+
+      <div>
+        <p class="footer__col-title" data-t="footer.zonas">Zonas</p>
+        <div class="footer__links">
+          <a class="footer__link" href="analisis-marbella.html" data-t="zona.marbella.nombre">Marbella</a>
+          <a class="footer__link" href="analisis-malaga.html"   data-t="zona.malaga.nombre">Málaga</a>
+          <a class="footer__link" href="analisis-alicante.html" data-t="zona.alicante.nombre">Alicante</a>
+        </div>
+
+        <p class="footer__col-title" style="margin-top:var(--sp-8)" data-t="ana.badge">Inteligencia Territorial</p>
+        <div class="footer__links">
+          <a class="footer__link" href="perfil-seguridad.html"   data-t="modal.dim.security">Seguridad</a>
+          <a class="footer__link" href="perfil-demografico.html" data-t="modal.dim.demog">Demografía</a>
+          <a class="footer__link" href="perfil-sanidad.html"     data-t="modal.dim.health">Sanidad</a>
+          <a class="footer__link" href="perfil-movilidad.html"   data-t="modal.dim.mobility">Movilidad</a>
+          <a class="footer__link" href="perfil-proyeccion.html"  data-t="pillar.proj.title">Desarrollo</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__col-title" data-t="contact.channels">Canales de Contacto Directo</p>
+        <div class="footer__links">
+          <a class="footer__link" href="mailto:info@romvill.com">info@romvill.com</a>
+          <a class="footer__link" href="agendar-llamada.html" data-t="agenda.head">Agenda de llamadas</a>
+          <a class="footer__link" href="contacto.html" data-t="hero.cta_primary">Solicitar mi informe de zona</a>
+        </div>
+
+        <p class="footer__col-title" style="margin-top:var(--sp-8)" data-t="footer.zonas">Zonas</p>
+        <p class="caption" style="color:rgb(242 245 250 / .5)" data-t="hero.cities">Alicante · Málaga · Marbella</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-wide">
+    <div class="footer__bottom">
+      <p>&copy; 2026 ROMVILL. <span data-t="footer.rights">Todos los derechos reservados.</span></p>
+      <nav class="footer__legal" aria-label="Navegación del pie de página">
+        <a class="footer__link" href="privacidad.html"  data-t="footer.privacy">Privacidad</a>
+        <a class="footer__link" href="terminos.html"    data-t="footer.terms">Términos</a>
+        <a class="footer__link" href="aviso-legal.html" data-t="footer.avisolegal">Aviso legal</a>
+      </nav>
+    </div>
+  </div>
+
+  <span class="footer__watermark" aria-hidden="true">ROMVILL</span>
+</footer>
+
+
+<!-- Aviso de cookies. En el original vive en footer.php y usa las claves
+     cookies.title / cookies.short / footer.cookies. Se muestra una sola vez;
+     la decisión se guarda en localStorage. -->
+<div class="cookiebar" id="cookiebar" role="dialog" aria-labelledby="cookiebar-t" aria-describedby="cookiebar-d" hidden>
+  <div class="cookiebar__box">
+    <svg class="cookiebar__ico" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#lock"></use></svg>
+    <div class="cookiebar__text">
+      <p class="cookiebar__t" id="cookiebar-t" data-t="cookies.title">Usamos cookies</p>
+      <p class="cookiebar__d" id="cookiebar-d" data-t="cookies.short">Cookies propias y de terceros para analizar el tráfico y mejorar su experiencia.</p>
+    </div>
+    <div class="cookiebar__actions">
+      <a class="btn btn--ghost btn--sm" href="privacidad.html" data-t="ui.cookies.more">Más información</a>
+      <button class="btn btn--primary btn--sm" type="button" id="cookiebar-ok" data-t="ui.cookies.accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<script type="module" src="assets/js/app.js?v=mt96401f"></script>
+  <script type="module" src="assets/js/pages/muestra.js?v=mt8h0efv"></script>
+</body>
+</html>

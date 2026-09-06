@@ -1,0 +1,112 @@
+<!--meta
+slug: agendar-llamada
+title: agenda.title
+desc: agenda.sub
+navMode: dark
+css: pages/agenda.css
+js: pages/agenda.js
+-->
+
+<section class="phero phero--center phero--photo on-dark grain">
+  <picture class="phero__media" aria-hidden="true">
+    <source media="(max-width: 700px)" srcset="assets/images/sec/banus-noche-sm.webp" type="image/webp">
+    <source srcset="assets/images/sec/banus-noche.webp" type="image/webp">
+    <img src="assets/images/sec/banus-noche.jpg" alt="" width="1600" height="900"
+         fetchpriority="high" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="phero__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="phero__inner">
+      <p class="kicker kicker--center" data-reveal="veil" data-t="agenda.head"></p>
+      <h1 class="d-1" data-reveal="wipe" style="--reveal-delay:40ms" data-t="agenda.title"></h1>
+      <p class="lead" data-reveal="rise" style="--reveal-delay:100ms" data-t="agenda.sub"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ag-h">
+  <div class="container">
+    <h2 class="visually-hidden" id="ag-h" data-t="agenda.title"></h2>
+
+    <div class="booking" data-reveal="rise">
+
+      <!-- 1 · Día -->
+      <div class="booking__step">
+        <p class="booking__lbl" data-t="agenda.step1"></p>
+        <div class="days" id="ag-days" role="radiogroup" aria-labelledby="ag-h"></div>
+      </div>
+
+      <!-- 2 · Hora -->
+      <div class="booking__step">
+        <p class="booking__lbl" data-t="agenda.step2"></p>
+        <div class="slots" id="ag-slots" role="radiogroup" aria-labelledby="ag-h"></div>
+      </div>
+
+      <!-- 3 · Teléfono -->
+      <form class="booking__step booking__form" id="ag-form" novalidate>
+        <p class="booking__lbl" data-t="agenda.step3"></p>
+        <div class="field">
+          <label class="visually-hidden" for="ag-tel" data-t="agenda.form.tel"></label>
+          <input class="field__input" type="tel" id="ag-tel" name="tel" autocomplete="tel" required
+                 data-t-attr="placeholder:agenda.tel.ph">
+          <p class="field__err" id="ag-tel-err"></p>
+        </div>
+
+        <button class="btn btn--primary btn--lg btn--block" type="submit" id="ag-submit" disabled>
+          <span id="ag-submit-label" data-t="agenda.btn.pick"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#calendar"></use></svg>
+        </button>
+
+        <p class="formstatus" id="ag-status" role="status" aria-live="polite"></p>
+        <p class="caption" data-t="agenda.nota"></p>
+      </form>
+
+      <!-- Confirmación -->
+      <div class="booking__ok" id="ag-ok" hidden>
+        <span class="booking__ok-ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#check-circle"></use></svg></span>
+        <h3 class="d-4" data-t="agenda.ok.title"></h3>
+        <p class="body" data-t="agenda.ok.body"></p>
+        <p class="booking__cita">
+          <span class="micro" data-t="agenda.actual.cita"></span>
+          <b id="ag-cita" class="num-tab"></b>
+        </p>
+        <button class="btn btn--ghost" type="button" id="ag-again" data-t="agenda.cambiar"></button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SIN REFERENCIA DE EXPEDIENTE ══════════════════════════════════════ -->
+<section class="section section--alt" aria-labelledby="sinref-h">
+  <div class="container-text">
+    <div class="sec-head" data-reveal="rise">
+      <h2 class="d-3" id="sinref-h" data-t="agenda.sinref.title"></h2>
+      <p class="lead" data-t="agenda.sinref.sub"></p>
+    </div>
+
+    <form class="qform" id="ag-query" novalidate data-reveal="rise">
+      <div class="field">
+        <label class="field__label" for="q-nombre" data-t="agenda.form.nombre"></label>
+        <input class="field__input" type="text" id="q-nombre" name="nombre" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label class="field__label" for="q-tel" data-t="agenda.form.tel"></label>
+        <input class="field__input" type="tel" id="q-tel" name="tel" autocomplete="tel" required
+               data-t-attr="placeholder:agenda.tel.ph">
+      </div>
+      <div class="field">
+        <label class="field__label" for="q-msg" data-t="agenda.form.msg"></label>
+        <textarea class="field__area" id="q-msg" name="mensaje"></textarea>
+      </div>
+      <label class="check">
+        <input type="checkbox" id="q-rgpd" required>
+        <span class="check__box" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#check"></use></svg></span>
+        <span class="check__text" data-t="agenda.form.rgpd"></span>
+      </label>
+      <button class="btn btn--dark btn--block" type="submit" data-t="agenda.form.btn"></button>
+      <p class="formstatus" id="q-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,283 @@
+/* ============================================================================
+   ROMVILL v2 — PRECIOS
+   ========================================================================= */
+
+.plan__top { display: flex; flex-direction: column; gap: var(--sp-2); }
+.plan__launch { align-self: flex-start; }
+.plan__official { color: var(--tx-3); }
+.plan__feats { padding-top: var(--sp-2); }
+.plan__feats li { font-size: var(--fs-sm); }
+
+/* ══ Selector de perfil ═════════════════════════════════════════════════ */
+
+.profiles {
+  display: grid;
+  /* minmax(0,1fr) y no 1fr: con `1fr` el mínimo es el min-content, y el botón
+     a bloque —que lleva white-space:nowrap— imponía 311 px por columna. Cuatro
+     de esos no caben en los 1.142 px disponibles a 1280, y el desborde se
+     colaba fuera de pantalla. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-top: clamp(48px, 6vw, 80px);
+  align-items: stretch;
+}
+/* Cuatro columnas solo por encima de 1400: por debajo, cada tarjeta queda
+   demasiado estrecha para su título, su subtítulo, su descripción y su botón. */
+@media (max-width: 1400px) { .profiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px)  { .profiles { grid-template-columns: minmax(0, 1fr); } }
+
+.profile {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  /* El relleno baja al cuerpo: la fotografia va a sangre contra los bordes
+     de la tarjeta. */
+  padding: 0 clamp(24px, 3vw, 36px) clamp(24px, 3vw, 36px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--t-ui) var(--ease-out),
+              border-color var(--t-ui) var(--ease-out),
+              box-shadow var(--t-scene) var(--ease-out);
+}
+.profile:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--gold-500) 48%, transparent);
+  box-shadow: var(--shadow-lg);
+}
+.profile--rec { border-color: color-mix(in srgb, var(--gold-500) 55%, transparent); }
+.profile__flag { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); z-index: 3; white-space: nowrap; }
+
+/* ── Banda fotografica ──────────────────────────────────────────────────
+   Antes cada tarjeta abria con un cuadradito de icono de 46 px sobre fondo
+   plano. Cuatro tarjetas iguales con cuatro cuadraditos es exactamente el
+   aspecto que el cliente llamo «ultra basico».
+
+   Ahora cada perfil abre con la fotografia de SU territorio —vivienda
+   residencial para particulares, la marina de Banus para inversores, la
+   trama construida desde el aire para promotores, el puerto de Malaga para
+   empresas— muy oscurecida para que el titular siga mandando. El icono se
+   queda, pero flotando sobre la imagen: sigue etiquetando y ya no es el
+   protagonista.                                                          */
+.profile__shot {
+  position: relative;
+  display: block;
+  margin: 0 calc(-1 * clamp(24px, 3vw, 36px)) clamp(18px, 2vw, 26px);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--ink-850), var(--ink-900));
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Dibujos infograficos ────────────────────────────────────────────────
+   Cada perfil abre con el esquema de LO QUE MIRA, no con una fotografia:
+   la manzana residencial para particulares, la serie temporal para
+   inversores, el parcelario con su cota para promotores y la red con hub
+   para empresas.
+
+   Por que esquema y no foto: cuatro fotografias distintas no comparten
+   lenguaje —cada una tiene su luz, su encuadre y su color— y las cuatro
+   tarjetas se leian como un collage. Cuatro esquemas del mismo trazo y el
+   mismo oro se leen como una familia. Y pesan ~1,5 KB frente a ~40 KB.
+
+   La primera version era demasiado escueta: cuatro trazos sueltos sobre
+   fondo plano. Lo que le faltaba —tomado del patron de fondo de circuito de
+   21st.dev— son tres capas:
+     1 · una TRAMA que llena todo el lienzo y da textura;
+     2 · un HALO radial detras del sujeto, que crea profundidad;
+     3 · MOVIMIENTO por `stroke-dashoffset`, que es lo que convierte un
+         dibujo quieto en un instrumento encendido.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.dib {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  fill: none;
+  overflow: hidden;
+}
+
+/* 1 · Trama de fondo. Muy baja: es textura, no dibujo. */
+.dib__grid { stroke: rgb(255 255 255 / .055); stroke-width: 1; }
+
+/* 2 · Halo detras del sujeto. */
+.dib__glow { stroke: none; }
+
+/* Trazos de contexto: lo que rodea al sujeto sin competir con el. */
+.dib__blq rect, .dib__parcs rect { stroke: rgb(255 255 255 / .13); stroke-width: 1; }
+.dib__calle path, .dib__ejes path, .dib__red path { stroke: rgb(255 255 255 / .1); stroke-width: 1; }
+.dib__nodo circle { stroke: rgb(255 255 255 / .22); stroke-width: 1.2; }
+.dib__guia path { stroke: rgb(191 161 95 / .25); stroke-width: 1; stroke-dasharray: 3 5; }
+
+/* El sujeto, en oro. */
+.dib__foco path, .dib__foco rect { stroke: var(--gold-400); stroke-width: 1.7; stroke-linejoin: round; }
+.dib__traza { stroke: var(--gold-400); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.dib__area  { fill: rgb(191 161 95 / .12); stroke: none; }
+.dib__hito circle { stroke: var(--gold-400); stroke-width: 1.5; }
+.dib__parc--on { stroke: rgb(191 161 95 / .55); stroke-width: 1.6; fill: rgb(191 161 95 / .07); }
+.dib__cota path { stroke: rgb(191 161 95 / .55); stroke-width: 1.2; }
+.dib__anillo { stroke: rgb(191 161 95 / .3); stroke-width: 1; stroke-dasharray: 3 6; }
+.dib__halo   { fill: rgb(191 161 95 / .16); stroke: rgb(191 161 95 / .4); stroke-width: 1; }
+.dib__pt     { fill: var(--gold-400); stroke: none; }
+
+/* 3 · Movimiento. Un flujo lento recorre la linea de servicio (o los
+       radios de la red): es la unica pieza que se mueve, y a esa cadencia
+       se lee como sistema en marcha, no como animacion pidiendo mirada. */
+.dib__flujo path {
+  stroke: rgb(191 161 95 / .5);
+  stroke-width: 1.4;
+  stroke-dasharray: 8 14;
+  stroke-linecap: round;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dib__flujo path { animation: dibFlujo 9s linear infinite; }
+  .dib__flujo--red path { animation-duration: 6s; }
+  .dib__flujo--red path:nth-child(2) { animation-delay: -1.5s; }
+  .dib__flujo--red path:nth-child(3) { animation-delay: -3s; }
+  .dib__flujo--red path:nth-child(4) { animation-delay: -4.5s; }
+  /* La serie se traza al entrar la tarjeta en pantalla. */
+  .dib__traza { stroke-dasharray: 420; stroke-dashoffset: 420; }
+  .profile.is-in .dib__traza { animation: dibTraza 1.5s var(--ease-out) .25s forwards; }
+  .dib__anillo { animation: dibGira 34s linear infinite; transform-origin: center; }
+}
+@keyframes dibFlujo { to { stroke-dashoffset: -220; } }
+@keyframes dibTraza { to { stroke-dashoffset: 0; } }
+@keyframes dibGira  { to { transform: rotate(360deg); } }
+
+/* Al pasar el cursor el esquema se acerca: mismo gesto que tenia la
+   fotografia, sin su peso. */
+.dib { transform: scale(1); transition: transform 900ms var(--ease-out); }
+.profile:hover .dib { transform: scale(1.05); }
+
+.profile__ico {
+  position: absolute; left: clamp(16px, 2vw, 22px); bottom: clamp(12px, 1.6vw, 18px);
+  z-index: 2;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 1px solid rgb(255 255 255 / .16);
+  border-radius: var(--r-sm);
+  background: rgb(6 9 15 / .55);
+  backdrop-filter: blur(8px);
+  color: var(--gold-400);
+  transition: border-color var(--t-ui) var(--ease-out), background-color var(--t-ui) var(--ease-out);
+}
+.profile:hover .profile__ico {
+  border-color: color-mix(in srgb, var(--gold-500) 60%, transparent);
+  background: rgb(6 9 15 / .72);
+}
+.profile__ico svg { width: 21px; height: 21px; }
+.profile__sub { font-size: var(--fs-sm); line-height: 1.45; color: var(--tx-2); }
+.profile__desc { font-size: var(--fs-xs); line-height: 1.55; color: var(--tx-3); }
+.profile .btn { margin-top: auto; }
+
+/* ══ Suplementos y garantía ═════════════════════════════════════════════ */
+
+.extras { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: stretch; }
+@media (max-width: 900px) { .extras { grid-template-columns: 1fr; } }
+.extras__col { display: flex; flex-direction: column; gap: var(--sp-5); }
+
+/* Los suplementos dejan de ser una lista de ticks flotando en el blanco:
+   cada uno es una fila de tarifa, con su filete y su verificado en chapa.
+   El precio va dentro del texto del guion (no se puede partir sin tocar
+   copy), asi que la fila entera es la unidad. */
+.extras__intro {
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  color: var(--tx-2);
+  max-width: 56ch;
+  margin-top: calc(-1 * var(--sp-2));
+}
+.extras .ticks { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.extras .ticks li {
+  display: flex; align-items: flex-start; gap: var(--sp-4);
+  padding: clamp(14px, 1.8vw, 20px) var(--sp-2);
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--t-ui) var(--ease-out);
+}
+.extras .ticks li:hover { background: color-mix(in srgb, var(--gold-500) 5%, transparent); }
+.extras .ticks svg {
+  width: 26px; height: 26px; flex: none;
+  padding: 5px;
+  margin-top: -1px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-full);
+  color: var(--accent);
+}
+
+.extras__col--credit {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  justify-content: center;
+  padding: clamp(30px, 3.6vw, 52px);
+  background: var(--ink-900);
+  border: 1px solid rgb(255 255 255 / .1);
+  border-top: 2px solid var(--accent-solid);
+  border-radius: var(--r-md);
+  color: #f2f5fa;
+}
+/* El panel es siempre tinta (direccion de arte, como .on-dark). */
+.extras__col--credit .body { color: #a9b4c6; }
+.extras__col--credit h2 { color: #f2f5fa; }
+.extras__col--credit::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(90% 80% at 85% 0%, rgb(191 161 95 / .12), transparent 60%);
+  z-index: -1;
+}
+.extras__ico {
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-full);
+  color: var(--accent);
+}
+.extras__ico svg { width: 22px; height: 22px; }
+
+/* ══ Alcance por nivel ═══════════════════════════════════════════════════
+   Barras apiladas: tramo solido = lo que ya cubre el informe base; tramo
+   punteado = lo que anaden los suplementos. Sin eje ni cifras a proposito:
+   son proporciones de alcance relativo, no datos de negocio, y numerarlas
+   seria inventar precision que no tenemos. */
+
+.alcance { display: flex; flex-direction: column; gap: var(--sp-4); margin-top: var(--sp-6); }
+.alcance__fila { display: grid; grid-template-columns: 88px minmax(0, 1fr); align-items: center; gap: var(--sp-4); }
+.alcance__lbl {
+  font-size: var(--fs-3xs);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--tx-3);
+}
+.alcance__barra { display: flex; height: 12px; border-radius: var(--r-full); overflow: hidden; background: var(--bg-alt); }
+.alcance__base, .alcance__ext {
+  width: var(--w);
+  transition: width 700ms var(--ease-out);
+}
+.alcance__base { background: var(--accent-solid); }
+.alcance__ext {
+  background: repeating-linear-gradient(115deg, rgb(191 161 95 / .55) 0 5px, transparent 5px 10px);
+  border-left: 1px solid var(--bg-alt);
+}
+.js .alcance__fila:not(.is-in) .alcance__base,
+.js .alcance__fila:not(.is-in) .alcance__ext { width: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .alcance__base, .alcance__ext { transition: none; }
+  .js .alcance__fila:not(.is-in) .alcance__base,
+  .js .alcance__fila:not(.is-in) .alcance__ext { width: var(--w); }
+}
+
+.alcance__leyenda {
+  display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-6);
+  margin-top: var(--sp-2);
+  padding-left: calc(88px + var(--sp-4));
+}
+.alcance__leyenda > span { display: flex; align-items: center; gap: 8px; font-size: var(--fs-3xs); color: var(--tx-3); }
+.alcance__sw { width: 16px; height: 8px; border-radius: var(--r-full); flex: none; }
+.alcance__sw--base { background: var(--accent-solid); }
+.alcance__sw--ext  { background: repeating-linear-gradient(115deg, rgb(191 161 95 / .55) 0 4px, transparent 4px 8px); border: 1px solid var(--hairline); }
+
+@media (max-width: 560px) {
+  .alcance__fila { grid-template-columns: 1fr; gap: 6px; }
+  .alcance__leyenda { padding-left: 0; }
+}

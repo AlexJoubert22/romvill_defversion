@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="es" data-base="" class="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Metodología de Análisis Territorial | ROMVILL</title>
+<meta name="description" content="Descubra cómo Romvill elabora sus informes: recolección OSINT, análisis de campo y presentación estructurada para que tome decisiones con criterio.">
+<link rel="canonical" href="https://romvill.com/metodologia/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ROMVILL">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Metodología de Análisis Territorial | ROMVILL">
+<meta property="og:description" content="Descubra cómo Romvill elabora sus informes: recolección OSINT, análisis de campo y presentación estructurada para que tome decisiones con criterio.">
+<meta property="og:url" content="https://romvill.com/metodologia/">
+<meta property="og:image" content="https://romvill.com/assets/images/og-romvill.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metodología de Análisis Territorial | ROMVILL">
+<meta name="twitter:description" content="Descubra cómo Romvill elabora sus informes: recolección OSINT, análisis de campo y presentación estructurada para que tome decisiones con criterio.">
+<meta name="twitter:image" content="https://romvill.com/assets/images/og-romvill.jpg">
+<meta name="theme-color" content="#0a0f18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+
+<link rel="icon" href="assets/icons/favicon.svg?v=mt8fzcmk" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/f06.woff2" as="font" type="font/woff2" crossorigin>
+
+<script>
+/* Tema antes del primer pintado — evita el parpadeo.
+   Se conserva la regla del tema original: sin preferencia guardada, oscuro
+   entre las 20:00 y las 07:00. */
+/* Marca de JavaScript activo. Todo lo que se oculta para animarse va
+   condicionado a .js, de modo que sin JavaScript la web se ve entera. */
+document.documentElement.classList.add('js');
+(function () {
+  try {
+    var t = localStorage.getItem('romvill_theme');
+    if (!t) { var h = new Date().getHours(); t = (h >= 20 || h < 7) ? 'dark' : 'light'; }
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  } catch (e) {}
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://romvill.com/#organization","name":"ROMVILL","url":"https://romvill.com/","email":"info@romvill.com","logo":{"@type":"ImageObject","url":"https://romvill.com/assets/images/rv-logo-dark.png"},"image":"https://romvill.com/assets/images/og-romvill.jpg","description":"Análisis territorial independiente en Alicante, Málaga y Marbella. Informes sobre seguridad, entorno y servicios antes de comprar, invertir o establecerse.","priceRange":"€€","areaServed":[{"@type":"City","name":"Alicante"},{"@type":"City","name":"Málaga"},{"@type":"City","name":"Marbella"}],"sameAs":["https://www.instagram.com/romvillspain/"],"knowsLanguage":["es","en","fr","de","ru"]},{"@type":"WebSite","@id":"https://romvill.com/#website","url":"https://romvill.com/","name":"ROMVILL","inLanguage":"es-ES","publisher":{"@id":"https://romvill.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ROMVILL","item":"https://romvill.com/"},{"@type":"ListItem","position":2,"name":"Metodología de Análisis Territorial | ROMVILL","item":"https://romvill.com/metodologia/"}]}]}</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css?v=mt8kum1q">
+<link rel="stylesheet" href="assets/css/base.css?v=mt8qawsn">
+<link rel="stylesheet" href="assets/css/components.css?v=mt965zex">
+<link rel="stylesheet" href="assets/css/legacy-copy.css?v=mt8g8pmu">
+  <link rel="stylesheet" href="assets/css/pages/metodologia.css?v=mt8vwa41">
+</head>
+
+<body>
+<a class="skip-link" href="#main" data-t="a11y.skip">Saltar al contenido</a>
+<div class="progressbar" id="progressbar" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" data-nav-mode="dark" aria-label="Navegación principal">
+  <div class="nav__inner">
+
+    <a class="nav__logo" href="index.html" aria-label="ROMVILL">
+      <img class="nav__mark" src="assets/images/rv-logo-white.png" alt="" width="222" height="174" data-logo-dark="assets/images/rv-logo-white.png" data-logo-light="assets/images/rv-logo-dark.png">
+      <span>
+        <span class="nav__wordmark">Romvill</span>
+        <span class="nav__logo-sub" data-t="hero.tagline">Inteligencia Territorial · Costa Mediterránea</span>
+      </span>
+    </a>
+
+    <!-- ── Enlaces ─────────────────────────────────────────────────────────
+         Tres de las siete secciones tienen paginas debajo y hasta ahora no
+         habia forma de llegar a ellas desde la barra: los cinco perfiles de
+         dimension, las tres zonas y las tres vias de encargo estaban
+         enterradas dentro de sus paginas.
+
+         El titulo del grupo SIGUE SIENDO UN ENLACE —va a su pagina— y la
+         flecha es un boton aparte que abre el panel. Es la unica forma de
+         que funcione igual con raton, con teclado y en tactil: un titulo que
+         solo abre menu deja la pagina padre inaccesible, y uno que solo
+         navega hace el submenu inalcanzable sin puntero. -->
+    <div class="nav__links">
+      <a class="nav__link" href="metodologia.html"          data-nav="metodologia" aria-current="page"          data-t="nav.metodologia">Metodología</a>
+
+      <div class="navgrp" data-navgrp>
+        <a class="nav__link nav__link--grp" href="analisis.html" data-nav="analisis" data-t="nav.analisis">Análisis</a>
+        <button class="navgrp__btn" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+
+        <div class="subnav" role="group">
+          <p class="subnav__t micro" data-t="ui.nav.dims">Las cinco dimensiones</p>
+          <a class="subnav__item" href="perfil-seguridad.html" data-rel="seg">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#shield"></use></svg></span>
+            <span data-t="ana.d1.title">Seguridad de la Zona</span>
+          </a>
+          <a class="subnav__item" href="perfil-demografico.html" data-rel="dem">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#users"></use></svg></span>
+            <span data-t="ana.d2.title">Perfil Demográfico</span>
+          </a>
+          <a class="subnav__item" href="perfil-sanidad.html" data-rel="san">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#health"></use></svg></span>
+            <span data-t="ana.d3.title">Cobertura Sanitaria</span>
+          </a>
+          <a class="subnav__item" href="perfil-movilidad.html" data-rel="mov">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#route"></use></svg></span>
+            <span data-t="ana.d4.title">Conectividad y Movilidad</span>
+          </a>
+          <a class="subnav__item" href="perfil-proyeccion.html" data-rel="pro">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#growth"></use></svg></span>
+            <span data-t="perfil.pro.h1">Perfil de Proyección</span>
+          </a>
+          <a class="subnav__all" href="analisis.html">
+            <span data-t="ui.nav.ver">Ver todo</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="navgrp" data-navgrp>
+        <a class="nav__link nav__link--grp" href="sectores.html" data-nav="sectores" data-t="nav.sectores">Sectores</a>
+        <button class="navgrp__btn" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+
+        <div class="subnav" role="group">
+          <p class="subnav__t micro" data-t="ui.nav.zonas">Zonas de cobertura</p>
+          <a class="subnav__item" href="analisis-alicante.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+            <span data-t="zona.alicante.nombre">Alicante</span>
+          </a>
+          <a class="subnav__item" href="analisis-malaga.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+            <span data-t="zona.malaga.nombre">Málaga</span>
+          </a>
+          <a class="subnav__item" href="analisis-marbella.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+            <span data-t="zona.marbella.nombre">Marbella</span>
+          </a>
+          <a class="subnav__all" href="sectores.html">
+            <span data-t="ui.nav.ver">Ver todo</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="quienes-somos.html"        data-nav="quienes-somos"        data-t="nav.quienes">Quiénes somos</a>
+
+      <div class="navgrp" data-navgrp>
+        <a class="nav__link nav__link--grp" href="precios.html" data-nav="precios" data-t="nav.precios">Precios</a>
+        <button class="navgrp__btn" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+
+        <div class="subnav" role="group">
+          <p class="subnav__t micro" data-t="ui.nav.encargo">Encargar un informe</p>
+          <a class="subnav__item" href="muestra-de-informe.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#doc"></use></svg></span>
+            <span data-t="mu.link.ver">Ver una muestra del informe</span>
+          </a>
+          <a class="subnav__item" href="presupuesto-bloque-1.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#target"></use></svg></span>
+            <span data-t="nav.cta">Solicitar Presupuesto</span>
+          </a>
+          <a class="subnav__item" href="agendar-llamada.html">
+            <span class="subnav__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#calendar"></use></svg></span>
+            <span data-t="agenda.head">Agenda de llamadas</span>
+          </a>
+          <a class="subnav__all" href="precios.html">
+            <span data-t="ui.nav.ver">Ver todo</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="preguntas-frecuentes.html" data-nav="preguntas-frecuentes" data-t="nav.faq">FAQ</a>
+      <a class="nav__link" href="contacto.html"             data-nav="contacto"             data-t="nav.contacto">Contacto</a>
+    </div>
+
+    <div class="nav__actions">
+
+      <div class="langsel" id="langsel">
+        <button class="langsel__btn" type="button" id="langsel-btn"
+                aria-haspopup="true" aria-expanded="false" aria-controls="langsel-menu"
+                data-t-attr="aria-label:a11y.langLabel" aria-label="Idioma" aria-label="Idioma">
+          <svg class="langsel__flag" aria-hidden="true" data-lang-flag><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-es"></use></svg>
+          <span data-lang-current>ES</span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+        <div class="langsel__menu" id="langsel-menu" role="menu" aria-labelledby="langsel-btn">
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="es"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-es"></use></svg><span>Español</span><span class="langsel__code">ES</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="en"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-en"></use></svg><span>English</span><span class="langsel__code">EN</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="fr"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-fr"></use></svg><span>Français</span><span class="langsel__code">FR</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="de"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-de"></use></svg><span>Deutsch</span><span class="langsel__code">DE</span></button>
+          <button class="langsel__item" type="button" role="menuitem" data-lang-code="ru"><svg class="langsel__flag" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#flag-ru"></use></svg><span>Русский</span><span class="langsel__code">RU</span></button>
+        </div>
+      </div>
+
+      <button class="iconbtn" type="button" id="theme-toggle" data-t-attr="aria-label:dark.toggle" aria-label="Cambiar tema" aria-label="Cambiar tema">
+        <svg class="themebtn__sun" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#sun"></use></svg>
+        <svg class="themebtn__moon" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#moon"></use></svg>
+      </button>
+
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="contacto.html" data-t="nav.cta">Solicitar Presupuesto</a>
+
+      <button class="iconbtn navtoggle" type="button" id="menu-open"
+              aria-expanded="false" aria-controls="mobilemenu" data-t-attr="aria-label:nav.open_menu" aria-label="Abrir menú" aria-label="Abrir menú">
+        <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobilemenu" id="mobilemenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <div class="mobilemenu__head">
+    <span class="nav__wordmark">Romvill</span>
+    <button class="iconbtn" type="button" id="menu-close" data-t-attr="aria-label:nav.close_menu" aria-label="Cerrar menú" aria-label="Cerrar menú">
+      <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#close"></use></svg>
+    </button>
+  </div>
+
+  <div class="mobilemenu__links">
+    <a class="mobilemenu__link" href="metodologia.html" style="--i:0"><span class="micro">01</span><span data-t="nav.metodologia">Metodología</span></a>
+
+    <div class="mobilemenu__grp" style="--i:1">
+      <div class="mobilemenu__row">
+        <a class="mobilemenu__link" href="analisis.html"><span class="micro">02</span><span data-t="nav.analisis">Análisis</span></a>
+        <button class="mobilemenu__toggle" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+      </div>
+      <div class="mobilemenu__panel">
+        <div>
+          <p class="mobilemenu__t micro" data-t="ui.nav.dims">Las cinco dimensiones</p>
+          <a class="mobilemenu__sub" href="perfil-seguridad.html"><span data-t="ana.d1.title">Seguridad de la Zona</span></a>
+          <a class="mobilemenu__sub" href="perfil-demografico.html"><span data-t="ana.d2.title">Perfil Demográfico</span></a>
+          <a class="mobilemenu__sub" href="perfil-sanidad.html"><span data-t="ana.d3.title">Cobertura Sanitaria</span></a>
+          <a class="mobilemenu__sub" href="perfil-movilidad.html"><span data-t="ana.d4.title">Conectividad y Movilidad</span></a>
+          <a class="mobilemenu__sub" href="perfil-proyeccion.html"><span data-t="perfil.pro.h1">Perfil de Proyección</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobilemenu__grp" style="--i:2">
+      <div class="mobilemenu__row">
+        <a class="mobilemenu__link" href="sectores.html"><span class="micro">03</span><span data-t="nav.sectores">Sectores</span></a>
+        <button class="mobilemenu__toggle" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+      </div>
+      <div class="mobilemenu__panel">
+        <div>
+          <p class="mobilemenu__t micro" data-t="ui.nav.zonas">Zonas de cobertura</p>
+          <a class="mobilemenu__sub" href="analisis-alicante.html"><span data-t="zona.alicante.nombre">Alicante</span></a>
+          <a class="mobilemenu__sub" href="analisis-malaga.html"><span data-t="zona.malaga.nombre">Málaga</span></a>
+          <a class="mobilemenu__sub" href="analisis-marbella.html"><span data-t="zona.marbella.nombre">Marbella</span></a>
+        </div>
+      </div>
+    </div>
+
+    <a class="mobilemenu__link" href="quienes-somos.html" style="--i:3"><span class="micro">04</span><span data-t="nav.quienes">Quiénes somos</span></a>
+
+    <div class="mobilemenu__grp" style="--i:4">
+      <div class="mobilemenu__row">
+        <a class="mobilemenu__link" href="precios.html"><span class="micro">05</span><span data-t="nav.precios">Precios</span></a>
+        <button class="mobilemenu__toggle" type="button" aria-expanded="false" data-t-attr="aria-label:ui.nav.sub" aria-label="Abrir submenú" aria-label="Abrir submenú">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#chevron-down"></use></svg>
+        </button>
+      </div>
+      <div class="mobilemenu__panel">
+        <div>
+          <p class="mobilemenu__t micro" data-t="ui.nav.encargo">Encargar un informe</p>
+          <a class="mobilemenu__sub" href="muestra-de-informe.html"><span data-t="mu.link.ver">Ver una muestra del informe</span></a>
+          <a class="mobilemenu__sub" href="presupuesto-bloque-1.html"><span data-t="nav.cta">Solicitar Presupuesto</span></a>
+          <a class="mobilemenu__sub" href="agendar-llamada.html"><span data-t="agenda.head">Agenda de llamadas</span></a>
+        </div>
+      </div>
+    </div>
+
+    <a class="mobilemenu__link" href="preguntas-frecuentes.html" style="--i:5"><span class="micro">06</span><span data-t="nav.faq.full">Preguntas frecuentes</span></a>
+    <a class="mobilemenu__link" href="contacto.html"             style="--i:6"><span class="micro">07</span><span data-t="nav.contacto">Contacto</span></a>
+  </div>
+  <div class="mobilemenu__foot">
+    <hr class="hairline">
+    <a class="btn btn--primary btn--block" href="contacto.html" data-t="nav.cta">Solicitar Presupuesto</a>
+  </div>
+</div>
+
+
+<main id="main">
+
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+<section class="phero on-dark grain mapgrid">
+  <div class="container">
+    <div class="phero__inner">
+      <p class="kicker" data-reveal="veil" data-t="met.badge">Nuestro Proceso</p>
+      <h1 class="d-1" data-reveal="wipe" style="--reveal-delay:40ms" data-t="met.title">Metodología</h1>
+      <p class="phero__sub" data-reveal="rise" style="--reveal-delay:90ms" data-t="met.subtitle">Cómo trabajamos para que usted reciba información real</p>
+      <p class="lead" data-reveal="rise" style="--reveal-delay:140ms" data-t="met.intro">Así trabajamos para que usted reciba información fiable y útil: sin atajos, sin datos genéricos y con verificación directa sobre el terreno. Tres pasos claros que garantizan la calidad de cada informe que entregamos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOS TRES NIVELES ══════════════════════════════════════════════════ -->
+<section class="section-lg" aria-labelledby="levels-h">
+  <div class="container">
+    <h2 class="visually-hidden" id="levels-h" data-t="met.badge">Nuestro Proceso</h2>
+
+    <ol class="levels">
+      <li class="level" data-reveal="rise">
+        <div class="level__aside">
+          <span class="level__num num-tab">01</span>
+          <span class="micro" data-t="met.level">Nivel</span>
+          <span class="level__line" aria-hidden="true"></span>
+        </div>
+        <div class="level__body">
+          <h3 class="d-3" data-t="met.l1.title">Recolección OSINT + Campo</h3>
+          <p class="body-lg" data-t-html="met.l1.desc">Recopilamos información de <strong class="text-slate-700 dark:text-slate-200">fuentes oficiales y registros públicos</strong>, y la contrastamos con visitas presenciales sobre el terreno.</p>
+          <ul class="ticks" data-stagger="60">
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l1.i1">Datos de fuentes oficiales y registros públicos</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l1.i2">Contraste de información entre distintas fuentes</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l1.i3">Equipo especializado en análisis territorial</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l1.i4">Visita presencial para confirmar lo que dicen los datos</span></li>
+          </ul>
+        </div>
+        <div class="level__viz" aria-hidden="true">
+          <svg viewBox="0 0 240 240" class="viz viz--osint">
+            <g class="viz__grid" stroke="currentColor" stroke-width="0.5" opacity=".16">
+              <circle cx="120" cy="120" r="42"/><circle cx="120" cy="120" r="72"/><circle cx="120" cy="120" r="102"/>
+              <line x1="120" y1="18" x2="120" y2="222"/><line x1="18" y1="120" x2="222" y2="120"/>
+            </g>
+            <path class="viz__sweep" d="M120 120 L120 18 A102 102 0 0 1 192 48 Z"/>
+            <g class="viz__dots">
+              <circle cx="86" cy="72" r="3"/><circle cx="164" cy="96" r="3"/>
+              <circle cx="142" cy="158" r="3"/><circle cx="72" cy="140" r="3"/>
+              <circle cx="176" cy="150" r="3"/>
+            </g>
+          </svg>
+        </div>
+      </li>
+
+      <li class="level" data-reveal="rise">
+        <div class="level__aside">
+          <span class="level__num num-tab">02</span>
+          <span class="micro" data-t="met.level">Nivel</span>
+          <span class="level__line" aria-hidden="true"></span>
+        </div>
+        <div class="level__body">
+          <h3 class="d-3" data-t="met.l2.title">Contextualización</h3>
+          <p class="body-lg" data-t-html="met.l2.desc">Convertimos los números en algo comprensible y útil. No basta con los datos: hay que entender qué significan en la vida real de cada zona.</p>
+          <ul class="ticks" data-stagger="60">
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l2.i1">Cómo es la comunidad y el ambiente de la zona</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l2.i2">El carácter y la vida social del entorno</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l2.i3">Calidad de vida y percepción del entorno</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l2.i4">Contexto regional y comparativa con zonas similares</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l2.i5">Seguridad percibida y ambiente real del área</span></li>
+          </ul>
+        </div>
+        <div class="level__viz" aria-hidden="true">
+          <svg viewBox="0 0 240 240" class="viz viz--ctx">
+            <g stroke="currentColor" stroke-width="0.5" opacity=".16">
+              <rect x="30" y="30" width="180" height="180" rx="4"/>
+              <line x1="30" y1="90" x2="210" y2="90"/><line x1="30" y1="150" x2="210" y2="150"/>
+              <line x1="90" y1="30" x2="90" y2="210"/><line x1="150" y1="30" x2="150" y2="210"/>
+            </g>
+            <path class="viz__path" data-draw d="M40 190 C 76 190 78 128 108 122 S 150 150 168 96 S 196 58 204 52"/>
+            <g class="viz__dots"><circle cx="108" cy="122" r="3.4"/><circle cx="168" cy="96" r="3.4"/></g>
+          </svg>
+        </div>
+      </li>
+
+      <li class="level" data-reveal="rise">
+        <div class="level__aside">
+          <span class="level__num num-tab">03</span>
+          <span class="micro" data-t="met.level">Nivel</span>
+          <span class="level__line" aria-hidden="true"></span>
+        </div>
+        <div class="level__body">
+          <h3 class="d-3" data-t="met.l3.title">Presentación</h3>
+          <p class="body-lg" data-t-html="met.l3.desc">Todo lo analizado se resume en un informe claro y ordenado, entregado en el plazo acordado. Sin tecnicismos innecesarios.</p>
+          <ul class="ticks" data-stagger="60">
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l3.i1">Informe estructurado y fácil de entender</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l3.i2">Resumen ejecutivo con los puntos clave</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l3.i3">Comparativa entre zonas si fuera necesario</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l3.i4">Conclusiones claras y directas</span></li>
+            <li data-reveal="rise-sm"><svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#check"></use></svg><span data-t="met.l3.i5">Dossier completo entregado en el plazo acordado</span></li>
+          </ul>
+        </div>
+        <div class="level__viz" aria-hidden="true">
+          <svg viewBox="0 0 240 240" class="viz viz--doc">
+            <g stroke="currentColor" stroke-width="0.5" opacity=".16">
+              <rect x="52" y="26" width="136" height="188" rx="5"/>
+            </g>
+            <g class="viz__lines">
+              <rect x="72" y="56" width="72" height="4" rx="2"/>
+              <rect x="72" y="80" width="96" height="3" rx="1.5"/>
+              <rect x="72" y="94" width="82" height="3" rx="1.5"/>
+              <rect x="72" y="108" width="90" height="3" rx="1.5"/>
+              <rect x="72" y="140" width="44" height="3" rx="1.5"/>
+              <rect x="72" y="154" width="96" height="3" rx="1.5"/>
+              <rect x="72" y="168" width="66" height="3" rx="1.5"/>
+            </g>
+            <circle class="viz__seal" cx="164" cy="188" r="14"/>
+          </svg>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ EL FILTRO ROMVILL ═════════════════════════════════════════════════ -->
+<section class="section-lg on-dark grain filter" aria-labelledby="filter-h">
+  <div class="container">
+    <div class="sec-head" data-reveal="rise">
+      <p class="kicker" data-t="met.filter.badge">Filtro Romvill</p>
+      <h2 class="d-2" id="filter-h" data-t-html="met.filter.title">Convertimos datos dispersos en <span class="italic text-slate-400">criterio estratégico</span></h2>
+      <p class="lead" data-t="met.filter.desc">En el mercado actual, el problema no es la falta de información, sino el exceso de datos irrelevantes o sesgados. Nuestro trabajo es actuar como su analista experto.</p>
+    </div>
+
+    <div class="filter__principles" data-stagger="90">
+      <article class="filter__p" data-reveal="rise">
+        <span class="filter__p-num num-tab">01</span>
+        <h3 class="d-5" data-t="met.b1.title">Cero Especulación</h3>
+        <p class="body-sm" data-t="met.b1.desc">Eliminamos el &quot;me han dicho&quot; y el &quot;parece que&quot;. Todo lo que incluimos en el informe ha sido validado.</p>
+      </article>
+      <article class="filter__p" data-reveal="rise">
+        <span class="filter__p-num num-tab">02</span>
+        <h3 class="d-5" data-t="met.b2.title">Trabajo de Campo Real</h3>
+        <p class="body-sm" data-t="met.b2.desc">Los satélites no cuentan toda la historia. Pisamos el terreno, medimos los tiempos de acceso.</p>
+      </article>
+      <article class="filter__p" data-reveal="rise">
+        <span class="filter__p-num num-tab">03</span>
+        <h3 class="d-5" data-t="met.b3.title">Perspectiva Independiente</h3>
+        <p class="body-sm" data-t="met.b3.desc">No intermediamos en operaciones ni promocionamos zonas. Nuestro único objetivo es la radiografía exacta del lugar.</p>
+      </article>
+    </div>
+
+    <div class="filter__cards" data-stagger="80">
+      <article class="card card--hover card--glow" data-reveal="rise">
+        <span class="card__icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#layers"></use></svg></span>
+        <h3 class="card__title" data-t="met.card1.title">Validación Múltiple</h3>
+        <p class="card__text" data-t="met.card1.desc">Cruzamos hasta 5 fuentes de datos por dimensión analizada.</p>
+      </article>
+      <article class="card card--hover card--glow" data-reveal="rise">
+        <span class="card__icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#eye"></use></svg></span>
+        <h3 class="card__title" data-t="met.card2.title">Lo que no se ve a simple vista</h3>
+        <p class="card__text" data-t="met.card2.desc">Detectamos los detalles del entorno que no aparecen en un anuncio pero que conviene conocer antes de decidir.</p>
+      </article>
+      <article class="card card--hover card--glow" data-reveal="rise">
+        <span class="card__icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#growth"></use></svg></span>
+        <h3 class="card__title" data-t="met.card3.title">Proyectos de futuro</h3>
+        <p class="card__text" data-t="met.card3.desc">Identificamos los proyectos e infraestructuras recogidos en la planificación urbanística oficial de la zona.</p>
+      </article>
+    </div>
+
+    <p class="pill pill--gold filter__stamp" data-reveal="veil">
+      <svg class="ico" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#scale"></use></svg>
+      <span data-t="met.obj_badge">Objetividad</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══ INTERACTIVO: VERIFICACIÓN SOBRE EL TERRENO ════════════════════════ -->
+<section class="section-lg" aria-labelledby="hs-h">
+  <div class="container-wide">
+    <div class="sec-head" data-reveal="rise">
+      <p class="kicker" data-t="ix.hs.kicker">Trabajo de campo</p>
+      <h2 class="d-2" id="hs-h" data-t="ix.hs.title">Verificación sobre el terreno</h2>
+      <p class="lead" data-t="ix.hs.help">No analizamos una zona desde un despacho. Toca cada punto y mira qué comprobamos en la propia zona.</p>
+    </div>
+
+    <!-- ── Registro de campo ───────────────────────────────────────────────
+         Antes esto eran cinco puntos pulsantes sobre una foto de atardecer.
+         El problema no era la interaccion: era que en esa foto NO HAY NADA a
+         lo que apuntar —los puntos caian sobre cielo y mar— y el panel de al
+         lado estaba vacio hasta que alguien pulsaba. Mucho gesto para poco
+         contenido.
+
+         Ahora las cinco comprobaciones se ven TODAS a la vez, y cada una
+         tiene su fotografia real de esa misma comprobacion en este mismo
+         territorio: Nueva Andalucia para seguridad, la Explanada de Alicante
+         para demografia, el Hospital Regional de Malaga para sanidad, la
+         autopista de Elche de noche para movilidad y el litoral entre
+         Marbella y Fuengirola para desarrollo. La lista informa sola; la
+         imagen es la recompensa de recorrerla. -->
+    <div class="field" id="field" data-reveal="rise">
+      <div class="field__media">
+        <picture class="field__shot" data-f-shot="seg" data-on>
+          <source srcset="assets/images/sec/seguridad-sm.webp" type="image/webp">
+          <img src="assets/images/sec/seguridad.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+        </picture>
+        <picture class="field__shot" data-f-shot="dem">
+          <source srcset="assets/images/sec/demografico-sm.webp" type="image/webp">
+          <img src="assets/images/sec/demografico.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+        </picture>
+        <picture class="field__shot" data-f-shot="san">
+          <source srcset="assets/images/sec/sanidad-sm.webp" type="image/webp">
+          <img src="assets/images/sec/sanidad.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+        </picture>
+        <picture class="field__shot" data-f-shot="mov">
+          <source srcset="assets/images/sec/movilidad-sm.webp" type="image/webp">
+          <img src="assets/images/sec/movilidad.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+        </picture>
+        <picture class="field__shot" data-f-shot="dev">
+          <source srcset="assets/images/sec/proyeccion-sm.webp" type="image/webp">
+          <img src="assets/images/sec/proyeccion.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+        </picture>
+        <span class="field__veil" aria-hidden="true"></span>
+        <p class="field__stamp micro" data-f-stamp>01 / 05</p>
+      </div>
+
+      <div class="field__col">
+      <p class="field__hint micro" data-t="ix.hs.hint">Toca un punto</p>
+      <ul class="field__list" data-stagger="60">
+        <li>
+          <button class="fitem" type="button" data-f="seg" aria-pressed="true">
+            <span class="fitem__n num-tab">01</span>
+            <span class="fitem__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#shield"></use></svg></span>
+            <span class="fitem__body">
+              <b data-t="ix.hs.seg.t">Seguridad y convivencia</b>
+              <i data-t="ix.hs.seg.d">Describimos el contexto de convivencia y seguridad con datos de fuentes oficiales (Policía y Guardia Civil), de forma objetiva y sin clasificar la zona por peligrosidad.</i>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="fitem" type="button" data-f="dem" aria-pressed="false">
+            <span class="fitem__n num-tab">02</span>
+            <span class="fitem__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#users"></use></svg></span>
+            <span class="fitem__body">
+              <b data-t="ix.hs.dem.t">Perfil demográfico</b>
+              <i data-t="ix.hs.dem.d">Mostramos cómo es la comunidad que vive en la zona —edad, origen y renta media del entorno— y qué ambiente social predomina, para saber si encaja con usted.</i>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="fitem" type="button" data-f="san" aria-pressed="false">
+            <span class="fitem__n num-tab">03</span>
+            <span class="fitem__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#health"></use></svg></span>
+            <span class="fitem__body">
+              <b data-t="ix.hs.san.t">Sanidad y emergencias</b>
+              <i data-t="ix.hs.san.d">Reunimos la cobertura sanitaria y de emergencias accesible desde la zona: hospitales, centros de salud y distancias reales a urgencias.</i>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="fitem" type="button" data-f="mov" aria-pressed="false">
+            <span class="fitem__n num-tab">04</span>
+            <span class="fitem__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#route"></use></svg></span>
+            <span class="fitem__body">
+              <b data-t="ix.hs.mov.t">Movilidad</b>
+              <i data-t="ix.hs.mov.d">Explicamos cómo se desplaza por la zona y cómo de conectada está: accesos, transporte público y conexión con aeropuertos y núcleos cercanos.</i>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="fitem" type="button" data-f="dev" aria-pressed="false">
+            <span class="fitem__n num-tab">05</span>
+            <span class="fitem__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#growth"></use></svg></span>
+            <span class="fitem__body">
+              <b data-t="ix.hs.dev.t">Desarrollo futuro</b>
+              <i data-t="ix.hs.dev.d">Reunimos los cambios previstos por la planificación pública oficial —obras e infraestructuras— sin hacer proyecciones de revalorización.</i>
+            </span>
+          </button>
+        </li>
+      </ul>
+      </div>
+    </div>
+
+    <!-- ── El metodo, en una linea ─────────────────────────────────────────
+         Parrafo pedido por el cliente (capa v2, ui.*: el guion oficial no se
+         toca) y el proceso en tres pasos. Los tres nodos van unidos por un
+         filete que se dibuja al entrar: gabinete -> terreno -> contraste. -->
+    <div class="proceso" data-reveal="rise">
+      <p class="proceso__p body-lg" data-t="ui.field.p">El trabajo de gabinete ordena los datos; el terreno los confirma. Recorremos la zona a distintas horas, comprobamos in situ lo que las fuentes oficiales describen y contrastamos cada observación antes de incorporarla al expediente. Lo que no se puede verificar no entra en el informe.</p>
+
+      <ol class="proceso__pasos" data-stagger="90">
+        <li class="paso" data-reveal="rise-sm">
+          <span class="paso__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#search"></use></svg></span>
+          <span class="paso__n num-tab">01</span>
+          <b data-t="ui.field.s1">Gabinete</b>
+          <i data-t="ui.field.s1d">Fuentes oficiales y registros</i>
+        </li>
+        <li class="paso" data-reveal="rise-sm">
+          <span class="paso__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#pin"></use></svg></span>
+          <span class="paso__n num-tab">02</span>
+          <b data-t="ui.field.s2">Terreno</b>
+          <i data-t="ui.field.s2d">Presencia en la zona, a distintas horas</i>
+        </li>
+        <li class="paso" data-reveal="rise-sm">
+          <span class="paso__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#check-circle"></use></svg></span>
+          <span class="paso__n num-tab">03</span>
+          <b data-t="ui.field.s3">Contraste</b>
+          <i data-t="ui.field.s3d">Cada observación, verificada antes de entrar</i>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DECLARACIÓN DE USO DE IA (AI Act art. 50) ═════════════════════════ -->
+<section class="section section--alt" aria-labelledby="ia-h">
+  <div class="container">
+    <!-- Antes: un recuadro solitario con un icono y dos parrafos. Ahora el
+         texto va a la izquierda y a la derecha el DIAGRAMA de lo que dice:
+         tres capas —fuentes, herramientas de IA, criterio humano— donde la
+         de abajo, la humana, es la que firma. Es la ilustracion literal de
+         los dos parrafos, no decoracion. Las etiquetas son capa v2 (ui.*). -->
+    <div class="ia" data-reveal="rise">
+      <div class="ia__body">
+        <p class="kicker" data-t="met.ia.kicker">Transparencia · Metodología</p>
+        <h2 class="d-3" id="ia-h" data-t="met.ia.title">Tecnología con criterio humano</h2>
+        <p class="body-lg" data-t-html="met.ia.p1">En ROMVILL empleamos herramientas de <strong>inteligencia artificial</strong> en la fase de recopilación y estructuración de la información: nos permiten reunir y ordenar grandes volúmenes de datos de fuentes oficiales y públicas con rapidez y consistencia.</p>
+        <p class="body-lg" data-t-html="met.ia.p2">El paso decisivo, sin embargo, es humano. <strong>Un analista profesional verifica, contrasta, interpreta y firma cada informe</strong> antes de su entrega. Ninguna conclusión llega al cliente sin haber pasado por ese juicio experto. La tecnología nos hace más rápidos; el criterio que usted recibe es humano.</p>
+      </div>
+
+      <div class="ia__capas" aria-hidden="true" data-stagger="120">
+        <div class="capa" data-reveal="rise-sm">
+          <span class="capa__ico"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#doc"></use></svg></span>
+          <span class="capa__t"><b data-t="ui.ia.l1">Fuentes oficiales</b><i data-t="ui.ia.l1d">Datos públicos y registros</i></span>
+        </div>
+        <span class="capa__flujo"></span>
+        <div class="capa" data-reveal="rise-sm">
+          <span class="capa__ico"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#sparkle"></use></svg></span>
+          <span class="capa__t"><b data-t="ui.ia.l2">Herramientas de IA</b><i data-t="ui.ia.l2d">Recopilación y estructura</i></span>
+        </div>
+        <span class="capa__flujo"></span>
+        <div class="capa capa--firma" data-reveal="rise-sm">
+          <span class="capa__ico"><svg><use href="assets/icons/sprite.svg?v=mt8ufwac#eye"></use></svg></span>
+          <span class="capa__t"><b data-t="ui.ia.l3">Criterio humano</b><i data-t="ui.ia.l3d">Verifica, interpreta y firma</i></span>
+          <svg class="capa__ok"><use href="assets/icons/sprite.svg?v=mt8ufwac#check-circle"></use></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CIERRE ════════════════════════════════════════════════════════════ -->
+<!-- Bloque de cierre. La página elige las claves desde su cabecera:
+     ctaTitle / ctaDesc / ctaBtn / ctaHref  (ctaDesc puede omitirse). -->
+<section class="section-lg cta on-dark grain" aria-labelledby="cta-h">
+  <!-- El cierre era tinta plana con reticula: el ultimo pantallazo de casi
+       todas las paginas se leia vacio. La panoramica de Banus al anochecer
+       —muy apagada, con velo cerrado en los bordes— le da suelo sin robar
+       protagonismo al titular. -->
+  <picture class="cta__media" aria-hidden="true">
+    <source srcset="assets/images/sec/banus-dusk.webp" type="image/webp">
+    <img src="assets/images/sec/banus-dusk.jpg" alt="" width="1600" height="360" loading="lazy" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="cta__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="cta__inner" data-reveal="rise">
+      <h2 class="d-1" id="cta-h" data-t-html="met.cta.title">¿Tiene preguntas sobre cómo trabajamos?</h2>
+      <p class="lead center-x center" data-t="met.cta.desc">Si quiere saber más sobre cómo elaboramos los informes o tiene preguntas concretas sobre su caso, estamos para ayudarle.</p>
+      <div class="cluster" style="justify-content:center">
+        <a class="btn btn--primary btn--lg" href="contacto.html">
+          <span data-t="met.cta.btn">Hablar con nosotros</span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--outline btn--lg" href="precios.html" data-t="hero.cta_secondary">Ver qué incluye</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer grain">
+  <div class="footer__top container-wide">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a class="nav__logo" href="index.html" aria-label="ROMVILL">
+          <img class="nav__mark" src="assets/images/rv-logo-white.png" alt="" width="222" height="174">
+          <span>
+            <span class="nav__wordmark">Romvill</span>
+            <span class="nav__logo-sub" data-t="hero.subheadline">Informes independientes de inteligencia territorial</span>
+          </span>
+        </a>
+        <p class="body-sm" style="color:rgb(242 245 250 / .55)" data-t="hero.lema">Analizamos la zona para que usted decida con criterio propio</p>
+        <p class="micro" style="color:var(--gold-400)" data-t="hero.cities">Alicante · Málaga · Marbella</p>
+
+        <form class="footer__news stack stack-3" id="newsletter" novalidate style="margin-top:var(--sp-4)">
+          <label class="footer__col-title" for="news-email" data-t="news.title">Boletín ROMVILL</label>
+          <p class="caption" style="color:rgb(242 245 250 / .5);margin-top:-8px" data-t="news.desc">Novedades, análisis de zonas y tendencias de la costa mediterránea.</p>
+          <div class="footer__news-row">
+            <input class="field__input" type="email" id="news-email" name="email" autocomplete="email"
+                   required data-t-attr="placeholder:news.ph" placeholder="Su correo electrónico" placeholder="Su correo electrónico" style="border-bottom-color:rgb(255 255 255 / .2)">
+            <button class="btn btn--primary btn--sm" type="submit" data-t="news.btn">Suscribirme</button>
+          </div>
+          <p class="caption" id="news-status" role="status" aria-live="polite" style="color:rgb(242 245 250 / .45)" data-t="news.gdpr">Sin spam. Puede darse de baja en cualquier momento.</p>
+        </form>
+      </div>
+
+      <nav aria-label="Navegación del pie de página">
+        <p class="footer__col-title" data-t="nav.aria">Navegación principal</p>
+        <div class="footer__links">
+          <a class="footer__link" href="metodologia.html"          data-t="nav.metodologia">Metodología</a>
+          <a class="footer__link" href="analisis.html"             data-t="nav.analisis">Análisis</a>
+          <a class="footer__link" href="sectores.html"             data-t="nav.sectores">Sectores</a>
+          <a class="footer__link" href="quienes-somos.html"        data-t="nav.quienes">Quiénes somos</a>
+          <a class="footer__link" href="precios.html"              data-t="nav.precios">Precios</a>
+          <a class="footer__link" href="preguntas-frecuentes.html" data-t="nav.faq.full">Preguntas frecuentes</a>
+          <a class="footer__link" href="muestra-de-informe.html"   data-t="mu.link.ver">Ver una muestra del informe</a>
+          <a class="footer__link" href="contacto.html"             data-t="nav.contacto">Contacto</a>
+        </div>
+      </nav>
+
+      <div>
+        <p class="footer__col-title" data-t="footer.zonas">Zonas</p>
+        <div class="footer__links">
+          <a class="footer__link" href="analisis-marbella.html" data-t="zona.marbella.nombre">Marbella</a>
+          <a class="footer__link" href="analisis-malaga.html"   data-t="zona.malaga.nombre">Málaga</a>
+          <a class="footer__link" href="analisis-alicante.html" data-t="zona.alicante.nombre">Alicante</a>
+        </div>
+
+        <p class="footer__col-title" style="margin-top:var(--sp-8)" data-t="ana.badge">Inteligencia Territorial</p>
+        <div class="footer__links">
+          <a class="footer__link" href="perfil-seguridad.html"   data-t="modal.dim.security">Seguridad</a>
+          <a class="footer__link" href="perfil-demografico.html" data-t="modal.dim.demog">Demografía</a>
+          <a class="footer__link" href="perfil-sanidad.html"     data-t="modal.dim.health">Sanidad</a>
+          <a class="footer__link" href="perfil-movilidad.html"   data-t="modal.dim.mobility">Movilidad</a>
+          <a class="footer__link" href="perfil-proyeccion.html"  data-t="pillar.proj.title">Desarrollo</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__col-title" data-t="contact.channels">Canales de Contacto Directo</p>
+        <div class="footer__links">
+          <a class="footer__link" href="mailto:info@romvill.com">info@romvill.com</a>
+          <a class="footer__link" href="agendar-llamada.html" data-t="agenda.head">Agenda de llamadas</a>
+          <a class="footer__link" href="contacto.html" data-t="hero.cta_primary">Solicitar mi informe de zona</a>
+        </div>
+
+        <p class="footer__col-title" style="margin-top:var(--sp-8)" data-t="footer.zonas">Zonas</p>
+        <p class="caption" style="color:rgb(242 245 250 / .5)" data-t="hero.cities">Alicante · Málaga · Marbella</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-wide">
+    <div class="footer__bottom">
+      <p>&copy; 2026 ROMVILL. <span data-t="footer.rights">Todos los derechos reservados.</span></p>
+      <nav class="footer__legal" aria-label="Navegación del pie de página">
+        <a class="footer__link" href="privacidad.html"  data-t="footer.privacy">Privacidad</a>
+        <a class="footer__link" href="terminos.html"    data-t="footer.terms">Términos</a>
+        <a class="footer__link" href="aviso-legal.html" data-t="footer.avisolegal">Aviso legal</a>
+      </nav>
+    </div>
+  </div>
+
+  <span class="footer__watermark" aria-hidden="true">ROMVILL</span>
+</footer>
+
+
+<!-- Aviso de cookies. En el original vive en footer.php y usa las claves
+     cookies.title / cookies.short / footer.cookies. Se muestra una sola vez;
+     la decisión se guarda en localStorage. -->
+<div class="cookiebar" id="cookiebar" role="dialog" aria-labelledby="cookiebar-t" aria-describedby="cookiebar-d" hidden>
+  <div class="cookiebar__box">
+    <svg class="cookiebar__ico" aria-hidden="true"><use href="assets/icons/sprite.svg?v=mt8ufwac#lock"></use></svg>
+    <div class="cookiebar__text">
+      <p class="cookiebar__t" id="cookiebar-t" data-t="cookies.title">Usamos cookies</p>
+      <p class="cookiebar__d" id="cookiebar-d" data-t="cookies.short">Cookies propias y de terceros para analizar el tráfico y mejorar su experiencia.</p>
+    </div>
+    <div class="cookiebar__actions">
+      <a class="btn btn--ghost btn--sm" href="privacidad.html" data-t="ui.cookies.more">Más información</a>
+      <button class="btn btn--primary btn--sm" type="button" id="cookiebar-ok" data-t="ui.cookies.accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<script type="module" src="assets/js/app.js?v=mt96401f"></script>
+  <script type="module" src="assets/js/pages/metodologia.js?v=mt8pubmz"></script>
+</body>
+</html>

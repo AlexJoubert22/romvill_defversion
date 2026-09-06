@@ -1,0 +1,575 @@
+<!--meta
+slug: index
+title: seo.title.home
+desc: meta.home.desc
+og: og-romvill.jpg
+navMode: dark
+css: pages/home.css
+js: pages/home.js
+-->
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     HERO — territorio en movimiento
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="hero on-dark grain" id="hero">
+  <div class="hero__media" aria-hidden="true">
+    <video class="hero__video" id="hero-video" poster="assets/video/hero-poster.jpg"
+           data-bg-video="assets/video/hero-loop.mp4"
+           muted loop playsinline preload="none"></video>
+    <div class="hero__scrim"></div>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="hero__inner container-wide">
+    <div class="hero__content">
+      <p class="pill pill--gold hero__tag" data-reveal="veil">
+        <span class="pill__dot pill__dot--live"></span>
+        <span data-t="hero.tagline"></span>
+      </p>
+
+      <h1 class="hero__title" data-reveal="wipe" style="--reveal-delay:50ms" data-t="hero.slogan"></h1>
+
+      <p class="hero__desc" data-reveal="rise" style="--reveal-delay:120ms" data-t-html="hero.desc"></p>
+
+      <div class="hero__actions" data-reveal="rise" style="--reveal-delay:170ms">
+        <a class="btn btn--primary btn--lg" href="contacto.html">
+          <span data-t="hero.btn_primary"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--outline btn--lg" href="analisis.html" data-t="hero.btn_sec"></a>
+      </div>
+
+      <div class="hero__badges" data-reveal="rise" style="--reveal-delay:220ms" data-stagger="60">
+        <span class="hero__badge" data-reveal="rise-sm">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#scale"></use></svg>
+          <span data-t="badge.independent"></span>
+        </span>
+        <span class="hero__badge" data-reveal="rise-sm">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#check-circle"></use></svg>
+          <span data-t="badge.verified"></span>
+        </span>
+        <span class="hero__badge" data-reveal="rise-sm">
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#target"></use></svg>
+          <span data-t="badge.methodology"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="hero__foot">
+      <p class="hero__cities micro" data-t="hero.cities"></p>
+      <a class="hero__scroll" href="#trust">
+        <span class="micro" data-t="a11y.scrollHint"></span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+      <button class="hero__vidbtn" type="button" data-video-toggle="hero-video" data-playing="true"
+              data-t-attr="aria-label:a11y.videoPause">
+        <svg class="hero__vidbtn-pause" aria-hidden="true"><use href="assets/icons/sprite.svg#pause"></use></svg>
+        <svg class="hero__vidbtn-play" aria-hidden="true"><use href="assets/icons/sprite.svg#play"></use></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     BARRA DE CONFIANZA — los tres números que sostienen la promesa
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section trust" id="trust" aria-labelledby="trust-h">
+  <h2 class="visually-hidden" id="trust-h" data-t="trust.independent_label"></h2>
+  <div class="container">
+    <div class="trust__grid" data-stagger="90">
+
+      <div class="trust__item" data-reveal="rise">
+        <span class="trust__icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#shield"></use></svg></span>
+        <p class="stat__num num-tab"><span data-count="50" data-count-prefix="+"></span></p>
+        <hr class="hairline trust__rule">
+        <p class="stat__label" data-t="trust.indicators_label"></p>
+        <p class="stat__desc" data-t="trust.indicators_desc"></p>
+      </div>
+
+      <div class="trust__item" data-reveal="rise">
+        <span class="trust__icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#layers"></use></svg></span>
+        <p class="stat__num num-tab"><span data-count="40" data-count-prefix="+"></span></p>
+        <hr class="hairline trust__rule">
+        <p class="stat__label" data-t="trust.sources_label"></p>
+        <p class="stat__desc" data-t="trust.sources_desc"></p>
+      </div>
+
+      <div class="trust__item" data-reveal="rise">
+        <span class="trust__icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#scale"></use></svg></span>
+        <p class="stat__num num-tab"><span data-count="100" data-count-suffix="%"></span></p>
+        <hr class="hairline trust__rule">
+        <p class="stat__label" data-t="trust.independent_label"></p>
+        <p class="stat__desc" data-t="trust.independent_desc"></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     QUÉ HACEMOS — los cuatro pilares
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section section--alt mapgrid" aria-labelledby="service-h">
+  <div class="container">
+    <div class="sec-head" data-reveal="rise">
+      <p class="kicker" data-t="service.badge"></p>
+      <h2 class="d-2" id="service-h" data-t-html="service.title"></h2>
+      <p class="lead" data-t="service.desc"></p>
+    </div>
+
+    <div class="pillars" data-stagger="80">
+      <article class="card card--hover card--glow pillar" data-reveal="rise">
+        <span class="card__idx">01</span>
+        <span class="card__shot" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/sec/seguridad-sm.webp" type="image/webp">
+            <img src="assets/images/sec/seguridad.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+          </picture>
+          <span class="card__icon"><svg><use href="assets/icons/sprite.svg#shield"></use></svg></span>
+        </span>
+        <h3 class="card__title" data-t="pillar.security.title"></h3>
+        <p class="card__text" data-t="pillar.security.desc"></p>
+        <a class="pillar__link link-draw" href="perfil-seguridad.html">
+          <span data-t="ana.d1.link"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </a>
+      </article>
+
+      <article class="card card--hover card--glow pillar" data-reveal="rise">
+        <span class="card__idx">02</span>
+        <span class="card__shot" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/sec/demografico-sm.webp" type="image/webp">
+            <img src="assets/images/sec/demografico.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+          </picture>
+          <span class="card__icon"><svg><use href="assets/icons/sprite.svg#users"></use></svg></span>
+        </span>
+        <h3 class="card__title" data-t="pillar.demog.title"></h3>
+        <p class="card__text" data-t="pillar.demog.desc"></p>
+        <a class="pillar__link link-draw" href="perfil-demografico.html">
+          <span data-t="ana.d2.link"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </a>
+      </article>
+
+      <article class="card card--hover card--glow pillar" data-reveal="rise">
+        <span class="card__idx">03</span>
+        <span class="card__shot" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/sec/sanidad-sm.webp" type="image/webp">
+            <img src="assets/images/sec/sanidad.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+          </picture>
+          <span class="card__icon"><svg><use href="assets/icons/sprite.svg#health"></use></svg></span>
+        </span>
+        <h3 class="card__title" data-t="pillar.services.title"></h3>
+        <p class="card__text" data-t="pillar.services.desc"></p>
+        <a class="pillar__link link-draw" href="perfil-sanidad.html">
+          <span data-t="ana.d3.link"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </a>
+      </article>
+
+      <article class="card card--hover card--glow pillar" data-reveal="rise">
+        <span class="card__idx">04</span>
+        <span class="card__shot" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/sec/proyeccion-sm.webp" type="image/webp">
+            <img src="assets/images/sec/proyeccion.jpg" alt="" width="800" height="450" loading="lazy" decoding="async">
+          </picture>
+          <span class="card__icon"><svg><use href="assets/icons/sprite.svg#growth"></use></svg></span>
+        </span>
+        <h3 class="card__title" data-t="pillar.proj.title"></h3>
+        <p class="card__text" data-t="pillar.proj.desc"></p>
+        <a class="pillar__link link-draw" href="perfil-proyeccion.html">
+          <span data-t="related.cta"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CÓMO FUNCIONA — tres pasos
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="how-h">
+  <div class="container">
+    <div class="sec-head sec-head--center" data-reveal="rise">
+      <p class="kicker kicker--center" data-t="how.badge"></p>
+      <h2 class="d-3" id="how-h" data-t="hero.lema"></h2>
+    </div>
+
+    <div class="steps" data-stagger="90">
+      <article class="step" data-reveal="rise">
+        <h3 class="step__t" data-t="how.step1.title"></h3>
+        <p class="step__d" data-t="how.step1.desc"></p>
+      </article>
+      <article class="step" data-reveal="rise">
+        <h3 class="step__t" data-t="how.step2.title"></h3>
+        <p class="step__d" data-t="how.step2.desc"></p>
+      </article>
+      <article class="step" data-reveal="rise">
+        <h3 class="step__t" data-t="how.step3.title"></h3>
+        <p class="step__d" data-t="how.step3.desc"></p>
+      </article>
+    </div>
+
+    <div class="center" style="margin-top:var(--sp-16)" data-reveal="rise">
+      <a class="btn btn--dark btn--lg" href="contacto.html">
+        <span data-t="how.cta"></span>
+        <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CÓMO TRABAJAMOS — el informe como objeto
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section-lg work on-dark grain" aria-labelledby="work-h">
+  <div class="container-wide">
+    <div class="work__grid">
+
+      <div class="work__text">
+        <div class="sec-head" data-reveal="rise">
+          <p class="kicker" data-t="work.badge"></p>
+          <h2 class="d-2" id="work-h" data-t-html="work.title"></h2>
+          <p class="lead" data-t="work.desc"></p>
+        </div>
+
+        <div class="work__feats" data-stagger="80">
+          <article class="work__feat" data-reveal="rise">
+            <span class="work__feat-ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#check-circle"></use></svg></span>
+            <div>
+              <h3 class="d-6" data-t="work.feat1.title"></h3>
+              <p class="body-sm" data-t="work.feat1.desc"></p>
+            </div>
+          </article>
+          <article class="work__feat" data-reveal="rise">
+            <span class="work__feat-ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#map"></use></svg></span>
+            <div>
+              <h3 class="d-6" data-t="work.feat2.title"></h3>
+              <p class="body-sm" data-t="work.feat2.desc"></p>
+            </div>
+          </article>
+          <article class="work__feat" data-reveal="rise">
+            <span class="work__feat-ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#doc"></use></svg></span>
+            <div>
+              <h3 class="d-6" data-t="work.feat3.title"></h3>
+              <p class="body-sm" data-t="work.feat3.desc"></p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Maqueta del informe: composición SVG, sin librerías -->
+      <div class="work__mock" data-parallax="-0.06" data-reveal="scale-in" aria-hidden="true">
+        <div class="report">
+          <div class="report__head">
+            <span class="report__brand">ROMVILL</span>
+            <span class="report__ref num-tab">RV-2026-MRB-8772</span>
+          </div>
+          <hr class="hairline">
+
+          <p class="report__kicker">Análisis de Inteligencia Zonal</p>
+          <p class="report__title">Elviria · Marbella</p>
+
+          <div class="report__radar">
+            <svg viewBox="0 0 200 200" role="presentation">
+              <g stroke="currentColor" stroke-width="0.5" opacity="0.22" fill="none">
+                <polygon points="100,18 171,59 171,141 100,182 29,141 29,59"/>
+                <polygon points="100,45 148,73 148,127 100,155 52,127 52,73"/>
+                <polygon points="100,72 124,86 124,114 100,128 76,114 76,86"/>
+                <line x1="100" y1="18" x2="100" y2="182"/>
+                <line x1="29" y1="59" x2="171" y2="141"/>
+                <line x1="171" y1="59" x2="29" y2="141"/>
+              </g>
+              <polygon class="report__shape" data-draw
+                       points="100,32 158,66 152,136 100,168 44,132 42,68"
+                       fill="rgba(191,161,95,.16)" stroke="#bfa15f" stroke-width="1.6"/>
+              <g fill="#bfa15f">
+                <circle cx="100" cy="32" r="2.6"/><circle cx="158" cy="66" r="2.6"/>
+                <circle cx="152" cy="136" r="2.6"/><circle cx="100" cy="168" r="2.6"/>
+                <circle cx="44" cy="132" r="2.6"/><circle cx="42" cy="68" r="2.6"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="report__bars">
+            <div class="report__bar"><span>Seguridad</span><i style="--v:86%"></i><b class="num-tab">8.6</b></div>
+            <div class="report__bar"><span>Demografía</span><i style="--v:74%"></i><b class="num-tab">7.4</b></div>
+            <div class="report__bar"><span>Sanidad</span><i style="--v:91%"></i><b class="num-tab">9.1</b></div>
+            <div class="report__bar"><span>Movilidad</span><i style="--v:68%"></i><b class="num-tab">6.8</b></div>
+            <div class="report__bar"><span>Desarrollo</span><i style="--v:79%"></i><b class="num-tab">7.9</b></div>
+          </div>
+
+          <hr class="hairline">
+          <div class="report__foot">
+            <span class="report__stamp">Verificado sobre el terreno</span>
+            <svg class="report__seal" viewBox="0 0 24 24"><use href="assets/icons/sprite.svg#check-circle"></use></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="work__quote" data-reveal="rise">
+      <div class="quote">
+        <blockquote class="quote__text" data-t="work.quote"></blockquote>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CIUDADES
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section-lg" aria-labelledby="cities-h">
+  <div class="container-wide">
+    <div class="sec-head" data-reveal="rise">
+      <p class="kicker" data-t="cities.badge"></p>
+      <h2 class="d-2" id="cities-h" data-t="cities.title"></h2>
+      <p class="lead" data-t="cities.desc"></p>
+    </div>
+
+    <div class="cities" data-stagger="110">
+
+      <button class="citycard" type="button" data-modal-open="modal-alicante" data-reveal="rise">
+        <img class="citycard__img" src="assets/images/alicante.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+        <span class="citycard__body">
+          <span class="citycard__sub" data-t="sec.alicante.sub"></span>
+          <span class="citycard__name" data-t="zona.alicante.nombre"></span>
+          <span class="citycard__desc" data-t="cities.alicante.desc"></span>
+          <span class="citycard__more">
+            <span data-t="cities.detail"></span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+          </span>
+        </span>
+      </button>
+
+      <button class="citycard" type="button" data-modal-open="modal-malaga" data-reveal="rise">
+        <img class="citycard__img" src="assets/images/malaga.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+        <span class="citycard__body">
+          <span class="citycard__sub" data-t="sec.malaga.sub"></span>
+          <span class="citycard__name" data-t="zona.malaga.nombre"></span>
+          <span class="citycard__desc" data-t="cities.malaga.desc"></span>
+          <span class="citycard__more">
+            <span data-t="cities.detail"></span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+          </span>
+        </span>
+      </button>
+
+      <button class="citycard" type="button" data-modal-open="modal-marbella" data-reveal="rise">
+        <img class="citycard__img" src="assets/images/marbella.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+        <span class="citycard__body">
+          <span class="citycard__sub" data-t="sec.marbella.sub"></span>
+          <span class="citycard__name" data-t="zona.marbella.nombre"></span>
+          <span class="citycard__desc" data-t="cities.marbella.desc"></span>
+          <span class="citycard__more">
+            <span data-t="cities.detail"></span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+          </span>
+        </span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     EXPEDIENTE DE MUESTRA — la seccion que faltaba en la portada
+     La web tiene una pagina entera de muestra real del informe y la portada
+     no la enseñaba. Para una consultoria, el producto ES el documento:
+     esta es la seccion mas importante que no existia. Izquierda, el texto
+     del guion; derecha, el expediente compuesto como objeto — portada
+     fotografica, sello de muestra y sus tres fuentes citadas. Todo el
+     texto de la composicion sale del guion (mu.*, verif.*): nada inventado.
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section-lg expo on-dark grain" aria-labelledby="expo-h">
+  <div class="container-wide">
+    <div class="expo__grid">
+
+      <div class="expo__text" data-reveal="rise">
+        <p class="kicker" data-t="mu.hero.kicker"></p>
+        <h2 class="d-2" id="expo-h" data-t="mu.hero.title"></h2>
+        <p class="lead" data-t="mu.hero.sub"></p>
+        <a class="btn btn--primary" href="muestra-de-informe.html">
+          <span data-t="mu.link.ver"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+        <!-- Aviso explicito: lo que se enseña aqui es una reduccion, y el
+             informe real desarrolla cada dimension. Sin esto, el visitante
+             puede pensar que las cinco barras y las tres fuentes SON el
+             producto. -->
+        <p class="expo__nota" data-t="ui.expo.nota"></p>
+      </div>
+
+      <!-- El expediente como objeto: dos hojas fantasma detras y el
+           documento delante. Composicion CSS, sin maqueta de navegador. -->
+      <div class="expo__doc" data-reveal="scale-in" aria-hidden="true">
+        <span class="expo__hoja expo__hoja--b"></span>
+        <span class="expo__hoja expo__hoja--a"></span>
+
+        <div class="expo__front" data-parallax="0.04">
+          <span class="expo__stamp micro" data-t="muestra.stamp"></span>
+
+          <!-- Cabecera del expediente: rotulo, filete de oro y las dos
+               cifras que lo describen. Nada de fotografia: un informe es un
+               documento, y lo que lo hace creible es su estructura. -->
+          <div class="expo__cab">
+            <span class="expo__rule"></span>
+            <span class="expo__doclbl micro" data-t="ui.expo.doc"></span>
+          </div>
+
+          <div class="expo__cifras">
+            <span class="expo__cifra">
+              <b class="num-tab">05</b>
+              <i data-t="ui.expo.dims"></i>
+            </span>
+            <span class="expo__cifra">
+              <b class="num-tab">03</b>
+              <i data-t="ui.expo.src"></i>
+            </span>
+          </div>
+
+          <!-- Barras de contenido: la silueta de un informe sin fingir texto
+               que no existe. Cada bloque es una dimension. -->
+          <div class="expo__lineas">
+            <span class="expo__ln" style="--w:100%;--d:0ms"></span>
+            <span class="expo__ln expo__ln--alt" style="--w:76%;--d:70ms"></span>
+            <span class="expo__ln" style="--w:92%;--d:140ms"></span>
+            <span class="expo__ln expo__ln--alt" style="--w:64%;--d:210ms"></span>
+            <span class="expo__ln" style="--w:88%;--d:280ms"></span>
+          </div>
+
+          <ul class="expo__fuentes">
+            <li><svg aria-hidden="true"><use href="assets/icons/sprite.svg#doc"></use></svg><span data-t="mu.cap.f1"></span><svg class="expo__ok" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg></li>
+            <li><svg aria-hidden="true"><use href="assets/icons/sprite.svg#doc"></use></svg><span data-t="mu.cap.f2"></span><svg class="expo__ok" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg></li>
+            <li><svg aria-hidden="true"><use href="assets/icons/sprite.svg#doc"></use></svg><span data-t="mu.cap.f3"></span><svg class="expo__ok" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     QUIÉNES SOMOS — anticipo
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section teaser" aria-labelledby="qs-h">
+  <div class="container">
+    <div class="teaser__grid">
+      <div class="fig fig--zoom teaser__fig" data-reveal="scale-in" data-parallax="0.05">
+        <img src="assets/images/quienes-hero.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+      <div class="teaser__text" data-reveal="rise">
+        <p class="kicker" data-t="qs.kicker"></p>
+        <h2 class="d-3" id="qs-h" data-t="qs.teaser.title"></h2>
+        <p class="lead" data-t="qs.teaser.desc"></p>
+        <a class="btn btn--outline" href="quienes-somos.html">
+          <span data-t="qs.teaser.cta"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CIERRE
+     ═════════════════════════════════════════════════════════════════════ -->
+<section class="section-lg cta on-dark grain" aria-labelledby="cta-h">
+  <picture class="cta__media" aria-hidden="true">
+    <source srcset="assets/images/sec/banus-dusk.webp" type="image/webp">
+    <img src="assets/images/sec/banus-dusk.jpg" alt="" width="1600" height="360" loading="lazy" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="cta__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="cta__inner" data-reveal="rise">
+      <h2 class="d-1" id="cta-h" data-t-html="cta.title"></h2>
+      <p class="lead center-x center" data-t="cta.desc"></p>
+      <div class="cluster" style="justify-content:center">
+        <a class="btn btn--primary btn--lg" href="contacto.html">
+          <span data-t="cta.btn"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--outline btn--lg" href="precios.html" data-t="hero.cta_secondary"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     MODALES DE CIUDAD
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<div class="modal" id="modal-alicante" role="dialog" aria-modal="true" aria-labelledby="ma-h">
+  <div class="modal__scrim"></div>
+  <div class="modal__box citymodal">
+    <button class="modal__close" type="button" data-t-attr="aria-label:modal.close">
+      <svg aria-hidden="true"><use href="assets/icons/sprite.svg#close"></use></svg>
+    </button>
+    <div class="citymodal__media">
+      <img src="assets/images/alicante.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+    </div>
+    <div class="citymodal__body">
+      <p class="pill pill--gold" data-t="modal.alicante.badge"></p>
+      <h2 class="d-4" id="ma-h" data-t="modal.alicante.h3"></h2>
+      <p class="body" data-t="modal.alicante.p1"></p>
+      <p class="body" data-t="modal.alicante.p2"></p>
+      <hr class="hairline">
+      <p class="label" style="color:var(--accent)" data-t="modal.dimensions"></p>
+      {{> city-dims}}
+      <p class="caption" data-t="modal.alicante.cov"></p>
+      <a class="btn btn--primary" href="contacto.html" data-t="cities.request"></a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-malaga" role="dialog" aria-modal="true" aria-labelledby="mm-h">
+  <div class="modal__scrim"></div>
+  <div class="modal__box citymodal">
+    <button class="modal__close" type="button" data-t-attr="aria-label:modal.close">
+      <svg aria-hidden="true"><use href="assets/icons/sprite.svg#close"></use></svg>
+    </button>
+    <div class="citymodal__media">
+      <img src="assets/images/malaga.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+    </div>
+    <div class="citymodal__body">
+      <p class="pill pill--gold" data-t="modal.malaga.badge"></p>
+      <h2 class="d-4" id="mm-h" data-t="modal.malaga.h3"></h2>
+      <p class="body" data-t="modal.malaga.p1"></p>
+      <p class="body" data-t="modal.malaga.p2"></p>
+      <hr class="hairline">
+      <p class="label" style="color:var(--accent)" data-t="modal.dimensions"></p>
+      {{> city-dims}}
+      <p class="caption" data-t="modal.malaga.cov"></p>
+      <a class="btn btn--primary" href="contacto.html" data-t="cities.request"></a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-marbella" role="dialog" aria-modal="true" aria-labelledby="mb-h">
+  <div class="modal__scrim"></div>
+  <div class="modal__box citymodal">
+    <button class="modal__close" type="button" data-t-attr="aria-label:modal.close">
+      <svg aria-hidden="true"><use href="assets/icons/sprite.svg#close"></use></svg>
+    </button>
+    <div class="citymodal__media">
+      <img src="assets/images/marbella.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+    </div>
+    <div class="citymodal__body">
+      <p class="pill pill--gold" data-t="modal.marbella.badge"></p>
+      <h2 class="d-4" id="mb-h" data-t="modal.marbella.h3"></h2>
+      <p class="body" data-t="modal.marbella.p1"></p>
+      <p class="body" data-t="modal.marbella.p2"></p>
+      <hr class="hairline">
+      <p class="label" style="color:var(--accent)" data-t="modal.dimensions"></p>
+      {{> city-dims}}
+      <p class="caption" data-t="modal.marbella.cov"></p>
+      <a class="btn btn--primary" href="contacto.html" data-t="cities.request"></a>
+    </div>
+  </div>
+</div>

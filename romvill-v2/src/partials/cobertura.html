@@ -1,0 +1,144 @@
+<!-- ══════════════════════════════════════════════════════════════════════
+     DÓNDE OPERAMOS — pieza infográfica
+
+     Rediseñada: antes eran tres tarjetas de foto y poco más. Ahora abre con
+     un eje esquemático de la costa mediterránea a ESCALA REAL de distancia
+     (Alicante → Málaga ≈ 480 km, Málaga → Marbella ≈ 57 km), que es
+     exactamente por lo que los dos últimos nodos aparecen tan juntos: lo
+     están. La línea se traza al entrar y los nodos se encienden en cascada.
+
+     Las distancias y las coordenadas son datos geográficos, no copy: el
+     texto de Romvill sigue saliendo íntegro del diccionario.
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<section class="section-lg cobertura" aria-labelledby="cover-h">
+  <div class="container-wide">
+
+    <div class="sec-head" data-reveal="rise">
+      <p class="kicker" data-t="sec.cover.badge"></p>
+      <h2 class="d-2" id="cover-h" data-t="sec.cover.title"></h2>
+      <p class="lead" data-t="sec.cover.desc"></p>
+    </div>
+
+    <!-- ── Ejes ────────────────────────────────────────────────────────────
+         Tercer intento de esta pieza, y el que se queda. Los dos anteriores
+         eran dibujo: una linea de 2 px sobre papel blanco (se leia como un
+         hueco) y, despues, un panel de tinta con mar, anillos y marcas de
+         escala (demasiado aparato para lo que dice). El dato es simple —tres
+         ciudades, dos distancias— y no necesita mapa: necesita composicion.
+
+         Tres columnas separadas por filete, con la distancia real colgada
+         del propio filete. Cero SVG, cero animacion, cero relleno. -->
+    <div class="ejes" data-stagger="90">
+      <div class="eje" data-reveal="rise">
+        <span class="eje__n num-tab">01</span>
+        <span class="eje__nombre">Alicante</span>
+        <span class="eje__zona" data-t="sec.alicante.sub"></span>
+        <span class="eje__geo num-tab">38.35&#176; N &#183; 0.48&#176; O</span>
+      </div>
+
+      <span class="eje__salto" aria-hidden="true"><span class="num-tab">&#8776; 480 km</span></span>
+
+      <div class="eje" data-reveal="rise">
+        <span class="eje__n num-tab">02</span>
+        <span class="eje__nombre">M&#225;laga</span>
+        <span class="eje__zona" data-t="sec.malaga.sub"></span>
+        <span class="eje__geo num-tab">36.72&#176; N &#183; 4.42&#176; O</span>
+      </div>
+
+      <span class="eje__salto" aria-hidden="true"><span class="num-tab">&#8776; 57 km</span></span>
+
+      <div class="eje" data-reveal="rise">
+        <span class="eje__n num-tab">03</span>
+        <span class="eje__nombre">Marbella</span>
+        <span class="eje__zona" data-t="sec.marbella.sub"></span>
+        <span class="eje__geo num-tab">36.51&#176; N &#183; 4.89&#176; O</span>
+      </div>
+    </div>
+
+    <!-- ── Las tres zonas ──────────────────────────────────────────────── -->
+    <div class="zonas" data-stagger="110">
+
+      <a class="zona" href="analisis-alicante.html" data-reveal="rise">
+        <span class="zona__media">
+          <img src="assets/images/alicante.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+        </span>
+        <span class="zona__head">
+          <span class="zona__n num-tab">01</span>
+          <span class="zona__sub" data-t="sec.alicante.sub"></span>
+        </span>
+        <span class="zona__name" data-t="zona.alicante.nombre"></span>
+        <span class="zona__cov" data-t="modal.alicante.cov"></span>
+        <span class="zona__go">
+          <span data-t="zona.link.ver"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </span>
+      </a>
+
+      <a class="zona" href="analisis-malaga.html" data-reveal="rise">
+        <span class="zona__media">
+          <img src="assets/images/malaga.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+        </span>
+        <span class="zona__head">
+          <span class="zona__n num-tab">02</span>
+          <span class="zona__sub" data-t="sec.malaga.sub"></span>
+        </span>
+        <span class="zona__name" data-t="zona.malaga.nombre"></span>
+        <span class="zona__cov" data-t="modal.malaga.cov"></span>
+        <span class="zona__go">
+          <span data-t="zona.link.ver"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </span>
+      </a>
+
+      <a class="zona" href="analisis-marbella.html" data-reveal="rise">
+        <span class="zona__media">
+          <img src="assets/images/marbella.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+        </span>
+        <span class="zona__head">
+          <span class="zona__n num-tab">03</span>
+          <span class="zona__sub" data-t="sec.marbella.sub"></span>
+        </span>
+        <span class="zona__name" data-t="zona.marbella.nombre"></span>
+        <span class="zona__cov" data-t="modal.marbella.cov"></span>
+        <span class="zona__go">
+          <span data-t="zona.link.ver"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-up-right"></use></svg>
+        </span>
+      </a>
+
+    </div>
+
+    <!-- ── Fuera de las tres zonas ─────────────────────────────────────── -->
+    <div class="intl on-dark grain" data-reveal="rise">
+      <!-- Meridianos y paralelos dibujados, no un icono de 24 px: la banda
+           habla de operar fuera del mapa habitual y el fondo lo dice solo. -->
+      <svg class="intl__geo" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="88"/>
+        <ellipse cx="100" cy="100" rx="88" ry="34"/>
+        <ellipse cx="100" cy="100" rx="88" ry="66"/>
+        <ellipse cx="100" cy="100" rx="34" ry="88"/>
+        <ellipse cx="100" cy="100" rx="66" ry="88"/>
+        <line x1="12" y1="100" x2="188" y2="100"/>
+        <line x1="100" y1="12" x2="100" y2="188"/>
+      </svg>
+      <span class="intl__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#globe"></use></svg></span>
+      <div class="intl__body">
+        <h3 class="d-5" data-t="sec.intl.title"></h3>
+        <p class="body" data-t-html="sec.intl.desc"></p>
+        <!-- Tres marcadores que responden a lo que uno se pregunta al leer
+             «bajo demanda»: cuando, cuanto y con que rigor. -->
+        <ul class="intl__marcas">
+          <li><svg aria-hidden="true"><use href="assets/icons/sprite.svg#clock"></use></svg><span data-t="ui.intl.n1"></span></li>
+          <li><svg aria-hidden="true"><use href="assets/icons/sprite.svg#scale"></use></svg><span data-t="ui.intl.n2"></span></li>
+          <li><svg aria-hidden="true"><use href="assets/icons/sprite.svg#check-circle"></use></svg><span data-t="ui.intl.n3"></span></li>
+        </ul>
+      </div>
+      <a class="btn btn--outline btn--sm" href="contacto.html">
+        <span data-t="sec.intl.link"></span>
+        <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,78 @@
+<!--meta
+slug: aviso-legal
+title: seo.title.aviso-legal
+desc: seo.desc.aviso-legal
+navMode: dark
+css: pages/legal.css
+-->
+
+<section class="phero on-dark grain mapgrid">
+  <div class="container-text">
+    <div class="phero__inner">
+      <p class="kicker" data-reveal="veil" data-t="legal.aviso.badge"></p>
+      <h1 class="d-1" data-reveal="wipe" style="--reveal-delay:40ms" data-t="legal.aviso.title"></h1>
+      <p class="legal__updated" data-reveal="rise" style="--reveal-delay:90ms" data-t="legal.aviso.updated"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="legal-h">
+  <div class="container-text">
+    <h2 class="visually-hidden" id="legal-h" data-t="legal.aviso.title"></h2>
+    <div class="legal" data-stagger="60">
+
+      <!-- 1 · Identificación del prestador (LSSI art. 10) -->
+      <section class="legal__s" data-reveal="rise">
+        <h3 class="d-5" data-t="legal.aviso.s1.title"></h3>
+        <p class="body" data-t-html="legal.aviso.s1.intro"></p>
+        <ul class="legal__list">
+          <li data-t-html="legal.aviso.s1.li1"></li>
+          <li>
+            <span data-t-html="legal.aviso.s1.li2label"></span>
+            <a class="link" href="mailto:info@romvill.com">info@romvill.com</a>
+          </li>
+          <li data-t-html="legal.aviso.s1.li3"></li>
+        </ul>
+        <p class="legal__pending">
+          <strong data-t="legal.aviso.s1.pending.label"></strong>
+          <span data-t-html="legal.aviso.s1.pending.body"></span>
+        </p>
+      </section>
+
+      <!-- 2 · Objeto y actividad -->
+      <section class="legal__s" data-reveal="rise">
+        <h3 class="d-5" data-t="legal.aviso.s2.title"></h3>
+        <p class="body" data-t-html="legal.aviso.s2.p1"></p>
+        <p class="body" data-t-html="legal.aviso.s2.p2"></p>
+        <p class="body" data-t-html="legal.aviso.s2.p3"></p>
+        <p class="body" data-t-html="legal.aviso.s2.p4"></p>
+      </section>
+
+      <!-- 3 · Propiedad intelectual -->
+      <section class="legal__s" data-reveal="rise">
+        <h3 class="d-5" data-t="legal.aviso.s3.title"></h3>
+        <p class="body" data-t-html="legal.aviso.s3.body"></p>
+      </section>
+
+      <!-- 4 · Condiciones de uso -->
+      <section class="legal__s" data-reveal="rise">
+        <h3 class="d-5" data-t="legal.aviso.s4.title"></h3>
+        <p class="body" data-t-html="legal.aviso.s4.body"></p>
+      </section>
+
+      <!-- 5 · Protección de datos. El %s del original es el enlace a la
+           Política de Privacidad; se inyecta con la directiva tfh del build. -->
+      <section class="legal__s" data-reveal="rise">
+        <h3 class="d-5" data-t="legal.aviso.s5.title"></h3>
+        <p class="body">{{tfh legal.aviso.s5.body|<a class="link" href="privacidad.html" data-t="legal.aviso.s5.linktext"></a>}}</p>
+      </section>
+
+      <!-- 6 · Legislación aplicable -->
+      <section class="legal__s" data-reveal="rise">
+        <h3 class="d-5" data-t="legal.aviso.s6.title"></h3>
+        <p class="body" data-t-html="legal.aviso.s6.body"></p>
+      </section>
+
+    </div>
+  </div>
+</section>

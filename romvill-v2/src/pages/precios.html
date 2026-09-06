@@ -1,0 +1,360 @@
+<!--meta
+slug: precios
+title: seo.title.precios
+desc: seo.desc.precios
+navMode: dark
+css: pages/precios.css
+-->
+
+<!-- ══ CABECERA ══════════════════════════════════════════════════════════ -->
+<section class="phero phero--center phero--photo on-dark grain">
+  <picture class="phero__media" aria-hidden="true">
+    <source media="(max-width: 700px)" srcset="assets/images/sec/malaga-azul-sm.webp" type="image/webp">
+    <source srcset="assets/images/sec/malaga-azul.webp" type="image/webp">
+    <img src="assets/images/sec/malaga-azul.jpg" alt="" width="1600" height="900"
+         fetchpriority="high" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="phero__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="phero__inner">
+      <p class="kicker kicker--center" data-reveal="veil" data-t="precios.kicker"></p>
+      <h1 class="d-1" data-reveal="wipe" style="--reveal-delay:40ms" data-t="precios.title"></h1>
+      <p class="lead" data-reveal="rise" style="--reveal-delay:100ms" data-t="precios.subtitle"></p>
+
+      <!-- Programa Inaugural: mientras quedan plazas es la única oferta visible.
+           Los importes salen de inc/estimacion.php (ROMVILL_LANZ_*). -->
+      <p class="pill pill--solid" data-reveal="rise" style="--reveal-delay:140ms">
+        <span class="pill__dot pill__dot--live" style="background:#0a0f18"></span>
+        {{tf inaug.badge|5|5}}
+      </p>
+      <p class="caption center" data-reveal="rise" style="--reveal-delay:170ms" data-t="inaug.zonas"></p>
+      <p class="caption center" data-t="inaug.plazo"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOS TRES NIVELES ══════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="plans-h">
+  <div class="container">
+    <h2 class="visually-hidden" id="plans-h" data-t="precios.title"></h2>
+
+    <div class="plans" data-stagger="90">
+
+      <!-- Esencial -->
+      <article class="plan" data-reveal="rise">
+        <div class="plan__top">
+          <h3 class="plan__name" data-t="precios.expres.name"></h3>
+          <p class="plan__desc" data-t="precios.expres.desc"></p>
+        </div>
+        <p class="pill pill--gold plan__launch" data-t="precios.launch.badge"></p>
+        <div class="plan__price">
+          <span class="plan__amount num-tab">149&nbsp;€</span>
+          <span class="plan__was num-tab">290&nbsp;€</span>
+        </div>
+        <p class="plan__note" data-t="precios.launch.note"></p>
+        <hr class="hairline">
+        <ul class="ticks plan__feats" data-t-list="precios.expres.feat"></ul>
+        <p class="plan__delivery"><span data-t="precios.delivery"></span>: <span data-t="precios.expres.delivery"></span></p>
+        <a class="btn btn--outline btn--block" href="contacto.html" data-t="precios.cta"></a>
+      </article>
+
+      <!-- Superior (recomendado) -->
+      <article class="plan plan--featured" data-reveal="rise">
+        <span class="pill pill--solid plan__flag" data-t="precios.recommended"></span>
+        <div class="plan__top">
+          <h3 class="plan__name" data-t="precios.analisis.name"></h3>
+          <p class="plan__desc" data-t="precios.analisis.desc"></p>
+        </div>
+        <p class="pill pill--gold plan__launch" data-t="precios.launch.badge"></p>
+        <div class="plan__price">
+          <span class="plan__amount num-tab">249&nbsp;€</span>
+          <span class="plan__was num-tab">349&nbsp;€</span>
+        </div>
+        <p class="plan__note" data-t="precios.launch.note"></p>
+        <hr class="hairline">
+        <ul class="ticks plan__feats" data-t-list="precios.analisis.feat"></ul>
+        <p class="plan__delivery"><span data-t="precios.delivery"></span>: <span data-t="precios.analisis.delivery"></span></p>
+        <a class="btn btn--primary btn--block" href="contacto.html" data-t="precios.cta"></a>
+      </article>
+
+      <!-- Premium — nunca lleva descuento -->
+      <article class="plan" data-reveal="rise">
+        <div class="plan__top">
+          <h3 class="plan__name" data-t="precios.premium.name"></h3>
+          <p class="plan__desc" data-t="precios.premium.desc"></p>
+        </div>
+        <p class="micro plan__official" data-t="precios.official"></p>
+        <div class="plan__price">
+          <span class="plan__amount num-tab">890&nbsp;€</span>
+        </div>
+        <p class="plan__note"><span data-t="precios.from"></span></p>
+        <hr class="hairline">
+        <ul class="ticks plan__feats" data-t-list="precios.premium.feat"></ul>
+        <p class="plan__delivery"><span data-t="precios.delivery"></span>: <span data-t="precios.premium.delivery"></span></p>
+        <a class="btn btn--outline btn--block" href="contacto.html" data-t="precios.cta"></a>
+      </article>
+
+    </div>
+
+    <div class="center" style="margin-top:var(--sp-12)" data-reveal="rise">
+      <a class="btn btn--ghost" href="muestra-de-informe.html">
+        <svg aria-hidden="true"><use href="assets/icons/sprite.svg#doc"></use></svg>
+        <span data-t="mu.link.ver"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SELECTOR DE PERFIL ════════════════════════════════════════════════ -->
+<section class="section-lg on-dark grain" aria-labelledby="sel-h">
+  <div class="container-wide">
+    <div class="sec-head sec-head--center" data-reveal="rise">
+      <p class="kicker kicker--center" data-t="presup.sel.badge"></p>
+      <h2 class="d-2" id="sel-h" data-t="presup.sel.title"></h2>
+    </div>
+
+    <div class="profiles" data-stagger="80">
+
+      <article class="profile profile--rec" data-reveal="rise">
+        <span class="pill pill--solid profile__flag" data-t="presup.sel.recommended"></span>
+        <span class="profile__shot" aria-hidden="true">
+          <svg class="dib dib--b1" viewBox="0 0 240 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="tr-a" width="26" height="26" patternUnits="userSpaceOnUse">
+                <path d="M26 0H0V26" />
+              </pattern>
+              <radialGradient id="gl-a" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgb(191 161 95 / .34)"/>
+                <stop offset="100%" stop-color="rgb(191 161 95 / 0)"/>
+              </radialGradient>
+            </defs>
+            <rect class="dib__grid" width="240" height="200" fill="url(#tr-a)"/>
+            <ellipse class="dib__glow" cx="120" cy="96" rx="78" ry="62" fill="url(#gl-a)"/>
+            <g class="dib__blq">
+              <rect x="14" y="40" width="40" height="30" rx="2"/><rect x="60" y="40" width="30" height="30" rx="2"/>
+              <rect x="150" y="40" width="34" height="30" rx="2"/><rect x="190" y="40" width="36" height="30" rx="2"/>
+              <rect x="14" y="130" width="34" height="34" rx="2"/><rect x="54" y="130" width="40" height="34" rx="2"/>
+              <rect x="146" y="130" width="38" height="34" rx="2"/><rect x="190" y="130" width="36" height="34" rx="2"/>
+              <rect x="14" y="80" width="30" height="40" rx="2"/><rect x="196" y="80" width="30" height="40" rx="2"/>
+            </g>
+            <g class="dib__calle"><path d="M0 76H240M0 124H240M104 0V200M136 0V200"/></g>
+            <g class="dib__flujo"><path d="M0 100H240"/></g>
+            <g class="dib__foco">
+              <path d="M104 96 L120 82 L136 96 L136 122 L104 122 Z"/>
+              <rect x="115" y="106" width="10" height="16"/>
+            </g>
+            <circle class="dib__anillo" cx="120" cy="100" r="46"/>
+            <circle class="dib__pt" cx="120" cy="82" r="4.5"/>
+          </svg>
+          <span class="profile__ico"><svg><use href="assets/icons/sprite.svg#users"></use></svg></span>
+        </span>
+        <h3 class="d-5" data-t="presup.b1.title"></h3>
+        <p class="profile__sub" data-t="presup.b1.sub"></p>
+        <p class="profile__desc" data-t="presup.b1.desc"></p>
+        <a class="btn btn--primary btn--sm btn--block" href="presupuesto-bloque-1.html">
+          <span data-t="presup.b.btn"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+      </article>
+
+      <article class="profile" data-reveal="rise">
+        <span class="profile__shot" aria-hidden="true">
+          <svg class="dib dib--b2" viewBox="0 0 240 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="tr-b" width="26" height="26" patternUnits="userSpaceOnUse">
+                <path d="M26 0H0V26" />
+              </pattern>
+              <radialGradient id="gl-b" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgb(191 161 95 / .34)"/>
+                <stop offset="100%" stop-color="rgb(191 161 95 / 0)"/>
+              </radialGradient>
+            </defs>
+            <rect class="dib__grid" width="240" height="200" fill="url(#tr-b)"/>
+            <ellipse class="dib__glow" cx="196" cy="60" rx="60" ry="52" fill="url(#gl-b)"/>
+            <g class="dib__ejes"><path d="M18 44H222M18 92H222M18 140H222M18 168H222"/></g>
+            <path class="dib__area" d="M22 152 L62 132 L102 140 L142 100 L182 78 L218 48 L218 172 L22 172 Z"/>
+            <path class="dib__traza" d="M22 152 L62 132 L102 140 L142 100 L182 78 L218 48"/>
+            <g class="dib__guia"><path d="M218 48V172M22 48H218"/></g>
+            <g class="dib__hito"><circle cx="62" cy="132" r="3.4"/><circle cx="142" cy="100" r="3.4"/><circle cx="182" cy="78" r="3.4"/></g>
+            <circle class="dib__halo" cx="218" cy="48" r="13"/>
+            <circle class="dib__pt" cx="218" cy="48" r="5"/>
+          </svg>
+          <span class="profile__ico"><svg><use href="assets/icons/sprite.svg#growth"></use></svg></span>
+        </span>
+        <h3 class="d-5" data-t="presup.b2.title"></h3>
+        <p class="profile__sub" data-t="presup.b2.sub"></p>
+        <p class="profile__desc" data-t="presup.b2.desc"></p>
+        <a class="btn btn--outline btn--sm btn--block" href="contacto.html">
+          <span data-t="presup.b.btn"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+      </article>
+
+      <article class="profile" data-reveal="rise">
+        <span class="profile__shot" aria-hidden="true">
+          <svg class="dib dib--b3" viewBox="0 0 240 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="tr-c" width="26" height="26" patternUnits="userSpaceOnUse">
+                <path d="M26 0H0V26" />
+              </pattern>
+              <radialGradient id="gl-c" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgb(191 161 95 / .34)"/>
+                <stop offset="100%" stop-color="rgb(191 161 95 / 0)"/>
+              </radialGradient>
+            </defs>
+            <rect class="dib__grid" width="240" height="200" fill="url(#tr-c)"/>
+            <ellipse class="dib__glow" cx="96" cy="112" rx="70" ry="58" fill="url(#gl-c)"/>
+            <g class="dib__parcs">
+              <rect x="18" y="62" width="52" height="112"/><rect x="70" y="62" width="52" height="112"/>
+              <rect x="122" y="62" width="44" height="112"/><rect x="166" y="62" width="56" height="112"/>
+            </g>
+            <rect class="dib__parc--on" x="70" y="62" width="52" height="112"/>
+            <g class="dib__cota">
+              <path d="M18 46H122M18 38V54M122 38V54M70 42H70"/>
+            </g>
+            <g class="dib__foco">
+              <path d="M132 174V116L156 100L180 116V174"/>
+              <path d="M156 100V174"/>
+            </g>
+            <g class="dib__flujo"><path d="M0 96H240"/></g>
+            <circle class="dib__pt" cx="96" cy="62" r="4.5"/>
+          </svg>
+          <span class="profile__ico"><svg><use href="assets/icons/sprite.svg#building"></use></svg></span>
+        </span>
+        <h3 class="d-5" data-t="presup.b3.title"></h3>
+        <p class="profile__sub" data-t="presup.b3.sub"></p>
+        <p class="profile__desc" data-t="presup.b3.desc"></p>
+        <a class="btn btn--outline btn--sm btn--block" href="contacto.html">
+          <span data-t="presup.b.btn"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+      </article>
+
+      <article class="profile" data-reveal="rise">
+        <span class="profile__shot" aria-hidden="true">
+          <svg class="dib dib--b4" viewBox="0 0 240 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="tr-d" width="26" height="26" patternUnits="userSpaceOnUse">
+                <path d="M26 0H0V26" />
+              </pattern>
+              <radialGradient id="gl-d" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgb(191 161 95 / .34)"/>
+                <stop offset="100%" stop-color="rgb(191 161 95 / 0)"/>
+              </radialGradient>
+            </defs>
+            <rect class="dib__grid" width="240" height="200" fill="url(#tr-d)"/>
+            <ellipse class="dib__glow" cx="120" cy="100" rx="72" ry="60" fill="url(#gl-d)"/>
+            <g class="dib__red">
+              <path d="M44 52L120 100M120 100L200 46M120 100L38 148M120 100L204 152M120 100L120 22M120 100L120 180"/>
+            </g>
+            <g class="dib__flujo dib__flujo--red">
+              <path d="M44 52L120 100M200 46L120 100M38 148L120 100M204 152L120 100"/>
+            </g>
+            <g class="dib__nodo">
+              <circle cx="44" cy="52" r="5.5"/><circle cx="200" cy="46" r="5.5"/>
+              <circle cx="38" cy="148" r="5.5"/><circle cx="204" cy="152" r="5.5"/>
+              <circle cx="120" cy="22" r="4"/><circle cx="120" cy="180" r="4"/>
+            </g>
+            <circle class="dib__anillo" cx="120" cy="100" r="30"/>
+            <circle class="dib__halo" cx="120" cy="100" r="19"/>
+            <circle class="dib__pt" cx="120" cy="100" r="8"/>
+          </svg>
+          <span class="profile__ico"><svg><use href="assets/icons/sprite.svg#grid"></use></svg></span>
+        </span>
+        <h3 class="d-5" data-t="presup.b4.title"></h3>
+        <p class="profile__sub" data-t="presup.b4.sub"></p>
+        <p class="profile__desc" data-t="presup.b4.desc"></p>
+        <a class="btn btn--outline btn--sm btn--block" href="contacto.html">
+          <span data-t="presup.b.btn"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SUPLEMENTOS Y GARANTÍA ════════════════════════════════════════════ -->
+<section class="section-lg" aria-labelledby="sup-h">
+  <div class="container">
+    <div class="extras">
+
+      <div class="extras__col" data-reveal="rise">
+        <h2 class="d-4" id="sup-h" data-t="precios.sup.title"></h2>
+        <p class="extras__intro" data-t="ui.sup.p"></p>
+        <ul class="ticks" data-t-list="precios.sup.items"></ul>
+        <p class="caption" data-t="precios.sup.note"></p>
+
+        <!-- ── Alcance: base frente a suplementos ────────────────────────
+             Grafica de barras apiladas, una por nivel. El tramo solido es
+             lo que YA cubre el informe base y el punteado lo que anaden
+             los suplementos: la nota dice «los informes se amplian, nunca
+             se recortan» y esto lo enseña. Las proporciones son de alcance
+             relativo entre niveles —no cifras de negocio— y por eso van
+             sin numero: dibujar un eje con valores seria inventar dato. -->
+        <div class="alcance" data-reveal="rise" data-stagger="90">
+          <div class="alcance__fila" data-reveal="rise-sm">
+            <span class="alcance__lbl" data-t="precios.expres.name"></span>
+            <span class="alcance__barra"><span class="alcance__base" style="--w:58%"></span><span class="alcance__ext" style="--w:22%"></span></span>
+          </div>
+          <div class="alcance__fila" data-reveal="rise-sm">
+            <span class="alcance__lbl" data-t="precios.analisis.name"></span>
+            <span class="alcance__barra"><span class="alcance__base" style="--w:76%"></span><span class="alcance__ext" style="--w:18%"></span></span>
+          </div>
+          <div class="alcance__fila" data-reveal="rise-sm">
+            <span class="alcance__lbl" data-t="precios.premium.name"></span>
+            <span class="alcance__barra"><span class="alcance__base" style="--w:92%"></span><span class="alcance__ext" style="--w:8%"></span></span>
+          </div>
+
+          <div class="alcance__leyenda">
+            <span><i class="alcance__sw alcance__sw--base"></i><span data-t="ui.sup.base"></span></span>
+            <span><i class="alcance__sw alcance__sw--ext"></i><span data-t="ui.sup.extra"></span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="extras__col extras__col--credit" data-reveal="rise">
+        <span class="extras__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#scale"></use></svg></span>
+        <h2 class="d-4" data-t="precios.credit.title"></h2>
+        <p class="body" data-t="precios.credit.desc"></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PREGUNTAS RÁPIDAS ═════════════════════════════════════════════════ -->
+<section class="section section--alt" aria-labelledby="pfaq-h">
+  <div class="container-text">
+    <h2 class="d-3 center" id="pfaq-h" data-reveal="rise" data-t="precios.faq.title"></h2>
+
+    <div class="acc" data-single style="margin-top:var(--sp-10)" data-reveal="rise">
+      <div class="acc__item">
+        <h3><button class="acc__btn" type="button" aria-expanded="false">
+          <span class="acc__q" data-t="precios.faq.q1"></span><span class="acc__sign" aria-hidden="true"></span>
+        </button></h3>
+        <div class="acc__panel"><div><p class="acc__a" data-t="precios.faq.a1"></p></div></div>
+      </div>
+      <div class="acc__item">
+        <h3><button class="acc__btn" type="button" aria-expanded="false">
+          <span class="acc__q" data-t="precios.faq.q2"></span><span class="acc__sign" aria-hidden="true"></span>
+        </button></h3>
+        <div class="acc__panel"><div><p class="acc__a" data-t="precios.faq.a2"></p></div></div>
+      </div>
+      <div class="acc__item">
+        <h3><button class="acc__btn" type="button" aria-expanded="false">
+          <span class="acc__q" data-t="precios.faq.q3"></span><span class="acc__sign" aria-hidden="true"></span>
+        </button></h3>
+        <div class="acc__panel"><div><p class="acc__a" data-t="precios.faq.a3"></p></div></div>
+      </div>
+    </div>
+
+    <div class="center" style="margin-top:var(--sp-10)" data-reveal="rise">
+      <a class="btn btn--outline" href="preguntas-frecuentes.html">
+        <span data-t="nav.faq.full"></span>
+        <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+      </a>
+    </div>
+  </div>
+</section>

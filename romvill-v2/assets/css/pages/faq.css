@@ -1,0 +1,101 @@
+/* ============================================================================
+   ROMVILL v2 — PREGUNTAS FRECUENTES
+   ========================================================================= */
+
+.faqsearch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: min(520px, 100%);
+  margin-top: var(--sp-6);
+  margin-inline: auto;
+  border: 1px solid rgb(255 255 255 / .16);
+  border-radius: var(--r-full);
+  background: rgb(255 255 255 / .04);
+  backdrop-filter: blur(8px);
+  transition: border-color var(--t-ui) var(--ease-out), background-color var(--t-ui) var(--ease-out);
+}
+.faqsearch:focus-within { border-color: var(--gold-400); background: rgb(255 255 255 / .07); }
+.faqsearch__ico { width: 18px; height: 18px; margin-left: 20px; color: var(--tx-3); flex: none; }
+.faqsearch__input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 16px;
+  background: none;
+  border: 0;
+  font-size: var(--fs-sm);
+  color: var(--tx-1);
+}
+.faqsearch__input::placeholder { color: var(--tx-3); }
+.faqsearch__input::-webkit-search-cancel-button { display: none; }
+.faqsearch__clear {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  margin-right: 8px;
+  border-radius: var(--r-full);
+  color: var(--tx-3);
+  flex: none;
+}
+.faqsearch__clear:hover { color: var(--tx-1); background: rgb(255 255 255 / .08); }
+.faqsearch__clear svg { width: 14px; height: 14px; }
+
+/* ══ Categorías ═════════════════════════════════════════════════════════ */
+
+.faq { display: flex; flex-direction: column; gap: clamp(48px, 6vw, 88px); }
+.faq__cat[hidden] { display: none; }
+
+.faq__cat-title {
+  display: flex; align-items: baseline; gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+  font-size: var(--fs-2xl);
+  font-weight: 300;
+  letter-spacing: var(--tr-h4);
+  color: var(--tx-1);
+}
+.faq__cat-n {
+  font-size: var(--fs-3xs);
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
+  color: var(--accent);
+}
+
+.faq__item[hidden] { display: none; }
+.faq__item .acc__panel > div { position: relative; }
+
+.faq__perma {
+  position: absolute;
+  right: 0; bottom: clamp(20px, 2.4vw, 30px);
+  display: grid; place-items: center;
+  width: 30px; height: 30px;
+  border-radius: var(--r-full);
+  color: var(--tx-4);
+  opacity: 0;
+  transition: opacity var(--t-ui) var(--ease-out), color var(--t-micro) var(--ease-out);
+}
+.faq__item.is-open .faq__perma { opacity: 1; }
+.faq__perma:hover { color: var(--accent); background: var(--bg-alt); }
+.faq__perma svg { width: 14px; height: 14px; }
+
+/* Resaltado al llegar por enlace permanente */
+.faq__item:target { scroll-margin-top: calc(var(--nav-h) + 32px); }
+.faq__item.is-targeted { box-shadow: -3px 0 0 var(--accent-solid); padding-left: var(--sp-4); }
+
+.faq__noresult {
+  padding: var(--sp-8);
+  text-align: center;
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  color: var(--tx-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-md);
+  margin-bottom: var(--sp-8);
+}
+.faq__noresult a { color: var(--link); text-decoration: underline; text-underline-offset: .2em; }
+
+/* Coincidencia de búsqueda */
+mark {
+  background: color-mix(in srgb, var(--gold-500) 34%, transparent);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 2px;
+}

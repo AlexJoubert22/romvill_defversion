@@ -1,0 +1,86 @@
+<footer class="footer grain">
+  <div class="footer__top container-wide">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a class="nav__logo" href="index.html" aria-label="ROMVILL">
+          <img class="nav__mark" src="assets/images/rv-logo-white.png" alt="" width="222" height="174">
+          <span>
+            <span class="nav__wordmark">Romvill</span>
+            <span class="nav__logo-sub" data-t="hero.subheadline"></span>
+          </span>
+        </a>
+        <p class="body-sm" style="color:rgb(242 245 250 / .55)" data-t="hero.lema"></p>
+        <p class="micro" style="color:var(--gold-400)" data-t="hero.cities"></p>
+
+        <form class="footer__news stack stack-3" id="newsletter" novalidate style="margin-top:var(--sp-4)">
+          <label class="footer__col-title" for="news-email" data-t="news.title"></label>
+          <p class="caption" style="color:rgb(242 245 250 / .5);margin-top:-8px" data-t="news.desc"></p>
+          <div class="footer__news-row">
+            <input class="field__input" type="email" id="news-email" name="email" autocomplete="email"
+                   required data-t-attr="placeholder:news.ph" style="border-bottom-color:rgb(255 255 255 / .2)">
+            <button class="btn btn--primary btn--sm" type="submit" data-t="news.btn"></button>
+          </div>
+          <p class="caption" id="news-status" role="status" aria-live="polite" style="color:rgb(242 245 250 / .45)" data-t="news.gdpr"></p>
+        </form>
+      </div>
+
+      <nav aria-label="{{t footer.aria}}">
+        <p class="footer__col-title" data-t="nav.aria"></p>
+        <div class="footer__links">
+          <a class="footer__link" href="metodologia.html"          data-t="nav.metodologia"></a>
+          <a class="footer__link" href="analisis.html"             data-t="nav.analisis"></a>
+          <a class="footer__link" href="sectores.html"             data-t="nav.sectores"></a>
+          <a class="footer__link" href="quienes-somos.html"        data-t="nav.quienes"></a>
+          <a class="footer__link" href="precios.html"              data-t="nav.precios"></a>
+          <a class="footer__link" href="preguntas-frecuentes.html" data-t="nav.faq.full"></a>
+          <a class="footer__link" href="muestra-de-informe.html"   data-t="mu.link.ver"></a>
+          <a class="footer__link" href="contacto.html"             data-t="nav.contacto"></a>
+        </div>
+      </nav>
+
+      <div>
+        <p class="footer__col-title" data-t="footer.zonas"></p>
+        <div class="footer__links">
+          <a class="footer__link" href="analisis-marbella.html" data-t="zona.marbella.nombre"></a>
+          <a class="footer__link" href="analisis-malaga.html"   data-t="zona.malaga.nombre"></a>
+          <a class="footer__link" href="analisis-alicante.html" data-t="zona.alicante.nombre"></a>
+        </div>
+
+        <p class="footer__col-title" style="margin-top:var(--sp-8)" data-t="ana.badge"></p>
+        <div class="footer__links">
+          <a class="footer__link" href="perfil-seguridad.html"   data-t="modal.dim.security"></a>
+          <a class="footer__link" href="perfil-demografico.html" data-t="modal.dim.demog"></a>
+          <a class="footer__link" href="perfil-sanidad.html"     data-t="modal.dim.health"></a>
+          <a class="footer__link" href="perfil-movilidad.html"   data-t="modal.dim.mobility"></a>
+          <a class="footer__link" href="perfil-proyeccion.html"  data-t="pillar.proj.title"></a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__col-title" data-t="contact.channels"></p>
+        <div class="footer__links">
+          <a class="footer__link" href="mailto:info@romvill.com">info@romvill.com</a>
+          <a class="footer__link" href="agendar-llamada.html" data-t="agenda.head"></a>
+          <a class="footer__link" href="contacto.html" data-t="hero.cta_primary"></a>
+        </div>
+
+        <p class="footer__col-title" style="margin-top:var(--sp-8)" data-t="footer.zonas"></p>
+        <p class="caption" style="color:rgb(242 245 250 / .5)" data-t="hero.cities"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-wide">
+    <div class="footer__bottom">
+      <p>&copy; {{@year}} ROMVILL. <span data-t="footer.rights"></span></p>
+      <nav class="footer__legal" aria-label="{{t footer.aria}}">
+        <a class="footer__link" href="privacidad.html"  data-t="footer.privacy"></a>
+        <a class="footer__link" href="terminos.html"    data-t="footer.terms"></a>
+        <a class="footer__link" href="aviso-legal.html" data-t="footer.avisolegal"></a>
+      </nav>
+    </div>
+  </div>
+
+  <span class="footer__watermark" aria-hidden="true">ROMVILL</span>
+</footer>

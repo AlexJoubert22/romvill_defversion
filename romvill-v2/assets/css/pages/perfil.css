@@ -1,0 +1,88 @@
+/* ============================================================================
+   ROMVILL v2 — PÁGINAS DE PERFIL DE DIMENSIÓN
+
+   Rediseñadas tras la auditoría (ANALISIS-DISENO.md §3.3). Antes eran cinco
+   páginas idénticas de puro texto, abiertas por un panel de barras con
+   valores inventados. Ahora abren con una fotografía real del territorio,
+   con su autoría y su licencia a la vista.
+   ========================================================================= */
+
+.backlink {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  font-size: var(--fs-3xs);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--tx-2);
+  transition: color var(--t-micro) var(--ease-out), gap var(--t-micro) var(--ease-out);
+}
+.backlink:hover { color: var(--accent); gap: var(--sp-4); }
+.backlink svg { width: 14px; height: 14px; }
+
+/* ══ Las cuatro facetas ═════════════════════════════════════════════════ */
+
+/* Retícula separada por filetes en vez de tarjetas sueltas: se lee como un
+   índice de expediente, no como una cuadrícula de marketing. */
+.pcards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin-top: clamp(40px, 5vw, 72px);
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 800px) { .pcards { grid-template-columns: minmax(0, 1fr); } }
+
+.pcard {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: var(--sp-4);
+  padding: clamp(26px, 3vw, 40px) clamp(20px, 2.6vw, 40px) clamp(26px, 3vw, 40px) 0;
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--t-ui) var(--ease-out);
+}
+.pcard:nth-child(odd) { border-right: 1px solid var(--border); padding-left: 0; }
+.pcard:nth-child(even) { padding-left: clamp(20px, 2.6vw, 40px); }
+@media (max-width: 800px) {
+  .pcard, .pcard:nth-child(odd), .pcard:nth-child(even) {
+    border-right: 0; padding-inline: 0;
+  }
+}
+.pcard:hover { background: var(--bg-alt); }
+.pcard > div { display: flex; flex-direction: column; gap: var(--sp-3); }
+.pcard__n {
+  font-size: var(--fs-2xl);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: var(--tr-h1);
+  color: var(--accent);
+  opacity: .55;
+  transition: opacity var(--t-ui) var(--ease-out);
+}
+.pcard:hover .pcard__n { opacity: 1; }
+
+/* ══ Otras dimensiones ══════════════════════════════════════════════════ */
+
+.related { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--sp-3); margin-top: clamp(32px, 4vw, 56px); }
+@media (max-width: 1000px) { .related { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px)  { .related { grid-template-columns: 1fr; } }
+.related__item {
+  display: flex; align-items: center; gap: var(--sp-3);
+  height: 100%;
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--tx-1);
+  transition: border-color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+}
+.related__item:hover { border-color: color-mix(in srgb, var(--gold-500) 45%, transparent); transform: translateY(-3px); }
+.related__item > svg:first-child { width: 19px; height: 19px; color: var(--accent); flex: none; }
+.related__arrow { width: 13px; height: 13px; margin-left: auto; color: var(--tx-3); flex: none; }
+.related__item[aria-current='page'] {
+  border-color: color-mix(in srgb, var(--gold-500) 55%, transparent);
+  background: color-mix(in srgb, var(--gold-500) 7%, var(--surface));
+  pointer-events: none;
+}
+.related__item[aria-current='page'] .related__arrow { display: none; }

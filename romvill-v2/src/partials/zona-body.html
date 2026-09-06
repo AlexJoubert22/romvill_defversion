@@ -1,0 +1,112 @@
+<!-- Cuerpo común de las páginas de zona (landings SEO por localización).
+     La página pasa por cabecera:  zona (marbella|malaga|alicante) · img ·
+     other1/other1url/other2/other2url.
+     Ojo con el tono: estas páginas TUTEAN, a diferencia del resto del sitio,
+     que trata de usted. Es así en el original y se respeta. -->
+
+<section class="zhero on-dark grain">
+  <img class="zhero__img" src="assets/images/{{@img}}" alt="" width="1024" height="1024" fetchpriority="high" decoding="async" data-parallax="0.07">
+  <span class="zhero__scrim" aria-hidden="true"></span>
+
+  <div class="container zhero__inner">
+    <p class="kicker" data-reveal="veil" data-t="zona.hero.kicker"></p>
+    <h1 class="d-1" data-reveal="wipe" style="--reveal-delay:40ms" data-t="zona.{{@zona}}.h1"></h1>
+    <p class="lead" data-reveal="rise" style="--reveal-delay:100ms" data-t="zona.{{@zona}}.sub"></p>
+    <a class="btn btn--primary btn--lg" href="contacto.html" data-reveal="rise" style="--reveal-delay:140ms">
+      <span data-t="zona.hero.cta"></span>
+      <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Por qué importa la zona exacta -->
+<section class="section-lg" aria-labelledby="zintro-h">
+  <div class="container">
+    <div class="prose" data-reveal="rise">
+      <span class="prose__rule" aria-hidden="true"></span>
+      <p class="kicker" data-t="zona.intro.kicker"></p>
+      <h2 class="d-2" id="zintro-h" data-t="zona.{{@zona}}.intro.title"></h2>
+      <p class="body-lg" data-t-html="zona.{{@zona}}.intro.p1"></p>
+      <p class="body-lg" data-t-html="zona.{{@zona}}.intro.p2"></p>
+    </div>
+  </div>
+</section>
+
+<!-- Seis miradas sobre el mismo lugar -->
+<section class="section-lg on-dark grain mapgrid" aria-labelledby="zdim-h">
+  <div class="container">
+    <div class="sec-head" data-reveal="rise">
+      <p class="kicker" data-t="zona.dim.kicker"></p>
+      <h2 class="d-2" id="zdim-h" data-t="zona.dim.title"></h2>
+    </div>
+
+    <div class="zdims" data-stagger="70">
+      <article class="zdim" data-reveal="rise">
+        <span class="zdim__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#shield"></use></svg></span>
+        <h3 class="d-6" data-t="zona.dim.seg.t"></h3>
+        <p class="body-sm" data-t="zona.dim.seg.d"></p>
+      </article>
+      <article class="zdim" data-reveal="rise">
+        <span class="zdim__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#users"></use></svg></span>
+        <h3 class="d-6" data-t="zona.dim.dem.t"></h3>
+        <p class="body-sm" data-t="zona.dim.dem.d"></p>
+      </article>
+      <article class="zdim" data-reveal="rise">
+        <span class="zdim__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#health"></use></svg></span>
+        <h3 class="d-6" data-t="zona.dim.san.t"></h3>
+        <p class="body-sm" data-t="zona.dim.san.d"></p>
+      </article>
+      <article class="zdim" data-reveal="rise">
+        <span class="zdim__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#route"></use></svg></span>
+        <h3 class="d-6" data-t="zona.dim.mov.t"></h3>
+        <p class="body-sm" data-t="zona.dim.mov.d"></p>
+      </article>
+      <article class="zdim" data-reveal="rise">
+        <span class="zdim__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#grid"></use></svg></span>
+        <h3 class="d-6" data-t="zona.dim.serv.t"></h3>
+        <p class="body-sm" data-t="zona.dim.serv.d"></p>
+      </article>
+      <article class="zdim" data-reveal="rise">
+        <span class="zdim__ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#growth"></use></svg></span>
+        <h3 class="d-6" data-t="zona.dim.dev.t"></h3>
+        <p class="body-sm" data-t="zona.dim.dev.d"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Por qué ROMVILL y no una inmobiliaria -->
+<section class="section-lg section--alt" aria-labelledby="zwhy-h">
+  <div class="container">
+    <div class="prose" data-reveal="rise">
+      <span class="prose__rule" aria-hidden="true"></span>
+      <p class="kicker" data-t="zona.why.kicker"></p>
+      <h2 class="d-2" id="zwhy-h" data-t="zona.why.title"></h2>
+      <p class="body-lg" data-t-html="zona.why.p1"></p>
+      <p class="body-lg" data-t-html="zona.why.p2"></p>
+    </div>
+  </div>
+</section>
+
+<!-- También analizamos -->
+<section class="section" aria-labelledby="zother-h">
+  <div class="container">
+    <h2 class="d-4" id="zother-h" data-reveal="rise" data-t="zona.other.title"></h2>
+    <div class="zother" data-stagger="90">
+      <a class="zother__card" href="{{@other1url}}.html" data-reveal="rise">
+        <span class="zother__name" data-t="zona.{{@other1}}.nombre"></span>
+        <span class="zother__go">
+          <span data-t="zona.link.ver"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </span>
+      </a>
+      <a class="zother__card" href="{{@other2url}}.html" data-reveal="rise">
+        <span class="zother__name" data-t="zona.{{@other2}}.nombre"></span>
+        <span class="zother__go">
+          <span data-t="zona.link.ver"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+{
+ "_README": "Estructura de las Preguntas frecuentes, copiada de inc/faq.php del tema WordPress: categorias en orden -> ids de pregunta en orden. Cada id usa las claves faq.q.<id> y faq.a.<id> de data/i18n.json, y cada categoria faq.cat.<catid>. Los TEXTOS no viven aqui: viven en el diccionario. Este archivo solo describe el orden y la agrupacion, igual que romvill_faq().",
+
+ "antes":   ["que-comprobar", "zona-que-no-conozco", "para-que-sirve"],
+ "hacemos": ["que-es", "vivienda-o-zona", "de-donde-datos", "que-recibo", "cuanto-tarda"],
+ "rigor":   ["independientes", "no-me-fio-inmobiliaria", "buena-o-mala", "revalorizacion", "confidencial", "actualizacion-datos", "diferencia-tasacion"],
+ "alcance": ["zonas", "desde-extranjero", "empresas-particulares", "cuanto-cuesta", "hablar-antes"]
+}

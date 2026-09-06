@@ -1,0 +1,16 @@
+<!-- Aviso de cookies. En el original vive en footer.php y usa las claves
+     cookies.title / cookies.short / footer.cookies. Se muestra una sola vez;
+     la decisión se guarda en localStorage. -->
+<div class="cookiebar" id="cookiebar" role="dialog" aria-labelledby="cookiebar-t" aria-describedby="cookiebar-d" hidden>
+  <div class="cookiebar__box">
+    <svg class="cookiebar__ico" aria-hidden="true"><use href="assets/icons/sprite.svg#lock"></use></svg>
+    <div class="cookiebar__text">
+      <p class="cookiebar__t" id="cookiebar-t" data-t="cookies.title"></p>
+      <p class="cookiebar__d" id="cookiebar-d" data-t="cookies.short"></p>
+    </div>
+    <div class="cookiebar__actions">
+      <a class="btn btn--ghost btn--sm" href="privacidad.html" data-t="ui.cookies.more"></a>
+      <button class="btn btn--primary btn--sm" type="button" id="cookiebar-ok" data-t="ui.cookies.accept"></button>
+    </div>
+  </div>
+</div>

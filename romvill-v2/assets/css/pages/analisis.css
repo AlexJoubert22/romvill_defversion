@@ -1,0 +1,224 @@
+/* ============================================================================
+   ROMVILL v2 — ANÁLISIS
+   ========================================================================= */
+
+/* ══ Retícula de dimensiones ════════════════════════════════════════════ */
+
+/* La reticula respira bajo su cabecera: sin este margen las tarjetas
+   arrancaban pegadas a la entradilla. */
+.dims { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grid-gap); margin-top: clamp(44px, 5vw, 76px); }
+@media (max-width: 860px) { .dims { grid-template-columns: 1fr; } }
+
+/* La quinta tarjeta cruza las dos columnas y se compone en horizontal:
+   cabecera e items a la izquierda, texto a la derecha. */
+.dim--wide { grid-column: 1 / -1; }
+@media (min-width: 861px) {
+  /* Doble clase por ORDEN, no por capricho: este bloque esta escrito antes
+     que `.dim { display:flex }` y a igual especificidad perdia justo la
+     declaracion de display — la reticula se configuraba entera y no llegaba
+     a activarse. Mismo fallo de origen que el de los botones (.btn.btn). */
+  .dim.dim--wide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    grid-template-areas:
+      'head   body'
+      'titulo body'
+      'titulo ticks'
+      'link   ticks';
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: clamp(28px, 3.5vw, 64px);
+    align-items: start;
+  }
+  .dim--wide .dim__head  { grid-area: head; }
+  .dim--wide h3          { grid-area: titulo; }
+  .dim--wide .body       { grid-area: body; }
+  .dim--wide .ticks      { grid-area: ticks; }
+  .dim--wide .dim__link  { grid-area: link; align-self: end; }
+}
+
+.dim {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-5);
+  padding: clamp(28px, 3.4vw, 48px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+}
+.dim:hover { border-color: color-mix(in srgb, var(--gold-500) 42%, transparent); transform: translateY(-3px); }
+.dim__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-4); }
+.dim__ico {
+  width: 54px; height: 54px;
+  display: grid; place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--accent);
+  transition: border-color var(--t-ui) var(--ease-out), background-color var(--t-ui) var(--ease-out);
+}
+.dim:hover .dim__ico { border-color: color-mix(in srgb, var(--gold-500) 55%, transparent); background: color-mix(in srgb, var(--gold-500) 8%, transparent); }
+.dim__ico svg { width: 25px; height: 25px; }
+.dim__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.dim__num { font-size: var(--fs-2xl); font-weight: 200; line-height: 1; color: var(--tx-4); letter-spacing: var(--tr-h1); }
+.dim__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: auto; padding-top: var(--sp-3);
+  font-size: var(--fs-3xs); font-weight: 700; letter-spacing: var(--tr-label);
+  text-transform: uppercase; color: var(--accent);
+}
+.dim__link svg { width: 13px; height: 13px; }
+
+/* ══ Tabla comparativa «lo que se ve · lo que sabemos» ═══════════════════
+   Tres columnas: la dimension, lo que se ve y lo que sabemos. La del medio
+   va TAPADA a proposito —barras en lugar de texto—: el argumento de la
+   seccion es que a simple vista no hay dato, y dibujarlo es mas honesto y
+   mas claro que escribir un parrafo diciendolo.                          */
+
+/* ── El titular, en dos registros ────────────────────────────────────────
+   «Lo que se ve» en tono apagado, «lo que sabemos» en oro: el color hace
+   el trabajo que hace la seccion entera, y de un vistazo. Un solo acento
+   —el de la marca— y solo aqui: si se tiñen tres titulares distintos deja
+   de ser jerarquia y pasa a ser decoracion. */
+.cmp__h { display: block; }
+.cmp__h-ve   { color: var(--tx-3); }
+.cmp__h-sep  { color: var(--tx-4); margin-inline: .18em; }
+.cmp__h-sabe { color: var(--gold-300); }
+
+.cmp {
+  margin-top: clamp(36px, 4vw, 64px);
+  border-top: 1px solid var(--border);
+}
+
+.cmp__cab, .cmp__fila {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.85fr) minmax(0, 1.5fr);
+  gap: clamp(20px, 2.6vw, 48px);
+  align-items: center;
+}
+.cmp__cab {
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-3xs);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+}
+.cmp__cab-ve   { color: var(--tx-3); }
+.cmp__cab-sabe { color: var(--accent); }
+
+.cmp__fila {
+  padding: clamp(20px, 2.4vw, 30px) 0;
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--t-ui) var(--ease-out);
+}
+.cmp__fila:hover { background: color-mix(in srgb, var(--gold-500) 5%, transparent); }
+
+.cmp__dim { display: flex; align-items: center; gap: var(--sp-4); min-width: 0; }
+.cmp__ico {
+  width: 42px; height: 42px; flex: none;
+  display: grid; place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--accent);
+  transition: border-color var(--t-ui) var(--ease-out), background-color var(--t-ui) var(--ease-out);
+}
+.cmp__fila:hover .cmp__ico {
+  border-color: color-mix(in srgb, var(--gold-500) 50%, transparent);
+  background: color-mix(in srgb, var(--gold-500) 8%, transparent);
+}
+.cmp__ico svg { width: 20px; height: 20px; }
+.cmp__n {
+  font-size: var(--fs-3xs); font-weight: 700;
+  letter-spacing: var(--tr-label); color: var(--tx-3);
+}
+.cmp__dim b {
+  font-size: var(--fs-md); font-weight: 500;
+  letter-spacing: var(--tr-h3); color: var(--tx-1);
+}
+
+/* La columna ciega: informacion tapada. */
+.cmp__ciego { display: flex; flex-direction: column; gap: 7px; }
+.cmp__tapa {
+  position: relative;
+  height: 9px;
+  width: var(--w);
+  border-radius: var(--r-full);
+  background: repeating-linear-gradient(
+    115deg,
+    var(--border-strong) 0 7px,
+    transparent 7px 13px
+  );
+  opacity: .75;
+  overflow: hidden;
+}
+
+/* ── Vida de la tabla ────────────────────────────────────────────────────
+   Tres capas de movimiento, todas contenidas:
+   1 · Las barras tapadas CRECEN desde cero al entrar la fila, en cascada.
+       El gesto dice «esto se esta ocultando delante de ti».
+   2 · Un barrido de luz muy tenue las recorre en bucle lento: la columna
+       ciega respira, como un dato que sigue ahi sin poder leerse.
+   3 · El verificado de la derecha entra el ultimo, con un pop corto:
+       primero la pregunta, despues la respuesta.
+   `is-in` la pone el observador en la fila; el estado colapsado va tras
+   `.js` para que sin JavaScript la tabla se vea entera y quieta. */
+.cmp__tapa { transition: width 640ms var(--ease-out); }
+.cmp__fila .cmp__tapa:nth-child(2) { transition-delay: 90ms; }
+.cmp__fila .cmp__tapa:nth-child(3) { transition-delay: 180ms; }
+.js .cmp__fila:not(.is-in) .cmp__tapa { width: 0; }
+
+.cmp__tapa::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgb(226 231 240 / .16) 50%, transparent 80%);
+  transform: translateX(-100%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cmp__fila.is-in .cmp__tapa::after { animation: cmpBarrido 7s var(--ease-out) infinite; }
+  .cmp__fila:nth-child(3) .cmp__tapa::after { animation-delay: .8s; }
+  .cmp__fila:nth-child(4) .cmp__tapa::after { animation-delay: 1.6s; }
+  .cmp__fila:nth-child(5) .cmp__tapa::after { animation-delay: 2.4s; }
+  .cmp__fila:nth-child(6) .cmp__tapa::after { animation-delay: 3.2s; }
+}
+@keyframes cmpBarrido {
+  0%       { transform: translateX(-100%); }
+  16%, 100% { transform: translateX(100%); }
+}
+
+.cmp__ok { transition: transform 420ms var(--ease-spring), opacity 300ms var(--ease-out); transition-delay: 340ms; }
+.js .cmp__fila:not(.is-in) .cmp__ok { transform: scale(0); opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .cmp__tapa, .cmp__ok { transition: none; }
+  .js .cmp__fila:not(.is-in) .cmp__tapa { width: var(--w); }
+  .js .cmp__fila:not(.is-in) .cmp__ok { transform: none; opacity: 1; }
+}
+
+.cmp__saber { display: flex; align-items: flex-start; gap: var(--sp-3); min-width: 0; }
+.cmp__ok { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--accent); }
+.cmp__saber i {
+  font-style: normal;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--tx-2);
+  max-width: 52ch;
+}
+
+/* En estrecho las tres columnas se apilan y la cabecera sobra: cada bloque
+   se etiqueta solo por su tratamiento. */
+@media (max-width: 860px) {
+  .cmp__cab { display: none; }
+  .cmp__fila { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .cmp__ciego { flex-direction: row; align-items: center; gap: 6px; }
+  .cmp__tapa { flex: 1; width: auto; }
+}
+
+
+/* Credito de la fotografia del deslizante: CC BY-SA obliga a citarla. */
+.sl__credit {
+  display: flex; align-items: center; gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  font-size: var(--fs-3xs);
+  letter-spacing: .03em;
+  color: var(--tx-3);
+}
+.sl__credit svg { width: 13px; height: 13px; color: var(--accent); flex: none; }

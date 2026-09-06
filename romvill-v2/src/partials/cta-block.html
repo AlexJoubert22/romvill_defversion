@@ -1,0 +1,27 @@
+<!-- Bloque de cierre. La página elige las claves desde su cabecera:
+     ctaTitle / ctaDesc / ctaBtn / ctaHref  (ctaDesc puede omitirse). -->
+<section class="section-lg cta on-dark grain" aria-labelledby="cta-h">
+  <!-- El cierre era tinta plana con reticula: el ultimo pantallazo de casi
+       todas las paginas se leia vacio. La panoramica de Banus al anochecer
+       —muy apagada, con velo cerrado en los bordes— le da suelo sin robar
+       protagonismo al titular. -->
+  <picture class="cta__media" aria-hidden="true">
+    <source srcset="assets/images/sec/banus-dusk.webp" type="image/webp">
+    <img src="assets/images/sec/banus-dusk.jpg" alt="" width="1600" height="360" loading="lazy" decoding="async" data-parallax="0.05">
+  </picture>
+  <span class="cta__veil" aria-hidden="true"></span>
+
+  <div class="container">
+    <div class="cta__inner" data-reveal="rise">
+      <h2 class="d-1" id="cta-h" data-t-html="{{@ctaTitle}}"></h2>
+      <p class="lead center-x center" data-t="{{@ctaDesc}}"></p>
+      <div class="cluster" style="justify-content:center">
+        <a class="btn btn--primary btn--lg" href="{{@ctaHref}}">
+          <span data-t="{{@ctaBtn}}"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--outline btn--lg" href="precios.html" data-t="hero.cta_secondary"></a>
+      </div>
+    </div>
+  </div>
+</section>

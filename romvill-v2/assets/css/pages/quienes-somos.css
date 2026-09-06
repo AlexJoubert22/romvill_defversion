@@ -1,0 +1,441 @@
+/* ============================================================================
+   ROMVILL v2 — QUIÉNES SOMOS
+   La página más editorial del sitio: columna estrecha, tipografía grande,
+   mucho aire. Se lee, no se escanea.
+   ========================================================================= */
+
+.qshero {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: calc(var(--nav-h) + var(--sp-16)) clamp(56px, 7vw, 104px);
+  background: var(--ink-900);
+}
+.qshero__img {
+  position: absolute; inset: -8% 0;
+  width: 100%; height: 116%;
+  object-fit: cover;
+  filter: saturate(.35) contrast(1.1) brightness(.5);
+  z-index: -2;
+}
+.qshero__scrim {
+  position: absolute; inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(110% 80% at 12% 82%, rgb(6 9 15 / .55), rgb(6 9 15 / .92) 62%),
+    linear-gradient(to top, var(--ink-900) 3%, rgb(6 9 15 / .42) 52%, rgb(6 9 15 / .7));
+}
+.qshero__inner { display: flex; flex-direction: column; gap: var(--sp-5); }
+.qshero__h1 { display: flex; flex-direction: column; margin-block: var(--sp-2); }
+.qshero__l {
+  display: block;
+  font-size: var(--fs-6xl);
+  font-weight: 200;
+  line-height: 0.98;
+  letter-spacing: var(--tr-h1);
+  color: #f7f9fc;
+}
+.qshero__l--accent { color: var(--gold-400); }
+.qshero__because {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  letter-spacing: var(--tr-h4);
+  color: var(--gold-400);
+}
+
+/* ══ Prosa editorial ════════════════════════════════════════════════════ */
+
+.prose {
+  position: relative;
+  max-width: 62ch;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  align-items: flex-start;
+  padding-left: clamp(0px, 3vw, 40px);
+}
+.prose__rule {
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-solid), transparent 72%);
+}
+@media (max-width: 720px) { .prose__rule { display: none; } .prose { padding-left: 0; } }
+.prose .body-lg { max-width: none; }
+
+/* ══ Cita central ═══════════════════════════════════════════════════════ */
+
+.qsquote { background: var(--ink-900); padding-block: clamp(96px, 12vw, 192px); }
+
+/* La cita central se compone CENTRADA y sin el filete lateral del sistema:
+   con `max-width: 30ch` sobre un tipo de 16 px quedaba en una columna de
+   480 px, la cita se partía en cinco líneas cortísimas y el bloque caía
+   descentrado. Aquí el filete va arriba y el ancho se fija en píxeles. */
+/* La cita ocupa la linea entera. Con 940 px de tope se partia en cuatro
+   renglones cortos en el centro de una banda muy ancha y se leia como un
+   parrafo perdido; a todo el ancho es un enunciado. */
+.qsquote .quote {
+  max-width: none;
+  margin-inline: auto;
+  padding-left: 0;
+  text-align: center;
+}
+.qsquote .quote__text--big {
+  font-size: clamp(28px, 4.4vw, 64px);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.qsquote .quote::before {
+  content: '';
+  position: static;
+  display: block;
+  width: 56px; height: 2px;
+  margin: 0 auto var(--sp-8);
+  background: var(--accent-solid);
+}
+.quote__text--big {
+  font-size: var(--fs-4xl);
+  font-weight: 200;
+  line-height: 1.14;
+  letter-spacing: var(--tr-h2);
+  max-width: none;
+  text-wrap: balance;
+}
+
+/* ══ Valores ════════════════════════════════════════════════════════════ */
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-top: clamp(48px, 6vw, 80px);
+}
+@media (max-width: 1000px) { .values { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px)  { .values { grid-template-columns: 1fr; } }
+
+.value {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--hairline);
+}
+.value__ico {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  color: var(--accent);
+  margin-bottom: var(--sp-2);
+}
+.value__ico svg { width: 26px; height: 26px; }
+.value__n {
+  position: absolute; top: var(--sp-6); right: 0;
+  font-size: var(--fs-3xs);
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
+  color: var(--tx-3);
+}
+
+/* ══ Cierre firmado ═════════════════════════════════════════════════════ */
+
+.qsclose { background: var(--ink-900); }
+/* OJO con la unidad: `ch` se mide sobre el tipo del PROPIO elemento. Un
+   `max-width: 30ch` en este contenedor se resolvia con los 16 px heredados
+   -> 311 px de columna, y dentro iba un titular de 76 px. Con
+   `text-wrap: balance` el h2 pedia 377 px, se salia de la columna y
+   `overflow: hidden` de la seccion lo cortaba a media palabra.
+   La medida va en cada elemento de texto, con SU tipo. */
+.qsclose__inner {
+  display: flex; flex-direction: column; gap: var(--sp-6);
+  align-items: flex-start;
+  max-width: min(680px, 100%);
+}
+.qsclose__inner h2 { max-width: 15ch; }
+.qsclose__p {
+  font-size: var(--fs-xl);
+  font-weight: 300;
+  line-height: 1.36;
+  letter-spacing: var(--tr-lead);
+  color: var(--gold-400);
+  max-width: 34ch;
+}
+.qsclose__sign {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--tx-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ══ Tira de confianza propia de esta página ════════════════════════════ */
+
+.qstrust__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 48px);
+  padding-block: clamp(24px, 3vw, 40px);
+  border-block: 1px solid var(--hairline);
+}
+@media (max-width: 900px) { .qstrust__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .qstrust__grid { grid-template-columns: 1fr; } }
+.qstrust__grid li { display: flex; align-items: center; gap: var(--sp-3); }
+.qstrust__grid svg { width: 22px; height: 22px; flex: none; color: var(--accent); }
+.qstrust__grid span {
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--tx-2);
+  line-height: 1.35;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BLOQUES CON IMAGEN
+   Cada bloque narrativo tiene ahora su pieza visual: el litoral aéreo para
+   «nacimos sobre el terreno» y la carta náutica de Marbella de 1889 para
+   «somos analistas». La carta no es decoración — es el oficio del que habla
+   el texto, y de la misma ciudad.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.qsblock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 5vw, 88px);
+  align-items: center;
+}
+@media (max-width: 940px) { .qsblock { grid-template-columns: minmax(0, 1fr); gap: var(--sp-10); } }
+
+.qsblock--rev .qsblock__text { order: 2; }
+.qsblock--rev .qsfig { order: 1; }
+@media (max-width: 940px) { .qsblock--rev .qsblock__text, .qsblock--rev .qsfig { order: 0; } }
+
+.qsblock__text {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-5);
+  align-items: flex-start;
+  padding-left: clamp(0px, 3vw, 40px);
+  max-width: 58ch;
+}
+@media (max-width: 720px) { .qsblock__text { padding-left: 0; } }
+.qsblock__text .body-lg { max-width: none; }
+
+.qsfig { display: flex; flex-direction: column; gap: var(--sp-3); margin: 0; }
+.qsfig__frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+}
+.qsfig__frame img {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(.66) contrast(1.03);
+  transition: transform 1.2s var(--ease-out), filter var(--t-scene) var(--ease-out);
+}
+.qsfig:hover .qsfig__frame img { transform: scale(1.04); filter: saturate(.95) contrast(1); }
+
+/* La carta náutica se trata como documento, no como fotografía: virado
+   sepia frío y filete de oro. */
+  border-color: color-mix(in srgb, var(--gold-500) 40%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+
+.qsfig__cap {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-3xs);
+  letter-spacing: .03em;
+  color: var(--tx-3);
+}
+.qsfig__cap svg { width: 13px; height: 13px; color: var(--accent); flex: none; }
+
+/* ══ Cita central sobre imagen ══════════════════════════════════════════ */
+
+.qsquote { position: relative; overflow: hidden; isolation: isolate; }
+.qsquote__media { position: absolute; inset: -6% 0; z-index: -2; display: block; }
+.qsquote__media img {
+  width: 100%; height: 112%;
+  object-fit: cover;
+  filter: saturate(.5) contrast(1.06) brightness(.74);
+}
+.qsquote__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(75% 70% at 50% 50%, rgb(6 9 15 / .5), rgb(6 9 15 / .74) 78%),
+    linear-gradient(to bottom, var(--ink-900), transparent 26%, transparent 74%, var(--ink-900));
+}
+
+/* ══ Cierre sobre imagen ════════════════════════════════════════════════ */
+
+.qsclose { position: relative; overflow: hidden; isolation: isolate; }
+.qsclose__media { position: absolute; inset: -6% 0; z-index: -2; display: block; }
+.qsclose__media img {
+  width: 100%; height: 112%;
+  object-fit: cover;
+  filter: saturate(.4) contrast(1.08) brightness(.56);
+}
+.qsclose__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(105deg, var(--ink-900) 6%, rgb(6 9 15 / .8) 44%, rgb(6 9 15 / .34) 100%);
+}
+
+/* ══ Valores: entrada con más carácter ══════════════════════════════════ */
+
+.value__ico svg { transition: transform var(--t-scene) var(--ease-spring); }
+.value:hover .value__ico svg { transform: scale(1.12) rotate(-4deg); }
+.value { transition: border-color var(--t-ui) var(--ease-out); }
+.value:hover { border-top-color: var(--accent-solid); }
+
+/* ── La fotografia como documento de observacion ────────────────────────
+   Esquinas de visor dibujadas con dos gradientes y chapa de coordenadas:
+   el lenguaje del expediente aplicado a la imagen. */
+.qsfig__frame { position: relative; display: block; }
+/* Dos esquinas bastan (arriba-izda y abajo-dcha): cuatro son mira de
+   francotirador, dos son encuadre. La opuesta va como ::after del MARCO,
+   no de la esquina: un pseudo de la esquina solo puede desplazarse
+   respecto a su propia caja de 22 px y nunca alcanzaria la diagonal. */
+.qsfig__esq, .qsfig__frame::after {
+  content: '';
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 0 solid var(--gold-400);
+  pointer-events: none;
+  z-index: 2;
+}
+.qsfig__esq { top: 12px; left: 12px; border-top-width: 2px; border-left-width: 2px; }
+.qsfig__frame::after { right: 12px; bottom: 12px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.qsfig__geo {
+  position: absolute; right: 14px; bottom: 12px;
+  padding: 5px 10px;
+  border: 1px solid rgb(255 255 255 / .16);
+  border-radius: var(--r-full);
+  background: rgb(6 9 15 / .55);
+  backdrop-filter: blur(8px);
+  color: #e8ecf3;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
+}
+
+/* ── Los cuatro campos de origen ────────────────────────────────────────
+   Reticula de 2x2 con filetes: rompe la simetria con el bloque de abajo
+   —que es texto y foto y nada mas— y da peso al primero, que es el que
+   abre la pagina. */
+.origen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin-top: var(--sp-4);
+  width: 100%;
+  border-top: 1px solid var(--border);
+}
+.origen li {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-4) var(--sp-4) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--tx-1);
+}
+.origen li:nth-child(odd) { border-right: 1px solid var(--border); }
+.origen li:nth-child(even) { padding-left: var(--sp-4); }
+.origen svg { width: 17px; height: 17px; flex: none; color: var(--accent); }
+@media (max-width: 560px) {
+  .origen { grid-template-columns: 1fr; }
+  .origen li:nth-child(odd) { border-right: 0; }
+  .origen li:nth-child(even) { padding-left: 0; }
+}
+
+/* ══ Analistas, no vendedores ═══════════════════════════════════════════
+   Dos columnas enfrentadas y un eje en medio. Es el contraste del texto
+   convertido en composicion: a la izquierda lo descartado —tachado, sin
+   acento, en tono apagado—, a la derecha lo que si, en oro. */
+
+.an { background: var(--ink-900); }
+.an__head { display: flex; flex-direction: column; gap: var(--sp-4); align-items: center; text-align: center; }
+.an__head h2 { max-width: 20ch; }
+
+.an__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 72px);
+  align-items: stretch;
+  margin-top: clamp(40px, 5vw, 72px);
+}
+.an__col { display: flex; flex-direction: column; gap: var(--sp-5); }
+.an__col ul { display: flex; flex-direction: column; }
+.an__col li {
+  padding: clamp(14px, 1.8vw, 20px) 0;
+  border-bottom: 1px solid rgb(255 255 255 / .08);
+  font-size: var(--fs-lg);
+  font-weight: 300;
+  letter-spacing: var(--tr-h3);
+}
+.an__col li:last-child { border-bottom: 0; }
+
+.an__lbl {
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border-radius: var(--r-full);
+  border: 1px solid rgb(255 255 255 / .16);
+  color: var(--tx-4);
+  font-size: 15px;
+}
+.an__lbl svg { width: 15px; height: 15px; }
+
+/* Lo descartado: tachado con un filete, no con `line-through` —el trazo del
+   tipo queda burdo a este tamaño— y en el tono mas bajo de la escala. */
+/* Apagado, pero legible: --tx-4 daba 3,47:1 a 19 px y ese cuerpo no cuenta
+   como «texto grande» (hace falta 24 px, o 18,66 en negrita). El descarte se
+   nota por el tachado y por el contraste con la columna blanca de al lado,
+   no por hacer el texto ilegible. */
+.an__col--no li { color: var(--tx-3); position: relative; }
+.an__col--no li span { position: relative; }
+.an__col--no li span::after {
+  content: '';
+  position: absolute; left: 0; right: 0; top: 52%;
+  height: 1px;
+  background: rgb(255 255 255 / .28);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 520ms var(--ease-out);
+}
+.an__col--no li.is-in span::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .an__col--no li span::after { transition: none; transform: scaleX(1); }
+}
+
+.an__col--si .an__lbl { color: var(--gold-400); border-color: rgb(191 161 95 / .45); }
+.an__col--si li { color: #f2f5fa; }
+.an__col--si { text-align: right; align-items: flex-end; }
+.an__col--si ul { width: 100%; }
+
+.an__eje { width: 1px; background: linear-gradient(to bottom, transparent, rgb(191 161 95 / .38) 22%, rgb(191 161 95 / .38) 78%, transparent); }
+
+.an__pie {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+  margin-top: clamp(44px, 5vw, 80px);
+  padding-top: clamp(32px, 4vw, 52px);
+  border-top: 1px solid rgb(255 255 255 / .1);
+}
+.an__texto { display: flex; flex-direction: column; gap: var(--sp-4); max-width: 74ch; }
+
+@media (max-width: 860px) {
+  .an__grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+  .an__eje { width: auto; height: 1px; background: linear-gradient(to right, transparent, rgb(191 161 95 / .38), transparent); }
+  .an__col--si { text-align: left; align-items: flex-start; }
+  .an__pie { grid-template-columns: 1fr; align-items: start; }
+}

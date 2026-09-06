@@ -1,0 +1,116 @@
+<!--meta
+slug: presupuesto-bloque-1
+title: seo.title.presupuesto-bloque-1
+desc: seo.desc.presupuesto-bloque-1
+navMode: dark
+css: pages/cuestionario.css
+js: pages/cuestionario.js
+-->
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CUESTIONARIO · BLOQUE 1 — PARTICULARES
+     16 preguntas. Los textos salen de data/questionnaire-b1.json, extraído
+     del tema original: ni el enunciado ni las opciones se han reescrito.
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<div class="q" id="q">
+
+  <!-- Portada: HTML real, visible sin JavaScript -->
+  <!-- Portada: HTML real, visible sin JavaScript.
+       Antes era una sola columna de texto en el centro de una pantalla
+       entera: mucho aire y ninguna respuesta a la pregunta que uno se hace
+       antes de empezar un cuestionario —cuanto dura, cuanto tengo que
+       contestar y que recibo al final—. Ahora eso vive a la derecha, en un
+       panel propio, con los tres pasos que ya estaban en el guion del
+       cuestionario (`steps`) y que no se mostraban en ningun sitio. -->
+  <section class="q__cover" id="q-cover">
+    <div class="container-wide q__coverGrid">
+
+      <div class="q__col">
+        <p class="kicker" data-reveal="veil" data-t="presup.b1.title"></p>
+        <h1 class="d-2" data-reveal="wipe" style="--reveal-delay:40ms">{{t contact.hero.h1a}}</h1>
+
+        <div class="q__lede" data-reveal="rise" style="--reveal-delay:90ms">
+          <p data-t-html="b1.cover.p1"></p>
+          <p data-t-html="b1.cover.p2"></p>
+          <p class="q__tag" data-t-html="b1.cover.p3"></p>
+        </div>
+
+        <p class="q__disc" data-reveal="rise" style="--reveal-delay:130ms">{{q1 cvdisc}}</p>
+
+        <div class="q__start" data-reveal="rise" style="--reveal-delay:160ms">
+          <button class="btn btn--primary btn--lg" type="button" id="q-start">
+            <span>{{q1 btn}}</span>
+            <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+          </button>
+          <p class="micro">
+            <svg class="ico" aria-hidden="true"><use href="assets/icons/sprite.svg#clock"></use></svg>
+            {{q1 time}}
+          </p>
+        </div>
+      </div>
+
+      <aside class="q__panel on-dark" data-reveal="scale-in" style="--reveal-delay:120ms">
+        <div class="q__cifras">
+          <span class="q__cifra"><b class="num-tab">16</b><i data-t="ui.q.preg"></i></span>
+          <span class="q__cifra"><b class="num-tab">4</b><i data-t="ui.q.min"></i></span>
+        </div>
+
+        <p class="q__panelT micro" data-t="ui.q.despues"></p>
+        <ol class="q__pasos">
+          <li><span class="q__pasoN num-tab">01</span><span>{{q1 steps.0}}</span></li>
+          <li><span class="q__pasoN num-tab">02</span><span>{{q1 steps.1}}</span></li>
+          <li><span class="q__pasoN num-tab">03</span><span>{{q1 steps.2}}</span></li>
+        </ol>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- Formulario: lo monta cuestionario.js desde data/questionnaire-b1.json -->
+  <section class="q__form" id="q-form" hidden>
+    <div class="q__bar" aria-hidden="true"><span id="q-bar"></span></div>
+
+    <div class="container-text q__stage">
+      <header class="q__meta">
+        <p class="micro" id="q-block"></p>
+        <p class="micro num-tab" id="q-count"></p>
+      </header>
+
+      <div class="q__motiv" id="q-motiv" hidden></div>
+
+      <div id="q-slot" aria-live="polite"></div>
+
+      <p class="q__err" id="q-err" role="alert"></p>
+
+      <nav class="q__nav">
+        <button class="btn btn--ghost" type="button" id="q-prev"></button>
+        <button class="btn btn--primary" type="button" id="q-next"></button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Revisión -->
+  <section class="q__review" id="q-review" hidden>
+    <div class="container-text">
+      <h2 class="d-3" id="q-review-t"></h2>
+      <p class="lead" id="q-review-s"></p>
+      <dl class="q__summary" id="q-summary"></dl>
+      <p class="caption" id="q-legal"></p>
+      <button class="btn btn--primary btn--lg btn--block" type="button" id="q-send"></button>
+      <p class="formstatus" id="q-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- Confirmación -->
+  <section class="q__done" id="q-done" hidden>
+    <div class="container-text center">
+      <span class="q__done-ico" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#check-circle"></use></svg></span>
+      <h2 class="d-3" id="q-done-t"></h2>
+      <p class="lead center-x" id="q-done-p"></p>
+      <ol class="q__steps" id="q-done-steps"></ol>
+      <a class="btn btn--outline" href="index.html" data-t="ui.404.home"></a>
+    </div>
+  </section>
+
+</div>

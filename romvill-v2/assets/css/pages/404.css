@@ -1,0 +1,19 @@
+/* ROMVILL v2 — 404 */
+
+.e404 {
+  min-height: 100svh;
+  display: flex; align-items: center;
+  background: var(--ink-900);
+  padding-block: calc(var(--nav-h) + var(--sp-16)) var(--sp-16);
+}
+.e404__inner { display: flex; flex-direction: column; gap: var(--sp-5); align-items: flex-start; max-width: 44ch; }
+.e404__code {
+  font-size: clamp(96px, 20vw, 240px);
+  font-weight: 200;
+  line-height: .84;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold-500);
+  opacity: .55;
+}
+.e404__links { display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-6); margin-top: var(--sp-6); padding-top: var(--sp-6); border-top: 1px solid var(--border); width: 100%; }

@@ -1,0 +1,39 @@
+<!--meta
+slug: 404
+title: ui.404.title
+desc: ui.404.desc
+navMode: dark
+css: pages/404.css
+-->
+
+<section class="e404 phero--photo on-dark grain">
+  <picture class="phero__media" aria-hidden="true">
+    <source srcset="assets/images/sec/panorama-costa.webp" type="image/webp">
+    <img src="assets/images/sec/panorama-costa.jpg" alt="" width="1600" height="550" decoding="async">
+  </picture>
+  <span class="phero__veil" aria-hidden="true"></span>
+  <div class="container">
+    <div class="e404__inner">
+      <p class="e404__code num-tab" data-reveal="veil" aria-hidden="true">404</p>
+      <h1 class="d-2" data-reveal="wipe" style="--reveal-delay:50ms" data-t="ui.404.title"></h1>
+      <p class="lead" data-reveal="rise" style="--reveal-delay:100ms" data-t="ui.404.desc"></p>
+
+      <div class="cluster" data-reveal="rise" style="--reveal-delay:140ms">
+        <a class="btn btn--primary btn--lg" href="index.html">
+          <span data-t="ui.404.home"></span>
+          <svg aria-hidden="true"><use href="assets/icons/sprite.svg#arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--outline btn--lg" href="contacto.html" data-t="nav.contacto"></a>
+      </div>
+
+      <nav class="e404__links" aria-label="{{t nav.aria}}" data-stagger="60">
+        <a class="footer__link" href="metodologia.html"          data-reveal="rise-sm" data-t="nav.metodologia"></a>
+        <a class="footer__link" href="analisis.html"             data-reveal="rise-sm" data-t="nav.analisis"></a>
+        <a class="footer__link" href="sectores.html"             data-reveal="rise-sm" data-t="nav.sectores"></a>
+        <a class="footer__link" href="precios.html"              data-reveal="rise-sm" data-t="nav.precios"></a>
+        <a class="footer__link" href="preguntas-frecuentes.html" data-reveal="rise-sm" data-t="nav.faq.full"></a>
+        <a class="footer__link" href="muestra-de-informe.html"   data-reveal="rise-sm" data-t="mu.link.ver"></a>
+      </nav>
+    </div>
+  </div>
+</section>

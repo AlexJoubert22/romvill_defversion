@@ -13,3 +13,13 @@ _ESTADO_*.txt
 # Artefactos de inspeccion visual (Playwright)
 .playwright-mcp/
 *.png.tmp
+
+# ── Andamiaje del agente, ajeno al tema de WordPress ──────────────────────
+# El entorno crea estas carpetas dentro del proyecto. NO son del tema y no
+# deben desplegarse: un `git add -A` metio 859 archivos en produccion.
+/.claude/
+/.agents/
+/agent/
+/video/
+/audio_temp/
+/skills-lock.json
