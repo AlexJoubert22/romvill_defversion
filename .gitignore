@@ -23,3 +23,11 @@ _ESTADO_*.txt
 /video/
 /audio_temp/
 /skills-lock.json
+
+# ── Sandbox del rediseño v2 y notas: NUNCA en este repo ───────────────────
+# romvill-v2/ es una recreacion desde cero que vive aqui por comodidad pero
+# NO forma parte del tema. Cada push despliega a produccion; subirla mandaria
+# un sitio entero sin revisar. Ya paso una vez por un `git add -A` sin filtro.
+/romvill-v2/
+/plantilla-informe/
+/ROMVILL-DOCUMENTACION.md
