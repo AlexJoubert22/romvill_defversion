@@ -201,7 +201,20 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Iconos — se conserva de la generacion anterior */
+/* ── Iconos ────────────────────────────────────────────────────────────────
+   f15.woff2 es un SUBCONJUNTO de Material Symbols: solo trae las ligaduras
+   que se piden al generarlo. Si se usa un icono que no esta en la lista, el
+   navegador dibuja su NOMBRE en letras (add_circle salia como "ADD_CIRCLE").
+
+   Al anadir un icono nuevo al tema hay que regenerar este archivo con la
+   lista COMPLETA:
+     curl "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined       :opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=<lista>"
+   Los 24 en uso hoy (28-08-2026):
+     add_circle, arrow_back, arrow_forward, balance, check, close, dark_mode,
+     edit, error_outline, expand_more, format_quote, home, hourglass_empty,
+     light_mode, lock, mail, menu, public, refresh, schedule, send, tune,
+     verified, verified_user
+   ------------------------------------------------------------------------ */
 @font-face {
   font-family: 'Material Symbols Outlined';
   font-style: normal;
