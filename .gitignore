@@ -1,33 +1,69 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  ROMVILL — qué NO entra en el repositorio
+# ─────────────────────────────────────────────────────────────────────────
+#  AVISO: cada push a `main` despliega a producción (romvill.com).
+#  Antes de cada commit: `git status --short` y comprobar qué se está
+#  añadiendo. Nunca `git add -A` a ciegas.
+#
+#  Este archivo dice qué NO se versiona.
+#  `.gitattributes` dice qué, estando versionado, NO se despliega.
+# ─────────────────────────────────────────────────────────────────────────
+
+
+# ── Dependencias ─────────────────────────────────────────────────────────
 node_modules/
-wp_setup.py
+
+
+# ── Credenciales y config local ──────────────────────────────────────────
+# deploy.py y wp_setup.py contienen datos de acceso al hosting.
 deploy.py
-.DS_Store
-
-# Config local de Claude Code (contiene credenciales) — NUNCA subir
+wp_setup.py
 .claude/settings.local.json
+/.claude/
 
-# Backups manuales y notas de estado
+
+# ── Andamiaje que crea el entorno, ajeno al tema ─────────────────────────
+# El entorno genera estas carpetas dentro del proyecto sin avisar. No son
+# del tema y no deben desplegarse: un `git add -A` metió 859 archivos.
+/agent/
+/.agents/
+/skills-lock.json
+/.playwright-mcp/
+
+
+# ── Backups, notas de estado y basura del sistema ────────────────────────
 *.backup*
 _ESTADO_*.txt
-
-# Artefactos de inspeccion visual (Playwright)
-.playwright-mcp/
+.DS_Store
 *.png.tmp
 
-# ── Andamiaje del agente, ajeno al tema de WordPress ──────────────────────
-# El entorno crea estas carpetas dentro del proyecto. NO son del tema y no
-# deben desplegarse: un `git add -A` metio 859 archivos en produccion.
-/.claude/
-/.agents/
-/agent/
-/video/
-/audio_temp/
-/skills-lock.json
 
-# ── Sandbox del rediseño v2 y notas: NUNCA en este repo ───────────────────
-# romvill-v2/ es una recreacion desde cero que vive aqui por comodidad pero
-# NO forma parte del tema. Cada push despliega a produccion; subirla mandaria
-# un sitio entero sin revisar. Ya paso una vez por un `git add -A` sin filtro.
-/romvill-v2/
-/plantilla-informe/
-/ROMVILL-DOCUMENTACION.md
+# ── _recursos/ — material fuente pesado ──────────────────────────────────
+# Las imágenes originales y la marca SÍ se versionan (el equipo las
+# necesita). Lo que sigue no: pesa mucho, no lo usa el tema y se puede
+# regenerar o volver a descargar.
+/_recursos/audio/
+/_recursos/video/
+/_recursos/informe/
+/_recursos/documentacion/ROMVILL-DOCUMENTACION.md
+
+
+# ── _diseno-web/ — propuestas de diseño ──────────────────────────────────
+# El CÓDIGO de una propuesta sí puede versionarse cuando se decida
+# integrarla. Aquí sólo se ignoran los artefactos de desarrollo: acopio
+# fotográfico en bruto, capturas, auditorías y material de referencia.
+/_diseno-web/**/node_modules/
+/_diseno-web/**/_originales/
+/_diseno-web/**/_pool/
+/_diseno-web/**/_harvest/
+/_diseno-web/**/_audit/
+/_diseno-web/**/_thumbs/
+/_diseno-web/**/_reference/
+/_diseno-web/**/capturas/
+/_diseno-web/**/*.zip
+
+
+# ── video/ — el film de marca «Lo que no ves» ────────────────────────────
+# Proyecto Remotion de ~900 MB con su propio node_modules y sus masters.
+# Documentado en video/LEEME.md. Jamás debe entrar en el repo.
+/video/

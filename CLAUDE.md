@@ -33,43 +33,66 @@ Every push to `main` deploys live. Always commit and push when done. Do NOT push
 
 ## Project structure
 
+The theme lives **flat at the repo root** — WordPress requires it, so
+`page-*.php`, `functions.php`, `header.php` and `style.css` must never be moved
+into subfolders. Everything that is *not* the theme lives in a folder prefixed
+with `_`, all of them marked `export-ignore` so they never reach production.
+
 ```
 /
-├── functions.php          # Theme engine: multilingual, enqueue, AJAX, SEO, activation
-├── inc/
-│   ├── translations.php   # ALL translated strings — 5 languages, ~340 keys
-│   ├── questionnaire-engine.php  # Shared engine (CSS+HTML+JS) for blocks 2/3/4
-│   └── site-config.php    # Auto-updates, perf, hardening filters
-├── header.php             # Navbar, lang switcher, dark mode toggle, mobile menu
-├── footer.php             # Footer nav, legal links
-├── front-page.php         # Homepage (hero, stats, pillars, how-it-works, cities, CTA)
-├── page-metodologia.php   # Methodology page
-├── page-analisis.php      # Analysis dimensions page
-├── page-sectores.php      # Sectors (B2C + B2B) page
-├── page-contacto.php      # Contact page (4 profile cards + form with AJAX)
-├── page-privacidad.php    # Privacy policy page (GDPR)
-├── page-terminos.php      # Terms & conditions page
-├── page-presupuesto-bloque-1.php  # Bloque 1 questionnaire (custom design)
-├── page-presupuesto-bloque-2.php  # Bloque 2 questionnaire (uses shared engine)
-├── page-presupuesto-bloque-3.php  # Bloque 3 questionnaire (uses shared engine)
-├── page-presupuesto-bloque-4.php  # Bloque 4 questionnaire (uses shared engine)
-├── page-perfil-seguridad.php   # Sub-page: security profile
-├── page-perfil-demografico.php # Sub-page: demographic profile
-├── page-perfil-sanidad.php     # Sub-page: health profile
-├── page-perfil-movilidad.php   # Sub-page: mobility profile
-├── page-perfil-proyeccion.php  # Sub-page: projection profile
-├── style.css              # WordPress theme header + base styles
+│  ── THE THEME (flat — do not move these) ────────────────────────────────
+├── style.css              WP theme header + base styles
+├── functions.php          Engine: multilingual, enqueue, AJAX, SEO, activation, deploy
+├── index.php  page.php  404.php
+├── header.php             Navbar, lang switcher, dark mode, mobile menu
+├── footer.php             Footer nav, legal links
+├── front-page.php         Homepage
+├── page-*.php             23 page templates (see below)
+├── template-zona.php      Reusable city/zone template
+├── inc/                   24 PHP modules — see table below
 ├── assets/
-│   ├── css/
-│   │   ├── input.css      # Tailwind source (@tailwind base/components/utilities)
-│   │   └── build.css      # Compiled output — DO NOT edit by hand, regenerate with npm
-│   ├── js/
-│   │   └── romvill.js     # Navbar, slideshow, counters, modals, dark mode, contact toggles
-│   └── images/            # Theme images (logo, city photos, etc.)
-├── tailwind.config.js     # Tailwind config: custom colors, fonts, dark mode: 'class'
-├── package.json           # npm scripts: build:css, watch:css
-└── .gitignore             # node_modules excluded from git
+│   ├── css/input.css      Tailwind source
+│   ├── css/build.css      Compiled — DO NOT hand-edit, run npm run build:css
+│   ├── js/romvill.js      Navbar, slideshow, counters, modals, dark mode
+│   └── fonts/  images/  lottie/
+├── tools/php-lint.js      PHP syntax check before pushing
+├── package.json  tailwind.config.js
+├── .gitattributes         What does NOT ship to production (export-ignore)
+├── .gitignore             What does NOT get versioned
+│
+│  ── WORKING FOLDERS (never deployed) ─────────────────────────────────────
+├── _diseno-web/           Web design: proposals, archive, references
+├── _recursos/             Source material: original images, brand, audio, docs
+├── _scripts/              Maintenance utilities (deploy.py, wp_setup.py)
+└── video/                 Brand film «Lo que no ves» (~900 MB, gitignored)
 ```
+
+Each working folder has its own `LEEME.md` explaining what belongs in it.
+
+### Page templates
+
+Questionnaire flow: `page-presupuesto-bloque-1..4.php` (bloque 1 has its own
+design; 2-4 share `inc/questionnaire-engine.php`).
+
+Profile sub-pages: `page-perfil-{seguridad,demografico,sanidad,movilidad,proyeccion}.php`.
+
+Content: `front-page`, `metodologia`, `analisis`, `sectores`, `precios`,
+`quienes-somos`, `muestra-de-informe`, `preguntas-frecuentes`, `contacto`,
+`agendar-llamada`, `feedback`, `verificar`.
+
+Legal: `privacidad`, `terminos`, `aviso-legal`.
+
+### `inc/` modules
+
+| Group | Files |
+|---|---|
+| Content & i18n | `translations.php` (~1.000 keys x 5 languages), `zonas.php`, `faq.php` |
+| Questionnaire | `questionnaire-engine.php`, `calculadora.php`, `estimacion.php`, `codigos.php` |
+| Requests | `solicitudes-cpt.php`, `solicitudes-api.php`, `solicitud-parser.php`, `agenda.php` |
+| Reports | `expedientes.php`, `informe-html.php`, `publicar-informe.php`, `generador-docx.php` |
+| Delivery & mail | `entrega.php`, `post-entrega.php`, `enviar-correo.php`, `mail-cliente.php`, `mail-interno.php`, `mail-fiable.php`, `recordatorios.php` |
+| Other | `feedback.php`, `inaugural.php` |
+
 
 ---
 
@@ -202,17 +225,40 @@ This outputs `<meta name="description">`, `og:*`, and `twitter:card` tags into `
 - **IDE warnings** about "unknown function" (`esc_html`, `get_permalink`, etc.) are **false positives** — the IDE has no WordPress stubs. The code is correct.
 - **Tailwind classes must be in PHP/JS source files** so they get picked up by the Tailwind content scanner. Don't build class names dynamically with string concatenation.
 - The `node_modules/` folder is in `.gitignore` — do NOT commit it.
-
----
+- **Never `git add -A`.** See below.
 
 ---
 
 ## Useful commands
 
 ```bash
-git status                          # see what changed
-git add -A && git commit -m "..."   # stage and commit everything
-git push                            # deploy to production
+git status --short                  # ALWAYS first — see exactly what changed
+git add <paths>                     # stage named paths, never -A
+git commit -m "..."
+node tools/php-lint.js              # verify PHP syntax BEFORE pushing
+git push                            # deploys to production
 npm run build:css                   # rebuild Tailwind after class changes
 npm run watch:css                   # auto-rebuild during development
 ```
+
+### Why `git add -A` is banned here
+
+It shipped 859 files of agent scaffolding to production in one commit, three
+times in a single session. `.gitignore` now guards the known offenders, but the
+environment creates new folders mid-session without warning, so the guard is
+never complete.
+
+**Verify instead of trusting:** after staging, run `git status --short` and
+check the file count is what you expect. The theme is ~85 files. If a commit
+shows hundreds, stop and look.
+
+### Before every push
+
+1. `git pull --rebase origin main` — a colleague pushes to this same branch.
+2. `node tools/php-lint.js` — broken PHP breaks the live site instantly.
+3. If any Tailwind class changed: `npm run build:css` and commit `build.css`.
+4. `git show --stat HEAD` — confirm the contents are what you intended.
+
+After deploying, verify on the **plain URL**, not just `?fresh=`: WordPress.com
+caches anonymous HTML for ~5 minutes, so a cache-busting param can show you
+fresh content while real visitors still see the old page.

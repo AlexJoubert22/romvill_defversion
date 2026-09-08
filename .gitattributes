@@ -1,29 +1,51 @@
-# ROMVILL — Exclusiones del paquete de deploy (git archive respeta export-ignore)
-# Estos archivos permanecen en el repo pero NUNCA se incluyen en el ZIP de producción.
+# ─────────────────────────────────────────────────────────────────────────
+#  ROMVILL — qué NO viaja en el paquete de deploy
+# ─────────────────────────────────────────────────────────────────────────
+#  El despliegue se hace con `git archive`, que respeta `export-ignore`.
+#  Lo marcado aquí PERMANECE en el repositorio pero NUNCA llega al
+#  servidor de producción.
+#
+#  Complementa a `.gitignore`, que dice qué no se versiona siquiera.
+# ─────────────────────────────────────────────────────────────────────────
 
-# Documentación y archivos internos
+
+# ── Carpetas de trabajo: nada de esto es el tema ─────────────────────────
+_recursos/ export-ignore
+_scripts/ export-ignore
+_diseno-web/ export-ignore
+video/ export-ignore
+
+
+# ── Documentación e internos ─────────────────────────────────────────────
 CLAUDE.md export-ignore
 *.md export-ignore
 *.pdf export-ignore
 *.py export-ignore
 _ESTADO* export-ignore
 
-# Mockups y HTML de desarrollo (el tema solo usa .php)
+
+# ── Maquetas y HTML de desarrollo (el tema sólo usa .php) ────────────────
 *.html export-ignore
 
-# Backups locales
+
+# ── Backups locales ──────────────────────────────────────────────────────
 *.backup.* export-ignore
 
-# Originales pesados sin optimizar (las versiones de producción viven en assets/images/)
-/alicante.png export-ignore
-/malaga.png export-ignore
-/marbella.png export-ignore
-/fondo_hero.png export-ignore
-/inversores.png export-ignore
+
+# ── Originales pesados sin optimizar ─────────────────────────────────────
+# Las versiones que sirve el tema viven en assets/images/. Estos son los
+# originales de trabajo, en _recursos/. Las reglas van por nombre además
+# de por carpeta: si algún día se mueven, siguen sin desplegarse.
+alicante.png export-ignore
+malaga.png export-ignore
+marbella.png export-ignore
+fondo_hero.png export-ignore
+inversores.png export-ignore
 "logo negro jpg.jpg" export-ignore
 "Business Meeting Animation.json" export-ignore
 
-# Tooling y metadatos (no necesarios en producción)
+
+# ── Tooling y metadatos (no hacen falta en producción) ───────────────────
 .claude export-ignore
 .agents export-ignore
 .github export-ignore
