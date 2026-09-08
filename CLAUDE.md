@@ -33,22 +33,28 @@ Every push to `main` deploys live. Always commit and push when done. Do NOT push
 
 ## Project structure
 
-The theme lives **flat at the repo root** — WordPress requires it, so
-`page-*.php`, `functions.php`, `header.php` and `style.css` must never be moved
-into subfolders. Everything that is *not* the theme lives in a folder prefixed
-with `_`, all of them marked `export-ignore` so they never reach production.
+**Only three files sit at the repo root**, because WordPress demands those
+three by name and nothing else. Every template lives in `plantillas/`;
+everything that is not the theme lives in a folder prefixed with `_`, all of
+them marked `export-ignore` so they never reach production.
 
 ```
 /
-│  ── THE THEME (flat — do not move these) ────────────────────────────────
-├── style.css              WP theme header + base styles
-├── functions.php          Engine: multilingual, enqueue, AJAX, SEO, activation, deploy
-├── index.php  page.php  404.php
-├── header.php             Navbar, lang switcher, dark mode, mobile menu
-├── footer.php             Footer nav, legal links
-├── front-page.php         Homepage
-├── page-*.php             23 page templates (see below)
-├── template-zona.php      Reusable city/zone template
+│  ── THE ONLY THREE WORDPRESS INSISTS ON ──────────────────────────────────
+├── style.css              Theme header. WP won't see the theme without it.
+├── functions.php          WP loads this by name. Engine: i18n, enqueue,
+│                          AJAX, SEO, activation, deploy, template resolver.
+├── index.php              Mandatory fallback template — and the safety net
+│                          if the resolver doesn't find what it expects.
+│
+│  ── THE THEME ────────────────────────────────────────────────────────────
+├── plantillas/            ALL templates (29). See "Page templates" below.
+│   ├── header.php         Navbar, lang switcher, dark mode, mobile menu
+│   ├── footer.php         Footer nav, legal links
+│   ├── front-page.php     Homepage
+│   ├── page.php  404.php
+│   ├── page-*.php         23 page templates
+│   └── template-zona.php  Reusable city/zone template
 ├── inc/                   24 PHP modules — see table below
 ├── assets/
 │   ├── css/input.css      Tailwind source
@@ -68,6 +74,34 @@ with `_`, all of them marked `export-ignore` so they never reach production.
 ```
 
 Each working folder has its own `LEEME.md` explaining what belongs in it.
+
+### How templates are resolved — read this before adding one
+
+**Dropping a `page-{slug}.php` in the repo root does nothing.** WordPress's
+template hierarchy only looks at the theme root, but this theme resolves its
+own templates in `romvill_page_template()` (hooked to `template_include`,
+which runs *after* the hierarchy and therefore wins). It points at
+`plantillas/`. That filter is why the root is clean — and why the convention
+is invisible unless you read it here.
+
+Two consequences:
+
+- **A new template goes in `plantillas/`**, not the root.
+- **`get_header()` and `get_footer()` do not work** for files in there —
+  WordPress only looks in the theme root for those. Use
+  `get_template_part( 'plantillas/header' )` and `.../footer` instead, as all
+  29 templates already do. Nothing hooks the `get_header`/`get_footer`
+  actions, so it is equivalent.
+
+Every branch of the resolver guards with `file_exists`: a missing template
+falls through to `index.php` rather than breaking the page. `is_front_page()`
+is checked **before** `is_page()` — a static front page is also `is_page()`,
+so the reverse order sends the homepage down the wrong branch.
+
+When you move or rename a template, add the old filename to
+`romvill_purge_dev_files()` and bump the `romvill_devpurge` version. The
+deploy copies files but never deletes them, so the old copy would linger on
+the server and stay reachable by URL.
 
 ### Page templates
 
@@ -210,11 +244,20 @@ This outputs `<meta name="description">`, `og:*`, and `twitter:card` tags into `
 
 ## Adding a new page
 
-1. Create `page-mynewpage.php` using the same pattern as existing pages (`get_header()`, `$_lang = romvill_current_lang()`, `romvill_seo()`, content, `get_footer()`)
-2. Add the page to `romvill_activate()` in `functions.php` so WordPress creates it automatically
-3. Add translation keys for all visible text in `inc/translations.php`
-4. Run `npm run build:css` if you used new Tailwind classes
-5. Commit and push
+1. Create **`plantillas/page-mynewpage.php`** — in the folder, not the root, or
+   it will never be found. Follow the pattern of the existing ones:
+   `get_template_part( 'plantillas/header' )`, `$_lang = romvill_current_lang()`,
+   `romvill_seo()`, content, `get_template_part( 'plantillas/footer' )`.
+2. Add the page to `romvill_activate()` in `functions.php` so WordPress creates
+   it automatically. The `'template'` value is the path *including* the folder:
+   `'plantillas/page-mynewpage.php'`.
+3. Bump `ROMVILL_PAGES_VERSION` — `romvill_activate()` only re-runs when it
+   changes, so without the bump the page is never created. It fires on
+   `admin_init` for logged-in admins only, so visit wp-admin once after
+   deploying or nothing happens.
+4. Add translation keys for all visible text in `inc/translations.php`.
+5. Run `npm run build:css` if you used new Tailwind classes.
+6. `node tools/php-lint.js $(git ls-files '*.php')`, then push.
 
 ---
 
