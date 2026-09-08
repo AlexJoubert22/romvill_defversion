@@ -13,7 +13,7 @@
  *
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 
 $serif = "font-family:'Cormorant Garamond',Georgia,serif;";
@@ -294,4 +294,4 @@ foreach ( array_values( $fb_items ) as $i => $etiqueta ) {
     })();
     </script>
 </main>
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

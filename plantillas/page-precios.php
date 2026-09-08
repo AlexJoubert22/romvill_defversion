@@ -7,7 +7,7 @@
  *
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 
 $contacto_page = get_page_by_path( 'contacto' );
@@ -210,4 +210,4 @@ $packs = array(
 
     </div>
 </main>
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

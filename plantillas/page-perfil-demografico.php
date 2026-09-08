@@ -3,7 +3,7 @@
  * Template: Perfil Demográfico
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $contacto_page = get_page_by_path('contacto');
 $contacto_url = $contacto_page ? get_permalink($contacto_page) : home_url('/contacto/');
 $analisis_page = get_page_by_path('analisis');
@@ -55,4 +55,4 @@ $analisis_url = $analisis_page ? get_permalink($analisis_page) : home_url('/anal
     <?php romvill_related_dimensions( 'perfil-demografico' ); ?>
 </main>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

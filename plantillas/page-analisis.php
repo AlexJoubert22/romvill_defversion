@@ -3,7 +3,7 @@
  * Template: Análisis
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 romvill_seo( array(
     'desc'  => romvill_t( 'meta.ana.desc' ),
@@ -232,4 +232,4 @@ $perfil_pages = array(
     </section>
 </main>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

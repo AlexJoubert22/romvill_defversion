@@ -7,7 +7,7 @@
  *
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 
 $rv_404_t = array(
     'es' => array(
@@ -76,4 +76,4 @@ $rv_precios_url = $rv_precios ? romvill_link( get_permalink( $rv_precios ) ) : '
     </div>
 </main>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

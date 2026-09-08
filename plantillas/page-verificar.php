@@ -16,7 +16,7 @@
  * SEO: noindex (slug en ROMVILL_NOINDEX_SLUGS, functions.php).
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 
 $serif = "font-family:'Cormorant Garamond',Georgia,serif;";
@@ -191,4 +191,4 @@ $contacto_url  = romvill_link( $contacto_page ? get_permalink( $contacto_page ) 
     })();
     </script>
 </main>
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

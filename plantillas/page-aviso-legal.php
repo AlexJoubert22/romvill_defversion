@@ -8,7 +8,7 @@
  * con prefijo 'legal.aviso.*'. El correo de contacto y el enlace a
  * /privacidad/ preservan el idioma de la página.
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 romvill_seo( array(
     'desc'  => romvill_t( 'seo.desc.aviso-legal' ),
@@ -124,4 +124,4 @@ $aviso_kses_a = array( 'strong' => array(), 'a' => array( 'href' => array(), 'cl
     </section>
 </main>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

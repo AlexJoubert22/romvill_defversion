@@ -24,12 +24,12 @@ function romvill_q_render( $config ) {
         ) );
     }
 
-    get_header();
+    get_template_part( 'plantillas/header' );
 
     romvill_q_print_html( $config );
     romvill_q_print_js( $config );
 
-    get_footer();
+    get_template_part( 'plantillas/footer' );
 }
 
 /* ════════════════════════════════════════════════════════════ */

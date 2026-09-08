@@ -239,25 +239,48 @@ function romvill_print_theme_css() {
 }
 add_action( 'wp_head', 'romvill_print_theme_css', 6 );
 
-// ─── Page Slug Templates ────────────────────────────────────
-// Las plantillas de página viven en /plantillas/, no en la raíz del tema.
-// Se puede porque esta función resuelve la plantilla a mano: no depende de
-// la jerarquía de WordPress, que sí exigiría `page-{slug}.php` en la raíz.
-// `page.php`, `index.php` y `404.php` siguen arriba porque a esos los busca
-// WordPress directamente, y son la red de seguridad si esto no encuentra nada.
+// ─── Resolución de plantillas ───────────────────────────────
+// TODAS las plantillas viven en /plantillas/, no sueltas en la raíz del tema.
+// Es posible porque esta función las resuelve a mano en `template_include`:
+// la jerarquía de WordPress sólo mira la raíz, pero se ejecuta antes que este
+// filtro, así que lo que decida aquí es lo que se acaba usando.
+//
+// En la raíz sólo quedan los tres archivos que WordPress exige literalmente:
+// style.css (cabecera del tema), functions.php (lo carga por nombre) e
+// index.php (plantilla obligatoria, y la red de seguridad final si nada de
+// esto encuentra el archivo esperado).
+//
+// Cada rama comprueba `file_exists` a propósito: si una plantilla faltara, se
+// devuelve $template y WordPress cae en index.php en vez de romper la página.
 function romvill_page_template( $template ) {
+    $dir = get_template_directory() . '/plantillas/';
+
+    // La portada primero: una portada estática es TAMBIÉN is_page(), así que
+    // invertir este orden la mandaría por la rama equivocada.
+    if ( is_front_page() && file_exists( $dir . 'front-page.php' ) ) {
+        return $dir . 'front-page.php';
+    }
+
+    if ( is_404() && file_exists( $dir . '404.php' ) ) {
+        return $dir . '404.php';
+    }
+
     if ( is_page() ) {
         $slug = get_post_field( 'post_name', get_queried_object_id() );
-        $custom = get_template_directory() . '/plantillas/page-' . $slug . '.php';
+        $custom = $dir . 'page-' . $slug . '.php';
         if ( file_exists( $custom ) ) {
             return $custom;
         }
         // Páginas de zona: una plantilla común para todos sus slugs.
         if ( function_exists( 'romvill_zona_slugs' ) && in_array( $slug, romvill_zona_slugs(), true ) ) {
-            $zt = get_template_directory() . '/plantillas/template-zona.php';
+            $zt = $dir . 'template-zona.php';
             if ( file_exists( $zt ) ) return $zt;
         }
+        // Genérico de página, para cualquier página sin plantilla propia.
+        $generic = $dir . 'page.php';
+        if ( file_exists( $generic ) ) return $generic;
     }
+
     return $template;
 }
 add_filter( 'template_include', 'romvill_page_template' );
@@ -2079,6 +2102,11 @@ function romvill_purge_dev_files() {
         'page-presupuesto-bloque-2', 'page-presupuesto-bloque-3',
         'page-presupuesto-bloque-4', 'page-privacidad', 'page-quienes-somos',
         'page-sectores', 'page-terminos', 'page-verificar', 'template-zona',
+        // Segunda tanda: la cabecera, el pie y las plantillas que resolvía la
+        // jerarquía. Ahora las resuelve romvill_page_template() desde
+        // /plantillas/, y get_header()/get_footer() se sustituyeron por
+        // get_template_part(). Las de la raíz ya no las usa nadie.
+        'header', 'footer', 'front-page', '404', 'page',
     );
     foreach ( $movidas as $m ) {
         $orphans[] = $m . '.php';
@@ -2096,10 +2124,10 @@ function romvill_purge_dev_files() {
 // Ejecuta la purga UNA sola vez tras desplegar esta versión (sin intervención).
 // Súbele la versión al añadir archivos a la lista, o no volverá a ejecutarse.
 add_action( 'init', function () {
-    if ( get_option( 'romvill_devpurge' ) === 'v2' ) return;
+    if ( get_option( 'romvill_devpurge' ) === 'v3' ) return;
     if ( function_exists( 'romvill_purge_dev_files' ) ) {
         romvill_purge_dev_files();
-        update_option( 'romvill_devpurge', 'v2' );
+        update_option( 'romvill_devpurge', 'v3' );
     }
 } );
 

@@ -3,7 +3,7 @@
  * Template: Quiénes somos
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 romvill_seo( array(
     'desc'  => romvill_t( 'seo.desc.quienes-somos' ),
@@ -169,4 +169,4 @@ $serif         = "font-family:'Cormorant Garamond',Georgia,serif;";
 
 </main>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

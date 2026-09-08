@@ -261,7 +261,7 @@ textarea.rv-b1-fi.valid { border-color:var(--b1-ok); }
 </style>
 <?php } );
 
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 romvill_seo( array(
     'title' => 'Solicitar Presupuesto — Bloque 1 — ROMVILL',
@@ -1168,4 +1168,4 @@ if(lang!=='es'){
 }
 </script>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

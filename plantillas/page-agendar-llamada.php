@@ -83,7 +83,7 @@ add_action( 'wp_head', function () { ?>
 </style>
 <?php } );
 
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 romvill_seo( array() );
 
@@ -371,4 +371,4 @@ if ( $rv_ag_sol ) {
 <?php endif; ?>
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

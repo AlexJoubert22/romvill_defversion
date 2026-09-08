@@ -4,12 +4,12 @@
  * Se carga vía romvill_page_template() para cualquier slug de romvill_zona_slugs().
  * @package Romvill
  */
-get_header();
+get_template_part( 'plantillas/header' );
 $_lang = romvill_current_lang();
 
 $_slug = get_post_field( 'post_name', get_queried_object_id() );
 $_z    = romvill_zona_actual( $_slug );
-if ( ! $_z ) { get_footer(); return; }
+if ( ! $_z ) { get_template_part( 'plantillas/footer' ); return; }
 $_key  = $_z['key'];
 $_img  = get_template_directory_uri() . '/assets/images/' . $_z['img'];
 
@@ -126,4 +126,4 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
     r.querySelectorAll('.zn-reveal').forEach(function(el){io.observe(el);});})();
     </script>
 </main>
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>

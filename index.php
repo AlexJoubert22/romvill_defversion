@@ -5,7 +5,7 @@
  * @package Romvill
  */
 
-get_header();
+get_template_part( 'plantillas/header' );
 ?>
 
 <main class="flex-grow pt-24">
@@ -28,4 +28,4 @@ get_header();
     </div>
 </main>
 
-<?php get_footer(); ?>
+<?php get_template_part( 'plantillas/footer' ); ?>
