@@ -235,7 +235,7 @@ This outputs `<meta name="description">`, `og:*`, and `twitter:card` tags into `
 git status --short                  # ALWAYS first — see exactly what changed
 git add <paths>                     # stage named paths, never -A
 git commit -m "..."
-node tools/php-lint.js              # verify PHP syntax BEFORE pushing
+node tools/php-lint.js $(git ls-files '*.php')   # syntax check BEFORE pushing
 git push                            # deploys to production
 npm run build:css                   # rebuild Tailwind after class changes
 npm run watch:css                   # auto-rebuild during development
@@ -255,7 +255,11 @@ shows hundreds, stop and look.
 ### Before every push
 
 1. `git pull --rebase origin main` — a colleague pushes to this same branch.
-2. `node tools/php-lint.js` — broken PHP breaks the live site instantly.
+2. `node tools/php-lint.js $(git ls-files '*.php')` — broken PHP breaks the
+   live site instantly. **It takes the files as arguments**: run it with no
+   arguments and it cheerfully reports success having checked nothing.
+   Needs `npm install` first (`php-parser` is a devDependency; this machine
+   has no PHP binary, so `php -l` is not an option).
 3. If any Tailwind class changed: `npm run build:css` and commit `build.css`.
 4. `git show --stat HEAD` — confirm the contents are what you intended.
 
