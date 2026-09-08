@@ -14,8 +14,7 @@ de él**. Nada de esta carpeta se despliega — `_recursos/` está marcada
 | `marca/` | El logo en negro y la animación Lottie de origen | **Sí** |
 | `documentacion/` | El PDF de documentación (versionado) y `ROMVILL-DOCUMENTACION.md`, que documenta el embudo completo (no versionado) | Mixto |
 | `informe/` | Plantilla maestra del expediente de cliente + su guía de automatización | No |
-| `audio/` | Pruebas de locución y las escenas de audio del anuncio (44 MB) | No |
-| `video/` | El anuncio montado, `romvill-commercial.mp4` | No |
+| `anuncio/` | Todo el material del anuncio: montaje final, escenas, locuciones y música (50 MB) | No |
 
 ---
 
@@ -55,11 +54,24 @@ del tema.
 
 ---
 
-## Audio y vídeo
+## El anuncio
 
-Material del anuncio, ya montado. `audio/pruebas-de-voz/` son locuciones de
-prueba con distintas voces y música libre de derechos de Incompetech;
-`audio/escenas-anuncio/` son las pistas por escena.
+Todo el material de un mismo trabajo, ya terminado, en `anuncio/`:
 
-No lo confundas con el **film de marca «Lo que no ves»**, que es otro proyecto
-y vive en `video/` en la raíz, con su propia documentación en `video/LEEME.md`.
+| | |
+|---|---|
+| `montaje-final.mp4` | El anuncio montado |
+| `escenas/` | Las pistas de audio escena por escena |
+| `locuciones/` | Pruebas de voz — varias voces neuronales, para elegir |
+| `musica/` | Música libre de derechos de Incompetech |
+
+La procedencia y la licencia de la música están documentadas en
+`_scripts/download_music.py`, que fue lo que la descargó. Es la única
+constancia que hay, así que no borres ese script.
+
+### No lo confundas con el film de marca
+
+**«Lo que no ves»** es otro proyecto distinto: un film de 90 s hecho con
+Remotion que vive en `video/`, en la raíz, con su propia documentación en
+`video/LEEME.md` y sus propias skills en `.claude/skills/`. Ocupa ~900 MB y
+está gitignored entero.

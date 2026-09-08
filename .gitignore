@@ -42,8 +42,7 @@ _ESTADO_*.txt
 # Las imágenes originales y la marca SÍ se versionan (el equipo las
 # necesita). Lo que sigue no: pesa mucho, no lo usa el tema y se puede
 # regenerar o volver a descargar.
-/_recursos/audio/
-/_recursos/video/
+/_recursos/anuncio/
 /_recursos/informe/
 /_recursos/documentacion/ROMVILL-DOCUMENTACION.md
 
