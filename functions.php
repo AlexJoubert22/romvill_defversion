@@ -240,16 +240,21 @@ function romvill_print_theme_css() {
 add_action( 'wp_head', 'romvill_print_theme_css', 6 );
 
 // ─── Page Slug Templates ────────────────────────────────────
+// Las plantillas de página viven en /plantillas/, no en la raíz del tema.
+// Se puede porque esta función resuelve la plantilla a mano: no depende de
+// la jerarquía de WordPress, que sí exigiría `page-{slug}.php` en la raíz.
+// `page.php`, `index.php` y `404.php` siguen arriba porque a esos los busca
+// WordPress directamente, y son la red de seguridad si esto no encuentra nada.
 function romvill_page_template( $template ) {
     if ( is_page() ) {
         $slug = get_post_field( 'post_name', get_queried_object_id() );
-        $custom = get_template_directory() . '/page-' . $slug . '.php';
+        $custom = get_template_directory() . '/plantillas/page-' . $slug . '.php';
         if ( file_exists( $custom ) ) {
             return $custom;
         }
         // Páginas de zona: una plantilla común para todos sus slugs.
         if ( function_exists( 'romvill_zona_slugs' ) && in_array( $slug, romvill_zona_slugs(), true ) ) {
-            $zt = get_template_directory() . '/template-zona.php';
+            $zt = get_template_directory() . '/plantillas/template-zona.php';
             if ( file_exists( $zt ) ) return $zt;
         }
     }
@@ -744,121 +749,121 @@ function romvill_activate() {
         array(
             'title'    => 'Metodología',
             'slug'     => 'metodologia',
-            'template' => 'page-metodologia.php',
+            'template' => 'plantillas/page-metodologia.php',
             'order'    => 1,
         ),
         array(
             'title'    => 'Análisis',
             'slug'     => 'analisis',
-            'template' => 'page-analisis.php',
+            'template' => 'plantillas/page-analisis.php',
             'order'    => 2,
         ),
         array(
             'title'    => 'Sectores',
             'slug'     => 'sectores',
-            'template' => 'page-sectores.php',
+            'template' => 'plantillas/page-sectores.php',
             'order'    => 3,
         ),
         array(
             'title'    => 'Precios',
             'slug'     => 'precios',
-            'template' => 'page-precios.php',
+            'template' => 'plantillas/page-precios.php',
             'order'    => 7,
         ),
         array(
             'title'    => 'Contacto',
             'slug'     => 'contacto',
-            'template' => 'page-contacto.php',
+            'template' => 'plantillas/page-contacto.php',
             'order'    => 4,
         ),
         array(
             'title'    => 'Privacidad',
             'slug'     => 'privacidad',
-            'template' => 'page-privacidad.php',
+            'template' => 'plantillas/page-privacidad.php',
             'order'    => 5,
         ),
         array(
             'title'    => 'Términos',
             'slug'     => 'terminos',
-            'template' => 'page-terminos.php',
+            'template' => 'plantillas/page-terminos.php',
             'order'    => 6,
         ),
         array(
             'title'    => 'Aviso legal',
             'slug'     => 'aviso-legal',
-            'template' => 'page-aviso-legal.php',
+            'template' => 'plantillas/page-aviso-legal.php',
             'order'    => 9,
         ),
         array(
             'title'    => 'Quiénes somos',
             'slug'     => 'quienes-somos',
-            'template' => 'page-quienes-somos.php',
+            'template' => 'plantillas/page-quienes-somos.php',
             'order'    => 8,
         ),
         array(
             'title'    => 'Perfil — Seguridad',
             'slug'     => 'perfil-seguridad',
-            'template' => 'page-perfil-seguridad.php',
+            'template' => 'plantillas/page-perfil-seguridad.php',
             'order'    => 20,
         ),
         array(
             'title'    => 'Perfil — Demográfico',
             'slug'     => 'perfil-demografico',
-            'template' => 'page-perfil-demografico.php',
+            'template' => 'plantillas/page-perfil-demografico.php',
             'order'    => 21,
         ),
         array(
             'title'    => 'Perfil — Sanidad',
             'slug'     => 'perfil-sanidad',
-            'template' => 'page-perfil-sanidad.php',
+            'template' => 'plantillas/page-perfil-sanidad.php',
             'order'    => 22,
         ),
         array(
             'title'    => 'Perfil — Movilidad',
             'slug'     => 'perfil-movilidad',
-            'template' => 'page-perfil-movilidad.php',
+            'template' => 'plantillas/page-perfil-movilidad.php',
             'order'    => 23,
         ),
         array(
             'title'    => 'Perfil — Proyección',
             'slug'     => 'perfil-proyeccion',
-            'template' => 'page-perfil-proyeccion.php',
+            'template' => 'plantillas/page-perfil-proyeccion.php',
             'order'    => 24,
         ),
         array(
             'title'    => 'Verificación de autenticidad',
             'slug'     => 'verificar',
-            'template' => 'page-verificar.php',
+            'template' => 'plantillas/page-verificar.php',
             'order'    => 30,
         ),
         array(
             'title'    => 'Valoración del expediente',
             'slug'     => 'feedback',
-            'template' => 'page-feedback.php',
+            'template' => 'plantillas/page-feedback.php',
             'order'    => 31,
         ),
         array(
             'title'    => 'Solicitar Presupuesto — Bloque 1',
             'slug'     => 'presupuesto-bloque-1',
-            'template' => 'page-presupuesto-bloque-1.php',
+            'template' => 'plantillas/page-presupuesto-bloque-1.php',
             'order'    => 10,
         ),
         array(
             'title'    => 'Solicitar Presupuesto — Bloque 2',
             'slug'     => 'presupuesto-bloque-2',
-            'template' => 'page-presupuesto-bloque-2.php',
+            'template' => 'plantillas/page-presupuesto-bloque-2.php',
             'order'    => 11,
         ),
         array(
             'title'    => 'Solicitar Presupuesto — Bloque 3',
             'slug'     => 'presupuesto-bloque-3',
-            'template' => 'page-presupuesto-bloque-3.php',
+            'template' => 'plantillas/page-presupuesto-bloque-3.php',
             'order'    => 12,
         ),
         array(
             'title'    => 'Solicitar Presupuesto — Bloque 4',
             'slug'     => 'presupuesto-bloque-4',
-            'template' => 'page-presupuesto-bloque-4.php',
+            'template' => 'plantillas/page-presupuesto-bloque-4.php',
             'order'    => 13,
         ),
     );
@@ -2061,6 +2066,23 @@ function romvill_purge_dev_files() {
         'logo negro jpg.jpg', 'Business Meeting Animation.json',
         '_ESTADO_CUESTIONARIO_Y_CONTACTO.txt', '.DS_Store',
     );
+
+    // Las plantillas de página se movieron a /plantillas/ (2026-09-08). El
+    // deploy copia las nuevas pero NO borra las viejas, así que quedarían las
+    // dos versiones y la de la raíz seguiría siendo alcanzable por URL.
+    $movidas = array(
+        'page-agendar-llamada', 'page-analisis', 'page-aviso-legal', 'page-contacto',
+        'page-feedback', 'page-metodologia', 'page-muestra-de-informe',
+        'page-perfil-demografico', 'page-perfil-movilidad', 'page-perfil-proyeccion',
+        'page-perfil-sanidad', 'page-perfil-seguridad', 'page-precios',
+        'page-preguntas-frecuentes', 'page-presupuesto-bloque-1',
+        'page-presupuesto-bloque-2', 'page-presupuesto-bloque-3',
+        'page-presupuesto-bloque-4', 'page-privacidad', 'page-quienes-somos',
+        'page-sectores', 'page-terminos', 'page-verificar', 'template-zona',
+    );
+    foreach ( $movidas as $m ) {
+        $orphans[] = $m . '.php';
+    }
     $removed = array();
     foreach ( $orphans as $f ) {
         $p = $dir . $f;
@@ -2072,11 +2094,12 @@ function romvill_purge_dev_files() {
 }
 
 // Ejecuta la purga UNA sola vez tras desplegar esta versión (sin intervención).
+// Súbele la versión al añadir archivos a la lista, o no volverá a ejecutarse.
 add_action( 'init', function () {
-    if ( get_option( 'romvill_devpurge' ) === 'v1' ) return;
+    if ( get_option( 'romvill_devpurge' ) === 'v2' ) return;
     if ( function_exists( 'romvill_purge_dev_files' ) ) {
         romvill_purge_dev_files();
-        update_option( 'romvill_devpurge', 'v1' );
+        update_option( 'romvill_devpurge', 'v2' );
     }
 } );
 
