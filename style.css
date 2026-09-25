@@ -16,6 +16,21 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Sin scroll horizontal accidental. `clip` recorta sin convertir <body> en
+   contenedor de scroll (no rompe sticky ni anclas); `hidden` es el fallback
+   para navegadores antiguos. Sustituye a la clase overflow-x-hidden del body. */
+html,
+body {
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+/* Cualquier ancla (#id) se detiene bajo el nav fijo (h-20 + margen). Las
+   reglas más específicas que vienen después (.ana-tile, #perfiles…) ganan. */
+[id] {
+    scroll-margin-top: 6rem;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -179,7 +194,7 @@ html {
     box-shadow: 0 0 0 3px rgba(240, 194, 74,0.10);
 }
 .romvill-form .wpcf7-form-control:not([type=submit])::placeholder {
-    color: #A4A19E;
+    color: #75726F;
 }
 
 /* Select arrow */
@@ -333,7 +348,7 @@ html {
 }
 
 .trust-stat__label {
-    font-size: 0.6rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: #F0C24A;
@@ -362,7 +377,7 @@ html {
     .trust-stat { opacity: 1 !important; transform: none !important; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
     .trust-bar__inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .trust-bar__divider { width: 60px; height: 1px; margin: 0 auto; }
     .trust-stat__number { font-size: 2.25rem; }

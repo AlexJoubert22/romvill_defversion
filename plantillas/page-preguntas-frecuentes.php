@@ -60,12 +60,15 @@ $link = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 #rv-faq .q .txt{flex:1}
 #rv-faq .pl{flex:0 0 auto;opacity:0;color:#75726F;text-decoration:none;transition:opacity .2s,color .2s;padding:4px}
 #rv-faq .item:hover .pl{opacity:.7}
+#rv-faq .item.open .pl{opacity:.7}
+@media(hover:none){#rv-faq .pl{opacity:.55}}
 #rv-faq .pl:hover{color:#F0C24A;opacity:1}
 #rv-faq .pl svg{width:16px;height:16px;display:block}
 #rv-faq .a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s cubic-bezier(.3,.8,.3,1)}
 #rv-faq .item.open .a-wrap{grid-template-rows:1fr}
 #rv-faq .a-inner{overflow:hidden}
 #rv-faq .a{padding:2px 24px 22px 65px;color:#4C4946;font-size:1.01rem;line-height:1.72}
+@media(max-width:640px){#rv-faq .a{padding-left:22px}}
 .dark #rv-faq .a{color:#BBB8B5}
 #rv-faq .a b{color:#000000}
 .dark #rv-faq .a b{color:#fff}

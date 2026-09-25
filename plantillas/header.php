@@ -16,6 +16,7 @@
     }
     .dark .lang-switcher .lang-dropdown { background: #141414; border-color: #2E2E2E; }
     .lang-switcher:hover .lang-dropdown,
+    .lang-switcher:focus-within .lang-dropdown,
     .lang-switcher .lang-btn:focus + .lang-dropdown { display: block; }
     .lang-dropdown a {
         display: flex; align-items: center; gap: .5rem;
@@ -27,18 +28,27 @@
     .lang-dropdown a:hover { background: #f1f5f9; }
     .dark .lang-dropdown a:hover { background: #0A0A0A; }
     .lang-dropdown a.active { color: #F0C24A; font-weight: 700; }
-    .lang-flag { font-size: 1rem; line-height: 1; }
+    .lang-flag { display: inline-flex; align-items: center; line-height: 1; }
     </style>
 </head>
 
-<body <?php body_class( 'bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased overflow-x-hidden selection:bg-secondary/30 selection:text-slate-900' ); ?>>
+<body <?php body_class( 'bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased selection:bg-secondary/30 selection:text-slate-900' ); ?>>
 <?php wp_body_open(); ?>
 <?php
 $_lang = romvill_current_lang();
 // Use home_url for canonical host (avoids host-header injection via $_SERVER['HTTP_HOST'])
 $_request_path = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
 $_current_url  = home_url( $_request_path );
-$_lang_flags = [ 'es'=>'🇪🇸', 'en'=>'🇬🇧', 'fr'=>'🇫🇷', 'de'=>'🇩🇪', 'ru'=>'🇷🇺' ];
+// Banderas como SVG inline (16×12): los emojis 🇪🇸🇬🇧… no se dibujan en Windows
+// (salen las letras "ES"/"GB"). Markup estático, sin datos de usuario → se imprime tal cual.
+$_flag_attr  = 'class="inline-block w-4 h-3 rounded-[2px]" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"';
+$_lang_flags = [
+    'es' => '<svg ' . $_flag_attr . '><rect width="16" height="12" fill="#AA151B"/><rect y="3" width="16" height="6" fill="#F1BF00"/></svg>',
+    'en' => '<svg ' . $_flag_attr . '><rect width="16" height="12" fill="#012169"/><path d="M0 0L16 12M16 0L0 12" stroke="#fff" stroke-width="2.4"/><path d="M8 0v12M0 6h16" stroke="#fff" stroke-width="4"/><path d="M8 0v12M0 6h16" stroke="#C8102E" stroke-width="2"/></svg>',
+    'fr' => '<svg ' . $_flag_attr . '><rect width="16" height="12" fill="#fff"/><rect width="5.34" height="12" fill="#002395"/><rect x="10.66" width="5.34" height="12" fill="#ED2939"/></svg>',
+    'de' => '<svg ' . $_flag_attr . '><rect width="16" height="4" fill="#000"/><rect y="4" width="16" height="4" fill="#DD0000"/><rect y="8" width="16" height="4" fill="#FFCE00"/></svg>',
+    'ru' => '<svg ' . $_flag_attr . '><rect width="16" height="4" fill="#fff"/><rect y="4" width="16" height="4" fill="#0039A6"/><rect y="8" width="16" height="4" fill="#D52B1E"/></svg>',
+];
 $_lang_labels = [ 'es'=>'Español', 'en'=>'English', 'fr'=>'Français', 'de'=>'Deutsch', 'ru'=>'Русский' ];
 // Define contacto_url once for both desktop and mobile menus
 $contacto_page = get_page_by_path( 'contacto' );
@@ -65,7 +75,7 @@ $contacto_url  = romvill_link( $contacto_url );
                     </div>
                     <span class="font-serif text-slate-900 dark:text-white">ROMVILL</span>
                 </a>
-                <div class="hidden md:flex items-center gap-8">
+                <div class="hidden xl:flex items-center gap-8">
                     <?php
                     $nav_items = array(
                         'metodologia' => romvill_t( 'nav.metodologia' ),
@@ -91,7 +101,7 @@ $contacto_url  = romvill_link( $contacto_url );
                         if ( $slug === 'contacto' ) $url .= '#contacto';
                         $is_current = is_page( $slug );
                     ?>
-                        <a class="group relative text-sm font-medium <?php echo $is_current ? 'text-slate-900 dark:text-white' : 'text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white'; ?> transition-colors"
+                        <a class="group relative text-sm font-medium whitespace-nowrap shrink-0 <?php echo $is_current ? 'text-slate-900 dark:text-white' : 'text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white'; ?> transition-colors"
                            href="<?php echo esc_url( $url ); ?>">
                             <?php echo esc_html( $label ); ?>
                             <span class="absolute -bottom-1 left-0 <?php echo $is_current ? 'w-full' : 'w-0 group-hover:w-full'; ?> h-px bg-secondary transition-all duration-300"></span>
@@ -101,7 +111,7 @@ $contacto_url  = romvill_link( $contacto_url );
                     <!-- Language Switcher -->
                     <div class="lang-switcher">
                         <button class="lang-btn flex items-center gap-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors px-1 py-1">
-                            <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $_lang ] ); ?></span>
+                            <span class="lang-flag"><?php echo $_lang_flags[ $_lang ]; // SVG estático definido arriba ?></span>
                             <span class="uppercase font-bold text-xs"><?php echo esc_html( strtoupper( $_lang ) ); ?></span>
                             <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
@@ -109,7 +119,7 @@ $contacto_url  = romvill_link( $contacto_url );
                             <?php foreach ( ROMVILL_LANGS as $lc ) : ?>
                             <a href="<?php echo esc_url( romvill_lang_url( $_request_path, $lc ) ); ?>"
                                class="<?php echo $lc === $_lang ? 'active' : ''; ?>">
-                                <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $lc ] ); ?></span>
+                                <span class="lang-flag"><?php echo $_lang_flags[ $lc ]; // SVG estático ?></span>
                                 <?php echo esc_html( $_lang_labels[ $lc ] ); ?>
                             </a>
                             <?php endforeach; ?>
@@ -123,23 +133,23 @@ $contacto_url  = romvill_link( $contacto_url );
                         <span aria-hidden="true" class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
                     </button>
                 </div>
-                <div class="hidden md:block">
+                <div class="hidden xl:block">
                     <a href="<?php echo esc_url( $contacto_url ); ?>"
-                        class="px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:scale-105 transition-transform">
+                        class="whitespace-nowrap shrink-0 px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:scale-105 transition-transform">
                         <?php echo esc_html( romvill_t( 'nav.cta' ) ); ?></a>
                 </div>
-                <div class="md:hidden flex items-center gap-3">
+                <div class="xl:hidden flex items-center gap-3">
                     <!-- Mobile lang -->
                     <div class="lang-switcher">
-                        <button class="lang-btn flex items-center gap-1 text-sm font-bold text-slate-700 dark:text-slate-300 px-2 py-1 border border-slate-200 dark:border-slate-700 rounded">
-                            <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $_lang ] ); ?></span>
+                        <button class="lang-btn flex items-center gap-1 text-sm font-bold text-slate-700 dark:text-slate-300 px-2 py-2 border border-slate-200 dark:border-slate-700 rounded">
+                            <span class="lang-flag"><?php echo $_lang_flags[ $_lang ]; // SVG estático ?></span>
                             <span class="uppercase text-xs"><?php echo esc_html( strtoupper( $_lang ) ); ?></span>
                         </button>
                         <div class="lang-dropdown">
                             <?php foreach ( ROMVILL_LANGS as $lc ) : ?>
                             <a href="<?php echo esc_url( romvill_lang_url( $_request_path, $lc ) ); ?>"
                                class="<?php echo $lc === $_lang ? 'active' : ''; ?>">
-                                <span class="lang-flag"><?php echo esc_html( $_lang_flags[ $lc ] ); ?></span>
+                                <span class="lang-flag"><?php echo $_lang_flags[ $lc ]; // SVG estático ?></span>
                                 <?php echo esc_html( $_lang_labels[ $lc ] ); ?>
                             </a>
                             <?php endforeach; ?>
@@ -147,11 +157,11 @@ $contacto_url  = romvill_link( $contacto_url );
                     </div>
                     <!-- Mobile Dark Mode Toggle -->
                     <button id="dark-mode-toggle-mobile" aria-label="<?php echo esc_attr( romvill_t( 'dark.toggle' ) ); ?>"
-                        class="w-9 h-9 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                        class="w-10 h-10 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
                         <span aria-hidden="true" class="material-symbols-outlined text-[18px] dark:hidden">dark_mode</span>
                         <span aria-hidden="true" class="material-symbols-outlined text-[18px] hidden dark:block">light_mode</span>
                     </button>
-                    <button id="mobile-menu-toggle" class="text-slate-900 dark:text-white" aria-label="<?php echo esc_attr( romvill_t( 'nav.open_menu' ) ); ?>">
+                    <button id="mobile-menu-toggle" class="p-2 -mr-2 text-slate-900 dark:text-white" aria-label="<?php echo esc_attr( romvill_t( 'nav.open_menu' ) ); ?>">
                         <span aria-hidden="true" class="material-symbols-outlined">menu</span>
                     </button>
                 </div>

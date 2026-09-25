@@ -202,29 +202,51 @@
 }
 
 /* ── Iconos ────────────────────────────────────────────────────────────────
-   f15.woff2 es un SUBCONJUNTO de Material Symbols: solo trae las ligaduras
-   que se piden al generarlo. Si se usa un icono que no esta en la lista, el
-   navegador dibuja su NOMBRE en letras (add_circle salia como "ADD_CIRCLE").
+   icons-NN.woff2 es un SUBCONJUNTO de Material Symbols: solo trae las
+   ligaduras que se piden al generarlo. Si se usa un icono que no esta en la
+   lista, el navegador dibuja su NOMBRE en letras (add_circle salia como
+   "ADD_CIRCLE").
 
-   Al anadir un icono nuevo al tema hay que regenerar este archivo con la
-   lista COMPLETA:
-     curl "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined       :opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=<lista>"
+   OJO: la lista NO es solo lo que aparece escrito entre <span> en las
+   plantillas. Tambien hay nombres que llegan desde:
+     - arrays PHP: 'icon' => 'dataset' (page-contacto.php, functions.php
+       modal de dimensiones), array( 'shield', 'qs.trust1' ) y
+       array( 'balance', 'qs.v1.t', ... ) en page-quienes-somos.php.
+     - JS que construye HTML: inc/questionnaire-engine.php y
+       plantillas/page-presupuesto-bloque-1.php (arrow_back, send, edit...).
+   Los nombres que pasan por romvill_icon() (bank, pill, users...) son SVG
+   propios y NO van en esta fuente.
+
+   Como se regenero (25-09-2026):
+     1. Recoger la lista completa:
+        grep -rhoE "material-symbols-outlined[^>]*>\s*[a-z_0-9]+" plantillas inc functions.php
+        grep -rhoE "'icon'\s*=>\s*'[a-z_0-9]+'" plantillas inc functions.php
+        + arrays de page-quienes-somos.php + literales en el JS de arriba.
+     2. Pedir el subconjunto a Google (lista ordenada, separada por comas):
+        curl -A "Mozilla/5.0 ..." "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=<lista>&display=block"
+        y descargar la url .woff2 del @font-face que devuelve.
+     3. Verificar con python3 + fontTools que las ligaduras GSUB contienen
+        TODOS los nombres antes de tocar este archivo.
    El nombre del archivo lleva el numero de iconos a proposito: fonts.css lo
    pide SIN sello de version, asi que la unica forma de que un navegador que
    ya cacheo la fuente vieja reciba la nueva es CAMBIARLE EL NOMBRE. Al
-   regenerar, renombrar tambien (icons-25.woff2, etc.).
+   regenerar, renombrar tambien (icons-40.woff2, etc.).
 
-   Los 24 en uso hoy (28-08-2026):
-     add_circle, arrow_back, arrow_forward, balance, check, close, dark_mode,
-     edit, error_outline, expand_more, format_quote, home, hourglass_empty,
-     light_mode, lock, mail, menu, public, refresh, schedule, send, tune,
-     verified, verified_user
+   Los 39 en uso hoy (25-09-2026):
+     add_circle, arrow_back, arrow_forward, balance, check, check_circle,
+     close, dark_mode, dataset, description, diamond, directions_car, edit,
+     error_outline, expand_more, fact_check, format_quote, groups,
+     health_and_safety, home, hourglass_empty, light_mode, lock, mail, map,
+     menu, psychology, public, radio_button_unchecked, refresh, schedule,
+     security, send, shield, travel_explore, trending_up, tune, verified,
+     verified_user
    ------------------------------------------------------------------------ */
 @font-face {
   font-family: 'Material Symbols Outlined';
   font-style: normal;
   font-weight: 100 700;
-  src: url('icons-24.woff2') format('woff2');
+  font-display: block;
+  src: url('icons-39.woff2') format('woff2');
 }
 
 /* La clase que APLICA la fuente de iconos y activa las ligaduras.

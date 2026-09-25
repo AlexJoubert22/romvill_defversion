@@ -18,11 +18,11 @@ $contacto_url  = romvill_link( $contacto_url );
     <?php /* H1 oculto: la pagina no tenia H1 (los titulares visibles son h2 del split-screen) */ ?>
     <h1 class="sr-only"><?php echo esc_html( romvill_t( 'sec.cover.title' ) ); ?></h1>
     <!-- Split Screen -->
-    <div class="flex flex-col lg:flex-row h-[calc(100vh-73px)] w-full relative">
+    <div class="flex flex-col lg:flex-row lg:h-[calc(100vh-80px)] w-full relative">
         <!-- Left: B2C -->
-        <div class="group/left split-section relative flex-1 flex flex-col justify-end p-8 lg:p-16 overflow-hidden split-hover cursor-default border-b-4 lg:border-b-0 lg:border-r-4 border-white/20">
+        <div class="group/left split-section relative flex-1 flex flex-col justify-end p-8 lg:p-16 min-h-[60vh] lg:min-h-0 lg:overflow-hidden split-hover cursor-default border-b-4 lg:border-b-0 lg:border-r-4 border-white/20">
             <div class="absolute inset-0 z-0">
-                <img alt="Residencia moderna" class="w-full h-full object-cover transition-transform duration-700 group-hover/left:scale-110 filter brightness-[0.7] group-hover/left:brightness-[0.8]"
+                <img alt="Residencia moderna" width="1120" height="836" fetchpriority="high" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover/left:scale-110 filter brightness-[0.7] group-hover/left:brightness-[0.8]"
                     src="<?php echo esc_url( romvill_img( 'fondo_hero.jpg' ) ); ?>" />
             </div>
             <div class="relative z-10 max-w-lg transition-transform duration-500 group-hover/left:translate-x-2">
@@ -40,9 +40,9 @@ $contacto_url  = romvill_link( $contacto_url );
             </div>
         </div>
         <!-- Right: B2B -->
-        <div class="group/right split-section relative flex-1 flex flex-col justify-end p-8 lg:p-16 overflow-hidden split-hover cursor-default">
+        <div class="group/right split-section relative flex-1 flex flex-col justify-end p-8 lg:p-16 min-h-[60vh] lg:min-h-0 lg:overflow-hidden split-hover cursor-default">
             <div class="absolute inset-0 z-0">
-                <img alt="Edificio corporativo" class="w-full h-full object-cover transition-transform duration-700 group-hover/right:scale-110 filter brightness-[0.6] group-hover/right:brightness-[0.7]"
+                <img alt="Edificio corporativo" width="1440" height="803" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover/right:scale-110 filter brightness-[0.6] group-hover/right:brightness-[0.7]"
                     src="<?php echo esc_url( romvill_img( 'inversores.jpg' ) ); ?>" />
             </div>
             <div class="relative z-10 max-w-lg ml-auto text-left lg:text-right transition-transform duration-500 group-hover/right:-translate-x-2">
@@ -53,6 +53,10 @@ $contacto_url  = romvill_link( $contacto_url );
                 <p class="text-lg text-slate-100 mb-8 max-w-md font-medium drop-shadow-sm leading-relaxed opacity-90 lg:ml-auto">
                     <?php echo esc_html( romvill_t( 'sec.b2b.desc' ) ); ?>
                 </p>
+                <a href="<?php echo esc_url( $contacto_url ); ?>" class="flex items-center justify-center gap-2 rounded-lg bg-white text-slate-900 hover:bg-slate-100 transition-colors h-14 px-8 text-base font-bold shadow-lg hover:-translate-y-1 transform duration-200 w-fit lg:ml-auto">
+                    <span><?php echo esc_html( romvill_t( 'sec.inv.link' ) ); ?></span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                </a>
             </div>
         </div>
     </div>
@@ -113,9 +117,9 @@ $contacto_url  = romvill_link( $contacto_url );
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-slate-100 dark:border-slate-800 shadow-xl">
                 <!-- Particulares -->
-                <div class="relative p-10 lg:p-14 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div class="relative p-6 sm:p-10 lg:p-14 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
                     <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary-ink dark:text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary-ink dark:text-secondary text-[11px] font-bold uppercase tracking-widest mb-5 whitespace-normal text-left">
                             <?php romvill_icon( 'shield', 'w-3 h-3' ); ?> <?php echo esc_html( romvill_t( 'sec.res.badge' ) ); ?>
                         </span>
                         <div class="flex items-center gap-4 mb-5">
@@ -152,9 +156,9 @@ $contacto_url  = romvill_link( $contacto_url );
                     </a>
                 </div>
                 <!-- Inversores -->
-                <div class="relative p-10 lg:p-14 flex flex-col gap-8 bg-slate-900 dark:bg-slate-950">
+                <div class="relative p-6 sm:p-10 lg:p-14 flex flex-col gap-8 bg-slate-900 dark:bg-slate-950">
                     <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/15 text-secondary-ink dark:text-secondary text-[10px] font-bold uppercase tracking-widest mb-5">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/15 text-secondary-ink dark:text-secondary text-[11px] font-bold uppercase tracking-widest mb-5 whitespace-normal text-left">
                             <?php romvill_icon( 'award', 'w-3 h-3' ); ?> <?php echo esc_html( romvill_t( 'sec.inv.badge' ) ); ?>
                         </span>
                         <div class="flex items-center gap-4 mb-5">

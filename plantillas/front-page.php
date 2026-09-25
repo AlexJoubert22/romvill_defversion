@@ -38,12 +38,21 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 ROMVILL
             </div>
             <div class="fade-item fade-2 flex items-center justify-center gap-4 mb-2">
-                <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
-                <span class="font-display font-semibold uppercase" style="color: #F0C24A; font-size: 0.6rem; letter-spacing: 0.5em; text-shadow: 0 1px 6px rgba(0,0,0,0.9);"><?php echo esc_html( romvill_t( 'hero.tagline' ) ); ?></span>
-                <span class="h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
+                <span class="hidden sm:block h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
+                <?php
+                // Rótulo del hero: en móvil, dos líneas ("INTELIGENCIA TERRITORIAL" / "COSTA
+                // MEDITERRÁNEA"); desde 640px, una sola línea con el separador " · ".
+                // Se parte la traducción por " · "; si un idioma no lo trae, se pinta tal cual.
+                $_tag_parts = explode( ' · ', romvill_t( 'hero.tagline' ), 2 );
+                ?>
+                <span class="font-display font-semibold uppercase text-center text-[11.2px] sm:text-xs tracking-[.22em] sm:tracking-[.4em]" style="color: #F0C24A; text-shadow: 0 1px 6px rgba(0,0,0,0.9);"><?php
+                    if ( count( $_tag_parts ) === 2 ) : ?><span class="block sm:inline"><?php echo esc_html( $_tag_parts[0] ); ?></span><span class="hidden sm:inline"> · </span><span class="block sm:inline"><?php echo esc_html( $_tag_parts[1] ); ?></span><?php
+                    else : echo esc_html( $_tag_parts[0] ); endif;
+                ?></span>
+                <span class="hidden sm:block h-px w-10 bg-secondary/70" style="box-shadow: 0 0 6px rgba(0,0,0,0.4);"></span>
             </div>
             <div class="fade-item fade-2 flex justify-center mb-6">
-                <span class="font-display font-semibold uppercase" style="color: #F0C24A; font-size: 0.52rem; letter-spacing: 0.34em; text-shadow: 0 1px 6px rgba(0,0,0,0.9);"><?php echo esc_html( romvill_t( 'hero.cities' ) ); ?></span>
+                <span class="font-display font-semibold uppercase text-[11px] tracking-[.22em] sm:tracking-[.3em]" style="color: #F0C24A; text-shadow: 0 1px 6px rgba(0,0,0,0.9);"><?php echo esc_html( romvill_t( 'hero.cities' ) ); ?></span>
             </div>
             <p class="fade-item fade-3 font-serif text-2xl md:text-3xl font-light italic text-white/80 mb-8" style="text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
                 <?php echo esc_html( romvill_t( 'hero.slogan' ) ); ?>
@@ -135,7 +144,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             </div>
 
             <!-- 4 pilares -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
                 <?php
                 $pillars = array(
                     array( 'icon' => 'shield',      'title' => romvill_t( 'pillar.security.title' ), 'desc' => romvill_t( 'pillar.security.desc' ) ),
@@ -145,7 +154,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 );
                 foreach ( $pillars as $p ) :
                 ?>
-                <div class="rv-pillar group flex flex-col items-center text-center p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-750 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="rv-pillar group flex flex-col items-center text-center p-6 md:p-8 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 hover:border-secondary hover:bg-white dark:hover:bg-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <div class="w-14 h-14 rounded-full bg-secondary/10 border border-secondary/30 text-secondary flex items-center justify-center mb-5 group-hover:bg-secondary/20 transition-colors">
                         <?php romvill_icon( $p['icon'], 'w-6 h-6' ); ?>
                     </div>
@@ -159,7 +168,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
             <div id="hiw" class="hiw border-t border-slate-100 dark:border-slate-800 pt-16">
                 <div class="flex items-center justify-center gap-4 mb-12">
                     <span class="hiw-badge-line" aria-hidden="true"></span>
-                    <p class="text-center text-xs font-bold uppercase tracking-[0.4em] text-secondary-ink dark:text-secondary"><?php echo esc_html( romvill_t( 'how.badge' ) ); ?></p>
+                    <p class="text-center text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.4em] text-secondary-ink dark:text-secondary"><?php echo esc_html( romvill_t( 'how.badge' ) ); ?></p>
                     <span class="hiw-badge-line hiw-badge-line--r" aria-hidden="true"></span>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 relative">
@@ -308,8 +317,8 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                 foreach ( $cities as $city ) :
                 ?>
                 <div class="group relative h-96 rounded-lg overflow-hidden cursor-pointer shadow-lg" onclick="openCityModal('<?php echo esc_attr( $city['id'] ); ?>')">
-                    <div class="rv-city-photo absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        style="background-image: url('<?php echo esc_url( romvill_img( $city['img'] ) ); ?>');"></div>
+                    <img src="<?php echo esc_url( romvill_img( $city['img'] ) ); ?>" alt="" width="1024" height="1024" loading="lazy" decoding="async"
+                        class="rv-city-photo absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-colors duration-300"></div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span class="bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full"><?php echo esc_html( romvill_t( 'cities.detail' ) ); ?></span>
@@ -379,7 +388,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-secondary-ink dark:text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.alicante.badge' ) ); ?></span>
+                        <span class="text-secondary-ink dark:text-secondary text-[11px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.alicante.badge' ) ); ?></span>
                         <h2 class="text-white text-2xl font-serif font-bold mt-0.5">Alicante</h2>
                     </div>
                 </div>
@@ -391,7 +400,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-4"><?php echo esc_html( romvill_t( 'modal.alicante.p2' ) ); ?></p>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <span class="text-secondary shrink-0"><?php romvill_icon( $d['icon'], 'w-5 h-5' ); ?></span>
@@ -404,7 +413,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         </div>
                     </div>
                     <div class="border-t border-slate-100 dark:border-slate-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( romvill_t( 'modal.alicante.cov' ) ); ?></p>
+                        <p class="text-xs text-slate-400"><?php echo esc_html( romvill_t( 'modal.alicante.cov' ) ); ?></p>
                         <a href="<?php echo esc_url( $contacto_url ); ?>" class="shrink-0 bg-slate-900 hover:bg-primary dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300"><?php echo esc_html( romvill_t( 'cities.request' ) ); ?></a>
                     </div>
                 </div>
@@ -418,7 +427,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.malaga.badge' ) ); ?></span>
+                        <span class="text-secondary text-[11px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.malaga.badge' ) ); ?></span>
                         <h2 class="text-white text-2xl font-serif font-bold mt-0.5">Málaga</h2>
                     </div>
                 </div>
@@ -430,7 +439,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-4"><?php echo esc_html( romvill_t( 'modal.malaga.p2' ) ); ?></p>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <span class="text-secondary shrink-0"><?php romvill_icon( $d['icon'], 'w-5 h-5' ); ?></span>
@@ -443,7 +452,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         </div>
                     </div>
                     <div class="border-t border-slate-100 dark:border-slate-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( romvill_t( 'modal.malaga.cov' ) ); ?></p>
+                        <p class="text-xs text-slate-400"><?php echo esc_html( romvill_t( 'modal.malaga.cov' ) ); ?></p>
                         <a href="<?php echo esc_url( $contacto_url ); ?>" class="shrink-0 bg-slate-900 hover:bg-primary dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300"><?php echo esc_html( romvill_t( 'cities.request' ) ); ?></a>
                     </div>
                 </div>
@@ -457,7 +466,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         <span aria-hidden="true" class="material-symbols-outlined text-base">close</span>
                     </button>
                     <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-secondary text-[10px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.marbella.badge' ) ); ?></span>
+                        <span class="text-secondary text-[11px] font-bold uppercase tracking-widest"><?php echo esc_html( romvill_t( 'modal.marbella.badge' ) ); ?></span>
                         <h2 class="text-white text-2xl font-serif font-bold mt-0.5">Marbella</h2>
                     </div>
                 </div>
@@ -469,7 +478,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                             <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-4"><?php echo esc_html( romvill_t( 'modal.marbella.p2' ) ); ?></p>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3"><?php echo esc_html( romvill_t( 'modal.dimensions' ) ); ?></p>
                             <?php foreach ( $dimensions as $d ) : ?>
                             <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <span class="text-secondary shrink-0"><?php romvill_icon( $d['icon'], 'w-5 h-5' ); ?></span>
@@ -482,7 +491,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
                         </div>
                     </div>
                     <div class="border-t border-slate-100 dark:border-slate-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <p class="text-xs text-slate-400 dark:text-slate-500"><?php echo esc_html( romvill_t( 'modal.marbella.cov' ) ); ?></p>
+                        <p class="text-xs text-slate-400"><?php echo esc_html( romvill_t( 'modal.marbella.cov' ) ); ?></p>
                         <a href="<?php echo esc_url( $contacto_url ); ?>" class="shrink-0 bg-slate-900 hover:bg-primary dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 text-white text-sm font-bold py-2.5 px-6 rounded transition-all duration-300"><?php echo esc_html( romvill_t( 'cities.request' ) ); ?></a>
                     </div>
                 </div>

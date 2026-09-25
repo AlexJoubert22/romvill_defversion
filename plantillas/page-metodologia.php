@@ -159,7 +159,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                 <div class="col-span-2 bg-slate-900 p-8 md:p-10 rounded-2xl shadow-2xl shadow-black/30 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 relative z-10">
-                        <div class="max-w-[75%]">
+                        <div class="sm:max-w-[75%]">
                             <span class="inline-block text-secondary mb-4"><?php romvill_icon( 'trending-up', 'w-8 h-8' ); ?></span>
                             <h3 class="text-2xl font-bold text-white mb-3"><?php echo esc_html( romvill_t( 'met.card3.title' ) ); ?></h3>
                             <p class="text-sm text-slate-300 leading-relaxed"><?php echo esc_html( romvill_t( 'met.card3.desc' ) ); ?></p>
@@ -167,7 +167,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
                         <div class="shrink-0 flex items-center justify-center p-4 rounded-2xl border border-white/20 bg-black/10 backdrop-blur-md">
                             <div class="text-center">
                                 <span class="block text-3xl font-black text-white leading-none mb-1">100%</span>
-                                <span class="block text-[9px] font-bold text-secondary uppercase tracking-widest"><?php echo esc_html( romvill_t( 'met.obj_badge' ) ); ?></span>
+                                <span class="block text-[11px] font-bold text-secondary uppercase tracking-widest"><?php echo esc_html( romvill_t( 'met.obj_badge' ) ); ?></span>
                             </div>
                         </div>
                     </div>
@@ -188,9 +188,9 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
         #rvix-hs .scene{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(164, 161, 158,.25)}
         #rvix-hs .bg2{position:absolute;inset:0;background-size:cover;background-position:center}
         #rvix-hs .vl2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.45),rgba(0, 0, 0,.78))}
-        #rvix-hs .spot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border:0;background:transparent;cursor:pointer;padding:0;z-index:3}
-        #rvix-hs .spot .core{position:absolute;inset:7px;border-radius:50%;background:#F0C24A;box-shadow:0 0 10px rgba(240, 194, 74,.8)}
-        #rvix-hs .spot .rng{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(240, 194, 74,.7);animation:rvixpulse 2.2s ease-out infinite}
+        #rvix-hs .spot{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;border:0;background:transparent;cursor:pointer;padding:0;z-index:3}
+        #rvix-hs .spot .core{position:absolute;inset:16px;border-radius:50%;background:#F0C24A;box-shadow:0 0 10px rgba(240, 194, 74,.8)}
+        #rvix-hs .spot .rng{position:absolute;inset:9px;border-radius:50%;border:2px solid rgba(240, 194, 74,.7);animation:rvixpulse 2.2s ease-out infinite}
         @keyframes rvixpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
         #rvix-hs .spot.on .core{background:#fff;box-shadow:0 0 0 5px rgba(240, 194, 74,.5),0 0 16px rgba(240, 194, 74,.9)}
         #rvix-hs .spot.on .rng{animation:none;border-color:#fff}

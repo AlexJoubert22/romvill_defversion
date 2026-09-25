@@ -26,7 +26,7 @@ $sections = array(
             <?php echo esc_html( romvill_t( 'terms.badge' ) ); ?>
         </div>
 
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3 break-words" style="hyphens:auto">
             <?php echo esc_html( romvill_t( 'terms.title' ) ); ?>
         </h1>
         <p class="text-sm text-slate-400 mb-10"><?php echo esc_html( romvill_t( 'terms.updated' ) ); ?></p>

@@ -10,14 +10,14 @@
                         $rv_f_imgdir = get_template_directory() . '/assets/images/';
                         $rv_f_white  = @filemtime( $rv_f_imgdir . 'rv-logo-white.png' );
                         ?>
-                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) . '?v=' . $rv_f_white ); ?>" alt="RV" class="h-8 w-auto object-contain">
+                        <img src="<?php echo esc_url( romvill_img( 'rv-logo-white.png' ) . '?v=' . $rv_f_white ); ?>" alt="RV" width="222" height="174" decoding="async" class="h-8 w-auto object-contain">
                         <span class="text-lg font-serif font-bold tracking-[0.2em] text-white">ROMVILL</span>
                     </a>
                     <span class="hiw-badge-line" aria-hidden="true"></span>
                     <a href="mailto:info@romvill.com" class="text-sm text-slate-400 hover:text-secondary transition-colors">info@romvill.com</a>
                 </div>
                 <!-- Col 2: navegación -->
-                <nav class="flex flex-col items-center md:items-start gap-3 text-sm text-slate-400" aria-label="<?php echo esc_attr( romvill_t( 'footer.aria' ) ); ?>">
+                <nav class="flex flex-col items-center md:items-start gap-0 text-sm text-slate-400" aria-label="<?php echo esc_attr( romvill_t( 'footer.aria' ) ); ?>">
                     <?php
                     $footer_links = array(
                         'metodologia' => romvill_t( 'nav.metodologia' ),
@@ -39,14 +39,14 @@
                         $page = get_page_by_path( $slug );
                         $url  = romvill_link( $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' ) );
                     ?>
-                        <a class="hover:text-secondary transition-colors" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
+                        <a class="inline-block py-2 hover:text-secondary transition-colors" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
                     <?php endforeach; ?>
                     <p class="text-xs font-bold tracking-[0.3em] uppercase text-secondary mt-4 mb-0"><?php echo esc_html( romvill_t( 'footer.zonas' ) ); ?></p>
                     <?php foreach ( romvill_zonas() as $zn_slug => $zn ) :
                         $zn_page = get_page_by_path( $zn_slug );
                         $zn_url  = romvill_link( $zn_page ? get_permalink( $zn_page ) : home_url( '/' . $zn_slug . '/' ) );
                     ?>
-                        <a class="hover:text-secondary transition-colors" href="<?php echo esc_url( $zn_url ); ?>"><?php echo esc_html( romvill_t( 'zona.' . $zn['key'] . '.nombre' ) ); ?></a>
+                        <a class="inline-block py-2 hover:text-secondary transition-colors" href="<?php echo esc_url( $zn_url ); ?>"><?php echo esc_html( romvill_t( 'zona.' . $zn['key'] . '.nombre' ) ); ?></a>
                     <?php endforeach; ?>
                 </nav>
                 <!-- Col 3: newsletter -->
@@ -56,13 +56,13 @@
                     <form id="rv-news-form" class="flex w-full gap-2" novalidate>
                         <label for="rv-news-email" class="sr-only"><?php echo esc_html( romvill_t( 'news.ph' ) ); ?></label>
                         <input type="email" id="rv-news-email" required placeholder="<?php echo esc_attr( romvill_t( 'news.ph' ) ); ?>"
-                               class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-secondary transition-colors">
+                               class="flex-1 min-w-0 bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-secondary transition-colors">
                         <button type="submit" class="shrink-0 bg-secondary hover:bg-[#D9AC33] text-slate-900 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                             <?php echo esc_html( romvill_t( 'news.btn' ) ); ?>
                         </button>
                     </form>
                     <p id="rv-news-msg" class="hidden text-xs mt-2" role="status"></p>
-                    <p class="text-[11px] text-slate-500 mt-2"><?php echo esc_html( romvill_t( 'news.gdpr' ) ); ?></p>
+                    <p class="text-xs text-slate-400 mt-2"><?php echo esc_html( romvill_t( 'news.gdpr' ) ); ?></p>
                 </div>
             </div>
             <script>
@@ -109,10 +109,10 @@
                     $aviso_page = get_page_by_path( 'aviso-legal' );
                     $aviso_url  = romvill_link( $aviso_page ? get_permalink( $aviso_page ) : home_url( '/aviso-legal/' ) );
                     ?>
-                    <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $priv_url ); ?>"><?php echo esc_html( romvill_t( 'footer.privacy' ) ); ?></a>
-                    <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $terms_url ); ?>"><?php echo esc_html( romvill_t( 'footer.terms' ) ); ?></a>
-                    <a class="text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $aviso_url ); ?>"><?php echo esc_html( romvill_t( 'footer.avisolegal' ) ); ?></a>
-                    <button type="button" class="cmplz-manage-consent text-xs text-slate-400 hover:text-secondary transition-colors bg-transparent border-0 p-0 cursor-pointer"><?php echo esc_html( romvill_t( 'footer.cookies' ) ); ?></button>
+                    <a class="inline-block py-2 text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $priv_url ); ?>"><?php echo esc_html( romvill_t( 'footer.privacy' ) ); ?></a>
+                    <a class="inline-block py-2 text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $terms_url ); ?>"><?php echo esc_html( romvill_t( 'footer.terms' ) ); ?></a>
+                    <a class="inline-block py-2 text-xs text-slate-400 hover:text-secondary transition-colors" href="<?php echo esc_url( $aviso_url ); ?>"><?php echo esc_html( romvill_t( 'footer.avisolegal' ) ); ?></a>
+                    <button type="button" class="cmplz-manage-consent inline-block py-2 px-0 text-xs text-slate-400 hover:text-secondary transition-colors bg-transparent border-0 cursor-pointer"><?php echo esc_html( romvill_t( 'footer.cookies' ) ); ?></button>
                 </div>
             </div>
         </div>

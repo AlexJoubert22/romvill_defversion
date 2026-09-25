@@ -103,14 +103,14 @@ $_seasons = array(
 
 /* Portada (tinta) */
 #rv-mu .cov{position:relative;background:linear-gradient(165deg,var(--mu-cover2),var(--mu-cover));color:#fff;padding:44px 40px 34px;overflow:hidden}
-#rv-mu .cov .ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu-oc3)}
+#rv-mu .cov .ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu-oc3)}
 #rv-mu .cov .ctop b{color:#fff;letter-spacing:.06em}
-#rv-mu .stampx{border:2px solid rgba(240,194,74,.8);color:#F0C24A;font-weight:800;font-size:.62rem;letter-spacing:.18em;padding:6px 12px;border-radius:4px;transform:rotate(3deg);white-space:nowrap;text-transform:uppercase}
+#rv-mu .stampx{border:2px solid rgba(240,194,74,.8);color:#F0C24A;font-weight:800;font-size:.6875rem;letter-spacing:.16em;padding:6px 12px;border-radius:4px;transform:rotate(3deg);white-space:nowrap;text-transform:uppercase}
 #rv-mu .cov .clogo{display:block;height:64px;width:auto;margin:26px auto 14px}
 #rv-mu .cov h2{text-align:center;font-weight:600;font-size:clamp(1.5rem,4vw,2rem);margin:0;line-height:1.2;color:#fff}
 #rv-mu .cov .czona{text-align:center;color:#F0C24A;font-size:.98rem;margin-top:7px;letter-spacing:.04em}
 #rv-mu .cov .cscope{max-width:480px;margin:20px auto 0;text-align:center;font-size:.85rem;color:var(--mu-oc2);line-height:1.7;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);padding:12px 0}
-#rv-mu .cov .cmeta{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;font-size:.66rem;color:var(--mu-oc3);text-transform:uppercase;letter-spacing:.08em}
+#rv-mu .cov .cmeta{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;font-size:.6875rem;color:var(--mu-oc3);text-transform:uppercase;letter-spacing:.06em}
 #rv-mu .cov .cmeta b{display:block;color:#fff;font-size:.86rem;margin-top:3px;font-weight:700;text-transform:none;letter-spacing:0}
 #rv-mu .fict{background:var(--mu-golds);border-bottom:1px solid var(--mu-goldb);padding:13px 40px;font-size:.84rem;line-height:1.65;color:var(--mu-t2)}
 #rv-mu .fict b{color:var(--mu-t1)}
@@ -124,7 +124,7 @@ $_seasons = array(
 #rv-mu .dico{width:44px;height:44px;flex:0 0 auto;border:1px solid var(--mu-line);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--mu-t1);background:var(--mu-surface)}
 #rv-mu .dico .ic{width:22px;height:22px}
 #rv-mu .tt{flex:1;min-width:0}
-#rv-mu .sec-ref{display:block;font-weight:800;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mu-t3)}
+#rv-mu .sec-ref{display:block;font-weight:800;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu-t3)}
 #rv-mu .dhead h2{font-weight:600;font-size:clamp(1.15rem,3vw,1.45rem);color:var(--mu-t1);margin:2px 0 0;line-height:1.25}
 #rv-mu .mini{display:block;font-size:.8rem;color:var(--mu-t3);margin-top:2px;line-height:1.5}
 #rv-mu .chev{flex:0 0 auto;width:30px;height:30px;border-radius:999px;border:1.5px solid var(--mu-lines);display:flex;align-items:center;justify-content:center;color:var(--mu-t3);transition:transform .45s ease,background .15s ease,color .15s ease}
@@ -142,7 +142,7 @@ $_seasons = array(
 #rv-mu .block p{margin:0 0 8px;font-size:.95rem;line-height:1.65;color:var(--mu-t2)}
 #rv-mu .block p:last-child{margin-bottom:0}
 #rv-mu .block p b{color:var(--mu-t1)}
-#rv-mu .vtag{display:inline-flex;align-items:center;gap:5px;background:var(--mu-greens);color:var(--mu-green);font-weight:800;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+#rv-mu .vtag{display:inline-flex;align-items:center;gap:5px;background:var(--mu-greens);color:var(--mu-green);font-weight:800;font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
 #rv-mu .vtag .ic{width:13px;height:13px}
 #rv-mu .fdata{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:.84rem;color:var(--mu-t3)}
 #rv-mu .fdata b{color:var(--mu-t1);font-variant-numeric:tabular-nums}
@@ -164,7 +164,8 @@ $_seasons = array(
 #rv-mu .clegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.78rem;color:var(--mu-t2);margin-bottom:6px}
 #rv-mu .clegend i{display:inline-block;width:14px;height:3px;border-radius:99px;margin-right:6px;vertical-align:middle}
 #rv-mu .csc{overflow-x:auto;-webkit-overflow-scrolling:touch}
-#rv-mu .csc svg{min-width:560px;width:100%;height:auto;display:block}
+#rv-mu .csc svg{width:100%;height:auto;display:block}
+@media(max-width:640px){ #rv-mu .csc svg text{font-size:23px} }
 #rv-mu .cr{font-size:.82rem;color:var(--mu-t3);line-height:1.6;border-top:1px solid var(--mu-line);margin-top:8px;padding-top:8px}
 #rv-mu .cr b{color:var(--mu-t1)}
 #rv-mu .aline{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.3s ease .15s}
@@ -194,10 +195,10 @@ $_seasons = array(
 /* Tabla de riesgos */
 #rv-mu .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px}
 #rv-mu table.rvt{width:100%;border-collapse:collapse;font-size:.88rem;min-width:640px}
-#rv-mu .rvt th{text-align:left;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mu-t3);font-weight:800;padding:8px 10px;border-bottom:2px solid var(--mu-t1)}
+#rv-mu .rvt th{text-align:left;font-size:.6875rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mu-t3);font-weight:800;padding:8px 10px;border-bottom:2px solid var(--mu-t1)}
 #rv-mu .rvt td{padding:10px;border-bottom:1px solid var(--mu-line);color:var(--mu-t2);vertical-align:top;line-height:1.55}
 #rv-mu .rvt td:first-child{color:var(--mu-t1);font-weight:700;white-space:nowrap}
-#rv-mu .nivel{display:inline-block;font-weight:800;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 11px;white-space:nowrap}
+#rv-mu .nivel{display:inline-block;font-weight:800;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 11px;white-space:nowrap}
 #rv-mu .nivel.bajo{background:var(--mu-greens);color:var(--mu-green)}
 #rv-mu .nivel.mod{background:var(--mu-ambers);color:var(--mu-amber)}
 #rv-mu .nivel.aten{background:var(--mu-golds);color:var(--mu-goldd);border:1px solid var(--mu-goldb)}
@@ -206,7 +207,7 @@ $_seasons = array(
 
 /* Qué significa para usted */
 #rv-mu .foryou{position:relative;background:var(--mu-golds);border:1px solid var(--mu-goldb);border-radius:14px;padding:16px 18px;margin-bottom:2px}
-#rv-mu .foryou .fy-k{display:flex;align-items:center;gap:7px;font-weight:800;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mu-goldd);margin-bottom:7px}
+#rv-mu .foryou .fy-k{display:flex;align-items:center;gap:7px;font-weight:800;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu-goldd);margin-bottom:7px}
 #rv-mu .foryou .fy-k .ic{width:16px;height:16px}
 #rv-mu .foryou p{margin:0;font-size:.95rem;line-height:1.68;color:var(--mu-t2)}
 #rv-mu .foryou p b{color:var(--mu-t1)}
@@ -216,7 +217,7 @@ $_seasons = array(
 #rv-mu .docfoot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 26px;background:var(--mu-surface2);border-top:1px solid var(--mu-line);font-size:.72rem;color:var(--mu-t3);letter-spacing:.06em}
 #rv-mu .docfoot .sello{display:flex;align-items:center;gap:10px;color:var(--mu-goldd)}
 #rv-mu .docfoot .sello svg{width:46px;height:46px}
-#rv-mu .docfoot .sello span{font-weight:800;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+#rv-mu .docfoot .sello span{font-weight:800;font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase}
 
 /* Separador isolínea */
 #rv-mu .iso-sep{height:30px;margin:0 26px}
@@ -246,6 +247,16 @@ $_seasons = array(
   #rv-mu .mini{display:none}
   #rv-mu .hito{flex-direction:column;align-items:flex-start;gap:6px}
   #rv-mu .docfoot{flex-direction:column;align-items:flex-start}
+  /* Tabla de riesgos → fichas apiladas (nombre a la izquierda, nivel a la derecha, descripción debajo) */
+  #rv-mu table.rvt{min-width:0;display:block}
+  #rv-mu .rvt tbody{display:block}
+  #rv-mu .rvt tr:first-child{display:none}
+  #rv-mu .rvt tr{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--mu-line)}
+  #rv-mu .rvt td{display:block;border:0;padding:2px 0;white-space:normal}
+  #rv-mu .rvt td:first-child{flex:1 1 auto;font-weight:600;font-size:.95rem}
+  #rv-mu .rvt td:nth-child(2){flex:0 0 auto}
+  #rv-mu .rvt td:last-child{flex:0 0 100%}
+  #rv-mu .nivel{white-space:normal}
 }
 @media(max-width:420px){
   #rv-mu .dgrid,#rv-mu .seasons{grid-template-columns:1fr}
@@ -326,7 +337,7 @@ $_seasons = array(
                 <div><?php echo esc_html( romvill_t( 'muestra.cov.kicker' ) ); ?><br>Ref. <b><?php echo esc_html( $_ref ); ?></b> · Rev. 5.0</div>
                 <div class="stampx"><?php echo esc_html( romvill_t( 'muestra.stamp' ) ); ?></div>
             </div>
-            <img class="clogo" src="<?php echo esc_url( $_logo_w ); ?>" alt="ROMVILL">
+            <img class="clogo" src="<?php echo esc_url( $_logo_w ); ?>" alt="ROMVILL" width="82" height="64" decoding="async">
             <h2 class="serif" style="<?php echo $serif; ?>">Elviria</h2>
             <div class="czona"><?php echo esc_html( romvill_t( 'muestra.cov.zona' ) ); ?></div>
             <div class="cscope"><?php echo esc_html( romvill_t( 'muestra.cov.scope' ) ); ?></div>

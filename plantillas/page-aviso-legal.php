@@ -35,7 +35,7 @@ $aviso_kses_a = array( 'strong' => array(), 'a' => array( 'href' => array(), 'cl
             <?php echo esc_html( romvill_t( 'legal.aviso.badge' ) ); ?>
         </div>
 
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3 break-words" style="hyphens:auto">
             <?php echo esc_html( romvill_t( 'legal.aviso.title' ) ); ?>
         </h1>
         <p class="text-sm text-slate-400 mb-12"><?php echo esc_html( romvill_t( 'legal.aviso.updated' ) ); ?></p>

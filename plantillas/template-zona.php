@@ -120,8 +120,10 @@ $arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
         </div>
     </section>
 
+    <noscript><style>.zn-reveal{opacity:1;transform:none}</style></noscript>
     <script>
-    (function(){var r=document.getElementById('zona-main');if(!r||!('IntersectionObserver' in window))return;
+    (function(){var r=document.getElementById('zona-main');if(!r)return;
+    if(!('IntersectionObserver' in window)){r.querySelectorAll('.zn-reveal').forEach(function(el){el.classList.add('zn-in');});return;}
     var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('zn-in');io.unobserve(x.target);}});},{threshold:0.12});
     r.querySelectorAll('.zn-reveal').forEach(function(el){io.observe(el);});})();
     </script>

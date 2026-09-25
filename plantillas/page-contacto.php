@@ -83,8 +83,8 @@ $perfiles_anchor = add_query_arg( 'lang', $_lang, $precios_url ) . '#perfiles';
     outline: none;
     font-family: inherit;
 }
-.phone-number-input::placeholder { color: #A4A19E; }
-.rf-opt { font-size: .68rem; font-weight: 400; color: #A4A19E; text-transform: none; letter-spacing: 0; }
+.phone-number-input::placeholder { color: #75726F; }
+.rf-opt { font-size: .75rem; font-weight: 400; color: #A4A19E; text-transform: none; letter-spacing: 0; }
 html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro */
 .dark .phone-number-input { color: #f1f5f9; }
 
@@ -93,7 +93,7 @@ html:not(.dark) .rf-opt { color: #75726F; } /* contraste WCAG sobre fondo claro 
     z-index: 200;
     left: 0;
     top: calc(100% + 6px);
-    width: 290px;
+    width: min(290px, calc(100vw - 2rem));
     background: #fff;
     border: 1px solid #EAE7E4;
     border-radius: 14px;
@@ -279,8 +279,8 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
             <div class="rf-anim max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 grid lg:grid-cols-5 gap-10 lg:gap-14 items-center relative z-10" style="animation-delay:.05s">
                 <div class="lg:col-span-3 text-center lg:text-left">
                     <div class="flex items-center justify-center lg:justify-start gap-4 mb-6">
-                        <span class="hiw-badge-line" aria-hidden="true"></span>
-                        <p class="text-xs font-bold tracking-[0.4em] uppercase text-secondary-ink dark:text-secondary">
+                        <span class="hiw-badge-line hidden sm:block" aria-hidden="true"></span>
+                        <p class="text-xs font-bold tracking-[0.2em] sm:tracking-[0.4em] uppercase text-secondary-ink dark:text-secondary">
                             <?php echo esc_html( romvill_t( 'contact.hero.tag' ) ); ?>
                         </p>
                         <span class="hiw-badge-line hiw-badge-line--r hidden lg:block" aria-hidden="true"></span>
@@ -298,7 +298,7 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
                     <a href="<?php echo esc_url( $perfiles_anchor ); ?>" class="rv-cta-outline inline-block px-9 py-3.5 text-xs font-bold uppercase tracking-widest transition-all hover:-translate-y-0.5 rounded">
                         <?php echo esc_html( romvill_t( 'contact.hero.cta' ) ); ?>
                     </a>
-                    <p class="text-xs text-slate-500 mt-4">
+                    <p class="text-xs text-slate-400 mt-4">
                         <?php echo esc_html( romvill_t( 'contact.hero.ctasub' ) ); ?>
                     </p>
                 </div>
@@ -342,7 +342,7 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
         <!-- ── Cobertura (línea limpia con icono de ubicación) ── -->
         <div class="rf-anim flex items-center justify-center flex-wrap gap-2 mb-8" style="animation-delay:.1s">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F0C24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--rv-text-soft)"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
+            <span class="text-[11px] font-bold tracking-widest uppercase" style="color:var(--rv-text-soft)"><?php echo esc_html( romvill_t( 'contact.coverage' ) ); ?></span>
             <span class="text-sm ml-1" style="color:var(--rv-text-faint)">Alicante · Costa Blanca</span>
             <span aria-hidden="true" style="color:var(--rv-gold-ink)">•</span>
             <span class="text-sm" style="color:var(--rv-text-faint)">Málaga</span>
@@ -369,7 +369,7 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
         <!-- ── Divider ──────────────────────────────── -->
         <div id="contacto" class="rf-anim flex items-center gap-4 mb-10" style="animation-delay:.28s; scroll-margin-top: 6rem;">
             <div class="cont-hr cont-hr--l" aria-hidden="true"></div>
-            <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-500 px-2"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
+            <span class="text-[11px] font-bold tracking-widest uppercase text-slate-400 px-2"><?php echo esc_html( romvill_t( 'cont.direct.badge' ) ); ?></span>
             <div class="cont-hr cont-hr--r" aria-hidden="true"></div>
         </div>
 
@@ -479,7 +479,7 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
                             <span class="material-symbols-outlined" aria-hidden="true" style="font-size:14px">lock</span>
                             <?php echo esc_html( romvill_t( 'contact.f.confidential' ) ); ?>
                         </p>
-                        <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-2"><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></p>
+                        <p class="text-center text-xs text-slate-400 mt-2"><?php echo esc_html( romvill_t( 'contact.f.reassure' ) ); ?></p>
 
                         <div id="romvill-form-response" style="display:none;" class="wpcf7-response-output mt-4"></div>
                     </form>
@@ -623,20 +623,20 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
 
                 <!-- Contact channels -->
                 <div class="rf-anim mt-6" style="animation-delay:.3s">
-                    <h3 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4 px-1"><?php echo esc_html( romvill_t( 'contact.channels' ) ); ?></h3>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 px-1"><?php echo esc_html( romvill_t( 'contact.channels' ) ); ?></h3>
                     <div class="grid grid-cols-1 gap-4 mb-6">
                         <a href="mailto:info@romvill.com" class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-secondary/40 hover:shadow-md transition-all group">
                             <div class="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0 group-hover:scale-110 transition-transform">
                                 <span aria-hidden="true" class="material-symbols-outlined text-xl">mail</span>
                             </div>
                             <div>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.email.label' ) ); ?></p>
+                                <p class="text-[11px] text-slate-400 font-bold uppercase tracking-wider mb-0.5"><?php echo esc_html( romvill_t( 'contact.email.label' ) ); ?></p>
                                 <span class="text-slate-900 dark:text-white font-semibold text-sm group-hover:text-secondary transition-colors">info@romvill.com</span>
                             </div>
                         </a>
                     </div>
                     <div class="flex items-center gap-2 px-1 text-xs text-slate-500 dark:text-slate-400">
-                        <a href="https://www.instagram.com/romvillspain" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-secondary transition-colors" aria-label="Instagram">
+                        <a href="https://www.instagram.com/romvillspain" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 py-2 hover:text-secondary transition-colors" aria-label="Instagram">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg>
                                 <span>@romvillspain</span>
                             </a>
@@ -705,7 +705,7 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
 </main>
 
 <!-- ── No somos inmobiliaria ── -->
-<div class="text-center py-6 text-sm text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800 max-w-6xl mx-auto px-4">
+<div class="text-center py-6 text-sm text-slate-400 border-t border-slate-100 dark:border-slate-800 max-w-6xl mx-auto px-4">
     <?php echo esc_html( romvill_t( 'contact.noinmo' ) ); ?>
 </div>
 

@@ -40,13 +40,13 @@ $perfil_pages = array(
     <!-- Sub-Navbar -->
     <div class="sticky top-20 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 dark:bg-slate-900/80 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-center gap-12 h-14 overflow-x-auto no-scrollbar">
+            <div class="flex items-center justify-start md:justify-center gap-6 md:gap-12 h-14 overflow-x-auto no-scrollbar px-4">
                 <?php foreach ( $perfil_pages as $slug => $label ) :
                     $p = get_page_by_path( $slug );
                     $u = $p ? add_query_arg( 'lang', $_lang, get_permalink( $p ) ) : home_url( '/' . $slug . '/' );
                 ?>
                 <a href="<?php echo esc_url( $u ); ?>" class="group relative py-4">
-                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-secondary transition-colors whitespace-nowrap"><?php echo esc_html( $label ); ?></span>
+                    <span class="text-[11px] font-bold uppercase tracking-[0.12em] md:tracking-[0.2em] text-slate-500 hover:text-secondary transition-colors whitespace-nowrap"><?php echo esc_html( $label ); ?></span>
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
                 </a>
                 <?php endforeach; ?>
@@ -171,7 +171,7 @@ $perfil_pages = array(
           <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-xl mx-auto"><?php echo esc_html( romvill_t( 'ix.sl.help' ) ); ?></p>
         </div>
         <style>
-        #rvix-sl .cmp{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(164, 161, 158,.25);--x:50%;cursor:ew-resize;user-select:none;touch-action:none}
+        #rvix-sl .cmp{position:relative;height:460px;border-radius:16px;overflow:hidden;border:1px solid rgba(164, 161, 158,.25);--x:50%;cursor:ew-resize;user-select:none;touch-action:pan-y}
         #rvix-sl .ly{position:absolute;inset:0;background-size:cover;background-position:center 42%}
         #rvix-sl .base::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0, 0, 0,.15),rgba(0, 0, 0,.55))}
         #rvix-sl .intel{clip-path:inset(0 0 0 var(--x))}
@@ -183,7 +183,7 @@ $perfil_pages = array(
         #rvix-sl .nd .lbx{display:flex;flex-direction:column;line-height:1.3}
         #rvix-sl .nd .lbx b{font-weight:700;font-size:11.5px;white-space:nowrap}
         #rvix-sl .nd .lbx i{font-style:normal;font-weight:400;font-size:10px;color:#D7D4D1;margin-top:1px}
-        #rvix-sl .tg{position:absolute;bottom:14px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
+        #rvix-sl .tg{position:absolute;bottom:14px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
         #rvix-sl .tg.l{left:14px;background:rgba(255,255,255,.14);color:#fff}
         #rvix-sl .tg.r{right:14px;background:rgba(240, 194, 74,.92);color:#000000}
         #rvix-sl .dv{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#F0C24A;box-shadow:0 0 12px rgba(240, 194, 74,.7);z-index:5}
