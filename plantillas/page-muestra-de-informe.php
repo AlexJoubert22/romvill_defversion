@@ -234,7 +234,7 @@ $_seasons = array(
   #rv-mu .dgrid,#rv-mu .seasons{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:640px){
-  #rv-mu .hero{padding:68px 18px 52px}
+  #rv-mu .hero{padding:104px 18px 52px}
   #rv-mu .doc{padding:24px 12px 30px}
   #rv-mu .cov{padding:32px 20px 26px}
   #rv-mu .cov .ctop{flex-direction:column}

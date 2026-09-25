@@ -23,7 +23,7 @@ $perfil_pages = array(
 
 <main class="flex-grow">
     <!-- Hero -->
-    <section class="relative pt-16 pb-12 lg:pt-24 lg:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+    <section class="relative pt-28 pb-12 lg:pt-24 lg:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
         <div class="flex items-center justify-center gap-4 mb-6">
             <span class="hiw-badge-line" aria-hidden="true"></span>
             <span class="text-secondary-ink dark:text-secondary font-bold uppercase tracking-[0.4em] text-xs"><?php echo esc_html( romvill_t( 'ana.badge' ) ); ?></span>

@@ -276,7 +276,7 @@ html:not(.dark) .rgpd-consent a{color:#8A6B18;}
 
         <!-- ── Hero oscuro a sangre completa: texto + placa de cristal con los 3 pasos ── -->
         <section class="rv-dark-hero -mt-12 md:-mt-16 lg:-mt-20 mb-12">
-            <div class="rf-anim max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 grid lg:grid-cols-5 gap-10 lg:gap-14 items-center relative z-10" style="animation-delay:.05s">
+            <div class="rf-anim max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-16 md:py-24 grid lg:grid-cols-5 gap-10 lg:gap-14 items-center relative z-10" style="animation-delay:.05s">
                 <div class="lg:col-span-3 text-center lg:text-left">
                     <div class="flex items-center justify-center lg:justify-start gap-4 mb-6">
                         <span class="hiw-badge-line hidden sm:block" aria-hidden="true"></span>

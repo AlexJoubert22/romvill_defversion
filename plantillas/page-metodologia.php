@@ -15,7 +15,7 @@ $contacto_url  = add_query_arg( 'lang', $_lang, $contacto_url );
 ?>
 
 <main class="flex-grow flex flex-col items-center">
-    <section class="w-full max-w-7xl px-4 md:px-10 py-16 md:py-24 text-center">
+    <section class="w-full max-w-7xl px-4 md:px-10 pt-28 pb-16 md:py-24 text-center">
         <div class="flex items-center justify-center gap-4 mb-6">
             <span class="hiw-badge-line" aria-hidden="true"></span>
             <span class="text-xs font-bold tracking-[0.4em] uppercase text-secondary-ink dark:text-secondary"><?php echo esc_html( romvill_t( 'met.badge' ) ); ?></span>
