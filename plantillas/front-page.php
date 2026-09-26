@@ -23,7 +23,7 @@ $sectores_url  = add_query_arg( 'lang', $_lang, $sectores_url );
     <main class="relative pt-32 pb-24 md:pb-32 overflow-hidden min-h-screen flex items-center">
         <!-- Hero Slideshow -->
         <div id="hero-slideshow" class="absolute inset-0 z-0 overflow-hidden">
-            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero.webp' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
+            <div class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo esc_url( romvill_img( 'fondo_hero-2.webp' ) ); ?>'); opacity:1; transition: opacity 1.8s ease-in-out; transform: scale(1.05);"></div>
             <?php /* Slides 2-4: carga diferida vía data-bg → ensureBg() en romvill.js.
                      El navegador solo descarga el slide 1 (LCP); los demás se cargan
                      tras el evento load, sin competir con el primer render. */ ?>

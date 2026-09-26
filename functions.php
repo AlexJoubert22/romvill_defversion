@@ -150,7 +150,7 @@ add_action( 'wp_head', 'romvill_preload_hero_lcp', 2 );
 function romvill_preload_hero_lcp() {
     if ( is_front_page() && ! is_admin() ) {
         echo '<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="'
-            . esc_url( get_template_directory_uri() . '/assets/images/fondo_hero.webp' )
+            . esc_url( get_template_directory_uri() . '/assets/images/fondo_hero-2.webp' )
             . '" />' . "\n";
     }
 }
@@ -2086,6 +2086,7 @@ function romvill_purge_dev_files() {
         'ANALISIS.html', 'contacto.html', 'metodologia.html', 'index.html', 'SECTORES.html', 'awwwards-concept.html',
         'PERFIL_DEMOGRAFICO.html', 'PERFIL_MOVILIDAD.html', 'PERFIL_PROYECCION.html', 'PERFIL_SANIDAD.html', 'PERFIL_SEGURIDAD.html',
         'alicante.png', 'malaga.png', 'marbella.png', 'fondo_hero.png', 'inversores.png',
+        'assets/images/fondo_hero.jpg', 'assets/images/fondo_hero.webp', // sustituidas por fondo_hero-2.* (sin marca de agua)
         'logo negro jpg.jpg', 'Business Meeting Animation.json',
         '_ESTADO_CUESTIONARIO_Y_CONTACTO.txt', '.DS_Store',
     );
@@ -2124,10 +2125,10 @@ function romvill_purge_dev_files() {
 // Ejecuta la purga UNA sola vez tras desplegar esta versión (sin intervención).
 // Súbele la versión al añadir archivos a la lista, o no volverá a ejecutarse.
 add_action( 'init', function () {
-    if ( get_option( 'romvill_devpurge' ) === 'v3' ) return;
+    if ( get_option( 'romvill_devpurge' ) === 'v4' ) return;
     if ( function_exists( 'romvill_purge_dev_files' ) ) {
         romvill_purge_dev_files();
-        update_option( 'romvill_devpurge', 'v3' );
+        update_option( 'romvill_devpurge', 'v4' );
     }
 } );
 

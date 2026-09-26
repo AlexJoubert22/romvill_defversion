@@ -23,7 +23,7 @@ $contacto_url  = romvill_link( $contacto_url );
         <div class="group/left split-section relative flex-1 flex flex-col justify-end p-8 lg:p-16 min-h-[60vh] lg:min-h-0 lg:overflow-hidden split-hover cursor-default border-b-4 lg:border-b-0 lg:border-r-4 border-white/20">
             <div class="absolute inset-0 z-0">
                 <img alt="Residencia moderna" width="1120" height="836" fetchpriority="high" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover/left:scale-110 filter brightness-[0.7] group-hover/left:brightness-[0.8]"
-                    src="<?php echo esc_url( romvill_img( 'fondo_hero.jpg' ) ); ?>" />
+                    src="<?php echo esc_url( romvill_img( 'fondo_hero-2.jpg' ) ); ?>" />
             </div>
             <div class="relative z-10 max-w-lg transition-transform duration-500 group-hover/left:translate-x-2">
                 <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20">
