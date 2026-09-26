@@ -119,7 +119,6 @@ $packs = array(
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                 <div>
                     <span class="inline-block text-[11px] font-bold tracking-widest uppercase text-[#8A6B18] dark:text-[#F0C24A] border border-secondary/40 px-3 py-1 rounded-full mb-2"><?php echo esc_html( romvill_t( 'presup.sel.badge' ) ); ?></span>
-                    <span class="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2 ml-1 bg-secondary text-slate-900"><?php echo esc_html( romvill_t( 'presup.sel.recommended' ) ); ?></span>
                     <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                         <?php echo esc_html( romvill_t( 'presup.sel.title' ) ); ?>
                     </h2>
