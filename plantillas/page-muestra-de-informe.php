@@ -146,7 +146,7 @@ $_seasons = array(
 #rv-mu .vtag .ic{width:13px;height:13px}
 #rv-mu .fdata{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:.84rem;color:var(--mu-t3)}
 #rv-mu .fdata b{color:var(--mu-t1);font-variant-numeric:tabular-nums}
-#rv-mu .fd{display:inline-flex;align-items:center;gap:6px}
+#rv-mu .fd{display:inline-flex;flex-wrap:wrap;align-items:center;gap:2px 6px}
 #rv-mu .fd .ic{width:15px;height:15px;color:var(--mu-goldd)}
 
 /* Grid de distancias */

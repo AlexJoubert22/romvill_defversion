@@ -100,7 +100,7 @@
 
             <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <p class="text-xs text-slate-400">&copy; <?php echo esc_html( date( 'Y' ) ); ?> ROMVILL. <?php echo esc_html( romvill_t( 'footer.rights' ) ); ?></p>
-                <div class="flex gap-6">
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-0">
                     <?php
                     $priv_page  = get_page_by_path( 'privacidad' );
                     $priv_url   = romvill_link( $priv_page ? get_permalink( $priv_page ) : home_url( '/privacidad/' ) );
